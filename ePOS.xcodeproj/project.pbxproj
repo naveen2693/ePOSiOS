@@ -1,0 +1,739 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		18274840419F503DA1EE880A /* Pods_ePOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F0391820214628F09E9428 /* Pods_ePOS.framework */; };
+		991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADE9F250645A300932251 /* EPOSRoundButton.swift */; };
+		991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA1250645C300932251 /* EPOSRectangularButton.swift */; };
+		991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA3250646E500932251 /* EPOSLabel.swift */; };
+		991ADEA825064E2F00932251 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA625064E2F00932251 /* UIImageExtension.swift */; };
+		991ADEA925064E2F00932251 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA725064E2F00932251 /* UIButtonExtension.swift */; };
+		991ADEAB250660DB00932251 /* EPOSGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEAA250660DB00932251 /* EPOSGradientView.swift */; };
+		991ADEAD250662EF00932251 /* EPOSShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEAC250662EF00932251 /* EPOSShadowView.swift */; };
+		9976C9092500F05600FC5DD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9976C9082500F05600FC5DD3 /* AppDelegate.swift */; };
+		9976C90B2500F05600FC5DD3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9976C90A2500F05600FC5DD3 /* SceneDelegate.swift */; };
+		9976C90D2500F05600FC5DD3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9976C90C2500F05600FC5DD3 /* ViewController.swift */; };
+		9976C9102500F05700FC5DD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9976C90E2500F05700FC5DD3 /* Main.storyboard */; };
+		9976C9122500F05800FC5DD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9976C9112500F05800FC5DD3 /* Assets.xcassets */; };
+		9976C9152500F05800FC5DD3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9976C9132500F05800FC5DD3 /* LaunchScreen.storyboard */; };
+		9976C9212501065D00FC5DD3 /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9976C9202501065D00FC5DD3 /* CustomFonts.swift */; };
+		9976C9232501066B00FC5DD3 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9976C9222501066B00FC5DD3 /* CustomColors.swift */; };
+		9976C9262501069D00FC5DD3 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9976C9252501069D00FC5DD3 /* Colors.xcassets */; };
+		9976C9502501165E00FC5DD3 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9976C9432501165E00FC5DD3 /* Roboto-Medium.ttf */; };
+		9976C9512501165E00FC5DD3 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9976C9442501165E00FC5DD3 /* Roboto-Light.ttf */; };
+		9976C9522501165E00FC5DD3 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9976C9452501165E00FC5DD3 /* Roboto-Regular.ttf */; };
+		9976C9532501165E00FC5DD3 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9976C9462501165E00FC5DD3 /* Roboto-MediumItalic.ttf */; };
+		9976C9542501165E00FC5DD3 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9976C9472501165E00FC5DD3 /* Roboto-ThinItalic.ttf */; };
+		9976C9552501165E00FC5DD3 /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9976C9482501165E00FC5DD3 /* Roboto-BoldItalic.ttf */; };
+		9976C9562501165E00FC5DD3 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9976C9492501165E00FC5DD3 /* Roboto-LightItalic.ttf */; };
+		9976C9572501165E00FC5DD3 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9976C94A2501165E00FC5DD3 /* Roboto-Italic.ttf */; };
+		9976C9582501165E00FC5DD3 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9976C94B2501165E00FC5DD3 /* LICENSE.txt */; };
+		9976C9592501165E00FC5DD3 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9976C94C2501165E00FC5DD3 /* Roboto-BlackItalic.ttf */; };
+		9976C95A2501165E00FC5DD3 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9976C94D2501165E00FC5DD3 /* Roboto-Bold.ttf */; };
+		9976C95B2501165E00FC5DD3 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9976C94E2501165E00FC5DD3 /* Roboto-Thin.ttf */; };
+		9976C95C2501165E00FC5DD3 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9976C94F2501165E00FC5DD3 /* Roboto-Black.ttf */; };
+		9976C95E2501173600FC5DD3 /* DeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9976C95D2501173600FC5DD3 /* DeviceType.swift */; };
+		9976C9642501240700FC5DD3 /* EPOSNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9976C9632501240700FC5DD3 /* EPOSNavigationBar.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		21D6DA97CDA242EDFE4068EE /* Pods-ePOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ePOS.release.xcconfig"; path = "Target Support Files/Pods-ePOS/Pods-ePOS.release.xcconfig"; sourceTree = "<group>"; };
+		22F0391820214628F09E9428 /* Pods_ePOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ePOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3293659E051B6C990362E7F9 /* Pods-ePOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ePOS.debug.xcconfig"; path = "Target Support Files/Pods-ePOS/Pods-ePOS.debug.xcconfig"; sourceTree = "<group>"; };
+		991ADE9F250645A300932251 /* EPOSRoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSRoundButton.swift; sourceTree = "<group>"; };
+		991ADEA1250645C300932251 /* EPOSRectangularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSRectangularButton.swift; sourceTree = "<group>"; };
+		991ADEA3250646E500932251 /* EPOSLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSLabel.swift; sourceTree = "<group>"; };
+		991ADEA625064E2F00932251 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		991ADEA725064E2F00932251 /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		991ADEAA250660DB00932251 /* EPOSGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSGradientView.swift; sourceTree = "<group>"; };
+		991ADEAC250662EF00932251 /* EPOSShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSShadowView.swift; sourceTree = "<group>"; };
+		9976C9052500F05600FC5DD3 /* ePOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ePOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9976C9082500F05600FC5DD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9976C90A2500F05600FC5DD3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		9976C90C2500F05600FC5DD3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9976C90F2500F05700FC5DD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9976C9112500F05800FC5DD3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9976C9142500F05800FC5DD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9976C9162500F05800FC5DD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9976C9202501065D00FC5DD3 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
+		9976C9222501066B00FC5DD3 /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
+		9976C9252501069D00FC5DD3 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		9976C9432501165E00FC5DD3 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		9976C9442501165E00FC5DD3 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		9976C9452501165E00FC5DD3 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		9976C9462501165E00FC5DD3 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
+		9976C9472501165E00FC5DD3 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+		9976C9482501165E00FC5DD3 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
+		9976C9492501165E00FC5DD3 /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
+		9976C94A2501165E00FC5DD3 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
+		9976C94B2501165E00FC5DD3 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		9976C94C2501165E00FC5DD3 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
+		9976C94D2501165E00FC5DD3 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		9976C94E2501165E00FC5DD3 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		9976C94F2501165E00FC5DD3 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		9976C95D2501173600FC5DD3 /* DeviceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceType.swift; sourceTree = "<group>"; };
+		9976C9602501190400FC5DD3 /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
+		9976C9632501240700FC5DD3 /* EPOSNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSNavigationBar.swift; sourceTree = "<group>"; };
+		B5B8F0D4F76186F2167A93E4 /* Pods-ePOS.uat.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ePOS.uat.xcconfig"; path = "Target Support Files/Pods-ePOS/Pods-ePOS.uat.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9976C9022500F05600FC5DD3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18274840419F503DA1EE880A /* Pods_ePOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		053A19E71315E5E6B2570376 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				22F0391820214628F09E9428 /* Pods_ePOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		42DF747F6398F5260E9DDF50 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3293659E051B6C990362E7F9 /* Pods-ePOS.debug.xcconfig */,
+				21D6DA97CDA242EDFE4068EE /* Pods-ePOS.release.xcconfig */,
+				B5B8F0D4F76186F2167A93E4 /* Pods-ePOS.uat.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		991ADE922506096700932251 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				991ADE9925060A4000932251 /* Walkthrough */,
+				991ADE9825060A3600932251 /* Account */,
+				991ADE97250609E100932251 /* Transactions */,
+				991ADE96250609D900932251 /* Home */,
+				991ADE95250609CC00932251 /* On Boarding */,
+				991ADE94250609C100932251 /* Login Registration */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		991ADE94250609C100932251 /* Login Registration */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Login Registration";
+			sourceTree = "<group>";
+		};
+		991ADE95250609CC00932251 /* On Boarding */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "On Boarding";
+			sourceTree = "<group>";
+		};
+		991ADE96250609D900932251 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		991ADE97250609E100932251 /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Transactions;
+			sourceTree = "<group>";
+		};
+		991ADE9825060A3600932251 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		991ADE9925060A4000932251 /* Walkthrough */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Walkthrough;
+			sourceTree = "<group>";
+		};
+		991ADE9A2506454700932251 /* Custom Classes */ = {
+			isa = PBXGroup;
+			children = (
+				991ADEA525064E1D00932251 /* Gradient Button */,
+				991ADE9F250645A300932251 /* EPOSRoundButton.swift */,
+				991ADEA1250645C300932251 /* EPOSRectangularButton.swift */,
+				991ADEA3250646E500932251 /* EPOSLabel.swift */,
+				991ADEAA250660DB00932251 /* EPOSGradientView.swift */,
+				991ADEAC250662EF00932251 /* EPOSShadowView.swift */,
+			);
+			path = "Custom Classes";
+			sourceTree = "<group>";
+		};
+		991ADEA525064E1D00932251 /* Gradient Button */ = {
+			isa = PBXGroup;
+			children = (
+				991ADEA725064E2F00932251 /* UIButtonExtension.swift */,
+				991ADEA625064E2F00932251 /* UIImageExtension.swift */,
+			);
+			path = "Gradient Button";
+			sourceTree = "<group>";
+		};
+		9976C8FC2500F05600FC5DD3 = {
+			isa = PBXGroup;
+			children = (
+				9976C9072500F05600FC5DD3 /* ePOS */,
+				9976C9062500F05600FC5DD3 /* Products */,
+				42DF747F6398F5260E9DDF50 /* Pods */,
+				053A19E71315E5E6B2570376 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9976C9062500F05600FC5DD3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9976C9052500F05600FC5DD3 /* ePOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9976C9072500F05600FC5DD3 /* ePOS */ = {
+			isa = PBXGroup;
+			children = (
+				991ADE922506096700932251 /* Modules */,
+				9976C9242501067E00FC5DD3 /* Resources */,
+				9976C91D250105D000FC5DD3 /* Common Classes */,
+				9976C9082500F05600FC5DD3 /* AppDelegate.swift */,
+				9976C90A2500F05600FC5DD3 /* SceneDelegate.swift */,
+				9976C90C2500F05600FC5DD3 /* ViewController.swift */,
+				9976C90E2500F05700FC5DD3 /* Main.storyboard */,
+				9976C9112500F05800FC5DD3 /* Assets.xcassets */,
+				9976C9132500F05800FC5DD3 /* LaunchScreen.storyboard */,
+				9976C9162500F05800FC5DD3 /* Info.plist */,
+			);
+			path = ePOS;
+			sourceTree = "<group>";
+		};
+		9976C91D250105D000FC5DD3 /* Common Classes */ = {
+			isa = PBXGroup;
+			children = (
+				991ADE9A2506454700932251 /* Custom Classes */,
+				9976C95F250118E900FC5DD3 /* Constants */,
+				9976C91F250105F800FC5DD3 /* Extensions */,
+				9976C91E250105EE00FC5DD3 /* Utilities */,
+			);
+			path = "Common Classes";
+			sourceTree = "<group>";
+		};
+		9976C91E250105EE00FC5DD3 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		9976C91F250105F800FC5DD3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9976C9202501065D00FC5DD3 /* CustomFonts.swift */,
+				9976C9222501066B00FC5DD3 /* CustomColors.swift */,
+				9976C95D2501173600FC5DD3 /* DeviceType.swift */,
+				9976C9632501240700FC5DD3 /* EPOSNavigationBar.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9976C9242501067E00FC5DD3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9976C9422501165E00FC5DD3 /* Roboto */,
+				9976C9252501069D00FC5DD3 /* Colors.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9976C9422501165E00FC5DD3 /* Roboto */ = {
+			isa = PBXGroup;
+			children = (
+				9976C9432501165E00FC5DD3 /* Roboto-Medium.ttf */,
+				9976C9442501165E00FC5DD3 /* Roboto-Light.ttf */,
+				9976C9452501165E00FC5DD3 /* Roboto-Regular.ttf */,
+				9976C9462501165E00FC5DD3 /* Roboto-MediumItalic.ttf */,
+				9976C9472501165E00FC5DD3 /* Roboto-ThinItalic.ttf */,
+				9976C9482501165E00FC5DD3 /* Roboto-BoldItalic.ttf */,
+				9976C9492501165E00FC5DD3 /* Roboto-LightItalic.ttf */,
+				9976C94A2501165E00FC5DD3 /* Roboto-Italic.ttf */,
+				9976C94B2501165E00FC5DD3 /* LICENSE.txt */,
+				9976C94C2501165E00FC5DD3 /* Roboto-BlackItalic.ttf */,
+				9976C94D2501165E00FC5DD3 /* Roboto-Bold.ttf */,
+				9976C94E2501165E00FC5DD3 /* Roboto-Thin.ttf */,
+				9976C94F2501165E00FC5DD3 /* Roboto-Black.ttf */,
+			);
+			path = Roboto;
+			sourceTree = "<group>";
+		};
+		9976C95F250118E900FC5DD3 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				9976C9602501190400FC5DD3 /* Constant.h */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9976C9042500F05600FC5DD3 /* ePOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9976C9192500F05800FC5DD3 /* Build configuration list for PBXNativeTarget "ePOS" */;
+			buildPhases = (
+				901C4886E4729477AFB68FD3 /* [CP] Check Pods Manifest.lock */,
+				9976C9012500F05600FC5DD3 /* Sources */,
+				9976C9022500F05600FC5DD3 /* Frameworks */,
+				9976C9032500F05600FC5DD3 /* Resources */,
+				F1ACA5527FF91ED60A8005D4 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ePOS;
+			productName = ePOS;
+			productReference = 9976C9052500F05600FC5DD3 /* ePOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9976C8FD2500F05600FC5DD3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = Pinelabs;
+				TargetAttributes = {
+					9976C9042500F05600FC5DD3 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 9976C9002500F05600FC5DD3 /* Build configuration list for PBXProject "ePOS" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9976C8FC2500F05600FC5DD3;
+			productRefGroup = 9976C9062500F05600FC5DD3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9976C9042500F05600FC5DD3 /* ePOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9976C9032500F05600FC5DD3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9976C95B2501165E00FC5DD3 /* Roboto-Thin.ttf in Resources */,
+				9976C9502501165E00FC5DD3 /* Roboto-Medium.ttf in Resources */,
+				9976C9572501165E00FC5DD3 /* Roboto-Italic.ttf in Resources */,
+				9976C95A2501165E00FC5DD3 /* Roboto-Bold.ttf in Resources */,
+				9976C9562501165E00FC5DD3 /* Roboto-LightItalic.ttf in Resources */,
+				9976C95C2501165E00FC5DD3 /* Roboto-Black.ttf in Resources */,
+				9976C9592501165E00FC5DD3 /* Roboto-BlackItalic.ttf in Resources */,
+				9976C9522501165E00FC5DD3 /* Roboto-Regular.ttf in Resources */,
+				9976C9152500F05800FC5DD3 /* LaunchScreen.storyboard in Resources */,
+				9976C9582501165E00FC5DD3 /* LICENSE.txt in Resources */,
+				9976C9512501165E00FC5DD3 /* Roboto-Light.ttf in Resources */,
+				9976C9532501165E00FC5DD3 /* Roboto-MediumItalic.ttf in Resources */,
+				9976C9262501069D00FC5DD3 /* Colors.xcassets in Resources */,
+				9976C9542501165E00FC5DD3 /* Roboto-ThinItalic.ttf in Resources */,
+				9976C9122500F05800FC5DD3 /* Assets.xcassets in Resources */,
+				9976C9552501165E00FC5DD3 /* Roboto-BoldItalic.ttf in Resources */,
+				9976C9102500F05700FC5DD3 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		901C4886E4729477AFB68FD3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ePOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1ACA5527FF91ED60A8005D4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ePOS/Pods-ePOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ePOS/Pods-ePOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9976C9012500F05600FC5DD3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9976C90D2500F05600FC5DD3 /* ViewController.swift in Sources */,
+				9976C9232501066B00FC5DD3 /* CustomColors.swift in Sources */,
+				9976C9212501065D00FC5DD3 /* CustomFonts.swift in Sources */,
+				9976C95E2501173600FC5DD3 /* DeviceType.swift in Sources */,
+				991ADEA825064E2F00932251 /* UIImageExtension.swift in Sources */,
+				991ADEA925064E2F00932251 /* UIButtonExtension.swift in Sources */,
+				991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */,
+				991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */,
+				991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */,
+				991ADEAB250660DB00932251 /* EPOSGradientView.swift in Sources */,
+				9976C9092500F05600FC5DD3 /* AppDelegate.swift in Sources */,
+				991ADEAD250662EF00932251 /* EPOSShadowView.swift in Sources */,
+				9976C90B2500F05600FC5DD3 /* SceneDelegate.swift in Sources */,
+				9976C9642501240700FC5DD3 /* EPOSNavigationBar.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9976C90E2500F05700FC5DD3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9976C90F2500F05700FC5DD3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9976C9132500F05800FC5DD3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9976C9142500F05800FC5DD3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		991ADE7F2505DB9E00932251 /* UAT */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				APP_DISPLAY_NAME = "ePOS UAT";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = UAT;
+		};
+		991ADE802505DB9E00932251 /* UAT */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5B8F0D4F76186F2167A93E4 /* Pods-ePOS.uat.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = HCF6CL33AL;
+				INFOPLIST_FILE = ePOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pinelabs.eposdev;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SERVER_URL = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = UAT;
+		};
+		9976C9172500F05800FC5DD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				APP_DISPLAY_NAME = "ePOS Dev";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9976C9182500F05800FC5DD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				APP_DISPLAY_NAME = ePOS;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9976C91A2500F05800FC5DD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3293659E051B6C990362E7F9 /* Pods-ePOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = HCF6CL33AL;
+				INFOPLIST_FILE = ePOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pinelabs.eposdev;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SERVER_URL = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9976C91B2500F05800FC5DD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21D6DA97CDA242EDFE4068EE /* Pods-ePOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HCF6CL33AL;
+				INFOPLIST_FILE = ePOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pinelabs.epos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SERVER_URL = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9976C9002500F05600FC5DD3 /* Build configuration list for PBXProject "ePOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9976C9172500F05800FC5DD3 /* Debug */,
+				991ADE7F2505DB9E00932251 /* UAT */,
+				9976C9182500F05800FC5DD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9976C9192500F05800FC5DD3 /* Build configuration list for PBXNativeTarget "ePOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9976C91A2500F05800FC5DD3 /* Debug */,
+				991ADE802505DB9E00932251 /* UAT */,
+				9976C91B2500F05800FC5DD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9976C8FD2500F05600FC5DD3 /* Project object */;
+}
