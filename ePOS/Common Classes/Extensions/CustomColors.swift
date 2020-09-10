@@ -8,6 +8,7 @@
 
 import UIKit
 
+@objc
 extension UIColor {
     
     class func darkThemeColor() -> UIColor {

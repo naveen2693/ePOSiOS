@@ -33,9 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
 //
 //        FirebaseApp.configure(options: options)
-        FirebaseApp.configure()
-        
-        Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(true)
+//        FirebaseApp.configure()
+//        Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(true)
+//        Analytics.logEvent("Project_Name", parameters: [
+//        "name":"ePOS Dev"
+//        ])
     }
     
     // MARK: UISceneSession Lifecycle

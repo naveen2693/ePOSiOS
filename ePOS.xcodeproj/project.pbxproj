@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		18274840419F503DA1EE880A /* Pods_ePOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F0391820214628F09E9428 /* Pods_ePOS.framework */; };
+		99186CBA2508C08F00A9FE07 /* EPOSTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 99186CB92508C08F00A9FE07 /* EPOSTextField.m */; };
+		99186CBD2508EC6000A9FE07 /* EPOSTextField+FloatText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CBC2508EC6000A9FE07 /* EPOSTextField+FloatText.swift */; };
+		99186CC42508EF5600A9FE07 /* EPOSTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CC32508EF5600A9FE07 /* EPOSTabBarViewController.swift */; };
+		99186CC62508EF9500A9FE07 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CC52508EF9500A9FE07 /* HomeViewController.swift */; };
+		99186CCB2508F01400A9FE07 /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CCA2508F01400A9FE07 /* TransactionsViewController.swift */; };
+		99186CD02508F03900A9FE07 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CCF2508F03900A9FE07 /* AccountViewController.swift */; };
+		99186CD22508F06D00A9FE07 /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99186CD12508F06D00A9FE07 /* Account.storyboard */; };
+		99186CD42508F07C00A9FE07 /* Transactions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99186CD32508F07C00A9FE07 /* Transactions.storyboard */; };
 		991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADE9F250645A300932251 /* EPOSRoundButton.swift */; };
 		991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA1250645C300932251 /* EPOSRectangularButton.swift */; };
 		991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA3250646E500932251 /* EPOSLabel.swift */; };
@@ -38,13 +46,22 @@
 		9976C95B2501165E00FC5DD3 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9976C94E2501165E00FC5DD3 /* Roboto-Thin.ttf */; };
 		9976C95C2501165E00FC5DD3 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9976C94F2501165E00FC5DD3 /* Roboto-Black.ttf */; };
 		9976C95E2501173600FC5DD3 /* DeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9976C95D2501173600FC5DD3 /* DeviceType.swift */; };
-		9976C9642501240700FC5DD3 /* EPOSNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9976C9632501240700FC5DD3 /* EPOSNavigationBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		21D6DA97CDA242EDFE4068EE /* Pods-ePOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ePOS.release.xcconfig"; path = "Target Support Files/Pods-ePOS/Pods-ePOS.release.xcconfig"; sourceTree = "<group>"; };
 		22F0391820214628F09E9428 /* Pods_ePOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ePOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3293659E051B6C990362E7F9 /* Pods-ePOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ePOS.debug.xcconfig"; path = "Target Support Files/Pods-ePOS/Pods-ePOS.debug.xcconfig"; sourceTree = "<group>"; };
+		99186CB72508C08E00A9FE07 /* ePOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ePOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		99186CB82508C08F00A9FE07 /* EPOSTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EPOSTextField.h; sourceTree = "<group>"; };
+		99186CB92508C08F00A9FE07 /* EPOSTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EPOSTextField.m; sourceTree = "<group>"; };
+		99186CBC2508EC6000A9FE07 /* EPOSTextField+FloatText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EPOSTextField+FloatText.swift"; sourceTree = "<group>"; };
+		99186CC32508EF5600A9FE07 /* EPOSTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSTabBarViewController.swift; sourceTree = "<group>"; };
+		99186CC52508EF9500A9FE07 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		99186CCA2508F01400A9FE07 /* TransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
+		99186CCF2508F03900A9FE07 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		99186CD12508F06D00A9FE07 /* Account.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Account.storyboard; sourceTree = "<group>"; };
+		99186CD32508F07C00A9FE07 /* Transactions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Transactions.storyboard; sourceTree = "<group>"; };
 		991ADE9F250645A300932251 /* EPOSRoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSRoundButton.swift; sourceTree = "<group>"; };
 		991ADEA1250645C300932251 /* EPOSRectangularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSRectangularButton.swift; sourceTree = "<group>"; };
 		991ADEA3250646E500932251 /* EPOSLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSLabel.swift; sourceTree = "<group>"; };
@@ -78,7 +95,6 @@
 		9976C94F2501165E00FC5DD3 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		9976C95D2501173600FC5DD3 /* DeviceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceType.swift; sourceTree = "<group>"; };
 		9976C9602501190400FC5DD3 /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
-		9976C9632501240700FC5DD3 /* EPOSNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSNavigationBar.swift; sourceTree = "<group>"; };
 		B5B8F0D4F76186F2167A93E4 /* Pods-ePOS.uat.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ePOS.uat.xcconfig"; path = "Target Support Files/Pods-ePOS/Pods-ePOS.uat.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,6 +128,100 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		99186CB52507B0E600A9FE07 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		99186CB62508C06500A9FE07 /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				99186CB82508C08F00A9FE07 /* EPOSTextField.h */,
+				99186CB92508C08F00A9FE07 /* EPOSTextField.m */,
+				99186CBC2508EC6000A9FE07 /* EPOSTextField+FloatText.swift */,
+			);
+			path = TextField;
+			sourceTree = "<group>";
+		};
+		99186CBB2508C0FC00A9FE07 /* BridgingHeader */ = {
+			isa = PBXGroup;
+			children = (
+				99186CB72508C08E00A9FE07 /* ePOS-Bridging-Header.h */,
+			);
+			path = BridgingHeader;
+			sourceTree = "<group>";
+		};
+		99186CC02508EEF200A9FE07 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				99186CC32508EF5600A9FE07 /* EPOSTabBarViewController.swift */,
+				99186CC52508EF9500A9FE07 /* HomeViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		99186CC12508EF1300A9FE07 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		99186CC22508EF1C00A9FE07 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		99186CC72508EFA100A9FE07 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				99186CCA2508F01400A9FE07 /* TransactionsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		99186CC82508EFAA00A9FE07 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				99186CD32508F07C00A9FE07 /* Transactions.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		99186CC92508EFB300A9FE07 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		99186CCC2508F02A00A9FE07 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		99186CCD2508F02A00A9FE07 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				99186CCF2508F03900A9FE07 /* AccountViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		99186CCE2508F02A00A9FE07 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				99186CD12508F06D00A9FE07 /* Account.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		991ADE922506096700932251 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +238,7 @@
 		991ADE94250609C100932251 /* Login Registration */ = {
 			isa = PBXGroup;
 			children = (
+				99186CB52507B0E600A9FE07 /* Controllers */,
 			);
 			path = "Login Registration";
 			sourceTree = "<group>";
@@ -142,6 +253,9 @@
 		991ADE96250609D900932251 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				99186CC22508EF1C00A9FE07 /* Models */,
+				99186CC12508EF1300A9FE07 /* Views */,
+				99186CC02508EEF200A9FE07 /* Controllers */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -149,6 +263,9 @@
 		991ADE97250609E100932251 /* Transactions */ = {
 			isa = PBXGroup;
 			children = (
+				99186CC92508EFB300A9FE07 /* Models */,
+				99186CC82508EFAA00A9FE07 /* Views */,
+				99186CC72508EFA100A9FE07 /* Controllers */,
 			);
 			path = Transactions;
 			sourceTree = "<group>";
@@ -156,6 +273,9 @@
 		991ADE9825060A3600932251 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				99186CCD2508F02A00A9FE07 /* Controllers */,
+				99186CCC2508F02A00A9FE07 /* Models */,
+				99186CCE2508F02A00A9FE07 /* Views */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -170,6 +290,7 @@
 		991ADE9A2506454700932251 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
+				99186CB62508C06500A9FE07 /* TextField */,
 				991ADEA525064E1D00932251 /* Gradient Button */,
 				991ADE9F250645A300932251 /* EPOSRoundButton.swift */,
 				991ADEA1250645C300932251 /* EPOSRectangularButton.swift */,
@@ -210,6 +331,7 @@
 		9976C9072500F05600FC5DD3 /* ePOS */ = {
 			isa = PBXGroup;
 			children = (
+				99186CBB2508C0FC00A9FE07 /* BridgingHeader */,
 				991ADE922506096700932251 /* Modules */,
 				9976C9242501067E00FC5DD3 /* Resources */,
 				9976C91D250105D000FC5DD3 /* Common Classes */,
@@ -248,7 +370,6 @@
 				9976C9202501065D00FC5DD3 /* CustomFonts.swift */,
 				9976C9222501066B00FC5DD3 /* CustomColors.swift */,
 				9976C95D2501173600FC5DD3 /* DeviceType.swift */,
-				9976C9632501240700FC5DD3 /* EPOSNavigationBar.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -324,6 +445,7 @@
 				TargetAttributes = {
 					9976C9042500F05600FC5DD3 = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -354,6 +476,7 @@
 				9976C9502501165E00FC5DD3 /* Roboto-Medium.ttf in Resources */,
 				9976C9572501165E00FC5DD3 /* Roboto-Italic.ttf in Resources */,
 				9976C95A2501165E00FC5DD3 /* Roboto-Bold.ttf in Resources */,
+				99186CD42508F07C00A9FE07 /* Transactions.storyboard in Resources */,
 				9976C9562501165E00FC5DD3 /* Roboto-LightItalic.ttf in Resources */,
 				9976C95C2501165E00FC5DD3 /* Roboto-Black.ttf in Resources */,
 				9976C9592501165E00FC5DD3 /* Roboto-BlackItalic.ttf in Resources */,
@@ -366,6 +489,7 @@
 				9976C9542501165E00FC5DD3 /* Roboto-ThinItalic.ttf in Resources */,
 				9976C9122500F05800FC5DD3 /* Assets.xcassets in Resources */,
 				9976C9552501165E00FC5DD3 /* Roboto-BoldItalic.ttf in Resources */,
+				99186CD22508F06D00A9FE07 /* Account.storyboard in Resources */,
 				9976C9102500F05700FC5DD3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,6 +531,8 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/MDFInternationalization/MDFInternationalization.framework",
+				"${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -417,6 +543,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFInternationalization.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialComponents.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -434,18 +562,23 @@
 			files = (
 				9976C90D2500F05600FC5DD3 /* ViewController.swift in Sources */,
 				9976C9232501066B00FC5DD3 /* CustomColors.swift in Sources */,
+				99186CCB2508F01400A9FE07 /* TransactionsViewController.swift in Sources */,
 				9976C9212501065D00FC5DD3 /* CustomFonts.swift in Sources */,
+				99186CC62508EF9500A9FE07 /* HomeViewController.swift in Sources */,
 				9976C95E2501173600FC5DD3 /* DeviceType.swift in Sources */,
+				99186CBD2508EC6000A9FE07 /* EPOSTextField+FloatText.swift in Sources */,
 				991ADEA825064E2F00932251 /* UIImageExtension.swift in Sources */,
 				991ADEA925064E2F00932251 /* UIButtonExtension.swift in Sources */,
 				991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */,
 				991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */,
 				991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */,
+				99186CD02508F03900A9FE07 /* AccountViewController.swift in Sources */,
+				99186CBA2508C08F00A9FE07 /* EPOSTextField.m in Sources */,
+				99186CC42508EF5600A9FE07 /* EPOSTabBarViewController.swift in Sources */,
 				991ADEAB250660DB00932251 /* EPOSGradientView.swift in Sources */,
 				9976C9092500F05600FC5DD3 /* AppDelegate.swift in Sources */,
 				991ADEAD250662EF00932251 /* EPOSShadowView.swift in Sources */,
 				9976C90B2500F05600FC5DD3 /* SceneDelegate.swift in Sources */,
-				9976C9642501240700FC5DD3 /* EPOSNavigationBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,6 +670,7 @@
 			baseConfigurationReference = B5B8F0D4F76186F2167A93E4 /* Pods-ePOS.uat.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = HCF6CL33AL;
@@ -548,6 +682,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pinelabs.eposdev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SERVER_URL = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ePOS/BridgingHeader/ePOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -674,6 +810,7 @@
 			baseConfigurationReference = 3293659E051B6C990362E7F9 /* Pods-ePOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = HCF6CL33AL;
@@ -685,6 +822,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pinelabs.eposdev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SERVER_URL = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ePOS/BridgingHeader/ePOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -695,6 +834,7 @@
 			baseConfigurationReference = 21D6DA97CDA242EDFE4068EE /* Pods-ePOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HCF6CL33AL;
 				INFOPLIST_FILE = ePOS/Info.plist;
@@ -705,6 +845,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pinelabs.epos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SERVER_URL = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ePOS/BridgingHeader/ePOS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

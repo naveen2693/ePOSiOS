@@ -50,10 +50,25 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5J0-4C-bqn" customClass="EPOSShadowView" customModule="ePOS" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5J0-4C-bqn" customClass="EPOSShadowView" customModule="ePOS" customModuleProvider="target">
                                 <rect key="frame" x="40" y="27" width="335" height="168"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nzD-YY-7y5" customClass="EPOSTextField">
+                                        <rect key="frame" x="8" y="121" width="319" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Password"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="nzD-YY-7y5" secondAttribute="bottom" constant="30" id="TYo-Pq-4k7"/>
+                                    <constraint firstItem="nzD-YY-7y5" firstAttribute="leading" secondItem="5J0-4C-bqn" secondAttribute="leading" constant="8" id="cJ9-U9-W5Y"/>
+                                    <constraint firstAttribute="height" constant="168" id="gLV-xc-Fvp"/>
+                                    <constraint firstAttribute="trailing" secondItem="nzD-YY-7y5" secondAttribute="trailing" constant="8" id="i8k-CD-9Rm"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="10"/>
@@ -70,6 +85,11 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5J0-4C-bqn" secondAttribute="trailing" constant="39" id="2Uc-uY-YXy"/>
+                            <constraint firstItem="5J0-4C-bqn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="27" id="JqK-77-vRd"/>
+                            <constraint firstItem="5J0-4C-bqn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="dnD-vs-7Ty"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="K7H-PN-02q"/>

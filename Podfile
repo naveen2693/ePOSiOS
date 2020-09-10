@@ -10,6 +10,7 @@ pod 'SwiftLint'
 pod 'Kingfisher'
 pod 'Firebase/Analytics'
 pod 'Firebase/Crashlytics'
+pod 'MaterialComponents/TextControls+OutlinedTextFields'
   # Pods for ePOS
 
 end

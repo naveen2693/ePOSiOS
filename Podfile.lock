@@ -69,6 +69,36 @@ PODS:
   - Kingfisher (5.15.0):
     - Kingfisher/Core (= 5.15.0)
   - Kingfisher/Core (5.15.0)
+  - MaterialComponents/AnimationTiming (114.0.0)
+  - MaterialComponents/Availability (114.0.0)
+  - MaterialComponents/private/Math (114.0.0)
+  - "MaterialComponents/private/TextControlsPrivate+BaseStyle (114.0.0)":
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/private/Math
+    - "MaterialComponents/private/TextControlsPrivate+Shared"
+  - "MaterialComponents/private/TextControlsPrivate+OutlinedStyle (114.0.0)":
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/Availability
+    - MaterialComponents/private/Math
+    - "MaterialComponents/private/TextControlsPrivate+Shared"
+  - "MaterialComponents/private/TextControlsPrivate+Shared (114.0.0)":
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/private/Math
+    - "MaterialComponents/TextControls+Enums"
+  - "MaterialComponents/private/TextControlsPrivate+TextFields (114.0.0)":
+    - MaterialComponents/private/Math
+    - "MaterialComponents/private/TextControlsPrivate+Shared"
+  - "MaterialComponents/TextControls+BaseTextFields (114.0.0)":
+    - "MaterialComponents/private/TextControlsPrivate+BaseStyle"
+    - "MaterialComponents/private/TextControlsPrivate+Shared"
+    - "MaterialComponents/private/TextControlsPrivate+TextFields"
+    - MDFInternationalization
+  - "MaterialComponents/TextControls+Enums (114.0.0)"
+  - "MaterialComponents/TextControls+OutlinedTextFields (114.0.0)":
+    - MaterialComponents/Availability
+    - "MaterialComponents/private/TextControlsPrivate+OutlinedStyle"
+    - "MaterialComponents/TextControls+BaseTextFields"
+  - MDFInternationalization (2.0.0)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
     - nanopb/encode (= 1.30906.0)
@@ -82,6 +112,7 @@ DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Crashlytics
   - Kingfisher
+  - "MaterialComponents/TextControls+OutlinedTextFields"
   - SwiftLint
 
 SPEC REPOS:
@@ -97,6 +128,8 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleUtilities
     - Kingfisher
+    - MaterialComponents
+    - MDFInternationalization
     - nanopb
     - PromisesObjC
     - SwiftLint
@@ -113,10 +146,12 @@ SPEC CHECKSUMS:
   GoogleDataTransport: e85fb700c9b027079ce182c3d08e12e0f9618bb4
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   Kingfisher: 1acb67597a520c2d0310677e66d6e0af455ef757
+  MaterialComponents: 82c900f70f609710c47a9872bc2d59ce08ca0b18
+  MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   SwiftLint: bbfed21bf4451dcbd0f5cdbee44a18e06cf91b12
 
-PODFILE CHECKSUM: e886f71901c7e55b8ad0fdc25fb2c5a58f399c71
+PODFILE CHECKSUM: 58b0f6e15ec82b9f78bf13b39ec2e27af294cf27
 
 COCOAPODS: 1.6.1
