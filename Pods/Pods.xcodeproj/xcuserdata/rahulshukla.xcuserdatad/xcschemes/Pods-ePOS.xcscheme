@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E32DCCDCDF529B2AB444A295AEDB77E9"
+               BlueprintIdentifier = "758DE306BC7A2CF2AB34841CC8D4387F"
                BuildableName = "Pods_ePOS.framework"
                BlueprintName = "Pods-ePOS"
                ReferencedContainer = "container:Pods.xcodeproj">

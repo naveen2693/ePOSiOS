@@ -24,8 +24,8 @@ import UIKit
     func setup() {
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 1.0)
-        layer.shadowRadius = 3.0
-        layer.shadowOpacity = 0.15
+        layer.shadowRadius = 7.0
+        layer.shadowOpacity = 0.2
         super.backgroundColor = UIColor.clear
     }
     

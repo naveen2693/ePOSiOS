@@ -16,6 +16,11 @@
 		99186CD02508F03900A9FE07 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CCF2508F03900A9FE07 /* AccountViewController.swift */; };
 		99186CD22508F06D00A9FE07 /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99186CD12508F06D00A9FE07 /* Account.storyboard */; };
 		99186CD42508F07C00A9FE07 /* Transactions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99186CD32508F07C00A9FE07 /* Transactions.storyboard */; };
+		99186CE6250A2C6500A9FE07 /* EPOSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CE5250A2C6500A9FE07 /* EPOSHelper.swift */; };
+		99186CE8250A3B7600A9FE07 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99186CE7250A3B7600A9FE07 /* Home.storyboard */; };
+		99186CEB250A646400A9FE07 /* StatusDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CEA250A646400A9FE07 /* StatusDemoViewController.swift */; };
+		99186CEF250A67B000A9FE07 /* FailedPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CEE250A67B000A9FE07 /* FailedPopup.swift */; };
+		99186CF1250A67C200A9FE07 /* FailedPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99186CF0250A67C200A9FE07 /* FailedPopup.xib */; };
 		991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADE9F250645A300932251 /* EPOSRoundButton.swift */; };
 		991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA1250645C300932251 /* EPOSRectangularButton.swift */; };
 		991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA3250646E500932251 /* EPOSLabel.swift */; };
@@ -24,7 +29,6 @@
 		991ADEAB250660DB00932251 /* EPOSGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEAA250660DB00932251 /* EPOSGradientView.swift */; };
 		991ADEAD250662EF00932251 /* EPOSShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEAC250662EF00932251 /* EPOSShadowView.swift */; };
 		9976C9092500F05600FC5DD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9976C9082500F05600FC5DD3 /* AppDelegate.swift */; };
-		9976C90B2500F05600FC5DD3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9976C90A2500F05600FC5DD3 /* SceneDelegate.swift */; };
 		9976C90D2500F05600FC5DD3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9976C90C2500F05600FC5DD3 /* ViewController.swift */; };
 		9976C9102500F05700FC5DD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9976C90E2500F05700FC5DD3 /* Main.storyboard */; };
 		9976C9122500F05800FC5DD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9976C9112500F05800FC5DD3 /* Assets.xcassets */; };
@@ -62,6 +66,11 @@
 		99186CCF2508F03900A9FE07 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		99186CD12508F06D00A9FE07 /* Account.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Account.storyboard; sourceTree = "<group>"; };
 		99186CD32508F07C00A9FE07 /* Transactions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Transactions.storyboard; sourceTree = "<group>"; };
+		99186CE5250A2C6500A9FE07 /* EPOSHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSHelper.swift; sourceTree = "<group>"; };
+		99186CE7250A3B7600A9FE07 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		99186CEA250A646400A9FE07 /* StatusDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDemoViewController.swift; sourceTree = "<group>"; };
+		99186CEE250A67B000A9FE07 /* FailedPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailedPopup.swift; sourceTree = "<group>"; };
+		99186CF0250A67C200A9FE07 /* FailedPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FailedPopup.xib; sourceTree = "<group>"; };
 		991ADE9F250645A300932251 /* EPOSRoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSRoundButton.swift; sourceTree = "<group>"; };
 		991ADEA1250645C300932251 /* EPOSRectangularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSRectangularButton.swift; sourceTree = "<group>"; };
 		991ADEA3250646E500932251 /* EPOSLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSLabel.swift; sourceTree = "<group>"; };
@@ -71,7 +80,6 @@
 		991ADEAC250662EF00932251 /* EPOSShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSShadowView.swift; sourceTree = "<group>"; };
 		9976C9052500F05600FC5DD3 /* ePOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ePOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9976C9082500F05600FC5DD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9976C90A2500F05600FC5DD3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9976C90C2500F05600FC5DD3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9976C90F2500F05700FC5DD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9976C9112500F05800FC5DD3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -165,6 +173,7 @@
 		99186CC12508EF1300A9FE07 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				99186CE7250A3B7600A9FE07 /* Home.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -220,6 +229,15 @@
 				99186CD12508F06D00A9FE07 /* Account.storyboard */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		99186CED250A65D000A9FE07 /* Popup Dialog */ = {
+			isa = PBXGroup;
+			children = (
+				99186CEE250A67B000A9FE07 /* FailedPopup.swift */,
+				99186CF0250A67C200A9FE07 /* FailedPopup.xib */,
+			);
+			path = "Popup Dialog";
 			sourceTree = "<group>";
 		};
 		991ADE922506096700932251 /* Modules */ = {
@@ -290,6 +308,7 @@
 		991ADE9A2506454700932251 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
+				99186CED250A65D000A9FE07 /* Popup Dialog */,
 				99186CB62508C06500A9FE07 /* TextField */,
 				991ADEA525064E1D00932251 /* Gradient Button */,
 				991ADE9F250645A300932251 /* EPOSRoundButton.swift */,
@@ -336,12 +355,12 @@
 				9976C9242501067E00FC5DD3 /* Resources */,
 				9976C91D250105D000FC5DD3 /* Common Classes */,
 				9976C9082500F05600FC5DD3 /* AppDelegate.swift */,
-				9976C90A2500F05600FC5DD3 /* SceneDelegate.swift */,
 				9976C90C2500F05600FC5DD3 /* ViewController.swift */,
 				9976C90E2500F05700FC5DD3 /* Main.storyboard */,
 				9976C9112500F05800FC5DD3 /* Assets.xcassets */,
 				9976C9132500F05800FC5DD3 /* LaunchScreen.storyboard */,
 				9976C9162500F05800FC5DD3 /* Info.plist */,
+				99186CEA250A646400A9FE07 /* StatusDemoViewController.swift */,
 			);
 			path = ePOS;
 			sourceTree = "<group>";
@@ -360,6 +379,7 @@
 		9976C91E250105EE00FC5DD3 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				99186CE5250A2C6500A9FE07 /* EPOSHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -483,6 +503,8 @@
 				9976C9522501165E00FC5DD3 /* Roboto-Regular.ttf in Resources */,
 				9976C9152500F05800FC5DD3 /* LaunchScreen.storyboard in Resources */,
 				9976C9582501165E00FC5DD3 /* LICENSE.txt in Resources */,
+				99186CE8250A3B7600A9FE07 /* Home.storyboard in Resources */,
+				99186CF1250A67C200A9FE07 /* FailedPopup.xib in Resources */,
 				9976C9512501165E00FC5DD3 /* Roboto-Light.ttf in Resources */,
 				9976C9532501165E00FC5DD3 /* Roboto-MediumItalic.ttf in Resources */,
 				9976C9262501069D00FC5DD3 /* Colors.xcassets in Resources */,
@@ -528,24 +550,24 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ePOS/Pods-ePOS-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MDFInternationalization/MDFInternationalization.framework",
 				"${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFInternationalization.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialComponents.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -566,19 +588,21 @@
 				9976C9212501065D00FC5DD3 /* CustomFonts.swift in Sources */,
 				99186CC62508EF9500A9FE07 /* HomeViewController.swift in Sources */,
 				9976C95E2501173600FC5DD3 /* DeviceType.swift in Sources */,
+				99186CE6250A2C6500A9FE07 /* EPOSHelper.swift in Sources */,
 				99186CBD2508EC6000A9FE07 /* EPOSTextField+FloatText.swift in Sources */,
 				991ADEA825064E2F00932251 /* UIImageExtension.swift in Sources */,
 				991ADEA925064E2F00932251 /* UIButtonExtension.swift in Sources */,
 				991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */,
 				991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */,
+				99186CEF250A67B000A9FE07 /* FailedPopup.swift in Sources */,
 				991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */,
+				99186CEB250A646400A9FE07 /* StatusDemoViewController.swift in Sources */,
 				99186CD02508F03900A9FE07 /* AccountViewController.swift in Sources */,
 				99186CBA2508C08F00A9FE07 /* EPOSTextField.m in Sources */,
 				99186CC42508EF5600A9FE07 /* EPOSTabBarViewController.swift in Sources */,
 				991ADEAB250660DB00932251 /* EPOSGradientView.swift in Sources */,
 				9976C9092500F05600FC5DD3 /* AppDelegate.swift in Sources */,
 				991ADEAD250662EF00932251 /* EPOSShadowView.swift in Sources */,
-				9976C90B2500F05600FC5DD3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

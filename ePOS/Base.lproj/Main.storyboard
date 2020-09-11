@@ -9,12 +9,38 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Status Demo View Controller-->
+        <scene sceneID="6FA-KZ-2Up">
+            <objects>
+                <viewController id="jYH-eK-zBV" customClass="StatusDemoViewController" customModule="ePOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vwo-So-4cv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFn-US-Spj">
+                                <rect key="frame" x="146" y="67" width="133" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="First"/>
+                                <connections>
+                                    <action selector="firstClicked:" destination="jYH-eK-zBV" eventType="touchUpInside" id="YdN-HB-XBj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="weP-wR-koh"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Oa8-xQ-WMV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6jm-30-UzV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="995.65217391304361" y="112.5"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ePOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R9T-QJ-lEF" customClass="EPOSRoundButton" customModule="ePOS" customModuleProvider="target">
@@ -51,10 +77,10 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5J0-4C-bqn" customClass="EPOSShadowView" customModule="ePOS" customModuleProvider="target">
-                                <rect key="frame" x="40" y="27" width="335" height="168"/>
+                                <rect key="frame" x="40" y="71" width="335" height="168"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nzD-YY-7y5" customClass="EPOSTextField">
-                                        <rect key="frame" x="8" y="121" width="319" height="17"/>
+                                        <rect key="frame" x="8" y="141" width="319" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
@@ -64,7 +90,7 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="nzD-YY-7y5" secondAttribute="bottom" constant="30" id="TYo-Pq-4k7"/>
+                                    <constraint firstAttribute="bottom" secondItem="nzD-YY-7y5" secondAttribute="bottom" constant="10" id="TYo-Pq-4k7"/>
                                     <constraint firstItem="nzD-YY-7y5" firstAttribute="leading" secondItem="5J0-4C-bqn" secondAttribute="leading" constant="8" id="cJ9-U9-W5Y"/>
                                     <constraint firstAttribute="height" constant="168" id="gLV-xc-Fvp"/>
                                     <constraint firstAttribute="trailing" secondItem="nzD-YY-7y5" secondAttribute="trailing" constant="8" id="i8k-CD-9Rm"/>
@@ -100,7 +126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047.8260869565217" y="112.5"/>
+            <point key="canvasLocation" x="1723" y="44"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="woU-vc-HbE">
@@ -115,7 +141,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="QSP-Q8-eja"/>
+                        <segue destination="jYH-eK-zBV" kind="relationship" relationship="rootViewController" id="p7e-6a-5Y5"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n98-mK-2ga" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

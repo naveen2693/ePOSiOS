@@ -42,7 +42,8 @@ class ViewController: UIViewController {
     
     
     @IBAction func roundClicked(_ sender: EPOSRoundButton) {
-        sender.isEnabled = !sender.isEnabled
+//        sender.isEnabled = !sender.isEnabled
+        appDelegate.showHomeScreen()
     }
     
     

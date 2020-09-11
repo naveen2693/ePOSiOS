@@ -1,5 +1,4 @@
 PODS:
-  - Alamofire (5.2.2)
   - Firebase/Analytics (6.31.1):
     - Firebase/Core
   - Firebase/Core (6.31.1):
@@ -106,18 +105,20 @@ PODS:
   - nanopb/encode (1.30906.0)
   - PromisesObjC (1.2.10)
   - SwiftLint (0.40.1)
+  - SwiftMessages (8.0.2):
+    - SwiftMessages/App (= 8.0.2)
+  - SwiftMessages/App (8.0.2)
 
 DEPENDENCIES:
-  - Alamofire (~> 5.2)
   - Firebase/Analytics
   - Firebase/Crashlytics
   - Kingfisher
   - "MaterialComponents/TextControls+OutlinedTextFields"
   - SwiftLint
+  - SwiftMessages
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Alamofire
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -133,9 +134,9 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - SwiftLint
+    - SwiftMessages
 
 SPEC CHECKSUMS:
-  Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
   Firebase: 658370fa0181826a74b7cfca8d68c5856ca749ae
   FirebaseAnalytics: 0ca9aa2af7cc4dc92392b7a78bfc49feaa2eb60f
   FirebaseCore: 6fb954e350af0885803d5aa49865d15d9a6b264c
@@ -151,7 +152,8 @@ SPEC CHECKSUMS:
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   SwiftLint: bbfed21bf4451dcbd0f5cdbee44a18e06cf91b12
+  SwiftMessages: 633304165351b8e3dcbb81a71f8efcd86f9c1669
 
-PODFILE CHECKSUM: 58b0f6e15ec82b9f78bf13b39ec2e27af294cf27
+PODFILE CHECKSUM: 1537cf37083424fcf96d8f83a4ccf88c091c72cd
 
 COCOAPODS: 1.6.1
