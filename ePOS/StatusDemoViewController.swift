@@ -12,7 +12,8 @@ class StatusDemoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let controller = EmptyDataViewController.viewController(NoUserItem(), delegate: self)
+        self.navigationController?.pushViewController(controller, animated: true)
         // Do any additional setup after loading the view.
     }
     
@@ -29,4 +30,12 @@ class StatusDemoViewController: UIViewController {
     }
     */
 
+}
+
+extension StatusDemoViewController: EmptyDataControllerDelegate {
+    func actionButtonClicked(_ controller: EmptyDataViewController, for itemType: EmptyViewItemProtocol) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    
 }

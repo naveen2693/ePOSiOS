@@ -21,6 +21,13 @@
 		99186CEB250A646400A9FE07 /* StatusDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CEA250A646400A9FE07 /* StatusDemoViewController.swift */; };
 		99186CEF250A67B000A9FE07 /* FailedPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CEE250A67B000A9FE07 /* FailedPopup.swift */; };
 		99186CF1250A67C200A9FE07 /* FailedPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99186CF0250A67C200A9FE07 /* FailedPopup.xib */; };
+		99186CF5250E46AD00A9FE07 /* ShowDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CF4250E46AD00A9FE07 /* ShowDialog.swift */; };
+		99186CFA250E483200A9FE07 /* EmptyDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CF8250E483200A9FE07 /* EmptyDataViewController.swift */; };
+		99186CFB250E483200A9FE07 /* EmptyDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99186CF9250E483200A9FE07 /* EmptyDataViewController.xib */; };
+		99186CFD250E4A7B00A9FE07 /* EmptyViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CFC250E4A7B00A9FE07 /* EmptyViewItem.swift */; };
+		99186D00250F58F800A9FE07 /* StatusDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CFF250F58F800A9FE07 /* StatusDialogView.swift */; };
+		99186D02250F590B00A9FE07 /* StatusDialogView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99186D01250F590B00A9FE07 /* StatusDialogView.xib */; };
+		99186D04250F5A2F00A9FE07 /* StatusDialogItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D03250F5A2F00A9FE07 /* StatusDialogItems.swift */; };
 		991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADE9F250645A300932251 /* EPOSRoundButton.swift */; };
 		991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA1250645C300932251 /* EPOSRectangularButton.swift */; };
 		991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA3250646E500932251 /* EPOSLabel.swift */; };
@@ -71,6 +78,13 @@
 		99186CEA250A646400A9FE07 /* StatusDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDemoViewController.swift; sourceTree = "<group>"; };
 		99186CEE250A67B000A9FE07 /* FailedPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailedPopup.swift; sourceTree = "<group>"; };
 		99186CF0250A67C200A9FE07 /* FailedPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FailedPopup.xib; sourceTree = "<group>"; };
+		99186CF4250E46AD00A9FE07 /* ShowDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowDialog.swift; sourceTree = "<group>"; };
+		99186CF8250E483200A9FE07 /* EmptyDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDataViewController.swift; sourceTree = "<group>"; };
+		99186CF9250E483200A9FE07 /* EmptyDataViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyDataViewController.xib; sourceTree = "<group>"; };
+		99186CFC250E4A7B00A9FE07 /* EmptyViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewItem.swift; sourceTree = "<group>"; };
+		99186CFF250F58F800A9FE07 /* StatusDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDialogView.swift; sourceTree = "<group>"; };
+		99186D01250F590B00A9FE07 /* StatusDialogView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusDialogView.xib; sourceTree = "<group>"; };
+		99186D03250F5A2F00A9FE07 /* StatusDialogItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDialogItems.swift; sourceTree = "<group>"; };
 		991ADE9F250645A300932251 /* EPOSRoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSRoundButton.swift; sourceTree = "<group>"; };
 		991ADEA1250645C300932251 /* EPOSRectangularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSRectangularButton.swift; sourceTree = "<group>"; };
 		991ADEA3250646E500932251 /* EPOSLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSLabel.swift; sourceTree = "<group>"; };
@@ -234,15 +248,46 @@
 		99186CED250A65D000A9FE07 /* Popup Dialog */ = {
 			isa = PBXGroup;
 			children = (
+				99186CF4250E46AD00A9FE07 /* ShowDialog.swift */,
 				99186CEE250A67B000A9FE07 /* FailedPopup.swift */,
 				99186CF0250A67C200A9FE07 /* FailedPopup.xib */,
 			);
 			path = "Popup Dialog";
 			sourceTree = "<group>";
 		};
+		99186CF6250E46BA00A9FE07 /* CommonViews */ = {
+			isa = PBXGroup;
+			children = (
+				99186CFE250F212400A9FE07 /* Status Popup */,
+				99186CF7250E46C700A9FE07 /* NoDataController */,
+			);
+			path = CommonViews;
+			sourceTree = "<group>";
+		};
+		99186CF7250E46C700A9FE07 /* NoDataController */ = {
+			isa = PBXGroup;
+			children = (
+				99186CF8250E483200A9FE07 /* EmptyDataViewController.swift */,
+				99186CF9250E483200A9FE07 /* EmptyDataViewController.xib */,
+				99186CFC250E4A7B00A9FE07 /* EmptyViewItem.swift */,
+			);
+			path = NoDataController;
+			sourceTree = "<group>";
+		};
+		99186CFE250F212400A9FE07 /* Status Popup */ = {
+			isa = PBXGroup;
+			children = (
+				99186CFF250F58F800A9FE07 /* StatusDialogView.swift */,
+				99186D01250F590B00A9FE07 /* StatusDialogView.xib */,
+				99186D03250F5A2F00A9FE07 /* StatusDialogItems.swift */,
+			);
+			path = "Status Popup";
+			sourceTree = "<group>";
+		};
 		991ADE922506096700932251 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				99186CF6250E46BA00A9FE07 /* CommonViews */,
 				991ADE9925060A4000932251 /* Walkthrough */,
 				991ADE9825060A3600932251 /* Account */,
 				991ADE97250609E100932251 /* Transactions */,
@@ -498,6 +543,7 @@
 				9976C95A2501165E00FC5DD3 /* Roboto-Bold.ttf in Resources */,
 				99186CD42508F07C00A9FE07 /* Transactions.storyboard in Resources */,
 				9976C9562501165E00FC5DD3 /* Roboto-LightItalic.ttf in Resources */,
+				99186CFB250E483200A9FE07 /* EmptyDataViewController.xib in Resources */,
 				9976C95C2501165E00FC5DD3 /* Roboto-Black.ttf in Resources */,
 				9976C9592501165E00FC5DD3 /* Roboto-BlackItalic.ttf in Resources */,
 				9976C9522501165E00FC5DD3 /* Roboto-Regular.ttf in Resources */,
@@ -505,6 +551,7 @@
 				9976C9582501165E00FC5DD3 /* LICENSE.txt in Resources */,
 				99186CE8250A3B7600A9FE07 /* Home.storyboard in Resources */,
 				99186CF1250A67C200A9FE07 /* FailedPopup.xib in Resources */,
+				99186D02250F590B00A9FE07 /* StatusDialogView.xib in Resources */,
 				9976C9512501165E00FC5DD3 /* Roboto-Light.ttf in Resources */,
 				9976C9532501165E00FC5DD3 /* Roboto-MediumItalic.ttf in Resources */,
 				9976C9262501069D00FC5DD3 /* Colors.xcassets in Resources */,
@@ -582,19 +629,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99186CF5250E46AD00A9FE07 /* ShowDialog.swift in Sources */,
 				9976C90D2500F05600FC5DD3 /* ViewController.swift in Sources */,
 				9976C9232501066B00FC5DD3 /* CustomColors.swift in Sources */,
 				99186CCB2508F01400A9FE07 /* TransactionsViewController.swift in Sources */,
 				9976C9212501065D00FC5DD3 /* CustomFonts.swift in Sources */,
 				99186CC62508EF9500A9FE07 /* HomeViewController.swift in Sources */,
+				99186D04250F5A2F00A9FE07 /* StatusDialogItems.swift in Sources */,
 				9976C95E2501173600FC5DD3 /* DeviceType.swift in Sources */,
+				99186D00250F58F800A9FE07 /* StatusDialogView.swift in Sources */,
 				99186CE6250A2C6500A9FE07 /* EPOSHelper.swift in Sources */,
 				99186CBD2508EC6000A9FE07 /* EPOSTextField+FloatText.swift in Sources */,
 				991ADEA825064E2F00932251 /* UIImageExtension.swift in Sources */,
 				991ADEA925064E2F00932251 /* UIButtonExtension.swift in Sources */,
 				991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */,
+				99186CFA250E483200A9FE07 /* EmptyDataViewController.swift in Sources */,
 				991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */,
 				99186CEF250A67B000A9FE07 /* FailedPopup.swift in Sources */,
+				99186CFD250E4A7B00A9FE07 /* EmptyViewItem.swift in Sources */,
 				991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */,
 				99186CEB250A646400A9FE07 /* StatusDemoViewController.swift in Sources */,
 				99186CD02508F03900A9FE07 /* AccountViewController.swift in Sources */,
