@@ -11,6 +11,7 @@ public class RequestHandler{
 // MARK:-createWebServiceHeaderWithoutAccessToken
 private static func  createWebServiceHeaderWithoutAccessToken() -> [String:String] {
     var headermap = [String:String]();
+    
     let deviceId:String = "";
     let imeiNum:String = ""
     let advertisingId:String = ""
