@@ -22,7 +22,7 @@ var activeTextField = UITextField()
 var lastTextField :OTPTextField?
 var oTPString:String="";
 var otpTimer = Timer()
-var count = 20
+var timingCount = 20
 @IBOutlet var submit: UIImageView!
 @IBOutlet weak var btnResendOtp: UIButton!
 @IBOutlet weak var horizontalStackView: UIStackView!
@@ -51,10 +51,11 @@ override func viewDidLoad() {
 
 
 @objc func update() {
-    if(count > 0) {
-        count = count - 1
+   
+    if(timingCount > 0) {
+        timingCount -= 1
         btnResendOtp.isUserInteractionEnabled = false
-        btnResendOtp.setTitle("\(count) Resend Otp", for: .normal)
+        btnResendOtp.setTitle("\(timingCount) Resend Otp", for: .normal)
     }
     else {
         //otpTimer.invalidate()
@@ -65,11 +66,12 @@ override func viewDidLoad() {
         
         // if you want to reset the time make count = 60 and resendTime.fire()
     }
+    
 }
 
 @objc func resendbutton(sender: UIButton!) {
     otpTimer = Timer()
-    count = 10
+    timingCount = 10
     otpTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
 }
 
@@ -150,10 +152,9 @@ func textFieldDidBeginEditing(_ textField: UITextField) {
 }
 
 func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-    oTPString = oTPString+string
+    oTPString += string
     if let text = textField.text {
-        
-        if (text.count < 1) && (string.count > 0) {
+        if (text.count < 1) && (!(string.isEmpty)) {
             
             if textField == text_Field_1 {
                 text_Field_1?.isEnabled = false
@@ -179,8 +180,9 @@ func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange
             textField.text = string
             return false
             
-        } // 11. if the user gets to the last textField and presses the back button everything above will get reversed
-        else if (text.count >= 1) && (string.count == 0) {
+        }
+        // 11. if the user gets to the last textField and presses the back button everything above will get reversed
+        else if (text.count >= 1) && (string.isEmpty) {
             
             if textField == text_Field_2 {
                 text_Field_2?.isEnabled = false
@@ -209,7 +211,8 @@ func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange
             textField.text = ""
             return false
             
-        } // 12. after pressing the backButton and moving forward again we will have to do what's in step 10 all over again
+        }
+        // 12. after pressing the backButton and moving forward again we will have to do what's in step 10 all over again
         else if text.count >= 1 {
             
             if textField == text_Field_1 {

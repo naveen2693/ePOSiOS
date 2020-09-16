@@ -14,12 +14,16 @@ public class Util
     public static func OpenCommonViewController(ctx:UIViewController,url:NSURL)
 {
     let storyboard = UIStoryboard(name: "Main", bundle:Bundle(for: CommonWebViewController.self))
-    let vc = storyboard.instantiateViewController(withIdentifier:"CommonWebViewController") as! CommonWebViewController
-    vc.loadUrl=url;
-    let navController = UINavigationController(rootViewController: vc)
-    navController.modalPresentationStyle = .overCurrentContext
-    navController.modalTransitionStyle = .crossDissolve
-    ctx.present(navController, animated: false, completion: nil)
+    let viewController = storyboard.instantiateViewController(withIdentifier:"CommonWebViewController") as? CommonWebViewController
+    viewController?.loadUrl=url;
+    if let unwrappedViewController = viewController {
+           let navController = UINavigationController(rootViewController: unwrappedViewController)
+           navController.modalPresentationStyle = .overCurrentContext
+           navController.modalTransitionStyle = .crossDissolve
+           ctx.present(navController, animated: false, completion: nil)
+       } else {
+            fatalError("Error: Load url failed.")
+       }
 }
     
     // MARK:- Term&Condition Text View

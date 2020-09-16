@@ -52,16 +52,16 @@ extension LoginApiService :TargetType
     var task: Task {
         switch self {
         case .getCheckUserSubscription(let mobileNumber):
-            return  .requestJSONEncodable(try! JSONEncoder().encode(RequestHandler
+            return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
                 .createCheckUserReq(mobileNum:mobileNumber)))
         case .getForgotPwdSubscription(let mobileNumber):
-            return  .requestJSONEncodable(try! JSONEncoder().encode(RequestHandler
+            return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
                 .createForgotPwdReq(mobileNum:mobileNumber)))
         case .getVerifyOtpSubscription(let mobileNumber,let otp):
-            return  .requestJSONEncodable(try! JSONEncoder().encode(RequestHandler
+            return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
                 .createOTPVerifyReq(mobileNum:mobileNumber,otp: otp)))
         case .getSendOtpSubscription(let mobileNumber):
-            return  .requestJSONEncodable(try! JSONEncoder().encode(RequestHandler
+            return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
                 .createOTPSendReq(mobileNum:mobileNumber)))
         }
     }

@@ -61,23 +61,23 @@ class Validation: NSObject {
         for valueToBeChecked in values {
             switch valueToBeChecked.type {
             case .email:
-                if let tempValue = isValidString((valueToBeChecked.inputValue, .email, .emptyEmail, .inValidEmail)) {
+                if let tempValue = isValidString(text: valueToBeChecked.inputValue, regex: .email, emptyAlert: .emptyEmail, invalidAlert: .inValidEmail) {
                     return tempValue
                 }
             case .stringWithFirstLetterCaps:
-                if let tempValue = isValidString((valueToBeChecked.inputValue, .alphabeticStringFirstLetterCaps, .emptyFirstLetterCaps, .invalidFirstLetterCaps)) {
+                if let tempValue = isValidString(text: valueToBeChecked.inputValue, regex: .alphabeticStringFirstLetterCaps, emptyAlert: .emptyFirstLetterCaps, invalidAlert: .invalidFirstLetterCaps) {
                     return tempValue
                 }
             case .phoneNo:
-                if let tempValue = isValidString((valueToBeChecked.inputValue, .phoneNo, .emptyPhone, .inValidPhone)) {
+                if let tempValue = isValidString(text: valueToBeChecked.inputValue, regex: .phoneNo, emptyAlert: .emptyPhone, invalidAlert: .inValidPhone) {
                     return tempValue
                 }
             case .alphabeticString:
-                if let tempValue = isValidString((valueToBeChecked.inputValue, .alphabeticStringWithSpace, .emptyAlphabeticString, .invalidAlphabeticString)) {
+                if let tempValue = isValidString(text: valueToBeChecked.inputValue, regex: .alphabeticStringWithSpace, emptyAlert: .emptyAlphabeticString, invalidAlert: .invalidAlphabeticString) {
                     return tempValue
                 }
             case .password:
-                if let tempValue = isValidString((valueToBeChecked.inputValue, .password, .emptyPSW, .inValidPSW)) {
+                if let tempValue = isValidString(text: valueToBeChecked.inputValue, regex: .password, emptyAlert: .emptyPSW, invalidAlert: .inValidPSW) {
                     return tempValue
                 }
             }
@@ -85,11 +85,11 @@ class Validation: NSObject {
         return .success
     }
     
-    func isValidString(_input: (text: String, regex: RegEx, emptyAlert: AlertMessages, invalidAlert: AlertMessages)) -> Valid? {
-        if input.text.isEmpty {
-            return .failure(.error, input.emptyAlert)
-        } else if isValidRegEx(input.text, input.regex) != true {
-            return .failure(.error, input.invalidAlert)
+    func isValidString(text: String, regex: RegEx, emptyAlert: AlertMessages, invalidAlert: AlertMessages) -> Valid? {
+        if text.isEmpty {
+            return .failure(.error, emptyAlert)
+        } else if isValidRegEx(text, regex) != true {
+            return .failure(.error, invalidAlert)
         }
         return nil
     }
