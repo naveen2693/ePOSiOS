@@ -10,13 +10,14 @@ import UIKit
 
 enum EPOSFontStyle: Int {
     case medium20 = 1
-    case medium16
-    case regular16
-    case medium14
-    case regular14
-    case medium12
-    case regular12
-    case regular10
+    case medium16 = 2
+    case regular16 = 3
+    case medium14 = 4
+    case regular14 = 5
+    case medium12 = 6
+    case regular12 = 7
+    case regular10 = 8
+    case medium10 = 9
 }
 
 
@@ -56,6 +57,8 @@ class EPOSLabel: UILabel {
             return UIFont.regularFontWith(size: 12)
         case .regular10:
             return UIFont.regularFontWith(size: 10)
+        case .medium10:
+            return UIFont.mediumFontWith(size: 10)
         }
     }
 }

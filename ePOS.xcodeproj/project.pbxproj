@@ -48,6 +48,12 @@
 		99186D5B2511D37200A9FE07 /* RoundViewCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D592511D37200A9FE07 /* RoundViewCorner.swift */; };
 		99186D5C2511D37200A9FE07 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D5A2511D37200A9FE07 /* CheckBox.swift */; };
 		99186D5F2511D45600A9FE07 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D5E2511D45600A9FE07 /* Constants.swift */; };
+		99186D682512445400A9FE07 /* MakeDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D672512445400A9FE07 /* MakeDropDown.swift */; };
+		99186D6B2512449900A9FE07 /* DropdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D692512449900A9FE07 /* DropdownTableViewCell.swift */; };
+		99186D6C2512449900A9FE07 /* DropdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99186D6A2512449900A9FE07 /* DropdownTableViewCell.xib */; };
+		99186D6F251248EC00A9FE07 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D6D251248EC00A9FE07 /* PersonalInfoViewController.swift */; };
+		99186D70251248EC00A9FE07 /* PersonalInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99186D6E251248EC00A9FE07 /* PersonalInfoViewController.xib */; };
+		99186D722512494C00A9FE07 /* PersonalInfoViewController+Dropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D712512494B00A9FE07 /* PersonalInfoViewController+Dropdown.swift */; };
 		991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADE9F250645A300932251 /* EPOSRoundButton.swift */; };
 		991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA1250645C300932251 /* EPOSRectangularButton.swift */; };
 		991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA3250646E500932251 /* EPOSLabel.swift */; };
@@ -127,6 +133,12 @@
 		99186D592511D37200A9FE07 /* RoundViewCorner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundViewCorner.swift; sourceTree = "<group>"; };
 		99186D5A2511D37200A9FE07 /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		99186D5E2511D45600A9FE07 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		99186D672512445400A9FE07 /* MakeDropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeDropDown.swift; sourceTree = "<group>"; };
+		99186D692512449900A9FE07 /* DropdownTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownTableViewCell.swift; sourceTree = "<group>"; };
+		99186D6A2512449900A9FE07 /* DropdownTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropdownTableViewCell.xib; sourceTree = "<group>"; };
+		99186D6D251248EC00A9FE07 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
+		99186D6E251248EC00A9FE07 /* PersonalInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalInfoViewController.xib; sourceTree = "<group>"; };
+		99186D712512494B00A9FE07 /* PersonalInfoViewController+Dropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonalInfoViewController+Dropdown.swift"; sourceTree = "<group>"; };
 		991ADE9F250645A300932251 /* EPOSRoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSRoundButton.swift; sourceTree = "<group>"; };
 		991ADEA1250645C300932251 /* EPOSRectangularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSRectangularButton.swift; sourceTree = "<group>"; };
 		991ADEA3250646E500932251 /* EPOSLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSLabel.swift; sourceTree = "<group>"; };
@@ -284,6 +296,7 @@
 		99186D092510922B00A9FE07 /* Common Views */ = {
 			isa = PBXGroup;
 			children = (
+				99186D662512443700A9FE07 /* Dropdown */,
 				99186D242511D1E000A9FE07 /* CommonWebviewController */,
 				99186D112510924000A9FE07 /* No Data Controller */,
 				99186D0A2510922B00A9FE07 /* Popup Dialog */,
@@ -477,9 +490,54 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		99186D6225122F7400A9FE07 /* On Boarding */ = {
+			isa = PBXGroup;
+			children = (
+				99186D6525122F9900A9FE07 /* Models */,
+				99186D6425122F8C00A9FE07 /* Views */,
+				99186D6325122F8400A9FE07 /* Controllers */,
+			);
+			path = "On Boarding";
+			sourceTree = "<group>";
+		};
+		99186D6325122F8400A9FE07 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				99186D6D251248EC00A9FE07 /* PersonalInfoViewController.swift */,
+				99186D6E251248EC00A9FE07 /* PersonalInfoViewController.xib */,
+				99186D712512494B00A9FE07 /* PersonalInfoViewController+Dropdown.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		99186D6425122F8C00A9FE07 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		99186D6525122F9900A9FE07 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		99186D662512443700A9FE07 /* Dropdown */ = {
+			isa = PBXGroup;
+			children = (
+				99186D672512445400A9FE07 /* MakeDropDown.swift */,
+				99186D692512449900A9FE07 /* DropdownTableViewCell.swift */,
+				99186D6A2512449900A9FE07 /* DropdownTableViewCell.xib */,
+			);
+			path = Dropdown;
+			sourceTree = "<group>";
+		};
 		991ADE922506096700932251 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				99186D6225122F7400A9FE07 /* On Boarding */,
 				99186D4F2511D28800A9FE07 /* SignUp */,
 				99186D412511D26400A9FE07 /* Login */,
 				99186D092510922B00A9FE07 /* Common Views */,
@@ -487,16 +545,8 @@
 				991ADE9825060A3600932251 /* Account */,
 				991ADE97250609E100932251 /* Transactions */,
 				991ADE96250609D900932251 /* Home */,
-				991ADE95250609CC00932251 /* On Boarding */,
 			);
 			path = Modules;
-			sourceTree = "<group>";
-		};
-		991ADE95250609CC00932251 /* On Boarding */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "On Boarding";
 			sourceTree = "<group>";
 		};
 		991ADE96250609D900932251 /* Home */ = {
@@ -757,7 +807,9 @@
 				9976C9552501165E00FC5DD3 /* Roboto-BoldItalic.ttf in Resources */,
 				99186D1E2510D6D600A9FE07 /* .swiftlint.yml in Resources */,
 				99186CD22508F06D00A9FE07 /* Account.storyboard in Resources */,
+				99186D70251248EC00A9FE07 /* PersonalInfoViewController.xib in Resources */,
 				9976C9102500F05700FC5DD3 /* Main.storyboard in Resources */,
+				99186D6C2512449900A9FE07 /* DropdownTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -887,6 +939,7 @@
 				99186D3D2511D21100A9FE07 /* RequestHandler.swift in Sources */,
 				99186D192510959F00A9FE07 /* StatusDialogItem.swift in Sources */,
 				99186D402511D21100A9FE07 /* BaseRequest.swift in Sources */,
+				99186D6B2512449900A9FE07 /* DropdownTableViewCell.swift in Sources */,
 				9976C90D2500F05600FC5DD3 /* ViewController.swift in Sources */,
 				9976C9232501066B00FC5DD3 /* CustomColors.swift in Sources */,
 				99186CCB2508F01400A9FE07 /* TransactionsViewController.swift in Sources */,
@@ -900,6 +953,7 @@
 				9976C95E2501173600FC5DD3 /* DeviceType.swift in Sources */,
 				99186CE6250A2C6500A9FE07 /* EPOSHelper.swift in Sources */,
 				99186CBD2508EC6000A9FE07 /* EPOSTextField+FloatText.swift in Sources */,
+				99186D682512445400A9FE07 /* MakeDropDown.swift in Sources */,
 				99186D552511D28800A9FE07 /* SignUpControllerViewController.swift in Sources */,
 				99186D232511D09400A9FE07 /* Util.swift in Sources */,
 				991ADEA825064E2F00932251 /* UIImageExtension.swift in Sources */,
@@ -917,6 +971,7 @@
 				99186CEB250A646400A9FE07 /* StatusDemoViewController.swift in Sources */,
 				99186D3F2511D21100A9FE07 /* OTPVerifyRequest.swift in Sources */,
 				99186CD02508F03900A9FE07 /* AccountViewController.swift in Sources */,
+				99186D6F251248EC00A9FE07 /* PersonalInfoViewController.swift in Sources */,
 				99186CBA2508C08F00A9FE07 /* EPOSTextField.m in Sources */,
 				99186CC42508EF5600A9FE07 /* EPOSTabBarViewController.swift in Sources */,
 				991ADEAB250660DB00932251 /* EPOSGradientView.swift in Sources */,
@@ -925,6 +980,7 @@
 				99186D4E2511D27F00A9FE07 /* PasswordController.swift in Sources */,
 				99186D5C2511D37200A9FE07 /* CheckBox.swift in Sources */,
 				9976C9092500F05600FC5DD3 /* AppDelegate.swift in Sources */,
+				99186D722512494C00A9FE07 /* PersonalInfoViewController+Dropdown.swift in Sources */,
 				991ADEAD250662EF00932251 /* EPOSShadowView.swift in Sources */,
 				99186D4B2511D27F00A9FE07 /* LoginController.swift in Sources */,
 			);

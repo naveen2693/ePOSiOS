@@ -12,7 +12,8 @@ class StatusDemoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let controller = EmptyDataViewController.viewController(NoUserItem(), delegate: self)
+//        let controller = EmptyDataViewController.viewController(NoUserItem(), delegate: self)
+        let controller = PersonalInfoViewController.init(nibName: PersonalInfoViewController.className, bundle: nil)
         self.navigationController?.pushViewController(controller, animated: true)
         // Do any additional setup after loading the view.
     }

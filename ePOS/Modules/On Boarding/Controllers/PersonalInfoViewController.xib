@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PersonalInfoViewController" customModule="ePOS" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k57-Y2-DQm" customClass="RoundedCornerView" customModule="ePOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAc-ge-6Uu" customClass="EPOSLabel" customModule="ePOS" customModuleProvider="target">
+                            <rect key="frame" x="16" y="4.5" width="42" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" name="titleColor"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                    <integer key="value" value="9"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.97647058823529409" green="0.94117647058823528" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="NAc-ge-6Uu" firstAttribute="centerY" secondItem="k57-Y2-DQm" secondAttribute="centerY" id="OWB-OC-J32"/>
+                        <constraint firstItem="NAc-ge-6Uu" firstAttribute="leading" secondItem="k57-Y2-DQm" secondAttribute="leading" constant="16" id="Rqb-vR-MaS"/>
+                        <constraint firstAttribute="height" constant="29" id="Xpd-gv-8pR"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRound">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kbc-2r-1Oi">
+                    <rect key="frame" x="0.0" y="29" width="320" height="498"/>
+                    <subviews>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zy8-dQ-cJ6">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="498"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7O8-Pn-PTQ" userLabel="ContentView">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="401"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hFx-i1-77I" customClass="EPOSTextField">
+                                            <rect key="frame" x="16" y="25" width="288" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Company type"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H1s-oy-Q6Z" customClass="EPOSTextField">
+                                            <rect key="frame" x="16" y="69" width="288" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Enter PAN"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lia-ss-a6n" customClass="EPOSTextField">
+                                            <rect key="frame" x="16" y="113" width="288" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Enter name as on PAN"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NPJ-3D-yGj" customClass="EPOSTextField">
+                                            <rect key="frame" x="16" y="157" width="288" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Enter GSTIN"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UFA-L8-ftP" customClass="CheckBox" customModule="ePOS" customModuleProvider="target">
+                                            <rect key="frame" x="16" y="190" width="25" height="24"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <color key="tintColor" name="themeDarkColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="25" id="1o5-Mx-qFf"/>
+                                                <constraint firstAttribute="height" constant="24" id="Bg2-tc-5Rw"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isChecked" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="uncheckedBorderColor">
+                                                    <color key="value" name="themeDarkColor"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="checkedBorderColor">
+                                                    <color key="value" name="themeDarkColor"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="checkmarkColor">
+                                                    <color key="value" name="themeDarkColor"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dpj-dU-KIo" customClass="EPOSLabel" customModule="ePOS" customModuleProvider="target">
+                                            <rect key="frame" x="50" y="191.5" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" name="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                                    <integer key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fXv-dT-VvP" customClass="EPOSTextField">
+                                            <rect key="frame" x="16" y="240" width="288" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Select other document"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PDs-6F-Q9z" customClass="EPOSTextField">
+                                            <rect key="frame" x="16" y="284" width="288" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="State"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <constraints>
+                                        <constraint firstItem="PDs-6F-Q9z" firstAttribute="leading" secondItem="fXv-dT-VvP" secondAttribute="leading" id="13a-Bu-maQ"/>
+                                        <constraint firstItem="NPJ-3D-yGj" firstAttribute="trailing" secondItem="hFx-i1-77I" secondAttribute="trailing" id="1VT-OH-id6"/>
+                                        <constraint firstAttribute="trailing" secondItem="hFx-i1-77I" secondAttribute="trailing" constant="16" id="5Bc-kk-8dl"/>
+                                        <constraint firstItem="H1s-oy-Q6Z" firstAttribute="trailing" secondItem="hFx-i1-77I" secondAttribute="trailing" id="8CW-AN-NJu"/>
+                                        <constraint firstItem="UFA-L8-ftP" firstAttribute="leading" secondItem="NPJ-3D-yGj" secondAttribute="leading" id="A1r-j5-yyt"/>
+                                        <constraint firstItem="Dpj-dU-KIo" firstAttribute="leading" secondItem="UFA-L8-ftP" secondAttribute="trailing" constant="9" id="CAp-5N-XTC"/>
+                                        <constraint firstItem="fXv-dT-VvP" firstAttribute="top" secondItem="UFA-L8-ftP" secondAttribute="bottom" constant="26" id="DXj-18-IyN"/>
+                                        <constraint firstItem="fXv-dT-VvP" firstAttribute="leading" secondItem="hFx-i1-77I" secondAttribute="leading" id="Dgm-Kr-JeN"/>
+                                        <constraint firstItem="H1s-oy-Q6Z" firstAttribute="top" secondItem="hFx-i1-77I" secondAttribute="bottom" constant="27" id="Eau-OT-JEz"/>
+                                        <constraint firstItem="lia-ss-a6n" firstAttribute="trailing" secondItem="hFx-i1-77I" secondAttribute="trailing" id="Pvk-QV-ZVf"/>
+                                        <constraint firstItem="PDs-6F-Q9z" firstAttribute="trailing" secondItem="fXv-dT-VvP" secondAttribute="trailing" id="Qef-qI-AMW"/>
+                                        <constraint firstAttribute="bottom" secondItem="PDs-6F-Q9z" secondAttribute="bottom" constant="100" id="Six-cv-YCC"/>
+                                        <constraint firstItem="hFx-i1-77I" firstAttribute="leading" secondItem="7O8-Pn-PTQ" secondAttribute="leading" constant="16" id="UHr-ay-w6d"/>
+                                        <constraint firstItem="lia-ss-a6n" firstAttribute="top" secondItem="H1s-oy-Q6Z" secondAttribute="bottom" constant="27" id="X5g-91-jdN"/>
+                                        <constraint firstItem="lia-ss-a6n" firstAttribute="leading" secondItem="hFx-i1-77I" secondAttribute="leading" id="Z6g-L5-3AI"/>
+                                        <constraint firstItem="NPJ-3D-yGj" firstAttribute="top" secondItem="lia-ss-a6n" secondAttribute="bottom" constant="27" id="ZDx-ai-Ecq"/>
+                                        <constraint firstItem="NPJ-3D-yGj" firstAttribute="leading" secondItem="hFx-i1-77I" secondAttribute="leading" id="ZJZ-d6-Hs5"/>
+                                        <constraint firstItem="hFx-i1-77I" firstAttribute="top" secondItem="7O8-Pn-PTQ" secondAttribute="top" constant="25" id="gIF-G3-DCn"/>
+                                        <constraint firstItem="PDs-6F-Q9z" firstAttribute="top" secondItem="fXv-dT-VvP" secondAttribute="bottom" constant="27" id="htg-b2-Ydf"/>
+                                        <constraint firstItem="fXv-dT-VvP" firstAttribute="trailing" secondItem="hFx-i1-77I" secondAttribute="trailing" id="iD3-jh-d9K"/>
+                                        <constraint firstItem="Dpj-dU-KIo" firstAttribute="centerY" secondItem="UFA-L8-ftP" secondAttribute="centerY" id="pfx-Cm-B58"/>
+                                        <constraint firstItem="UFA-L8-ftP" firstAttribute="top" secondItem="NPJ-3D-yGj" secondAttribute="bottom" constant="16" id="reV-d3-gzK"/>
+                                        <constraint firstItem="H1s-oy-Q6Z" firstAttribute="leading" secondItem="hFx-i1-77I" secondAttribute="leading" id="zmg-AS-xEP"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="7O8-Pn-PTQ" firstAttribute="width" secondItem="ejt-9W-3xE" secondAttribute="width" id="GAx-M1-9RR"/>
+                                <constraint firstItem="7O8-Pn-PTQ" firstAttribute="leading" secondItem="BGg-vQ-W7j" secondAttribute="leading" id="Hjv-De-NgC"/>
+                                <constraint firstItem="7O8-Pn-PTQ" firstAttribute="top" secondItem="BGg-vQ-W7j" secondAttribute="top" id="iOB-AL-8si"/>
+                                <constraint firstItem="7O8-Pn-PTQ" firstAttribute="trailing" secondItem="BGg-vQ-W7j" secondAttribute="trailing" id="u95-Fj-bFl"/>
+                                <constraint firstItem="7O8-Pn-PTQ" firstAttribute="bottom" secondItem="BGg-vQ-W7j" secondAttribute="bottom" id="v4m-H8-ynb"/>
+                            </constraints>
+                            <viewLayoutGuide key="contentLayoutGuide" id="BGg-vQ-W7j"/>
+                            <viewLayoutGuide key="frameLayoutGuide" id="ejt-9W-3xE"/>
+                        </scrollView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Zy8-dQ-cJ6" secondAttribute="trailing" id="2wK-7u-Wza"/>
+                        <constraint firstItem="Zy8-dQ-cJ6" firstAttribute="top" secondItem="Kbc-2r-1Oi" secondAttribute="top" id="EKa-fE-50Y"/>
+                        <constraint firstAttribute="bottom" secondItem="Zy8-dQ-cJ6" secondAttribute="bottom" id="Gdb-jh-3Sk"/>
+                        <constraint firstItem="Zy8-dQ-cJ6" firstAttribute="leading" secondItem="Kbc-2r-1Oi" secondAttribute="leading" id="yzj-Tl-cti"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bbk-uq-YYf">
+                    <rect key="frame" x="0.0" y="487" width="320" height="81"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ce-fX-xq6" customClass="EPOSRoundButton" customModule="ePOS" customModuleProvider="target">
+                            <rect key="frame" x="256" y="18" width="46" height="46"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="46" id="Aol-mh-MdL"/>
+                                <constraint firstAttribute="height" constant="46" id="wdE-zb-6Mu"/>
+                            </constraints>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YWt-kN-yDs">
+                            <rect key="frame" x="16" y="21" width="78" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="3hO-Nu-A91"/>
+                            </constraints>
+                            <state key="normal" title="Need help?">
+                                <color key="titleColor" name="themeLightColor"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="YWt-kN-yDs" firstAttribute="centerY" secondItem="4Ce-fX-xq6" secondAttribute="centerY" id="3Yx-zJ-QBq"/>
+                        <constraint firstAttribute="height" constant="81" id="M44-hp-T1F"/>
+                        <constraint firstItem="YWt-kN-yDs" firstAttribute="leading" secondItem="Bbk-uq-YYf" secondAttribute="leading" constant="16" id="PJ9-n7-0NL"/>
+                        <constraint firstAttribute="trailing" secondItem="4Ce-fX-xq6" secondAttribute="trailing" constant="18" id="q5y-k6-nyf"/>
+                        <constraint firstAttribute="bottom" secondItem="4Ce-fX-xq6" secondAttribute="bottom" constant="17" id="skh-nY-94v"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="k57-Y2-DQm" secondAttribute="trailing" id="7Gm-AH-dR5"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Kbc-2r-1Oi" secondAttribute="trailing" id="9vZ-XX-pVe"/>
+                <constraint firstItem="k57-Y2-DQm" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="B61-FZ-tqj"/>
+                <constraint firstItem="Kbc-2r-1Oi" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="29" id="H4l-Ex-gOC"/>
+                <constraint firstItem="Kbc-2r-1Oi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="QXU-cV-iUf"/>
+                <constraint firstItem="k57-Y2-DQm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Rvy-o4-dik"/>
+                <constraint firstItem="Bbk-uq-YYf" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="UHR-MM-X6y"/>
+                <constraint firstItem="Bbk-uq-YYf" firstAttribute="top" secondItem="Kbc-2r-1Oi" secondAttribute="bottom" constant="-40" id="Wg3-Ib-JVV"/>
+                <constraint firstItem="Bbk-uq-YYf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eCE-cj-sp3"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Bbk-uq-YYf" secondAttribute="trailing" id="jih-dU-6xp"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="139" y="126"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="textColor">
+            <color red="0.13725490196078433" green="0.14117647058823529" blue="0.15294117647058825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="themeDarkColor">
+            <color red="0.066666666666666666" green="0.68627450980392157" blue="0.35294117647058826" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="themeLightColor">
+            <color red="0.25098039215686274" green="0.70196078431372544" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="titleColor">
+            <color red="0.30196078431372547" green="0.30196078431372547" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
