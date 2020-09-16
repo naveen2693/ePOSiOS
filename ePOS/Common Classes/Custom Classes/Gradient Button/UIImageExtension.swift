@@ -21,6 +21,7 @@ public enum DTImageGradientDirection {
 
 public extension UIImage {
     convenience init?(size: CGSize, direction: DTImageGradientDirection, colors: [UIColor]) {
+        defer { UIGraphicsEndImageContext() }
         UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
         
         guard let context = UIGraphicsGetCurrentContext() else { return nil } // If the size is zero, the context will be nil.
@@ -37,10 +38,10 @@ public extension UIImage {
         }
         else {
             // Gradient color
-            var location: CGFloat = 0
+//            var location: CGFloat = 0
             var locations: [CGFloat] = []
             
-            for (index, _) in colors.enumerated() {
+            for (index) in colors.indices {
                 let index = CGFloat(index)
                 locations.append(index / CGFloat(colors.count - 1))
             }
@@ -88,10 +89,10 @@ public extension UIImage {
         
         self.init(cgImage: image)
         
-        defer { UIGraphicsEndImageContext() }
     }
     
     convenience init?(color: UIColor, size: CGSize) {
+        defer { UIGraphicsEndImageContext() }
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         color.setFill()
         let rect = CGRect(origin: CGPoint.zero, size: size)
@@ -103,6 +104,6 @@ public extension UIImage {
         
         self.init(cgImage: image)
         
-        defer { UIGraphicsEndImageContext() }
+        
     }
 }

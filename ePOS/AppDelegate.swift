@@ -9,7 +9,9 @@
 import UIKit
 import Firebase
 
-let appDelegate = UIApplication.shared.delegate as! AppDelegate
+let appDelegate: AppDelegate = {
+    return (UIApplication.shared.delegate as? AppDelegate ?? AppDelegate())
+}()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -1,0 +1,90 @@
+#---------------------------------------------------------------------------------------------------------
+#`USE_GIT_MODIFIED=true` to `autocorrect` & `lint` the GIT modified files, change in Swiftlint Run-Script.
+#---------------------------------------------------------------------------------------------------------
+#`USE_GIT_MODIFIED=false` to `autocorrect` & `lint`, to manually include the files below.
+#---------------------------------------------------------------------------------------------------------
+
+included:
+    - ePOS/
+
+excluded:
+    - Pods
+disabled_rules:
+    - trailing_newline
+    - trailing_semicolon
+    - file_header
+    - control_statement
+    - identifier_name
+    - function_body_length
+    - line_length
+    - object_literal
+    - closing_brace
+    - colon
+    - comma
+    - empty_parentheses_with_trailing_closure
+    - leading_whitespace
+    - trailing_whitespace
+    - opening_brace
+    - mark
+    - statement_position
+    - vertical_whitespace
+    - operator_usage_whitespace
+    - attributes
+    - closure_spacing
+    - void_return
+    - unneeded_parentheses_in_closure_argument
+    - vertical_parameter_alignment
+    - let_var_whitespace
+    - sorted_imports
+    - literal_expression_end_indentation
+    - private_action
+    - private_outlet
+    - closure_end_indentation
+    - multiple_closures_with_trailing_closure
+    - discarded_notification_center_observer
+    - switch_case_alignment
+    - type_body_length
+    - file_length
+
+opt_in_rules:
+    - array_init
+    - attributes
+    - closure_end_indentation
+    - closure_spacing
+    - contains_over_first_not_nil
+    - empty_count
+    - extension_access_modifier
+    - fallthrough
+    - fatal_error_message
+    - file_header
+    - first_where
+    - joined_default_parameter
+    - let_var_whitespace
+    - literal_expression_end_indentation
+    - lower_acl_than_parent
+    - nimble_operator
+    - number_separator
+    - object_literal
+    - operator_usage_whitespace
+    - overridden_super_call
+    - override_in_extension
+    - pattern_matching_keywords
+    - prohibited_super_call
+    - quick_discouraged_call
+    - quick_discouraged_focused_test
+    - quick_discouraged_pending_test
+    - redundant_nil_coalescing
+    - single_test_class
+    - sorted_first_last
+    - untyped_error_in_catch
+
+identifier_name:
+    excluded:
+        - id
+        - x
+        - y
+
+number_separator:
+    minimum_length: 5
+
+

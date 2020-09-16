@@ -59,3 +59,35 @@ enum TabBarItem: String {
         }
     }
 }
+
+//MARK: - UIViewController extension
+extension UIViewController {
+    func showAlert(title: String?, message: String?) {
+    
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
+}
+
+//MARK: Images related
+extension UIImageView{
+    func circle() {
+        self.layer.cornerRadius = self.bounds.size.height / 2
+        self.clipsToBounds = true
+    }
+}
+
+import Kingfisher
+extension UIImageView {
+    func load(withImageUrl urlString: String?) {
+        if let urlString = urlString, let url = URL(string: urlString) {
+            let imageResource = ImageResource(downloadURL: url)
+            self.kf.setImage(with: imageResource, placeholder: nil, options:  [.transition(.fade(0.3))])
+        } else {
+            self.image = nil
+        }
+    }
+}

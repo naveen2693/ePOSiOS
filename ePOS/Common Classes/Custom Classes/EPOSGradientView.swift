@@ -31,14 +31,16 @@ class EPOSGradientView: UIView {
         }
     }
     func applyGradient() {
-        let layer = self.layer as! CAGradientLayer
+        guard let layer = self.layer as? CAGradientLayer else {
+            return
+        }
         layer.colors = [startColor, endColor].map {$0.cgColor}
         if (isHorizontal) {
             layer.startPoint = CGPoint(x: 0, y: 0.5)
-            layer.endPoint = CGPoint (x: 1, y: 0.5)
+            layer.endPoint = CGPoint(x: 1, y: 0.5)
         } else {
             layer.startPoint = CGPoint(x: 0.5, y: 0)
-            layer.endPoint = CGPoint (x: 0.5, y: 1)
+            layer.endPoint = CGPoint(x: 0.5, y: 1)
         }
     }
 }

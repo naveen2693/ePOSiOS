@@ -11,7 +11,7 @@ import UIKit
 extension UIDevice {
     var iPhoneX: Bool { return UIScreen.main.nativeBounds.height == 2436 }
     var iPhone: Bool { return UIDevice.current.userInterfaceIdiom == .phone }
-    var iPad: Bool { return UIDevice().userInterfaceIdiom == .pad }
+    var iPad: Bool { return UIDevice.current.userInterfaceIdiom == .pad }
     
     enum ScreenType: String {
         case iPhones_4_4S = "iPhone 4 or iPhone 4S"
