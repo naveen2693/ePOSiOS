@@ -7,15 +7,6 @@
 //
 
 import UIKit
-//
-//  ConfirmOTPViewController.swift
-//  PinePG
-//
-//  Created by Matra Sharma on 08/04/20.
-//  Copyright © 2020 Matra Sharma. All rights reserved.
-//
-
-import UIKit
 class OTPVerficationController:UIViewController{
 var oTPLength: Int?
 var activeTextField = UITextField()
@@ -151,7 +142,7 @@ func textFieldDidBeginEditing(_ textField: UITextField) {
     activeTextField = textField
 }
 
-func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
     oTPString += string
     if let text = textField.text {
         if (text.count < 1) && (!(string.isEmpty)) {

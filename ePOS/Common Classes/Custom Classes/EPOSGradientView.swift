@@ -26,9 +26,7 @@ class EPOSGradientView: UIView {
         }
     }
     override class var layerClass: AnyClass {
-        get {
             return CAGradientLayer.self
-        }
     }
     func applyGradient() {
         guard let layer = self.layer as? CAGradientLayer else {

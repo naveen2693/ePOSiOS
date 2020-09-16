@@ -9,8 +9,8 @@
 import Foundation
 public class RequestHandler{
 // MARK:-createWebServiceHeaderWithoutAccessToken
-private static func  createWebServiceHeaderWithoutAccessToken()->Dictionary<String,String> {
-    var headermap = Dictionary<String, String>();
+private static func  createWebServiceHeaderWithoutAccessToken() -> [String:String] {
+    var headermap = [String:String]();
     let deviceId:String = "";
     let imeiNum:String = ""
     let advertisingId:String = ""
@@ -33,8 +33,8 @@ private static func  createWebServiceHeaderWithoutAccessToken()->Dictionary<Stri
     return headermap;
 }
 // MARK:-createWebServiceHeaderWithAccessToken
-private static func  createWebServiceHeaderWithAccessToken()->Dictionary<String,String>{
-    var headermap = Dictionary<String, String>();
+    private static func  createWebServiceHeaderWithAccessToken() -> [String:String]{
+    var headermap =  [String:String]();
     let deviceId:String = "";
     let imeiNum:String = ""
     let advertisingId:String = ""
@@ -59,17 +59,17 @@ private static func  createWebServiceHeaderWithAccessToken()->Dictionary<String,
 }
     
 // MARK:-createCheckUserReq
-public static func createCheckUserReq(mobileNum:String)->CheckUserRequest {
+public static func createCheckUserReq(mobileNum:String) -> CheckUserRequest {
     let checkUserRequest = CheckUserRequest();
     checkUserRequest.headerMap = createWebServiceHeaderWithoutAccessToken();
-    var dic = Dictionary<String, String>();
+    var dic = [String:String]();
     dic[Constants.QUERY_KEY1] = mobileNum;
     checkUserRequest.queryMap = dic;
     return checkUserRequest;
 }
     
 // MARK:-createCheckUserReq
-public static func createOTPVerifyReq(mobileNum:String,otp:String)-> OTPVerifyRequest{
+public static func createOTPVerifyReq(mobileNum:String,otp:String) -> OTPVerifyRequest{
     let request = OTPVerifyRequest();
     request.headerMap = createWebServiceHeaderWithoutAccessToken();
     request.mobileNum=mobileNum
@@ -78,20 +78,20 @@ public static func createOTPVerifyReq(mobileNum:String,otp:String)-> OTPVerifyRe
 }
     
 // MARK:-createOTPSendReq
-public static func createOTPSendReq(mobileNum:String)->BaseRequest{
+public static func createOTPSendReq(mobileNum:String) -> BaseRequest{
     let sendOtpRequest = BaseRequest();
     sendOtpRequest.headerMap = createWebServiceHeaderWithoutAccessToken();
-    var  dic = Dictionary<String,String>();
+    var  dic = [String:String]();
     dic[Constants.QUERY_KEY1] = mobileNum;
     sendOtpRequest.queryMap = dic;
     return sendOtpRequest;
 }
     
 // MARK:-createForgotPwdReq
-public static func createForgotPwdReq(mobileNum:String)->BaseRequest {
+public static func createForgotPwdReq(mobileNum:String) -> BaseRequest {
     let sendOtpRequest = BaseRequest();
     sendOtpRequest.headerMap = createWebServiceHeaderWithoutAccessToken();
-    var dic = Dictionary<String,String>();
+    var dic = [String:String]();
     dic[Constants.QUERY_KEY1] = mobileNum;
     sendOtpRequest.queryMap = dic;
     return sendOtpRequest;

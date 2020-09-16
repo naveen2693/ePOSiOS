@@ -176,12 +176,12 @@ open class CheckBox: UIControl {
         
         //// Bezier Drawing
         let bezierPath = UIBezierPath()
-        bezierPath.move(to: CGPoint(x: frame.minX + 0.26000 * frame.width, y: frame.minY + 0.50000 * frame.height))
-        bezierPath.addCurve(to: CGPoint(x: frame.minX + 0.42000 * frame.width, y: frame.minY + 0.62000 * frame.height), controlPoint1: CGPoint(x: frame.minX + 0.38000 * frame.width, y: frame.minY + 0.60000 * frame.height), controlPoint2: CGPoint(x: frame.minX + 0.42000 * frame.width, y: frame.minY + 0.62000 * frame.height))
-        bezierPath.addLine(to: CGPoint(x: frame.minX + 0.70000 * frame.width, y: frame.minY + 0.24000 * frame.height))
-        bezierPath.addLine(to: CGPoint(x: frame.minX + 0.78000 * frame.width, y: frame.minY + 0.30000 * frame.height))
-        bezierPath.addLine(to: CGPoint(x: frame.minX + 0.44000 * frame.width, y: frame.minY + 0.76000 * frame.height))
-        bezierPath.addCurve(to: CGPoint(x: frame.minX + 0.20000 * frame.width, y: frame.minY + 0.58000 * frame.height), controlPoint1: CGPoint(x: frame.minX + 0.44000 * frame.width, y: frame.minY + 0.76000 * frame.height), controlPoint2: CGPoint(x: frame.minX + 0.26000 * frame.width, y: frame.minY + 0.62000 * frame.height))
+        bezierPath.move(to: CGPoint(x: frame.minX + 0.260_00 * frame.width, y: frame.minY + 0.500_00 * frame.height))
+        bezierPath.addCurve(to: CGPoint(x: frame.minX + 0.420_00 * frame.width, y: frame.minY + 0.620_00 * frame.height), controlPoint1: CGPoint(x: frame.minX + 0.380_00 * frame.width, y: frame.minY + 0.600_00 * frame.height), controlPoint2: CGPoint(x: frame.minX + 0.420_00 * frame.width, y: frame.minY + 0.620_00 * frame.height))
+        bezierPath.addLine(to: CGPoint(x: frame.minX + 0.700_00 * frame.width, y: frame.minY + 0.240_00 * frame.height))
+        bezierPath.addLine(to: CGPoint(x: frame.minX + 0.780_00 * frame.width, y: frame.minY + 0.300_00 * frame.height))
+        bezierPath.addLine(to: CGPoint(x: frame.minX + 0.440_00 * frame.width, y: frame.minY + 0.760_00 * frame.height))
+        bezierPath.addCurve(to: CGPoint(x: frame.minX + 0.200_00 * frame.width, y: frame.minY + 0.580_00 * frame.height), controlPoint1: CGPoint(x: frame.minX + 0.440_00 * frame.width, y: frame.minY + 0.760_00 * frame.height), controlPoint2: CGPoint(x: frame.minX + 0.260_00 * frame.width, y: frame.minY + 0.620_00 * frame.height))
         checkmarkColor.setFill()
         bezierPath.fill()
     }
@@ -193,7 +193,7 @@ open class CheckBox: UIControl {
         func fastFloor(_ x: CGFloat) -> CGFloat { return floor(x) }
         
         //// Oval Drawing
-        let ovalPath = UIBezierPath(ovalIn: CGRect(x: frame.minX + fastFloor(frame.width * 0.22000 + 0.5), y: frame.minY + fastFloor(frame.height * 0.22000 + 0.5), width: fastFloor(frame.width * 0.76000 + 0.5) - fastFloor(frame.width * 0.22000 + 0.5), height: fastFloor(frame.height * 0.78000 + 0.5) - fastFloor(frame.height * 0.22000 + 0.5)))
+        let ovalPath = UIBezierPath(ovalIn: CGRect(x: frame.minX + fastFloor(frame.width * 0.220_00 + 0.5), y: frame.minY + fastFloor(frame.height * 0.220_00 + 0.5), width: fastFloor(frame.width * 0.760_00 + 0.5) - fastFloor(frame.width * 0.220_00 + 0.5), height: fastFloor(frame.height * 0.780_00 + 0.5) - fastFloor(frame.height * 0.220_00 + 0.5)))
         checkmarkColor.setFill()
         ovalPath.fill()
     }

@@ -11,7 +11,7 @@ class BottomBorderTF: UITextField {
 
 var bottomBorder = UIView()
 override func awakeFromNib() {
-
+    super.awakeFromNib()
     //MARK: Setup Bottom-Border
     self.translatesAutoresizingMaskIntoConstraints = false
     bottomBorder = UIView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))

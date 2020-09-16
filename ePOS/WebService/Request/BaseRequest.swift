@@ -9,6 +9,6 @@
 import Foundation
 
 public class BaseRequest:Codable {
-      var headerMap:Dictionary<String,String>?=nil;
-      var queryMap:Dictionary<String,String>?=nil;
+      var headerMap:[String:String]?;
+      var queryMap:[String:String]?;
 }

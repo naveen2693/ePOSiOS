@@ -55,8 +55,7 @@ enum AlertMessages: String {
 
 class Validation: NSObject {
     
-    public static let shared = Validation()
-    
+    static let shared = Validation()
     func validate(values: (type: ValidationType, inputValue: String)...) -> Valid {
         for valueToBeChecked in values {
             switch valueToBeChecked.type {
