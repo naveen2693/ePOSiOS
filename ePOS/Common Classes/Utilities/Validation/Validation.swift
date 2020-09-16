@@ -85,7 +85,7 @@ class Validation: NSObject {
         return .success
     }
     
-    func isValidString(_ input: (text: String, regex: RegEx, emptyAlert: AlertMessages, invalidAlert: AlertMessages)) -> Valid? {
+    func isValidString(_input: (text: String, regex: RegEx, emptyAlert: AlertMessages, invalidAlert: AlertMessages)) -> Valid? {
         if input.text.isEmpty {
             return .failure(.error, input.emptyAlert)
         } else if isValidRegEx(input.text, input.regex) != true {

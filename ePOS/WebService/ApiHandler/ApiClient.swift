@@ -9,6 +9,7 @@ enum LoginApiService
     case getCheckUserSubscription(mobileNumber:String)
     case getForgotPwdSubscription(mobileNumber:String)
     case getVerifyOtpSubscription(mobileNumber:String,otp:String)
+
     case getSendOtpSubscription(mobileNumber:String)
 }
 extension LoginApiService :TargetType
