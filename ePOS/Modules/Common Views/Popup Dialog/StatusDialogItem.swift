@@ -12,6 +12,6 @@ struct DialogInformation {
     var title: String
 }
 
-enum Payment {
-    case <#case#>
-}
+//enum Payment {
+//    case <#case#>
+//}

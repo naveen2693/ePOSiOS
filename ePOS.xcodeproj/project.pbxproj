@@ -27,6 +27,27 @@
 		99186D17251092A700A9FE07 /* EmptyViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D16251092A700A9FE07 /* EmptyViewItem.swift */; };
 		99186D192510959F00A9FE07 /* StatusDialogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D182510959F00A9FE07 /* StatusDialogItem.swift */; };
 		99186D1E2510D6D600A9FE07 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 99186D1D2510D6D600A9FE07 /* .swiftlint.yml */; };
+		99186D212511D07E00A9FE07 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D202511D07E00A9FE07 /* Validation.swift */; };
+		99186D232511D09400A9FE07 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D222511D09400A9FE07 /* Util.swift */; };
+		99186D292511D1E000A9FE07 /* WebviewStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99186D262511D1E000A9FE07 /* WebviewStoryBoard.storyboard */; };
+		99186D2A2511D1E000A9FE07 /* CommonWebviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D282511D1E000A9FE07 /* CommonWebviewController.swift */; };
+		99186D3B2511D21000A9FE07 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D342511D21000A9FE07 /* ApiClient.swift */; };
+		99186D3C2511D21000A9FE07 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D352511D21000A9FE07 /* User.swift */; };
+		99186D3D2511D21100A9FE07 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D362511D21000A9FE07 /* RequestHandler.swift */; };
+		99186D3E2511D21100A9FE07 /* CheckUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D382511D21000A9FE07 /* CheckUserRequest.swift */; };
+		99186D3F2511D21100A9FE07 /* OTPVerifyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D392511D21000A9FE07 /* OTPVerifyRequest.swift */; };
+		99186D402511D21100A9FE07 /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D3A2511D21000A9FE07 /* BaseRequest.swift */; };
+		99186D4A2511D27F00A9FE07 /* LoginScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99186D442511D27F00A9FE07 /* LoginScreen.storyboard */; };
+		99186D4B2511D27F00A9FE07 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D462511D27F00A9FE07 /* LoginController.swift */; };
+		99186D4C2511D27F00A9FE07 /* OTPVerificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D472511D27F00A9FE07 /* OTPVerificationController.swift */; };
+		99186D4D2511D27F00A9FE07 /* OtpTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D482511D27F00A9FE07 /* OtpTextField.swift */; };
+		99186D4E2511D27F00A9FE07 /* PasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D492511D27F00A9FE07 /* PasswordController.swift */; };
+		99186D552511D28800A9FE07 /* SignUpControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D522511D28800A9FE07 /* SignUpControllerViewController.swift */; };
+		99186D562511D28800A9FE07 /* SignUpStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99186D542511D28800A9FE07 /* SignUpStoryboard.storyboard */; };
+		99186D582511D32E00A9FE07 /* BottomLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D572511D32E00A9FE07 /* BottomLineTextField.swift */; };
+		99186D5B2511D37200A9FE07 /* RoundViewCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D592511D37200A9FE07 /* RoundViewCorner.swift */; };
+		99186D5C2511D37200A9FE07 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D5A2511D37200A9FE07 /* CheckBox.swift */; };
+		99186D5F2511D45600A9FE07 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D5E2511D45600A9FE07 /* Constants.swift */; };
 		991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADE9F250645A300932251 /* EPOSRoundButton.swift */; };
 		991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA1250645C300932251 /* EPOSRectangularButton.swift */; };
 		991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA3250646E500932251 /* EPOSLabel.swift */; };
@@ -83,6 +104,29 @@
 		99186D16251092A700A9FE07 /* EmptyViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewItem.swift; sourceTree = "<group>"; };
 		99186D182510959F00A9FE07 /* StatusDialogItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDialogItem.swift; sourceTree = "<group>"; };
 		99186D1D2510D6D600A9FE07 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		99186D202511D07E00A9FE07 /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		99186D222511D09400A9FE07 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		99186D262511D1E000A9FE07 /* WebviewStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WebviewStoryBoard.storyboard; sourceTree = "<group>"; };
+		99186D282511D1E000A9FE07 /* CommonWebviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonWebviewController.swift; sourceTree = "<group>"; };
+		99186D2D2511D1F700A9FE07 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		99186D2F2511D1F700A9FE07 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		99186D342511D21000A9FE07 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		99186D352511D21000A9FE07 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		99186D362511D21000A9FE07 /* RequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
+		99186D382511D21000A9FE07 /* CheckUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckUserRequest.swift; sourceTree = "<group>"; };
+		99186D392511D21000A9FE07 /* OTPVerifyRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPVerifyRequest.swift; sourceTree = "<group>"; };
+		99186D3A2511D21000A9FE07 /* BaseRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
+		99186D442511D27F00A9FE07 /* LoginScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginScreen.storyboard; sourceTree = "<group>"; };
+		99186D462511D27F00A9FE07 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		99186D472511D27F00A9FE07 /* OTPVerificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPVerificationController.swift; sourceTree = "<group>"; };
+		99186D482511D27F00A9FE07 /* OtpTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtpTextField.swift; sourceTree = "<group>"; };
+		99186D492511D27F00A9FE07 /* PasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordController.swift; sourceTree = "<group>"; };
+		99186D522511D28800A9FE07 /* SignUpControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpControllerViewController.swift; sourceTree = "<group>"; };
+		99186D542511D28800A9FE07 /* SignUpStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUpStoryboard.storyboard; sourceTree = "<group>"; };
+		99186D572511D32E00A9FE07 /* BottomLineTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomLineTextField.swift; sourceTree = "<group>"; };
+		99186D592511D37200A9FE07 /* RoundViewCorner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundViewCorner.swift; sourceTree = "<group>"; };
+		99186D5A2511D37200A9FE07 /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		99186D5E2511D45600A9FE07 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		991ADE9F250645A300932251 /* EPOSRoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSRoundButton.swift; sourceTree = "<group>"; };
 		991ADEA1250645C300932251 /* EPOSRectangularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSRectangularButton.swift; sourceTree = "<group>"; };
 		991ADEA3250646E500932251 /* EPOSLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSLabel.swift; sourceTree = "<group>"; };
@@ -148,16 +192,10 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		99186CB52507B0E600A9FE07 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		99186CB62508C06500A9FE07 /* TextField */ = {
 			isa = PBXGroup;
 			children = (
+				99186D572511D32E00A9FE07 /* BottomLineTextField.swift */,
 				99186CB82508C08F00A9FE07 /* EPOSTextField.h */,
 				99186CB92508C08F00A9FE07 /* EPOSTextField.m */,
 				99186CBC2508EC6000A9FE07 /* EPOSTextField+FloatText.swift */,
@@ -246,6 +284,7 @@
 		99186D092510922B00A9FE07 /* Common Views */ = {
 			isa = PBXGroup;
 			children = (
+				99186D242511D1E000A9FE07 /* CommonWebviewController */,
 				99186D112510924000A9FE07 /* No Data Controller */,
 				99186D0A2510922B00A9FE07 /* Popup Dialog */,
 			);
@@ -273,26 +312,184 @@
 			path = "No Data Controller";
 			sourceTree = "<group>";
 		};
+		99186D1F2511D07E00A9FE07 /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				99186D202511D07E00A9FE07 /* Validation.swift */,
+			);
+			path = Validation;
+			sourceTree = "<group>";
+		};
+		99186D242511D1E000A9FE07 /* CommonWebviewController */ = {
+			isa = PBXGroup;
+			children = (
+				99186D252511D1E000A9FE07 /* View  */,
+				99186D272511D1E000A9FE07 /* Controller */,
+			);
+			path = CommonWebviewController;
+			sourceTree = "<group>";
+		};
+		99186D252511D1E000A9FE07 /* View  */ = {
+			isa = PBXGroup;
+			children = (
+				99186D262511D1E000A9FE07 /* WebviewStoryBoard.storyboard */,
+			);
+			path = "View ";
+			sourceTree = "<group>";
+		};
+		99186D272511D1E000A9FE07 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				99186D282511D1E000A9FE07 /* CommonWebviewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		99186D2B2511D1F700A9FE07 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				99186D2C2511D1F700A9FE07 /* Prod */,
+				99186D2E2511D1F700A9FE07 /* Dev */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		99186D2C2511D1F700A9FE07 /* Prod */ = {
+			isa = PBXGroup;
+			children = (
+				99186D2D2511D1F700A9FE07 /* GoogleService-Info.plist */,
+			);
+			path = Prod;
+			sourceTree = "<group>";
+		};
+		99186D2E2511D1F700A9FE07 /* Dev */ = {
+			isa = PBXGroup;
+			children = (
+				99186D2F2511D1F700A9FE07 /* GoogleService-Info.plist */,
+			);
+			path = Dev;
+			sourceTree = "<group>";
+		};
+		99186D322511D21000A9FE07 /* WebService */ = {
+			isa = PBXGroup;
+			children = (
+				99186D5D2511D45600A9FE07 /* Constants */,
+				99186D332511D21000A9FE07 /* ApiHandler */,
+				99186D372511D21000A9FE07 /* Request */,
+			);
+			path = WebService;
+			sourceTree = "<group>";
+		};
+		99186D332511D21000A9FE07 /* ApiHandler */ = {
+			isa = PBXGroup;
+			children = (
+				99186D342511D21000A9FE07 /* ApiClient.swift */,
+				99186D352511D21000A9FE07 /* User.swift */,
+				99186D362511D21000A9FE07 /* RequestHandler.swift */,
+			);
+			path = ApiHandler;
+			sourceTree = "<group>";
+		};
+		99186D372511D21000A9FE07 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				99186D382511D21000A9FE07 /* CheckUserRequest.swift */,
+				99186D392511D21000A9FE07 /* OTPVerifyRequest.swift */,
+				99186D3A2511D21000A9FE07 /* BaseRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		99186D412511D26400A9FE07 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				99186D452511D27F00A9FE07 /* Controllers */,
+				99186D422511D27F00A9FE07 /* Models */,
+				99186D432511D27F00A9FE07 /* Views */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		99186D422511D27F00A9FE07 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		99186D432511D27F00A9FE07 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				99186D442511D27F00A9FE07 /* LoginScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		99186D452511D27F00A9FE07 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				99186D462511D27F00A9FE07 /* LoginController.swift */,
+				99186D472511D27F00A9FE07 /* OTPVerificationController.swift */,
+				99186D482511D27F00A9FE07 /* OtpTextField.swift */,
+				99186D492511D27F00A9FE07 /* PasswordController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		99186D4F2511D28800A9FE07 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				99186D502511D28800A9FE07 /* Models */,
+				99186D512511D28800A9FE07 /* Controllers */,
+				99186D532511D28800A9FE07 /* VIews */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		99186D502511D28800A9FE07 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		99186D512511D28800A9FE07 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				99186D522511D28800A9FE07 /* SignUpControllerViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		99186D532511D28800A9FE07 /* VIews */ = {
+			isa = PBXGroup;
+			children = (
+				99186D542511D28800A9FE07 /* SignUpStoryboard.storyboard */,
+			);
+			path = VIews;
+			sourceTree = "<group>";
+		};
+		99186D5D2511D45600A9FE07 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				99186D5E2511D45600A9FE07 /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		991ADE922506096700932251 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				99186D4F2511D28800A9FE07 /* SignUp */,
+				99186D412511D26400A9FE07 /* Login */,
 				99186D092510922B00A9FE07 /* Common Views */,
 				991ADE9925060A4000932251 /* Walkthrough */,
 				991ADE9825060A3600932251 /* Account */,
 				991ADE97250609E100932251 /* Transactions */,
 				991ADE96250609D900932251 /* Home */,
 				991ADE95250609CC00932251 /* On Boarding */,
-				991ADE94250609C100932251 /* Login Registration */,
 			);
 			path = Modules;
-			sourceTree = "<group>";
-		};
-		991ADE94250609C100932251 /* Login Registration */ = {
-			isa = PBXGroup;
-			children = (
-				99186CB52507B0E600A9FE07 /* Controllers */,
-			);
-			path = "Login Registration";
 			sourceTree = "<group>";
 		};
 		991ADE95250609CC00932251 /* On Boarding */ = {
@@ -342,6 +539,8 @@
 		991ADE9A2506454700932251 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
+				99186D5A2511D37200A9FE07 /* CheckBox.swift */,
+				99186D592511D37200A9FE07 /* RoundViewCorner.swift */,
 				99186CB62508C06500A9FE07 /* TextField */,
 				991ADEA525064E1D00932251 /* Gradient Button */,
 				991ADE9F250645A300932251 /* EPOSRoundButton.swift */,
@@ -384,6 +583,8 @@
 		9976C9072500F05600FC5DD3 /* ePOS */ = {
 			isa = PBXGroup;
 			children = (
+				99186D322511D21000A9FE07 /* WebService */,
+				99186D2B2511D1F700A9FE07 /* Firebase */,
 				99186CBB2508C0FC00A9FE07 /* BridgingHeader */,
 				991ADE922506096700932251 /* Modules */,
 				9976C9242501067E00FC5DD3 /* Resources */,
@@ -413,6 +614,8 @@
 		9976C91E250105EE00FC5DD3 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				99186D222511D09400A9FE07 /* Util.swift */,
+				99186D1F2511D07E00A9FE07 /* Validation */,
 				99186CE5250A2C6500A9FE07 /* EPOSHelper.swift */,
 			);
 			path = Utilities;
@@ -474,10 +677,12 @@
 			buildPhases = (
 				901C4886E4729477AFB68FD3 /* [CP] Check Pods Manifest.lock */,
 				9976C9012500F05600FC5DD3 /* Sources */,
+				99186D612511D52000A9FE07 /* Firebase Plist Script */,
 				9976C9022500F05600FC5DD3 /* Frameworks */,
 				9976C9032500F05600FC5DD3 /* Resources */,
 				F1ACA5527FF91ED60A8005D4 /* [CP] Embed Pods Frameworks */,
 				99186D1A2510D11300A9FE07 /* SwiftLint Script */,
+				99186D602511D4DF00A9FE07 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -530,8 +735,10 @@
 				9976C95B2501165E00FC5DD3 /* Roboto-Thin.ttf in Resources */,
 				9976C9502501165E00FC5DD3 /* Roboto-Medium.ttf in Resources */,
 				9976C9572501165E00FC5DD3 /* Roboto-Italic.ttf in Resources */,
+				99186D4A2511D27F00A9FE07 /* LoginScreen.storyboard in Resources */,
 				9976C95A2501165E00FC5DD3 /* Roboto-Bold.ttf in Resources */,
 				99186CD42508F07C00A9FE07 /* Transactions.storyboard in Resources */,
+				99186D292511D1E000A9FE07 /* WebviewStoryBoard.storyboard in Resources */,
 				99186D102510922B00A9FE07 /* FailedPopup.xib in Resources */,
 				99186D152510926800A9FE07 /* EmptyDataViewController.xib in Resources */,
 				9976C9562501165E00FC5DD3 /* Roboto-LightItalic.ttf in Resources */,
@@ -540,6 +747,7 @@
 				9976C9522501165E00FC5DD3 /* Roboto-Regular.ttf in Resources */,
 				9976C9152500F05800FC5DD3 /* LaunchScreen.storyboard in Resources */,
 				9976C9582501165E00FC5DD3 /* LICENSE.txt in Resources */,
+				99186D562511D28800A9FE07 /* SignUpStoryboard.storyboard in Resources */,
 				99186CE8250A3B7600A9FE07 /* Home.storyboard in Resources */,
 				9976C9512501165E00FC5DD3 /* Roboto-Light.ttf in Resources */,
 				9976C9532501165E00FC5DD3 /* Roboto-MediumItalic.ttf in Resources */,
@@ -594,7 +802,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+		99186D602511D4DF00A9FE07 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n\n";
+		};
+		99186D612511D52000A9FE07 /* Firebase Plist Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Firebase Plist Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# Name of the resource we're selectively copying\nGOOGLESERVICE_INFO_PLIST=GoogleService-Info.plist\n\n# Get references to dev and prod versions of the GoogleService-Info.plist\n# NOTE: These should only live on the file system and should NOT be part of the target (since we'll be adding them to the target manually)\nGOOGLESERVICE_INFO_DEV=${PROJECT_DIR}/${TARGET_NAME}/Firebase/Dev/${GOOGLESERVICE_INFO_PLIST}\nGOOGLESERVICE_INFO_PROD=${PROJECT_DIR}/${TARGET_NAME}/Firebase/Prod/${GOOGLESERVICE_INFO_PLIST}\n\n# Make sure the dev version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_DEV}\"\nif [ ! -f $GOOGLESERVICE_INFO_DEV ]\nthen\n    echo \"No Development GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Make sure the prod version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_PROD}\"\nif [ ! -f $GOOGLESERVICE_INFO_PROD ]\nthen\n    echo \"No Production GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Get a reference to the destination location for the GoogleService-Info.plist\nPLIST_DESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\necho \"Will copy ${GOOGLESERVICE_INFO_PLIST} to final destination: ${PLIST_DESTINATION}\"\n\n# Copy over the prod GoogleService-Info.plist for Release builds\nif [ \"${CONFIGURATION}\" == \"Release\" ]\nthen\n    echo \"Using ${GOOGLESERVICE_INFO_PROD}\"\n    cp \"${GOOGLESERVICE_INFO_PROD}\" \"${PLIST_DESTINATION}\"\nelse\n    echo \"Using ${GOOGLESERVICE_INFO_DEV}\"\n    cp \"${GOOGLESERVICE_INFO_DEV}\" \"${PLIST_DESTINATION}\"\nfi\n";
 		};
 		F1ACA5527FF91ED60A8005D4 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -605,10 +848,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ePOS/Pods-ePOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MDFInternationalization/MDFInternationalization.framework",
 				"${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -617,10 +862,12 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFInternationalization.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialComponents.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -637,31 +884,49 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99186D3D2511D21100A9FE07 /* RequestHandler.swift in Sources */,
 				99186D192510959F00A9FE07 /* StatusDialogItem.swift in Sources */,
+				99186D402511D21100A9FE07 /* BaseRequest.swift in Sources */,
 				9976C90D2500F05600FC5DD3 /* ViewController.swift in Sources */,
 				9976C9232501066B00FC5DD3 /* CustomColors.swift in Sources */,
 				99186CCB2508F01400A9FE07 /* TransactionsViewController.swift in Sources */,
+				99186D212511D07E00A9FE07 /* Validation.swift in Sources */,
 				9976C9212501065D00FC5DD3 /* CustomFonts.swift in Sources */,
+				99186D5F2511D45600A9FE07 /* Constants.swift in Sources */,
 				99186CC62508EF9500A9FE07 /* HomeViewController.swift in Sources */,
+				99186D3B2511D21000A9FE07 /* ApiClient.swift in Sources */,
+				99186D582511D32E00A9FE07 /* BottomLineTextField.swift in Sources */,
+				99186D3C2511D21000A9FE07 /* User.swift in Sources */,
 				9976C95E2501173600FC5DD3 /* DeviceType.swift in Sources */,
 				99186CE6250A2C6500A9FE07 /* EPOSHelper.swift in Sources */,
 				99186CBD2508EC6000A9FE07 /* EPOSTextField+FloatText.swift in Sources */,
+				99186D552511D28800A9FE07 /* SignUpControllerViewController.swift in Sources */,
+				99186D232511D09400A9FE07 /* Util.swift in Sources */,
 				991ADEA825064E2F00932251 /* UIImageExtension.swift in Sources */,
+				99186D4D2511D27F00A9FE07 /* OtpTextField.swift in Sources */,
+				99186D4C2511D27F00A9FE07 /* OTPVerificationController.swift in Sources */,
 				991ADEA925064E2F00932251 /* UIButtonExtension.swift in Sources */,
 				99186D0E2510922B00A9FE07 /* ShowDialog.swift in Sources */,
+				99186D2A2511D1E000A9FE07 /* CommonWebviewController.swift in Sources */,
 				991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */,
 				99186D142510926800A9FE07 /* EmptyDataViewController.swift in Sources */,
 				991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */,
 				991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */,
 				99186D17251092A700A9FE07 /* EmptyViewItem.swift in Sources */,
+				99186D3E2511D21100A9FE07 /* CheckUserRequest.swift in Sources */,
 				99186CEB250A646400A9FE07 /* StatusDemoViewController.swift in Sources */,
+				99186D3F2511D21100A9FE07 /* OTPVerifyRequest.swift in Sources */,
 				99186CD02508F03900A9FE07 /* AccountViewController.swift in Sources */,
 				99186CBA2508C08F00A9FE07 /* EPOSTextField.m in Sources */,
 				99186CC42508EF5600A9FE07 /* EPOSTabBarViewController.swift in Sources */,
 				991ADEAB250660DB00932251 /* EPOSGradientView.swift in Sources */,
 				99186D0F2510922B00A9FE07 /* FailedPopup.swift in Sources */,
+				99186D5B2511D37200A9FE07 /* RoundViewCorner.swift in Sources */,
+				99186D4E2511D27F00A9FE07 /* PasswordController.swift in Sources */,
+				99186D5C2511D37200A9FE07 /* CheckBox.swift in Sources */,
 				9976C9092500F05600FC5DD3 /* AppDelegate.swift in Sources */,
 				991ADEAD250662EF00932251 /* EPOSShadowView.swift in Sources */,
+				99186D4B2511D27F00A9FE07 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

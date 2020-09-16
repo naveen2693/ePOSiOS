@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login Controller-->
+        <scene sceneID="8xC-Km-MjD">
+            <objects>
+                <viewController id="QIW-zP-AQ0" customClass="LoginController" customModule="ePOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8S5-v2-4cb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dotedTexture" translatesAutoresizingMaskIntoConstraints="NO" id="1Sb-pv-Qxk">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kzZ-vI-czC" customClass="RoundedCornerView" customModule="ePOS" customModuleProvider="target">
+                                <rect key="frame" x="2" y="610" width="414" height="286"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8TN-i2-pMc">
+                                        <rect key="frame" x="21" y="69" width="36" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="+91" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jv3-xj-qDU" customClass="EPOSLabel" customModule="ePOS" customModuleProvider="target">
+                                        <rect key="frame" x="76" y="72" width="32" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a3O-Fg-gF6" customClass="BottomBorderTF" customModule="ePOS" customModuleProvider="target">
+                                        <rect key="frame" x="125" y="66" width="257" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="textColor" name="bigTitleColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="tel"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="I Agree to Terms of Use &amp; Privacy Policy" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VG3-h1-I2C">
+                                        <rect key="frame" x="54" y="190" width="227" height="49.5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hch-yf-adx" customClass="CheckBox" customModule="ePOS" customModuleProvider="target">
+                                        <rect key="frame" x="21" y="196" width="25" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="tintColor" name="themeDarkColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isChecked" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="uncheckedBorderColor">
+                                                <color key="value" name="themeDarkColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="checkedBorderColor">
+                                                <color key="value" name="themeDarkColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="checkmarkColor">
+                                                <color key="value" name="themeDarkColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="submitEnabled" translatesAutoresizingMaskIntoConstraints="NO" id="SYf-4U-KeY">
+                                        <rect key="frame" x="331" y="190" width="66" height="54"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRound">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Get Started with ePOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pWo-ZY-6ut" customClass="EPOSLabel" customModule="ePOS" customModuleProvider="target">
+                                <rect key="frame" x="10" y="620" width="263" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="themeDarkColor"/>
+                        <viewLayoutGuide key="safeArea" id="LN3-ij-oBF"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="jUi-fv-DaJ"/>
+                    <connections>
+                        <outlet property="imgNextViewControl" destination="SYf-4U-KeY" id="IW1-43-Loj"/>
+                        <outlet property="textFieldMobileNumber" destination="a3O-Fg-gF6" id="V83-lc-0fV"/>
+                        <outlet property="textViewTermCondition" destination="VG3-h1-I2C" id="OhA-x1-Kt8"/>
+                        <outlet property="viewCheckBox" destination="hch-yf-adx" id="yC0-k4-Q6V"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fFZ-Nf-TR9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="950.72463768115949" y="-171.42857142857142"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ooP-Kb-5ZB">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1za-bn-wS7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4KI-rm-tVm">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="QIW-zP-AQ0" kind="relationship" relationship="rootViewController" id="3MC-e9-fCU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gcV-KH-HRo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="40.579710144927539" y="-171.42857142857142"/>
+        </scene>
+        <!--Password Controller-->
+        <scene sceneID="f3r-uT-M7r">
+            <objects>
+                <viewController storyboardIdentifier="PasswordController" id="2SZ-Y5-JD9" customClass="PasswordController" customModule="ePOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="U2L-gX-Utv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnX-eC-9w5" customClass="EPOSLabel" customModule="ePOS" customModuleProvider="target">
+                                <rect key="frame" x="108" y="355" width="199" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="For Mobile Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uDb-VC-uEz" customClass="EPOSLabel" customModule="ePOS" customModuleProvider="target">
+                                <rect key="frame" x="120" y="399" width="174" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i2o-WT-VXx" customClass="EPOSShadowView" customModule="ePOS" customModuleProvider="target">
+                                <rect key="frame" x="37" y="453" width="357" height="111"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Your Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tZf-Ex-i9Q" customClass="EPOSTextField">
+                                        <rect key="frame" x="28" y="28" width="310" height="48"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="textColor" name="textBoxBorderColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Password"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" name="textBoxBorderColor"/>
+                                <color key="tintColor" name="textBoxBorderColor"/>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="submitEnabled" translatesAutoresizingMaskIntoConstraints="NO" id="o3n-LO-ZGF">
+                                <rect key="frame" x="301" y="794" width="93" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAH-95-a2w">
+                                <rect key="frame" x="13" y="802" width="177" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Forget Password?">
+                                    <color key="titleColor" name="themeDarkColor"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="GQp-kx-Czz"/>
+                    </view>
+                    <connections>
+                        <outlet property="btnForgetPassword" destination="HAH-95-a2w" id="fut-mI-u4l"/>
+                        <outlet property="imgNextView" destination="o3n-LO-ZGF" id="fZ9-YR-tq1"/>
+                        <outlet property="textFieldPassword" destination="tZf-Ex-i9Q" id="e82-8w-XmR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1qK-Ju-lqG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1711.5942028985507" y="-171.42857142857142"/>
+        </scene>
+        <!--Verfication Controller-->
+        <scene sceneID="TZf-3f-YdW">
+            <objects>
+                <viewController storyboardIdentifier="OTPVerficationController" id="MYL-TE-SDZ" customClass="OTPVerficationController" customModule="ePOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Gjn-hz-jkI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="acf-RA-LTE">
+                                <rect key="frame" x="24" y="365" width="370" height="60"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="GOm-ql-gam">
+                                        <rect key="frame" x="10" y="12.5" width="280" height="35"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sbA-ud-JEi" userLabel="TextField-1" customClass="PineOTPTextField" customModule="ePOS" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="35" id="F3k-7m-S3i"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="FG8-az-twE"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="bMI-w5-o7W"/>
+                                                    <constraint firstAttribute="height" constant="35" id="iM2-cO-2VO"/>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="35" id="mdm-8e-yxy"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="one-time-code"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9e0-kk-mTW" userLabel="TextField-2" customClass="PineOTPTextField" customModule="ePOS" customModuleProvider="target">
+                                                <rect key="frame" x="81.5" y="0.0" width="35" height="35"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="7Rf-KN-N4H"/>
+                                                    <constraint firstAttribute="height" constant="35" id="OeG-Sf-dpD"/>
+                                                    <constraint firstAttribute="width" constant="35" id="be0-kh-sbb"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="one-time-code"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QYA-Hg-QKF" userLabel="TextField-3" customClass="PineOTPTextField" customModule="ePOS" customModuleProvider="target">
+                                                <rect key="frame" x="163.5" y="0.0" width="35" height="35"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="EgD-UK-e9d"/>
+                                                    <constraint firstAttribute="width" constant="35" id="HNg-nF-iRI"/>
+                                                    <constraint firstAttribute="height" constant="35" id="Whg-TJ-POB"/>
+                                                    <constraint firstAttribute="width" constant="24" id="zc4-kv-gg1"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="one-time-code"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="zc4-kv-gg1"/>
+                                                    </mask>
+                                                </variation>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="geq-fi-Mje" userLabel="TextField-4" customClass="PineOTPTextField" customModule="ePOS" customModuleProvider="target">
+                                                <rect key="frame" x="245" y="0.0" width="35" height="35"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="AEe-Or-rJt"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="m6q-LX-e6R"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="one-time-code"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="GOm-ql-gam" firstAttribute="centerY" secondItem="acf-RA-LTE" secondAttribute="centerY" id="9PT-h0-rv4"/>
+                                    <constraint firstItem="GOm-ql-gam" firstAttribute="leading" secondItem="acf-RA-LTE" secondAttribute="leading" constant="10" id="CkJ-CX-Zo5"/>
+                                    <constraint firstAttribute="trailing" secondItem="GOm-ql-gam" secondAttribute="trailing" constant="10" id="EPa-v7-jS9"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="UE4-ry-uny"/>
+                                    <constraint firstAttribute="height" constant="60" id="xXi-8a-enx"/>
+                                    <constraint firstItem="GOm-ql-gam" firstAttribute="centerX" secondItem="acf-RA-LTE" secondAttribute="centerX" id="xd4-oH-DDS"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="submitEnabled" translatesAutoresizingMaskIntoConstraints="NO" id="T1V-6g-pVb">
+                                <rect key="frame" x="327" y="788" width="55" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N4q-S8-nGL">
+                                <rect key="frame" x="20" y="796" width="101" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="Resend Otp">
+                                    <color key="titleColor" name="themeDarkColor"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Zwg-bZ-nOZ"/>
+                    </view>
+                    <connections>
+                        <outlet property="btnResendOtp" destination="N4q-S8-nGL" id="hhR-cb-mdy"/>
+                        <outlet property="horizontalStackView" destination="GOm-ql-gam" id="coc-kS-v3E"/>
+                        <outlet property="submit" destination="T1V-6g-pVb" id="Qbr-PF-1kI"/>
+                        <outlet property="text_Field_1" destination="sbA-ud-JEi" id="otg-WG-Mzf"/>
+                        <outlet property="text_Field_2" destination="9e0-kk-mTW" id="w6i-FS-EQg"/>
+                        <outlet property="text_Field_3" destination="QYA-Hg-QKF" id="v0c-n7-qfb"/>
+                        <outlet property="text_Field_4" destination="geq-fi-Mje" id="63I-K6-wUv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gBz-0Q-XXq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2456.521739130435" y="-201.5625"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="dotedTexture" width="347" height="622"/>
+        <image name="submitEnabled" width="48" height="48"/>
+        <namedColor name="bigTitleColor">
+            <color red="0.29019607843137257" green="0.29019607843137257" blue="0.29019607843137257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textBoxBorderColor">
+            <color red="0.90588235294117647" green="0.90588235294117647" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="themeDarkColor">
+            <color red="0.066666666666666666" green="0.68627450980392157" blue="0.35294117647058826" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
