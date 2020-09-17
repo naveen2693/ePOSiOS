@@ -38,5 +38,16 @@ public class Util
      textViewField.attributedText = attributedString
  }
     
-
+public static func convertSignUpDataToModel(establishmentName:String,email:String,contactName:String,password:String,referralCode:String,mobileNumber:String) -> UserRegistrationDataModel
+{
+    let objUserRegistrationDataModel=UserRegistrationDataModel()
+           objUserRegistrationDataModel
+               .setEstablishmentName(establishmentName: establishmentName)
+               .setEmail(email: email)
+               .setContactName(contactName: contactName)
+               .setPassword(password: password)
+               .setContactNumber(contactNumber:mobileNumber)
+               .setReferralCode(referralCode:referralCode)
+    return objUserRegistrationDataModel;
+}
 }

@@ -15,6 +15,9 @@ public static let TERMCONDITIONS_PRIVACYPOLICY="I Agree Terms of Use & Privacy P
 public static let PRIVACY_POLICY="Privacy Policy"
 public static let TERM_CONDITIONS="Terms of Use"
 public static let QUERY_KEY1="mobileNumber"
+public static let YES:String  = "YES";
+public static let NO:String = "NO";
+    
 
 // MARK:- Fields from product flavor: devOrTest
 public static let GOOGLE_API_KEY = "AIzaSyBmuQsDr5_QLRy-GJIeiV8O_d8h4O2BpVw";

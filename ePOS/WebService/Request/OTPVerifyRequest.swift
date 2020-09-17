@@ -7,9 +7,10 @@
 //
 
 import Foundation
-public class OTPVerifyRequest:BaseRequest{
-    var  mobileNum:String = "";
-    var  otp:String="";
+public struct OTPVerifyRequest:Codable{
+    var mobileNum:String = "";
+    var otp:String="";
+    
     private enum CodingKeys: String, CodingKey {
            case mobileNum = "mobileNumber"
            case otp = "otp"
