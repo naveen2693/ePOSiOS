@@ -55,6 +55,8 @@
 		99186D70251248EC00A9FE07 /* PersonalInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99186D6E251248EC00A9FE07 /* PersonalInfoViewController.xib */; };
 		99186D722512494C00A9FE07 /* PersonalInfoViewController+Dropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D712512494B00A9FE07 /* PersonalInfoViewController+Dropdown.swift */; };
 		9919A9902513796000A67253 /* ConstantNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9919A98F2513796000A67253 /* ConstantNew.swift */; };
+		9919A9942514D83000A67253 /* EPOSUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9919A9932514D83000A67253 /* EPOSUserDefaults.swift */; };
+		9919A9962514DCAA00A67253 /* EPOSUserDefaults+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9919A9952514DCAA00A67253 /* EPOSUserDefaults+Methods.swift */; };
 		991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADE9F250645A300932251 /* EPOSRoundButton.swift */; };
 		991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA1250645C300932251 /* EPOSRectangularButton.swift */; };
 		991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA3250646E500932251 /* EPOSLabel.swift */; };
@@ -141,6 +143,8 @@
 		99186D6E251248EC00A9FE07 /* PersonalInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalInfoViewController.xib; sourceTree = "<group>"; };
 		99186D712512494B00A9FE07 /* PersonalInfoViewController+Dropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonalInfoViewController+Dropdown.swift"; sourceTree = "<group>"; };
 		9919A98F2513796000A67253 /* ConstantNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantNew.swift; sourceTree = "<group>"; };
+		9919A9932514D83000A67253 /* EPOSUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSUserDefaults.swift; sourceTree = "<group>"; };
+		9919A9952514DCAA00A67253 /* EPOSUserDefaults+Methods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EPOSUserDefaults+Methods.swift"; sourceTree = "<group>"; };
 		991ADE9F250645A300932251 /* EPOSRoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSRoundButton.swift; sourceTree = "<group>"; };
 		991ADEA1250645C300932251 /* EPOSRectangularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSRectangularButton.swift; sourceTree = "<group>"; };
 		991ADEA3250646E500932251 /* EPOSLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSLabel.swift; sourceTree = "<group>"; };
@@ -536,6 +540,15 @@
 			path = Dropdown;
 			sourceTree = "<group>";
 		};
+		9919A9922514D81600A67253 /* User Defaults */ = {
+			isa = PBXGroup;
+			children = (
+				9919A9932514D83000A67253 /* EPOSUserDefaults.swift */,
+				9919A9952514DCAA00A67253 /* EPOSUserDefaults+Methods.swift */,
+			);
+			path = "User Defaults";
+			sourceTree = "<group>";
+		};
 		991ADE922506096700932251 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -655,6 +668,7 @@
 		9976C91D250105D000FC5DD3 /* Common Classes */ = {
 			isa = PBXGroup;
 			children = (
+				9919A9922514D81600A67253 /* User Defaults */,
 				991ADE9A2506454700932251 /* Custom Classes */,
 				9976C95F250118E900FC5DD3 /* Constants */,
 				9976C91F250105F800FC5DD3 /* Extensions */,
@@ -944,6 +958,7 @@
 				99186D402511D21100A9FE07 /* BaseRequest.swift in Sources */,
 				99186D6B2512449900A9FE07 /* DropdownTableViewCell.swift in Sources */,
 				9976C90D2500F05600FC5DD3 /* ViewController.swift in Sources */,
+				9919A9942514D83000A67253 /* EPOSUserDefaults.swift in Sources */,
 				9976C9232501066B00FC5DD3 /* CustomColors.swift in Sources */,
 				99186CCB2508F01400A9FE07 /* TransactionsViewController.swift in Sources */,
 				99186D212511D07E00A9FE07 /* Validation.swift in Sources */,
@@ -970,6 +985,7 @@
 				99186D142510926800A9FE07 /* EmptyDataViewController.swift in Sources */,
 				991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */,
 				991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */,
+				9919A9962514DCAA00A67253 /* EPOSUserDefaults+Methods.swift in Sources */,
 				99186D17251092A700A9FE07 /* EmptyViewItem.swift in Sources */,
 				99186D3E2511D21100A9FE07 /* CheckUserRequest.swift in Sources */,
 				99186CEB250A646400A9FE07 /* StatusDemoViewController.swift in Sources */,

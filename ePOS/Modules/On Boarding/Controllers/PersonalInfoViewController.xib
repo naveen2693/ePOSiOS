@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="checkbox" destination="UFA-L8-ftP" id="BZ2-NO-oKf"/>
                 <outlet property="checkboxInfoLabel" destination="Dpj-dU-KIo" id="JTc-rA-xNC"/>
+                <outlet property="dropdownImageView" destination="K8m-Z3-S8T" id="1Fa-BA-Vms"/>
                 <outlet property="nextButton" destination="4Ce-fX-xq6" id="zJM-1B-PKp"/>
                 <outlet property="textFieldCompanyType" destination="hFx-i1-77I" id="HXG-Bl-uJl"/>
                 <outlet property="textFieldDocumentInfo" destination="PDs-6F-Q9z" id="wlF-1j-g4O"/>
@@ -127,8 +128,8 @@
                                                 <action selector="checkboxClicked:" destination="-1" eventType="valueChanged" id="0D5-3f-Bt0"/>
                                             </connections>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dpj-dU-KIo" customClass="EPOSLabel" customModule="ePOS" customModuleProvider="target">
-                                            <rect key="frame" x="50" y="191.5" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I do not have a GST Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dpj-dU-KIo" customClass="EPOSLabel" customModule="ePOS" customModuleProvider="target">
+                                            <rect key="frame" x="50" y="191.5" width="215.5" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" name="textColor"/>
                                             <nil key="highlightedColor"/>

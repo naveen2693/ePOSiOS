@@ -26,6 +26,7 @@ class PersonalInfoViewController: UIViewController {
     @IBOutlet private weak var nextButton: EPOSRoundButton?
     @IBOutlet private weak var checkbox: CheckBox?
     @IBOutlet private weak var checkboxInfoLabel: EPOSLabel?
+    @IBOutlet private weak var dropdownImageView: UIImageView?
     
     var currentWorkflowState :WorkFlowState = .one
     
@@ -67,6 +68,7 @@ extension PersonalInfoViewController {
         case .four:
             textFieldDocumentType?.isHidden = false
             textFieldDocumentInfo?.isHidden = false
+            dropdownImageView?.isHidden = false
         }
         
     }
@@ -79,6 +81,7 @@ extension PersonalInfoViewController {
         textFieldDocumentInfo?.isHidden = true
         checkbox?.isHidden = true
         checkboxInfoLabel?.isHidden = true
+        dropdownImageView?.isHidden = true
     }
 }
 
