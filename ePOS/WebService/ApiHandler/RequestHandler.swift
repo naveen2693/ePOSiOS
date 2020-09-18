@@ -9,7 +9,7 @@
 import Foundation
 public class RequestHandler{
 // MARK:-createWebServiceHeaderWithoutAccessToken
-private static func  createWebServiceHeaderWithoutAccessToken() -> [String:String] {
+internal static func  createWebServiceHeaderWithoutAccessToken() -> [String:String] {
     var headermap = [String:String]();
     let deviceId:String = "";
     let imeiNum:String = ""
@@ -32,8 +32,9 @@ private static func  createWebServiceHeaderWithoutAccessToken() -> [String:Strin
     }
     return headermap;
 }
+    
 // MARK:-createWebServiceHeaderWithAccessToken
-    private static func  createWebServiceHeaderWithAccessToken() -> [String:String]{
+internal static func  createWebServiceHeaderWithAccessToken() -> [String:String]{
     var headermap =  [String:String]();
     let deviceId:String = "";
     let imeiNum:String = ""
@@ -57,44 +58,86 @@ private static func  createWebServiceHeaderWithoutAccessToken() -> [String:Strin
     }
     return headermap;
 }
-    
+
 // MARK:-createCheckUserReq
-public static func createCheckUserReq(mobileNum:String) -> CheckUserRequest {
-    let checkUserRequest = CheckUserRequest();
-    checkUserRequest.headerMap = createWebServiceHeaderWithoutAccessToken();
+    public static func createCheckUserRequest(mobileNum:String) -> [String:String] {
     var dic = [String:String]();
     dic[Constants.QUERY_KEY1] = mobileNum;
-    checkUserRequest.queryMap = dic;
-    return checkUserRequest;
+    return dic;
 }
-    
+
 // MARK:-createCheckUserReq
-public static func createOTPVerifyReq(mobileNum:String,otp:String) -> OTPVerifyRequest{
-    let request = OTPVerifyRequest();
-    request.headerMap = createWebServiceHeaderWithoutAccessToken();
+public static func createOTPVerifyRequest(mobileNum:String,otp:String) -> OTPVerifyRequest{
+    var request = OTPVerifyRequest();
     request.mobileNum=mobileNum
     request.otp=otp;
     return request;
 }
-    
+
 // MARK:-createOTPSendReq
-public static func createOTPSendReq(mobileNum:String) -> BaseRequest{
-    let sendOtpRequest = BaseRequest();
-    sendOtpRequest.headerMap = createWebServiceHeaderWithoutAccessToken();
+  public static func createOTPSendRequest(mobileNum:String) -> [String:String]{
     var  dic = [String:String]();
     dic[Constants.QUERY_KEY1] = mobileNum;
-    sendOtpRequest.queryMap = dic;
-    return sendOtpRequest;
+    return dic;
 }
-    
+
 // MARK:-createForgotPwdReq
-public static func createForgotPwdReq(mobileNum:String) -> BaseRequest {
-    let sendOtpRequest = BaseRequest();
-    sendOtpRequest.headerMap = createWebServiceHeaderWithoutAccessToken();
+    public static func createForgotPasswordRequest(mobileNum:String) -> [String:String] {
     var dic = [String:String]();
     dic[Constants.QUERY_KEY1] = mobileNum;
-    sendOtpRequest.queryMap = dic;
-    return sendOtpRequest;
+    return dic
+}
+    
+// MARK:-createConfigurationRequest
+public static func  createConfigurationRequest(globalChngNum:Int) -> ConfigurationRequest {
+    var request =  ConfigurationRequest();
+    request.glochngno = globalChngNum;
+    return request;
+}
+    
+// MARK:- createGetLeadIDRequest
+public static func  createGetLeadIDRequest(leadID:Int64) -> GetLeadIDRequest{
+    var request = GetLeadIDRequest();
+    request.id = leadID;
+    return request;
+}
+    
+// MARK:- createSignUpReq
+public static func createSignUpRequest(registrationData : UserRegistrationDataModel) -> SignUpRequest {
+    var request = SignUpRequest();
+    request.contactName = registrationData.getContactName();
+    request.contactNumber = registrationData.getContactNumber();
+    request.email = registrationData.getEmail();
+    request.establishmentName = registrationData.getEstablishmentName();
+    request.password = registrationData.getPassword();
+    request.tncFlag = Constants.YES;
+    request.referralCode = registrationData.getReferralCode();
+    // request.deviceInfo = deviceInfo;
+    return request;
+}
+    
+// MARK:- createMasterDataReq
+public static func createMasterDataRequest(mode:String) -> MasterDataRequest {
+    var request = MasterDataRequest();
+    request.mode = mode;
+    return request;
+}
+    
+// MARK:- createGetCityListRequest
+public static func createGetCityListRequest(strLastModifiedDate:String) -> CityListRequest{
+    var getCityListRequest =  CityListRequest();
+    getCityListRequest.lastModifiedDate = strLastModifiedDate;
+    return getCityListRequest;
+}
+    
+// MARK:- createUserListReq
+    public static func createUserListRequest(params:ListSortParamsModel) -> [String:String] {
+    var param = [String:String]();
+    param[UserListRequest.QUERY_KEY1] = String(params.getPage());
+    param[UserListRequest.QUERY_KEY2] = String(params.getSize());
+    param[UserListRequest.QUERY_KEY3] = String(params.getDirection());
+    param[UserListRequest.QUERY_KEY4] = params.getSort();
+    return param;
 }
 
 }

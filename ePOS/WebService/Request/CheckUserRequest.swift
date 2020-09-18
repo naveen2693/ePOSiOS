@@ -10,7 +10,7 @@ import Foundation
 
 import UIKit
 
-public class CheckUserRequest : BaseRequest {
+public struct CheckUserRequest{
     var  QUERY_KEY1:String = "mobileNumber";
 }
 

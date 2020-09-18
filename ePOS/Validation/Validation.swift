@@ -28,10 +28,10 @@ enum ValidationType {
 
 enum RegEx: String {
     case email = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}" // Email
-    case password = "^.{6,15}$" // Password length 6-15
-    case alphabeticStringWithSpace = "^[a-zA-Z ]*$" // e.g. hello sandeep
+    case password = "(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}" // Password length 6-15
+    case alphabeticStringWithoutSpace = "^[a-zA-Z]*$" // e.g. hello sandeep
     case alphabeticStringFirstLetterCaps = "^[A-Z]+[a-zA-Z]*$" // SandsHell
-    case phoneNo = "[0-9]{10,14}" // PhoneNo 10-14 Digits
+    case phoneNo = "^\\d{3}-\\d{3}-\\d{4}$" // PhoneNo 10-14 Digits
     
     //Change RegEx according to your Requirement
 }
@@ -39,20 +39,18 @@ enum RegEx: String {
 enum AlertMessages: String {
     case inValidEmail = "InvalidEmail"
     case invalidFirstLetterCaps = "First Letter should be capital"
-    case inValidPhone = "Invalid Phone"
-    case invalidAlphabeticString = "Invalid String"
-    case inValidPSW = "Invalid Password"
-    
-    case emptyPhone = "Empty Phone"
-    case emptyEmail = "Empty Email"
-    case emptyFirstLetterCaps = "Empty Name"
-    case emptyAlphabeticString = "Empty String"
-    case emptyPSW = "Empty Password"
+    case inValidPhone = "Invalid Phone Number"
+    case invalidAlphabeticString = "Please Enter Correct Name"
+    case inValidPSW = "Your password should have at least one special charachter,uppercase and lowercase character"
+    case emptyPhone = "Please Enter Phone"
+    case emptyEmail = "Please Enter Email"
+    case emptyFirstLetterCaps = "Please Enter Name"
+    case emptyAlphabeticString = "Please Enter String"
+    case emptyPSW = "Please Enter Password"
     func localized() -> String {
         return NSLocalizedString(self.rawValue, comment: "")
     }
 }
-
 class Validation: NSObject {
     
     static let shared = Validation()
@@ -72,7 +70,7 @@ class Validation: NSObject {
                     return tempValue
                 }
             case .alphabeticString:
-                if let tempValue = isValidString(text: valueToBeChecked.inputValue, regex: .alphabeticStringWithSpace, emptyAlert: .emptyAlphabeticString, invalidAlert: .invalidAlphabeticString) {
+                if let tempValue = isValidString(text: valueToBeChecked.inputValue, regex: .alphabeticStringWithoutSpace, emptyAlert: .emptyAlphabeticString, invalidAlert: .invalidAlphabeticString) {
                     return tempValue
                 }
             case .password:

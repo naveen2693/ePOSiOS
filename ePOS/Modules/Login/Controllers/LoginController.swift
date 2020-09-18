@@ -10,7 +10,6 @@ import UIKit
 class LoginController: UIViewController {
 @IBOutlet weak var textView: UITextView?
 @IBOutlet weak var textFieldMobileNumber: BottomBorderTF?
-@IBOutlet weak var imageProccedNextView: UIImageView?
 @IBOutlet weak var viewCheckBox: CheckBox?
     
 override func viewDidLoad() {
@@ -22,6 +21,12 @@ override func viewDidLoad() {
             fatalError("Error: Load url failed.")
        }
 }
+    
+    
+@IBAction func ButtonSubmit(_ sender: Any) {
+    
+    }
+    
     
 // MARK:- CheckBox Configuration
 private func checkBoxConfiguration()

@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		18274840419F503DA1EE880A /* Pods_ePOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F0391820214628F09E9428 /* Pods_ePOS.framework */; };
+		46161AAE25133E3B006D2783 /* ConfigurationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46161AAD25133E3B006D2783 /* ConfigurationRequest.swift */; };
+		46161AB025133FA5006D2783 /* GetLeadIDRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46161AAF25133FA5006D2783 /* GetLeadIDRequest.swift */; };
+		46161AB52513412E006D2783 /* UserRegistrationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46161AB42513412E006D2783 /* UserRegistrationDataModel.swift */; };
+		46161AB7251346A0006D2783 /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46161AB6251346A0006D2783 /* SignUpRequest.swift */; };
+		46161AB9251347A9006D2783 /* DeviceInformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46161AB8251347A9006D2783 /* DeviceInformationModel.swift */; };
+		46161ABC251358E8006D2783 /* MasterDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46161ABB251358E8006D2783 /* MasterDataRequest.swift */; };
+		46161ABF2513599B006D2783 /* GetCityListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46161ABE2513599B006D2783 /* GetCityListRequest.swift */; };
+		46161AC125135A32006D2783 /* ListSortParamsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46161AC025135A32006D2783 /* ListSortParamsModel.swift */; };
+		46161AC325135AB6006D2783 /* UserListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46161AC225135AB6006D2783 /* UserListRequest.swift */; };
+		46161AC525137F56006D2783 /* CommonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46161AC425137F55006D2783 /* CommonExtensions.swift */; };
 		99186CBA2508C08F00A9FE07 /* EPOSTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 99186CB92508C08F00A9FE07 /* EPOSTextField.m */; };
 		99186CBD2508EC6000A9FE07 /* EPOSTextField+FloatText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CBC2508EC6000A9FE07 /* EPOSTextField+FloatText.swift */; };
 		99186CC42508EF5600A9FE07 /* EPOSTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CC32508EF5600A9FE07 /* EPOSTabBarViewController.swift */; };
@@ -36,7 +46,6 @@
 		99186D3D2511D21100A9FE07 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D362511D21000A9FE07 /* RequestHandler.swift */; };
 		99186D3E2511D21100A9FE07 /* CheckUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D382511D21000A9FE07 /* CheckUserRequest.swift */; };
 		99186D3F2511D21100A9FE07 /* OTPVerifyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D392511D21000A9FE07 /* OTPVerifyRequest.swift */; };
-		99186D402511D21100A9FE07 /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D3A2511D21000A9FE07 /* BaseRequest.swift */; };
 		99186D4A2511D27F00A9FE07 /* LoginScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99186D442511D27F00A9FE07 /* LoginScreen.storyboard */; };
 		99186D4B2511D27F00A9FE07 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D462511D27F00A9FE07 /* LoginController.swift */; };
 		99186D4C2511D27F00A9FE07 /* OTPVerificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D472511D27F00A9FE07 /* OTPVerificationController.swift */; };
@@ -92,6 +101,16 @@
 		21D6DA97CDA242EDFE4068EE /* Pods-ePOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ePOS.release.xcconfig"; path = "Target Support Files/Pods-ePOS/Pods-ePOS.release.xcconfig"; sourceTree = "<group>"; };
 		22F0391820214628F09E9428 /* Pods_ePOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ePOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3293659E051B6C990362E7F9 /* Pods-ePOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ePOS.debug.xcconfig"; path = "Target Support Files/Pods-ePOS/Pods-ePOS.debug.xcconfig"; sourceTree = "<group>"; };
+		46161AAD25133E3B006D2783 /* ConfigurationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationRequest.swift; sourceTree = "<group>"; };
+		46161AAF25133FA5006D2783 /* GetLeadIDRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLeadIDRequest.swift; sourceTree = "<group>"; };
+		46161AB42513412E006D2783 /* UserRegistrationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistrationDataModel.swift; sourceTree = "<group>"; };
+		46161AB6251346A0006D2783 /* SignUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
+		46161AB8251347A9006D2783 /* DeviceInformationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInformationModel.swift; sourceTree = "<group>"; };
+		46161ABB251358E8006D2783 /* MasterDataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterDataRequest.swift; sourceTree = "<group>"; };
+		46161ABE2513599B006D2783 /* GetCityListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCityListRequest.swift; sourceTree = "<group>"; };
+		46161AC025135A32006D2783 /* ListSortParamsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSortParamsModel.swift; sourceTree = "<group>"; };
+		46161AC225135AB6006D2783 /* UserListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListRequest.swift; sourceTree = "<group>"; };
+		46161AC425137F55006D2783 /* CommonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonExtensions.swift; sourceTree = "<group>"; };
 		99186CB72508C08E00A9FE07 /* ePOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ePOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		99186CB82508C08F00A9FE07 /* EPOSTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EPOSTextField.h; sourceTree = "<group>"; };
 		99186CB92508C08F00A9FE07 /* EPOSTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EPOSTextField.m; sourceTree = "<group>"; };
@@ -124,7 +143,6 @@
 		99186D362511D21000A9FE07 /* RequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		99186D382511D21000A9FE07 /* CheckUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckUserRequest.swift; sourceTree = "<group>"; };
 		99186D392511D21000A9FE07 /* OTPVerifyRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPVerifyRequest.swift; sourceTree = "<group>"; };
-		99186D3A2511D21000A9FE07 /* BaseRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
 		99186D442511D27F00A9FE07 /* LoginScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginScreen.storyboard; sourceTree = "<group>"; };
 		99186D462511D27F00A9FE07 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		99186D472511D27F00A9FE07 /* OTPVerificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPVerificationController.swift; sourceTree = "<group>"; };
@@ -208,6 +226,23 @@
 				B5B8F0D4F76186F2167A93E4 /* Pods-ePOS.uat.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		46161AB32513411D006D2783 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				46161AB42513412E006D2783 /* UserRegistrationDataModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		46161ABA25134825006D2783 /* CommonModels */ = {
+			isa = PBXGroup;
+			children = (
+				46161AB8251347A9006D2783 /* DeviceInformationModel.swift */,
+				46161AC025135A32006D2783 /* ListSortParamsModel.swift */,
+			);
+			path = CommonModels;
 			sourceTree = "<group>";
 		};
 		99186CB62508C06500A9FE07 /* TextField */ = {
@@ -392,7 +427,7 @@
 		99186D322511D21000A9FE07 /* WebService */ = {
 			isa = PBXGroup;
 			children = (
-				99186D5D2511D45600A9FE07 /* Constants */,
+				46161ABA25134825006D2783 /* CommonModels */,
 				99186D332511D21000A9FE07 /* ApiHandler */,
 				99186D372511D21000A9FE07 /* Request */,
 			);
@@ -414,7 +449,12 @@
 			children = (
 				99186D382511D21000A9FE07 /* CheckUserRequest.swift */,
 				99186D392511D21000A9FE07 /* OTPVerifyRequest.swift */,
-				99186D3A2511D21000A9FE07 /* BaseRequest.swift */,
+				46161AAD25133E3B006D2783 /* ConfigurationRequest.swift */,
+				46161AAF25133FA5006D2783 /* GetLeadIDRequest.swift */,
+				46161AB6251346A0006D2783 /* SignUpRequest.swift */,
+				46161ABB251358E8006D2783 /* MasterDataRequest.swift */,
+				46161ABE2513599B006D2783 /* GetCityListRequest.swift */,
+				46161AC225135AB6006D2783 /* UserListRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -458,18 +498,11 @@
 		99186D4F2511D28800A9FE07 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				99186D502511D28800A9FE07 /* Models */,
+				46161AB32513411D006D2783 /* Models */,
 				99186D512511D28800A9FE07 /* Controllers */,
 				99186D532511D28800A9FE07 /* VIews */,
 			);
 			path = SignUp;
-			sourceTree = "<group>";
-		};
-		99186D502511D28800A9FE07 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		99186D512511D28800A9FE07 /* Controllers */ = {
@@ -648,6 +681,8 @@
 		9976C9072500F05600FC5DD3 /* ePOS */ = {
 			isa = PBXGroup;
 			children = (
+				99186D1F2511D07E00A9FE07 /* Validation */,
+				99186D5D2511D45600A9FE07 /* Constants */,
 				99186D322511D21000A9FE07 /* WebService */,
 				99186D2B2511D1F700A9FE07 /* Firebase */,
 				99186CBB2508C0FC00A9FE07 /* BridgingHeader */,
@@ -681,7 +716,6 @@
 			isa = PBXGroup;
 			children = (
 				99186D222511D09400A9FE07 /* Util.swift */,
-				99186D1F2511D07E00A9FE07 /* Validation */,
 				99186CE5250A2C6500A9FE07 /* EPOSHelper.swift */,
 			);
 			path = Utilities;
@@ -693,6 +727,7 @@
 				9976C9202501065D00FC5DD3 /* CustomFonts.swift */,
 				9976C9222501066B00FC5DD3 /* CustomColors.swift */,
 				9976C95D2501173600FC5DD3 /* DeviceType.swift */,
+				46161AC425137F55006D2783 /* CommonExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -953,15 +988,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46161AB7251346A0006D2783 /* SignUpRequest.swift in Sources */,
 				99186D3D2511D21100A9FE07 /* RequestHandler.swift in Sources */,
 				99186D192510959F00A9FE07 /* StatusDialogItem.swift in Sources */,
-				99186D402511D21100A9FE07 /* BaseRequest.swift in Sources */,
 				99186D6B2512449900A9FE07 /* DropdownTableViewCell.swift in Sources */,
 				9976C90D2500F05600FC5DD3 /* ViewController.swift in Sources */,
 				9919A9942514D83000A67253 /* EPOSUserDefaults.swift in Sources */,
 				9976C9232501066B00FC5DD3 /* CustomColors.swift in Sources */,
 				99186CCB2508F01400A9FE07 /* TransactionsViewController.swift in Sources */,
+				46161AAE25133E3B006D2783 /* ConfigurationRequest.swift in Sources */,
 				99186D212511D07E00A9FE07 /* Validation.swift in Sources */,
+				46161ABF2513599B006D2783 /* GetCityListRequest.swift in Sources */,
 				9976C9212501065D00FC5DD3 /* CustomFonts.swift in Sources */,
 				99186D5F2511D45600A9FE07 /* Constants.swift in Sources */,
 				99186CC62508EF9500A9FE07 /* HomeViewController.swift in Sources */,
@@ -979,13 +1016,16 @@
 				99186D4D2511D27F00A9FE07 /* OtpTextField.swift in Sources */,
 				99186D4C2511D27F00A9FE07 /* OTPVerificationController.swift in Sources */,
 				991ADEA925064E2F00932251 /* UIButtonExtension.swift in Sources */,
+				46161AB025133FA5006D2783 /* GetLeadIDRequest.swift in Sources */,
 				99186D0E2510922B00A9FE07 /* ShowDialog.swift in Sources */,
 				99186D2A2511D1E000A9FE07 /* CommonWebviewController.swift in Sources */,
 				991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */,
 				99186D142510926800A9FE07 /* EmptyDataViewController.swift in Sources */,
 				991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */,
+				46161AB9251347A9006D2783 /* DeviceInformationModel.swift in Sources */,
 				991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */,
 				9919A9962514DCAA00A67253 /* EPOSUserDefaults+Methods.swift in Sources */,
+				46161ABC251358E8006D2783 /* MasterDataRequest.swift in Sources */,
 				99186D17251092A700A9FE07 /* EmptyViewItem.swift in Sources */,
 				99186D3E2511D21100A9FE07 /* CheckUserRequest.swift in Sources */,
 				99186CEB250A646400A9FE07 /* StatusDemoViewController.swift in Sources */,
@@ -997,11 +1037,15 @@
 				991ADEAB250660DB00932251 /* EPOSGradientView.swift in Sources */,
 				99186D0F2510922B00A9FE07 /* FailedPopup.swift in Sources */,
 				99186D5B2511D37200A9FE07 /* RoundViewCorner.swift in Sources */,
+				46161AC325135AB6006D2783 /* UserListRequest.swift in Sources */,
+				46161AC125135A32006D2783 /* ListSortParamsModel.swift in Sources */,
 				99186D4E2511D27F00A9FE07 /* PasswordController.swift in Sources */,
+				46161AB52513412E006D2783 /* UserRegistrationDataModel.swift in Sources */,
 				99186D5C2511D37200A9FE07 /* CheckBox.swift in Sources */,
 				9976C9092500F05600FC5DD3 /* AppDelegate.swift in Sources */,
 				99186D722512494C00A9FE07 /* PersonalInfoViewController+Dropdown.swift in Sources */,
 				991ADEAD250662EF00932251 /* EPOSShadowView.swift in Sources */,
+				46161AC525137F56006D2783 /* CommonExtensions.swift in Sources */,
 				99186D4B2511D27F00A9FE07 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
