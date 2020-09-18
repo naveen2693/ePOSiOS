@@ -54,6 +54,7 @@
 		99186D6F251248EC00A9FE07 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D6D251248EC00A9FE07 /* PersonalInfoViewController.swift */; };
 		99186D70251248EC00A9FE07 /* PersonalInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99186D6E251248EC00A9FE07 /* PersonalInfoViewController.xib */; };
 		99186D722512494C00A9FE07 /* PersonalInfoViewController+Dropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D712512494B00A9FE07 /* PersonalInfoViewController+Dropdown.swift */; };
+		9919A9902513796000A67253 /* ConstantNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9919A98F2513796000A67253 /* ConstantNew.swift */; };
 		991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADE9F250645A300932251 /* EPOSRoundButton.swift */; };
 		991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA1250645C300932251 /* EPOSRectangularButton.swift */; };
 		991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA3250646E500932251 /* EPOSLabel.swift */; };
@@ -139,6 +140,7 @@
 		99186D6D251248EC00A9FE07 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
 		99186D6E251248EC00A9FE07 /* PersonalInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalInfoViewController.xib; sourceTree = "<group>"; };
 		99186D712512494B00A9FE07 /* PersonalInfoViewController+Dropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonalInfoViewController+Dropdown.swift"; sourceTree = "<group>"; };
+		9919A98F2513796000A67253 /* ConstantNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantNew.swift; sourceTree = "<group>"; };
 		991ADE9F250645A300932251 /* EPOSRoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSRoundButton.swift; sourceTree = "<group>"; };
 		991ADEA1250645C300932251 /* EPOSRectangularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSRectangularButton.swift; sourceTree = "<group>"; };
 		991ADEA3250646E500932251 /* EPOSLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSLabel.swift; sourceTree = "<group>"; };
@@ -714,6 +716,7 @@
 			isa = PBXGroup;
 			children = (
 				9976C9602501190400FC5DD3 /* Constant.h */,
+				9919A98F2513796000A67253 /* ConstantNew.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -952,6 +955,7 @@
 				99186D3C2511D21000A9FE07 /* User.swift in Sources */,
 				9976C95E2501173600FC5DD3 /* DeviceType.swift in Sources */,
 				99186CE6250A2C6500A9FE07 /* EPOSHelper.swift in Sources */,
+				9919A9902513796000A67253 /* ConstantNew.swift in Sources */,
 				99186CBD2508EC6000A9FE07 /* EPOSTextField+FloatText.swift in Sources */,
 				99186D682512445400A9FE07 /* MakeDropDown.swift in Sources */,
 				99186D552511D28800A9FE07 /* SignUpControllerViewController.swift in Sources */,

@@ -8,23 +8,99 @@
 
 import UIKit
 
+enum WorkFlowState: Int {
+    case one
+    case two
+    case three
+    case four
+}
+
 class PersonalInfoViewController: UIViewController {
 
+    @IBOutlet private weak var textFieldCompanyType: EPOSTextField?
+    @IBOutlet private weak var textFieldPAN: EPOSTextField?
+    @IBOutlet private weak var textFieldNameOnPAN: EPOSTextField?
+    @IBOutlet private weak var textFieldGSTIN: EPOSTextField?
+    @IBOutlet private weak var textFieldDocumentType: EPOSTextField?
+    @IBOutlet private weak var textFieldDocumentInfo: EPOSTextField?
+    @IBOutlet private weak var nextButton: EPOSRoundButton?
+    @IBOutlet private weak var checkbox: CheckBox?
+    @IBOutlet private weak var checkboxInfoLabel: EPOSLabel?
+    
+    var currentWorkflowState :WorkFlowState = .one
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        configureUIInitially()
         // Do any additional setup after loading the view.
     }
 
+    
+    
+    
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+//MARK: - Private Func
+private
+extension PersonalInfoViewController {
+    //MARK: - ConfigureUI
+    func configureUIInitially() {
+        checkbox?.style = .tick
+        checkbox?.borderStyle = .roundedSquare(radius: 2)
+        
+        hideAllTextFields()
     }
-    */
+    
+    //MARK: - RefreshPage
+    func refreshPage() {
+        
+        switch currentWorkflowState {
+        case .one:
+            hideAllTextFields()
+        case .two:
+            textFieldPAN?.isHidden = false
+            textFieldNameOnPAN?.isHidden = false
+        case .three:
+            textFieldGSTIN?.isHidden = false
+            checkbox?.isHidden = false
+            checkboxInfoLabel?.isHidden = false
+        case .four:
+            textFieldDocumentType?.isHidden = false
+            textFieldDocumentInfo?.isHidden = false
+        }
+        
+    }
+    
+    func hideAllTextFields() {
+        textFieldPAN?.isHidden = true
+        textFieldNameOnPAN?.isHidden = true
+        textFieldGSTIN?.isHidden = true
+        textFieldDocumentType?.isHidden = true
+        textFieldDocumentInfo?.isHidden = true
+        checkbox?.isHidden = true
+        checkboxInfoLabel?.isHidden = true
+    }
+}
 
+
+//MARK: - Actions
+extension PersonalInfoViewController {
+    
+    @IBAction func checkboxClicked(_ sender: Any) {
+    }
+    
+    @IBAction func nextClicked(_ sender: Any) {
+        if currentWorkflowState != .four {
+            var currentWorkFlowIndex = currentWorkflowState.rawValue
+            currentWorkFlowIndex += 1
+            currentWorkflowState = WorkFlowState(rawValue: currentWorkFlowIndex) ?? .one
+            refreshPage()
+        }
+        else {
+            //go to next page
+        }
+    }
+    
+    @IBAction func needHelpClicked(_ sender: Any) {
+    }
 }

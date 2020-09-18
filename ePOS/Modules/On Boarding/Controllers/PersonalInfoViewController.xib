@@ -11,6 +11,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PersonalInfoViewController" customModule="ePOS" customModuleProvider="target">
             <connections>
+                <outlet property="checkbox" destination="UFA-L8-ftP" id="BZ2-NO-oKf"/>
+                <outlet property="checkboxInfoLabel" destination="Dpj-dU-KIo" id="JTc-rA-xNC"/>
+                <outlet property="nextButton" destination="4Ce-fX-xq6" id="zJM-1B-PKp"/>
+                <outlet property="textFieldCompanyType" destination="hFx-i1-77I" id="HXG-Bl-uJl"/>
+                <outlet property="textFieldDocumentInfo" destination="PDs-6F-Q9z" id="wlF-1j-g4O"/>
+                <outlet property="textFieldDocumentType" destination="fXv-dT-VvP" id="lfL-F5-mKf"/>
+                <outlet property="textFieldGSTIN" destination="NPJ-3D-yGj" id="sa5-k6-lAQ"/>
+                <outlet property="textFieldNameOnPAN" destination="lia-ss-a6n" id="4sQ-3F-bVY"/>
+                <outlet property="textFieldPAN" destination="H1s-oy-Q6Z" id="ePt-dy-gSL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -55,7 +64,14 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7O8-Pn-PTQ" userLabel="ContentView">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="401"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hFx-i1-77I" customClass="EPOSTextField">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropdownIcon" translatesAutoresizingMaskIntoConstraints="NO" id="NI0-oY-XgP">
+                                            <rect key="frame" x="268" y="30" width="14" height="7"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="14" id="c4f-YA-sS8"/>
+                                                <constraint firstAttribute="height" constant="7" id="kMx-YX-IQ6"/>
+                                            </constraints>
+                                        </imageView>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Company type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hFx-i1-77I" customClass="EPOSTextField">
                                             <rect key="frame" x="16" y="25" width="288" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -63,7 +79,7 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Company type"/>
                                             </userDefinedRuntimeAttributes>
                                         </textField>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H1s-oy-Q6Z" customClass="EPOSTextField">
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter PAN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H1s-oy-Q6Z" customClass="EPOSTextField">
                                             <rect key="frame" x="16" y="69" width="288" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -71,7 +87,7 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Enter PAN"/>
                                             </userDefinedRuntimeAttributes>
                                         </textField>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lia-ss-a6n" customClass="EPOSTextField">
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter name as on PAN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lia-ss-a6n" customClass="EPOSTextField">
                                             <rect key="frame" x="16" y="113" width="288" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -79,7 +95,7 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Enter name as on PAN"/>
                                             </userDefinedRuntimeAttributes>
                                         </textField>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NPJ-3D-yGj" customClass="EPOSTextField">
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter GSTIN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NPJ-3D-yGj" customClass="EPOSTextField">
                                             <rect key="frame" x="16" y="157" width="288" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -90,7 +106,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UFA-L8-ftP" customClass="CheckBox" customModule="ePOS" customModuleProvider="target">
                                             <rect key="frame" x="16" y="190" width="25" height="24"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                            <color key="tintColor" name="themeDarkColor"/>
+                                            <color key="tintColor" name="subTextColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="25" id="1o5-Mx-qFf"/>
                                                 <constraint firstAttribute="height" constant="24" id="Bg2-tc-5Rw"/>
@@ -98,7 +114,7 @@
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isChecked" value="NO"/>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="uncheckedBorderColor">
-                                                    <color key="value" name="themeDarkColor"/>
+                                                    <color key="value" name="subTextColor"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="checkedBorderColor">
                                                     <color key="value" name="themeDarkColor"/>
@@ -107,6 +123,9 @@
                                                     <color key="value" name="themeDarkColor"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="checkboxClicked:" destination="-1" eventType="valueChanged" id="0D5-3f-Bt0"/>
+                                            </connections>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dpj-dU-KIo" customClass="EPOSLabel" customModule="ePOS" customModuleProvider="target">
                                             <rect key="frame" x="50" y="191.5" width="42" height="21"/>
@@ -119,7 +138,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fXv-dT-VvP" customClass="EPOSTextField">
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select other document" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fXv-dT-VvP" customClass="EPOSTextField">
                                             <rect key="frame" x="16" y="240" width="288" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -127,7 +146,7 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Select other document"/>
                                             </userDefinedRuntimeAttributes>
                                         </textField>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PDs-6F-Q9z" customClass="EPOSTextField">
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PDs-6F-Q9z" customClass="EPOSTextField">
                                             <rect key="frame" x="16" y="284" width="288" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -135,6 +154,13 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="State"/>
                                             </userDefinedRuntimeAttributes>
                                         </textField>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropdownIcon" translatesAutoresizingMaskIntoConstraints="NO" id="K8m-Z3-S8T">
+                                            <rect key="frame" x="268" y="245" width="14" height="7"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="7" id="W9M-sD-rlV"/>
+                                                <constraint firstAttribute="width" constant="14" id="atU-Rl-adl"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     <constraints>
@@ -147,6 +173,8 @@
                                         <constraint firstItem="fXv-dT-VvP" firstAttribute="top" secondItem="UFA-L8-ftP" secondAttribute="bottom" constant="26" id="DXj-18-IyN"/>
                                         <constraint firstItem="fXv-dT-VvP" firstAttribute="leading" secondItem="hFx-i1-77I" secondAttribute="leading" id="Dgm-Kr-JeN"/>
                                         <constraint firstItem="H1s-oy-Q6Z" firstAttribute="top" secondItem="hFx-i1-77I" secondAttribute="bottom" constant="27" id="Eau-OT-JEz"/>
+                                        <constraint firstItem="NI0-oY-XgP" firstAttribute="trailing" secondItem="hFx-i1-77I" secondAttribute="trailing" constant="-22" id="Hr1-hQ-yWf"/>
+                                        <constraint firstItem="NI0-oY-XgP" firstAttribute="centerY" secondItem="hFx-i1-77I" secondAttribute="centerY" id="Ohx-12-jls"/>
                                         <constraint firstItem="lia-ss-a6n" firstAttribute="trailing" secondItem="hFx-i1-77I" secondAttribute="trailing" id="Pvk-QV-ZVf"/>
                                         <constraint firstItem="PDs-6F-Q9z" firstAttribute="trailing" secondItem="fXv-dT-VvP" secondAttribute="trailing" id="Qef-qI-AMW"/>
                                         <constraint firstAttribute="bottom" secondItem="PDs-6F-Q9z" secondAttribute="bottom" constant="100" id="Six-cv-YCC"/>
@@ -158,8 +186,10 @@
                                         <constraint firstItem="hFx-i1-77I" firstAttribute="top" secondItem="7O8-Pn-PTQ" secondAttribute="top" constant="25" id="gIF-G3-DCn"/>
                                         <constraint firstItem="PDs-6F-Q9z" firstAttribute="top" secondItem="fXv-dT-VvP" secondAttribute="bottom" constant="27" id="htg-b2-Ydf"/>
                                         <constraint firstItem="fXv-dT-VvP" firstAttribute="trailing" secondItem="hFx-i1-77I" secondAttribute="trailing" id="iD3-jh-d9K"/>
+                                        <constraint firstItem="K8m-Z3-S8T" firstAttribute="trailing" secondItem="fXv-dT-VvP" secondAttribute="trailing" constant="-22" id="itO-eK-qmj"/>
                                         <constraint firstItem="Dpj-dU-KIo" firstAttribute="centerY" secondItem="UFA-L8-ftP" secondAttribute="centerY" id="pfx-Cm-B58"/>
                                         <constraint firstItem="UFA-L8-ftP" firstAttribute="top" secondItem="NPJ-3D-yGj" secondAttribute="bottom" constant="16" id="reV-d3-gzK"/>
+                                        <constraint firstItem="K8m-Z3-S8T" firstAttribute="centerY" secondItem="fXv-dT-VvP" secondAttribute="centerY" id="uG8-Lt-671"/>
                                         <constraint firstItem="H1s-oy-Q6Z" firstAttribute="leading" secondItem="hFx-i1-77I" secondAttribute="leading" id="zmg-AS-xEP"/>
                                     </constraints>
                                 </view>
@@ -192,6 +222,9 @@
                                 <constraint firstAttribute="width" constant="46" id="Aol-mh-MdL"/>
                                 <constraint firstAttribute="height" constant="46" id="wdE-zb-6Mu"/>
                             </constraints>
+                            <connections>
+                                <action selector="nextClicked:" destination="-1" eventType="touchUpInside" id="eY9-Gc-USN"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YWt-kN-yDs">
                             <rect key="frame" x="16" y="21" width="78" height="40"/>
@@ -201,6 +234,9 @@
                             <state key="normal" title="Need help?">
                                 <color key="titleColor" name="themeLightColor"/>
                             </state>
+                            <connections>
+                                <action selector="needHelpClicked:" destination="-1" eventType="touchUpInside" id="wGu-84-frS"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -231,6 +267,10 @@
         </view>
     </objects>
     <resources>
+        <image name="dropdownIcon" width="14" height="7"/>
+        <namedColor name="subTextColor">
+            <color red="0.46274509803921571" green="0.46274509803921571" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="textColor">
             <color red="0.13725490196078433" green="0.14117647058823529" blue="0.15294117647058825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
