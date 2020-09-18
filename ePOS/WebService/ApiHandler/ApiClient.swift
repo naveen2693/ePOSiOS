@@ -14,6 +14,7 @@ enum ApiService
     case getVerifyOtpSubscription(mobileNumber:String,otp:String)
     
     case getSendOtpSubscription(mobileNumber:String)
+    
 // MARK:- SignUp Apis
     case getSignUpSubscription(registrationData:UserRegistrationDataModel)
     
@@ -26,6 +27,10 @@ enum ApiService
     case getFetchUserSubscription(listSortParams:ListSortParamsModel)
     
     case getLeadByIdSubscription(leadId:Int64)
+    
+// MARK:- Configuration
+    case getConfigurationsSubscription(globalChngNum:Int)
+
 }
 extension ApiService : TargetType
 {
@@ -66,6 +71,11 @@ extension ApiService : TargetType
             
         case .getLeadByIdSubscription:
            return Constants.GET_LEAD_ID_URL
+        
+    // MARK:- Configuration path
+        case .getConfigurationsSubscription:
+            return Constants.CONFIGURATION_URL
+           
         }
     }
     
@@ -102,6 +112,9 @@ extension ApiService : TargetType
             
         case .getLeadByIdSubscription:
             return .get
+ // MARK:- Configuration Method
+        case .getConfigurationsSubscription:
+            return .post
         }
     }
     
@@ -146,6 +159,11 @@ extension ApiService : TargetType
                 .createGetLeadIDRequest(leadID: leadId)))
         case .getManageAccountSubscription:
             return .requestPlain
+        
+// MARK:-Configuration task
+        case .getConfigurationsSubscription(let globalChngNum):
+            return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
+                .createConfigurationRequest(globalChngNum: globalChngNum)))
         }
 
     }
@@ -181,6 +199,10 @@ extension ApiService : TargetType
                         
                     case .getLeadByIdSubscription:
                          return RequestHandler.createWebServiceHeaderWithAccessToken()
+            
+                    case .getConfigurationsSubscription:
+                         return RequestHandler.createWebServiceHeaderWithoutAccessToken()
+            
                     }
             
     }

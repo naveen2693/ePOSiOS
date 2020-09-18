@@ -8,7 +8,6 @@
 
 import Foundation
 public struct UserListRequest{
-    
     public static let QUERY_KEY1:String = "page";
     public static let QUERY_KEY2:String = "size";
     public static let QUERY_KEY3:String = "dir";
