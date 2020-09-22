@@ -17,16 +17,16 @@ enum WorkFlowState: Int {
 
 class PersonalInfoViewController: UIViewController {
 
-    @IBOutlet private weak var textFieldCompanyType: EPOSTextField?
-    @IBOutlet private weak var textFieldPAN: EPOSTextField?
-    @IBOutlet private weak var textFieldNameOnPAN: EPOSTextField?
-    @IBOutlet private weak var textFieldGSTIN: EPOSTextField?
-    @IBOutlet private weak var textFieldDocumentType: EPOSTextField?
-    @IBOutlet private weak var textFieldDocumentInfo: EPOSTextField?
-    @IBOutlet private weak var nextButton: EPOSRoundButton?
-    @IBOutlet private weak var checkbox: CheckBox?
-    @IBOutlet private weak var checkboxInfoLabel: EPOSLabel?
-    @IBOutlet private weak var dropdownImageView: UIImageView?
+    @IBOutlet private weak var textFieldCompanyType: EPOSTextField!
+    @IBOutlet private weak var textFieldPAN: EPOSTextField!
+    @IBOutlet private weak var textFieldNameOnPAN: EPOSTextField!
+    @IBOutlet private weak var textFieldGSTIN: EPOSTextField!
+    @IBOutlet private weak var textFieldDocumentType: EPOSTextField!
+    @IBOutlet private weak var textFieldDocumentInfo: EPOSTextField!
+    @IBOutlet private weak var nextButton: EPOSRoundButton!
+    @IBOutlet private weak var checkbox: CheckBox!
+    @IBOutlet private weak var checkboxInfoLabel: EPOSLabel!
+    @IBOutlet private weak var dropdownImageView: UIImageView!
     
     var currentWorkflowState :WorkFlowState = .one
     
@@ -46,8 +46,8 @@ private
 extension PersonalInfoViewController {
     //MARK: - ConfigureUI
     func configureUIInitially() {
-        checkbox?.style = .tick
-        checkbox?.borderStyle = .roundedSquare(radius: 2)
+        checkbox.style = .tick
+        checkbox.borderStyle = .roundedSquare(radius: 2)
         
         hideAllTextFields()
     }
@@ -59,29 +59,29 @@ extension PersonalInfoViewController {
         case .one:
             hideAllTextFields()
         case .two:
-            textFieldPAN?.isHidden = false
-            textFieldNameOnPAN?.isHidden = false
+            textFieldPAN.isHidden = false
+            textFieldNameOnPAN.isHidden = false
         case .three:
-            textFieldGSTIN?.isHidden = false
-            checkbox?.isHidden = false
-            checkboxInfoLabel?.isHidden = false
+            textFieldGSTIN.isHidden = false
+            checkbox.isHidden = false
+            checkboxInfoLabel.isHidden = false
         case .four:
-            textFieldDocumentType?.isHidden = false
-            textFieldDocumentInfo?.isHidden = false
-            dropdownImageView?.isHidden = false
+            textFieldDocumentType.isHidden = false
+            textFieldDocumentInfo.isHidden = false
+            dropdownImageView.isHidden = false
         }
         
     }
     
     func hideAllTextFields() {
-        textFieldPAN?.isHidden = true
-        textFieldNameOnPAN?.isHidden = true
-        textFieldGSTIN?.isHidden = true
-        textFieldDocumentType?.isHidden = true
-        textFieldDocumentInfo?.isHidden = true
-        checkbox?.isHidden = true
-        checkboxInfoLabel?.isHidden = true
-        dropdownImageView?.isHidden = true
+        textFieldPAN.isHidden = true
+        textFieldNameOnPAN.isHidden = true
+        textFieldGSTIN.isHidden = true
+        textFieldDocumentType.isHidden = true
+        textFieldDocumentInfo.isHidden = true
+        checkbox.isHidden = true
+        checkboxInfoLabel.isHidden = true
+        dropdownImageView.isHidden = true
     }
 }
 
@@ -101,6 +101,8 @@ extension PersonalInfoViewController {
         }
         else {
             //go to next page
+            let controller = MerchantDetailsViewController.viewController(appID: "34h35h43h54h5")
+            self.navigationController?.pushViewController(controller, animated: true)
         }
     }
     

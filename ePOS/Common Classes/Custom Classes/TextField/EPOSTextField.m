@@ -42,7 +42,8 @@
     
     [self setOutlineColor:[UIColor textBoxBorderColor] forState:MDCTextControlStateNormal];
     [self setOutlineColor:[UIColor darkThemeColor] forState:MDCTextControlStateEditing];
-    [self setFloatingLabelColor:[UIColor titleColor] forState:MDCTextControlStateEditing];
+    [self setFloatingLabelColor:[UIColor darkThemeColor] forState:MDCTextControlStateEditing];
+    [self setFloatingLabelColor:[UIColor titleColor] forState:MDCTextControlStateNormal];
     self.label.font = [UIFont regularFontWithSize:12];
     self.font = [UIFont regularFontWithSize:15];
     self.textColor = [UIColor textColor];

@@ -66,6 +66,16 @@
 		9919A9902513796000A67253 /* ConstantNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9919A98F2513796000A67253 /* ConstantNew.swift */; };
 		9919A9942514D83000A67253 /* EPOSUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9919A9932514D83000A67253 /* EPOSUserDefaults.swift */; };
 		9919A9962514DCAA00A67253 /* EPOSUserDefaults+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9919A9952514DCAA00A67253 /* EPOSUserDefaults+Methods.swift */; };
+		9919A9992517336F00A67253 /* MerchantDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9919A9972517336F00A67253 /* MerchantDetailsViewController.swift */; };
+		9919A99A2517336F00A67253 /* MerchantDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9919A9982517336F00A67253 /* MerchantDetailsViewController.xib */; };
+		9919A99D25174B2D00A67253 /* BankDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9919A99B25174B2D00A67253 /* BankDetailsViewController.swift */; };
+		9919A99E25174B2D00A67253 /* BankDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9919A99C25174B2D00A67253 /* BankDetailsViewController.xib */; };
+		9919A9A12517528800A67253 /* SearchIFSCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9919A99F2517528800A67253 /* SearchIFSCViewController.swift */; };
+		9919A9A22517528800A67253 /* SearchIFSCViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9919A9A02517528800A67253 /* SearchIFSCViewController.xib */; };
+		9919A9A525176D9D00A67253 /* IFSCCodeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9919A9A325176D9D00A67253 /* IFSCCodeDetailViewController.swift */; };
+		9919A9A625176D9D00A67253 /* IFSCCodeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9919A9A425176D9D00A67253 /* IFSCCodeDetailViewController.xib */; };
+		9919A9A9251770E100A67253 /* IFSCDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9919A9A7251770E100A67253 /* IFSCDetailTableViewCell.swift */; };
+		9919A9AA251770E100A67253 /* IFSCDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9919A9A8251770E100A67253 /* IFSCDetailTableViewCell.xib */; };
 		991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADE9F250645A300932251 /* EPOSRoundButton.swift */; };
 		991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA1250645C300932251 /* EPOSRectangularButton.swift */; };
 		991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA3250646E500932251 /* EPOSLabel.swift */; };
@@ -163,6 +173,16 @@
 		9919A98F2513796000A67253 /* ConstantNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantNew.swift; sourceTree = "<group>"; };
 		9919A9932514D83000A67253 /* EPOSUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSUserDefaults.swift; sourceTree = "<group>"; };
 		9919A9952514DCAA00A67253 /* EPOSUserDefaults+Methods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EPOSUserDefaults+Methods.swift"; sourceTree = "<group>"; };
+		9919A9972517336F00A67253 /* MerchantDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantDetailsViewController.swift; sourceTree = "<group>"; };
+		9919A9982517336F00A67253 /* MerchantDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MerchantDetailsViewController.xib; sourceTree = "<group>"; };
+		9919A99B25174B2D00A67253 /* BankDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankDetailsViewController.swift; sourceTree = "<group>"; };
+		9919A99C25174B2D00A67253 /* BankDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BankDetailsViewController.xib; sourceTree = "<group>"; };
+		9919A99F2517528800A67253 /* SearchIFSCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchIFSCViewController.swift; sourceTree = "<group>"; };
+		9919A9A02517528800A67253 /* SearchIFSCViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchIFSCViewController.xib; sourceTree = "<group>"; };
+		9919A9A325176D9D00A67253 /* IFSCCodeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFSCCodeDetailViewController.swift; sourceTree = "<group>"; };
+		9919A9A425176D9D00A67253 /* IFSCCodeDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IFSCCodeDetailViewController.xib; sourceTree = "<group>"; };
+		9919A9A7251770E100A67253 /* IFSCDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFSCDetailTableViewCell.swift; sourceTree = "<group>"; };
+		9919A9A8251770E100A67253 /* IFSCDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IFSCDetailTableViewCell.xib; sourceTree = "<group>"; };
 		991ADE9F250645A300932251 /* EPOSRoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSRoundButton.swift; sourceTree = "<group>"; };
 		991ADEA1250645C300932251 /* EPOSRectangularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSRectangularButton.swift; sourceTree = "<group>"; };
 		991ADEA3250646E500932251 /* EPOSLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSLabel.swift; sourceTree = "<group>"; };
@@ -545,6 +565,14 @@
 				99186D6D251248EC00A9FE07 /* PersonalInfoViewController.swift */,
 				99186D6E251248EC00A9FE07 /* PersonalInfoViewController.xib */,
 				99186D712512494B00A9FE07 /* PersonalInfoViewController+Dropdown.swift */,
+				9919A9972517336F00A67253 /* MerchantDetailsViewController.swift */,
+				9919A9982517336F00A67253 /* MerchantDetailsViewController.xib */,
+				9919A99B25174B2D00A67253 /* BankDetailsViewController.swift */,
+				9919A99C25174B2D00A67253 /* BankDetailsViewController.xib */,
+				9919A99F2517528800A67253 /* SearchIFSCViewController.swift */,
+				9919A9A02517528800A67253 /* SearchIFSCViewController.xib */,
+				9919A9A325176D9D00A67253 /* IFSCCodeDetailViewController.swift */,
+				9919A9A425176D9D00A67253 /* IFSCCodeDetailViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -552,6 +580,8 @@
 		99186D6425122F8C00A9FE07 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9919A9A7251770E100A67253 /* IFSCDetailTableViewCell.swift */,
+				9919A9A8251770E100A67253 /* IFSCDetailTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -840,11 +870,14 @@
 				99186D4A2511D27F00A9FE07 /* LoginScreen.storyboard in Resources */,
 				9976C95A2501165E00FC5DD3 /* Roboto-Bold.ttf in Resources */,
 				99186CD42508F07C00A9FE07 /* Transactions.storyboard in Resources */,
+				9919A9A625176D9D00A67253 /* IFSCCodeDetailViewController.xib in Resources */,
 				99186D292511D1E000A9FE07 /* WebviewStoryBoard.storyboard in Resources */,
+				9919A9A22517528800A67253 /* SearchIFSCViewController.xib in Resources */,
 				99186D102510922B00A9FE07 /* FailedPopup.xib in Resources */,
 				99186D152510926800A9FE07 /* EmptyDataViewController.xib in Resources */,
 				9976C9562501165E00FC5DD3 /* Roboto-LightItalic.ttf in Resources */,
 				9976C95C2501165E00FC5DD3 /* Roboto-Black.ttf in Resources */,
+				9919A99E25174B2D00A67253 /* BankDetailsViewController.xib in Resources */,
 				9976C9592501165E00FC5DD3 /* Roboto-BlackItalic.ttf in Resources */,
 				9976C9522501165E00FC5DD3 /* Roboto-Regular.ttf in Resources */,
 				9976C9152500F05800FC5DD3 /* LaunchScreen.storyboard in Resources */,
@@ -858,6 +891,8 @@
 				9976C9122500F05800FC5DD3 /* Assets.xcassets in Resources */,
 				9976C9552501165E00FC5DD3 /* Roboto-BoldItalic.ttf in Resources */,
 				99186D1E2510D6D600A9FE07 /* .swiftlint.yml in Resources */,
+				9919A99A2517336F00A67253 /* MerchantDetailsViewController.xib in Resources */,
+				9919A9AA251770E100A67253 /* IFSCDetailTableViewCell.xib in Resources */,
 				99186CD22508F06D00A9FE07 /* Account.storyboard in Resources */,
 				99186D70251248EC00A9FE07 /* PersonalInfoViewController.xib in Resources */,
 				9976C9102500F05700FC5DD3 /* Main.storyboard in Resources */,
@@ -993,6 +1028,7 @@
 				99186D192510959F00A9FE07 /* StatusDialogItem.swift in Sources */,
 				99186D6B2512449900A9FE07 /* DropdownTableViewCell.swift in Sources */,
 				9976C90D2500F05600FC5DD3 /* ViewController.swift in Sources */,
+				9919A99D25174B2D00A67253 /* BankDetailsViewController.swift in Sources */,
 				9919A9942514D83000A67253 /* EPOSUserDefaults.swift in Sources */,
 				9976C9232501066B00FC5DD3 /* CustomColors.swift in Sources */,
 				99186CCB2508F01400A9FE07 /* TransactionsViewController.swift in Sources */,
@@ -1028,14 +1064,17 @@
 				46161ABC251358E8006D2783 /* MasterDataRequest.swift in Sources */,
 				99186D17251092A700A9FE07 /* EmptyViewItem.swift in Sources */,
 				99186D3E2511D21100A9FE07 /* CheckUserRequest.swift in Sources */,
+				9919A9A12517528800A67253 /* SearchIFSCViewController.swift in Sources */,
 				99186CEB250A646400A9FE07 /* StatusDemoViewController.swift in Sources */,
 				99186D3F2511D21100A9FE07 /* OTPVerifyRequest.swift in Sources */,
 				99186CD02508F03900A9FE07 /* AccountViewController.swift in Sources */,
 				99186D6F251248EC00A9FE07 /* PersonalInfoViewController.swift in Sources */,
 				99186CBA2508C08F00A9FE07 /* EPOSTextField.m in Sources */,
+				9919A9992517336F00A67253 /* MerchantDetailsViewController.swift in Sources */,
 				99186CC42508EF5600A9FE07 /* EPOSTabBarViewController.swift in Sources */,
 				991ADEAB250660DB00932251 /* EPOSGradientView.swift in Sources */,
 				99186D0F2510922B00A9FE07 /* FailedPopup.swift in Sources */,
+				9919A9A9251770E100A67253 /* IFSCDetailTableViewCell.swift in Sources */,
 				99186D5B2511D37200A9FE07 /* RoundViewCorner.swift in Sources */,
 				46161AC325135AB6006D2783 /* UserListRequest.swift in Sources */,
 				46161AC125135A32006D2783 /* ListSortParamsModel.swift in Sources */,
@@ -1044,6 +1083,7 @@
 				99186D5C2511D37200A9FE07 /* CheckBox.swift in Sources */,
 				9976C9092500F05600FC5DD3 /* AppDelegate.swift in Sources */,
 				99186D722512494C00A9FE07 /* PersonalInfoViewController+Dropdown.swift in Sources */,
+				9919A9A525176D9D00A67253 /* IFSCCodeDetailViewController.swift in Sources */,
 				991ADEAD250662EF00932251 /* EPOSShadowView.swift in Sources */,
 				46161AC525137F56006D2783 /* CommonExtensions.swift in Sources */,
 				99186D4B2511D27F00A9FE07 /* LoginController.swift in Sources */,

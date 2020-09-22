@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MerchantDetailsViewController" customModule="ePOS" customModuleProvider="target">
+            <connections>
+                <outlet property="labelApplicationID" destination="bJG-kW-mSh" id="4hp-8V-wRb"/>
+                <outlet property="nextButton" destination="MQj-nF-FGV" id="com-wM-3AL"/>
+                <outlet property="textFieldAddress" destination="hMg-F3-LOI" id="r9Z-CC-8K7"/>
+                <outlet property="textFieldBusinessName" destination="QVa-2P-Qd2" id="EzH-rF-xS4"/>
+                <outlet property="textFieldBusinessSince" destination="HGj-hs-2zp" id="1kE-fS-CQ2"/>
+                <outlet property="textFieldCity" destination="X0M-Fd-Xen" id="ic0-61-EPh"/>
+                <outlet property="textFieldMerchantCategory" destination="2x4-nS-YHA" id="XI5-AD-Uae"/>
+                <outlet property="textFieldPinecode" destination="RfC-HW-vUW" id="yEa-UO-Cy8"/>
+                <outlet property="textFieldState" destination="G2i-2A-COk" id="VS5-Ra-mDR"/>
+                <outlet property="textFieldTurnover" destination="lc4-7g-PZr" id="V7H-pG-Cuq"/>
+                <outlet property="view" destination="Hgk-8E-Bqd" id="MMo-o2-rTw"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Hgk-8E-Bqd">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hMq-b9-zIB" customClass="RoundedCornerView" customModule="ePOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJG-kW-mSh" customClass="EPOSLabel" customModule="ePOS" customModuleProvider="target">
+                            <rect key="frame" x="16" y="4.5" width="42" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" name="titleColor"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                    <integer key="value" value="9"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.97647058819999999" green="0.94117647059999998" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="bJG-kW-mSh" firstAttribute="leading" secondItem="hMq-b9-zIB" secondAttribute="leading" constant="16" id="2P8-fX-X3B"/>
+                        <constraint firstItem="bJG-kW-mSh" firstAttribute="centerY" secondItem="hMq-b9-zIB" secondAttribute="centerY" id="TFu-DQ-qvH"/>
+                        <constraint firstAttribute="height" constant="29" id="fpK-0j-DQf"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRound">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dpt-45-ny2">
+                    <rect key="frame" x="0.0" y="29" width="320" height="458"/>
+                    <subviews>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V9Y-pj-UVL">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="458"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lo7-y0-fTY" userLabel="ContentView">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropdownIcon" translatesAutoresizingMaskIntoConstraints="NO" id="1ul-nT-rE3">
+                                            <rect key="frame" x="268" y="30" width="14" height="7"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="14" id="gAg-qR-sTc"/>
+                                                <constraint firstAttribute="height" constant="7" id="gva-RK-6r4"/>
+                                            </constraints>
+                                        </imageView>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Registered Business Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QVa-2P-Qd2" customClass="EPOSTextField">
+                                            <rect key="frame" x="16" y="25" width="288" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Registered Business Name"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Registered Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hMg-F3-LOI" customClass="EPOSTextField">
+                                            <rect key="frame" x="16" y="69" width="288" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Registered Address"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G2i-2A-COk" customClass="EPOSTextField">
+                                            <rect key="frame" x="16" y="113" width="288" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="State"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X0M-Fd-Xen" customClass="EPOSTextField">
+                                            <rect key="frame" x="16" y="157" width="288" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="City"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="PIN Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RfC-HW-vUW" customClass="EPOSTextField">
+                                            <rect key="frame" x="16" y="201" width="288" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="PIN Code"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Annual Turnover" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lc4-7g-PZr" customClass="EPOSTextField">
+                                            <rect key="frame" x="16" y="245" width="288" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Annual Turnover"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Merchant Category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2x4-nS-YHA" customClass="EPOSTextField">
+                                            <rect key="frame" x="16" y="289" width="288" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Merchant Category"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Business Since" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HGj-hs-2zp" customClass="EPOSTextField">
+                                            <rect key="frame" x="16" y="333" width="288" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Business Since"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropdownIcon" translatesAutoresizingMaskIntoConstraints="NO" id="vkx-Dl-bAp">
+                                            <rect key="frame" x="268" y="206" width="14" height="7"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="7" id="cC5-oA-85t"/>
+                                                <constraint firstAttribute="width" constant="14" id="r9Y-g5-HrW"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <constraints>
+                                        <constraint firstItem="X0M-Fd-Xen" firstAttribute="leading" secondItem="QVa-2P-Qd2" secondAttribute="leading" id="1Jk-h8-1TJ"/>
+                                        <constraint firstItem="QVa-2P-Qd2" firstAttribute="leading" secondItem="lo7-y0-fTY" secondAttribute="leading" constant="16" id="1sl-CR-VQA"/>
+                                        <constraint firstItem="vkx-Dl-bAp" firstAttribute="trailing" secondItem="RfC-HW-vUW" secondAttribute="trailing" constant="-22" id="2qK-ND-Id5"/>
+                                        <constraint firstItem="X0M-Fd-Xen" firstAttribute="trailing" secondItem="QVa-2P-Qd2" secondAttribute="trailing" id="3C5-9C-lC8"/>
+                                        <constraint firstItem="2x4-nS-YHA" firstAttribute="top" secondItem="lc4-7g-PZr" secondAttribute="bottom" constant="27" id="BQV-vf-Isf"/>
+                                        <constraint firstItem="lc4-7g-PZr" firstAttribute="trailing" secondItem="RfC-HW-vUW" secondAttribute="trailing" id="CS2-y7-NZa"/>
+                                        <constraint firstItem="HGj-hs-2zp" firstAttribute="trailing" secondItem="2x4-nS-YHA" secondAttribute="trailing" id="FQx-B6-JZg"/>
+                                        <constraint firstItem="vkx-Dl-bAp" firstAttribute="centerY" secondItem="RfC-HW-vUW" secondAttribute="centerY" id="H2f-i1-U7c"/>
+                                        <constraint firstItem="1ul-nT-rE3" firstAttribute="trailing" secondItem="QVa-2P-Qd2" secondAttribute="trailing" constant="-22" id="M3B-s6-apn"/>
+                                        <constraint firstItem="hMg-F3-LOI" firstAttribute="trailing" secondItem="QVa-2P-Qd2" secondAttribute="trailing" id="PLg-mM-5aG"/>
+                                        <constraint firstItem="G2i-2A-COk" firstAttribute="leading" secondItem="QVa-2P-Qd2" secondAttribute="leading" id="PgM-WY-Pic"/>
+                                        <constraint firstItem="HGj-hs-2zp" firstAttribute="leading" secondItem="2x4-nS-YHA" secondAttribute="leading" id="QqD-dT-SE0"/>
+                                        <constraint firstItem="hMg-F3-LOI" firstAttribute="top" secondItem="QVa-2P-Qd2" secondAttribute="bottom" constant="27" id="TgS-yM-rYe"/>
+                                        <constraint firstItem="G2i-2A-COk" firstAttribute="top" secondItem="hMg-F3-LOI" secondAttribute="bottom" constant="27" id="c62-3I-JxO"/>
+                                        <constraint firstItem="QVa-2P-Qd2" firstAttribute="top" secondItem="lo7-y0-fTY" secondAttribute="top" constant="25" id="cmC-4E-SkA"/>
+                                        <constraint firstAttribute="bottom" secondItem="HGj-hs-2zp" secondAttribute="bottom" constant="50" id="g7g-yC-np8"/>
+                                        <constraint firstItem="RfC-HW-vUW" firstAttribute="top" secondItem="X0M-Fd-Xen" secondAttribute="bottom" constant="27" id="gLz-Or-kVG"/>
+                                        <constraint firstItem="2x4-nS-YHA" firstAttribute="leading" secondItem="lc4-7g-PZr" secondAttribute="leading" id="hV8-n4-cMK"/>
+                                        <constraint firstItem="HGj-hs-2zp" firstAttribute="top" secondItem="2x4-nS-YHA" secondAttribute="bottom" constant="27" id="lmB-HI-COe"/>
+                                        <constraint firstItem="hMg-F3-LOI" firstAttribute="leading" secondItem="QVa-2P-Qd2" secondAttribute="leading" id="nEe-ev-ZYj"/>
+                                        <constraint firstItem="G2i-2A-COk" firstAttribute="trailing" secondItem="QVa-2P-Qd2" secondAttribute="trailing" id="njD-cH-Ugh"/>
+                                        <constraint firstItem="RfC-HW-vUW" firstAttribute="leading" secondItem="QVa-2P-Qd2" secondAttribute="leading" id="oQS-NH-zG5"/>
+                                        <constraint firstItem="lc4-7g-PZr" firstAttribute="top" secondItem="RfC-HW-vUW" secondAttribute="bottom" constant="27" id="rGR-nF-RhX"/>
+                                        <constraint firstItem="X0M-Fd-Xen" firstAttribute="top" secondItem="G2i-2A-COk" secondAttribute="bottom" constant="27" id="sex-dv-d0T"/>
+                                        <constraint firstItem="1ul-nT-rE3" firstAttribute="centerY" secondItem="QVa-2P-Qd2" secondAttribute="centerY" id="snp-2e-VN0"/>
+                                        <constraint firstItem="RfC-HW-vUW" firstAttribute="trailing" secondItem="QVa-2P-Qd2" secondAttribute="trailing" id="w4d-uu-CoG"/>
+                                        <constraint firstItem="2x4-nS-YHA" firstAttribute="trailing" secondItem="lc4-7g-PZr" secondAttribute="trailing" id="yve-ny-cqi"/>
+                                        <constraint firstItem="lc4-7g-PZr" firstAttribute="leading" secondItem="RfC-HW-vUW" secondAttribute="leading" id="z7t-i6-SFI"/>
+                                        <constraint firstAttribute="trailing" secondItem="QVa-2P-Qd2" secondAttribute="trailing" constant="16" id="zH0-Cy-6dI"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="lo7-y0-fTY" firstAttribute="bottom" secondItem="dSm-4F-OO0" secondAttribute="bottom" id="8nd-1w-9cx"/>
+                                <constraint firstItem="lo7-y0-fTY" firstAttribute="trailing" secondItem="dSm-4F-OO0" secondAttribute="trailing" id="gol-uH-iEv"/>
+                                <constraint firstItem="lo7-y0-fTY" firstAttribute="width" secondItem="rVt-4V-eWm" secondAttribute="width" id="iLd-AT-miG"/>
+                                <constraint firstItem="lo7-y0-fTY" firstAttribute="top" secondItem="dSm-4F-OO0" secondAttribute="top" id="xuQ-f8-c1H"/>
+                                <constraint firstItem="lo7-y0-fTY" firstAttribute="leading" secondItem="dSm-4F-OO0" secondAttribute="leading" id="ysY-jt-gtr"/>
+                            </constraints>
+                            <viewLayoutGuide key="contentLayoutGuide" id="dSm-4F-OO0"/>
+                            <viewLayoutGuide key="frameLayoutGuide" id="rVt-4V-eWm"/>
+                        </scrollView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="V9Y-pj-UVL" firstAttribute="leading" secondItem="dpt-45-ny2" secondAttribute="leading" id="Hb5-Jy-x8M"/>
+                        <constraint firstItem="V9Y-pj-UVL" firstAttribute="top" secondItem="dpt-45-ny2" secondAttribute="top" id="MfV-WV-5eM"/>
+                        <constraint firstAttribute="bottom" secondItem="V9Y-pj-UVL" secondAttribute="bottom" id="U6f-Sx-g1q"/>
+                        <constraint firstAttribute="trailing" secondItem="V9Y-pj-UVL" secondAttribute="trailing" id="hhi-Tv-D1d"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9BK-g9-l5j">
+                    <rect key="frame" x="0.0" y="487" width="320" height="81"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MQj-nF-FGV" customClass="EPOSRoundButton" customModule="ePOS" customModuleProvider="target">
+                            <rect key="frame" x="256" y="18" width="46" height="46"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="46" id="GIx-Fn-XP4"/>
+                                <constraint firstAttribute="width" constant="46" id="WGr-WO-kYu"/>
+                            </constraints>
+                            <connections>
+                                <action selector="nextButtonClicked:" destination="-1" eventType="touchUpInside" id="bZJ-zH-7jY"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JCG-vC-d0Q">
+                            <rect key="frame" x="16" y="21" width="78" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="Y2A-be-osC"/>
+                            </constraints>
+                            <state key="normal" title="Need help?">
+                                <color key="titleColor" name="themeLightColor"/>
+                            </state>
+                            <connections>
+                                <action selector="needHelpClicked:" destination="-1" eventType="touchUpInside" id="j3a-5s-Lo8"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="JCG-vC-d0Q" firstAttribute="centerY" secondItem="MQj-nF-FGV" secondAttribute="centerY" id="JaW-vg-QWX"/>
+                        <constraint firstItem="JCG-vC-d0Q" firstAttribute="leading" secondItem="9BK-g9-l5j" secondAttribute="leading" constant="16" id="KpR-Q9-egp"/>
+                        <constraint firstAttribute="trailing" secondItem="MQj-nF-FGV" secondAttribute="trailing" constant="18" id="cum-dv-bg9"/>
+                        <constraint firstAttribute="height" constant="81" id="kNJ-LR-RdM"/>
+                        <constraint firstAttribute="bottom" secondItem="MQj-nF-FGV" secondAttribute="bottom" constant="17" id="oJL-Z7-xeA"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="9BK-g9-l5j" firstAttribute="leading" secondItem="Hgk-8E-Bqd" secondAttribute="leading" id="22p-jB-UJ7"/>
+                <constraint firstItem="dpt-45-ny2" firstAttribute="top" secondItem="ksW-E5-KGb" secondAttribute="top" constant="29" id="9FG-iH-BXq"/>
+                <constraint firstItem="dpt-45-ny2" firstAttribute="leading" secondItem="ksW-E5-KGb" secondAttribute="leading" id="GfI-mV-rvl"/>
+                <constraint firstItem="9BK-g9-l5j" firstAttribute="top" secondItem="dpt-45-ny2" secondAttribute="bottom" id="NXp-Gc-0PI"/>
+                <constraint firstItem="hMq-b9-zIB" firstAttribute="leading" secondItem="ksW-E5-KGb" secondAttribute="leading" id="Rse-xH-fxt"/>
+                <constraint firstItem="ksW-E5-KGb" firstAttribute="trailing" secondItem="9BK-g9-l5j" secondAttribute="trailing" id="Ybr-nZ-w6C"/>
+                <constraint firstItem="hMq-b9-zIB" firstAttribute="top" secondItem="ksW-E5-KGb" secondAttribute="top" id="ZAe-KX-eDo"/>
+                <constraint firstItem="ksW-E5-KGb" firstAttribute="trailing" secondItem="hMq-b9-zIB" secondAttribute="trailing" id="fQR-e8-gwV"/>
+                <constraint firstItem="9BK-g9-l5j" firstAttribute="bottom" secondItem="ksW-E5-KGb" secondAttribute="bottom" id="nDC-lN-aUk"/>
+                <constraint firstItem="ksW-E5-KGb" firstAttribute="trailing" secondItem="dpt-45-ny2" secondAttribute="trailing" id="ufA-AW-QcM"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ksW-E5-KGb"/>
+            <point key="canvasLocation" x="139" y="126"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="dropdownIcon" width="14" height="7"/>
+        <namedColor name="themeLightColor">
+            <color red="0.25098039215686274" green="0.70196078431372544" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="titleColor">
+            <color red="0.30196078431372547" green="0.30196078431372547" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

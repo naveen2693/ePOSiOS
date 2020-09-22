@@ -57,10 +57,10 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kbc-2r-1Oi">
-                    <rect key="frame" x="0.0" y="29" width="320" height="498"/>
+                    <rect key="frame" x="0.0" y="29" width="320" height="458"/>
                     <subviews>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zy8-dQ-cJ6">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="498"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="458"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7O8-Pn-PTQ" userLabel="ContentView">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="401"/>
@@ -259,7 +259,7 @@
                 <constraint firstItem="Kbc-2r-1Oi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="QXU-cV-iUf"/>
                 <constraint firstItem="k57-Y2-DQm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Rvy-o4-dik"/>
                 <constraint firstItem="Bbk-uq-YYf" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="UHR-MM-X6y"/>
-                <constraint firstItem="Bbk-uq-YYf" firstAttribute="top" secondItem="Kbc-2r-1Oi" secondAttribute="bottom" constant="-40" id="Wg3-Ib-JVV"/>
+                <constraint firstItem="Bbk-uq-YYf" firstAttribute="top" secondItem="Kbc-2r-1Oi" secondAttribute="bottom" id="Wg3-Ib-JVV"/>
                 <constraint firstItem="Bbk-uq-YYf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eCE-cj-sp3"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Bbk-uq-YYf" secondAttribute="trailing" id="jih-dU-6xp"/>
             </constraints>

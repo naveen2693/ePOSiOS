@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchIFSCViewController" customModule="ePOS" customModuleProvider="target">
+            <connections>
+                <outlet property="nextButton" destination="lY0-Iy-caa" id="Ow7-yc-0SG"/>
+                <outlet property="textFieldBank" destination="CRj-SZ-CDG" id="Vbd-MR-mgw"/>
+                <outlet property="textFieldBranch" destination="vpf-43-vtV" id="cPI-hx-E3r"/>
+                <outlet property="textFieldDistrict" destination="YW6-cF-LzY" id="f3V-ie-Max"/>
+                <outlet property="textFieldState" destination="iPA-Fz-4V2" id="yfY-AI-00u"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y2r-v5-PIH" customClass="RoundedCornerView" customModule="ePOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropdownIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Ss1-EN-pXC">
+                            <rect key="frame" x="268" y="32" width="14" height="7"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="14" id="43x-jo-k2H"/>
+                                <constraint firstAttribute="height" constant="7" id="tx7-pc-b7l"/>
+                            </constraints>
+                        </imageView>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Bank" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CRj-SZ-CDG" customClass="EPOSTextField">
+                            <rect key="frame" x="16" y="27" width="288" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Select Bank"/>
+                            </userDefinedRuntimeAttributes>
+                        </textField>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropdownIcon" translatesAutoresizingMaskIntoConstraints="NO" id="UUm-HL-hLl">
+                            <rect key="frame" x="268" y="76" width="14" height="7"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="14" id="3Rc-Fh-oGy"/>
+                                <constraint firstAttribute="height" constant="7" id="Sei-Cy-snH"/>
+                            </constraints>
+                        </imageView>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iPA-Fz-4V2" customClass="EPOSTextField">
+                            <rect key="frame" x="16" y="71" width="288" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Select State"/>
+                            </userDefinedRuntimeAttributes>
+                        </textField>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropdownIcon" translatesAutoresizingMaskIntoConstraints="NO" id="cs1-qG-7R9">
+                            <rect key="frame" x="268" y="120" width="14" height="7"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="14" id="Qm7-IK-8dU"/>
+                                <constraint firstAttribute="height" constant="7" id="nih-1J-VNb"/>
+                            </constraints>
+                        </imageView>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select District" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YW6-cF-LzY" customClass="EPOSTextField">
+                            <rect key="frame" x="16" y="115" width="288" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Select District"/>
+                            </userDefinedRuntimeAttributes>
+                        </textField>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropdownIcon" translatesAutoresizingMaskIntoConstraints="NO" id="cen-rc-tZs">
+                            <rect key="frame" x="268" y="164" width="14" height="7"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="7" id="3eY-Ne-yKT"/>
+                                <constraint firstAttribute="width" constant="14" id="zbx-d7-73D"/>
+                            </constraints>
+                        </imageView>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Branch" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vpf-43-vtV" customClass="EPOSTextField">
+                            <rect key="frame" x="16" y="159" width="288" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Select Branch"/>
+                            </userDefinedRuntimeAttributes>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lY0-Iy-caa" customClass="EPOSRoundButton" customModule="ePOS" customModuleProvider="target">
+                            <rect key="frame" x="255" y="504" width="46" height="46"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="46" id="69s-KA-YlZ"/>
+                                <constraint firstAttribute="height" constant="46" id="ocI-1g-6eb"/>
+                            </constraints>
+                            <connections>
+                                <action selector="nextButtonClicked:" destination="-1" eventType="touchUpInside" id="JDg-AR-Kj8"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="vpf-43-vtV" firstAttribute="top" secondItem="YW6-cF-LzY" secondAttribute="bottom" constant="27" id="061-co-ccV"/>
+                        <constraint firstItem="UUm-HL-hLl" firstAttribute="trailing" secondItem="iPA-Fz-4V2" secondAttribute="trailing" constant="-22" id="0BK-BM-hzQ"/>
+                        <constraint firstItem="iPA-Fz-4V2" firstAttribute="top" secondItem="CRj-SZ-CDG" secondAttribute="bottom" constant="27" id="1wU-8S-czl"/>
+                        <constraint firstItem="cs1-qG-7R9" firstAttribute="trailing" secondItem="YW6-cF-LzY" secondAttribute="trailing" constant="-22" id="8gY-SY-miV"/>
+                        <constraint firstItem="YW6-cF-LzY" firstAttribute="top" secondItem="iPA-Fz-4V2" secondAttribute="bottom" constant="27" id="APg-Wo-DXc"/>
+                        <constraint firstItem="cen-rc-tZs" firstAttribute="centerY" secondItem="vpf-43-vtV" secondAttribute="centerY" id="DHn-hp-ved"/>
+                        <constraint firstItem="iPA-Fz-4V2" firstAttribute="leading" secondItem="CRj-SZ-CDG" secondAttribute="leading" id="FCT-9C-O8I"/>
+                        <constraint firstItem="YW6-cF-LzY" firstAttribute="leading" secondItem="iPA-Fz-4V2" secondAttribute="leading" id="FLY-Rs-tcK"/>
+                        <constraint firstItem="YW6-cF-LzY" firstAttribute="trailing" secondItem="iPA-Fz-4V2" secondAttribute="trailing" id="HB5-WF-IKa"/>
+                        <constraint firstItem="cen-rc-tZs" firstAttribute="trailing" secondItem="vpf-43-vtV" secondAttribute="trailing" constant="-22" id="L7a-cM-2b2"/>
+                        <constraint firstItem="UUm-HL-hLl" firstAttribute="centerY" secondItem="iPA-Fz-4V2" secondAttribute="centerY" id="LD3-vc-VqU"/>
+                        <constraint firstItem="vpf-43-vtV" firstAttribute="leading" secondItem="YW6-cF-LzY" secondAttribute="leading" id="Nol-T6-u2Y"/>
+                        <constraint firstItem="Ss1-EN-pXC" firstAttribute="trailing" secondItem="CRj-SZ-CDG" secondAttribute="trailing" constant="-22" id="VR1-0f-PHO"/>
+                        <constraint firstItem="vpf-43-vtV" firstAttribute="trailing" secondItem="YW6-cF-LzY" secondAttribute="trailing" id="Wc2-XL-hCi"/>
+                        <constraint firstAttribute="trailing" secondItem="CRj-SZ-CDG" secondAttribute="trailing" constant="16" id="X7S-YZ-mbj"/>
+                        <constraint firstItem="CRj-SZ-CDG" firstAttribute="top" secondItem="Y2r-v5-PIH" secondAttribute="top" constant="27" id="ZeD-0O-jtT"/>
+                        <constraint firstAttribute="bottom" secondItem="lY0-Iy-caa" secondAttribute="bottom" constant="18" id="ZvB-Ce-vLQ"/>
+                        <constraint firstItem="iPA-Fz-4V2" firstAttribute="trailing" secondItem="CRj-SZ-CDG" secondAttribute="trailing" id="iem-59-68m"/>
+                        <constraint firstItem="cs1-qG-7R9" firstAttribute="centerY" secondItem="YW6-cF-LzY" secondAttribute="centerY" id="llc-k5-vQd"/>
+                        <constraint firstItem="Ss1-EN-pXC" firstAttribute="centerY" secondItem="CRj-SZ-CDG" secondAttribute="centerY" id="qM1-2H-C3v"/>
+                        <constraint firstItem="CRj-SZ-CDG" firstAttribute="leading" secondItem="Y2r-v5-PIH" secondAttribute="leading" constant="16" id="qY3-Xy-fnz"/>
+                        <constraint firstAttribute="trailing" secondItem="lY0-Iy-caa" secondAttribute="trailing" constant="19" id="qeu-0S-yuc"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRound">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Y2r-v5-PIH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="2DD-zG-1nE"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Y2r-v5-PIH" secondAttribute="bottom" id="8cK-LN-pWN"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Y2r-v5-PIH" secondAttribute="trailing" id="AWB-f5-NpP"/>
+                <constraint firstItem="Y2r-v5-PIH" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="gcc-oN-Bg9"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="139" y="122"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="dropdownIcon" width="14" height="7"/>
+    </resources>
+</document>
