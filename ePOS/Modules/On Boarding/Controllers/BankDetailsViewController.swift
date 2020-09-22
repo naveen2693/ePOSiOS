@@ -36,6 +36,9 @@ class BankDetailsViewController: UIViewController {
     @IBAction func needHelpClicked(_ sender: Any) {
     }
     @IBAction func nextButtonClicked(_ sender: Any) {
+        let controller = SelectPackageViewController.init(nibName: SelectPackageViewController.className, bundle: nil)
+        controller.modalPresentationStyle = .fullScreen
+        self.present(controller, animated: true, completion: nil)
     }
 
     @IBAction func findIFSCClicked(_ sender: Any) {

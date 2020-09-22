@@ -76,6 +76,11 @@
 		9919A9A625176D9D00A67253 /* IFSCCodeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9919A9A425176D9D00A67253 /* IFSCCodeDetailViewController.xib */; };
 		9919A9A9251770E100A67253 /* IFSCDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9919A9A7251770E100A67253 /* IFSCDetailTableViewCell.swift */; };
 		9919A9AA251770E100A67253 /* IFSCDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9919A9A8251770E100A67253 /* IFSCDetailTableViewCell.xib */; };
+		9919A9B02519E45400A67253 /* SelectPackageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9919A9AE2519E45400A67253 /* SelectPackageViewController.swift */; };
+		9919A9B12519E45400A67253 /* SelectPackageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9919A9AF2519E45400A67253 /* SelectPackageViewController.xib */; };
+		9919A9B32519E47900A67253 /* PackageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9919A9B22519E47900A67253 /* PackageView.swift */; };
+		9919A9B52519E48900A67253 /* PackageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9919A9B42519E48900A67253 /* PackageView.xib */; };
+		9919A9B92519E57B00A67253 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9919A9B72519E57B00A67253 /* iCarousel.m */; };
 		991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADE9F250645A300932251 /* EPOSRoundButton.swift */; };
 		991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA1250645C300932251 /* EPOSRectangularButton.swift */; };
 		991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA3250646E500932251 /* EPOSLabel.swift */; };
@@ -183,6 +188,12 @@
 		9919A9A425176D9D00A67253 /* IFSCCodeDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IFSCCodeDetailViewController.xib; sourceTree = "<group>"; };
 		9919A9A7251770E100A67253 /* IFSCDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFSCDetailTableViewCell.swift; sourceTree = "<group>"; };
 		9919A9A8251770E100A67253 /* IFSCDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IFSCDetailTableViewCell.xib; sourceTree = "<group>"; };
+		9919A9AE2519E45400A67253 /* SelectPackageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPackageViewController.swift; sourceTree = "<group>"; };
+		9919A9AF2519E45400A67253 /* SelectPackageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectPackageViewController.xib; sourceTree = "<group>"; };
+		9919A9B22519E47900A67253 /* PackageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageView.swift; sourceTree = "<group>"; };
+		9919A9B42519E48900A67253 /* PackageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PackageView.xib; sourceTree = "<group>"; };
+		9919A9B72519E57B00A67253 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
+		9919A9B82519E57B00A67253 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		991ADE9F250645A300932251 /* EPOSRoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSRoundButton.swift; sourceTree = "<group>"; };
 		991ADEA1250645C300932251 /* EPOSRectangularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSRectangularButton.swift; sourceTree = "<group>"; };
 		991ADEA3250646E500932251 /* EPOSLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSLabel.swift; sourceTree = "<group>"; };
@@ -562,6 +573,7 @@
 		99186D6325122F8400A9FE07 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9919A9AD2519E42E00A67253 /* Package */,
 				99186D6D251248EC00A9FE07 /* PersonalInfoViewController.swift */,
 				99186D6E251248EC00A9FE07 /* PersonalInfoViewController.xib */,
 				99186D712512494B00A9FE07 /* PersonalInfoViewController+Dropdown.swift */,
@@ -582,6 +594,8 @@
 			children = (
 				9919A9A7251770E100A67253 /* IFSCDetailTableViewCell.swift */,
 				9919A9A8251770E100A67253 /* IFSCDetailTableViewCell.xib */,
+				9919A9B22519E47900A67253 /* PackageView.swift */,
+				9919A9B42519E48900A67253 /* PackageView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -610,6 +624,25 @@
 				9919A9952514DCAA00A67253 /* EPOSUserDefaults+Methods.swift */,
 			);
 			path = "User Defaults";
+			sourceTree = "<group>";
+		};
+		9919A9AD2519E42E00A67253 /* Package */ = {
+			isa = PBXGroup;
+			children = (
+				9919A9B62519E55E00A67253 /* iCarousal */,
+				9919A9AE2519E45400A67253 /* SelectPackageViewController.swift */,
+				9919A9AF2519E45400A67253 /* SelectPackageViewController.xib */,
+			);
+			path = Package;
+			sourceTree = "<group>";
+		};
+		9919A9B62519E55E00A67253 /* iCarousal */ = {
+			isa = PBXGroup;
+			children = (
+				9919A9B82519E57B00A67253 /* iCarousel.h */,
+				9919A9B72519E57B00A67253 /* iCarousel.m */,
+			);
+			path = iCarousal;
 			sourceTree = "<group>";
 		};
 		991ADE922506096700932251 /* Modules */ = {
@@ -869,6 +902,7 @@
 				9976C9572501165E00FC5DD3 /* Roboto-Italic.ttf in Resources */,
 				99186D4A2511D27F00A9FE07 /* LoginScreen.storyboard in Resources */,
 				9976C95A2501165E00FC5DD3 /* Roboto-Bold.ttf in Resources */,
+				9919A9B52519E48900A67253 /* PackageView.xib in Resources */,
 				99186CD42508F07C00A9FE07 /* Transactions.storyboard in Resources */,
 				9919A9A625176D9D00A67253 /* IFSCCodeDetailViewController.xib in Resources */,
 				99186D292511D1E000A9FE07 /* WebviewStoryBoard.storyboard in Resources */,
@@ -893,6 +927,7 @@
 				99186D1E2510D6D600A9FE07 /* .swiftlint.yml in Resources */,
 				9919A99A2517336F00A67253 /* MerchantDetailsViewController.xib in Resources */,
 				9919A9AA251770E100A67253 /* IFSCDetailTableViewCell.xib in Resources */,
+				9919A9B12519E45400A67253 /* SelectPackageViewController.xib in Resources */,
 				99186CD22508F06D00A9FE07 /* Account.storyboard in Resources */,
 				99186D70251248EC00A9FE07 /* PersonalInfoViewController.xib in Resources */,
 				9976C9102500F05700FC5DD3 /* Main.storyboard in Resources */,
@@ -1027,6 +1062,7 @@
 				99186D3D2511D21100A9FE07 /* RequestHandler.swift in Sources */,
 				99186D192510959F00A9FE07 /* StatusDialogItem.swift in Sources */,
 				99186D6B2512449900A9FE07 /* DropdownTableViewCell.swift in Sources */,
+				9919A9B02519E45400A67253 /* SelectPackageViewController.swift in Sources */,
 				9976C90D2500F05600FC5DD3 /* ViewController.swift in Sources */,
 				9919A99D25174B2D00A67253 /* BankDetailsViewController.swift in Sources */,
 				9919A9942514D83000A67253 /* EPOSUserDefaults.swift in Sources */,
@@ -1073,6 +1109,7 @@
 				9919A9992517336F00A67253 /* MerchantDetailsViewController.swift in Sources */,
 				99186CC42508EF5600A9FE07 /* EPOSTabBarViewController.swift in Sources */,
 				991ADEAB250660DB00932251 /* EPOSGradientView.swift in Sources */,
+				9919A9B32519E47900A67253 /* PackageView.swift in Sources */,
 				99186D0F2510922B00A9FE07 /* FailedPopup.swift in Sources */,
 				9919A9A9251770E100A67253 /* IFSCDetailTableViewCell.swift in Sources */,
 				99186D5B2511D37200A9FE07 /* RoundViewCorner.swift in Sources */,
@@ -1086,6 +1123,7 @@
 				9919A9A525176D9D00A67253 /* IFSCCodeDetailViewController.swift in Sources */,
 				991ADEAD250662EF00932251 /* EPOSShadowView.swift in Sources */,
 				46161AC525137F56006D2783 /* CommonExtensions.swift in Sources */,
+				9919A9B92519E57B00A67253 /* iCarousel.m in Sources */,
 				99186D4B2511D27F00A9FE07 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
