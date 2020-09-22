@@ -81,6 +81,12 @@
 		9919A9B32519E47900A67253 /* PackageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9919A9B22519E47900A67253 /* PackageView.swift */; };
 		9919A9B52519E48900A67253 /* PackageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9919A9B42519E48900A67253 /* PackageView.xib */; };
 		9919A9B92519E57B00A67253 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9919A9B72519E57B00A67253 /* iCarousel.m */; };
+		9919A9BC251A475C00A67253 /* PackageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9919A9BA251A475C00A67253 /* PackageDetailViewController.swift */; };
+		9919A9BD251A475C00A67253 /* PackageDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9919A9BB251A475C00A67253 /* PackageDetailViewController.xib */; };
+		9919A9C0251A4BA600A67253 /* PackageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9919A9BE251A4BA600A67253 /* PackageTableViewCell.swift */; };
+		9919A9C1251A4BA600A67253 /* PackageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9919A9BF251A4BA600A67253 /* PackageTableViewCell.xib */; };
+		9919A9C4251A4BBA00A67253 /* PackageDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9919A9C2251A4BBA00A67253 /* PackageDetailTableViewCell.swift */; };
+		9919A9C5251A4BBA00A67253 /* PackageDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9919A9C3251A4BBA00A67253 /* PackageDetailTableViewCell.xib */; };
 		991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADE9F250645A300932251 /* EPOSRoundButton.swift */; };
 		991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA1250645C300932251 /* EPOSRectangularButton.swift */; };
 		991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA3250646E500932251 /* EPOSLabel.swift */; };
@@ -194,6 +200,12 @@
 		9919A9B42519E48900A67253 /* PackageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PackageView.xib; sourceTree = "<group>"; };
 		9919A9B72519E57B00A67253 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		9919A9B82519E57B00A67253 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
+		9919A9BA251A475C00A67253 /* PackageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageDetailViewController.swift; sourceTree = "<group>"; };
+		9919A9BB251A475C00A67253 /* PackageDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PackageDetailViewController.xib; sourceTree = "<group>"; };
+		9919A9BE251A4BA600A67253 /* PackageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageTableViewCell.swift; sourceTree = "<group>"; };
+		9919A9BF251A4BA600A67253 /* PackageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PackageTableViewCell.xib; sourceTree = "<group>"; };
+		9919A9C2251A4BBA00A67253 /* PackageDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageDetailTableViewCell.swift; sourceTree = "<group>"; };
+		9919A9C3251A4BBA00A67253 /* PackageDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PackageDetailTableViewCell.xib; sourceTree = "<group>"; };
 		991ADE9F250645A300932251 /* EPOSRoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSRoundButton.swift; sourceTree = "<group>"; };
 		991ADEA1250645C300932251 /* EPOSRectangularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSRectangularButton.swift; sourceTree = "<group>"; };
 		991ADEA3250646E500932251 /* EPOSLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSLabel.swift; sourceTree = "<group>"; };
@@ -596,6 +608,10 @@
 				9919A9A8251770E100A67253 /* IFSCDetailTableViewCell.xib */,
 				9919A9B22519E47900A67253 /* PackageView.swift */,
 				9919A9B42519E48900A67253 /* PackageView.xib */,
+				9919A9BE251A4BA600A67253 /* PackageTableViewCell.swift */,
+				9919A9BF251A4BA600A67253 /* PackageTableViewCell.xib */,
+				9919A9C2251A4BBA00A67253 /* PackageDetailTableViewCell.swift */,
+				9919A9C3251A4BBA00A67253 /* PackageDetailTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -632,6 +648,8 @@
 				9919A9B62519E55E00A67253 /* iCarousal */,
 				9919A9AE2519E45400A67253 /* SelectPackageViewController.swift */,
 				9919A9AF2519E45400A67253 /* SelectPackageViewController.xib */,
+				9919A9BA251A475C00A67253 /* PackageDetailViewController.swift */,
+				9919A9BB251A475C00A67253 /* PackageDetailViewController.xib */,
 			);
 			path = Package;
 			sourceTree = "<group>";
@@ -907,6 +925,7 @@
 				9919A9A625176D9D00A67253 /* IFSCCodeDetailViewController.xib in Resources */,
 				99186D292511D1E000A9FE07 /* WebviewStoryBoard.storyboard in Resources */,
 				9919A9A22517528800A67253 /* SearchIFSCViewController.xib in Resources */,
+				9919A9BD251A475C00A67253 /* PackageDetailViewController.xib in Resources */,
 				99186D102510922B00A9FE07 /* FailedPopup.xib in Resources */,
 				99186D152510926800A9FE07 /* EmptyDataViewController.xib in Resources */,
 				9976C9562501165E00FC5DD3 /* Roboto-LightItalic.ttf in Resources */,
@@ -915,6 +934,7 @@
 				9976C9592501165E00FC5DD3 /* Roboto-BlackItalic.ttf in Resources */,
 				9976C9522501165E00FC5DD3 /* Roboto-Regular.ttf in Resources */,
 				9976C9152500F05800FC5DD3 /* LaunchScreen.storyboard in Resources */,
+				9919A9C1251A4BA600A67253 /* PackageTableViewCell.xib in Resources */,
 				9976C9582501165E00FC5DD3 /* LICENSE.txt in Resources */,
 				99186D562511D28800A9FE07 /* SignUpStoryboard.storyboard in Resources */,
 				99186CE8250A3B7600A9FE07 /* Home.storyboard in Resources */,
@@ -928,6 +948,7 @@
 				9919A99A2517336F00A67253 /* MerchantDetailsViewController.xib in Resources */,
 				9919A9AA251770E100A67253 /* IFSCDetailTableViewCell.xib in Resources */,
 				9919A9B12519E45400A67253 /* SelectPackageViewController.xib in Resources */,
+				9919A9C5251A4BBA00A67253 /* PackageDetailTableViewCell.xib in Resources */,
 				99186CD22508F06D00A9FE07 /* Account.storyboard in Resources */,
 				99186D70251248EC00A9FE07 /* PersonalInfoViewController.xib in Resources */,
 				9976C9102500F05700FC5DD3 /* Main.storyboard in Resources */,
@@ -1089,6 +1110,7 @@
 				99186D4C2511D27F00A9FE07 /* OTPVerificationController.swift in Sources */,
 				991ADEA925064E2F00932251 /* UIButtonExtension.swift in Sources */,
 				46161AB025133FA5006D2783 /* GetLeadIDRequest.swift in Sources */,
+				9919A9C0251A4BA600A67253 /* PackageTableViewCell.swift in Sources */,
 				99186D0E2510922B00A9FE07 /* ShowDialog.swift in Sources */,
 				99186D2A2511D1E000A9FE07 /* CommonWebviewController.swift in Sources */,
 				991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */,
@@ -1112,12 +1134,14 @@
 				9919A9B32519E47900A67253 /* PackageView.swift in Sources */,
 				99186D0F2510922B00A9FE07 /* FailedPopup.swift in Sources */,
 				9919A9A9251770E100A67253 /* IFSCDetailTableViewCell.swift in Sources */,
+				9919A9BC251A475C00A67253 /* PackageDetailViewController.swift in Sources */,
 				99186D5B2511D37200A9FE07 /* RoundViewCorner.swift in Sources */,
 				46161AC325135AB6006D2783 /* UserListRequest.swift in Sources */,
 				46161AC125135A32006D2783 /* ListSortParamsModel.swift in Sources */,
 				99186D4E2511D27F00A9FE07 /* PasswordController.swift in Sources */,
 				46161AB52513412E006D2783 /* UserRegistrationDataModel.swift in Sources */,
 				99186D5C2511D37200A9FE07 /* CheckBox.swift in Sources */,
+				9919A9C4251A4BBA00A67253 /* PackageDetailTableViewCell.swift in Sources */,
 				9976C9092500F05600FC5DD3 /* AppDelegate.swift in Sources */,
 				99186D722512494C00A9FE07 /* PersonalInfoViewController+Dropdown.swift in Sources */,
 				9919A9A525176D9D00A67253 /* IFSCCodeDetailViewController.swift in Sources */,

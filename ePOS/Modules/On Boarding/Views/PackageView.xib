@@ -19,8 +19,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vGF-eN-LY4" customClass="EPOSShadowView" customModule="ePOS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vGF-eN-LY4" customClass="EPOSShadowView" customModule="ePOS" customModuleProvider="target">
+                    <rect key="frame" x="10" y="10" width="320" height="568"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9D6-Ll-dAn">
                             <rect key="frame" x="139" y="273" width="42" height="21"/>
@@ -29,7 +29,7 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oEG-z1-BGq" customClass="EPOSGradientView" customModule="ePOS" customModuleProvider="target">
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oEG-z1-BGq" customClass="EPOSGradientView" customModule="ePOS" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
@@ -46,7 +46,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="oEG-z1-BGq" firstAttribute="leading" secondItem="vGF-eN-LY4" secondAttribute="leading" id="3FR-IG-iVB"/>
                         <constraint firstAttribute="trailing" secondItem="oEG-z1-BGq" secondAttribute="trailing" id="K2t-BK-Sed"/>
@@ -61,10 +61,10 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="vGF-eN-LY4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Tsj-Mq-LhT"/>
-                <constraint firstItem="vGF-eN-LY4" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="X8w-2A-fZk"/>
-                <constraint firstItem="vGF-eN-LY4" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="fsS-Ge-Fud"/>
-                <constraint firstItem="vGF-eN-LY4" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="xqS-U2-FSq"/>
+                <constraint firstItem="vGF-eN-LY4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="Tsj-Mq-LhT"/>
+                <constraint firstItem="vGF-eN-LY4" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="X8w-2A-fZk"/>
+                <constraint firstItem="vGF-eN-LY4" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="10" id="fsS-Ge-Fud"/>
+                <constraint firstItem="vGF-eN-LY4" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="10" id="xqS-U2-FSq"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="138.75" y="121.47887323943662"/>

@@ -1,15 +1,15 @@
 //
-//  IFSCCodeDetailViewController.swift
+//  PackageDetailViewController.swift
 //  ePOS
 //
-//  Created by Matra Sharma on 20/09/20.
+//  Created by Matra Sharma on 22/09/20.
 //  Copyright © 2020 Pinelabs. All rights reserved.
 //
 
 import UIKit
 
-class IFSCCodeDetailViewController: UIViewController {
-    @IBOutlet weak var nextButton: EPOSRoundButton!
+class PackageDetailViewController: UIViewController {
+
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -19,33 +19,30 @@ class IFSCCodeDetailViewController: UIViewController {
     }
 
     private func registerCell() {
-        tableView.register(UINib(nibName: IFSCDetailTableViewCell.className, bundle: nil), forCellReuseIdentifier: IFSCDetailTableViewCell.className)
-    }
-
-    @IBAction func nextButtonClicked(_ sender: Any) {
+        tableView.register(UINib(nibName: PackageDetailTableViewCell.className, bundle: nil), forCellReuseIdentifier: PackageDetailTableViewCell.className)
     }
     
-    @IBAction func moreIFSCClicked(_ sender: Any) {
+    @IBAction func selectPackageClicked(_ sender: Any) {
     }
+    
 }
 
 //MARK: TableViewDelegate DataSource
-extension IFSCCodeDetailViewController: UITableViewDelegate {
+extension PackageDetailViewController: UITableViewDelegate {
     
 }
 
-
-extension IFSCCodeDetailViewController: UITableViewDataSource {
+extension PackageDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 7
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 54
+        return 35
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: IFSCDetailTableViewCell.className, for: indexPath) as? IFSCDetailTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PackageDetailTableViewCell.className, for: indexPath) as? PackageDetailTableViewCell else {
             fatalError("IFSCDetailTableViewCell not found for identifier IFSCDetailTableViewCell")
         }
         
