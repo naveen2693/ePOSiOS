@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SelectPackageViewController" customModule="ePOS" customModuleProvider="target">
+            <connections>
+                <outlet property="carousel" destination="ND6-zQ-IYQ" id="7eb-h0-rXJ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W2u-yd-dG3" customClass="RoundedCornerView" customModule="ePOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3h-1Q-vzo" customClass="EPOSLabel" customModule="ePOS" customModuleProvider="target">
+                            <rect key="frame" x="16" y="4.5" width="42" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" name="titleColor"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                    <integer key="value" value="9"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.97647058819999999" green="0.94117647059999998" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="Z3h-1Q-vzo" firstAttribute="leading" secondItem="W2u-yd-dG3" secondAttribute="leading" constant="16" id="V7j-tz-q9D"/>
+                        <constraint firstItem="Z3h-1Q-vzo" firstAttribute="centerY" secondItem="W2u-yd-dG3" secondAttribute="centerY" id="hIJ-Lm-eaJ"/>
+                        <constraint firstAttribute="height" constant="29" id="l7q-Ji-bjc"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="Mfr-P1-SUk"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRound">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ND6-zQ-IYQ" customClass="iCarousel">
+                    <rect key="frame" x="0.0" y="29" width="320" height="539"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ND6-zQ-IYQ" firstAttribute="top" secondItem="W2u-yd-dG3" secondAttribute="bottom" id="2My-V2-iJ6"/>
+                <constraint firstItem="ND6-zQ-IYQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="3I2-Og-3eI"/>
+                <constraint firstItem="W2u-yd-dG3" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="BqX-MD-PXE"/>
+                <constraint firstItem="W2u-yd-dG3" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="l25-14-3R3"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ND6-zQ-IYQ" secondAttribute="trailing" id="q1k-Z9-oso"/>
+                <constraint firstItem="W2u-yd-dG3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="srJ-mv-vTE"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ND6-zQ-IYQ" secondAttribute="bottom" id="x9G-bV-qh4"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="139" y="122"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="titleColor">
+            <color red="0.30196078431372547" green="0.30196078431372547" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
