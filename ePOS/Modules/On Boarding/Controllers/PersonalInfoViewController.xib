@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -63,17 +63,17 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="498"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7O8-Pn-PTQ" userLabel="ContentView">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="401"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="410"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropdownIcon" translatesAutoresizingMaskIntoConstraints="NO" id="NI0-oY-XgP">
-                                            <rect key="frame" x="268" y="30" width="14" height="7"/>
+                                            <rect key="frame" x="268" y="31" width="14" height="7"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="14" id="c4f-YA-sS8"/>
                                                 <constraint firstAttribute="height" constant="7" id="kMx-YX-IQ6"/>
                                             </constraints>
                                         </imageView>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Company type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hFx-i1-77I" customClass="EPOSTextField">
-                                            <rect key="frame" x="16" y="25" width="288" height="17"/>
+                                            <rect key="frame" x="16" y="25" width="288" height="18.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <userDefinedRuntimeAttributes>
@@ -81,7 +81,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter PAN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H1s-oy-Q6Z" customClass="EPOSTextField">
-                                            <rect key="frame" x="16" y="69" width="288" height="17"/>
+                                            <rect key="frame" x="16" y="70.5" width="288" height="18.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <userDefinedRuntimeAttributes>
@@ -89,7 +89,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter name as on PAN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lia-ss-a6n" customClass="EPOSTextField">
-                                            <rect key="frame" x="16" y="113" width="288" height="17"/>
+                                            <rect key="frame" x="16" y="116" width="288" height="18.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <userDefinedRuntimeAttributes>
@@ -97,7 +97,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter GSTIN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NPJ-3D-yGj" customClass="EPOSTextField">
-                                            <rect key="frame" x="16" y="157" width="288" height="17"/>
+                                            <rect key="frame" x="16" y="161.5" width="288" height="18.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <userDefinedRuntimeAttributes>
@@ -105,7 +105,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </textField>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UFA-L8-ftP" customClass="CheckBox" customModule="ePOS" customModuleProvider="target">
-                                            <rect key="frame" x="16" y="190" width="25" height="24"/>
+                                            <rect key="frame" x="16" y="196" width="25" height="24"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <color key="tintColor" name="subTextColor"/>
                                             <constraints>
@@ -129,7 +129,7 @@
                                             </connections>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I do not have a GST Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dpj-dU-KIo" customClass="EPOSLabel" customModule="ePOS" customModuleProvider="target">
-                                            <rect key="frame" x="50" y="191.5" width="215.5" height="21"/>
+                                            <rect key="frame" x="50" y="197.5" width="215.5" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" name="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -140,7 +140,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select other document" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fXv-dT-VvP" customClass="EPOSTextField">
-                                            <rect key="frame" x="16" y="240" width="288" height="17"/>
+                                            <rect key="frame" x="16" y="246" width="288" height="18.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <userDefinedRuntimeAttributes>
@@ -148,7 +148,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PDs-6F-Q9z" customClass="EPOSTextField">
-                                            <rect key="frame" x="16" y="284" width="288" height="17"/>
+                                            <rect key="frame" x="16" y="291.5" width="288" height="18.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <userDefinedRuntimeAttributes>
@@ -156,7 +156,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </textField>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropdownIcon" translatesAutoresizingMaskIntoConstraints="NO" id="K8m-Z3-S8T">
-                                            <rect key="frame" x="268" y="245" width="14" height="7"/>
+                                            <rect key="frame" x="268" y="252" width="14" height="7"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="7" id="W9M-sD-rlV"/>
                                                 <constraint firstAttribute="width" constant="14" id="atU-Rl-adl"/>
