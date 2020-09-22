@@ -15,6 +15,7 @@ extension UserDefaults {
     struct Configuration: UserDefaultable {
         enum UserDefaultKey: String {
             case termsUrl
+            case accessToken
         }
         private init() {}
         

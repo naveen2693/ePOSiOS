@@ -8,10 +8,9 @@
 
 import Foundation
 public struct ConfigurationRequest : Codable{
-    var glochngno:Int?;
-    
+    var globalChngeNumber:Int?;
     private enum CodingKeys: String, CodingKey {
-           case glochngno = "glochngno"
+           case globalChngeNumber = "glochngno"
        }
     
 }

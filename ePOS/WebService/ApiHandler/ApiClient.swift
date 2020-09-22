@@ -7,74 +7,75 @@ import Moya
 enum ApiService
 {
 // MARK:- Login Apis
-    case getCheckUserSubscription(mobileNumber:String)
+    case getCheckUserWith(mobileNumber:String)
     
-    case getForgotPwdSubscription(mobileNumber:String)
+    case getForgotPasswordWith(mobileNumber:String)
     
-    case getVerifyOtpSubscription(mobileNumber:String,otp:String)
+    case getVerifyOtpWith(mobileNumber:String,otp:String)
     
-    case getSendOtpSubscription(mobileNumber:String)
+    case getSendOtpWith(mobileNumber:String)
     
 // MARK:- SignUp Apis
-    case getSignUpSubscription(registrationData:UserRegistrationDataModel)
+    case getSignUpWith(signUpData:SignUpData)
     
-    case getManageAccountSubscription
+    case getManageAccount
     
-    case createRequestMasterData(mode:String)
+    case createRequestMasterDataWith(mode:String)
     
-    case getCityListSubscription(strLastModifiedDate:String)
+    case getCityListWith(strLastModifiedDate:String)
     
-    case getFetchUserSubscription(listSortParams:ListSortParamsModel)
+    case getFetchUserWith(listSortParams:ListSortParamsModel)
     
-    case getLeadByIdSubscription(leadId:Int64)
+    case getLeadByIdWith(leadId:Int64)
     
 // MARK:- Configuration
-    case getConfigurationsSubscription(globalChngNum:Int)
+    case getConfigurationsWith(globalChangeNumber:Int)
 
 }
 extension ApiService : TargetType
 {
     var baseURL: URL {
-        return URL(string:"https://torrentpay.pinepg.in/")!
+        return URL(string:"http://mobileserveruat.pinelabs.com:9001")!
     }
     
     var path: String {
         switch self  {
     // MARK:- Login Apis path
-        case .getCheckUserSubscription:
-            return Constants.CHECk_USER_URL
+        case .getCheckUserWith:
+            return ApiEndpointsUrl.UserDetailsApiEndpointUrl.checkUser.rawValue
             
-        case .getForgotPwdSubscription:
-            return Constants.FORGOT_PASSWORD_URL
+        case .getForgotPasswordWith:
+            return ApiEndpointsUrl.UserDetailsApiEndpointUrl.forgetPasswordUrl.rawValue
             
-        case .getVerifyOtpSubscription:
-            return Constants.VERIFY_OTP_URL
+        case .getVerifyOtpWith:
+            return ApiEndpointsUrl.UserDetailsApiEndpointUrl.verifyOtpUrl.rawValue
             
-        case .getSendOtpSubscription:
-            return Constants.SEND_OTP_URL
+        case .getSendOtpWith:
+            return ApiEndpointsUrl.UserDetailsApiEndpointUrl.sendOtpUrl.rawValue
             
     // MARK:- Sign Apis Path
-        case .getSignUpSubscription:
-            return Constants.SIGNUP_URL
+        case .getSignUpWith:
+            return ApiEndpointsUrl.UserDetailsApiEndpointUrl.signUpUrl.rawValue
             
-        case .getManageAccountSubscription:
-            return Constants.GET_PROFILE_URL
+   // MARK:-OnBoarding
+        case .getManageAccount:
+            return ApiEndpointsUrl.OnboardingApiEndpointUrl.getProfileUrl.rawValue
             
-        case .createRequestMasterData:
-            return Constants.MASTER_DATA_URL
+        case .createRequestMasterDataWith:
+            return ApiEndpointsUrl.OnboardingApiEndpointUrl.masterDataUrl.rawValue
             
-        case .getCityListSubscription:
-            return Constants.GET_CITY_LIST
+        case .getCityListWith:
+            return ApiEndpointsUrl.OnboardingApiEndpointUrl.getCityList.rawValue
             
-        case .getFetchUserSubscription:
-            return Constants.FETCH_USERS_URL
+        case .getFetchUserWith:
+            return ApiEndpointsUrl.OnboardingApiEndpointUrl.fetchUserList.rawValue
             
-        case .getLeadByIdSubscription:
-           return Constants.GET_LEAD_ID_URL
+        case .getLeadByIdWith:
+           return ApiEndpointsUrl.OnboardingApiEndpointUrl.getLeadId.rawValue
         
     // MARK:- Configuration path
-        case .getConfigurationsSubscription:
-            return Constants.CONFIGURATION_URL
+        case .getConfigurationsWith:
+            return ApiEndpointsUrl.ConfigurationApiEndPointsUrl.configurationUrl.rawValue
            
         }
     }
@@ -82,38 +83,38 @@ extension ApiService : TargetType
     var method:Moya.Method {
         switch self{
 // MARK:- Login Apis method
-        case .getCheckUserSubscription:
+        case .getCheckUserWith:
             return .get
             
-        case .getForgotPwdSubscription:
+        case .getForgotPasswordWith:
             return .post
             
-        case .getVerifyOtpSubscription:
+        case .getVerifyOtpWith:
             return .post
             
-        case .getSendOtpSubscription:
+        case .getSendOtpWith:
             return .post
         
 // MARK:- SignUp Apis Method
-        case .getSignUpSubscription:
+        case .getSignUpWith:
             return .post
             
-        case .getManageAccountSubscription:
+        case .getManageAccount:
             return .get
             
-        case .createRequestMasterData:
+        case .createRequestMasterDataWith:
             return .post
             
-        case .getCityListSubscription:
+        case .getCityListWith:
             return .post
             
-        case .getFetchUserSubscription:
+        case .getFetchUserWith:
             return .get
             
-        case .getLeadByIdSubscription:
+        case .getLeadByIdWith:
             return .get
  // MARK:- Configuration Method
-        case .getConfigurationsSubscription:
+        case .getConfigurationsWith:
             return .post
         }
     }
@@ -125,82 +126,84 @@ extension ApiService : TargetType
     var task: Task {
         switch self {
 // MARK:- Login Apis task
-        case .getCheckUserSubscription(let mobileNumber):
+        case .getCheckUserWith(let mobileNumber):
             return  .requestParameters(parameters:RequestHandler.createCheckUserRequest(mobileNum:mobileNumber), encoding: URLEncoding.queryString)
             
-        case .getForgotPwdSubscription(let mobileNumber):
+        case .getForgotPasswordWith(let mobileNumber):
           return .requestParameters(parameters:RequestHandler.createForgotPasswordRequest(mobileNum:mobileNumber), encoding: URLEncoding.queryString)
             
-        case .getVerifyOtpSubscription(let mobileNumber,let otp):
+        case .getVerifyOtpWith(let mobileNumber,let otp):
             return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
                 .createOTPVerifyRequest(mobileNum:mobileNumber,otp: otp)))
             
-        case .getSendOtpSubscription(let mobileNumber):
+        case .getSendOtpWith(let mobileNumber):
             return  .requestParameters(parameters:RequestHandler.createOTPSendRequest(mobileNum:mobileNumber), encoding: URLEncoding.queryString)
             
 // MARK:- SignUp Apis task
-        case .getSignUpSubscription(let registrationData):
+        case .getSignUpWith(let signUpData):
             return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
-                .createSignUpRequest(registrationData: registrationData)))
+                .createSignUpRequest(signUpData: signUpData)))
             
-        case .createRequestMasterData(let mode):
+        case .createRequestMasterDataWith(let mode):
              return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
                 .createMasterDataRequest(mode: mode)))
             
-        case .getCityListSubscription(let strLastModifiedDate):
+        case .getCityListWith(let strLastModifiedDate):
              return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
                 .createGetCityListRequest(strLastModifiedDate: strLastModifiedDate)))
             
-        case .getFetchUserSubscription(let listSortParams):
+        case .getFetchUserWith(let listSortParams):
             return .requestParameters(parameters:RequestHandler.createUserListRequest(params:listSortParams), encoding: URLEncoding.queryString)
             
-        case .getLeadByIdSubscription(let leadId):
+        case .getLeadByIdWith(let leadId):
             return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
                 .createGetLeadIDRequest(leadID: leadId)))
-        case .getManageAccountSubscription:
+            
+        case .getManageAccount:
             return .requestPlain
         
 // MARK:-Configuration task
-        case .getConfigurationsSubscription(let globalChngNum):
+        case .getConfigurationsWith(let globalChngNum):
             return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
-                .createConfigurationRequest(globalChngNum: globalChngNum)))
+                .createConfigurationRequest(globalChangeNumber: globalChngNum)))
         }
 
     }
     
     var headers: [String : String]? {
           switch self {
-             case .getCheckUserSubscription:
+             case .getCheckUserWith:
                 return RequestHandler.createWebServiceHeaderWithoutAccessToken()
                         
-                    case .getForgotPwdSubscription:
+                    case .getForgotPasswordWith:
                         return RequestHandler.createWebServiceHeaderWithoutAccessToken()
             
-                    case .getVerifyOtpSubscription:
+                    case .getVerifyOtpWith:
                        return RequestHandler.createWebServiceHeaderWithoutAccessToken()
                         
-                    case .getSendOtpSubscription:
+                    case .getSendOtpWith:
                        return RequestHandler.createWebServiceHeaderWithoutAccessToken()
             
-                    case .getSignUpSubscription:
+                    case .getSignUpWith:
+                        
                        return RequestHandler.createWebServiceHeaderWithoutAccessToken()
                         
-                    case .getManageAccountSubscription:
+                    case .getManageAccount:
                          return RequestHandler.createWebServiceHeaderWithAccessToken()
                         
-                    case .createRequestMasterData:
+                    case .createRequestMasterDataWith:
                           return RequestHandler.createWebServiceHeaderWithAccessToken()
                         
-                    case .getCityListSubscription:
+                    case .getCityListWith:
                           return RequestHandler.createWebServiceHeaderWithAccessToken()
                         
-                    case .getFetchUserSubscription:
+                    case .getFetchUserWith:
                          return RequestHandler.createWebServiceHeaderWithAccessToken()
                         
-                    case .getLeadByIdSubscription:
+                    case .getLeadByIdWith:
                          return RequestHandler.createWebServiceHeaderWithAccessToken()
             
-                    case .getConfigurationsSubscription:
+                    case .getConfigurationsWith:
                          return RequestHandler.createWebServiceHeaderWithoutAccessToken()
             
                     }

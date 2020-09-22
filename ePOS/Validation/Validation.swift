@@ -24,6 +24,8 @@ enum ValidationType {
     case phoneNo
     case alphabeticString
     case password
+    case checkBoxChecked
+    case confirmPassword
 }
 
 enum RegEx: String {
@@ -31,7 +33,7 @@ enum RegEx: String {
     case password = "(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}" // Password length 6-15
     case alphabeticStringWithoutSpace = "^[a-zA-Z]*$" // e.g. hello sandeep
     case alphabeticStringFirstLetterCaps = "^[A-Z]+[a-zA-Z]*$" // SandsHell
-    case phoneNo = "^\\d{3}-\\d{3}-\\d{4}$" // PhoneNo 10-14 Digits
+    case phoneNo = "(?:(?:\\+|0{0,2})91(\\s*[\\- ]\\s*)?|[0 ]?)?[789]\\d{9}|(\\d[ -]?){10}\\d" // PhoneNo 10-14 Digits
     
     //Change RegEx according to your Requirement
 }
@@ -47,34 +49,49 @@ enum AlertMessages: String {
     case emptyFirstLetterCaps = "Please Enter Name"
     case emptyAlphabeticString = "Please Enter String"
     case emptyPSW = "Please Enter Password"
+    case passwordMatch = "Passwords do not match"
+    case checkBox = "Please confirm the term and condition"
     func localized() -> String {
         return NSLocalizedString(self.rawValue, comment: "")
     }
 }
 class Validation: NSObject {
-    
+    var password:String="";
     static let shared = Validation()
-    func validate(values: (type: ValidationType, inputValue: String)...) -> Valid {
+    func validate(values: (type: ValidationType, inputValue: Any)...) -> Valid {
         for valueToBeChecked in values {
             switch valueToBeChecked.type {
             case .email:
-                if let tempValue = isValidString(text: valueToBeChecked.inputValue, regex: .email, emptyAlert: .emptyEmail, invalidAlert: .inValidEmail) {
+                if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, regex: .email, emptyAlert: .emptyEmail, invalidAlert: .inValidEmail) {
                     return tempValue
                 }
             case .stringWithFirstLetterCaps:
-                if let tempValue = isValidString(text: valueToBeChecked.inputValue, regex: .alphabeticStringFirstLetterCaps, emptyAlert: .emptyFirstLetterCaps, invalidAlert: .invalidFirstLetterCaps) {
+                if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, regex: .alphabeticStringFirstLetterCaps, emptyAlert: .emptyFirstLetterCaps, invalidAlert: .invalidFirstLetterCaps) {
                     return tempValue
                 }
             case .phoneNo:
-                if let tempValue = isValidString(text: valueToBeChecked.inputValue, regex: .phoneNo, emptyAlert: .emptyPhone, invalidAlert: .inValidPhone) {
+                if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, regex: .phoneNo, emptyAlert: .emptyPhone, invalidAlert: .inValidPhone) {
                     return tempValue
                 }
             case .alphabeticString:
-                if let tempValue = isValidString(text: valueToBeChecked.inputValue, regex: .alphabeticStringWithoutSpace, emptyAlert: .emptyAlphabeticString, invalidAlert: .invalidAlphabeticString) {
+                if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, regex: .alphabeticStringWithoutSpace, emptyAlert: .emptyAlphabeticString, invalidAlert: .invalidAlphabeticString) {
                     return tempValue
                 }
             case .password:
-                if let tempValue = isValidString(text: valueToBeChecked.inputValue, regex: .password, emptyAlert: .emptyPSW, invalidAlert: .inValidPSW) {
+                if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, regex: .password, emptyAlert: .emptyPSW, invalidAlert: .inValidPSW) {
+                    password = (valueToBeChecked.inputValue as? String)!
+                    return tempValue
+                }
+                else
+                {
+                    password = (valueToBeChecked.inputValue as? String)!
+                }
+            case .confirmPassword:
+                if let tempValue = PasswordMatch(confirmPassword: (valueToBeChecked.inputValue as? String)!, emptyAlert: .emptyPSW, invalidAlert: .passwordMatch) {
+                    return tempValue
+                }
+            case .checkBoxChecked:
+                if let tempValue = isCheckboxChecked(checkbox: (valueToBeChecked.inputValue as? Bool)!, emptyAlert: .emptyPSW, invalidAlert: .checkBox) {
                     return tempValue
                 }
             }
@@ -91,9 +108,24 @@ class Validation: NSObject {
         return nil
     }
     
+    func PasswordMatch(confirmPassword: String, emptyAlert: AlertMessages, invalidAlert: AlertMessages) -> Valid? {
+        if((confirmPassword.elementsEqual(password))==false){
+            return .failure(.error, invalidAlert)
+        }
+        return nil
+    }
+    
+    func isCheckboxChecked(checkbox: Bool, emptyAlert: AlertMessages, invalidAlert: AlertMessages) -> Valid? {
+        if !checkbox{
+            return .failure(.error, invalidAlert)
+        }
+        return nil
+    }
+    
     func isValidRegEx(_ testStr: String, _ regex: RegEx) -> Bool {
         let stringTest = NSPredicate(format:"SELF MATCHES %@", regex.rawValue)
         let result = stringTest.evaluate(with: testStr)
         return result
     }
+    
 }
