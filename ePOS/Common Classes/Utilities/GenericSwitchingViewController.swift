@@ -9,6 +9,7 @@
 import Foundation
 public enum AppStoryboard: String {
     case loginScreen = "LoginScreen"
+    case signupStoryboard = "SignUpStoryboard"
     public var instance: UIStoryboard {
         return UIStoryboard(name: self.rawValue, bundle: Bundle.main)
     }

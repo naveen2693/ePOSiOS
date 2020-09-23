@@ -256,6 +256,23 @@ static func resendOtpCallApiWith(mobileNumber:String,completion:@escaping Comple
         
     }
 }
+static func callApiVerifyOtpWith(mobileNumber:String,otp:String,completion:@escaping CompletionHandler)
+    {
+        BaseRequest.objMoyaApi.request(.getVerifyOtpWith(mobileNumber: mobileNumber, otp: otp)){ result in
+            switch result
+            {
+            case .success(let response):
+                print(response);
+                completion(.success(response))
+                
+            case .failure(let error):
+                completion(.failure(.failure));
+                print(error)
+                
+            }
+            
+        }
+    }
 // MARK:-callLoginApiAfterNumberVerfication
 static func callLoginApiAfterNumberVerfication(mobileNumber:String,password:String,completion:@escaping CompletionHandler)
 {

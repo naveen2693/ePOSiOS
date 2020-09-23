@@ -8,6 +8,13 @@
 
 import UIKit
 class OTPVerficationController:UIViewController {
+    @IBOutlet weak var btnResendOtp: UIButton!
+    @IBOutlet weak var labelMobileNumber: UILabel!
+    @IBOutlet weak var horizontalStackView: UIStackView!
+    @IBOutlet var textField1: OTPTextField!
+    @IBOutlet var textField2: OTPTextField!
+    @IBOutlet var textField3: OTPTextField!
+    @IBOutlet var textField4: OTPTextField!
     var oTPLength: Int?
     var mobileNumber:String?
     var activeTextField = UITextField()
@@ -15,15 +22,11 @@ class OTPVerficationController:UIViewController {
     var oTPString:String="";
     var otpTimer = Timer()
     var timingCount = 20
-    @IBOutlet var submit: UIImageView!
-    @IBOutlet weak var btnResendOtp: UIButton!
-    @IBOutlet weak var horizontalStackView: UIStackView!
-    @IBOutlet var textField1: OTPTextField?
-    @IBOutlet var textField2: OTPTextField?
-    @IBOutlet var textField3: OTPTextField?
-    @IBOutlet var textField4: OTPTextField?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        // MARK:- Set Fields
+        setFields()
         otpTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
         let allTextFields: [OTPTextField?] = [textField1, textField2, textField3, textField4]
         var tempOTPLength = oTPLength
@@ -41,6 +44,47 @@ class OTPVerficationController:UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    private  func setFields()
+    {
+        if let unwrappedMobileNumber = mobileNumber{
+            labelMobileNumber.text! = unwrappedMobileNumber
+        }
+    }
+    
+    @IBAction func buttonSubmit(_ sender: Any) {
+        let response = Validation.shared.validate(values:(ValidationType.otp,"123456"))
+        switch response {
+        case .success:
+            if let unwrappedMobileNumber = mobileNumber {
+                IntialDataRequest.callApiVerifyOtpWith(mobileNumber:unwrappedMobileNumber,otp: "123456",completion:{result in
+                    switch result {
+                    case .success(let response):
+                        print(response);
+                        self.gotoSignUpController()
+                    case .failure(let error):
+                        print(error);
+                        
+                    }
+                })
+            }
+        case .failure(_, let message):
+            print(message.localized())
+        }
+    }
+    
+    private func callResendOtp()
+    {
+        if let unwrappedMobileNumber = mobileNumber {
+            IntialDataRequest.resendOtpCallApiWith(mobileNumber:unwrappedMobileNumber,completion:{result in
+                switch result {
+                case .success(let response):
+                    print(response);
+                case .failure(let error):
+                    print(error)
+                }
+            })
+        }
+    }
     
     @objc func update() {
         
@@ -50,32 +94,29 @@ class OTPVerficationController:UIViewController {
             btnResendOtp.setTitle("\(timingCount) Resend Otp", for: .normal)
         }
         else {
-            //otpTimer.invalidate()
             print("call your api")
             btnResendOtp.setTitle("Resend Otp", for:.normal)
             btnResendOtp.isUserInteractionEnabled = true
             btnResendOtp.addTarget(self, action: #selector(resendbutton), for: .touchUpInside)
             
-            // if you want to reset the time make count = 60 and resendTime.fire()
         }
-        
     }
     
     @objc func resendbutton(sender: UIButton!) {
+        // MARK:- call resend otp api
+        callResendOtp();
         otpTimer = Timer()
         timingCount = 10
         otpTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
     }
     
-    
-    
-    // MARK:- Set Last Test Field
-    private func setLastTextField() {
-        switch oTPLength {
-        case 4:
-            lastTextField = textField4
-        default: break
+    private func  gotoSignUpController()
+    {
+        let viewController = SignUpController.instantiate(appStoryboard: .signupStoryboard)
+        if let unwrappedMobileNumber = mobileNumber {
+            viewController.mobileNumber = unwrappedMobileNumber
         }
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     private func addBottomLineToTextField(textField : OTPTextField) {
@@ -101,6 +142,15 @@ class OTPVerficationController:UIViewController {
         }
         if let textField4 = textField4 {
             self.addBottomLineToTextField(textField: textField4)
+        }
+    }
+    
+    // MARK:- Set Last Test Field
+    private func setLastTextField() {
+        switch oTPLength {
+        case 4:
+            lastTextField = textField4
+        default: break
         }
     }
 }
