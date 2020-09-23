@@ -101,7 +101,7 @@ extension ApiService : TargetType
             return .post
             
         case .getSendOtpWith:
-            return .post
+            return .get
         
         case .resetPasswordWith:
             return .post

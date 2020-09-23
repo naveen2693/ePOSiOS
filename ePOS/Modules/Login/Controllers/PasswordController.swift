@@ -24,19 +24,18 @@ class PasswordController: UIViewController {
     }
     
     @IBAction func buttonSubmit(_ sender: Any) {
-        let password:String = textFieldPassword.text!;
-        let response = Validation.shared.validate(values: (type: ValidationType.password, inputValue:password))
+
+        let response = Validation.shared.validate(values: (type: ValidationType.password, inputValue:textFieldPassword.text as? Any ))
         switch response {
         case .success:
             if let unwrappedMobileNumber = mobileNumber {
-                IntialDataRequest.callLoginApiAfterNumberVerfication(mobileNumber:unwrappedMobileNumber, password:password,completion:{result in
+                IntialDataRequest.callLoginApiAfterNumberVerfication(mobileNumber:unwrappedMobileNumber, password:textFieldPassword.text! ,completion:{result in
                     switch result {
                     case .success(let response):
                         OnBoardingRequest.getUserProfileAndProceedToLaunch(showProgress: true, completion:{result in
                         switch result {
                         case .success(let response):
                             print(response)
-                            
                         case .failure(let error):
                             print(error)
                             ;

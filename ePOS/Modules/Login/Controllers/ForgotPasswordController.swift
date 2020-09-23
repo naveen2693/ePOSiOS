@@ -23,7 +23,6 @@ class ForgotPasswordController : UIViewController {
         navigationController?.popToRootViewController(animated: true)
     }
     
-    
     @IBAction func buttonSubmit(_ sender: Any) {
         let mobileNumber = textFieldMobileNumber.text!;
         let response = Validation.shared.validate(values: (type: ValidationType.phoneNo, inputValue:mobileNumber))

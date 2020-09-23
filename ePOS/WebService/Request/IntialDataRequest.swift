@@ -249,9 +249,9 @@ static func callLoginApiAfterNumberVerfication(mobileNumber:String,password:Stri
                 let appUdid =  userProfileData["acstkn"] as? String,
                 let userId = jsonData["acstkn"] as? String
                 else
-            {
-                fatalError("Serialization Error")
-            }
+                {
+                    fatalError("Login Api Serialization failed")
+                }
             EPOSUserDefaults.setProfile(profile: userProfileData as AnyObject)
             EPOSUserDefaults.setUserId(userID: userId)
             EPOSUserDefaults.setUdid(udid: appUdid)

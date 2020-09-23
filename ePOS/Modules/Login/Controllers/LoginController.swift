@@ -46,7 +46,7 @@ class LoginController: UIViewController{
             print(message.localized())
         }
     }
-    
+    // MARK:- decideUserNavigation
     private func decideUserNavigation(_ response : AnyObject) {
         guard let checkUserModel = response as? CheckUserModel else {
             return

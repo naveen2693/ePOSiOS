@@ -13,9 +13,9 @@ class OTPVerficationController:UIViewController {
     var mobileNumber:String?
     var activeTextField = UITextField()
     var lastTextField :OTPTextField?
-    var oTPString:String="";
+    var otp:String="";
     var otpTimer = Timer()
-    var timingCount = 20
+    var timingCount = 5
     
     @IBOutlet weak var labelMobileNumber: UILabel!
     @IBOutlet weak var btnResendOtp: UIButton!
@@ -62,11 +62,12 @@ class OTPVerficationController:UIViewController {
     }
     
     @IBAction func buttonSubmit(_ sender: Any) {
-        let response = Validation.shared.validate(values:(ValidationType.otp,"123456"))
+        otp = "822620"
+        let response = Validation.shared.validate(values:(ValidationType.otp,otp))
         switch response {
         case .success:
             if let unwrappedMobileNumber = mobileNumber {
-                IntialDataRequest.callApiVerifyOtpWith(mobileNumber:unwrappedMobileNumber,otp: "123456",completion:{result in
+                IntialDataRequest.callApiVerifyOtpWith(mobileNumber:unwrappedMobileNumber,otp:otp,completion:{result in
                     switch result {
                     case .success(let response):
                         print(response);
@@ -105,6 +106,7 @@ class OTPVerficationController:UIViewController {
         }
         else {
             print("call your api")
+            self.otpTimer.invalidate()
             btnResendOtp.setTitle("Resend Otp", for:.normal)
             btnResendOtp.isUserInteractionEnabled = true
             btnResendOtp.addTarget(self, action: #selector(resendbutton), for: .touchUpInside)
@@ -256,8 +258,8 @@ extension OTPVerficationController: UITextFieldDelegate {
         activeTextField = textField
     }
     
-    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        oTPString += string
+public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        otp += otp
         if let text = textField.text {
             
             if (text.count < 1) && (!string.isEmpty) {

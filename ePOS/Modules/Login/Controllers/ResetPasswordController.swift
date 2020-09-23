@@ -62,6 +62,7 @@ class ResetPasswordController: UIViewController {
         else {
             //otpTimer.invalidate()
             print("call your api")
+            self.otpTimer.invalidate()
             buttonResendOtp.setTitle("Resend Otp", for:.normal)
             buttonResendOtp.isUserInteractionEnabled = true
             buttonResendOtp.addTarget(self, action: #selector(resendbutton), for: .touchUpInside)
