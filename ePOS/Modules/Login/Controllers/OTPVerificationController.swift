@@ -257,10 +257,10 @@ extension OTPVerficationController: UITextFieldDelegate {
     }
     
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        oTPString = oTPString+string
+        oTPString += string
         if let text = textField.text {
             
-            if (text.count < 1) && (string.count > 0) {
+            if (text.count < 1) && (!string.isEmpty) {
                 
                 if textField == textField1 {
                     textField1?.isEnabled = false
@@ -312,7 +312,7 @@ extension OTPVerficationController: UITextFieldDelegate {
                 return false
                 
             } // 11. if the user gets to the last textField and presses the back button everything above will get reversed
-            else if (text.count >= 1) && (string.count == 0) {
+            else if (text.count >= 1) && (string.isEmpty) {
                 
                 if textField == textField2 {
                     textField2?.isEnabled = false
