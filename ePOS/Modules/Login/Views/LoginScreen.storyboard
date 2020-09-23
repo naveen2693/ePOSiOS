@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1za-bn-wS7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1za-bn-wS7">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -332,10 +332,11 @@
                         <outlet property="btnResendOtp" destination="N4q-S8-nGL" id="hhR-cb-mdy"/>
                         <outlet property="horizontalStackView" destination="GOm-ql-gam" id="coc-kS-v3E"/>
                         <outlet property="labelMobileNumber" destination="skW-hh-ffw" id="fqS-Bs-Ibl"/>
-                        <outlet property="textField1" destination="sbA-ud-JEi" id="fUB-kS-PhY"/>
-                        <outlet property="textField2" destination="9e0-kk-mTW" id="ih1-7F-zF8"/>
-                        <outlet property="textField3" destination="QYA-Hg-QKF" id="JXn-rG-tdl"/>
-                        <outlet property="textField4" destination="geq-fi-Mje" id="hQK-tx-Ekz"/>
+                        <outlet property="submit" destination="T1V-6g-pVb" id="Qbr-PF-1kI"/>
+                        <outlet property="textField1" destination="sbA-ud-JEi" id="N35-XL-xfd"/>
+                        <outlet property="textField2" destination="9e0-kk-mTW" id="Wdf-SR-YhM"/>
+                        <outlet property="textField3" destination="QYA-Hg-QKF" id="G4N-Uy-N6i"/>
+                        <outlet property="textField4" destination="geq-fi-Mje" id="Wl5-8t-Kq7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gBz-0Q-XXq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

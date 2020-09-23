@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 class LoginController: UIViewController{
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var textFieldMobileNumber: EPOSTextField!
@@ -28,13 +29,13 @@ class LoginController: UIViewController{
     }
     
     @IBAction func ButtonSubmit(_ sender: Any) {
-        let mobileNumber:String = textFieldMobileNumber.text!
-        let response = Validation.shared.validate(values: (type: ValidationType.phoneNo, inputValue:mobileNumber),(ValidationType.checkBoxChecked,CheckBox))
+        let response = Validation.shared.validate(values: (type: ValidationType.phoneNo, inputValue:textFieldMobileNumber.text as Any),(ValidationType.checkBoxChecked,CheckBox))
         switch response {
         case .success:
-            IntialDataRequest.checkUserWith(mobileNumber:mobileNumber,completion:{result in
+            IntialDataRequest.checkUserWith(mobileNumber:textFieldMobileNumber.text!,completion:{ [weak self] result in
                 switch result {
                 case .success(let response):
+                    self?.decideUserNavigation(response)
                     print(response)
                 case .failure(let error):
                     print(error)
@@ -45,13 +46,47 @@ class LoginController: UIViewController{
             print(message.localized())
         }
     }
+    
+    private func decideUserNavigation(_ response : AnyObject) {
+        guard let checkUserModel = response as? CheckUserModel else {
+            return
+        }
+        
+        if checkUserModel.userExists?.bool == true  {
+            if let userData = checkUserModel.UserData, let udid = userData.appUuid {
+                EPOSUserDefaults.setUdid(udid:udid)
+            }
+            if checkUserModel.udfFields != nil,
+                let dict = checkUserModel.udfFields,
+                let value = dict[UdfFields.keyISFirstTimeLoginUser.rawValue],
+                value == UdfFields.valUdfPositiveValue.rawValue {
+                callApiOtpToCreateNewPassword()
+            } else {
+                gotoPasswordVerificationController()
+            }
+        } else if let userData = checkUserModel.UserData {
+            if userData.mobileVerified?.bool == true {
+                if let udid = userData.appUuid {
+                    EPOSUserDefaults.setUdid(udid:udid)
+                }
+                gotoSignUpController(userData: userData)
+            }
+        } else {
+            gotoOtpVerificationController()
+        }
+    }
+    
     // MARK:-CallApi for SendOtp
-    internal func callApiOtpToCreateNewPasswordWith(mobileNumber:String)
+    internal func callApiOtpToCreateNewPassword()
     {
+        guard let mobileNumber = textFieldMobileNumber.text else {
+            self.showAlert(title: "", message: "Mobile number not found")
+            return
+        }
         IntialDataRequest.forgotPasswordCallApiWith(mobileNumber:mobileNumber,completion:{result in
             switch result {
             case .success(let response):
-                self.gotoPasswordResetController(mobileNumber: mobileNumber)
+                self.gotoPasswordResetController()
                 print(response)
             case .failure(let error):
                 print(error)
@@ -59,33 +94,41 @@ class LoginController: UIViewController{
         })
     }
     
-    internal func gotoSignUpController(mobileNumber:String,userData:UserData)
+    internal func gotoSignUpController(userData:UserData)
     {
         let viewController = SignUpController.instantiate(appStoryboard: .loginScreen)
-        viewController.mobileNumber = mobileNumber
+        if let mobileNumber = textFieldMobileNumber.text {
+            viewController.mobileNumber = mobileNumber
+        }
         viewController.userDataFromLoginController = userData
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
-    internal func gotoOtpVerificationController(mobileNumber:String)
+    internal func gotoOtpVerificationController()
     {
         let viewController = OTPVerficationController.instantiate(appStoryboard: .loginScreen)
-        viewController.mobileNumber = mobileNumber
+        if let mobileNumber = textFieldMobileNumber.text {
+            viewController.mobileNumber = mobileNumber
+        }
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
-    internal func gotoPasswordVerificationController(mobileNumber:String)
+    internal func gotoPasswordVerificationController()
     {
         let viewController = PasswordController.instantiate(appStoryboard: .loginScreen)
-        viewController.mobileNumber = mobileNumber
+        if let mobileNumber = textFieldMobileNumber.text {
+            viewController.mobileNumber = mobileNumber
+        }
         self.navigationController?.pushViewController(viewController, animated: true)
         
     }
     
-    internal func gotoPasswordResetController(mobileNumber:String)
+    internal func gotoPasswordResetController()
     {
         let viewController = ResetPasswordController.instantiate(appStoryboard: .loginScreen)
-        viewController.mobileNumber = mobileNumber
+        if let mobileNumber = textFieldMobileNumber.text {
+            viewController.mobileNumber = mobileNumber
+        }
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     

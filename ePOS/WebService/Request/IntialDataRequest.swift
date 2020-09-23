@@ -106,55 +106,16 @@ public class IntialDataRequest:BaseRequest{
     // MARK:-checkUserWith
     static func checkUserWith(mobileNumber:String,completion:@escaping CompletionHandler)
     {
-        let logController = LoginController()
         BaseRequest.objMoyaApi.request(.getCheckUserWith(mobileNumber: mobileNumber)) { result in
             switch result
             {
             case .success(let response):
                 if let CheckUserValues = try? BaseRequest.decoder.decode(CheckUserModel.self, from:response.data)
                 {
-                    if let UserExist:String = (CheckUserValues.userExists){
-                        if UserExist.elementsEqual(Boolean.yes.rawValue)
-                        {
-                            if CheckUserValues.UserData != nil
-                            {
-                                if let unwrappedAppUdid = CheckUserValues.UserData?.appUuid {
-                                    EPOSUserDefaults.setUdid(udid:unwrappedAppUdid)
-                                }
-                            }
-                            if ((CheckUserValues.udfFields) != nil) && UdfFields.valUdfPositiveValue.rawValue.elementsEqual( (CheckUserValues.udfFields![UdfFields.keyISFirstTimeLoginUser.rawValue])!)
-                            {
-                                logController.callApiOtpToCreateNewPasswordWith(mobileNumber: mobileNumber);
-                            }
-                            else {
-                                logController.gotoPasswordVerificationController(mobileNumber: mobileNumber);
-                            }
-                        }
-                        else {
-                            if CheckUserValues.UserData != nil {
-                                if let appUuid = CheckUserValues.UserData?.appUuid{
-                                    if Boolean.yes.rawValue.elementsEqual(appUuid) {
-                                        if let unwrappedAppUdid = CheckUserValues.UserData?.appUuid {
-                                            EPOSUserDefaults.setUdid(udid:unwrappedAppUdid)
-                                        }
-                                        //if mobile verified go to sign up page
-                                        if let unwrappedUserData = CheckUserValues.UserData {
-                                            logController.gotoSignUpController(mobileNumber: mobileNumber, userData: unwrappedUserData)
-                                        }
-                                        
-                                    }
-                                }
-                            }
-                            else {
-                                //New user, ask for OTP
-                                logController.gotoOtpVerificationController(mobileNumber: mobileNumber)
-                                
-                            }
-                        }
-                    }
-                        
-            completion(.success(CheckUserValues as AnyObject));
-        }
+                completion(.success(CheckUserValues as AnyObject));
+            } else {
+                fatalError("checkusermodel was not created")
+            }
         case .failure(let error):
         print(error)
         completion(.failure(.failure));
