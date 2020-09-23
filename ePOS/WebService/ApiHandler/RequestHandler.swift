@@ -14,7 +14,7 @@ public class RequestHandler{
         let deviceId:String = "0000000089ABCDEF0123456789ABCDEF";
         let imeiNum:String = "000000123456789"
         let advertisingId:String = "0000000089ABCDEF0123456789ABCDEF"
-        let appUuid:String = "2b6f0cc904d137be2e1730235f5664094b831186"
+        //let appUuid:String = "2b6f0cc904d137be2e1730235f5664094b831186"
         headermap[ApiHeaderKeys.requestHeaderClientKey.rawValue] = ClientRequestValues.requestHeaderClientValue.rawValue
         headermap[ApiHeaderKeys.requestHeaderBuildVersionKey.rawValue] = "1.0"// set build-version
         headermap[ApiHeaderKeys.requestClientTypeKey.rawValue] = ApiHeaderKeys.requestHeaderClientTypeValue.rawValue;
@@ -27,9 +27,9 @@ public class RequestHandler{
         if(!advertisingId.isEmpty) {
             headermap[ApiHeaderKeys.requestHeaderAdvertisingKey.rawValue] = advertisingId;
         }
-        if(!appUuid.isEmpty) {
-            headermap[ApiHeaderKeys.requestHeaderUUIDKey.rawValue] = appUuid;
-        }
+//        if(!appUuid.isEmpty) {
+//            headermap[ApiHeaderKeys.requestHeaderUUIDKey.rawValue] = appUuid;
+//        }
         return headermap;
     }
     // MARK:-createWebServiceHeaderWithAccessToken
@@ -91,8 +91,8 @@ public class RequestHandler{
     }
     
     // MARK:-createConfigurationRequest
-    public static func  createConfigurationRequest(globalChangeNumber:Int) -> ConfigurationRequest {
-        var request =  ConfigurationRequest();
+    public static func  createConfigurationRequest(globalChangeNumber:Int) -> ConfigurationKeys {
+        var request =  ConfigurationKeys();
         request.globalChngeNumber = globalChangeNumber;
         return request;
     }
@@ -117,6 +117,23 @@ public class RequestHandler{
         // request.deviceInfo = deviceInfo;
         return request;
     }
+// MARK:- createLoginRequest
+    static func createLoginRequest(mobileNumber:String,password:String) -> LoginKeys{
+        var request =  LoginKeys();
+           request.deviceInfo = nil;
+            request.userLoginInfo?.mobileNumber = mobileNumber;
+            request.userLoginInfo?.password = password
+           return request;
+       }
+    
+    // MARK:- ResetPasswordRequest
+    static func createResetPasswordRequest(mobileNumber:String, otp:String,password:String) -> ResetPasswordKeys {
+        var objResetPasswordKeys =  ResetPasswordKeys();
+          objResetPasswordKeys.mobileNum = mobileNumber
+          objResetPasswordKeys.otp = otp
+          objResetPasswordKeys.newPassword = password
+          return objResetPasswordKeys;
+      }
     
     // MARK:- createMasterDataReq
     public static func createMasterDataRequest(mode:String) -> MasterDataKeys {

@@ -17,39 +17,79 @@ class LoginController: UIViewController{
         super.viewDidLoad()
         textView.isSelectable = true
         checkBoxConfiguration()
-        
         if let unwrappedTextView = textView {
             Util.passTextViewReference(textViewField : unwrappedTextView)
         } else {
             fatalError("Error: Load url failed.")
         }
-        textView.isUserInteractionEnabled = true
-        textView.isSelectable = true
+        // MARK:-Get Configuration data
+        getConfigurationData();
+        
     }
     
-    
-@IBAction func ButtonSubmit(_ sender: Any) {
+    @IBAction func ButtonSubmit(_ sender: Any) {
         let mobileNumber:String = textFieldMobileNumber.text!
         let response = Validation.shared.validate(values: (type: ValidationType.phoneNo, inputValue:mobileNumber),(ValidationType.checkBoxChecked,CheckBox))
         switch response {
         case .success:
-            IntialDataRequest.CheckUserWith(mobileNumber:mobileNumber,completion:{result in
-            switch result {
-                
-            case .success(let response):
-                print(response)
-                break;
-            case .failure(let failure):
-                break;
+            IntialDataRequest.checkUserWith(mobileNumber:mobileNumber,completion:{result in
+                switch result {
+                case .success(let response):
+                    print(response)
+                case .failure(let error):
+                    print(error)
                 }
-            
+                
             })
-            break
         case .failure(_, let message):
             print(message.localized())
         }
     }
+    // MARK:-CallApi for SendOtp
+    internal func callApiOtpToCreateNewPasswordWith(mobileNumber:String)
+    {
+        IntialDataRequest.forgotPasswordCallApiWith(mobileNumber:mobileNumber,completion:{result in
+            switch result {
+            case .success(let response):
+                self.gotoPasswordResetController(mobileNumber: mobileNumber)
+                print(response)
+            case .failure(let error):
+                print(error)
+            }
+        })
+    }
     
+    internal func gotoSignUpController(mobileNumber:String,userData:UserData)
+    {
+        let storyboard = UIStoryboard(name: "LoginScreen", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "SignUpController") as! SignUpController
+        viewController.mobileNumber = mobileNumber
+        viewController.userDataFromLoginController = userData
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    internal func gotoOtpVerificationController(mobileNumber:String,userData:UserData)
+    {
+        let storyboard = UIStoryboard(name: "LoginScreen", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "OTPVerficationController") as! OTPVerficationController
+        viewController.mobileNumber = mobileNumber
+        viewController.userDataFromLoginController = userData
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    internal func gotoPasswordVerificationController(mobileNumber:String)
+    {
+        let storyboard = UIStoryboard(name: "LoginScreen", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "PasswordController") as! PasswordController
+        viewController.mobileNumber = mobileNumber
+        self.navigationController?.pushViewController(viewController, animated: true)
+        
+    }
+    internal func gotoPasswordResetController(mobileNumber:String)
+    {
+        let storyboard = UIStoryboard(name: "LoginScreen", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "ResetPasswordController") as! ResetPasswordController
+        viewController.mobileNumber = mobileNumber
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
     
     // MARK:- CheckBox Configuration
     private func checkBoxConfiguration()
@@ -64,23 +104,33 @@ class LoginController: UIViewController{
         CheckBox = sender.isChecked
         print(sender.isChecked)
     }
-   
     
+    // MARK:-Get Configuration Function Defination
+    private func getConfigurationData()
+    {
+        IntialDataRequest.getConfigurationDataWith(globalChangeNumber:0,completion:{result in
+            switch result {
+            case .success(let response):
+                print(response)
+            case .failure(let error):
+                print(error)
+            }
+            
+        })
+    }
 }
 
 extension LoginController:UITextViewDelegate
 {
-    
-    private func textview(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
-            if (URL.absoluteString == Constants.urlTermOfUser.rawValue) {
-                Util.OpenCommonViewController(ctx: self, url: URL)
-                
-            }
-            else if (URL.absoluteString == Constants.UrlPrivacyPolicy.rawValue) {
-                Util.OpenCommonViewController(ctx: self, url: URL)
-              
-            }
-            return false
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+        if (URL.absoluteString == Constants.urlTermOfUser.rawValue) {
+            Util.OpenCommonViewController(ctx: self, url: URL as NSURL)
+            
         }
- 
+        else if (URL.absoluteString == Constants.UrlPrivacyPolicy.rawValue) {
+            Util.OpenCommonViewController(ctx: self, url: URL as NSURL)
+            
+        }
+        return false
+    }
 }

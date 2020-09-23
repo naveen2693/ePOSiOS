@@ -9,6 +9,8 @@
 import UIKit
 class OTPVerficationController:UIViewController{
 var oTPLength: Int?
+var userDataFromLoginController:UserData?
+var mobileNumber:String?
 var activeTextField = UITextField()
 var lastTextField :OTPTextField?
 var oTPString:String="";

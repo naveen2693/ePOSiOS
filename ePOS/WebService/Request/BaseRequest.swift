@@ -15,5 +15,5 @@ enum ApiError:Error
 public class BaseRequest{
     static var objMoyaApi = MoyaProvider<ApiService>()
     static let decoder = JSONDecoder()
-    typealias CompletionHandler = (Result<Any,ApiError>) -> Void
+    typealias CompletionHandler = (Result<AnyObject,ApiError>) -> Void
 }

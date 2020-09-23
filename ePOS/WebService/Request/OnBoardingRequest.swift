@@ -32,9 +32,6 @@ public struct CityListKeys:Codable{
 // MARK:- Master Data Keys
 public struct MasterDataKeys:Codable{
     var mode:String?;
-    private enum CodingKeys: String, CodingKey {
-        case mode = "mode"
-    }
 }
 //MARK:-DeviceInformationKeys
 struct DeviceInformationKeys:Codable{

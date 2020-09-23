@@ -19,6 +19,7 @@ class SignUpController: UIViewController {
 @IBOutlet weak var textFieldReferralCode: EPOSTextField!
 @IBOutlet weak var textView: UITextView!
 @IBOutlet weak var buttonCheckBox: CheckBox!
+var userDataFromLoginController:UserData?
 var mobileNumber:String="";
 var checkBox:Bool=false;
 override func viewDidLoad() {
@@ -50,18 +51,16 @@ override func viewDidLoad() {
     
     switch response {
     case .success:
-        IntialDataRequest.SignupRequest(signUpData: SignUpData(contactName:contactName, email:email, establishmentName: password, password:establishmentName, referralCode:referralCode,contactNumber:mobileNumber), completion:{result in
+        IntialDataRequest.callApiSignupRequest(signUpData: SignUpData(contactName:contactName, email:email, establishmentName: password, password:establishmentName, referralCode:referralCode,contactNumber:mobileNumber), completion:{result in
         switch result {
             
-        case .success(_):
-            break;
-        case .failure(_):
-            break;
+        case .success(let response):
+            print(response)
+        case .failure(let error):
+            print(error)
             }
         
         })
-        break
-        
     case .failure(_, let message):
         print(message.localized())
     }

@@ -15,6 +15,10 @@ enum ApiService
     
     case getSendOtpWith(mobileNumber:String)
     
+    case resetPasswordWith(mobileNumber:String,otp:String,newPassword:String)
+    
+    case getLoginWith(mobileNumber:String,password:String)
+    
 // MARK:- SignUp Apis
     case getSignUpWith(signUpData:SignUpData)
     
@@ -53,6 +57,11 @@ extension ApiService : TargetType
         case .getSendOtpWith:
             return ApiEndpointsUrl.UserDetailsApiEndpointUrl.sendOtpUrl.rawValue
             
+        case .resetPasswordWith:
+            return ApiEndpointsUrl.UserDetailsApiEndpointUrl.resetPasswordUrl.rawValue
+        case .getLoginWith:
+            return ApiEndpointsUrl.UserDetailsApiEndpointUrl.loginUrl.rawValue
+            
     // MARK:- Sign Apis Path
         case .getSignUpWith:
             return ApiEndpointsUrl.UserDetailsApiEndpointUrl.signUpUrl.rawValue
@@ -79,7 +88,7 @@ extension ApiService : TargetType
            
         }
     }
-    
+
     var method:Moya.Method {
         switch self{
 // MARK:- Login Apis method
@@ -95,6 +104,12 @@ extension ApiService : TargetType
         case .getSendOtpWith:
             return .post
         
+        case .resetPasswordWith:
+            return .post
+        
+        case .getLoginWith:
+            return .post
+            
 // MARK:- SignUp Apis Method
         case .getSignUpWith:
             return .post
@@ -139,6 +154,14 @@ extension ApiService : TargetType
         case .getSendOtpWith(let mobileNumber):
             return  .requestParameters(parameters:RequestHandler.createOTPSendRequest(mobileNum:mobileNumber), encoding: URLEncoding.queryString)
             
+        case .resetPasswordWith(let mobileNumber,let otp, let newPassword):
+                  return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
+                    .createResetPasswordRequest(mobileNumber:mobileNumber,otp: otp,password: newPassword)))
+            
+        case .getLoginWith(let mobileNumber, let password):
+            return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
+                                     .createLoginRequest(mobileNumber: mobileNumber, password: password)))
+            
 // MARK:- SignUp Apis task
         case .getSignUpWith(let signUpData):
             return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
@@ -166,10 +189,10 @@ extension ApiService : TargetType
         case .getConfigurationsWith(let globalChngNum):
             return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
                 .createConfigurationRequest(globalChangeNumber: globalChngNum)))
-        }
+        
 
     }
-    
+    }
     var headers: [String : String]? {
           switch self {
              case .getCheckUserWith:
@@ -184,9 +207,14 @@ extension ApiService : TargetType
                     case .getSendOtpWith:
                        return RequestHandler.createWebServiceHeaderWithoutAccessToken()
             
+                    case .getLoginWith:
+                    return RequestHandler.createWebServiceHeaderWithoutAccessToken()
+            
                     case .getSignUpWith:
-                        
                        return RequestHandler.createWebServiceHeaderWithoutAccessToken()
+            
+                    case .resetPasswordWith:
+                        return RequestHandler.createWebServiceHeaderWithoutAccessToken()
                         
                     case .getManageAccount:
                          return RequestHandler.createWebServiceHeaderWithAccessToken()

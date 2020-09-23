@@ -218,7 +218,7 @@ open class CheckBox: UIControl {
         func fastFloor(_ x: CGFloat) -> CGFloat { return floor(x) }
         
         //// Subframes
-        let group: CGRect = CGRect(x: frame.minX + fastFloor((frame.width - 17.37) * 0.49035 + 0.5), y: frame.minY + fastFloor((frame.height - 23.02) * 0.51819 - 0.48) + 0.98, width: 17.37, height: 23.02)
+        let group: CGRect = CGRect(x: frame.minX + fastFloor((frame.width - 17.37) * 0.490_35 + 0.5), y: frame.minY + fastFloor((frame.height - 23.02) * 0.518_19 - 0.48) + 0.98, width: 17.37, height: 23.02)
         
         //// Group
         //// Rectangle Drawing

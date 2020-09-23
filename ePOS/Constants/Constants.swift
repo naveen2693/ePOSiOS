@@ -61,4 +61,13 @@ enum Constants:String {
     case UrlPrivacyPolicy = "http://www.example.com/privacy";
 
 }
+enum Boolean:String{
+   case yes = "YES";
+   case no = "NO";
+}
+
+enum UdfFields:String{
+    case keyISFirstTimeLoginUser = "isFirstTimeLoginUser";
+    case valUdfPositiveValue = "1"
+}
 

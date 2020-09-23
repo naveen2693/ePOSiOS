@@ -9,15 +9,45 @@
 import UIKit
 
 class PasswordController: UIViewController {
-
-    @IBOutlet weak var imageProccedNextView: UIImageView!
-    @IBOutlet weak var buttonForgetPassword: UIButton!
+    
     @IBOutlet weak var textFieldPassword: EPOSTextField!
+    var mobileNumber:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-
- 
+    
+    @IBAction func buttonForgotPassword(_ sender: Any) {
+        // MARK:-goto Forgot PasswordController
+        self.gotoForgotPasswordController()
+    }
+    
+    @IBAction func buttonSubmit(_ sender: Any) {
+        let password:String = textFieldPassword.text!;
+        let response = Validation.shared.validate(values: (type: ValidationType.password, inputValue:password))
+        switch response {
+        case .success:
+            if let unwrappedMobileNumber = mobileNumber {
+                IntialDataRequest.callLoginApiAfterNumberVerfication(mobileNumber:unwrappedMobileNumber, password:password,completion:{result in
+                    switch result {
+                    case .success(let response):
+                        print(response)
+                    case .failure(let error):
+                        print(error)
+                    }
+                })
+            }
+        case .failure(_, let message):
+            print(message.localized())
+        }
+    }
+    
+    private func gotoForgotPasswordController()
+    {
+        let storyboard = UIStoryboard(name: "LoginScreen", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "ForgotPasswordController") as! ForgotPasswordController
+        viewController.mobileNumber = mobileNumber
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
 }
