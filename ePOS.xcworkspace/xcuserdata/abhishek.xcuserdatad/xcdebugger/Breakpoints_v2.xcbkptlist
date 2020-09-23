@@ -78,8 +78,8 @@
             filePath = "ePOS/WebService/ApiHandler/RequestHandler.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "createCheckUserRequest(mobileNum:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -114,6 +114,83 @@
             endingLineNumber = "109"
             landmarkName = "isValidString(text:regex:emptyAlert:invalidAlert:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "BA6001FE-7509-49EC-B490-A903B6332152 - 1cbc24309edf6ad2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ePOS.Validation.validate(values: (type: ePOS.ValidationType, inputValue: Any)...) -&gt; ePOS.Valid"
+                  moduleName = "ePOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhishek/Desktop/Epos/ePOS/Validation/Validation.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "601">
+               </Location>
+               <Location
+                  uuid = "BA6001FE-7509-49EC-B490-A903B6332152 - 1cbc24309edf6ad2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ePOS.Validation.validate(values: (type: ePOS.ValidationType, inputValue: Any)...) -&gt; ePOS.Valid"
+                  moduleName = "ePOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhishek/Desktop/Epos/ePOS/Validation/Validation.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "945">
+               </Location>
+               <Location
+                  uuid = "BA6001FE-7509-49EC-B490-A903B6332152 - 1cbc24309edf6ad2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ePOS.Validation.validate(values: (type: ePOS.ValidationType, inputValue: Any)...) -&gt; ePOS.Valid"
+                  moduleName = "ePOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhishek/Desktop/Epos/ePOS/Validation/Validation.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "1402">
+               </Location>
+               <Location
+                  uuid = "BA6001FE-7509-49EC-B490-A903B6332152 - 1cbc24309edf6ad2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ePOS.Validation.validate(values: (type: ePOS.ValidationType, inputValue: Any)...) -&gt; ePOS.Valid"
+                  moduleName = "ePOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhishek/Desktop/Epos/ePOS/Validation/Validation.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "1743">
+               </Location>
+               <Location
+                  uuid = "BA6001FE-7509-49EC-B490-A903B6332152 - 1cbc24309edf6ad2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ePOS.Validation.validate(values: (type: ePOS.ValidationType, inputValue: Any)...) -&gt; ePOS.Valid"
+                  moduleName = "ePOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhishek/Desktop/Epos/ePOS/Validation/Validation.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "2080">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -126,8 +203,8 @@
             filePath = "ePOS/WebService/Request/IntialDataRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "checkUserWith(mobileNumber:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -142,8 +219,8 @@
             filePath = "ePOS/WebService/ApiHandler/ApiClient.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "baseURL"
             landmarkType = "24">
          </BreakpointContent>
@@ -152,14 +229,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "DA7354EF-EC79-4E32-8CE0-58333EF65570"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ePOS/WebService/ApiHandler/ApiClient.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "task"
             landmarkType = "24">
          </BreakpointContent>
@@ -176,8 +253,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "124"
             endingLineNumber = "124"
-            landmarkName = "LoginController"
-            landmarkType = "21">
+            landmarkName = "textView(_:shouldInteractWith:in:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -192,8 +269,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "125"
             endingLineNumber = "125"
-            landmarkName = "LoginController"
-            landmarkType = "21">
+            landmarkName = "textView(_:shouldInteractWith:in:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -256,8 +333,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "110"
             endingLineNumber = "110"
-            landmarkName = "LoginController"
-            landmarkType = "3">
+            landmarkName = "getConfigurationData()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -274,6 +351,182 @@
             endingLineNumber = "31"
             landmarkName = "passTextViewReference(textViewField:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "87347637-63E5-4D93-BEEF-FBE72FA39C05"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ePOS/WebService/Request/IntialDataRequest.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "getConfigurationDataWith(globalChangeNumber:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "329F5766-A461-47FE-A067-33435B1336D8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ePOS/WebService/Request/IntialDataRequest.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "getConfigurationDataWith(globalChangeNumber:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DE35AC22-2C30-42BC-B47F-3FEAD8484809"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ePOS/WebService/Request/IntialDataRequest.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
+            landmarkName = "getConfigurationDataWith(globalChangeNumber:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5C7629FB-0F90-4225-A963-BA03553809F4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ePOS/WebService/ApiHandler/RequestHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "createConfigurationRequest(globalChangeNumber:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B77AA58F-A255-4167-BF43-2A4573232362"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ePOS/WebService/Request/IntialDataRequest.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "getConfigurationDataWith(globalChangeNumber:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0E2F0B42-D354-4C4D-AD19-C1879AE07AB7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ePOS/WebService/ApiHandler/RequestHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "createWebServiceHeaderWithoutAccessToken()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CDD0E2CA-A4F7-4276-A86D-6A62A02FC058"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ePOS/WebService/ApiHandler/RequestHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "createWebServiceHeaderWithoutAccessToken()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2EC69CA7-E02B-4347-9D30-99502231A50E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ePOS/WebService/ApiHandler/ApiClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "task"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "06DBE720-4B3F-449E-90CC-675263BEF410"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ePOS/WebService/ApiHandler/ApiClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
+            landmarkName = "task"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "178BEC9F-BF81-450B-BF94-0E062B449483"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ePOS/WebService/ApiHandler/RequestHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "createConfigurationRequest(globalChangeNumber:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3B3FCC80-6C19-47C2-8F0C-3AA9F4AE8B9D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ePOS/WebService/ApiHandler/ApiClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
+            landmarkName = "headers"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

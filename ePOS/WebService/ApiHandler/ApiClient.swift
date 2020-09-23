@@ -28,13 +28,12 @@ enum ApiService
     
     case getCityListWith(strLastModifiedDate:String)
     
-    case getFetchUserWith(listSortParams:ListSortParamsModel)
+    case getFetchUserWith(listSortParams:ListSortParams)
     
     case getLeadByIdWith(leadId:Int64)
     
 // MARK:- Configuration
     case getConfigurationsWith(globalChangeNumber:Int)
-
 }
 extension ApiService : TargetType
 {

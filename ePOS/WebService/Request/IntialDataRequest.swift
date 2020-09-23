@@ -85,7 +85,7 @@ public struct ConfigurationKeys : Codable{
     }
     
 }
-
+// MARK:-IntialDataRequest
 public class IntialDataRequest:BaseRequest{
     static func callApiSignupRequest(signUpData:SignUpData,completion:@escaping CompletionHandler)
     {
@@ -103,6 +103,7 @@ public class IntialDataRequest:BaseRequest{
             
         }
     }
+    // MARK:-checkUserWith
     static func checkUserWith(mobileNumber:String,completion:@escaping CompletionHandler)
     {
         let logController = LoginController()
@@ -168,7 +169,7 @@ public class IntialDataRequest:BaseRequest{
             
         }
     }
-    
+    // MARK:-getConfigurationDataWith
     static func getConfigurationDataWith(globalChangeNumber:Int,completion:@escaping CompletionHandler)
     {
         BaseRequest.objMoyaApi.request(.getConfigurationsWith(globalChangeNumber:globalChangeNumber)){ result in
@@ -176,6 +177,26 @@ public class IntialDataRequest:BaseRequest{
             {
             case .success(let response):
                 print(response);
+                guard let jsonObject: Any = try? JSONSerialization.jsonObject(with: response.data, options: []) as Any,
+                    let jsonData = jsonObject as? [String:Any],
+                    let configResult = jsonData["rs"] as? [String:Any],
+                    let configContent = configResult["cnt"] as? [String:Any]
+                else
+                {
+                    fatalError("Serialization Error")
+                }
+                for (key,value) in configContent
+                {
+                    if key == "confid"
+                    {
+                        if value as? Int ==  ConstantsInt.eposConfigurationId.rawValue
+                        {
+                            let configJson = configContent["json"] as? [String:Any]
+                            let subConfiglist = configJson?["subConfList"] as? [AnyObject]
+                            EPOSUserDefaults.setConfigurationData(configData: subConfiglist as AnyObject)
+                        }
+                    }
+                }
                 completion(.success(response))
                 
             case .failure(let error):
@@ -186,6 +207,7 @@ public class IntialDataRequest:BaseRequest{
             
         }
     }
+    // MARK:-forgotPasswordCallApiWith
     static func forgotPasswordCallApiWith(mobileNumber:String,completion:@escaping CompletionHandler)
     {
         BaseRequest.objMoyaApi.request(.getForgotPasswordWith(mobileNumber:mobileNumber)){ result in
@@ -203,7 +225,7 @@ public class IntialDataRequest:BaseRequest{
             
         }
     }
-    
+    // MARK:-resetPasswordCallApiwith
     static func resetPasswordCallApiwith(mobileNumber:String,otp:String,newPassword:String,completion:@escaping CompletionHandler)
     {
         BaseRequest.objMoyaApi.request(.resetPasswordWith(mobileNumber: mobileNumber, otp: otp, newPassword: newPassword)){ result in
@@ -219,7 +241,7 @@ public class IntialDataRequest:BaseRequest{
             
         }
     }
-    
+    // MARK:- resendOtpCallApiWith
     static func resendOtpCallApiWith(mobileNumber:String,completion:@escaping CompletionHandler)
     {
         BaseRequest.objMoyaApi.request(.getSendOtpWith(mobileNumber: mobileNumber)){ result in
@@ -237,7 +259,7 @@ public class IntialDataRequest:BaseRequest{
             
         }
     }
-    
+    // MARK:-callLoginApiAfterNumberVerfication
     static func callLoginApiAfterNumberVerfication(mobileNumber:String,password:String,completion:@escaping CompletionHandler)
     {
         BaseRequest.objMoyaApi.request(.getLoginWith(mobileNumber: mobileNumber, password: password)){ result in
@@ -248,15 +270,14 @@ public class IntialDataRequest:BaseRequest{
                 guard let jsonObject: Any = try? JSONSerialization.jsonObject(with: response.data, options: []) as Any,
                     let jsonData = jsonObject as? [String:Any],
                     let accessToken = jsonData["acstkn"] as? String,
-                    let profile  = jsonData["acstkn"] as? String,
-                    let userProfileData = jsonData["profile"] as? [String: Any],
+                    let userProfileData = jsonData["profile"] as? [String:Any],
                     let appUdid =  userProfileData["acstkn"] as? String,
                     let userId = jsonData["acstkn"] as? String
                     else
                 {
                     fatalError("Serialization Error")
                 }
-                EPOSUserDefaults.setProfile(profile: profile)
+                EPOSUserDefaults.setProfile(profile: userProfileData as AnyObject)
                 EPOSUserDefaults.setUserId(userID: userId)
                 EPOSUserDefaults.setUdid(udid: appUdid)
                 EPOSUserDefaults.setAccessToken(accessToken: accessToken)

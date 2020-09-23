@@ -66,6 +66,7 @@ class LoginController: UIViewController{
         viewController.userDataFromLoginController = userData
         self.navigationController?.pushViewController(viewController, animated: true)
     }
+    
     internal func gotoOtpVerificationController(mobileNumber:String,userData:UserData)
     {
         let viewController = OTPVerficationController.instantiate(appStoryboard: .loginScreen)
@@ -73,6 +74,7 @@ class LoginController: UIViewController{
         viewController.userDataFromLoginController = userData
         self.navigationController?.pushViewController(viewController, animated: true)
     }
+    
     internal func gotoPasswordVerificationController(mobileNumber:String)
     {
         let viewController = PasswordController.instantiate(appStoryboard: .loginScreen)
@@ -80,6 +82,7 @@ class LoginController: UIViewController{
         self.navigationController?.pushViewController(viewController, animated: true)
         
     }
+    
     internal func gotoPasswordResetController(mobileNumber:String)
     {
         let viewController = ResetPasswordController.instantiate(appStoryboard: .loginScreen)

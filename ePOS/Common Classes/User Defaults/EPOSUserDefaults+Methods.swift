@@ -19,6 +19,12 @@ extension UserDefaults {
             case udid
             case userId
             case profile
+            case masterData
+            case modifiedDate
+            case stateData
+            case mobileNumberList
+            case currentWorkFlowState
+            case configurationData
         }
         private init() {}
         
@@ -51,11 +57,11 @@ class EPOSUserDefaults: NSObject {
     {
         return UserDefaults.Configuration.string(forKey: .accessToken)
     }
-    static func setProfile(profile:String)
+    static func setProfile(profile:AnyObject)
     {
         UserDefaults.Configuration.set(profile, forKey: .profile)
     }
-    static func getProfile() -> String?
+    static func getProfile() -> Any?
     {
         return UserDefaults.Configuration.string(forKey: .profile)
     }
@@ -67,5 +73,54 @@ class EPOSUserDefaults: NSObject {
     {
         return UserDefaults.Configuration.string(forKey: .userId)
     }
+    static func setMasterData(masterData:AnyObject)
+    {
+        UserDefaults.Configuration.set(masterData, forKey: .masterData)
+    }
+    static func getMasterData() -> Any?
+    {
+        return UserDefaults.Configuration.string(forKey: .masterData)
+    }
+    static func setStateModifiedDate(modifiedDate:String)
+    {
+        UserDefaults.Configuration.set(modifiedDate, forKey: .modifiedDate)
+    }
+    static func getStateModifiedDate() -> String?
+    {
+        return UserDefaults.Configuration.string(forKey: .modifiedDate)
+    }
+    static func setStateData(stateData:AnyObject)
+    {
+        UserDefaults.Configuration.set(stateData, forKey: .stateData)
+    }
+    static func getStateData() -> Any?
+    {
+        return UserDefaults.Configuration.string(forKey: .stateData)
+    }
+    static func setMobileNumberList(stateData:AnyObject)
+    {
+           UserDefaults.Configuration.set(stateData, forKey: .mobileNumberList)
+    }
+    static func getMobileNumberList() -> Any?
+    {
+           return UserDefaults.Configuration.string(forKey: .mobileNumberList)
+    }
+    static func setCurrentStateWorkflow(currentState:String)
+    {
+           UserDefaults.Configuration.set(currentState, forKey: .currentWorkFlowState)
+    }
+    static func getCurrentStateWorkflow() -> String?
+    {
+           return UserDefaults.Configuration.string(forKey: .currentWorkFlowState)
+    }
+    static func setConfigurationData(configData:AnyObject)
+    {
+           UserDefaults.Configuration.set(configData, forKey: .configurationData)
+    }
+    static func gettConfigurationData() -> Any?
+    {
+           return UserDefaults.Configuration.string(forKey: .configurationData)
+    }
+    
     
 }

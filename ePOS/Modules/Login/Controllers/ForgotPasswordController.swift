@@ -48,7 +48,6 @@ class ForgotPasswordController : UIViewController {
     private func gotoPasswordResetLinkMsgController(mobileNumber:String)
     {
         let viewController = ResetPasswordController.instantiate(appStoryboard: .loginScreen)
-
         viewController.mobileNumber = mobileNumber
         self.navigationController?.pushViewController(viewController, animated: true)
     }

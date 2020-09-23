@@ -32,7 +32,17 @@ class PasswordController: UIViewController {
                 IntialDataRequest.callLoginApiAfterNumberVerfication(mobileNumber:unwrappedMobileNumber, password:password,completion:{result in
                     switch result {
                     case .success(let response):
-                        print(response)
+                        OnBoardingRequest.getUserProfileAndProceedToLaunch(showProgress: true, completion:{result in
+                        switch result {
+                        case .success(let response):
+                            print(response)
+                            
+                        case .failure(let error):
+                            print(error)
+                            ;
+                            }
+                        });
+                        print(response);
                     case .failure(let error):
                         print(error)
                     }

@@ -16,7 +16,7 @@ public class RequestHandler{
         let advertisingId:String = "0000000089ABCDEF0123456789ABCDEF"
         //let appUuid:String = "2b6f0cc904d137be2e1730235f5664094b831186"
         headermap[ApiHeaderKeys.requestHeaderClientKey.rawValue] = ClientRequestValues.requestHeaderClientValue.rawValue
-        headermap[ApiHeaderKeys.requestHeaderBuildVersionKey.rawValue] = "1.0"// set build-version
+        headermap[ApiHeaderKeys.requestHeaderBuildVersionKey.rawValue] = "1.2"// set build-version
         headermap[ApiHeaderKeys.requestClientTypeKey.rawValue] = ApiHeaderKeys.requestHeaderClientTypeValue.rawValue;
         if(!(deviceId.isEmpty)) {
             headermap[ApiHeaderKeys.requestHeaderDeviceKey.rawValue] = deviceId;
@@ -30,6 +30,7 @@ public class RequestHandler{
 //        if(!appUuid.isEmpty) {
 //            headermap[ApiHeaderKeys.requestHeaderUUIDKey.rawValue] = appUuid;
 //        }
+        print(headermap);
         return headermap;
     }
     // MARK:-createWebServiceHeaderWithAccessToken
@@ -150,7 +151,7 @@ public class RequestHandler{
     }
     
     // MARK:- createUserListReq
-    public static func createUserListRequest(params:ListSortParamsModel) -> [String:Any] {
+    public static func createUserListRequest(params:ListSortParams) -> [String:Any] {
         var param = [String:Any]();
         let UserListRequest = UserListKeys()
         param[UserListRequest.QUERY_KEY1] = params.page;
