@@ -67,11 +67,10 @@ class LoginController: UIViewController{
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
-    internal func gotoOtpVerificationController(mobileNumber:String,userData:UserData)
+    internal func gotoOtpVerificationController(mobileNumber:String)
     {
         let viewController = OTPVerficationController.instantiate(appStoryboard: .loginScreen)
         viewController.mobileNumber = mobileNumber
-        viewController.userDataFromLoginController = userData
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     

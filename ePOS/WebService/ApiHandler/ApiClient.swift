@@ -147,38 +147,38 @@ extension ApiService : TargetType
           return .requestParameters(parameters:RequestHandler.createForgotPasswordRequest(mobileNum:mobileNumber), encoding: URLEncoding.queryString)
             
         case .getVerifyOtpWith(let mobileNumber,let otp):
-            return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
+            return  .requestJSONEncodable((RequestHandler
                 .createOTPVerifyRequest(mobileNum:mobileNumber,otp: otp)))
             
         case .getSendOtpWith(let mobileNumber):
             return  .requestParameters(parameters:RequestHandler.createOTPSendRequest(mobileNum:mobileNumber), encoding: URLEncoding.queryString)
             
         case .resetPasswordWith(let mobileNumber,let otp, let newPassword):
-                  return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
+                  return  .requestJSONEncodable((RequestHandler
                     .createResetPasswordRequest(mobileNumber:mobileNumber,otp: otp,password: newPassword)))
             
         case .getLoginWith(let mobileNumber, let password):
-            return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
+            return  .requestJSONEncodable((RequestHandler
                                      .createLoginRequest(mobileNumber: mobileNumber, password: password)))
             
 // MARK:- SignUp Apis task
         case .getSignUpWith(let signUpData):
-            return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
+            return  .requestJSONEncodable((RequestHandler
                 .createSignUpRequest(signUpData: signUpData)))
             
         case .createRequestMasterDataWith(let mode):
-             return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
+             return  .requestJSONEncodable((RequestHandler
                 .createMasterDataRequest(mode: mode)))
             
         case .getCityListWith(let strLastModifiedDate):
-             return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
+             return  .requestJSONEncodable((RequestHandler
                 .createGetCityListRequest(strLastModifiedDate: strLastModifiedDate)))
             
         case .getFetchUserWith(let listSortParams):
             return .requestParameters(parameters:RequestHandler.createUserListRequest(params:listSortParams), encoding: URLEncoding.queryString)
             
         case .getLeadByIdWith(let leadId):
-            return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
+            return  .requestJSONEncodable((RequestHandler
                 .createGetLeadIDRequest(leadID: leadId)))
             
         case .getManageAccount:
@@ -186,7 +186,7 @@ extension ApiService : TargetType
         
 // MARK:-Configuration task
         case .getConfigurationsWith(let globalChngNum):
-            return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
+            return  .requestJSONEncodable((RequestHandler
                 .createConfigurationRequest(globalChangeNumber: globalChngNum)))
         
 
