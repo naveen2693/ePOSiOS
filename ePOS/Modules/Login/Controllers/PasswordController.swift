@@ -45,8 +45,7 @@ class PasswordController: UIViewController {
     
     private func gotoForgotPasswordController()
     {
-        let storyboard = UIStoryboard(name: "LoginScreen", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "ForgotPasswordController") as! ForgotPasswordController
+        let viewController = ForgotPasswordController.instantiate(appStoryboard: .loginScreen)
         viewController.mobileNumber = mobileNumber
         self.navigationController?.pushViewController(viewController, animated: true)
     }

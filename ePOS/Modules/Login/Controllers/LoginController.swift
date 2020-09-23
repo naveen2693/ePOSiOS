@@ -61,32 +61,28 @@ class LoginController: UIViewController{
     
     internal func gotoSignUpController(mobileNumber:String,userData:UserData)
     {
-        let storyboard = UIStoryboard(name: "LoginScreen", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "SignUpController") as! SignUpController
+        let viewController = SignUpController.instantiate(appStoryboard: .loginScreen)
         viewController.mobileNumber = mobileNumber
         viewController.userDataFromLoginController = userData
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     internal func gotoOtpVerificationController(mobileNumber:String,userData:UserData)
     {
-        let storyboard = UIStoryboard(name: "LoginScreen", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "OTPVerficationController") as! OTPVerficationController
+        let viewController = OTPVerficationController.instantiate(appStoryboard: .loginScreen)
         viewController.mobileNumber = mobileNumber
         viewController.userDataFromLoginController = userData
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     internal func gotoPasswordVerificationController(mobileNumber:String)
     {
-        let storyboard = UIStoryboard(name: "LoginScreen", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "PasswordController") as! PasswordController
+        let viewController = PasswordController.instantiate(appStoryboard: .loginScreen)
         viewController.mobileNumber = mobileNumber
         self.navigationController?.pushViewController(viewController, animated: true)
         
     }
     internal func gotoPasswordResetController(mobileNumber:String)
     {
-        let storyboard = UIStoryboard(name: "LoginScreen", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "ResetPasswordController") as! ResetPasswordController
+        let viewController = ResetPasswordController.instantiate(appStoryboard: .loginScreen)
         viewController.mobileNumber = mobileNumber
         self.navigationController?.pushViewController(viewController, animated: true)
     }
