@@ -76,7 +76,7 @@ public class OnBoardingRequest:BaseRequest{
                 completion(.success(response))
                 
             case .failure(let error):
-                completion(.failure(.failure));
+                completion(.failure(error));
                 loadMasterDataAndProceedToLaunch(mode: Constants.modeValueForMasterData.rawValue);
                 print(error);
                 

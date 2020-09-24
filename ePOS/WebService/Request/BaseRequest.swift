@@ -8,12 +8,8 @@
 
 import Foundation
 import Moya
-enum ApiError:Error
-{
-    case failure
-}
 public class BaseRequest{
     static var objMoyaApi = MoyaProvider<ApiService>()
     static let decoder = JSONDecoder()
-    typealias CompletionHandler = (Result<AnyObject,ApiError>) -> Void
+    typealias CompletionHandler = (Result<AnyObject,Error>) -> Void
 }

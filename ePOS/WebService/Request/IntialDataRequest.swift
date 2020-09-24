@@ -96,7 +96,7 @@ public class IntialDataRequest:BaseRequest{
                 completion(.success(response))
                 
             case .failure(let error):
-                completion(.failure(.failure));
+                completion(.failure(error));
                 print(error);
                 
             }
@@ -118,7 +118,7 @@ public class IntialDataRequest:BaseRequest{
             }
         case .failure(let error):
         print(error)
-        completion(.failure(.failure));
+        completion(.failure(error));
         
     }
     
@@ -159,7 +159,7 @@ static func getConfigurationDataWith(globalChangeNumber:Int,completion:@escaping
             completion(.success(response))
         case .failure(let error):
             print(error);
-            completion(.failure(.failure));
+            completion(.failure(error));
             
         }
         
@@ -177,7 +177,7 @@ static func forgotPasswordCallApiWith(mobileNumber:String,completion:@escaping C
             
         case .failure(let error):
             print(error)
-            completion(.failure(.failure));
+            completion(.failure(error));
             
         }
         
@@ -194,7 +194,7 @@ static func resetPasswordCallApiwith(mobileNumber:String,otp:String,newPassword:
             completion(.success(response))
         case .failure(let error):
             print(error)
-            completion(.failure(.failure));
+            completion(.failure(error));
         }
         
     }
@@ -210,7 +210,7 @@ static func resendOtpCallApiWith(mobileNumber:String,completion:@escaping Comple
             completion(.success(response))
             
         case .failure(let error):
-            completion(.failure(.failure));
+            completion(.failure(error));
             print(error)
             
         }
@@ -227,7 +227,7 @@ static func callApiVerifyOtpWith(mobileNumber:String,otp:String,completion:@esca
                 completion(.success(response))
                 
             case .failure(let error):
-                completion(.failure(.failure));
+                completion(.failure(error));
                 print(error)
                 
             }
@@ -242,8 +242,7 @@ static func callLoginApiAfterNumberVerfication(mobileNumber:String,password:Stri
         {
         case .success(let response):
             
-            guard let jsonObject: Any = try? JSONSerialization.jsonObject(with: response.data, options: []) as Any,
-                let jsonData = jsonObject as? [String:Any],
+            guard let jsonData = try? JSONSerialization.jsonObject(with: response.data, options: []) as? [String: Any],
                 let accessToken = jsonData["acstkn"] as? String,
                 let userProfileData = jsonData["profile"] as? [String:Any],
                 let appUdid =  userProfileData["acstkn"] as? String,
@@ -259,7 +258,7 @@ static func callLoginApiAfterNumberVerfication(mobileNumber:String,password:Stri
             completion(.success(response))
             
         case .failure(let error):
-            completion(.failure(.failure));
+            completion(.failure(error));
             print(error);
             
         }
