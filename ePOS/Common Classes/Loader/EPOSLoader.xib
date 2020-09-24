@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EPOSLoader" customModule="ePOS" customModuleProvider="target">
+            <connections>
+                <outlet property="imageViewAnimation" destination="fqy-aq-GhF" id="31k-Cn-iqa"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RS4-SN-9VC">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fqy-aq-GhF">
+                    <rect key="frame" x="152.5" y="298.5" width="70" height="70"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="fqy-aq-GhF" secondAttribute="height" multiplier="1:1" id="ATZ-48-M4L"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="fqy-aq-GhF" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="70:667" id="Fne-td-idp"/>
+                <constraint firstItem="fqy-aq-GhF" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="HQ6-FD-htJ"/>
+                <constraint firstItem="RS4-SN-9VC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="KZs-vc-cfq"/>
+                <constraint firstItem="fqy-aq-GhF" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="ShW-ij-Fwx"/>
+                <constraint firstAttribute="trailing" secondItem="RS4-SN-9VC" secondAttribute="trailing" id="uC5-X0-gDl"/>
+                <constraint firstAttribute="bottom" secondItem="RS4-SN-9VC" secondAttribute="bottom" id="ueZ-5Y-30O"/>
+                <constraint firstItem="RS4-SN-9VC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="xS2-IU-ogh"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="138" y="154"/>
+        </view>
+    </objects>
+</document>

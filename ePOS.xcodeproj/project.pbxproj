@@ -92,6 +92,11 @@
 		991ADEA925064E2F00932251 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEA725064E2F00932251 /* UIButtonExtension.swift */; };
 		991ADEAB250660DB00932251 /* EPOSGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEAA250660DB00932251 /* EPOSGradientView.swift */; };
 		991ADEAD250662EF00932251 /* EPOSShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991ADEAC250662EF00932251 /* EPOSShadowView.swift */; };
+		991DF263251CB33100AEA1C3 /* UIViewController+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991DF262251CB33100AEA1C3 /* UIViewController+Protocol.swift */; };
+		991DF269251CB5C900AEA1C3 /* GifLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991DF265251CB5C800AEA1C3 /* GifLoader.swift */; };
+		991DF26A251CB5C900AEA1C3 /* EPOSLoader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 991DF266251CB5C900AEA1C3 /* EPOSLoader.xib */; };
+		991DF26B251CB5C900AEA1C3 /* loadingAnimation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 991DF267251CB5C900AEA1C3 /* loadingAnimation.gif */; };
+		991DF26E251CBB2E00AEA1C3 /* EPOSLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991DF26D251CBB2E00AEA1C3 /* EPOSLoader.swift */; };
 		9976C9092500F05600FC5DD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9976C9082500F05600FC5DD3 /* AppDelegate.swift */; };
 		9976C90D2500F05600FC5DD3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9976C90C2500F05600FC5DD3 /* ViewController.swift */; };
 		9976C9102500F05700FC5DD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9976C90E2500F05700FC5DD3 /* Main.storyboard */; };
@@ -209,6 +214,11 @@
 		991ADEA725064E2F00932251 /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		991ADEAA250660DB00932251 /* EPOSGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSGradientView.swift; sourceTree = "<group>"; };
 		991ADEAC250662EF00932251 /* EPOSShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSShadowView.swift; sourceTree = "<group>"; };
+		991DF262251CB33100AEA1C3 /* UIViewController+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Protocol.swift"; sourceTree = "<group>"; };
+		991DF265251CB5C800AEA1C3 /* GifLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifLoader.swift; sourceTree = "<group>"; };
+		991DF266251CB5C900AEA1C3 /* EPOSLoader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EPOSLoader.xib; sourceTree = "<group>"; };
+		991DF267251CB5C900AEA1C3 /* loadingAnimation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loadingAnimation.gif; sourceTree = "<group>"; };
+		991DF26D251CBB2E00AEA1C3 /* EPOSLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSLoader.swift; sourceTree = "<group>"; };
 		9976C9052500F05600FC5DD3 /* ePOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ePOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9976C9082500F05600FC5DD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9976C90C2500F05600FC5DD3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -725,6 +735,17 @@
 			path = "Gradient Button";
 			sourceTree = "<group>";
 		};
+		991DF264251CB5C800AEA1C3 /* Loader */ = {
+			isa = PBXGroup;
+			children = (
+				991DF265251CB5C800AEA1C3 /* GifLoader.swift */,
+				991DF266251CB5C900AEA1C3 /* EPOSLoader.xib */,
+				991DF267251CB5C900AEA1C3 /* loadingAnimation.gif */,
+				991DF26D251CBB2E00AEA1C3 /* EPOSLoader.swift */,
+			);
+			path = Loader;
+			sourceTree = "<group>";
+		};
 		9976C8FC2500F05600FC5DD3 = {
 			isa = PBXGroup;
 			children = (
@@ -769,6 +790,7 @@
 		9976C91D250105D000FC5DD3 /* Common Classes */ = {
 			isa = PBXGroup;
 			children = (
+				991DF264251CB5C800AEA1C3 /* Loader */,
 				9919A9922514D81600A67253 /* User Defaults */,
 				991ADE9A2506454700932251 /* Custom Classes */,
 				9976C95F250118E900FC5DD3 /* Constants */,
@@ -795,6 +817,7 @@
 				9976C9222501066B00FC5DD3 /* CustomColors.swift */,
 				9976C95D2501173600FC5DD3 /* DeviceType.swift */,
 				46161AC425137F55006D2783 /* CommonExtensions.swift */,
+				991DF262251CB33100AEA1C3 /* UIViewController+Protocol.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -902,6 +925,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9976C95B2501165E00FC5DD3 /* Roboto-Thin.ttf in Resources */,
+				991DF26A251CB5C900AEA1C3 /* EPOSLoader.xib in Resources */,
 				9976C9502501165E00FC5DD3 /* Roboto-Medium.ttf in Resources */,
 				9976C9572501165E00FC5DD3 /* Roboto-Italic.ttf in Resources */,
 				99186D4A2511D27F00A9FE07 /* LoginScreen.storyboard in Resources */,
@@ -930,6 +954,7 @@
 				9976C9542501165E00FC5DD3 /* Roboto-ThinItalic.ttf in Resources */,
 				9976C9122500F05800FC5DD3 /* Assets.xcassets in Resources */,
 				9976C9552501165E00FC5DD3 /* Roboto-BoldItalic.ttf in Resources */,
+				991DF26B251CB5C900AEA1C3 /* loadingAnimation.gif in Resources */,
 				99186D1E2510D6D600A9FE07 /* .swiftlint.yml in Resources */,
 				9919A99A2517336F00A67253 /* MerchantDetailsViewController.xib in Resources */,
 				9919A9AA251770E100A67253 /* IFSCDetailTableViewCell.xib in Resources */,
@@ -1072,6 +1097,7 @@
 				9919A9B02519E45400A67253 /* SelectPackageViewController.swift in Sources */,
 				9976C90D2500F05600FC5DD3 /* ViewController.swift in Sources */,
 				9919A99D25174B2D00A67253 /* BankDetailsViewController.swift in Sources */,
+				991DF269251CB5C900AEA1C3 /* GifLoader.swift in Sources */,
 				46BD9B4225160767008DEFEA /* IntialDataRequest.swift in Sources */,
 				9919A9942514D83000A67253 /* EPOSUserDefaults.swift in Sources */,
 				46BD9B54251AFE80008DEFEA /* GenericSwitchingViewController.swift in Sources */,
@@ -1084,6 +1110,7 @@
 				99186D5F2511D45600A9FE07 /* Constants.swift in Sources */,
 				99186CC62508EF9500A9FE07 /* HomeViewController.swift in Sources */,
 				99186D3B2511D21000A9FE07 /* ApiClient.swift in Sources */,
+				991DF26E251CBB2E00AEA1C3 /* EPOSLoader.swift in Sources */,
 				99186D582511D32E00A9FE07 /* BottomLineTextField.swift in Sources */,
 				99186D3C2511D21000A9FE07 /* User.swift in Sources */,
 				9976C95E2501173600FC5DD3 /* DeviceType.swift in Sources */,
@@ -1128,6 +1155,7 @@
 				9976C9092500F05600FC5DD3 /* AppDelegate.swift in Sources */,
 				46BD9B46251617A7008DEFEA /* BaseRequest.swift in Sources */,
 				99186D722512494C00A9FE07 /* PersonalInfoViewController+Dropdown.swift in Sources */,
+				991DF263251CB33100AEA1C3 /* UIViewController+Protocol.swift in Sources */,
 				9919A9A525176D9D00A67253 /* IFSCCodeDetailViewController.swift in Sources */,
 				991ADEAD250662EF00932251 /* EPOSShadowView.swift in Sources */,
 				46161AC525137F56006D2783 /* CommonExtensions.swift in Sources */,
