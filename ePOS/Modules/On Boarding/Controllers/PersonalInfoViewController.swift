@@ -32,6 +32,8 @@ class PersonalInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         configureUIInitially()
         // Do any additional setup after loading the view.
     }
@@ -46,6 +48,7 @@ private
 extension PersonalInfoViewController {
     //MARK: - ConfigureUI
     func configureUIInitially() {
+        textFieldPAN.delegate = self
         checkbox.style = .tick
         checkbox.borderStyle = .roundedSquare(radius: 2)
         
@@ -86,6 +89,20 @@ extension PersonalInfoViewController {
 }
 
 
+//MARK: - textfield delegate
+extension PersonalInfoViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if (textField == textFieldPAN) {
+            let textFieldCharacterCount = textField.text?.count ?? 0
+            if (textFieldCharacterCount < 10 || textFieldCharacterCount > 10) {
+                textFieldPAN.trailingAssistiveLabel.text = "Invalid PAN number"
+            } else {
+                textFieldPAN.trailingAssistiveLabel.text = ""
+         }
+        }
+    }
+
+}
 //MARK: - Actions
 extension PersonalInfoViewController {
     
