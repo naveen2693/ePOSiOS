@@ -16,8 +16,13 @@ class StatusDemoViewController: UIViewController {
         let controller = PersonalInfoViewController.init(nibName: PersonalInfoViewController.className, bundle: nil)
         self.navigationController?.pushViewController(controller, animated: true)
         // Do any additional setup after loading the view.
+//        showLoading()
+//        perform(#selector(hideLoader), with: nil, afterDelay: 5.0)
     }
     
+    @objc func hideLoader() {
+//        stopLoading()
+    }
 
     @IBAction func firstClicked(_ sender: Any) {
         

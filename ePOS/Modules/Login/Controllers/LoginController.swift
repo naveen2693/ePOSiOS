@@ -29,6 +29,7 @@ class LoginController: UIViewController{
     }
     
     @IBAction func ButtonSubmit(_ sender: Any) {
+        showLoading()
         let response = Validation.shared.validate(values: (type: ValidationType.phoneNo, inputValue:textFieldMobileNumber.text as Any),(ValidationType.checkBoxChecked,CheckBox))
         switch response {
         case .success:
@@ -43,6 +44,7 @@ class LoginController: UIViewController{
                 
             })
         case .failure(_, let message):
+            hideLoading()
             print(message.localized())
         }
     }
