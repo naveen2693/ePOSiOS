@@ -63,8 +63,9 @@ enum Constants:String {
     case urlTermOfUser = "http://www.example.com/terms";
     case UrlPrivacyPolicy = "http://www.example.com/privacy";
     case modeValueForMasterData = "epos";
-  
-    
+    case errorMessage = "There was some unexpected error. Please try again later"
+    case passwordChangeALertMessage = "Password Changed Successfully"
+    case success = "SUCCESS"
 }
 enum ConstantsInt: Int{
     

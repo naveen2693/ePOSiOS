@@ -10,186 +10,233 @@
     </dependencies>
     <scenes>
         <!--Sign Up Controller-->
-        <scene sceneID="Yxb-38-v3v">
+        <scene sceneID="lpP-w1-QVv">
             <objects>
-                <viewController storyboardIdentifier="SignUpController" id="2kX-aH-mxb" customClass="SignUpController" customModule="ePOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="fgi-Eb-SnT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                <viewController storyboardIdentifier="SignUpController" id="ZCN-QI-E6c" customClass="SignUpController" customModule="ePOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qUV-Od-Gis">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FHr-J1-wNK">
-                                <rect key="frame" x="0.0" y="58" width="414" height="838"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BDx-bl-F8h">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dotedTexture" translatesAutoresizingMaskIntoConstraints="NO" id="YhW-Am-kCS">
-                                        <rect key="frame" x="0.0" y="8" width="414" height="819"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" name="themeDarkColor"/>
-                                    </imageView>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bko-dM-HkZ" customClass="RoundedCornerView" customModule="ePOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="823"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GMZ-MZ-JXd" customClass="RoundedCornerView" customModule="ePOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zJB-lP-p7g" customClass="EPOSTextField">
-                                                <rect key="frame" x="20" y="51" width="375" height="49"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zJB-lP-p7g" customClass="EPOSTextField">
+                                                <rect key="frame" x="20" y="484" width="375" height="49"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="49" id="atF-E7-07V"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Shop / Business Name"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Confirm Password"/>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PRR-wY-BjY" customClass="EPOSTextField">
-                                                <rect key="frame" x="20" y="137" width="375" height="49"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Contact Name"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mLU-rV-OIb" customClass="EPOSTextField">
-                                                <rect key="frame" x="20" y="222" width="375" height="49"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Mobile Number"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ter-sZ-RBf" customClass="EPOSTextField">
-                                                <rect key="frame" x="20" y="306" width="375" height="49"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Email ID"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jY8-6E-yrG" customClass="EPOSTextField">
-                                                <rect key="frame" x="20" y="394" width="375" height="49"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Set Password"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eJk-Tg-vYB" customClass="EPOSTextField">
-                                                <rect key="frame" x="20" y="487" width="375" height="49"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qXc-tA-1Fo" customClass="EPOSTextField">
-                                                <rect key="frame" x="20" y="575" width="375" height="49"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PRR-wY-BjY" customClass="EPOSTextField">
+                                                <rect key="frame" x="19" y="575" width="375" height="49"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="49" id="d74-Q8-JbA"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Referral Code"/>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9ff-ms-o0F">
-                                                <rect key="frame" x="0.0" y="680" width="414" height="125"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <subviews>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="I Agree to Terms of Use &amp; Privacy Policy" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iuA-pK-rzc">
-                                                        <rect key="frame" x="93" y="32" width="227" height="49.5"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    </textView>
-                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bsI-3A-cJZ" customClass="CheckBox" customModule="ePOS" customModuleProvider="target">
-                                                        <rect key="frame" x="42" y="44" width="25" height="24"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                        <color key="tintColor" name="themeDarkColor"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isChecked" value="NO"/>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="uncheckedBorderColor">
-                                                                <color key="value" name="themeDarkColor"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="checkedBorderColor">
-                                                                <color key="value" name="themeDarkColor"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="checkmarkColor">
-                                                                <color key="value" name="themeDarkColor"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r7I-iI-g9K" customClass="EPOSRoundButton" customModule="ePOS" customModuleProvider="target">
-                                                        <rect key="frame" x="328" y="32" width="78" height="50"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <connections>
-                                                            <action selector="buttonSubmit:" destination="2kX-aH-mxb" eventType="touchUpInside" id="6yN-vW-JY7"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ter-sZ-RBf" customClass="EPOSTextField">
+                                                <rect key="frame" x="20" y="410" width="375" height="49"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="49" id="fkm-MU-3uk"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Set Password"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mLU-rV-OIb" customClass="EPOSTextField">
+                                                <rect key="frame" x="20" y="322" width="375" height="49"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="49" id="N8p-4A-KzQ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Email ID"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jY8-6E-yrG" customClass="EPOSTextField">
+                                                <rect key="frame" x="20" y="238" width="375" height="49"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="49" id="mAY-RN-eqU"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Mobile Number"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eJk-Tg-vYB" customClass="EPOSTextField">
+                                                <rect key="frame" x="19" y="143" width="375" height="49"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="49" id="Bjp-0Q-8Ra"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Contact Name"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qXc-tA-1Fo" customClass="EPOSTextField">
+                                                <rect key="frame" x="20" y="52" width="375" height="49"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="49" id="fTh-Pn-QVi"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Shop / Business Name"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="I Agree to Terms of Use &amp; Privacy Policy" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iuA-pK-rzc">
+                                                <rect key="frame" x="48" y="718" width="227" height="49.5"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="49.5" id="5Wq-78-a06"/>
+                                                    <constraint firstAttribute="height" constant="49.5" id="BIc-zY-mIq"/>
+                                                    <constraint firstAttribute="width" constant="227" id="Lsh-WK-EEw"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="227" id="bQE-UQ-jVy"/>
+                                                </constraints>
+                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bsI-3A-cJZ" customClass="CheckBox" customModule="ePOS" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="722" width="32" height="27"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="tintColor" name="themeDarkColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="27" id="EeA-rF-ROv"/>
+                                                    <constraint firstAttribute="width" constant="32" id="lPk-sF-Q6H"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="27" id="mRR-x4-3pe"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isChecked" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="uncheckedBorderColor">
+                                                        <color key="value" name="themeDarkColor"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="checkedBorderColor">
+                                                        <color key="value" name="themeDarkColor"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="checkmarkColor">
+                                                        <color key="value" name="themeDarkColor"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r7I-iI-g9K" customClass="EPOSRoundButton" customModule="ePOS" customModuleProvider="target">
+                                                <rect key="frame" x="327" y="694" width="68" height="59"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="59" id="2bF-tN-tvc"/>
+                                                    <constraint firstAttribute="width" constant="68" id="gcw-JV-wuk"/>
+                                                </constraints>
+                                                <connections>
+                                                    <action selector="buttonSubmit:" destination="ZCN-QI-E6c" eventType="touchUpInside" id="5oL-Ip-9iB"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRound">
-                                                <real key="value" value="20"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
+                                        <constraints>
+                                            <constraint firstItem="ter-sZ-RBf" firstAttribute="leading" secondItem="GMZ-MZ-JXd" secondAttribute="leading" constant="20" id="2E8-eO-BcF"/>
+                                            <constraint firstItem="eJk-Tg-vYB" firstAttribute="leading" secondItem="GMZ-MZ-JXd" secondAttribute="leading" constant="19" id="6Yv-9i-yky"/>
+                                            <constraint firstItem="ter-sZ-RBf" firstAttribute="top" secondItem="mLU-rV-OIb" secondAttribute="bottom" constant="39" id="8J6-d3-bZl"/>
+                                            <constraint firstItem="zJB-lP-p7g" firstAttribute="top" secondItem="ter-sZ-RBf" secondAttribute="bottom" constant="25" id="8tm-qF-ABJ"/>
+                                            <constraint firstItem="iuA-pK-rzc" firstAttribute="leading" secondItem="bsI-3A-cJZ" secondAttribute="trailing" constant="8" id="B07-za-CP7"/>
+                                            <constraint firstAttribute="trailing" secondItem="eJk-Tg-vYB" secondAttribute="trailing" constant="20" id="CO1-f4-7B9"/>
+                                            <constraint firstItem="jY8-6E-yrG" firstAttribute="top" secondItem="eJk-Tg-vYB" secondAttribute="bottom" constant="46" id="FHl-eG-4MU"/>
+                                            <constraint firstAttribute="trailing" secondItem="mLU-rV-OIb" secondAttribute="trailing" constant="19" id="IyR-jv-Kx2"/>
+                                            <constraint firstAttribute="trailing" secondItem="zJB-lP-p7g" secondAttribute="trailing" constant="19" id="JSZ-xG-UBP"/>
+                                            <constraint firstItem="qXc-tA-1Fo" firstAttribute="leading" secondItem="GMZ-MZ-JXd" secondAttribute="leading" constant="20" id="NHY-Jo-7MS"/>
+                                            <constraint firstItem="PRR-wY-BjY" firstAttribute="leading" secondItem="GMZ-MZ-JXd" secondAttribute="leading" constant="19" id="NKa-dP-xaj"/>
+                                            <constraint firstItem="PRR-wY-BjY" firstAttribute="top" secondItem="zJB-lP-p7g" secondAttribute="bottom" constant="42" id="Syi-8D-Rsm"/>
+                                            <constraint firstAttribute="trailing" secondItem="qXc-tA-1Fo" secondAttribute="trailing" constant="19" id="bM7-Q6-FZU"/>
+                                            <constraint firstItem="iuA-pK-rzc" firstAttribute="top" secondItem="PRR-wY-BjY" secondAttribute="bottom" constant="94" id="bNM-op-Yxx"/>
+                                            <constraint firstItem="iuA-pK-rzc" firstAttribute="leading" secondItem="bsI-3A-cJZ" secondAttribute="trailing" constant="8" id="bcN-aa-mzR"/>
+                                            <constraint firstItem="bsI-3A-cJZ" firstAttribute="leading" secondItem="GMZ-MZ-JXd" secondAttribute="leading" constant="8" id="d5Y-hA-42x"/>
+                                            <constraint firstItem="jY8-6E-yrG" firstAttribute="leading" secondItem="GMZ-MZ-JXd" secondAttribute="leading" constant="20" id="e72-XJ-CO9"/>
+                                            <constraint firstItem="eJk-Tg-vYB" firstAttribute="top" secondItem="qXc-tA-1Fo" secondAttribute="bottom" constant="42" id="eTI-rJ-fjK"/>
+                                            <constraint firstAttribute="trailing" secondItem="r7I-iI-g9K" secondAttribute="trailing" constant="19" id="geV-Jo-S72"/>
+                                            <constraint firstAttribute="trailing" secondItem="ter-sZ-RBf" secondAttribute="trailing" constant="19" id="h26-Ck-4xb"/>
+                                            <constraint firstItem="r7I-iI-g9K" firstAttribute="leading" secondItem="iuA-pK-rzc" secondAttribute="trailing" constant="52" id="hCd-aV-dmQ"/>
+                                            <constraint firstItem="mLU-rV-OIb" firstAttribute="leading" secondItem="GMZ-MZ-JXd" secondAttribute="leading" constant="20" id="mMW-Fs-she"/>
+                                            <constraint firstItem="bsI-3A-cJZ" firstAttribute="top" secondItem="PRR-wY-BjY" secondAttribute="bottom" constant="98" id="o0o-Cb-6P3"/>
+                                            <constraint firstAttribute="trailing" secondItem="jY8-6E-yrG" secondAttribute="trailing" constant="19" id="pIp-lC-OEY"/>
+                                            <constraint firstItem="r7I-iI-g9K" firstAttribute="top" secondItem="PRR-wY-BjY" secondAttribute="bottom" constant="70" id="rxP-df-zKQ"/>
+                                            <constraint firstAttribute="trailing" secondItem="PRR-wY-BjY" secondAttribute="trailing" constant="20" id="uWs-CV-Z8M"/>
+                                            <constraint firstItem="mLU-rV-OIb" firstAttribute="top" secondItem="jY8-6E-yrG" secondAttribute="bottom" constant="35" id="uav-wf-pBM"/>
+                                            <constraint firstItem="qXc-tA-1Fo" firstAttribute="top" secondItem="GMZ-MZ-JXd" secondAttribute="top" constant="52" id="uhD-NK-0aX"/>
+                                            <constraint firstItem="zJB-lP-p7g" firstAttribute="leading" secondItem="GMZ-MZ-JXd" secondAttribute="leading" constant="20" id="yPI-PW-FDi"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
-                                <viewLayoutGuide key="contentLayoutGuide" id="ueq-hY-pk3"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="5r0-r7-ylF"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="GMZ-MZ-JXd" secondAttribute="trailing" id="94f-QA-s6S"/>
+                                    <constraint firstAttribute="bottom" secondItem="GMZ-MZ-JXd" secondAttribute="bottom" id="Qt7-sC-F7j"/>
+                                    <constraint firstItem="GMZ-MZ-JXd" firstAttribute="top" secondItem="BDx-bl-F8h" secondAttribute="top" id="Wj5-r4-yRa"/>
+                                    <constraint firstItem="GMZ-MZ-JXd" firstAttribute="leading" secondItem="BDx-bl-F8h" secondAttribute="leading" id="ZEA-WA-H0a"/>
+                                    <constraint firstItem="GMZ-MZ-JXd" firstAttribute="centerY" secondItem="BDx-bl-F8h" secondAttribute="centerY" id="gQm-wW-3Lb"/>
+                                </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="eLo-UP-04p"/>
+                        <constraints>
+                            <constraint firstItem="BDx-bl-F8h" firstAttribute="top" secondItem="qUV-Od-Gis" secondAttribute="top" id="8X4-xf-VKv"/>
+                            <constraint firstItem="BDx-bl-F8h" firstAttribute="trailing" secondItem="Icx-pk-5b7" secondAttribute="trailing" id="GaB-N9-lfy"/>
+                            <constraint firstItem="BDx-bl-F8h" firstAttribute="leading" secondItem="Icx-pk-5b7" secondAttribute="leading" id="OTA-3Q-YZa"/>
+                            <constraint firstItem="GMZ-MZ-JXd" firstAttribute="width" secondItem="qUV-Od-Gis" secondAttribute="width" id="sOr-uO-RnV"/>
+                            <constraint firstAttribute="bottom" secondItem="BDx-bl-F8h" secondAttribute="bottom" id="tmL-YF-gzk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Icx-pk-5b7"/>
                     </view>
-                    <navigationItem key="navigationItem" id="99R-PU-EpJ"/>
+                    <navigationItem key="navigationItem" id="zDY-yF-S3J"/>
+                    <size key="freeformSize" width="414" height="1000"/>
                     <connections>
-                        <outlet property="buttonCheckBox" destination="bsI-3A-cJZ" id="qyw-Uq-HRF"/>
-                        <outlet property="textFIeldContactName" destination="PRR-wY-BjY" id="Jj7-3R-IKC"/>
-                        <outlet property="textFieldBusinessName" destination="zJB-lP-p7g" id="e7u-51-Udk"/>
-                        <outlet property="textFieldConfirmPassword" destination="eJk-Tg-vYB" id="ihU-j8-Rj6"/>
-                        <outlet property="textFieldEmailId" destination="ter-sZ-RBf" id="90F-P4-VrZ"/>
-                        <outlet property="textFieldMobileNumber" destination="mLU-rV-OIb" id="YSd-5o-noC"/>
-                        <outlet property="textFieldPassword" destination="jY8-6E-yrG" id="dvC-Gz-hRD"/>
-                        <outlet property="textFieldReferralCode" destination="qXc-tA-1Fo" id="OVu-6H-mBZ"/>
-                        <outlet property="textView" destination="iuA-pK-rzc" id="pgb-qk-VmX"/>
+                        <outlet property="buttonCheckBox" destination="bsI-3A-cJZ" id="20u-TC-XyE"/>
+                        <outlet property="textFIeldContactName" destination="eJk-Tg-vYB" id="xWa-J6-cg3"/>
+                        <outlet property="textFieldBusinessName" destination="qXc-tA-1Fo" id="qeA-d6-oez"/>
+                        <outlet property="textFieldConfirmPassword" destination="zJB-lP-p7g" id="Xoo-X9-2nC"/>
+                        <outlet property="textFieldEmailId" destination="mLU-rV-OIb" id="rPg-9c-hAR"/>
+                        <outlet property="textFieldMobileNumber" destination="jY8-6E-yrG" id="F6u-r9-LHQ"/>
+                        <outlet property="textFieldPassword" destination="ter-sZ-RBf" id="kYY-17-ZP7"/>
+                        <outlet property="textFieldReferralCode" destination="PRR-wY-BjY" id="NLj-Dy-14A"/>
+                        <outlet property="textView" destination="iuA-pK-rzc" id="hXC-fu-9Po"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iRA-Ue-N6z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QhC-vi-paq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5039.130434782609" y="750.66964285714278"/>
+            <point key="canvasLocation" x="6621.739130434783" y="750.66964285714278"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="wAs-BT-YJa">
+        <scene sceneID="S36-GA-Nt7">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rE3-TN-LHh" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7Yn-iN-YUx" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mT1-HZ-Osv">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LRg-3f-yov">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" name="themeDarkColor"/>
-                        <color key="barTintColor" name="themeDarkColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="2kX-aH-mxb" kind="relationship" relationship="rootViewController" id="iG0-I6-PN0"/>
+                        <segue destination="ZCN-QI-E6c" kind="relationship" relationship="rootViewController" id="JYE-6j-6Ky"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="P43-Eh-jdF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pS0-4A-pED" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4128.985507246377" y="750.66964285714278"/>
+            <point key="canvasLocation" x="5711.594202898551" y="750.66964285714278"/>
         </scene>
     </scenes>
     <resources>
-        <image name="dotedTexture" width="347" height="622"/>
         <namedColor name="themeDarkColor">
             <color red="0.066666666666666666" green="0.68627450980392157" blue="0.35294117647058826" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

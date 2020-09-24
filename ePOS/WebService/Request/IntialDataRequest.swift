@@ -62,7 +62,7 @@ public struct SignUpKeys:Codable{
     var email:String?;
     var establishmentName:String?
     var password:String?
-    var deviceInfo:DeviceInformationKeys?
+    var deviceInfo = DeviceInformationKeys()
     var tncFlag:String?
     var referralCode:String?
     
@@ -77,6 +77,7 @@ public struct SignUpKeys:Codable{
         case referralCode = "referralCode"
     }
 }
+
 // MARK:-Configuration Field
 public struct ConfigurationKeys : Codable{
     var globalChngeNumber:Int?;

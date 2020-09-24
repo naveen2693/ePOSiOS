@@ -25,6 +25,8 @@ class SignUpController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.textView?.delegate = self
+        checkBoxConfiguration()
+        populateData()
         if let unwrappedTextView = textView {
             Util.passTextViewReference(textViewField : unwrappedTextView)
         } else {
@@ -32,26 +34,23 @@ class SignUpController: UIViewController {
         }
     }
     
-    @IBAction func buttonSubmit(_ sender: Any) {
+    private func populateData()
+    {
+        textFieldMobileNumber.text = mobileNumber
         
-        let establishmentName:String = textFieldBusinessName.text!
-        let contactName:String =  textFIeldContactName.text!
-        let email:String =  textFieldEmailId.text!
-        let password:String =  textFieldPassword.text!
-        let confirmPassword:String =  textFieldConfirmPassword.text!
-        let referralCode:String =  textFieldReferralCode.text!
+    }
+    @IBAction func buttonSubmit(_ sender: Any) {
         // MARK:- Validation
-        let response = Validation.shared.validate(values: (ValidationType.alphabeticString, establishmentName)
-            ,(ValidationType.alphabeticString,contactName)
-            ,(ValidationType.email,email)
-            ,(ValidationType.password,password)
-            ,(ValidationType.alphabeticString,referralCode)
+        let response = Validation.shared.validate(values: (ValidationType.alphabeticString, textFieldBusinessName.text as Any)
+            ,(ValidationType.alphabeticString,textFIeldContactName.text  as Any)
+            ,(ValidationType.email,textFieldEmailId.text  as Any)
+            ,(ValidationType.password,textFieldPassword.text  as Any)
             ,(ValidationType.checkBoxChecked,checkBox)
-            ,(ValidationType.confirmPassword,confirmPassword))
+            ,(ValidationType.confirmPassword,textFieldConfirmPassword.text  as Any))
         
         switch response {
         case .success:
-            IntialDataRequest.callApiSignupRequest(signUpData: SignUpData(contactName:contactName, email:email, establishmentName: password, password:establishmentName, referralCode:referralCode,contactNumber:mobileNumber), completion:{result in
+            IntialDataRequest.callApiSignupRequest(signUpData: SignUpData(contactName:textFIeldContactName.text, email:textFieldEmailId.text, establishmentName: textFieldBusinessName.text, password:textFieldPassword.text, referralCode:textFieldReferralCode.text,contactNumber:mobileNumber), completion:{result in
                 switch result {
                     
                 case .success(let response):
@@ -102,10 +101,19 @@ class SignUpController: UIViewController {
     //       startActivity(intent);
     //   }
     //
-    @objc func onCheckBoxValueChange(_ sender: CheckBox) {
+@objc func onCheckBoxValueChange(_ sender: CheckBox) {
         checkBox = sender.isChecked;
+        checkBox = true;
     }
+private func checkBoxConfiguration()
+    {
+        buttonCheckBox?.style = .tick
+        buttonCheckBox?.borderStyle = .roundedSquare(radius: 12)
+        buttonCheckBox?.addTarget(self, action: #selector(onCheckBoxValueChange(_:)), for: .valueChanged)
 }
+}
+// MARK:- CheckBox Configuration
+
 extension SignUpController:UITextViewDelegate
 {
     // MARK:- Term&Condition link Interaction

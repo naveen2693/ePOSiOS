@@ -25,14 +25,14 @@ class PasswordController: UIViewController {
     
     @IBAction func buttonSubmit(_ sender: Any) {
 
-        let response = Validation.shared.validate(values: (type: ValidationType.password, inputValue:textFieldPassword.text as? Any ))
+        let response = Validation.shared.validate(values: (type: ValidationType.password, inputValue:textFieldPassword.text as Any  ))
         switch response {
         case .success:
             if let unwrappedMobileNumber = mobileNumber {
-                IntialDataRequest.callLoginApiAfterNumberVerfication(mobileNumber:unwrappedMobileNumber, password:textFieldPassword.text! ,completion:{result in
+                IntialDataRequest.callLoginApiAfterNumberVerfication(mobileNumber:unwrappedMobileNumber, password:textFieldPassword.text! ,completion:{[weak self] result in
                     switch result {
                     case .success(let response):
-                        OnBoardingRequest.getUserProfileAndProceedToLaunch(showProgress: true, completion:{result in
+                        OnBoardingRequest.getUserProfileAndProceedToLaunch(showProgress: true, completion:{ result in
                         switch result {
                         case .success(let response):
                             print(response)
@@ -56,6 +56,9 @@ class PasswordController: UIViewController {
     {
         let viewController = ForgotPasswordController.instantiate(appStoryboard: .loginScreen)
         viewController.mobileNumber = mobileNumber
-        self.navigationController?.pushViewController(viewController, animated: true)
+        let navController = UINavigationController(rootViewController: viewController)
+        navController.modalPresentationStyle = .overCurrentContext
+        navController.modalTransitionStyle = .crossDissolve
+        self.present(navController, animated: false, completion: nil)
     }
 }

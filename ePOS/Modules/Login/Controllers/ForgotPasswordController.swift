@@ -15,6 +15,10 @@ class ForgotPasswordController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if(mobileNumber == nil)
+        {
+            self.showAlert(title: "Error", message:Constants.errorMessage.rawValue )
+        }
     }
     
     @IBAction func buttonLogin(_ sender: Any) {
@@ -28,11 +32,11 @@ class ForgotPasswordController : UIViewController {
         let response = Validation.shared.validate(values: (type: ValidationType.phoneNo, inputValue:mobileNumber))
         switch response {
         case .success:
-            IntialDataRequest.forgotPasswordCallApiWith(mobileNumber:mobileNumber,completion:{result in
+            IntialDataRequest.forgotPasswordCallApiWith(mobileNumber:mobileNumber,completion:{[weak self] result in
                 switch result {
                 case .success(let response):
                     print(response);
-                    self.gotoPasswordResetLinkMsgController(mobileNumber: mobileNumber);
+                    self?.gotoPasswordResetLinkMsgController(mobileNumber: mobileNumber);
                     
                 case .failure(let error):
                     print(error)
@@ -46,7 +50,7 @@ class ForgotPasswordController : UIViewController {
     
     private func gotoPasswordResetLinkMsgController(mobileNumber:String)
     {
-        let viewController = ResetPasswordController.instantiate(appStoryboard: .loginScreen)
+        let viewController = PasswordResetLinkMsgController.instantiate(appStoryboard: .loginScreen)
         viewController.mobileNumber = mobileNumber
         self.navigationController?.pushViewController(viewController, animated: true)
     }

@@ -13,7 +13,7 @@ class OTPVerficationController:UIViewController {
     var mobileNumber:String?
     var activeTextField = UITextField()
     var lastTextField :OTPTextField?
-    var otp:String="";
+    var otpValue:String="";
     var otpTimer = Timer()
     var timingCount = 5
     
@@ -50,6 +50,15 @@ class OTPVerficationController:UIViewController {
         textField6?.pineDelegate = self
         textField7?.pineDelegate = self
         textField8?.pineDelegate = self
+    
+        textField1?.delegate = self
+        textField2?.delegate = self
+        textField3?.delegate = self
+        textField4?.delegate = self
+        textField5?.delegate = self
+        textField6?.delegate = self
+        textField7?.delegate = self
+        textField8?.delegate = self
         setLastTextField()
         // Do any additional setup after loading the view.
     }
@@ -62,16 +71,16 @@ class OTPVerficationController:UIViewController {
     }
     
     @IBAction func buttonSubmit(_ sender: Any) {
-        otp = "822620"
-        let response = Validation.shared.validate(values:(ValidationType.otp,otp))
+          activeTextField.resignFirstResponder()
+        let response = Validation.shared.validate(values:(ValidationType.otp,otpValue))
         switch response {
         case .success:
             if let unwrappedMobileNumber = mobileNumber {
-                IntialDataRequest.callApiVerifyOtpWith(mobileNumber:unwrappedMobileNumber,otp:otp,completion:{result in
+                IntialDataRequest.callApiVerifyOtpWith(mobileNumber:unwrappedMobileNumber,otp:otpValue,completion:{[weak self]  result in
                     switch result {
                     case .success(let response):
                         print(response);
-                        self.gotoSignUpController()
+                        self?.gotoSignUpController()
                     case .failure(let error):
                         print(error);
                         
@@ -86,7 +95,7 @@ class OTPVerficationController:UIViewController {
     private func callResendOtp()
     {
         if let unwrappedMobileNumber = mobileNumber {
-            IntialDataRequest.resendOtpCallApiWith(mobileNumber:unwrappedMobileNumber,completion:{result in
+            IntialDataRequest.resendOtpCallApiWith(mobileNumber:unwrappedMobileNumber,completion:{[weak self] result in
                 switch result {
                 case .success(let response):
                     print(response);
@@ -258,8 +267,8 @@ extension OTPVerficationController: UITextFieldDelegate {
         activeTextField = textField
     }
     
-public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        otp += otp
+func textField(_ textField: UITextField,shouldChangeCharactersIn range:NSRange, replacementString string: String) -> Bool {
+        otpValue = otpValue+string
         if let text = textField.text {
             
             if (text.count < 1) && (!string.isEmpty) {

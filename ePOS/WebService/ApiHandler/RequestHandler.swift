@@ -115,7 +115,14 @@ public class RequestHandler{
         request.password = signUpData.password;
         request.tncFlag = "YES"
         request.referralCode = signUpData.referralCode;
-        // request.deviceInfo = deviceInfo;
+        request.deviceInfo.displayDensity = "";
+        request.deviceInfo.deviceOS = "";
+        request.deviceInfo.pushNotificationToken = "";
+        request.deviceInfo.deviceType = "";
+        request.deviceInfo.horizontalRes = "";
+        request.deviceInfo.verticalRes = "";
+        request.deviceInfo.manufacturerName = "";
+        request.deviceInfo.deviceModel = "";
         return request;
     }
 // MARK:- createLoginRequest

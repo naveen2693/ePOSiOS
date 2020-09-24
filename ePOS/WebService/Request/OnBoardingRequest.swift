@@ -34,7 +34,7 @@ public struct MasterDataKeys:Codable{
     var mode:String?;
 }
 //MARK:-DeviceInformationKeys
-struct DeviceInformationKeys:Codable{
+struct DeviceInformationKeys : Codable{
     var displayDensity:String?;
     var deviceOS:String?
     var pushNotificationToken:String?;

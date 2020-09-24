@@ -17,13 +17,15 @@ class ResetPasswordController: UIViewController {
     var otpTimer = Timer()
     var timingCount = 20
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         otpTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
         if(mobileNumber == nil)
         {
-            //generate the alert for mobile number nil
+            self.showAlert(title: "Error", message:Constants.errorMessage.rawValue )
         }
+       
         //fillup the mobile Number
         setTextfields();
         
@@ -85,21 +87,22 @@ class ResetPasswordController: UIViewController {
     }
     
     @IBAction func buttonSubmit(_ sender: Any) {
-        let mobileNumber:String =  textFieldMobileNumber.text!
-        let otp:String =  textFieldOtp.text!
-        let password:String =  textFieldPassword.text!
-        let confirmPassword:String =  textFieldConfirmPassword.text!
-        let response = Validation.shared.validate(values: (ValidationType.phoneNo, mobileNumber)
-            ,(ValidationType.password,password)
-            ,(ValidationType.confirmPassword,confirmPassword)
-            ,(ValidationType.otp,otp))
+        let response = Validation.shared.validate(values: (ValidationType.phoneNo,  textFieldMobileNumber.text as Any)
+            ,(ValidationType.password,textFieldPassword.text as Any)
+            ,(ValidationType.confirmPassword,textFieldConfirmPassword.text as Any)
+            ,(ValidationType.otp,textFieldOtp.text as Any))
         switch response {
         case .success:
-            IntialDataRequest.resetPasswordCallApiwith(mobileNumber:mobileNumber,otp: otp,newPassword:password,completion:{result in
+            IntialDataRequest.resetPasswordCallApiwith(mobileNumber:mobileNumber!,otp: textFieldOtp.text!,newPassword:textFieldPassword.text!,completion:{[weak self] result in
                 switch result {
                 case .success(let response):
-                    print(response);
-                    // MARK:-generate the toast for successfull reset password
+                    print(response)
+                       
+                     DispatchQueue.main.async {
+                        
+                        self?.navigationController?.dismiss(animated: true, completion:nil)
+                    }
+                // MARK:-generate the toast for successfull reset password
                 case .failure(let error):
                     print(error);
                     

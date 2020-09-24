@@ -83,10 +83,10 @@ class LoginController: UIViewController{
             self.showAlert(title: "", message: "Mobile number not found")
             return
         }
-        IntialDataRequest.forgotPasswordCallApiWith(mobileNumber:mobileNumber,completion:{result in
+        IntialDataRequest.forgotPasswordCallApiWith(mobileNumber:mobileNumber,completion:{[weak self]  result in
             switch result {
             case .success(let response):
-                self.gotoPasswordResetController()
+                self?.gotoPasswordResetController()
                 print(response)
             case .failure(let error):
                 print(error)
@@ -149,7 +149,7 @@ class LoginController: UIViewController{
     // MARK:-Get Configuration Function Defination
     private func getConfigurationData()
     {
-        IntialDataRequest.getConfigurationDataWith(globalChangeNumber:0,completion:{result in
+        IntialDataRequest.getConfigurationDataWith(globalChangeNumber:0,completion:{ [weak self] result in
             switch result {
             case .success(let response):
                 print(response)
