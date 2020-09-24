@@ -15,6 +15,10 @@ enum ApiService
     
     case getSendOtpWith(mobileNumber:String)
     
+    case resetPasswordWith(mobileNumber:String,otp:String,newPassword:String)
+    
+    case getLoginWith(mobileNumber:String,password:String)
+    
 // MARK:- SignUp Apis
     case getSignUpWith(signUpData:SignUpData)
     
@@ -24,13 +28,12 @@ enum ApiService
     
     case getCityListWith(strLastModifiedDate:String)
     
-    case getFetchUserWith(listSortParams:ListSortParamsModel)
+    case getFetchUserWith(listSortParams:ListSortParams)
     
     case getLeadByIdWith(leadId:Int64)
     
 // MARK:- Configuration
     case getConfigurationsWith(globalChangeNumber:Int)
-
 }
 extension ApiService : TargetType
 {
@@ -52,6 +55,11 @@ extension ApiService : TargetType
             
         case .getSendOtpWith:
             return ApiEndpointsUrl.UserDetailsApiEndpointUrl.sendOtpUrl.rawValue
+            
+        case .resetPasswordWith:
+            return ApiEndpointsUrl.UserDetailsApiEndpointUrl.resetPasswordUrl.rawValue
+        case .getLoginWith:
+            return ApiEndpointsUrl.UserDetailsApiEndpointUrl.loginUrl.rawValue
             
     // MARK:- Sign Apis Path
         case .getSignUpWith:
@@ -79,7 +87,7 @@ extension ApiService : TargetType
            
         }
     }
-    
+
     var method:Moya.Method {
         switch self{
 // MARK:- Login Apis method
@@ -93,8 +101,14 @@ extension ApiService : TargetType
             return .post
             
         case .getSendOtpWith:
+            return .get
+        
+        case .resetPasswordWith:
             return .post
         
+        case .getLoginWith:
+            return .post
+            
 // MARK:- SignUp Apis Method
         case .getSignUpWith:
             return .post
@@ -133,30 +147,38 @@ extension ApiService : TargetType
           return .requestParameters(parameters:RequestHandler.createForgotPasswordRequest(mobileNum:mobileNumber), encoding: URLEncoding.queryString)
             
         case .getVerifyOtpWith(let mobileNumber,let otp):
-            return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
+            return  .requestJSONEncodable((RequestHandler
                 .createOTPVerifyRequest(mobileNum:mobileNumber,otp: otp)))
             
         case .getSendOtpWith(let mobileNumber):
             return  .requestParameters(parameters:RequestHandler.createOTPSendRequest(mobileNum:mobileNumber), encoding: URLEncoding.queryString)
             
+        case .resetPasswordWith(let mobileNumber,let otp, let newPassword):
+                  return  .requestJSONEncodable((RequestHandler
+                    .createResetPasswordRequest(mobileNumber:mobileNumber,otp: otp,password: newPassword)))
+            
+        case .getLoginWith(let mobileNumber, let password):
+            return  .requestJSONEncodable((RequestHandler
+                                     .createLoginRequest(mobileNumber: mobileNumber, password: password)))
+            
 // MARK:- SignUp Apis task
         case .getSignUpWith(let signUpData):
-            return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
+            return  .requestJSONEncodable((RequestHandler
                 .createSignUpRequest(signUpData: signUpData)))
             
         case .createRequestMasterDataWith(let mode):
-             return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
+             return  .requestJSONEncodable((RequestHandler
                 .createMasterDataRequest(mode: mode)))
             
         case .getCityListWith(let strLastModifiedDate):
-             return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
+             return  .requestJSONEncodable((RequestHandler
                 .createGetCityListRequest(strLastModifiedDate: strLastModifiedDate)))
             
         case .getFetchUserWith(let listSortParams):
             return .requestParameters(parameters:RequestHandler.createUserListRequest(params:listSortParams), encoding: URLEncoding.queryString)
             
         case .getLeadByIdWith(let leadId):
-            return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
+            return  .requestJSONEncodable((RequestHandler
                 .createGetLeadIDRequest(leadID: leadId)))
             
         case .getManageAccount:
@@ -164,12 +186,12 @@ extension ApiService : TargetType
         
 // MARK:-Configuration task
         case .getConfigurationsWith(let globalChngNum):
-            return  .requestJSONEncodable(try? JSONEncoder().encode(RequestHandler
+            return  .requestJSONEncodable((RequestHandler
                 .createConfigurationRequest(globalChangeNumber: globalChngNum)))
-        }
+        
 
     }
-    
+    }
     var headers: [String : String]? {
           switch self {
              case .getCheckUserWith:
@@ -184,9 +206,14 @@ extension ApiService : TargetType
                     case .getSendOtpWith:
                        return RequestHandler.createWebServiceHeaderWithoutAccessToken()
             
+                    case .getLoginWith:
+                    return RequestHandler.createWebServiceHeaderWithoutAccessToken()
+            
                     case .getSignUpWith:
-                        
                        return RequestHandler.createWebServiceHeaderWithoutAccessToken()
+            
+                    case .resetPasswordWith:
+                        return RequestHandler.createWebServiceHeaderWithoutAccessToken()
                         
                     case .getManageAccount:
                          return RequestHandler.createWebServiceHeaderWithAccessToken()

@@ -17,7 +17,7 @@ public struct SignUpData{
     public var contactNumber:String?;
 }
 // MARK:-ListSortParamsModel
-public class ListSortParamsModel{
+public struct ListSortParams{
     public var direction:String?;
     public var page:Int?
     public var size:Int?;

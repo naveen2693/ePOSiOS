@@ -23,6 +23,7 @@ enum ApiEndpointsUrl{
         case forgetPasswordUrl = "/rest/authentication/epos/forgotPassword";
         case resetPasswordUrl = "/rest/authentication/epos/resetPassword";
     }
+    
     enum OnboardingApiEndpointUrl: String
     {
         case getProfileUrl = "/rest/data/epos/getProfile";
@@ -33,32 +34,50 @@ enum ApiEndpointsUrl{
         
     }
 }
-    enum ApiHeaderKeys:String{
+
+enum ApiHeaderKeys:String{
     case requestHeaderClientKey = "X-app-clnt-id";
-        case requestHeaderDeviceKey = "X-dev-id";
-        case requestHeaderAccessTokenKey = "X-acs-tkn";
-        case requestHeaderBuildVersionKey = "X-bld-ver";
-        case requestHeaderImeiKey = "X-imei-num";
-        case requestClientTypeKey = "X-dev-clnt";
-        case requestHeaderAdvertisingKey = "X-dev-adv-id";
-        case requestHeaderUUIDKey = "X-app-uuid";
-        case requestHeaderContentTypeKey = "Content-Type";
-        case requestDeviceTypeKey = "MOBILE";
-        case requuestOsKey = "android_";
-        case requestHeaderClientTypeValue = "APP";
-        case requestHeaderContentTypeValue = "multipart/form-data";
-    }
+    case requestHeaderDeviceKey = "X-dev-id";
+    case requestHeaderAccessTokenKey = "X-acs-tkn";
+    case requestHeaderBuildVersionKey = "X-bld-ver";
+    case requestHeaderImeiKey = "X-imei-num";
+    case requestClientTypeKey = "X-dev-clnt";
+    case requestHeaderAdvertisingKey = "X-dev-adv-id";
+    case requestHeaderUUIDKey = "X-app-uuid";
+    case requestHeaderContentTypeKey = "Content-Type";
+    case requestDeviceTypeKey = "MOBILE";
+    case requuestOsKey = "android_";
+    case requestHeaderClientTypeValue = "APP";
+    case requestHeaderContentTypeValue = "multipart/form-data";
+}
 
 enum ClientRequestValues :String
 {
-    case requestHeaderClientValue = "oaFxIR0VEh8yFTP9wSGSh8wBjmO9sKwU";
+    case requestHeaderClientValue = "MZPJPDLXqQnxT4xmohbDFZUdjyqu5oC7";
 }
+
 enum Constants:String {
     case termAndConditionPolicyString="I Agree Terms of Use & Privacy Policy"
     case privacyPolicyString="Privacy Policy"
     case termsOfUserString="Terms of Use"
     case urlTermOfUser = "http://www.example.com/terms";
     case UrlPrivacyPolicy = "http://www.example.com/privacy";
+    case modeValueForMasterData = "epos";
+  
+    
+}
+enum ConstantsInt: Int{
+    
+      case eposConfigurationId = 30001
+}
 
+enum Boolean:String{
+    case yes = "YES";
+    case no = "NO";
+}
+
+enum UdfFields:String{
+    case keyISFirstTimeLoginUser = "isFirstTimeLoginUser";
+    case valUdfPositiveValue = "1"
 }
 

@@ -26,6 +26,7 @@ enum ValidationType {
     case password
     case checkBoxChecked
     case confirmPassword
+    case otp
 }
 
 enum RegEx: String {
@@ -51,6 +52,7 @@ enum AlertMessages: String {
     case emptyPSW = "Please Enter Password"
     case passwordMatch = "Passwords do not match"
     case checkBox = "Please confirm the term and condition"
+    case otp = "Please enter valid otp"
     func localized() -> String {
         return NSLocalizedString(self.rawValue, comment: "")
     }
@@ -94,6 +96,10 @@ class Validation: NSObject {
                 if let tempValue = isCheckboxChecked(checkbox: (valueToBeChecked.inputValue as? Bool)!, emptyAlert: .emptyPSW, invalidAlert: .checkBox) {
                     return tempValue
                 }
+            case .otp:
+                if let tempValue = isOtpChecked(otp: (valueToBeChecked.inputValue as? String)!, emptyAlert: .emptyPSW, invalidAlert: .otp) {
+                    return tempValue
+                }
             }
         }
         return .success
@@ -121,6 +127,13 @@ class Validation: NSObject {
         }
         return nil
     }
+    
+    func isOtpChecked(otp: String, emptyAlert: AlertMessages, invalidAlert: AlertMessages) -> Valid? {
+        if otp.count != 6 {
+              return .failure(.error, invalidAlert)
+          }
+          return nil
+      }
     
     func isValidRegEx(_ testStr: String, _ regex: RegEx) -> Bool {
         let stringTest = NSPredicate(format:"SELF MATCHES %@", regex.rawValue)

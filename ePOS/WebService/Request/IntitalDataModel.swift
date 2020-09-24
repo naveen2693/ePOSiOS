@@ -13,10 +13,12 @@ public struct CheckUserModel:Codable
     var userExists:String?
     var isRefferedUser:String?
     var UserData:UserData?
+    var udfFields:[String:String]?
     private enum CodingKeys: String, CodingKey {
         case userExists = "userExists"
         case isRefferedUser = "isRefferedUser"
         case UserData = "user"
+        case udfFields = "udfFields"
     }
 }
 //SubModelOfCheckUser
@@ -35,5 +37,6 @@ public struct UserData:Codable
         case email = "email"
         case appUuid = "appUuid"
         case mobileVerified = "mobileVerified"
-    }
+    }    
+    
 }
