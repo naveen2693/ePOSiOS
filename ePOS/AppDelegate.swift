@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: Firebase
     func configureFirebase() {
+        
 //        #if DEBUG || UAT
 //        let firebaseConfig = Bundle.main.path(forResource: "GoogleService-Info-dev", ofType: "plist")
 //        #else
