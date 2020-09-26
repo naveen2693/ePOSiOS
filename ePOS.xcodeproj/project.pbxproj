@@ -97,6 +97,9 @@
 		991DF26A251CB5C900AEA1C3 /* EPOSLoader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 991DF266251CB5C900AEA1C3 /* EPOSLoader.xib */; };
 		991DF26B251CB5C900AEA1C3 /* loadingAnimation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 991DF267251CB5C900AEA1C3 /* loadingAnimation.gif */; };
 		991DF26E251CBB2E00AEA1C3 /* EPOSLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991DF26D251CBB2E00AEA1C3 /* EPOSLoader.swift */; };
+		991DF271251DED7100AEA1C3 /* EPOSBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991DF270251DED7100AEA1C3 /* EPOSBaseView.swift */; };
+		991DF273251DED8000AEA1C3 /* EPOSBaseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 991DF272251DED8000AEA1C3 /* EPOSBaseView.xib */; };
+		996FD8A9251E1020001961EE /* CustomNavigationStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FD8A8251E1020001961EE /* CustomNavigationStyleViewController.swift */; };
 		9976C9092500F05600FC5DD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9976C9082500F05600FC5DD3 /* AppDelegate.swift */; };
 		9976C90D2500F05600FC5DD3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9976C90C2500F05600FC5DD3 /* ViewController.swift */; };
 		9976C9102500F05700FC5DD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9976C90E2500F05700FC5DD3 /* Main.storyboard */; };
@@ -219,6 +222,9 @@
 		991DF266251CB5C900AEA1C3 /* EPOSLoader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EPOSLoader.xib; sourceTree = "<group>"; };
 		991DF267251CB5C900AEA1C3 /* loadingAnimation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loadingAnimation.gif; sourceTree = "<group>"; };
 		991DF26D251CBB2E00AEA1C3 /* EPOSLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSLoader.swift; sourceTree = "<group>"; };
+		991DF270251DED7100AEA1C3 /* EPOSBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSBaseView.swift; sourceTree = "<group>"; };
+		991DF272251DED8000AEA1C3 /* EPOSBaseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EPOSBaseView.xib; sourceTree = "<group>"; };
+		996FD8A8251E1020001961EE /* CustomNavigationStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationStyleViewController.swift; sourceTree = "<group>"; };
 		9976C9052500F05600FC5DD3 /* ePOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ePOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9976C9082500F05600FC5DD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9976C90C2500F05600FC5DD3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -376,6 +382,8 @@
 		99186D092510922B00A9FE07 /* Common Views */ = {
 			isa = PBXGroup;
 			children = (
+				996FD8A7251E0FFA001961EE /* CustomNavigationStyle */,
+				991DF26F251DED4E00AEA1C3 /* BackgroundView */,
 				99186D662512443700A9FE07 /* Dropdown */,
 				99186D242511D1E000A9FE07 /* CommonWebviewController */,
 				99186D112510924000A9FE07 /* No Data Controller */,
@@ -746,6 +754,23 @@
 			path = Loader;
 			sourceTree = "<group>";
 		};
+		991DF26F251DED4E00AEA1C3 /* BackgroundView */ = {
+			isa = PBXGroup;
+			children = (
+				991DF270251DED7100AEA1C3 /* EPOSBaseView.swift */,
+				991DF272251DED8000AEA1C3 /* EPOSBaseView.xib */,
+			);
+			path = BackgroundView;
+			sourceTree = "<group>";
+		};
+		996FD8A7251E0FFA001961EE /* CustomNavigationStyle */ = {
+			isa = PBXGroup;
+			children = (
+				996FD8A8251E1020001961EE /* CustomNavigationStyleViewController.swift */,
+			);
+			path = CustomNavigationStyle;
+			sourceTree = "<group>";
+		};
 		9976C8FC2500F05600FC5DD3 = {
 			isa = PBXGroup;
 			children = (
@@ -935,6 +960,7 @@
 				9919A9A625176D9D00A67253 /* IFSCCodeDetailViewController.xib in Resources */,
 				99186D292511D1E000A9FE07 /* WebviewStoryBoard.storyboard in Resources */,
 				9919A9A22517528800A67253 /* SearchIFSCViewController.xib in Resources */,
+				991DF273251DED8000AEA1C3 /* EPOSBaseView.xib in Resources */,
 				9919A9BD251A475C00A67253 /* PackageDetailViewController.xib in Resources */,
 				99186D102510922B00A9FE07 /* FailedPopup.xib in Resources */,
 				99186D152510926800A9FE07 /* EmptyDataViewController.xib in Resources */,
@@ -1105,6 +1131,7 @@
 				46BD9B52251A8B69008DEFEA /* PasswordResetLinkMsgController.swift in Sources */,
 				9976C9232501066B00FC5DD3 /* CustomColors.swift in Sources */,
 				99186CCB2508F01400A9FE07 /* TransactionsViewController.swift in Sources */,
+				991DF271251DED7100AEA1C3 /* EPOSBaseView.swift in Sources */,
 				99186D212511D07E00A9FE07 /* Validation.swift in Sources */,
 				9976C9212501065D00FC5DD3 /* CustomFonts.swift in Sources */,
 				99186D5F2511D45600A9FE07 /* Constants.swift in Sources */,
@@ -1132,6 +1159,7 @@
 				991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */,
 				99186D142510926800A9FE07 /* EmptyDataViewController.swift in Sources */,
 				991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */,
+				996FD8A9251E1020001961EE /* CustomNavigationStyleViewController.swift in Sources */,
 				991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */,
 				9919A9962514DCAA00A67253 /* EPOSUserDefaults+Methods.swift in Sources */,
 				99186D17251092A700A9FE07 /* EmptyViewItem.swift in Sources */,

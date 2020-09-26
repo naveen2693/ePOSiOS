@@ -19,6 +19,7 @@ enum EPOSFontStyle: Int {
     case regular10 = 8
     case medium10 = 9
     case medium15 = 10
+    
 }
 
 

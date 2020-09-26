@@ -8,6 +8,7 @@
 
 import UIKit
 
+//MARK: - Loader UIViewController
 protocol LoaderPresentable {
     func showLoading()
     func hideLoading()
@@ -39,4 +40,21 @@ extension LoaderPresentable where Self: UIViewController {
     }
 }
 
-extension UIViewController: LoaderPresentable {}
+extension UIViewController: LoaderPresentable  {}
+//MARK: - RightLabelOnNavBar
+protocol RightLabelOnNavigationBar {
+    func setRightTitle(withTitle: String)
+}
+
+extension RightLabelOnNavigationBar where Self: CustomNavigationStyleViewController {
+    
+    func setRightTitle(withTitle: String) {
+        let label = EPOSLabel()
+        label.fontStyle = 4
+        label.textColor = UIColor.white
+        label.text = withTitle
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: label)
+    }
+}
+
+extension CustomNavigationStyleViewController: RightLabelOnNavigationBar {}

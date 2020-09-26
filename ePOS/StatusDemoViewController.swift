@@ -8,13 +8,19 @@
 
 import UIKit
 
-class StatusDemoViewController: UIViewController {
+
+
+
+class StatusDemoViewController: CustomNavigationStyleViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "First Screen"
+        setRightTitle(withTitle: "1/3")
+//
 //        let controller = EmptyDataViewController.viewController(NoUserItem(), delegate: self)
         let controller = PersonalInfoViewController.init(nibName: PersonalInfoViewController.className, bundle: nil)
-        self.navigationController?.pushViewController(controller, animated: true)
+        //self.navigationController?.pushViewController(controller, animated: true)
         // Do any additional setup after loading the view.
 //        showLoading()
 //        perform(#selector(hideLoader), with: nil, afterDelay: 5.0)
@@ -25,7 +31,8 @@ class StatusDemoViewController: UIViewController {
     }
 
     @IBAction func firstClicked(_ sender: Any) {
-        
+        let controller = PersonalInfoViewController.init(nibName: PersonalInfoViewController.className, bundle: nil)
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     /*
     // MARK: - Navigation

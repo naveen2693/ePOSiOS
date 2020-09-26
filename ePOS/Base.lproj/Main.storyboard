@@ -13,20 +13,37 @@
         <scene sceneID="6FA-KZ-2Up">
             <objects>
                 <viewController id="jYH-eK-zBV" customClass="StatusDemoViewController" customModule="ePOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="vwo-So-4cv">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                    <view key="view" contentMode="scaleToFill" id="vwo-So-4cv" customClass="EPOSBaseView" customModule="ePOS" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFn-US-Spj">
-                                <rect key="frame" x="146" y="67" width="133" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="First"/>
-                                <connections>
-                                    <action selector="firstClicked:" destination="jYH-eK-zBV" eventType="touchUpInside" id="YdN-HB-XBj"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="63h-4O-fzj" customClass="RoundedCornerView" customModule="ePOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="188" width="414" height="674"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFn-US-Spj">
+                                        <rect key="frame" x="140" y="42" width="133" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="First"/>
+                                        <connections>
+                                            <action selector="firstClicked:" destination="jYH-eK-zBV" eventType="touchUpInside" id="YdN-HB-XBj"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRound">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="63h-4O-fzj" firstAttribute="leading" secondItem="weP-wR-koh" secondAttribute="leading" id="992-Px-o2i"/>
+                            <constraint firstItem="63h-4O-fzj" firstAttribute="top" secondItem="weP-wR-koh" secondAttribute="top" constant="100" id="A5a-af-SsM"/>
+                            <constraint firstItem="63h-4O-fzj" firstAttribute="trailing" secondItem="weP-wR-koh" secondAttribute="trailing" id="ctE-eB-B7l"/>
+                            <constraint firstItem="weP-wR-koh" firstAttribute="bottom" secondItem="63h-4O-fzj" secondAttribute="bottom" id="ifN-w9-1ZV"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="weP-wR-koh"/>
                     </view>
                     <navigationItem key="navigationItem" id="Oa8-xQ-WMV"/>
@@ -133,11 +150,16 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zHu-Q0-8it" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="SSG-yS-lTp" customClass="EPOSNavigationBar" customModule="ePOS" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SSG-yS-lTp" customClass="EPOSNavigationBar" customModule="ePOS" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" name="themeDarkColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         configureFirebase()
+        setAppearance()
         return true
     }
 
@@ -58,4 +59,16 @@ extension AppDelegate {
         self.window?.makeKeyAndVisible()
     }
     
+    
+    func setAppearance() {
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont.mediumFontWith(size: 18), NSAttributedString.Key.foregroundColor: UIColor.white]
+
+        //let backImage = UIImage(named: "backIcon")
+        //backImage = backImage?.stretchableImage(withLeftCapWidth: 15, topCapHeight: 30)
+        //UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage
+        //UIBarButtonItem.appearance().setBackButtonBackgroundImage(backImage, for: .normal, barMetrics: .default)
+        //UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -200, vertical: 0), for:UIBarMetrics.default)
+
+    }
 }

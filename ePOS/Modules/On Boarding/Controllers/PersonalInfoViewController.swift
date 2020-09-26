@@ -15,7 +15,7 @@ enum WorkFlowState: Int {
     case four
 }
 
-class PersonalInfoViewController: UIViewController {
+class PersonalInfoViewController: CustomNavigationStyleViewController {
 
     @IBOutlet private weak var textFieldCompanyType: EPOSTextField!
     @IBOutlet private weak var textFieldPAN: EPOSTextField!
@@ -48,6 +48,7 @@ private
 extension PersonalInfoViewController {
     //MARK: - ConfigureUI
     func configureUIInitially() {
+        navigationItem.title = "Registration"
         textFieldPAN.delegate = self
         checkbox.style = .tick
         checkbox.borderStyle = .roundedSquare(radius: 2)
