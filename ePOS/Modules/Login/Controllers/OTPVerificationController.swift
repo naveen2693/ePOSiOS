@@ -10,7 +10,8 @@ import UIKit
 class OTPVerficationController:UIViewController {
     
     private let oTPLength: Int = 6
-    var mobileNumber:String?
+    var mobileNumber:String!
+    var userData : UserData!
     var activeTextField = UITextField()
     var lastTextField :OTPTextField?
     var otpValue:String="";
@@ -50,7 +51,7 @@ class OTPVerficationController:UIViewController {
         textField6?.pineDelegate = self
         textField7?.pineDelegate = self
         textField8?.pineDelegate = self
-    
+        
         textField1?.delegate = self
         textField2?.delegate = self
         textField3?.delegate = self
@@ -60,6 +61,10 @@ class OTPVerficationController:UIViewController {
         textField7?.delegate = self
         textField8?.delegate = self
         setLastTextField()
+        if let textField = textField1 {
+            textField.isEnabled = true
+            textField.becomeFirstResponder()
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -70,19 +75,28 @@ class OTPVerficationController:UIViewController {
         }
     }
     
+    class func initWith(mobileNumber: String,userData:UserData) -> OTPVerficationController {
+        let controller = OTPVerficationController.instantiate(appStoryboard: .loginScreen)
+        controller.mobileNumber = mobileNumber
+        return controller
+    }
+    
+    
     @IBAction func buttonSubmit(_ sender: Any) {
-          activeTextField.resignFirstResponder()
+        showLoading()
+        activeTextField.resignFirstResponder()
         let response = Validation.shared.validate(values:(ValidationType.otp,otpValue))
         switch response {
         case .success:
             if let unwrappedMobileNumber = mobileNumber {
-                IntialDataRequest.callApiVerifyOtpWith(mobileNumber:unwrappedMobileNumber,otp:otpValue,completion:{[weak self]  result in
+                IntialDataRequest.callApiVerifyOtpWith(mobileNumber:unwrappedMobileNumber,otp:otpValue,completion:{[weak self] result in
+                    self?.hideLoading()
                     switch result {
                     case .success(let response):
                         print(response);
                         self?.gotoSignUpController()
-                    case .failure(let error):
-                        print(error);
+                     case .failure(BaseError.errorMessage(let error)):
+                    self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
                         
                     }
                 })
@@ -99,8 +113,8 @@ class OTPVerficationController:UIViewController {
                 switch result {
                 case .success(let response):
                     print(response);
-                case .failure(let error):
-                    print(error)
+                 case .failure(BaseError.errorMessage(let error)):
+                  self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
                 }
             })
         }
@@ -133,26 +147,24 @@ class OTPVerficationController:UIViewController {
     
     private func  gotoSignUpController()
     {
-        let viewController = SignUpController.instantiate(appStoryboard: .signupStoryboard)
-        if let unwrappedMobileNumber = mobileNumber {
-            viewController.mobileNumber = unwrappedMobileNumber
-        }
-        self.navigationController?.pushViewController(viewController, animated: true)
+    let viewController = SignUpController.initWith(mobileNumber: mobileNumber,userData: userData)
+    self.navigationController?.pushViewController(viewController, animated: true)
+   
     }
     
     
     // MARK:- Set Last Test Field
     private func setLastTextField() {
         switch oTPLength {
-            case 4:
-                lastTextField = textField4
-            case 5:
-                lastTextField = textField5
-            case 6:
-                lastTextField = textField6
-            default:
-                lastTextField = textField8
-            }
+        case 4:
+            lastTextField = textField4
+        case 5:
+            lastTextField = textField5
+        case 6:
+            lastTextField = textField6
+        default:
+            lastTextField = textField8
+        }
     }
     
     private func addBottomLineToTextField(textField : OTPTextField) {
@@ -267,7 +279,7 @@ extension OTPVerficationController: UITextFieldDelegate {
         activeTextField = textField
     }
     
-func textField(_ textField: UITextField,shouldChangeCharactersIn range:NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField,shouldChangeCharactersIn range:NSRange, replacementString string: String) -> Bool {
         otpValue = otpValue+string
         if let text = textField.text {
             

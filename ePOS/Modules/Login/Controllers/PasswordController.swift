@@ -11,7 +11,7 @@ import UIKit
 class PasswordController: UIViewController {
     
     @IBOutlet weak var textFieldPassword: EPOSTextField!
-    var mobileNumber:String?
+    var mobileNumber:String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,29 +21,36 @@ class PasswordController: UIViewController {
     @IBAction func buttonForgotPassword(_ sender: Any) {
         // MARK:-goto Forgot PasswordController
         self.gotoForgotPasswordController()
+     
     }
     
+    class func initWith(mobileNumber: String) -> PasswordController {
+           let controller = PasswordController.instantiate(appStoryboard: .loginScreen)
+           controller.mobileNumber = mobileNumber
+           return controller
+       }
+    
     @IBAction func buttonSubmit(_ sender: Any) {
-
+            showLoading()
         let response = Validation.shared.validate(values: (type: ValidationType.password, inputValue:textFieldPassword.text as Any  ))
         switch response {
         case .success:
             if let unwrappedMobileNumber = mobileNumber {
                 IntialDataRequest.callLoginApiAfterNumberVerfication(mobileNumber:unwrappedMobileNumber, password:textFieldPassword.text! ,completion:{[weak self] result in
+                    self?.hideLoading()
                     switch result {
                     case .success(let response):
                         OnBoardingRequest.getUserProfileAndProceedToLaunch(showProgress: true, completion:{ result in
                         switch result {
                         case .success(let response):
                             print(response)
-                        case .failure(let error):
-                            print(error)
-                            ;
+                         case .failure(BaseError.errorMessage(let error)):
+                           self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
                             }
                         });
                         print(response);
-                    case .failure(let error):
-                        print(error)
+                     case .failure(BaseError.errorMessage(let error)):
+                     self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
                     }
                 })
             }
@@ -54,8 +61,7 @@ class PasswordController: UIViewController {
     
     private func gotoForgotPasswordController()
     {
-        let viewController = ForgotPasswordController.instantiate(appStoryboard: .loginScreen)
-        viewController.mobileNumber = mobileNumber
+        let viewController = ForgotPasswordController.initWith(mobileNumber: mobileNumber)
         let navController = UINavigationController(rootViewController: viewController)
         navController.modalPresentationStyle = .overCurrentContext
         navController.modalTransitionStyle = .crossDissolve

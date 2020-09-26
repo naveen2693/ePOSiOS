@@ -65,7 +65,7 @@ enum Constants:String {
     case modeValueForMasterData = "epos";
     case errorMessage = "There was some unexpected error. Please try again later"
     case passwordChangeALertMessage = "Password Changed Successfully"
-    case success = "SUCCESS"
+    case apiError = "API Error"
 }
 enum ConstantsInt: Int{
     

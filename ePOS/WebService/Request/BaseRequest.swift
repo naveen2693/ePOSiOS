@@ -11,5 +11,35 @@ import Moya
 public class BaseRequest{
     static var objMoyaApi = MoyaProvider<ApiService>()
     static let decoder = JSONDecoder()
-    typealias CompletionHandler = (Result<AnyObject,Error>) -> Void
+    typealias CompletionHandler = (Result<AnyObject,BaseError>) -> Void
+    class func checkApiResponseStatus(responseData:Data) -> (message: String?, status: Bool?)?
+    {
+        if let baseResponse = try? BaseRequest.decoder.decode(BaseResponse.self, from:responseData)
+        {
+            return (baseResponse.message,baseResponse.status)
+        }
+        return nil;
+    }
+    
+    
+}
+
+enum BaseError: Error {
+    case errorMessage(Any)
+}
+
+
+// MARK:- Base Response
+public struct BaseResponse:Codable{
+    var message:String?;
+    var status:Bool?
+    var messageId:String?;
+    var errorMessageCode:String?
+    private enum CodingKeys: String, CodingKey {
+        case message = "msg"
+        case status = "st"
+        case messageId = "msgid"
+        case errorMessageCode = "devErrorMessage"
+        
+    }
 }

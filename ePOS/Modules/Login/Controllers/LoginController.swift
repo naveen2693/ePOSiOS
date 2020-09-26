@@ -34,12 +34,13 @@ class LoginController: UIViewController{
         switch response {
         case .success:
             IntialDataRequest.checkUserWith(mobileNumber:textFieldMobileNumber.text!,completion:{ [weak self] result in
+                self?.hideLoading()
                 switch result {
                 case .success(let response):
                     self?.decideUserNavigation(response)
                     print(response)
-                case .failure(let error):
-                    print(error)
+                 case .failure(BaseError.errorMessage(let error)):
+                  self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
                 }
                 
             })
@@ -73,8 +74,8 @@ class LoginController: UIViewController{
                 }
                 gotoSignUpController(userData: userData)
             }
-        } else {
-            gotoOtpVerificationController()
+        } else if let userData = checkUserModel.UserData {
+            gotoOtpVerificationController(userData: userData)
         }
     }
     
@@ -98,40 +99,38 @@ class LoginController: UIViewController{
     
     internal func gotoSignUpController(userData:UserData)
     {
-        let viewController = SignUpController.instantiate(appStoryboard: .loginScreen)
+        
         if let mobileNumber = textFieldMobileNumber.text {
-            viewController.mobileNumber = mobileNumber
+            let viewController = SignUpController.initWith(mobileNumber: mobileNumber, userData: userData)
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
-        viewController.userDataFromLoginController = userData
-        self.navigationController?.pushViewController(viewController, animated: true)
+        
     }
     
-    internal func gotoOtpVerificationController()
+    internal func gotoOtpVerificationController(userData:UserData)
     {
-        let viewController = OTPVerficationController.instantiate(appStoryboard: .loginScreen)
         if let mobileNumber = textFieldMobileNumber.text {
-            viewController.mobileNumber = mobileNumber
+            let viewController = OTPVerficationController.initWith(mobileNumber: mobileNumber,userData: userData)
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
-        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     internal func gotoPasswordVerificationController()
     {
-        let viewController = PasswordController.instantiate(appStoryboard: .loginScreen)
+        
         if let mobileNumber = textFieldMobileNumber.text {
-            viewController.mobileNumber = mobileNumber
+            let viewController = PasswordController.initWith(mobileNumber: mobileNumber)
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
-        self.navigationController?.pushViewController(viewController, animated: true)
         
     }
     
     internal func gotoPasswordResetController()
     {
-        let viewController = ResetPasswordController.instantiate(appStoryboard: .loginScreen)
         if let mobileNumber = textFieldMobileNumber.text {
-            viewController.mobileNumber = mobileNumber
+            let viewController = ResetPasswordController.initWith(mobileNumber: mobileNumber)
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
-        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     // MARK:- CheckBox Configuration
@@ -155,8 +154,8 @@ class LoginController: UIViewController{
             switch result {
             case .success(let response):
                 print(response)
-            case .failure(let error):
-                print(error)
+            case .failure(BaseError.errorMessage(let error)):
+                self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
             }
             
         })

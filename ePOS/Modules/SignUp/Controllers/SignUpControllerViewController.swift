@@ -19,8 +19,8 @@ class SignUpController: UIViewController {
     @IBOutlet weak var textFieldReferralCode: EPOSTextField!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var buttonCheckBox: CheckBox!
-    var userDataFromLoginController:UserData?
-    var mobileNumber:String="";
+    var userDataFromLoginController:UserData!
+    var mobileNumber:String!;
     var checkBox:Bool=false;
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +34,18 @@ class SignUpController: UIViewController {
         }
     }
     
+    
+    class func initWith(mobileNumber: String,userData:UserData) -> SignUpController {
+          let controller = SignUpController.instantiate(appStoryboard: .loginScreen)
+          controller.mobileNumber = mobileNumber
+          controller.userDataFromLoginController = userData
+          return controller
+      }
+    
     private func populateData()
     {
         textFieldMobileNumber.text = mobileNumber
+        textFieldMobileNumber.isEnabled = false
         
     }
     @IBAction func buttonSubmit(_ sender: Any) {

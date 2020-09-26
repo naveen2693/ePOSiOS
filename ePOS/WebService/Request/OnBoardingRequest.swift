@@ -63,20 +63,33 @@ public class OnBoardingRequest:BaseRequest{
         BaseRequest.objMoyaApi.request(.getManageAccount) { result in
             switch result
             {
+                
             case .success(let response):
-                guard let jsonObject: Any = try? JSONSerialization.jsonObject(with: response.data, options: []) as Any,
-                    let jsonData = jsonObject as? [String:Any],
-                    let profile = jsonData["profile"] as? String
-                    else
+                if let checkStatus = checkApiResponseStatus(responseData: response.data)
                 {
-                    fatalError("Serialization Error")
+                    if checkStatus.status == true
+                    {
+                        
+                        guard let jsonObject: Any = try? JSONSerialization.jsonObject(with: response.data, options: []) as Any,
+                            let jsonData = jsonObject as? [String:Any],
+                            let profile = jsonData["profile"] as? String
+                            else
+                        {
+                            fatalError("Serialization Error")
+                        }
+                        EPOSUserDefaults.setProfile(profile: profile as AnyObject)
+                        loadMasterDataAndProceedToLaunch(mode: Constants.modeValueForMasterData.rawValue);
+                        completion(.success(response))
+                        
+                    } else
+                    {
+                        completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                        
+                    }
                 }
-                EPOSUserDefaults.setProfile(profile: profile as AnyObject)
-                loadMasterDataAndProceedToLaunch(mode: Constants.modeValueForMasterData.rawValue);
-                completion(.success(response))
                 
             case .failure(let error):
-                completion(.failure(error));
+                completion(.failure(BaseError.errorMessage(error)));
                 loadMasterDataAndProceedToLaunch(mode: Constants.modeValueForMasterData.rawValue);
                 print(error);
                 

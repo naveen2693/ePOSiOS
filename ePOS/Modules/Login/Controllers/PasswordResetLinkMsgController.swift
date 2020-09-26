@@ -18,8 +18,16 @@ class PasswordResetLinkMsgController : UIViewController {
         }
     }
     
+    class func initWith(mobileNumber: String) -> PasswordResetLinkMsgController {
+              let controller = PasswordResetLinkMsgController.instantiate(appStoryboard: .loginScreen)
+              controller.mobileNumber = mobileNumber
+              return controller
+       }
+    
     @IBAction func buttonSubmit(_ sender: Any) {
+        showLoading()
         gotoResetPasswordController()
+        hideLoading()
     }
     
     private func gotoResetPasswordController()
