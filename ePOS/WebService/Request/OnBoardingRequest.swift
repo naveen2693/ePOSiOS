@@ -64,14 +64,12 @@ public class OnBoardingRequest:BaseRequest{
             switch result
             {
             case .success(let response):
-                guard let jsonObject: Any = try? JSONSerialization.jsonObject(with: response.data, options: []) as Any,
-                    let jsonData = jsonObject as? [String:Any],
-                    let profile = jsonData["profile"] as? String
-                    else
-                {
-                    fatalError("Serialization Error")
+                if let profileData = try? BaseRequest.decoder.decode(UserProfile.self, from:response.data) {
+                    EPOSUserDefaults.setProfile(profile: profileData)
+                } else {
+                    fatalError("UserProfile was not created")
                 }
-                EPOSUserDefaults.setProfile(profile: profile as AnyObject)
+                
                 loadMasterDataAndProceedToLaunch(mode: Constants.modeValueForMasterData.rawValue);
                 completion(.success(response))
                 
@@ -91,14 +89,12 @@ public class OnBoardingRequest:BaseRequest{
             switch result
             {
             case .success(let response):
-                guard let jsonObject: Any = try? JSONSerialization.jsonObject(with: response.data, options: []) as Any,
-                    let jsonData = jsonObject as? [String:Any],
-                    let masterData = jsonData["masterData"] as? [AnyObject]
-                    else
-                {
-                    fatalError("Serialization Error")
+                if let masterData = try? BaseRequest.decoder.decode(MasterDataWrapper.self, from:response.data) {
+                    try? MasterDataProvider().saveMasterDataPlistFile(with: masterData)
+                } else {
+                    fatalError("masterData was not created")
                 }
-                EPOSUserDefaults.setMasterData(masterData: masterData as AnyObject)
+
                 getCityDetailsAndProceedToLaunch();
                 
             case .failure(let error):
@@ -112,35 +108,27 @@ public class OnBoardingRequest:BaseRequest{
     
     private static func  getCityDetailsAndProceedToLaunch()
     {
-        let strLastModifiedDate = EPOSUserDefaults.getStateModifiedDate();
-        if let unwrappedModifiedDate = strLastModifiedDate{
-            BaseRequest.objMoyaApi.request(.getCityListWith(strLastModifiedDate:unwrappedModifiedDate)) { result in
-                switch result
-                {
-                case .success(let response):
-                    guard let jsonObject: Any = try? JSONSerialization.jsonObject(with: response.data, options: []) as Any,
-                        let jsonData = jsonObject as? [String:Any],
-                        let modifiedDate = jsonData["lastModifiedDate"] as? String,
-                        let state = jsonData["states"] as? [String:Any]
-                        else
-                    {
-                        fatalError("Serialization Error")
-                    }
-                    EPOSUserDefaults.setStateModifiedDate(modifiedDate: modifiedDate)
-                    EPOSUserDefaults.setStateData(stateData: state as AnyObject)
-                    fetchSubUserList();
-                case .failure(let error):
-                    fetchSubUserList();
-                    print(error);
-                    
-                }
-                
-            }
-        }else
+        
+        let strLastModifiedDate = CityDataProvider().getLastModifiedDate()
+    BaseRequest.objMoyaApi.request(.getCityListWith(strLastModifiedDate:"\(strLastModifiedDate)")) { result in
+        switch result
         {
-            fatalError("Error: unwrappedModifiedDate")
+        case .success(let response):
+            if let statesData = try? BaseRequest.decoder.decode(StateData.self, from:response.data) {
+                try? CityDataProvider().saveSateDataPlistFile(with: statesData)
+            } else {
+                fatalError("StateData was not created")
+            }
+            fetchSubUserList();
+        case .failure(let error):
+            fetchSubUserList();
+            print(error);
+            
         }
+                
     }
+}
+    
     
     private static func fetchSubUserList()
     {

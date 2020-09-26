@@ -100,6 +100,11 @@
 		991DF271251DED7100AEA1C3 /* EPOSBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991DF270251DED7100AEA1C3 /* EPOSBaseView.swift */; };
 		991DF273251DED8000AEA1C3 /* EPOSBaseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 991DF272251DED8000AEA1C3 /* EPOSBaseView.xib */; };
 		996FD8A9251E1020001961EE /* CustomNavigationStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FD8A8251E1020001961EE /* CustomNavigationStyleViewController.swift */; };
+		996FD8AE251F17C3001961EE /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FD8AD251F17C3001961EE /* UserProfile.swift */; };
+		996FD8B0251F4C30001961EE /* MasterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FD8AF251F4C30001961EE /* MasterData.swift */; };
+		996FD8B2251F52E6001961EE /* MasterDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FD8B1251F52E6001961EE /* MasterDataProvider.swift */; };
+		996FD8B8251F6D46001961EE /* CityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FD8B7251F6D46001961EE /* CityData.swift */; };
+		996FD8BA251F6F87001961EE /* CityDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FD8B9251F6F87001961EE /* CityDataProvider.swift */; };
 		9976C9092500F05600FC5DD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9976C9082500F05600FC5DD3 /* AppDelegate.swift */; };
 		9976C90D2500F05600FC5DD3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9976C90C2500F05600FC5DD3 /* ViewController.swift */; };
 		9976C9102500F05700FC5DD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9976C90E2500F05700FC5DD3 /* Main.storyboard */; };
@@ -225,6 +230,11 @@
 		991DF270251DED7100AEA1C3 /* EPOSBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSBaseView.swift; sourceTree = "<group>"; };
 		991DF272251DED8000AEA1C3 /* EPOSBaseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EPOSBaseView.xib; sourceTree = "<group>"; };
 		996FD8A8251E1020001961EE /* CustomNavigationStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationStyleViewController.swift; sourceTree = "<group>"; };
+		996FD8AD251F17C3001961EE /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		996FD8AF251F4C30001961EE /* MasterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterData.swift; sourceTree = "<group>"; };
+		996FD8B1251F52E6001961EE /* MasterDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterDataProvider.swift; sourceTree = "<group>"; };
+		996FD8B7251F6D46001961EE /* CityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityData.swift; sourceTree = "<group>"; };
+		996FD8B9251F6F87001961EE /* CityDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDataProvider.swift; sourceTree = "<group>"; };
 		9976C9052500F05600FC5DD3 /* ePOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ePOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9976C9082500F05600FC5DD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9976C90C2500F05600FC5DD3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -514,7 +524,10 @@
 		99186D422511D27F00A9FE07 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				996FD8B6251F6D2A001961EE /* CityData */,
+				996FD8B5251F6D12001961EE /* MasterData */,
 				46BD9B4925176F6F008DEFEA /* IntitalDataModel.swift */,
+				996FD8AD251F17C3001961EE /* UserProfile.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -769,6 +782,24 @@
 				996FD8A8251E1020001961EE /* CustomNavigationStyleViewController.swift */,
 			);
 			path = CustomNavigationStyle;
+			sourceTree = "<group>";
+		};
+		996FD8B5251F6D12001961EE /* MasterData */ = {
+			isa = PBXGroup;
+			children = (
+				996FD8AF251F4C30001961EE /* MasterData.swift */,
+				996FD8B1251F52E6001961EE /* MasterDataProvider.swift */,
+			);
+			path = MasterData;
+			sourceTree = "<group>";
+		};
+		996FD8B6251F6D2A001961EE /* CityData */ = {
+			isa = PBXGroup;
+			children = (
+				996FD8B7251F6D46001961EE /* CityData.swift */,
+				996FD8B9251F6F87001961EE /* CityDataProvider.swift */,
+			);
+			path = CityData;
 			sourceTree = "<group>";
 		};
 		9976C8FC2500F05600FC5DD3 = {
@@ -1137,7 +1168,9 @@
 				99186D5F2511D45600A9FE07 /* Constants.swift in Sources */,
 				99186CC62508EF9500A9FE07 /* HomeViewController.swift in Sources */,
 				99186D3B2511D21000A9FE07 /* ApiClient.swift in Sources */,
+				996FD8B0251F4C30001961EE /* MasterData.swift in Sources */,
 				991DF26E251CBB2E00AEA1C3 /* EPOSLoader.swift in Sources */,
+				996FD8AE251F17C3001961EE /* UserProfile.swift in Sources */,
 				99186D582511D32E00A9FE07 /* BottomLineTextField.swift in Sources */,
 				99186D3C2511D21000A9FE07 /* User.swift in Sources */,
 				9976C95E2501173600FC5DD3 /* DeviceType.swift in Sources */,
@@ -1157,6 +1190,7 @@
 				99186D0E2510922B00A9FE07 /* ShowDialog.swift in Sources */,
 				99186D2A2511D1E000A9FE07 /* CommonWebviewController.swift in Sources */,
 				991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */,
+				996FD8B8251F6D46001961EE /* CityData.swift in Sources */,
 				99186D142510926800A9FE07 /* EmptyDataViewController.swift in Sources */,
 				991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */,
 				996FD8A9251E1020001961EE /* CustomNavigationStyleViewController.swift in Sources */,
@@ -1164,6 +1198,7 @@
 				9919A9962514DCAA00A67253 /* EPOSUserDefaults+Methods.swift in Sources */,
 				99186D17251092A700A9FE07 /* EmptyViewItem.swift in Sources */,
 				9919A9A12517528800A67253 /* SearchIFSCViewController.swift in Sources */,
+				996FD8BA251F6F87001961EE /* CityDataProvider.swift in Sources */,
 				99186CEB250A646400A9FE07 /* StatusDemoViewController.swift in Sources */,
 				46BD9B4E251A252C008DEFEA /* ResetPasswordController.swift in Sources */,
 				99186CD02508F03900A9FE07 /* AccountViewController.swift in Sources */,
@@ -1182,6 +1217,7 @@
 				9919A9C4251A4BBA00A67253 /* PackageDetailTableViewCell.swift in Sources */,
 				9976C9092500F05600FC5DD3 /* AppDelegate.swift in Sources */,
 				46BD9B46251617A7008DEFEA /* BaseRequest.swift in Sources */,
+				996FD8B2251F52E6001961EE /* MasterDataProvider.swift in Sources */,
 				99186D722512494C00A9FE07 /* PersonalInfoViewController+Dropdown.swift in Sources */,
 				991DF263251CB33100AEA1C3 /* UIViewController+Protocol.swift in Sources */,
 				9919A9A525176D9D00A67253 /* IFSCCodeDetailViewController.swift in Sources */,

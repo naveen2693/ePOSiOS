@@ -252,7 +252,8 @@ static func callLoginApiAfterNumberVerfication(mobileNumber:String,password:Stri
                 {
                     fatalError("Login Api Serialization failed")
                 }
-            EPOSUserDefaults.setProfile(profile: userProfileData as AnyObject)
+            //:TODO
+//            EPOSUserDefaults.setProfile(profile: userProfileData as AnyObject)
             EPOSUserDefaults.setUserId(userID: userId)
             EPOSUserDefaults.setUdid(udid: appUdid)
             EPOSUserDefaults.setAccessToken(accessToken: accessToken)

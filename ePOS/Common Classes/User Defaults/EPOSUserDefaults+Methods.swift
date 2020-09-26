@@ -45,78 +45,107 @@ class EPOSUserDefaults: NSObject {
     {
         UserDefaults.Configuration.set(udid, forKey: .udid)
     }
+    
     static func getUdid() -> String?
     {
         return UserDefaults.Configuration.string(forKey: .udid)
     }
+    
     static func setAccessToken(accessToken:String)
     {
         UserDefaults.Configuration.set(accessToken, forKey: .accessToken)
     }
+    
     static func getAccessToken() -> String?
     {
         return UserDefaults.Configuration.string(forKey: .accessToken)
     }
-    static func setProfile(profile:AnyObject)
+    
+    static func setProfile(profile:UserProfile)
     {
-        UserDefaults.Configuration.set(profile, forKey: .profile)
+        do {
+            try UserDefaults.Configuration.setObject(profile, key: .profile)
+        } catch {
+            debugPrint(error.localizedDescription)
+        }
     }
-    static func getProfile() -> Any?
+    
+    static func getProfile() -> UserProfile?
     {
-        return UserDefaults.Configuration.string(forKey: .profile)
+        do {
+            let profile = try UserDefaults.Configuration.getObject(forKey: .profile, castTo: UserProfile.self)
+            return profile
+        } catch {
+            debugPrint(error.localizedDescription)
+            return nil
+        }
     }
+    
     static func setUserId(userID:String)
     {
         UserDefaults.Configuration.set(userID, forKey: .userId)
     }
+    
     static func getUserId() -> String?
     {
         return UserDefaults.Configuration.string(forKey: .userId)
     }
+    
     static func setMasterData(masterData:AnyObject)
     {
         UserDefaults.Configuration.set(masterData, forKey: .masterData)
     }
+    
     static func getMasterData() -> Any?
     {
         return UserDefaults.Configuration.string(forKey: .masterData)
     }
-    static func setStateModifiedDate(modifiedDate:String)
+    
+    static func setStateModifiedDate(modifiedDate:Int)
     {
         UserDefaults.Configuration.set(modifiedDate, forKey: .modifiedDate)
     }
-    static func getStateModifiedDate() -> String?
+    
+    static func getStateModifiedDate() -> Int?
     {
-        return UserDefaults.Configuration.string(forKey: .modifiedDate)
+        return UserDefaults.Configuration.integer(forKey: .modifiedDate)
     }
+    
     static func setStateData(stateData:AnyObject)
     {
         UserDefaults.Configuration.set(stateData, forKey: .stateData)
     }
+    
     static func getStateData() -> Any?
     {
         return UserDefaults.Configuration.string(forKey: .stateData)
     }
+    
     static func setMobileNumberList(stateData:AnyObject)
     {
            UserDefaults.Configuration.set(stateData, forKey: .mobileNumberList)
     }
+    
     static func getMobileNumberList() -> Any?
     {
            return UserDefaults.Configuration.string(forKey: .mobileNumberList)
     }
+    
     static func setCurrentStateWorkflow(currentState:String)
     {
            UserDefaults.Configuration.set(currentState, forKey: .currentWorkFlowState)
     }
+    
     static func getCurrentStateWorkflow() -> String?
     {
            return UserDefaults.Configuration.string(forKey: .currentWorkFlowState)
     }
+    
     static func setConfigurationData(configData:AnyObject)
     {
            UserDefaults.Configuration.set(configData, forKey: .configurationData)
     }
+    
     static func gettConfigurationData() -> Any?
     {
            return UserDefaults.Configuration.string(forKey: .configurationData)

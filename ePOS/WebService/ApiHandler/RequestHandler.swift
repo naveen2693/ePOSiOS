@@ -39,11 +39,11 @@ public class RequestHandler{
         let deviceId:String = "0000000089ABCDEF0123456789ABCDEF";
         let imeiNum:String = "000000123456789"
         let advertisingId:String = "0000000089ABCDEF0123456789ABCDEF"
-        let appUuid:String = "2b6f0cc904d137be2e1730235f5664094b831186"
+        let appUuid:String = "59607063c22a4470b778aab4e28733f3"
         headermap[ApiHeaderKeys.requestHeaderClientKey.rawValue] = ClientRequestValues.requestHeaderClientValue.rawValue
         headermap[ApiHeaderKeys.requestHeaderBuildVersionKey.rawValue] = "1.0"// set build-version
         headermap[ApiHeaderKeys.requestClientTypeKey.rawValue] = ApiHeaderKeys.requestHeaderClientTypeValue.rawValue;
-        headermap[ApiHeaderKeys.requestHeaderAccessTokenKey.rawValue] = "access-token";
+        headermap[ApiHeaderKeys.requestHeaderAccessTokenKey.rawValue] = "nt8qB55C7B5TTe9hhAYQY1QyAg1LBbH4";
         if(!(deviceId.isEmpty)) {
             headermap[ApiHeaderKeys.requestHeaderDeviceKey.rawValue] = deviceId;
         }

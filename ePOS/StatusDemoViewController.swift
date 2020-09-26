@@ -17,6 +17,16 @@ class StatusDemoViewController: CustomNavigationStyleViewController {
         super.viewDidLoad()
         navigationItem.title = "First Screen"
         setRightTitle(withTitle: "1/3")
+        OnBoardingRequest.getUserProfileAndProceedToLaunch(showProgress: true, completion:{result in
+            switch result {
+            case .success(let response):
+                print(response)
+                
+            case .failure(let error):
+                print(error)
+                ;
+            }
+        });
 //
 //        let controller = EmptyDataViewController.viewController(NoUserItem(), delegate: self)
         let controller = PersonalInfoViewController.init(nibName: PersonalInfoViewController.className, bundle: nil)
