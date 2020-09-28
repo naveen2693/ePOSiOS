@@ -14,18 +14,21 @@ import Foundation
 extension UserDefaults {
     struct Configuration: UserDefaultable {
     enum UserDefaultKey: String {
-            case termsUrl
-            case accessToken
-            case udid
-            case userId
-            case profile
-            case masterData
-            case modifiedDate
-            case stateData
-            case mobileNumberList
-            case currentWorkFlowState
-            case configurationData
-        }
+        case termsUrl
+        case accessToken
+        case udid
+        case userId
+        case profile
+        case masterData
+        case modifiedDate
+        case stateData
+        case mobileNumberList
+        case currentWorkFlowState
+        case configurationData
+        case currentUserState
+        case currentLeadID
+        case currentLead
+    }
         private init() {}
         
     }
@@ -91,15 +94,15 @@ class EPOSUserDefaults: NSObject {
         return UserDefaults.Configuration.string(forKey: .userId)
     }
     
-    static func setMasterData(masterData:AnyObject)
-    {
-        UserDefaults.Configuration.set(masterData, forKey: .masterData)
-    }
-    
-    static func getMasterData() -> Any?
-    {
-        return UserDefaults.Configuration.string(forKey: .masterData)
-    }
+//    static func setMasterData(masterData:AnyObject)
+//    {
+//        UserDefaults.Configuration.set(masterData, forKey: .masterData)
+//    }
+//
+//    static func getMasterData() -> Any?
+//    {
+//        return UserDefaults.Configuration.string(forKey: .masterData)
+//    }
     
     static func setStateModifiedDate(modifiedDate:Int)
     {
@@ -146,10 +149,48 @@ class EPOSUserDefaults: NSObject {
            UserDefaults.Configuration.set(configData, forKey: .configurationData)
     }
     
-    static func gettConfigurationData() -> Any?
+    static func getConfigurationData() -> Any?
     {
            return UserDefaults.Configuration.string(forKey: .configurationData)
     }
     
+    static func setCurrentUserState(state: String)
+    {
+        UserDefaults.Configuration.set(state, forKey: .currentUserState)
+    }
     
+    static func currentUserState() -> String?
+    {
+        return UserDefaults.Configuration.string(forKey: .currentUserState)
+    }
+    
+    static func setCurrentLeadID(leadID:Int)
+    {
+        UserDefaults.Configuration.set(leadID, forKey: .currentLeadID)
+    }
+    
+    static func currentLeadID() -> Int
+    {
+        return UserDefaults.Configuration.integer(forKey: .currentLeadID)
+    }
+    
+    static func setLead(lead:Lead)
+    {
+        do {
+            try UserDefaults.Configuration.setObject(lead, key: .currentLead)
+        } catch {
+            debugPrint(error.localizedDescription)
+        }
+    }
+    
+    static func CurrentLead() -> Lead?
+    {
+        do {
+            let lead = try UserDefaults.Configuration.getObject(forKey: .currentLead, castTo: Lead.self)
+            return lead
+        } catch {
+            debugPrint(error.localizedDescription)
+            return nil
+        }
+    }
 }

@@ -8,12 +8,12 @@
 
 import UIKit
 
-enum WorkFlowState: Int {
-    case one
-    case two
-    case three
-    case four
-}
+//enum WorkFlowState: Int {
+//    case one
+//    case two
+//    case three
+//    case four
+//}
 
 class PersonalInfoViewController: CustomNavigationStyleViewController {
 
@@ -27,20 +27,28 @@ class PersonalInfoViewController: CustomNavigationStyleViewController {
     @IBOutlet private weak var checkbox: CheckBox!
     @IBOutlet private weak var checkboxInfoLabel: EPOSLabel!
     @IBOutlet private weak var dropdownImageView: UIImageView!
+
+    private var currentWorkflowState :WorkFlowState = .leadNotCreated
+
     
-    var currentWorkflowState :WorkFlowState = .one
+    class func viewController(_ state: WorkFlowState) -> PersonalInfoViewController {
+        
+        let controller = PersonalInfoViewController.init(nibName: PersonalInfoViewController.className, bundle: nil)
+        controller.currentWorkflowState = state
+        return controller
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+
+
         configureUIInitially()
         // Do any additional setup after loading the view.
     }
 
-    
-    
-    
+
+
+
 }
 
 //MARK: - Private Func
@@ -52,31 +60,31 @@ extension PersonalInfoViewController {
         textFieldPAN.delegate = self
         checkbox.style = .tick
         checkbox.borderStyle = .roundedSquare(radius: 2)
-        
+
         hideAllTextFields()
     }
-    
+
     //MARK: - RefreshPage
-    func refreshPage() {
-        
-        switch currentWorkflowState {
-        case .one:
-            hideAllTextFields()
-        case .two:
-            textFieldPAN.isHidden = false
-            textFieldNameOnPAN.isHidden = false
-        case .three:
-            textFieldGSTIN.isHidden = false
-            checkbox.isHidden = false
-            checkboxInfoLabel.isHidden = false
-        case .four:
-            textFieldDocumentType.isHidden = false
-            textFieldDocumentInfo.isHidden = false
-            dropdownImageView.isHidden = false
-        }
-        
-    }
-    
+//    func refreshPage() {
+//
+//        switch currentWorkflowState {
+//        case .one:
+//            hideAllTextFields()
+//        case .two:
+//            textFieldPAN.isHidden = false
+//            textFieldNameOnPAN.isHidden = false
+//        case .three:
+//            textFieldGSTIN.isHidden = false
+//            checkbox.isHidden = false
+//            checkboxInfoLabel.isHidden = false
+//        case .four:
+//            textFieldDocumentType.isHidden = false
+//            textFieldDocumentInfo.isHidden = false
+//            dropdownImageView.isHidden = false
+//        }
+//
+//    }
+
     func hideAllTextFields() {
         textFieldPAN.isHidden = true
         textFieldNameOnPAN.isHidden = true
@@ -106,10 +114,10 @@ extension PersonalInfoViewController: UITextFieldDelegate {
 }
 //MARK: - Actions
 extension PersonalInfoViewController {
-    
+
     @IBAction func checkboxClicked(_ sender: Any) {
     }
-    
+
     @IBAction func nextClicked(_ sender: Any) {
         if currentWorkflowState != .four {
             var currentWorkFlowIndex = currentWorkflowState.rawValue
@@ -123,7 +131,7 @@ extension PersonalInfoViewController {
             self.navigationController?.pushViewController(controller, animated: true)
         }
     }
-    
+
     @IBAction func needHelpClicked(_ sender: Any) {
     }
 }

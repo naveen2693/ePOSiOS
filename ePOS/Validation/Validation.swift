@@ -6,6 +6,16 @@
 //  Copyright © 2020 Pinelabs. All rights reserved.
 //
 import Foundation
+import Foundation
+import Alamofire
+
+struct NetworkState {
+
+    var isInternetAvailable:Bool
+    {
+        return NetworkReachabilityManager()!.isReachable
+    }
+}
 
 enum Alert {
     case success

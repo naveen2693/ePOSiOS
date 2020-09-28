@@ -66,6 +66,7 @@ enum Constants:String {
     case errorMessage = "There was some unexpected error. Please try again later"
     case passwordChangeALertMessage = "Password Changed Successfully"
     case success = "SUCCESS"
+    case noNetworkMsg = "Please check your network connection"
 }
 enum ConstantsInt: Int{
     

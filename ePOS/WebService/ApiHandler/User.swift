@@ -15,7 +15,9 @@
  }
 
  public enum APIError:Error{
-     case responseProblem
-     case decodingproblem
-     case responseError
+    case responseProblem
+    case decodingproblem
+    case responseError
+    case noNetwork
+    
  }

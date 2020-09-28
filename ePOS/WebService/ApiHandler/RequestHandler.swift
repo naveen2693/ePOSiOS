@@ -99,7 +99,7 @@ public class RequestHandler{
     }
     
     // MARK:- createGetLeadIDRequest
-    public static func  createGetLeadIDRequest(leadID:Int64) -> GetLeadIDKeys{
+    public static func  createGetLeadIDRequest(leadID:Int) -> GetLeadIDKeys{
         var request = GetLeadIDKeys();
         request.id = leadID;
         return request;

@@ -30,7 +30,7 @@ enum ApiService
     
     case getFetchUserWith(listSortParams:ListSortParams)
     
-    case getLeadByIdWith(leadId:Int64)
+    case getLeadByIdWith(leadId:Int)
     
 // MARK:- Configuration
     case getConfigurationsWith(globalChangeNumber:Int)
