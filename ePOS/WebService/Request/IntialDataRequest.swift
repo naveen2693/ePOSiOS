@@ -35,7 +35,7 @@ public struct ResetPasswordKeys:Codable{
 }
 // MARK:- Login Keys
 public struct LoginKeys:Codable{
-    var deviceInfo:DeviceInformationKeys?;
+    var deviceInfo = DeviceInformationKeys();
     var userLoginInfo:UserInfoKeys?;
     private enum CodingKeys: String, CodingKey {
         case deviceInfo = "di"
@@ -94,10 +94,21 @@ public class IntialDataRequest:BaseRequest{
             switch result
             {
             case .success(let response):
-                completion(.success(response))
+                if let checkStatus = checkApiResponseStatus(responseData: response.data)
+                {
+                    if checkStatus.status == true
+                    {
+                        completion(.success(response))
+                    } else
+                    {
+                        completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                        
+                    }
+                    
+                }
                 
             case .failure(let error):
-                completion(.failure(error));
+                completion(.failure(BaseError.errorMessage(error)));
                 print(error);
                 
             }
@@ -111,160 +122,224 @@ public class IntialDataRequest:BaseRequest{
             switch result
             {
             case .success(let response):
-                if let CheckUserValues = try? BaseRequest.decoder.decode(CheckUserModel.self, from:response.data)
+                if let checkStatus = checkApiResponseStatus(responseData: response.data)
                 {
-                completion(.success(CheckUserValues as AnyObject));
-            } else {
-                fatalError("checkusermodel was not created")
-            }
-        case .failure(let error):
-        print(error)
-        completion(.failure(error));
-        
-    }
-    
-}
-}
-// MARK:-getConfigurationDataWith
-static func getConfigurationDataWith(globalChangeNumber:Int,completion:@escaping CompletionHandler)
-{
-    BaseRequest.objMoyaApi.request(.getConfigurationsWith(globalChangeNumber:globalChangeNumber)){ result in
-        switch result
-        {
-        case .success(let response):
-            print(response);
-            if let json = try? JSONSerialization.jsonObject(with: response.data, options: []) as? [String: Any] {
-                // try to read out a string array
-                if let configResult = json["rs"] as? [AnyObject]{
-                    if let configContent = configResult[0] as? [String:Any]{
-                        if let configContentValue = configContent["cnt"] as? [AnyObject]
+                    if checkStatus.status == true
+                    {
+                        
+                        if let CheckUserValues = try? BaseRequest.decoder.decode(CheckUserModel.self, from:response.data)
                         {
-                            if let Dicvalue = configContentValue[0] as? [String:Any]{
-                                for (key,value) in Dicvalue{
-                                    if key == "confid"
+                            completion(.success(CheckUserValues as AnyObject));
+                        } else {
+                            fatalError("checkusermodel was not created")
+                        }
+                    }else
+                    {
+                        completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                        
+                    }
+                }
+            case .failure(let error):
+                print(error)
+                completion(.failure(BaseError.errorMessage(error)));
+                
+            }
+            
+        }
+    }
+    // MARK:-getConfigurationDataWith
+    static func getConfigurationDataWith(globalChangeNumber:Int,completion:@escaping CompletionHandler)
+    {
+        BaseRequest.objMoyaApi.request(.getConfigurationsWith(globalChangeNumber:globalChangeNumber)){ result in
+            switch result
+            {
+            case .success(let response):
+                if let checkStatus = checkApiResponseStatus(responseData: response.data)
+                {
+                    if checkStatus.status == true
+                    {
+                        if let json = try? JSONSerialization.jsonObject(with: response.data, options: []) as? [String: Any] {
+                            if let configResult = json["rs"] as? [AnyObject]
+                            {
+                                if let configContent = configResult[0] as? [String:Any]
+                                {
+                                    if let configContentValue = configContent["cnt"] as? [AnyObject]
                                     {
-                                        if value as? Int ==  ConstantsInt.eposConfigurationId.rawValue
+                                        if let Dicvalue = configContentValue[0] as? [String:Any]
                                         {
-                                            let configJson = Dicvalue["json"] as? [String:Any]
-                                            let subConfiglist = configJson?["subConfList"] as? [AnyObject]
-                                            EPOSUserDefaults.setConfigurationData(configData: subConfiglist as AnyObject)
+                                            for (key,value) in Dicvalue{
+                                                if key == "confid"
+                                                {
+                                                    if value as? Int ==  ConstantsInt.eposConfigurationId.rawValue
+                                                    {
+                                                        let configJson = Dicvalue["json"] as? [String:Any]
+                                                        let subConfiglist = configJson?["subConfList"] as? [AnyObject]
+                                                        EPOSUserDefaults.setConfigurationData(configData: subConfiglist as AnyObject)
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }
                             }
-                            
                         }
                     }
+                    else
+                    {
+                        completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                    }
                 }
+            case .failure(let error):
+                print(error);
+                completion(.failure(BaseError.errorMessage(error)));
+                
             }
-            completion(.success(response))
-        case .failure(let error):
-            print(error);
-            completion(.failure(error));
             
         }
-        
     }
-}
-// MARK:-forgotPasswordCallApiWith
-static func forgotPasswordCallApiWith(mobileNumber:String,completion:@escaping CompletionHandler)
-{
-    BaseRequest.objMoyaApi.request(.getForgotPasswordWith(mobileNumber:mobileNumber)){ result in
-        switch result
-        {
-        case .success(let response):
-            print(response);
-            completion(.success(response))
-            
-        case .failure(let error):
-            print(error)
-            completion(.failure(error));
-            
-        }
-        
-    }
-}
-// MARK:-resetPasswordCallApiwith
-static func resetPasswordCallApiwith(mobileNumber:String,otp:String,newPassword:String,completion:@escaping CompletionHandler)
-{
-    BaseRequest.objMoyaApi.request(.resetPasswordWith(mobileNumber: mobileNumber, otp: otp, newPassword: newPassword)){ result in
-        switch result
-        {
-        case .success(let response):
-            print(response);
-            completion(.success(response))
-        case .failure(let error):
-            print(error)
-            completion(.failure(error));
-        }
-        
-    }
-}
-// MARK:- resendOtpCallApiWith
-static func resendOtpCallApiWith(mobileNumber:String,completion:@escaping CompletionHandler)
-{
-    BaseRequest.objMoyaApi.request(.getSendOtpWith(mobileNumber: mobileNumber)){ result in
-        switch result
-        {
-        case .success(let response):
-            print(response);
-            completion(.success(response))
-            
-        case .failure(let error):
-            completion(.failure(error));
-            print(error)
-            
-        }
-        
-    }
-}
-static func callApiVerifyOtpWith(mobileNumber:String,otp:String,completion:@escaping CompletionHandler)
+    // MARK:-forgotPasswordCallApiWith
+    static func forgotPasswordCallApiWith(mobileNumber:String,completion:@escaping CompletionHandler)
     {
-        BaseRequest.objMoyaApi.request(.getVerifyOtpWith(mobileNumber: mobileNumber, otp: otp)){ result in
+        BaseRequest.objMoyaApi.request(.getForgotPasswordWith(mobileNumber:mobileNumber)){ result in
             switch result
             {
             case .success(let response):
-                print(response);
-                completion(.success(response))
+                if let checkStatus = checkApiResponseStatus(responseData: response.data)
+                {
+                    if checkStatus.status == true
+                    {
+                        completion(.success(response))
+                    } else
+                    {
+                        completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                        
+                    }
+                }
+                
                 
             case .failure(let error):
-                completion(.failure(error));
+                print(error)
+                completion(.failure(BaseError.errorMessage(error)));
+                
+            }
+            
+        }
+    }
+    // MARK:-resetPasswordCallApiwith
+    static func resetPasswordCallApiwith(mobileNumber:String,otp:String,newPassword:String,completion:@escaping CompletionHandler)
+    {
+        BaseRequest.objMoyaApi.request(.resetPasswordWith(mobileNumber: mobileNumber, otp: otp, newPassword: newPassword)){ result in
+            switch result
+            {
+            case .success(let response):
+                if let checkStatus = checkApiResponseStatus(responseData: response.data)
+                {
+                    if checkStatus.status == true
+                    {
+                        completion(.success(response))
+                    } else
+                    {
+                        completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                        
+                    }
+                }
+            case .failure(let error):
+                print(error)
+                completion(.failure(BaseError.errorMessage(error)));
+            }
+            
+        }
+    }
+    // MARK:- resendOtpCallApiWith
+    static func resendOtpCallApiWith(mobileNumber:String,completion:@escaping CompletionHandler)
+    {
+        BaseRequest.objMoyaApi.request(.getSendOtpWith(mobileNumber: mobileNumber)){ result in
+            switch result
+            {
+            case .success(let response):
+                if let checkStatus = checkApiResponseStatus(responseData: response.data)
+                {
+                    if checkStatus.status == true
+                    {
+                        completion(.success(response))
+                    } else
+                    {
+                        completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                        
+                    }
+                }
+            case .failure(let error):
+                completion(.failure(BaseError.errorMessage(error)));
                 print(error)
                 
             }
             
         }
     }
-// MARK:-callLoginApiAfterNumberVerfication
-static func callLoginApiAfterNumberVerfication(mobileNumber:String,password:String,completion:@escaping CompletionHandler)
-{
-    BaseRequest.objMoyaApi.request(.getLoginWith(mobileNumber: mobileNumber, password: password)){ result in
-        switch result
-        {
-        case .success(let response):
-            
-            guard let jsonData = try? JSONSerialization.jsonObject(with: response.data, options: []) as? [String: Any],
-                let accessToken = jsonData["acstkn"] as? String,
-                let userProfileData = jsonData["profile"] as? [String:Any],
-                let appUdid =  userProfileData["acstkn"] as? String,
-                let userId = jsonData["acstkn"] as? String
-                else
+    static func callApiVerifyOtpWith(mobileNumber:String,otp:String,completion:@escaping CompletionHandler)
+    {
+        BaseRequest.objMoyaApi.request(.getVerifyOtpWith(mobileNumber: mobileNumber, otp: otp)){ result in
+            switch result
+            {
+            case .success(let response):
+                if let checkStatus = checkApiResponseStatus(responseData: response.data)
                 {
-                    fatalError("Login Api Serialization failed")
+                    if checkStatus.status == true
+                    {
+                        completion(.success(response))
+                    } else
+                    {
+                        completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                        
+                    }
                 }
-            //:TODO
-//            EPOSUserDefaults.setProfile(profile: userProfileData as AnyObject)
-            EPOSUserDefaults.setUserId(userID: userId)
-            EPOSUserDefaults.setUdid(udid: appUdid)
-            EPOSUserDefaults.setAccessToken(accessToken: accessToken)
-            completion(.success(response))
-            
-        case .failure(let error):
-            completion(.failure(error));
-            print(error);
+                
+            case .failure(let error):
+                completion(.failure(BaseError.errorMessage(error)));
+                print(error)
+                
+            }
             
         }
-        
     }
-}
+    // MARK:-callLoginApiAfterNumberVerfication
+    static func callLoginApiAfterNumberVerfication(mobileNumber:String,password:String,completion:@escaping CompletionHandler)
+    {
+        BaseRequest.objMoyaApi.request(.getLoginWith(mobileNumber: mobileNumber, password: password)){ result in
+            switch result
+            {
+            case .success(let response):
+                if let checkStatus = checkApiResponseStatus(responseData: response.data)
+                {
+                    if checkStatus.status == true
+                    {
+                        guard let jsonData = try? JSONSerialization.jsonObject(with: response.data, options: []) as? [String: Any],
+                            let accessToken = jsonData["acstkn"] as? String,
+                            let userProfileData = jsonData["profile"] as? [String:Any],
+                            let appUdid =  userProfileData["acstkn"] as? String,
+                            let userId = jsonData["acstkn"] as? String
+                            else
+                        {
+                            fatalError("Login Api Serialization failed")
+                        }
+                        EPOSUserDefaults.setProfile(profile: userProfileData as AnyObject)
+                        EPOSUserDefaults.setUserId(userID: userId)
+                        EPOSUserDefaults.setUdid(udid: appUdid)
+                        EPOSUserDefaults.setAccessToken(accessToken: accessToken)
+                        completion(.success(response))
+                        
+                    }  else {
+                        completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                        
+                    }
+                }
+                
+            case .failure(let error):
+                completion(.failure(BaseError.errorMessage(error)));
+                print(error);
+                
+            }
+            
+        }
+    }
 }

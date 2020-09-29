@@ -19,8 +19,8 @@ class SignUpController: UIViewController {
     @IBOutlet weak var textFieldReferralCode: EPOSTextField!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var buttonCheckBox: CheckBox!
-    var userDataFromLoginController:UserData?
-    var mobileNumber:String="";
+    var userData:UserData?
+    var mobileNumber:String!;
     var checkBox:Bool=false;
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +34,26 @@ class SignUpController: UIViewController {
         }
     }
     
+    
+    class func initWith(mobileNumber: String,userData:UserData?) -> SignUpController {
+          let controller = SignUpController.instantiate(appStoryboard: .signupStoryboard)
+          controller.mobileNumber = mobileNumber
+          controller.userData = userData
+          return controller
+      }
+    
+    
     private func populateData()
     {
+        if userData != nil
+        {
+            textFieldEmailId.text = userData?.email
+            textFieldEmailId.isEnabled = false;
+            textFieldBusinessName.text = userData?.establishmentName
+            textFieldBusinessName.isEnabled = false
+        }
         textFieldMobileNumber.text = mobileNumber
+        textFieldMobileNumber.isEnabled = false
         
     }
     @IBAction func buttonSubmit(_ sender: Any) {
@@ -54,14 +71,13 @@ class SignUpController: UIViewController {
                 switch result {
                     
                 case .success(let response):
-                    OnBoardingRequest.getUserProfileAndProceedToLaunch(showProgress: true, completion:{result in
+                    OnBoardingRequest.getUserProfileAndProceedToLaunch(showProgress: true, completion:{[weak self]result in
                         switch result {
                         case .success(let response):
                             print(response)
                             
-                        case .failure(let error):
-                            print(error)
-                            ;
+                        case .failure(BaseError.errorMessage(let error)):
+                          self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
                         }
                     });
                     print(response)

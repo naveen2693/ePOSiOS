@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1za-bn-wS7">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -14,7 +14,7 @@
             <objects>
                 <viewController storyboardIdentifier="LoginController" id="QIW-zP-AQ0" customClass="LoginController" customModule="ePOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8S5-v2-4cb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dotedTexture" translatesAutoresizingMaskIntoConstraints="NO" id="1Sb-pv-Qxk">
@@ -122,7 +122,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1za-bn-wS7" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4KI-rm-tVm">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -139,7 +139,7 @@
             <objects>
                 <viewController storyboardIdentifier="PasswordController" id="2SZ-Y5-JD9" customClass="PasswordController" customModule="ePOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U2L-gX-Utv">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnX-eC-9w5">
@@ -208,7 +208,7 @@
             <objects>
                 <viewController storyboardIdentifier="OTPVerficationController" id="MYL-TE-SDZ" customClass="OTPVerficationController" customModule="ePOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Gjn-hz-jkI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="acf-RA-LTE">
@@ -382,7 +382,7 @@
             <objects>
                 <viewController storyboardIdentifier="ResetPasswordController" id="u2y-0f-JvW" customClass="ResetPasswordController" customModule="ePOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="c7Y-Yz-DDd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sCq-OT-WQ2" customClass="RoundedCornerView" customModule="ePOS" customModuleProvider="target">
@@ -486,7 +486,7 @@
             <objects>
                 <viewController storyboardIdentifier="ForgotPasswordController" id="BI2-bv-9cu" customClass="ForgotPasswordController" customModule="ePOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qz8-x0-GUQ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HVe-Ek-bCZ" customClass="EPOSShadowView" customModule="ePOS" customModuleProvider="target">
@@ -554,7 +554,7 @@
             <objects>
                 <viewController storyboardIdentifier="PasswordResetLinkMsgController" id="tx1-nE-uzI" customClass="PasswordResetLinkMsgController" customModule="ePOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kaA-KA-ZEw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mAa-Kb-JqG" customClass="EPOSShadowView" customModule="ePOS" customModuleProvider="target">
@@ -601,9 +601,203 @@
             </objects>
             <point key="canvasLocation" x="4507.2463768115949" y="-204.24107142857142"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="jEs-ju-2aV">
+            <objects>
+                <viewController id="Z0K-Pu-EK6" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HBH-zr-Oq4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dotedTexture" translatesAutoresizingMaskIntoConstraints="NO" id="cCv-w2-LMv">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <color key="backgroundColor" name="themeDarkColor"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nIi-kg-u5c" customClass="RoundedCornerView" customModule="ePOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="496" width="414" height="240"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get Started with ePOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="unp-i3-VvB" customClass="EPOSLabel" customModule="ePOS" customModuleProvider="target">
+                                        <rect key="frame" x="18.666666666666671" y="17.666666666666629" width="176.66666666666663" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2gG-OJ-GmF">
+                                        <rect key="frame" x="140" y="59" width="259" height="51"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Mobile Number" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="78M-PA-Sk2">
+                                                <rect key="frame" x="0.0" y="0.0" width="259" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="YAb-aE-OB2"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RdN-Xh-GEk">
+                                                <rect key="frame" x="0.0" y="50" width="259" height="1"/>
+                                                <color key="backgroundColor" name="themeDarkColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="2BH-6i-L0J"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+91" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pzg-Si-fvE">
+                                        <rect key="frame" x="80" y="74" width="29.666666666666671" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="india-flag" translatesAutoresizingMaskIntoConstraints="NO" id="rec-40-ZKC">
+                                        <rect key="frame" x="19" y="73.666666666666629" width="49" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="49" id="3WT-3S-W6C"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="Yql-Yo-QWe"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="15" id="dXC-fO-KYz"/>
+                                        </constraints>
+                                    </imageView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="I agree to Terms of Use &amp; Privacy Policy" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TdA-oR-lrO">
+                                        <rect key="frame" x="44" y="162" width="288" height="44"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ud-ur-2QC" customClass="EPOSRoundButton" customModule="ePOS" customModuleProvider="target">
+                                        <rect key="frame" x="344" y="157" width="62" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="62" id="Wqg-aL-dwN"/>
+                                        </constraints>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Unz-la-HFi" customClass="CheckBox" customModule="ePOS" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="167" width="28" height="28"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="28" id="C8D-Kx-DSh"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="2gG-OJ-GmF" secondAttribute="trailing" constant="15" id="2ZX-So-DMa"/>
+                                    <constraint firstItem="pzg-Si-fvE" firstAttribute="centerY" secondItem="78M-PA-Sk2" secondAttribute="centerY" id="4A9-uj-Ohq"/>
+                                    <constraint firstItem="78M-PA-Sk2" firstAttribute="top" secondItem="nIi-kg-u5c" secondAttribute="top" constant="59" id="EBl-3e-gMK"/>
+                                    <constraint firstItem="3ud-ur-2QC" firstAttribute="leading" secondItem="TdA-oR-lrO" secondAttribute="trailing" constant="12" id="Q1e-yA-ysm"/>
+                                    <constraint firstItem="pzg-Si-fvE" firstAttribute="leading" secondItem="rec-40-ZKC" secondAttribute="trailing" constant="12" id="U0x-85-Oya"/>
+                                    <constraint firstItem="Unz-la-HFi" firstAttribute="leading" secondItem="nIi-kg-u5c" secondAttribute="leading" constant="8" id="VcP-gh-7yb"/>
+                                    <constraint firstItem="2gG-OJ-GmF" firstAttribute="leading" secondItem="nIi-kg-u5c" secondAttribute="leading" constant="140" id="WOm-VV-eXF"/>
+                                    <constraint firstAttribute="bottom" secondItem="TdA-oR-lrO" secondAttribute="bottom" constant="34" id="fx6-UO-19R"/>
+                                    <constraint firstItem="rec-40-ZKC" firstAttribute="leading" secondItem="nIi-kg-u5c" secondAttribute="leading" constant="19" id="k7a-av-Zsl"/>
+                                    <constraint firstAttribute="trailing" secondItem="3ud-ur-2QC" secondAttribute="trailing" constant="8" id="kUJ-gr-6ul"/>
+                                    <constraint firstItem="unp-i3-VvB" firstAttribute="leading" secondItem="nIi-kg-u5c" secondAttribute="leading" constant="18.699999999999999" id="lOS-qf-sb2"/>
+                                    <constraint firstItem="rec-40-ZKC" firstAttribute="top" secondItem="unp-i3-VvB" secondAttribute="bottom" constant="35.666666666666671" id="lQc-A0-Eik"/>
+                                    <constraint firstItem="3ud-ur-2QC" firstAttribute="top" secondItem="2gG-OJ-GmF" secondAttribute="bottom" constant="47" id="lar-lf-QOY"/>
+                                    <constraint firstItem="TdA-oR-lrO" firstAttribute="leading" secondItem="Unz-la-HFi" secondAttribute="trailing" constant="8" id="o5X-nZ-UUx"/>
+                                    <constraint firstAttribute="bottom" secondItem="Unz-la-HFi" secondAttribute="bottom" constant="45" id="oXd-rT-7tl"/>
+                                    <constraint firstItem="rec-40-ZKC" firstAttribute="centerY" secondItem="pzg-Si-fvE" secondAttribute="centerY" id="t5y-H1-bkv"/>
+                                    <constraint firstItem="unp-i3-VvB" firstAttribute="top" secondItem="nIi-kg-u5c" secondAttribute="top" constant="17.600000000000001" id="tUU-mD-qSG"/>
+                                    <constraint firstAttribute="bottom" secondItem="3ud-ur-2QC" secondAttribute="bottom" constant="34" id="vjT-EO-Zxi"/>
+                                    <constraint firstItem="TdA-oR-lrO" firstAttribute="top" secondItem="nIi-kg-u5c" secondAttribute="top" constant="162" id="xXe-l1-0YC"/>
+                                    <constraint firstItem="Unz-la-HFi" firstAttribute="top" secondItem="rec-40-ZKC" secondAttribute="bottom" constant="72.5" id="xw5-UH-yzd"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRound">
+                                        <real key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ePOS logo" translatesAutoresizingMaskIntoConstraints="NO" id="u4u-Ar-uZk">
+                                <rect key="frame" x="138" y="222.66666666666663" width="138" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="u4u-Ar-uZk" secondAttribute="height" multiplier="136:69" id="mT2-uv-BFd"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Y9g-34-n1E" firstAttribute="trailing" secondItem="cCv-w2-LMv" secondAttribute="trailing" id="2lS-Fj-sJC"/>
+                            <constraint firstItem="nIi-kg-u5c" firstAttribute="trailing" secondItem="Y9g-34-n1E" secondAttribute="trailing" id="Ii8-7P-cIS"/>
+                            <constraint firstItem="nIi-kg-u5c" firstAttribute="bottom" secondItem="cCv-w2-LMv" secondAttribute="bottom" id="JsP-S0-WaK"/>
+                            <constraint firstItem="nIi-kg-u5c" firstAttribute="top" secondItem="cCv-w2-LMv" secondAttribute="bottom" constant="-240" id="POq-MC-Lx5"/>
+                            <constraint firstItem="cCv-w2-LMv" firstAttribute="leading" secondItem="Y9g-34-n1E" secondAttribute="leading" id="UIh-8y-cHz"/>
+                            <constraint firstItem="nIi-kg-u5c" firstAttribute="leading" secondItem="Y9g-34-n1E" secondAttribute="leading" id="b4P-5u-AV2"/>
+                            <constraint firstItem="cCv-w2-LMv" firstAttribute="top" secondItem="Y9g-34-n1E" secondAttribute="top" id="cTm-V3-yoa"/>
+                            <constraint firstItem="u4u-Ar-uZk" firstAttribute="centerY" secondItem="HBH-zr-Oq4" secondAttribute="centerY" multiplier="0.7" id="qS3-cW-n6J"/>
+                            <constraint firstItem="u4u-Ar-uZk" firstAttribute="centerX" secondItem="HBH-zr-Oq4" secondAttribute="centerX" id="uBY-js-HUy"/>
+                            <constraint firstItem="Y9g-34-n1E" firstAttribute="bottom" secondItem="cCv-w2-LMv" secondAttribute="bottom" id="xLD-ep-Lkk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Y9g-34-n1E"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lbe-a5-Sox" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1050.4000000000001" y="617.54122938530736"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Eg9-hH-XmE">
+            <objects>
+                <viewController id="nZA-Ds-knf" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Gss-mL-kNy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8FA-F1-Z1x">
+                                <rect key="frame" x="0.0" y="659" width="414" height="77"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot Password?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVU-X7-9SR" customClass="EPOSLabel" customModule="ePOS" customModuleProvider="target">
+                                        <rect key="frame" x="19" y="28" width="141" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="141" id="oiE-oH-CZa"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <color key="textColor" name="themeDarkColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fen-y0-843" customClass="EPOSRoundButton" customModule="ePOS" customModuleProvider="target">
+                                        <rect key="frame" x="312" y="3" width="66" height="66"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="66" id="3TR-0X-fmj"/>
+                                            <constraint firstAttribute="height" constant="66" id="cOG-qM-hRZ"/>
+                                        </constraints>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="iVU-X7-9SR" secondAttribute="bottom" constant="28" id="6Zt-X2-rZQ"/>
+                                    <constraint firstItem="iVU-X7-9SR" firstAttribute="top" secondItem="8FA-F1-Z1x" secondAttribute="top" constant="28" id="If5-d9-wGe"/>
+                                    <constraint firstAttribute="bottom" secondItem="fen-y0-843" secondAttribute="bottom" constant="8" id="Lvg-yB-bMh"/>
+                                    <constraint firstAttribute="width" constant="414" id="Pc7-s5-V1N"/>
+                                    <constraint firstItem="iVU-X7-9SR" firstAttribute="leading" secondItem="8FA-F1-Z1x" secondAttribute="leading" constant="19" id="aus-jz-Upc"/>
+                                    <constraint firstAttribute="height" constant="77" id="lly-nq-eeD"/>
+                                    <constraint firstAttribute="trailing" secondItem="fen-y0-843" secondAttribute="trailing" constant="36" id="rVB-MY-Cmv"/>
+                                    <constraint firstItem="fen-y0-843" firstAttribute="top" secondItem="8FA-F1-Z1x" secondAttribute="top" constant="3" id="uQf-fK-XkO"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="1Ic-1B-IgD">
+                                <rect key="frame" x="129" y="290" width="156" height="156"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="1Ic-1B-IgD" firstAttribute="centerX" secondItem="OC7-Er-xtJ" secondAttribute="centerX" id="GIj-mO-YRC"/>
+                            <constraint firstItem="8FA-F1-Z1x" firstAttribute="leading" secondItem="OC7-Er-xtJ" secondAttribute="leading" id="L7D-RQ-9ac"/>
+                            <constraint firstItem="1Ic-1B-IgD" firstAttribute="centerY" secondItem="OC7-Er-xtJ" secondAttribute="centerY" id="WAI-lb-Cqu"/>
+                            <constraint firstItem="8FA-F1-Z1x" firstAttribute="bottom" secondItem="OC7-Er-xtJ" secondAttribute="bottom" id="f1w-13-KqG"/>
+                            <constraint firstItem="8FA-F1-Z1x" firstAttribute="trailing" secondItem="OC7-Er-xtJ" secondAttribute="trailing" id="xMJ-Fb-4Xv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="OC7-Er-xtJ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0co-SP-IJI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="960.86956521739137" y="1397.2826086956522"/>
+        </scene>
     </scenes>
     <resources>
         <image name="dotedTexture" width="347" height="622"/>
+        <image name="ePOS logo" width="137" height="70"/>
+        <image name="india-flag" width="21" height="15"/>
+        <image name="password" width="156" height="156"/>
         <namedColor name="textBoxBorderColor">
             <color red="0.90588235294117647" green="0.90588235294117647" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

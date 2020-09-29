@@ -61,13 +61,18 @@ public class OnBoardingRequest:BaseRequest{
     static func getUserProfileAndProceedToLaunch(showProgress:Bool, completion:@escaping CompletionHandler)
     {
         guard NetworkState().isInternetAvailable else {
-            completion(.failure(APIError.noNetwork))
+//            completion(.failure(APIError.noNetwork))
             return
         }
         BaseRequest.objMoyaApi.request(.getManageAccount) { result in
             switch result
             {
+                
             case .success(let response):
+                if let checkStatus = checkApiResponseStatus(responseData: response.data)
+                {
+                    if checkStatus.status == true
+                    {
                 if let profileData = try? BaseRequest.decoder.decode(UserProfile.self, from:response.data) {
                     EPOSUserDefaults.setProfile(profile: profileData)
                     EPOSUserDefaults.setCurrentUserState(state: profileData.userType ?? UserState.applicant.rawValue)
@@ -77,11 +82,15 @@ public class OnBoardingRequest:BaseRequest{
                 
                 loadMasterDataAndProceedToLaunch(mode: Constants.modeValueForMasterData.rawValue, completion: completion);
                 completion(.success(response))
-                
+                } else
+                    {
+                        completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                        
+                    }
+                }
             case .failure(let error):
-                completion(.failure(error));
+                completion(.failure(BaseError.errorMessage(error)))
                 loadMasterDataAndProceedToLaunch(mode: Constants.modeValueForMasterData.rawValue, completion: completion);
-                print(error);
                 
             }
             
@@ -91,7 +100,7 @@ public class OnBoardingRequest:BaseRequest{
     private static func loadMasterDataAndProceedToLaunch(mode :String, completion:@escaping CompletionHandler)
     {
         guard NetworkState().isInternetAvailable else {
-            completion(.failure(APIError.noNetwork))
+//            completion(.failure(APIError.noNetwork))
             return
         }
         BaseRequest.objMoyaApi.request(.createRequestMasterDataWith(mode: mode)) { result in
@@ -131,7 +140,7 @@ public class OnBoardingRequest:BaseRequest{
     private static func  getCityDetailsAndProceedToLaunch(completion:@escaping CompletionHandler)
     {
         guard NetworkState().isInternetAvailable else {
-            completion(.failure(APIError.noNetwork))
+//            completion(.failure(APIError.noNetwork))
             return
         }
         let strLastModifiedDate = CityDataProvider().getLastModifiedDate()
@@ -170,7 +179,7 @@ public class OnBoardingRequest:BaseRequest{
     private static func fetchSubUserList(completion:@escaping CompletionHandler)
     {
         guard NetworkState().isInternetAvailable else {
-            completion(.failure(APIError.noNetwork))
+//            completion(.failure(APIError.noNetwork))
             return
         }
         
@@ -236,7 +245,7 @@ public class OnBoardingRequest:BaseRequest{
     private static func  getLeadByIdAndProceedToLaunch(leadId:Int, completion:@escaping CompletionHandler)
     {
         guard NetworkState().isInternetAvailable else {
-            completion(.failure(APIError.noNetwork))
+//            completion(.failure(APIError.noNetwork))
             return
         }
         BaseRequest.objMoyaApi.request(.getLeadByIdWith(leadId: leadId)) { result in
