@@ -18,6 +18,7 @@ class ResetPasswordController: UIViewController {
     var timingCount = 20
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         otpTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
@@ -31,20 +32,29 @@ class ResetPasswordController: UIViewController {
         
     }
     
+    class func initWith(mobileNumber: String) -> PasswordController {
+           let controller = PasswordController.instantiate(appStoryboard: .loginScreen)
+           controller.mobileNumber = mobileNumber
+           return controller
+    }
+    
     private func setTextfields()
     {
         
         textFieldMobileNumber.text = mobileNumber
+        textFieldMobileNumber.isEnabled = false
     }
     
     private func callResendOtpApi() {
+        showLoading()
         if let unwrappedMobileNumber = mobileNumber {
-            IntialDataRequest.resendOtpCallApiWith(mobileNumber:unwrappedMobileNumber,completion:{result in
+            IntialDataRequest.resendOtpCallApiWith(mobileNumber:unwrappedMobileNumber,completion:{[weak self] result in
+                self?.hideLoading()
                 switch result {
                 case .success (let response):
                     print(response);
-                case .failure(let error):
-                    print(error)
+                 case .failure(BaseError.errorMessage(let error)):
+                self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
                 }
             })
         } else {
@@ -61,6 +71,7 @@ class ResetPasswordController: UIViewController {
             buttonResendOtp.isUserInteractionEnabled = false
             buttonResendOtp.setTitle("\(timingCount) Resend Otp", for: .normal)
         }
+            
         else {
             //otpTimer.invalidate()
             print("call your api")
@@ -87,6 +98,7 @@ class ResetPasswordController: UIViewController {
     }
     
     @IBAction func buttonSubmit(_ sender: Any) {
+        showLoading()
         let response = Validation.shared.validate(values: (ValidationType.phoneNo,  textFieldMobileNumber.text as Any)
             ,(ValidationType.password,textFieldPassword.text as Any)
             ,(ValidationType.confirmPassword,textFieldConfirmPassword.text as Any)
@@ -94,6 +106,7 @@ class ResetPasswordController: UIViewController {
         switch response {
         case .success:
             IntialDataRequest.resetPasswordCallApiwith(mobileNumber:mobileNumber!,otp: textFieldOtp.text!,newPassword:textFieldPassword.text!,completion:{[weak self] result in
+                self?.hideLoading()
                 switch result {
                 case .success(let response):
                     print(response)
@@ -103,8 +116,8 @@ class ResetPasswordController: UIViewController {
                         self?.navigationController?.dismiss(animated: true, completion:nil)
                     }
                 // MARK:-generate the toast for successfull reset password
-                case .failure(let error):
-                    print(error);
+                 case .failure(BaseError.errorMessage(let error)):
+                    self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
                     
                 }
             })
