@@ -297,7 +297,7 @@ public class OnBoardingRequest:BaseRequest{
     
     static func createLeadWith(params: CreateLeadParams, completion:@escaping CompletionHandler) {
         guard NetworkState().isInternetAvailable else {
-            completion(.failure(APIError.noNetwork))
+//            completion(.failure(APIError.noNetwork))
             return
         }
         

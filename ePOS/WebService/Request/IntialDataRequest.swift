@@ -322,10 +322,10 @@ public class IntialDataRequest:BaseRequest{
                         {
                             fatalError("Login Api Serialization failed")
                         }
-                        EPOSUserDefaults.setProfile(profile: userProfileData as AnyObject)
-                        EPOSUserDefaults.setUserId(userID: userId)
-                        EPOSUserDefaults.setUdid(udid: appUdid)
-                        EPOSUserDefaults.setAccessToken(accessToken: accessToken)
+//                        EPOSUserDefaults.setProfile(profile: userProfileData as AnyObject)
+//                        EPOSUserDefaults.setUserId(userID: userId)
+//                        EPOSUserDefaults.setUdid(udid: appUdid)
+//                        EPOSUserDefaults.setAccessToken(accessToken: accessToken)
                         completion(.success(response))
                         
                     }  else {
