@@ -94,7 +94,7 @@ public class RequestHandler{
     // MARK:-createConfigurationRequest
     public static func  createConfigurationRequest(globalChangeNumber:Int) -> ConfigurationKeys {
         var request =  ConfigurationKeys();
-        //request.globalChngeNumber = globalChangeNumber;
+        request.globalChngeNumber = globalChangeNumber;
         return request;
     }
     

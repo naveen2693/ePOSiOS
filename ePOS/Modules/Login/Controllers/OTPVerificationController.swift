@@ -11,7 +11,7 @@ class OTPVerficationController:UIViewController {
     
     private let oTPLength: Int = 6
     var mobileNumber:String!
-    var userData : UserData!
+    var userData : UserData?
     var activeTextField = UITextField()
     var lastTextField :OTPTextField?
     var otpValue:String="";
@@ -75,7 +75,7 @@ class OTPVerficationController:UIViewController {
         }
     }
     
-    class func initWith(mobileNumber: String,userData:UserData) -> OTPVerficationController {
+    class func initWith(mobileNumber: String,userData:UserData?) -> OTPVerficationController {
         let controller = OTPVerficationController.instantiate(appStoryboard: .loginScreen)
         controller.mobileNumber = mobileNumber
         return controller

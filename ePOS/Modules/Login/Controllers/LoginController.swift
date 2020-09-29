@@ -74,7 +74,8 @@ class LoginController: UIViewController{
                 }
                 gotoSignUpController(userData: userData)
             }
-        } else if let userData = checkUserModel.UserData {
+        } else if checkUserModel.UserData == nil || checkUserModel.UserData != nil {
+            let userData = checkUserModel.UserData;
             gotoOtpVerificationController(userData: userData)
         }
     }
@@ -91,13 +92,14 @@ class LoginController: UIViewController{
             case .success(let response):
                 self?.gotoPasswordResetController()
                 print(response)
-            case .failure(let error):
-                print(error)
+           case .failure(BaseError.errorMessage(let error)):
+              self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
             }
+            
         })
     }
     
-    internal func gotoSignUpController(userData:UserData)
+    private func gotoSignUpController(userData:UserData)
     {
         
         if let mobileNumber = textFieldMobileNumber.text {
@@ -107,7 +109,7 @@ class LoginController: UIViewController{
         
     }
     
-    internal func gotoOtpVerificationController(userData:UserData)
+    private func gotoOtpVerificationController(userData:UserData?)
     {
         if let mobileNumber = textFieldMobileNumber.text {
             let viewController = OTPVerficationController.initWith(mobileNumber: mobileNumber,userData: userData)
@@ -115,7 +117,7 @@ class LoginController: UIViewController{
         }
     }
     
-    internal func gotoPasswordVerificationController()
+    private func gotoPasswordVerificationController()
     {
         
         if let mobileNumber = textFieldMobileNumber.text {
@@ -125,7 +127,7 @@ class LoginController: UIViewController{
         
     }
     
-    internal func gotoPasswordResetController()
+    private func gotoPasswordResetController()
     {
         if let mobileNumber = textFieldMobileNumber.text {
             let viewController = ResetPasswordController.initWith(mobileNumber: mobileNumber)
