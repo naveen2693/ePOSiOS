@@ -261,27 +261,63 @@ public class OnBoardingRequest:BaseRequest{
     }
     
     private static func checkWorkFlowStateToLaunch(completion:@escaping CompletionHandler) {
-        var workflowState = WorkFlowState.leadNotCreated
-        if let currentLead = EPOSUserDefaults.CurrentLead() {
-            if currentLead.workFlowState != nil {
-                workflowState = WorkFlowState(rawValue: currentLead.workFlowState) ?? workflowState
-                if workflowState == WorkFlowState.saveBUDetails {
-// TODO:                   if lead.getBusinessDetail() == nil {
-//                        workFlowState = WorkFlowState.leadInitialized;
-//                        completion(.success(workflowState as AnyObject))
-//                    }
-//                    else {
-//                        completion(.success(workflowState as AnyObject))
-//                    }
-                } else {
-                    completion(.success(workflowState as AnyObject))
+        completion(.success(WorkFlowState.leadNotCreated as AnyObject))
+//        var workflowState = WorkFlowState.leadNotCreated
+//        if let currentLead = EPOSUserDefaults.CurrentLead() {
+//            if currentLead.workFlowState != nil {
+//                workflowState = WorkFlowState(rawValue: currentLead.workFlowState!) ?? workflowState
+//                if workflowState == WorkFlowState.saveBUDetails {
+//// TODO:                   if lead.getBusinessDetail() == nil {
+////                        workFlowState = WorkFlowState.leadInitialized;
+////                        completion(.success(workflowState as AnyObject))
+////                    }
+////                    else {
+////                        completion(.success(workflowState as AnyObject))
+////                    }
+//                } else {
+//                    completion(.success(workflowState as AnyObject))
+//                }
+//            }
+//            else {
+//                completion(.success(workflowState as AnyObject))
+//            }
+//        } else {
+//            completion(.success(workflowState as AnyObject))
+//        }
+    }
+    
+    static func createLeadWith(params: CreateLeadParams, completion:@escaping CompletionHandler) {
+        guard NetworkState().isInternetAvailable else {
+            completion(.failure(APIError.noNetwork))
+            return
+        }
+        
+        BaseRequest.objMoyaApi.request(.createLeadWith(params: params)) { result in
+            switch result
+            {
+            case .success(let response):
+                do {
+                    let leadInfo = try BaseRequest.decoder.decode(Lead.self, from:response.data)
+                    EPOSUserDefaults.setLead(lead: leadInfo)
+                    completion(.success(response))
+                } catch DecodingError.dataCorrupted(let context) {
+                    debugPrint(context)
+                } catch DecodingError.keyNotFound(let key, let context) {
+                    debugPrint("Key '\(key)' not found:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch DecodingError.valueNotFound(let value, let context) {
+                    debugPrint("Value '\(value)' not found:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch DecodingError.typeMismatch(let type, let context)  {
+                    debugPrint("Type '\(type)' mismatch:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch {
+                    debugPrint("error: ", error)
                 }
+            case .failure(let error):
+                print(error);
+                
             }
-            else {
-                completion(.success(workflowState as AnyObject))
-            }
-        } else {
-            completion(.success(workflowState as AnyObject))
         }
     }
 }

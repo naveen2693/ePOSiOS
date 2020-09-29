@@ -17,19 +17,21 @@ class StatusDemoViewController: CustomNavigationStyleViewController {
         super.viewDidLoad()
         navigationItem.title = "First Screen"
         setRightTitle(withTitle: "1/3")
-        OnBoardingRequest.getUserProfileAndProceedToLaunch(showProgress: true, completion:{result in
-            switch result {
-            case .success(let response):
-                if let workflowState = response as? WorkFlowState {
-                    let controller = PersonalInfoViewController.viewController(workflowState)
-                }
-            case .failure(let error):
-                if let error = error as? APIError, error == .noNetwork {
-                    
-                    self.showAlert(title: "ERROR", message: Constants.noNetworkMsg.rawValue)
-                }
-            }
-        });
+        
+        appDelegate.getOnBoardingData()
+//        OnBoardingRequest.getUserProfileAndProceedToLaunch(showProgress: true, completion:{result in
+//            switch result {
+//            case .success(let response):
+//                if let workflowState = response as? WorkFlowState {
+//                    let controller = PersonalInfoViewController.viewController(workflowState)
+//                }
+//            case .failure(let error):
+//                if let error = error as? APIError, error == .noNetwork {
+//
+//                    self.showAlert(title: "ERROR", message: Constants.noNetworkMsg.rawValue)
+//                }
+//            }
+//        });
 //
 //        let controller = EmptyDataViewController.viewController(NoUserItem(), delegate: self)
 //        let controller = PersonalInfoViewController.init(nibName: PersonalInfoViewController.className, bundle: nil)

@@ -8,12 +8,6 @@
 
 import UIKit
 
-//enum WorkFlowState: Int {
-//    case one
-//    case two
-//    case three
-//    case four
-//}
 
 class PersonalInfoViewController: CustomNavigationStyleViewController {
 
@@ -29,6 +23,7 @@ class PersonalInfoViewController: CustomNavigationStyleViewController {
     @IBOutlet private weak var dropdownImageView: UIImageView!
 
     private var currentWorkflowState :WorkFlowState = .leadNotCreated
+    private var currentLead = EPOSUserDefaults.CurrentLead()
 
     
     class func viewController(_ state: WorkFlowState) -> PersonalInfoViewController {
@@ -119,17 +114,17 @@ extension PersonalInfoViewController {
     }
 
     @IBAction func nextClicked(_ sender: Any) {
-        if currentWorkflowState != .four {
-            var currentWorkFlowIndex = currentWorkflowState.rawValue
-            currentWorkFlowIndex += 1
-            currentWorkflowState = WorkFlowState(rawValue: currentWorkFlowIndex) ?? .one
-            refreshPage()
-        }
-        else {
-            //go to next page
-            let controller = MerchantDetailsViewController.viewController(appID: "34h35h43h54h5")
-            self.navigationController?.pushViewController(controller, animated: true)
-        }
+//        if currentWorkflowState != .four {
+//            var currentWorkFlowIndex = currentWorkflowState.rawValue
+//            currentWorkFlowIndex += 1
+//            currentWorkflowState = WorkFlowState(rawValue: currentWorkFlowIndex) ?? .one
+//            refreshPage()
+//        }
+//        else {
+//            //go to next page
+//            let controller = MerchantDetailsViewController.viewController(appID: "34h35h43h54h5")
+//            self.navigationController?.pushViewController(controller, animated: true)
+//        }
     }
 
     @IBAction func needHelpClicked(_ sender: Any) {

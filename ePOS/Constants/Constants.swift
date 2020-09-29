@@ -30,7 +30,9 @@ enum ApiEndpointsUrl{
         case masterDataUrl = "/rest/data/epos/masterData/getMasterDataV1";
         case getCityList = "/rest/data/epos/city/getCityListV5"
         case fetchUserList = "/rest/data/epos/merchant/fetchUser";
+        case createLead = "/rest/data/epos/lead/create"
         case getLeadId = "/rest/data/epos/lead/{lead_id}";
+        case updateLead = "/rest/data/epos/lead/update"
         
     }
 }
