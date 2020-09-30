@@ -17,9 +17,24 @@ class StatusDemoViewController: CustomNavigationStyleViewController {
         super.viewDidLoad()
         navigationItem.title = "First Screen"
         setRightTitle(withTitle: "1/3")
+        
+        appDelegate.getOnBoardingData()
+//        OnBoardingRequest.getUserProfileAndProceedToLaunch(showProgress: true, completion:{result in
+//            switch result {
+//            case .success(let response):
+//                if let workflowState = response as? WorkFlowState {
+//                    let controller = PersonalInfoViewController.viewController(workflowState)
+//                }
+//            case .failure(let error):
+//                if let error = error as? APIError, error == .noNetwork {
+//
+//                    self.showAlert(title: "ERROR", message: Constants.noNetworkMsg.rawValue)
+//                }
+//            }
+//        });
 //
 //        let controller = EmptyDataViewController.viewController(NoUserItem(), delegate: self)
-        let controller = PersonalInfoViewController.init(nibName: PersonalInfoViewController.className, bundle: nil)
+//        let controller = PersonalInfoViewController.init(nibName: PersonalInfoViewController.className, bundle: nil)
         //self.navigationController?.pushViewController(controller, animated: true)
         // Do any additional setup after loading the view.
 //        showLoading()
@@ -31,8 +46,8 @@ class StatusDemoViewController: CustomNavigationStyleViewController {
     }
 
     @IBAction func firstClicked(_ sender: Any) {
-        let controller = PersonalInfoViewController.init(nibName: PersonalInfoViewController.className, bundle: nil)
-        self.navigationController?.pushViewController(controller, animated: true)
+//        let controller = PersonalInfoViewController.init(nibName: PersonalInfoViewController.className, bundle: nil)
+//        self.navigationController?.pushViewController(controller, animated: true)
     }
     /*
     // MARK: - Navigation

@@ -41,16 +41,8 @@ class PasswordController: UIViewController {
                 IntialDataRequest.callLoginApiAfterNumberVerfication(mobileNumber:unwrappedMobileNumber, password:textFieldPassword.text! ,completion:{[weak self] result in
                     self?.hideLoading()
                     switch result {
-                    case .success(let response):
-                        OnBoardingRequest.getUserProfileAndProceedToLaunch(showProgress: true, completion:{ result in
-                            switch result {
-                            case .success(let response):
-                                print(response)
-                            case .failure(BaseError.errorMessage(let error)):
-                                self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
-                            }
-                        });
-                        print(response);
+                    case .success(_):
+                        appDelegate.getOnBoardingData()
                     case .failure(BaseError.errorMessage(let error)):
                         self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
                     }

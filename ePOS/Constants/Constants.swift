@@ -30,8 +30,10 @@ enum ApiEndpointsUrl{
         case masterDataUrl = "/rest/data/epos/masterData/getMasterDataV1";
         case getCityList = "/rest/data/epos/city/getCityListV5"
         case fetchUserList = "/rest/data/epos/merchant/fetchUser";
+        case createLead = "/rest/data/epos/lead/create"
         case getLeadId = "/rest/data/epos/lead/{lead_id}";
-        
+        case updateLead = "/rest/data/epos/lead/update"
+    case gstDetail = "/rest/data/mvs/gst/details"
     }
 }
 
@@ -65,6 +67,8 @@ enum Constants:String {
     case modeValueForMasterData = "epos";
     case errorMessage = "There was some unexpected error. Please try again later"
     case passwordChangeALertMessage = "Password Changed Successfully"
+    case success = "SUCCESS"
+    case noNetworkMsg = "Please check your network connection"
     case apiError = "API Error"
     case validationFailure = "Validation Failure Message"
 }

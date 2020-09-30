@@ -23,3 +23,20 @@ public struct ListSortParams{
     public var size:Int?;
     public var sort:String?
 }
+
+// MARK:- For Onboarding
+struct CreateLeadParams: Codable {
+    var name: String
+    var pan: String
+    var firmType: String
+    var kyc: [String]?
+    var typeOfLead: String
+    
+    public enum CodingKeys: String, CodingKey {
+        case name
+        case pan
+        case firmType
+        case kyc
+        case typeOfLead
+    }
+}

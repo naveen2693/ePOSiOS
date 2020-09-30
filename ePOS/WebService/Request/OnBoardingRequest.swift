@@ -10,7 +10,11 @@ import Foundation
 
 // MARK:- LeadCode Keys
 public struct GetLeadIDKeys:Codable{
-    var id:Int64?;
+    var id:Int?;
+}
+
+struct GstDetailKeys{
+    public var  QUERY_KEY1:String = "gst";
 }
 
 // MARK:-UserList Keys
@@ -58,8 +62,12 @@ struct DeviceInformationKeys : Codable{
 
 public class OnBoardingRequest:BaseRequest{
     
-    static func getUserProfileAndProceedToLaunch(showProgress:Bool,completion:@escaping CompletionHandler)
+    static func getUserProfileAndProceedToLaunch(showProgress:Bool, completion:@escaping CompletionHandler)
     {
+        guard NetworkState().isInternetAvailable else {
+//            completion(.failure(APIError.noNetwork))
+            return
+        }
         BaseRequest.objMoyaApi.request(.getManageAccount) { result in
             switch result
             {
@@ -69,53 +77,62 @@ public class OnBoardingRequest:BaseRequest{
                 {
                     if checkStatus.status == true
                     {
-                        
-                        guard let jsonObject: Any = try? JSONSerialization.jsonObject(with: response.data, options: []) as Any,
-                            let jsonData = jsonObject as? [String:Any],
-                            let profile = jsonData["profile"] as? String
-                            else
-                        {
-                            fatalError("Serialization Error")
+                        if let profileData = try? BaseRequest.decoder.decode(UserProfile.self, from:response.data) {
+                            EPOSUserDefaults.setProfile(profile: profileData)
+                            EPOSUserDefaults.setCurrentUserState(state: profileData.userType ?? UserState.applicant.rawValue)
+                            loadMasterDataAndProceedToLaunch(mode: Constants.modeValueForMasterData.rawValue, completion: completion);
+                        } else {
+                            fatalError("UserProfile was not created")
                         }
-                        EPOSUserDefaults.setProfile(profile: profile as AnyObject)
-                        loadMasterDataAndProceedToLaunch(mode: Constants.modeValueForMasterData.rawValue);
-                        completion(.success(response))
-                        
-                    } else
+                
+                } else
                     {
                         completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
                         
                     }
                 }
-                
             case .failure(let error):
-                completion(.failure(BaseError.errorMessage(error)));
-                loadMasterDataAndProceedToLaunch(mode: Constants.modeValueForMasterData.rawValue);
-                print(error);
+                completion(.failure(BaseError.errorMessage(error)))
+//                loadMasterDataAndProceedToLaunch(mode: Constants.modeValueForMasterData.rawValue, completion: completion);
                 
             }
             
         }
     }
     
-    private static func loadMasterDataAndProceedToLaunch(mode :String)
+    private static func loadMasterDataAndProceedToLaunch(mode :String, completion:@escaping CompletionHandler)
     {
+        guard NetworkState().isInternetAvailable else {
+//            completion(.failure(APIError.noNetwork))
+            return
+        }
         BaseRequest.objMoyaApi.request(.createRequestMasterDataWith(mode: mode)) { result in
             switch result
             {
             case .success(let response):
-                guard let jsonObject: Any = try? JSONSerialization.jsonObject(with: response.data, options: []) as Any,
-                    let jsonData = jsonObject as? [String:Any],
-                    let masterData = jsonData["masterData"] as? [AnyObject]
-                    else
-                {
-                    fatalError("Serialization Error")
+                do {
+                    let masterData = try BaseRequest.decoder.decode(MasterDataWrapper.self, from:response.data)
+                    try? MasterDataProvider().saveMasterDataPlistFile(with: masterData)
+                    getCityDetailsAndProceedToLaunch(completion: completion);
+                } catch DecodingError.dataCorrupted(let context) {
+                    debugPrint(context)
+                } catch DecodingError.keyNotFound(let key, let context) {
+                    debugPrint("Key '\(key)' not found:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch DecodingError.valueNotFound(let value, let context) {
+                    debugPrint("Value '\(value)' not found:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch DecodingError.typeMismatch(let type, let context)  {
+                    debugPrint("Type '\(type)' mismatch:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch {
+                    debugPrint("error: ", error)
                 }
-                EPOSUserDefaults.setMasterData(masterData: masterData as AnyObject)
-                getCityDetailsAndProceedToLaunch();
                 
             case .failure(let error):
-                getCityDetailsAndProceedToLaunch();
+                completion(.failure(BaseError.errorMessage(error)))
+//                getCityDetailsAndProceedToLaunch(completion: completion);
+                error.errorDescription
                 print(error);
                 
             }
@@ -123,97 +140,126 @@ public class OnBoardingRequest:BaseRequest{
         }
     }
     
-    private static func  getCityDetailsAndProceedToLaunch()
+    private static func  getCityDetailsAndProceedToLaunch(completion:@escaping CompletionHandler)
     {
-        let strLastModifiedDate = EPOSUserDefaults.getStateModifiedDate();
-        if let unwrappedModifiedDate = strLastModifiedDate{
-            BaseRequest.objMoyaApi.request(.getCityListWith(strLastModifiedDate:unwrappedModifiedDate)) { result in
+        guard NetworkState().isInternetAvailable else {
+//            completion(.failure(APIError.noNetwork))
+            return
+        }
+        let strLastModifiedDate = CityDataProvider().getLastModifiedDate()
+    BaseRequest.objMoyaApi.request(.getCityListWith(strLastModifiedDate:"\(strLastModifiedDate)")) { result in
+        switch result
+        {
+        case .success(let response):
+            do {
+                let statesData = try BaseRequest.decoder.decode(StateData.self, from:response.data)
+                try? CityDataProvider().saveSateDataPlistFile(with: statesData)
+                fetchSubUserList(completion: completion)
+            } catch DecodingError.dataCorrupted(let context) {
+                debugPrint(context)
+            } catch DecodingError.keyNotFound(let key, let context) {
+                debugPrint("Key '\(key)' not found:", context.debugDescription)
+                debugPrint("codingPath:", context.codingPath)
+            } catch DecodingError.valueNotFound(let value, let context) {
+                debugPrint("Value '\(value)' not found:", context.debugDescription)
+                debugPrint("codingPath:", context.codingPath)
+            } catch DecodingError.typeMismatch(let type, let context)  {
+                debugPrint("Type '\(type)' mismatch:", context.debugDescription)
+                debugPrint("codingPath:", context.codingPath)
+            } catch {
+                debugPrint("error: ", error)
+            }
+            
+            
+        case .failure(let error):
+            completion(.failure(BaseError.errorMessage(error)))
+//            fetchSubUserList(completion: completion);
+            print(error);
+            
+        }
+                
+    }
+}
+    
+    private static func fetchSubUserList(completion:@escaping CompletionHandler)
+    {
+        guard NetworkState().isInternetAvailable else {
+//            completion(.failure(APIError.noNetwork))
+            return
+        }
+        
+        if let state = EPOSUserDefaults.currentUserState(), state == UserState.merchant.rawValue {
+            let userProfileData = EPOSUserDefaults.getProfile();
+            var listmobileNumber = [String]();
+            guard let profiledataJson = userProfileData as? [String:Any],
+                let mobileNumber = profiledataJson["mobileNumber"] as? String
+                else
+            {
+                fatalError("Error: unwrappedModifiedDate")
+            }
+            listmobileNumber.append(mobileNumber)
+            let params = ListSortParams(direction: "ASC", page: 0, size: 100, sort:"id");
+            BaseRequest.objMoyaApi.request(.getFetchUserWith(listSortParams: params)) { result in
                 switch result
                 {
                 case .success(let response):
                     guard let jsonObject: Any = try? JSONSerialization.jsonObject(with: response.data, options: []) as Any,
                         let jsonData = jsonObject as? [String:Any],
-                        let modifiedDate = jsonData["lastModifiedDate"] as? String,
-                        let state = jsonData["states"] as? [String:Any]
+                        let listSubUsers = jsonData["subUsers"] as? [String:Any]
                         else
                     {
                         fatalError("Serialization Error")
                     }
-                    EPOSUserDefaults.setStateModifiedDate(modifiedDate: modifiedDate)
-                    EPOSUserDefaults.setStateData(stateData: state as AnyObject)
-                    fetchSubUserList();
+                    for (key,value) in listSubUsers
+                    {
+                        if key == "mobileNumber"{
+                            let mobileNumber  = value as? String
+                            if let unwrappedMobileNumber = mobileNumber{
+                                listmobileNumber.append(unwrappedMobileNumber)
+                            }
+                            else
+                            {
+                                fatalError("Error:Unwrapped error subuser dictionary")
+                            }
+                        }
+                    }
+                    EPOSUserDefaults.setMobileNumberList(stateData: listmobileNumber as AnyObject)
+                    let leadId:Int = 1;//call lead function
+                    if leadId>0
+                    {
+                        getLeadByIdAndProceedToLaunch(leadId: leadId, completion: completion);
+                    }
                 case .failure(let error):
-                    fetchSubUserList();
+                    fetchSubUserList(completion: completion);
                     print(error);
                     
                 }
                 
             }
-        }else
-        {
-            fatalError("Error: unwrappedModifiedDate")
         }
-    }
-    
-    private static func fetchSubUserList()
-    {
-        let userProfileData = EPOSUserDefaults.getProfile();
-        var listmobileNumber = [String]();
-        guard let profiledataJson = userProfileData as? [String:Any],
-            let mobileNumber = profiledataJson["mobileNumber"] as? String
-            else
-        {
-            fatalError("Error: unwrappedModifiedDate")
-        }
-        listmobileNumber.append(mobileNumber)
-        let params = ListSortParams(direction: "ASC", page: 0, size: 100, sort:"id");
-        BaseRequest.objMoyaApi.request(.getFetchUserWith(listSortParams: params)) { result in
-            switch result
-            {
-            case .success(let response):
-                guard let jsonObject: Any = try? JSONSerialization.jsonObject(with: response.data, options: []) as Any,
-                    let jsonData = jsonObject as? [String:Any],
-                    let listSubUsers = jsonData["subUsers"] as? [String:Any]
-                    else
-                {
-                    fatalError("Serialization Error")
-                }
-                for (key,value) in listSubUsers
-                {
-                    if key == "mobileNumber"{
-                        let mobileNumber  = value as? String
-                        if let unwrappedMobileNumber = mobileNumber{
-                            listmobileNumber.append(unwrappedMobileNumber)
-                        }
-                        else
-                        {
-                            fatalError("Error:Unwrapped error subuser dictionary")
-                        }
-                    }
-                }
-                EPOSUserDefaults.setMobileNumberList(stateData: listmobileNumber as AnyObject)
-                let leadId:Int64 = 1;//call lead function
-                if leadId>0
-                {
-                    getLeadByIdAndProceedToLaunch(leadId: leadId);
-                }
-            case .failure(let error):
-                fetchSubUserList();
-                print(error);
-                
+        else {
+            let leadID = EPOSUserDefaults.currentLeadID()
+            if leadID > 0 {
+                getLeadByIdAndProceedToLaunch(leadId: leadID, completion: completion);
+            } else {
+                //hide loading
+                checkWorkFlowStateToLaunch(completion: completion)
             }
-            
         }
     }
-    private static func  getLeadByIdAndProceedToLaunch(leadId:Int64)
+    private static func  getLeadByIdAndProceedToLaunch(leadId:Int, completion:@escaping CompletionHandler)
     {
+        guard NetworkState().isInternetAvailable else {
+//            completion(.failure(APIError.noNetwork))
+            return
+        }
         BaseRequest.objMoyaApi.request(.getLeadByIdWith(leadId: leadId)) { result in
             switch result
             {
             case .success(let response):
                 guard let jsonObject: Any = try? JSONSerialization.jsonObject(with: response.data, options: []) as Any,
                     let jsonData = jsonObject as? [String:Any],
-                    let _ = jsonData["lead"] as? [String:Any],
+                    let leadData = jsonData["lead"] as? [String:Any],
                     let workFlowState = jsonData["workFlowState"] as? String
                     else
                 {
@@ -227,6 +273,101 @@ public class OnBoardingRequest:BaseRequest{
             
         }
     }
+    
+    private static func checkWorkFlowStateToLaunch(completion:@escaping CompletionHandler) {
+        completion(.success(WorkFlowState.leadNotCreated as AnyObject))
+//        var workflowState = WorkFlowState.leadNotCreated
+//        if let currentLead = EPOSUserDefaults.CurrentLead() {
+//            if currentLead.workFlowState != nil {
+//                workflowState = WorkFlowState(rawValue: currentLead.workFlowState!) ?? workflowState
+//                if workflowState == WorkFlowState.saveBUDetails {
+//// TODO:                   if lead.getBusinessDetail() == nil {
+////                        workFlowState = WorkFlowState.leadInitialized;
+////                        completion(.success(workflowState as AnyObject))
+////                    }
+////                    else {
+////                        completion(.success(workflowState as AnyObject))
+////                    }
+//                } else {
+//                    completion(.success(workflowState as AnyObject))
+//                }
+//            }
+//            else {
+//                completion(.success(workflowState as AnyObject))
+//            }
+//        } else {
+//            completion(.success(workflowState as AnyObject))
+//        }
+    }
+    
+    static func createLeadWith(params: CreateLeadParams, completion:@escaping CompletionHandler) {
+        guard NetworkState().isInternetAvailable else {
+//            completion(.failure(APIError.noNetwork))
+            return
+        }
+        
+        BaseRequest.objMoyaApi.request(.createLeadWith(params: params)) { result in
+            switch result
+            {
+            case .success(let response):
+                do {
+                    let leadInfo = try BaseRequest.decoder.decode(Lead.self, from:response.data)
+                    EPOSUserDefaults.setLead(lead: leadInfo)
+                    completion(.success(response))
+                } catch DecodingError.dataCorrupted(let context) {
+                    debugPrint(context)
+                } catch DecodingError.keyNotFound(let key, let context) {
+                    debugPrint("Key '\(key)' not found:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch DecodingError.valueNotFound(let value, let context) {
+                    debugPrint("Value '\(value)' not found:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch DecodingError.typeMismatch(let type, let context)  {
+                    debugPrint("Type '\(type)' mismatch:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch {
+                    debugPrint("error: ", error)
+                }
+            case .failure(let error):
+                completion(.failure(BaseError.errorMessage(error)))
+                
+            }
+        }
+    }
+    
+    static func getGSTDetails(gstNumber: String, completion:@escaping CompletionHandler) {
+            guard NetworkState().isInternetAvailable else {
+    //            completion(.failure(APIError.noNetwork))
+                return
+            }
+            
+            BaseRequest.objMoyaApi.request(.getGSTDetail(gstNumber: gstNumber)) { result in
+                switch result
+                {
+                case .success(let response):
+                    do {
+                        let gstWrapper = try BaseRequest.decoder.decode(GSTDetailWrapper.self, from:response.data)
+                        completion(.success((gstWrapper.result as AnyObject)))
+                    } catch DecodingError.dataCorrupted(let context) {
+                        debugPrint(context)
+                    } catch DecodingError.keyNotFound(let key, let context) {
+                        debugPrint("Key '\(key)' not found:", context.debugDescription)
+                        debugPrint("codingPath:", context.codingPath)
+                    } catch DecodingError.valueNotFound(let value, let context) {
+                        debugPrint("Value '\(value)' not found:", context.debugDescription)
+                        debugPrint("codingPath:", context.codingPath)
+                    } catch DecodingError.typeMismatch(let type, let context)  {
+                        debugPrint("Type '\(type)' mismatch:", context.debugDescription)
+                        debugPrint("codingPath:", context.codingPath)
+                    } catch {
+                        debugPrint("error: ", error)
+                    }
+                case .failure(let error):
+                    completion(.failure(BaseError.errorMessage(error)))
+                    
+                }
+            }
+        }
 }
 
 

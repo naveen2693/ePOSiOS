@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         configureFirebase()
         setAppearance()
+        loadApp()
         return true
     }
 
@@ -52,14 +53,62 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //MARK: - Custom Methods
 extension AppDelegate {
     
-    func showHomeScreen()  {
+    func loadApp() {
+        if EPOSUserDefaults.getProfile() != nil {
+            getOnBoardingData()
+        } else {
+            showLoginScreen()
+        }
+    }
+    
+    func showLoginScreen() {
+        if let loginController = AppStoryboard.loginScreen.initialViewController() {
+            setRootControllerOnWindowWith(loginController)
+        }
+    }
+    
+    func setRootControllerOnWindowWith(_ controller: UIViewController)  {
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let navigationController = UINavigationController(rootViewController: EPOSTabBarViewController())
-        navigationController.isNavigationBarHidden = true
-        self.window?.rootViewController = navigationController
+        if let navController = controller as? UINavigationController {
+            self.window?.rootViewController = navController
+        } else {
+            let navigationController = UINavigationController(rootViewController: controller)
+            navigationController.isNavigationBarHidden = true
+            self.window?.rootViewController = navigationController
+        }
         self.window?.makeKeyAndVisible()
     }
     
+    func showHomeScreen() {
+        setRootControllerOnWindowWith(EPOSTabBarViewController())
+    }
+    
+    func setOnBoardingNavigationWith(_ state: WorkFlowState) {
+        switch state {
+        case .leadNotCreated:
+            let controller = PersonalInfoViewController.viewController(state)
+            setRootControllerOnWindowWith(controller)
+        default:
+            break
+        }
+    }
+    
+    func getOnBoardingData() {
+        OnBoardingRequest.getUserProfileAndProceedToLaunch(showProgress: true, completion:{ result in
+            weak var weakSelf = self
+            switch result {
+            case .success(let response):
+                if let workflowState = response as? WorkFlowState {
+                    weakSelf?.setOnBoardingNavigationWith(workflowState)
+                }
+            case .failure(let error):
+                if let error = error as? APIError, error == .noNetwork {
+                    
+//                    self.showAlert(title: "ERROR", message: Constants.noNetworkMsg.rawValue)
+                }
+            }
+        });
+    }
     
     func setAppearance() {
         UINavigationBar.appearance().tintColor = UIColor.white
@@ -72,4 +121,5 @@ extension AppDelegate {
         //UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -200, vertical: 0), for:UIBarMetrics.default)
 
     }
+    
 }

@@ -11,9 +11,9 @@ public class RequestHandler{
     // MARK:-createWebServiceHeaderWithoutAccessToken
     internal static func  createWebServiceHeaderWithoutAccessToken() -> [String:String] {
         var headermap = [String:String]();
-        let deviceId:String = "0000000089ABCDEF0123456789ABCDEF";
-        let imeiNum:String = "000000123456789"
-        let advertisingId:String = "0000000089ABCDEF0123456789ABCDEF"
+        let deviceId:String = "0000000089ABCDEF0123456789ABCDtr";
+        let imeiNum:String = "000000123456723"
+        let advertisingId:String = "0000000089ABCDEF0123456789ABCjyd"
         //let appUuid:String = "2b6f0cc904d137be2e1730235f5664094b831186"
         headermap[ApiHeaderKeys.requestHeaderClientKey.rawValue] = ClientRequestValues.requestHeaderClientValue.rawValue
         headermap[ApiHeaderKeys.requestHeaderBuildVersionKey.rawValue] = "1.0"// set build-version
@@ -36,14 +36,14 @@ public class RequestHandler{
     // MARK:-createWebServiceHeaderWithAccessToken
     internal static func  createWebServiceHeaderWithAccessToken() -> [String:String]{
         var headermap =  [String:String]();
-        let deviceId:String = "0000000089ABCDEF0123456789ABCDEF";
-        let imeiNum:String = "000000123456789"
-        let advertisingId:String = "0000000089ABCDEF0123456789ABCDEF"
-        let appUuid:String = "2b6f0cc904d137be2e1730235f5664094b831186"
+        let deviceId:String = "0000000089ABCDEF0123456789ABCDtr";
+        let imeiNum:String = "000000123456723"
+        let advertisingId:String = "0000000089ABCDEF0123456789ABCjyd"
+        let appUuid:String = "59607063c22a4470b778aab4e28733ed"
         headermap[ApiHeaderKeys.requestHeaderClientKey.rawValue] = ClientRequestValues.requestHeaderClientValue.rawValue
         headermap[ApiHeaderKeys.requestHeaderBuildVersionKey.rawValue] = "1.0"// set build-version
         headermap[ApiHeaderKeys.requestClientTypeKey.rawValue] = ApiHeaderKeys.requestHeaderClientTypeValue.rawValue;
-        headermap[ApiHeaderKeys.requestHeaderAccessTokenKey.rawValue] = "access-token";
+        headermap[ApiHeaderKeys.requestHeaderAccessTokenKey.rawValue] = EPOSUserDefaults.getAccessToken()
         if(!(deviceId.isEmpty)) {
             headermap[ApiHeaderKeys.requestHeaderDeviceKey.rawValue] = deviceId;
         }
@@ -99,7 +99,7 @@ public class RequestHandler{
     }
     
     // MARK:- createGetLeadIDRequest
-    public static func  createGetLeadIDRequest(leadID:Int64) -> GetLeadIDKeys{
+    public static func  createGetLeadIDRequest(leadID:Int) -> GetLeadIDKeys{
         var request = GetLeadIDKeys();
         request.id = leadID;
         return request;
@@ -155,6 +155,14 @@ public class RequestHandler{
         var request = MasterDataKeys();
         request.mode = mode;
         return request;
+    }
+    
+    // MARK:- gst details
+    public static func createGstDetailRequest(number:String) -> [String:String] {
+        var dict = [String:String]();
+        let keys = GstDetailKeys()
+        dict[keys.QUERY_KEY1] = number;
+        return dict;
     }
     
     // MARK:- createGetCityListRequest

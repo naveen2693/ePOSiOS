@@ -23,14 +23,18 @@ case getLoginWith(mobileNumber:String,password:String)
     case getSignUpWith(signUpData:SignUpData)
     
     case getManageAccount
-    
+// MARK:-OnBoarding Apis
     case createRequestMasterDataWith(mode:String)
     
     case getCityListWith(strLastModifiedDate:String)
     
     case getFetchUserWith(listSortParams:ListSortParams)
     
-    case getLeadByIdWith(leadId:Int64)
+    case createLeadWith(params: CreateLeadParams)
+    
+    case getLeadByIdWith(leadId:Int)
+    
+    case getGSTDetail(gstNumber: String)
     
 // MARK:- Configuration
     case getConfigurationsWith(globalChangeNumber:Int)
@@ -80,11 +84,18 @@ extension ApiService : TargetType
             
         case .getLeadByIdWith:
            return ApiEndpointsUrl.OnboardingApiEndpointUrl.getLeadId.rawValue
+            
+        case .createLeadWith:
+            return ApiEndpointsUrl.OnboardingApiEndpointUrl.createLead.rawValue
+            
+        case .getGSTDetail:
+            return ApiEndpointsUrl.OnboardingApiEndpointUrl.gstDetail.rawValue
         
     // MARK:- Configuration path
         case .getConfigurationsWith:
             return ApiEndpointsUrl.ConfigurationApiEndPointsUrl.configurationUrl.rawValue
            
+        
         }
     }
 
@@ -116,6 +127,7 @@ extension ApiService : TargetType
         case .getManageAccount:
             return .get
             
+// MARK: - OnBoarding Apis Method
         case .createRequestMasterDataWith:
             return .post
             
@@ -124,12 +136,19 @@ extension ApiService : TargetType
             
         case .getFetchUserWith:
             return .get
+        
+         case .createLeadWith:
+            return .post
             
-        case .getLeadByIdWith:
+        case .getLeadByIdWith, .getGSTDetail:
             return .get
+            
+            
  // MARK:- Configuration Method
         case .getConfigurationsWith:
             return .post
+        
+        
         }
     }
     
@@ -139,7 +158,7 @@ extension ApiService : TargetType
     
   var validate:ValidationType {
         switch self {
-        case .getCheckUserWith, .getForgotPasswordWith,.getVerifyOtpWith,.getSendOtpWith,.resetPasswordWith,.getLoginWith,.getSignUpWith,.getManageAccount,.createRequestMasterDataWith,.getCityListWith,.getFetchUserWith,.getLeadByIdWith,.getConfigurationsWith:
+        case .getCheckUserWith, .getForgotPasswordWith,.getVerifyOtpWith,.getSendOtpWith,.resetPasswordWith,.getLoginWith,.getSignUpWith,.getManageAccount,.createRequestMasterDataWith,.getCityListWith,.getFetchUserWith,.getLeadByIdWith,.getConfigurationsWith, .createLeadWith, .getGSTDetail:
             return .customCodes([200])
         }
     }
@@ -172,86 +191,70 @@ extension ApiService : TargetType
         case .getSignUpWith(let signUpData):
             return  .requestJSONEncodable((RequestHandler
                 .createSignUpRequest(signUpData: signUpData)))
-            
-        case .createRequestMasterDataWith(let mode):
-             return  .requestJSONEncodable((RequestHandler
-                .createMasterDataRequest(mode: mode)))
-            
-        case .getCityListWith(let strLastModifiedDate):
-             return  .requestJSONEncodable((RequestHandler
-                .createGetCityListRequest(strLastModifiedDate: strLastModifiedDate)))
-            
-        case .getFetchUserWith(let listSortParams):
-            return .requestParameters(parameters:RequestHandler.createUserListRequest(params:listSortParams), encoding: URLEncoding.queryString)
-            
-        case .getLeadByIdWith(let leadId):
-            return  .requestJSONEncodable((RequestHandler
-                .createGetLeadIDRequest(leadID: leadId)))
-            
         case .getManageAccount:
             return .requestPlain
         
+            
+//  MARK: - ONBoarding tasks
+            case .createRequestMasterDataWith(let mode):
+                 return  .requestJSONEncodable((RequestHandler
+                    .createMasterDataRequest(mode: mode)))
+                
+            case .getCityListWith(let strLastModifiedDate):
+                 return  .requestJSONEncodable((RequestHandler
+                    .createGetCityListRequest(strLastModifiedDate: strLastModifiedDate)))
+                
+            case .getFetchUserWith(let listSortParams):
+                return .requestParameters(parameters:RequestHandler.createUserListRequest(params:listSortParams), encoding: URLEncoding.queryString)
+                
+            case .createLeadWith(let params):
+                return .requestJSONEncodable(params)
+            
+            case .getLeadByIdWith(let leadId):
+                return  .requestJSONEncodable((RequestHandler
+                    .createGetLeadIDRequest(leadID: leadId)))
+            
+            case .getGSTDetail(let gstNumber):
+                return .requestParameters(parameters:RequestHandler.createGstDetailRequest(number: gstNumber), encoding: URLEncoding.queryString)
 // MARK:-Configuration task
         case .getConfigurationsWith(let globalChngNum):
             return  .requestJSONEncodable((RequestHandler
                 .createConfigurationRequest(globalChangeNumber: globalChngNum)))
         
-
-    }
+        
+        }
     }
     var headers: [String : String]? {
           switch self {
              case .getCheckUserWith:
                 return RequestHandler.createWebServiceHeaderWithoutAccessToken()
                         
-                    case .getForgotPasswordWith:
-                        return RequestHandler.createWebServiceHeaderWithoutAccessToken()
+            case .getForgotPasswordWith:
+                return RequestHandler.createWebServiceHeaderWithoutAccessToken()
+    
+            case .getVerifyOtpWith:
+               return RequestHandler.createWebServiceHeaderWithoutAccessToken()
+                
+            case .getSendOtpWith:
+               return RequestHandler.createWebServiceHeaderWithoutAccessToken()
+    
+            case .getLoginWith:
+            return RequestHandler.createWebServiceHeaderWithoutAccessToken()
+    
+            case .getSignUpWith:
+               return RequestHandler.createWebServiceHeaderWithoutAccessToken()
+    
+            case .resetPasswordWith:
+                return RequestHandler.createWebServiceHeaderWithoutAccessToken()
+                
+          case .getManageAccount, .createRequestMasterDataWith, .getCityListWith, .getFetchUserWith, .createLeadWith, .getLeadByIdWith, .getGSTDetail:
+                 return RequestHandler.createWebServiceHeaderWithAccessToken()
             
-                    case .getVerifyOtpWith:
-                       return RequestHandler.createWebServiceHeaderWithoutAccessToken()
-                        
-                    case .getSendOtpWith:
-                       return RequestHandler.createWebServiceHeaderWithoutAccessToken()
+            case .getConfigurationsWith:
+                 return RequestHandler.createWebServiceHeaderWithoutAccessToken()
             
-                    case .getLoginWith:
-                    return RequestHandler.createWebServiceHeaderWithoutAccessToken()
-            
-                    case .getSignUpWith:
-                       return RequestHandler.createWebServiceHeaderWithoutAccessToken()
-            
-                    case .resetPasswordWith:
-                        return RequestHandler.createWebServiceHeaderWithoutAccessToken()
-                        
-                    case .getManageAccount:
-                         return RequestHandler.createWebServiceHeaderWithAccessToken()
-                        
-                    case .createRequestMasterDataWith:
-                          return RequestHandler.createWebServiceHeaderWithAccessToken()
-                        
-                    case .getCityListWith:
-                          return RequestHandler.createWebServiceHeaderWithAccessToken()
-                        
-                    case .getFetchUserWith:
-                         return RequestHandler.createWebServiceHeaderWithAccessToken()
-                        
-                    case .getLeadByIdWith:
-                         return RequestHandler.createWebServiceHeaderWithAccessToken()
-            
-                    case .getConfigurationsWith:
-                         return RequestHandler.createWebServiceHeaderWithoutAccessToken()
-            
-                    }
+          
+        }
             
     }
 }
-//private extension NSURL {
-//    static func getBaseUrl() -> NSURL {
-//        guard let info = Bundle.main.infoDictionary,
-//            let urlString = info["Base url"] as? String,
-//            let url = NSURL(string: urlString) else {
-//            fatalError("Cannot get base url from info.plist")
-//        }
-//
-//        return url
-//    }
-//}

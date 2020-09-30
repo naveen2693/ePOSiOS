@@ -93,5 +93,37 @@ extension UserDefaultable where UserDefaultKey.RawValue == String {
         let key = namespace(key)
         return UserDefaults.standard.object(forKey: key)
     }
+    
+    static func setObject<Object>(_ object: Object, key: UserDefaultKey) throws where Object: Encodable {
+        let key = namespace(key)
+        let encoder = JSONEncoder()
+        do {
+            let data = try encoder.encode(object)
+            UserDefaults.standard.set(data, forKey: key)
+        } catch {
+            throw ObjectSavableError.unableToEncode
+        }
+    }
+    
+    static func getObject<Object>(forKey key: UserDefaultKey, castTo type: Object.Type) throws -> Object where Object: Decodable {
+        let key = namespace(key)
+        guard let data = UserDefaults.standard.data(forKey: key) else { throw ObjectSavableError.noValue }
+        let decoder = JSONDecoder()
+        do {
+            let object = try decoder.decode(type, from: data)
+            return object
+        } catch {
+            throw ObjectSavableError.unableToDecode
+        }
+    }
 }
 
+enum ObjectSavableError: String, LocalizedError {
+    case unableToEncode = "Unable to encode object into data"
+    case noValue = "No data object found for the given key"
+    case unableToDecode = "Unable to decode object into given type"
+    
+    var errorDescription: String? {
+        rawValue
+    }
+}

@@ -6,6 +6,16 @@
 //  Copyright © 2020 Pinelabs. All rights reserved.
 //
 import Foundation
+import Foundation
+import Alamofire
+
+struct NetworkState {
+
+    var isInternetAvailable:Bool
+    {
+        return NetworkReachabilityManager()!.isReachable
+    }
+}
 
 enum Alert {
     case success
@@ -29,6 +39,7 @@ enum ValidationMode {
     case checkBoxChecked
     case confirmPassword
     case otp
+    case pan
 }
 
 enum RegEx: String {
@@ -38,6 +49,7 @@ enum RegEx: String {
     case alphabeticStringWithoutSpace = "^[a-zA-Z]*$" // e.g. hello sandeep
     case alphabeticStringFirstLetterCaps = "^[A-Z]+[a-zA-Z]*$" // SandsHell
     case phoneNo = "(?:(?:\\+|0{0,2})91(\\s*[\\- ]\\s*)?|[0 ]?)?[789]\\d{9}|(\\d[ -]?){10}\\d" // PhoneNo 10-14 Digits
+    case pan = "^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}"
     // MARK:- signUp fields validation regex
     case contactNameValidation = "[A-Za-z0-9]{1,50}([_\\-\\s][A-Za-z0-9]{1,50})*"
     case businessNameValidation = "[0-9A-Za-z]+([\\s]{0,1}[&\\-_|'/@.]{0,1}[\\s]{0,1}[0-9A-Za-z]\\.?)*"
@@ -60,6 +72,7 @@ enum AlertMessages: String {
     case confirmPassword = "Please enter Confirm Password"
     case passwordMatch = "Confirm password is not same as password"
     case checkBox = "Please confirm the term and condition"
+    case pan = "Please enter valid PAN number"
     case otpErrorMessage = "Please enter valid OTP"
     case emptyotp = "Please enter OTP"
     // MARK:- sign field validation Message
@@ -92,7 +105,7 @@ class Validation: NSObject {
                     return tempValue
                 }
             case .alphabeticString:
-                if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, regex: .alphabeticStringWithoutSpace, emptyAlert: .emptyAlphabeticString, invalidAlert: .invalidAlphabeticString) {
+                if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, regex: .contactNameValidation, emptyAlert: .emptyAlphabeticString, invalidAlert: .invalidAlphabeticString) {
                     return tempValue
                 }
             case .password:
@@ -125,11 +138,16 @@ class Validation: NSObject {
                 if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, regex: .contactNameValidation, emptyAlert: .emptyContactNameMessage, invalidAlert: .contactNameValidationErrorMessage) {
                     return tempValue
                 }
+            case .pan:
+                if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, regex: .pan, emptyAlert: .pan, invalidAlert: .pan) {
+                    return tempValue
+                }
                 
             }
         }
         return .success
     }
+    
     
     func isValidString(text: String, regex: RegEx, emptyAlert: AlertMessages, invalidAlert: AlertMessages) -> Valid? {
         if text.isEmpty {

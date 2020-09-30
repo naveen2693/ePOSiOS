@@ -38,5 +38,21 @@ public class Util
         
     }
     
-    
+    static var masterDataDirectoryURL: URL {
+        var tempFileLoc = "";
+        if let library = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).last {
+            let url = URL(fileURLWithPath: library).appendingPathComponent("InitialContents");
+            tempFileLoc = url.path;
+            var isDir : ObjCBool = false;
+            if FileManager.default.fileExists(atPath: tempFileLoc, isDirectory: &isDir) == false || !isDir.boolValue {
+                do {
+                    try FileManager.default.createDirectory(atPath: tempFileLoc, withIntermediateDirectories: true, attributes:nil);
+                }
+                catch {
+                    debugPrint("Error Occured in Creating MasterData Directory")
+                }
+            }
+        }
+        return URL(fileURLWithPath: tempFileLoc);
+    }
 }

@@ -98,7 +98,26 @@ public class IntialDataRequest:BaseRequest{
                 {
                     if checkStatus.status == true
                     {
-                        completion(.success(response))
+                        do {
+                            let userData = try BaseRequest.decoder.decode(CompleteUserData.self, from:response.data) as CompleteUserData
+                            EPOSUserDefaults.setProfile(profile: userData.profile)
+                            EPOSUserDefaults.setUserId(userID: userData.uniqueUserID)
+                            EPOSUserDefaults.setAccessToken(accessToken: userData.accessToken)
+                            completion(.success(response))
+                        } catch DecodingError.dataCorrupted(let context) {
+                            debugPrint(context)
+                        } catch DecodingError.keyNotFound(let key, let context) {
+                            debugPrint("Key '\(key)' not found:", context.debugDescription)
+                            debugPrint("codingPath:", context.codingPath)
+                        } catch DecodingError.valueNotFound(let value, let context) {
+                            debugPrint("Value '\(value)' not found:", context.debugDescription)
+                            debugPrint("codingPath:", context.codingPath)
+                        } catch DecodingError.typeMismatch(let type, let context)  {
+                            debugPrint("Type '\(type)' mismatch:", context.debugDescription)
+                            debugPrint("codingPath:", context.codingPath)
+                        } catch {
+                            debugPrint("error: ", error)
+                        }
                     } else
                     {
                         completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
@@ -302,7 +321,7 @@ public class IntialDataRequest:BaseRequest{
             
         }
     }
-    // MARK:-callLoginApiAfterNumberVerfication
+    // MARK:-callLoginApiAfterNumberVerfication Abhi123@
     static func callLoginApiAfterNumberVerfication(mobileNumber:String,password:String,completion:@escaping CompletionHandler)
     {
         
@@ -314,21 +333,26 @@ public class IntialDataRequest:BaseRequest{
                 {
                     if checkStatus.status == true
                     {
-                        guard let jsonData = try? JSONSerialization.jsonObject(with: response.data, options: []) as? [String: Any],
-                            let accessToken = jsonData["acstkn"] as? String,
-                            let userProfileData = jsonData["profile"] as? [String:Any],
-                            let appUdid =  userProfileData["acstkn"] as? String,
-                            let userId = jsonData["acstkn"] as? String
-                            else
-                        {
-                            fatalError("Login Api Serialization failed")
+                        do {
+                            let userData = try BaseRequest.decoder.decode(CompleteUserData.self, from:response.data) as CompleteUserData
+                            EPOSUserDefaults.setProfile(profile: userData.profile)
+                            EPOSUserDefaults.setUserId(userID: userData.uniqueUserID)
+                            EPOSUserDefaults.setAccessToken(accessToken: userData.accessToken)
+                            completion(.success(response))
+                        } catch DecodingError.dataCorrupted(let context) {
+                            debugPrint(context)
+                        } catch DecodingError.keyNotFound(let key, let context) {
+                            debugPrint("Key '\(key)' not found:", context.debugDescription)
+                            debugPrint("codingPath:", context.codingPath)
+                        } catch DecodingError.valueNotFound(let value, let context) {
+                            debugPrint("Value '\(value)' not found:", context.debugDescription)
+                            debugPrint("codingPath:", context.codingPath)
+                        } catch DecodingError.typeMismatch(let type, let context)  {
+                            debugPrint("Type '\(type)' mismatch:", context.debugDescription)
+                            debugPrint("codingPath:", context.codingPath)
+                        } catch {
+                            debugPrint("error: ", error)
                         }
-                        EPOSUserDefaults.setProfile(profile: userProfileData as AnyObject)
-                        EPOSUserDefaults.setUserId(userID: userId)
-                        EPOSUserDefaults.setUdid(udid: appUdid)
-                        EPOSUserDefaults.setAccessToken(accessToken: accessToken)
-                        completion(.success(response))
-                        
                     }  else {
                         completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
                         
