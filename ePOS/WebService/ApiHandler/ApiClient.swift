@@ -17,7 +17,7 @@ enum ApiService
     
     case resetPasswordWith(mobileNumber:String,otp:String,newPassword:String)
     
-    case getLoginWith(mobileNumber:String,password:String)
+case getLoginWith(mobileNumber:String,password:String)
     
 // MARK:- SignUp Apis
     case getSignUpWith(signUpData:SignUpData)
@@ -154,6 +154,13 @@ extension ApiService : TargetType
     
     var sampleData: Data {
         return Data()
+    }
+    
+  var validate:ValidationType {
+        switch self {
+        case .getCheckUserWith, .getForgotPasswordWith,.getVerifyOtpWith,.getSendOtpWith,.resetPasswordWith,.getLoginWith,.getSignUpWith,.getManageAccount,.createRequestMasterDataWith,.getCityListWith,.getFetchUserWith,.getLeadByIdWith,.getConfigurationsWith, .createLeadWith, .getGSTDetail:
+            return .customCodes([200])
+        }
     }
     
     var task: Task {

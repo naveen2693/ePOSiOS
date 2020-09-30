@@ -134,8 +134,8 @@ extension PersonalInfoViewController {
     }
     
     func createLead() {
-        let response = Validation.shared.validate(values: (ValidationType.pan, textFieldPAN.text as Any)
-        ,(ValidationType.alphabeticString,textFieldNameOnPAN.text  as Any))
+        let response = Validation.shared.validate(values: (ValidationMode.pan, textFieldPAN.text as Any)
+        ,(ValidationMode.alphabeticString,textFieldNameOnPAN.text  as Any))
         switch response {
         case .success:
             showLoading()
@@ -184,7 +184,7 @@ extension PersonalInfoViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == textFieldNameOnPAN {
-            let result = Validation.shared.validate(values: (ValidationType.alphabeticString, textFieldNameOnPAN.text as Any))
+            let result = Validation.shared.validate(values: (ValidationMode.alphabeticString, textFieldNameOnPAN.text as Any))
             if case Valid.failure(_, let message) = result {
                 textFieldNameOnPAN.trailingAssistiveLabel.text = message.rawValue
             } else {
@@ -193,7 +193,7 @@ extension PersonalInfoViewController: UITextFieldDelegate {
         }
         
         if textField == textFieldPAN {
-            let resultDoc = Validation.shared.validate(values: (ValidationType.pan, textFieldPAN.text as Any))
+            let resultDoc = Validation.shared.validate(values: (ValidationMode.pan, textFieldPAN.text as Any))
             if case Valid.failure(_, let message) = resultDoc {
                 textFieldPAN.trailingAssistiveLabel.text = message.rawValue
             } else {

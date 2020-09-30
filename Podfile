@@ -15,6 +15,7 @@ pod 'Kingfisher'
 pod 'Firebase/Analytics'
 pod 'Firebase/Crashlytics'
 pod 'MaterialComponents/TextControls+OutlinedTextFields'
+pod 'IQKeyboardManagerSwift'
   # Pods for ePOS
 
 end

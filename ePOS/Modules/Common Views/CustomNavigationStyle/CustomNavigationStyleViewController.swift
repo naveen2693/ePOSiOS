@@ -37,7 +37,7 @@ class CustomNavigationStyleViewController: UIViewController {
     }
     
     func showBackButton() {
-        let button: UIButton = UIButton (type: UIButton.ButtonType.custom)
+        let button: UIButton = UIButton(type: UIButton.ButtonType.custom)
         button.setImage(UIImage(named: "backIcon"), for: UIControl.State.normal)
         button.addTarget(self, action: #selector(backButtonPressed), for: UIControl.Event.touchUpInside)
         button.frame = CGRect(x: 0 , y: 0, width: 50, height: 40)

@@ -13,11 +13,11 @@ protocol OTPTextFieldDelegate: class {
 }
 class OTPTextField: UITextField {
 
-    weak var pineDelegate: OTPTextFieldDelegate?
+    weak var setDelegate: OTPTextFieldDelegate?
     
     override func deleteBackward() {
         super.deleteBackward()
-        pineDelegate?.textFieldDidDelete()
+        setDelegate?.textFieldDidDelete()
     }
     override func closestPosition(to point: CGPoint) -> UITextPosition? {
         let beginning = self.beginningOfDocument

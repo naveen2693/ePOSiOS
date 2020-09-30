@@ -43,14 +43,14 @@ class OTPVerficationController:UIViewController {
             textField = nil
             tempOTPLength += 1
         }
-        textField1?.pineDelegate = self
-        textField2?.pineDelegate = self
-        textField3?.pineDelegate = self
-        textField4?.pineDelegate = self
-        textField5?.pineDelegate = self
-        textField6?.pineDelegate = self
-        textField7?.pineDelegate = self
-        textField8?.pineDelegate = self
+        textField1?.setDelegate = self
+        textField2?.setDelegate = self
+        textField3?.setDelegate = self
+        textField4?.setDelegate = self
+        textField5?.setDelegate = self
+        textField6?.setDelegate = self
+        textField7?.setDelegate = self
+        textField8?.setDelegate = self
         
         textField1?.delegate = self
         textField2?.delegate = self
@@ -65,6 +65,7 @@ class OTPVerficationController:UIViewController {
             textField.isEnabled = true
             textField.becomeFirstResponder()
         }
+        hideKeyboardWhenTappedAround()
         // Do any additional setup after loading the view.
     }
     
@@ -83,11 +84,11 @@ class OTPVerficationController:UIViewController {
     
     
     @IBAction func buttonSubmit(_ sender: Any) {
-        showLoading()
         activeTextField.resignFirstResponder()
-        let response = Validation.shared.validate(values:(ValidationType.otp,otpValue))
+        let response = Validation.shared.validate(values:(ValidationMode.otp,otpValue))
         switch response {
         case .success:
+             showLoading()
             if let unwrappedMobileNumber = mobileNumber {
                 IntialDataRequest.callApiVerifyOtpWith(mobileNumber:unwrappedMobileNumber,otp:otpValue,completion:{[weak self] result in
                     self?.hideLoading()
@@ -102,8 +103,7 @@ class OTPVerficationController:UIViewController {
                 })
             }
         case .failure(_, let message):
-            print(message.localized())
-        }
+            self.showAlert(title:Constants.validationFailure.rawValue, message:message.rawValue)        }
     }
     
     private func callResendOtp()
@@ -112,6 +112,14 @@ class OTPVerficationController:UIViewController {
             IntialDataRequest.resendOtpCallApiWith(mobileNumber:unwrappedMobileNumber,completion:{[weak self] result in
                 switch result {
                 case .success(let response):
+                    self?.textField1?.text = ""
+                    self?.textField2?.text = ""
+                    self?.textField3?.text = ""
+                    self?.textField4?.text = ""
+                    self?.textField5?.text = ""
+                    self?.textField6?.text = ""
+                    self?.textField7?.text = ""
+                    self?.textField8?.text = ""
                     print(response);
                  case .failure(BaseError.errorMessage(let error)):
                   self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)

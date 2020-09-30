@@ -19,6 +19,7 @@ class ForgotPasswordController : UIViewController {
         {
             self.showAlert(title: "Error", message:Constants.errorMessage.rawValue )
         }
+        hideKeyboardWhenTappedAround()
     }
     
     class func initWith(mobileNumber: String) -> ForgotPasswordController {
@@ -34,11 +35,11 @@ class ForgotPasswordController : UIViewController {
     }
     
     @IBAction func buttonSubmit(_ sender: Any) {
-        showLoading()
         let mobileNumber = textFieldMobileNumber.text!;
-        let response = Validation.shared.validate(values: (type: ValidationType.phoneNo, inputValue:mobileNumber))
+        let response = Validation.shared.validate(values: (type: ValidationMode.phoneNo, inputValue:mobileNumber))
         switch response {
         case .success:
+            showLoading()
             IntialDataRequest.forgotPasswordCallApiWith(mobileNumber:mobileNumber,completion:{[weak self] result in
                 self?.hideLoading()
                 switch result {
@@ -46,13 +47,13 @@ class ForgotPasswordController : UIViewController {
                     print(response);
                     self?.gotoPasswordResetLinkMsgController(mobileNumber: mobileNumber);
                     
-                 case .failure(BaseError.errorMessage(let error)):
-                 self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
+                case .failure(BaseError.errorMessage(let error)):
+                    self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
                 }
             })
             
         case .failure(_, let message):
-            print(message.localized())
+        self.showAlert(title:Constants.validationFailure.rawValue, message:message.rawValue)
         }
     }
     
@@ -62,7 +63,19 @@ class ForgotPasswordController : UIViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
         
     }
-    
-    
+}
+
+extension ForgotPasswordController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if (textField == textFieldMobileNumber) {
+            let response = Validation.shared.validate(values: (type: ValidationMode.phoneNo, inputValue:textFieldMobileNumber.text as Any))
+            switch response {
+            case .success:
+                textFieldMobileNumber.trailingAssistiveLabel.text = ""
+            case .failure(_, let message):
+                textFieldMobileNumber.trailingAssistiveLabel.text = message.rawValue
+            }
+        }
+    }
 }
 

@@ -26,16 +26,16 @@ class ResetPasswordController: UIViewController {
         {
             self.showAlert(title: "Error", message:Constants.errorMessage.rawValue )
         }
-       
+        hideKeyboardWhenTappedAround()
         //fillup the mobile Number
         setTextfields();
         
     }
     
     class func initWith(mobileNumber: String) -> PasswordController {
-           let controller = PasswordController.instantiate(appStoryboard: .loginScreen)
-           controller.mobileNumber = mobileNumber
-           return controller
+        let controller = PasswordController.instantiate(appStoryboard: .loginScreen)
+        controller.mobileNumber = mobileNumber
+        return controller
     }
     
     private func setTextfields()
@@ -53,8 +53,8 @@ class ResetPasswordController: UIViewController {
                 switch result {
                 case .success (let response):
                     print(response);
-                 case .failure(BaseError.errorMessage(let error)):
-                self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
+                case .failure(BaseError.errorMessage(let error)):
+                    self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
                 }
             })
         } else {
@@ -93,38 +93,76 @@ class ResetPasswordController: UIViewController {
     
     
     
-    @IBAction func buttonCancel(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
     
     @IBAction func buttonSubmit(_ sender: Any) {
-        showLoading()
-        let response = Validation.shared.validate(values: (ValidationType.phoneNo,  textFieldMobileNumber.text as Any)
-            ,(ValidationType.password,textFieldPassword.text as Any)
-            ,(ValidationType.confirmPassword,textFieldConfirmPassword.text as Any)
-            ,(ValidationType.otp,textFieldOtp.text as Any))
+        let response = Validation.shared.validate(values: (ValidationMode.phoneNo,  textFieldMobileNumber.text as Any)
+            ,(ValidationMode.password,textFieldPassword.text as Any)
+            ,(ValidationMode.confirmPassword,textFieldConfirmPassword.text as Any)
+            ,(ValidationMode.otp,textFieldOtp.text as Any))
         switch response {
         case .success:
+             showLoading()
             IntialDataRequest.resetPasswordCallApiwith(mobileNumber:mobileNumber!,otp: textFieldOtp.text!,newPassword:textFieldPassword.text!,completion:{[weak self] result in
                 self?.hideLoading()
                 switch result {
                 case .success(let response):
                     print(response)
-                       
-                     DispatchQueue.main.async {
+                    
+                    DispatchQueue.main.async {
                         
                         self?.navigationController?.dismiss(animated: true, completion:nil)
                     }
                 // MARK:-generate the toast for successfull reset password
-                 case .failure(BaseError.errorMessage(let error)):
+                case .failure(BaseError.errorMessage(let error)):
                     self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
                     
                 }
             })
             
         case .failure(_, let message):
-            print(message.localized())
+            self.showAlert(title:Constants.validationFailure.rawValue, message:message.rawValue)
         }
     }
     
+}
+
+extension ResetPasswordController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if (textField == textFieldMobileNumber) {
+            let response = Validation.shared.validate(values: (type: ValidationMode.phoneNo, inputValue:textFieldMobileNumber.text as Any))
+            switch response {
+            case .success:
+                textFieldMobileNumber.trailingAssistiveLabel.text = ""
+            case .failure(_, let message):
+                textFieldMobileNumber.trailingAssistiveLabel.text = message.rawValue
+            }
+        }
+        else if (textField == textFieldOtp) {
+            let response = Validation.shared.validate(values: (type: ValidationMode.otp, inputValue:textFieldOtp.text as Any))
+            switch response {
+            case .success:
+                textFieldOtp.trailingAssistiveLabel.text = ""
+            case .failure(_, let message):
+                textFieldOtp.trailingAssistiveLabel.text = message.rawValue
+            }
+        }
+        else if (textField == textFieldPassword) {
+            let response = Validation.shared.validate(values: (type: ValidationMode.password, inputValue:textFieldPassword.text as Any))
+            switch response {
+            case .success:
+                textFieldPassword.trailingAssistiveLabel.text = ""
+            case .failure(_, let message):
+                textFieldPassword.trailingAssistiveLabel.text = message.rawValue
+            }
+        }
+        else if (textField == textFieldConfirmPassword) {
+            let response = Validation.shared.validate(values: (type: ValidationMode.confirmPassword, inputValue:textFieldConfirmPassword.text as Any))
+            switch response {
+            case .success:
+                textFieldConfirmPassword.trailingAssistiveLabel.text = ""
+            case .failure(_, let message):
+                textFieldConfirmPassword.trailingAssistiveLabel.text = message.rawValue
+            }
+        }
+    }
 }

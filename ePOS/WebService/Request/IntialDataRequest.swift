@@ -36,7 +36,7 @@ public struct ResetPasswordKeys:Codable{
 // MARK:- Login Keys
 public struct LoginKeys:Codable{
     var deviceInfo = DeviceInformationKeys();
-    var userLoginInfo: UserInfoKeys = UserInfoKeys()
+    var userLoginInfo = UserInfoKeys();
     private enum CodingKeys: String, CodingKey {
         case deviceInfo = "di"
         case userLoginInfo = "si"
@@ -324,6 +324,7 @@ public class IntialDataRequest:BaseRequest{
     // MARK:-callLoginApiAfterNumberVerfication Abhi123@
     static func callLoginApiAfterNumberVerfication(mobileNumber:String,password:String,completion:@escaping CompletionHandler)
     {
+        
         BaseRequest.objMoyaApi.request(.getLoginWith(mobileNumber: mobileNumber, password: password)){ result in
             switch result
             {

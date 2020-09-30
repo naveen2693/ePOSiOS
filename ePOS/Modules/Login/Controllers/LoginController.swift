@@ -10,6 +10,7 @@ import UIKit
 
 class LoginController: UIViewController{
     @IBOutlet weak var textView: UITextView!
+    
     @IBOutlet weak var textFieldMobileNumber: EPOSTextField!
     @IBOutlet weak var viewCheckBox: CheckBox!
     var CheckBox = false;
@@ -18,6 +19,7 @@ class LoginController: UIViewController{
         super.viewDidLoad()
         textView.isSelectable = true
         checkBoxConfiguration()
+        hideKeyboardWhenTappedAround()
         if let unwrappedTextView = textView {
             Util.passTextViewReference(textViewField : unwrappedTextView)
         } else {
@@ -29,24 +31,23 @@ class LoginController: UIViewController{
     }
     
     @IBAction func ButtonSubmit(_ sender: Any) {
-        showLoading()
-        let response = Validation.shared.validate(values: (type: ValidationType.phoneNo, inputValue:textFieldMobileNumber.text as Any),(ValidationType.checkBoxChecked,CheckBox))
+        let response = Validation.shared.validate(values: (type: ValidationMode.phoneNo, inputValue:textFieldMobileNumber.text as Any),(ValidationMode.checkBoxChecked,CheckBox))
         switch response {
         case .success:
+              showLoading()
             IntialDataRequest.checkUserWith(mobileNumber:textFieldMobileNumber.text!,completion:{ [weak self] result in
                 self?.hideLoading()
                 switch result {
                 case .success(let response):
                     self?.decideUserNavigation(response)
                     print(response)
-                 case .failure(BaseError.errorMessage(let error)):
-                  self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
+                case .failure(BaseError.errorMessage(let error)):
+                    self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
                 }
                 
             })
         case .failure(_, let message):
-            hideLoading()
-            print(message.localized())
+        self.showAlert(title:Constants.validationFailure.rawValue, message:message.rawValue)
         }
     }
     // MARK:- decideUserNavigation
@@ -92,8 +93,8 @@ class LoginController: UIViewController{
             case .success(let response):
                 self?.gotoPasswordResetController()
                 print(response)
-           case .failure(BaseError.errorMessage(let error)):
-              self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
+            case .failure(BaseError.errorMessage(let error)):
+                self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
             }
             
         })
@@ -139,7 +140,7 @@ class LoginController: UIViewController{
     private func checkBoxConfiguration()
     {
         viewCheckBox?.style = .tick
-        viewCheckBox?.borderStyle = .roundedSquare(radius: 12)
+        viewCheckBox?.borderStyle = .square
         viewCheckBox?.addTarget(self, action: #selector(onCheckBoxValueChange(_:)), for: .valueChanged)
     }
     
@@ -178,3 +179,5 @@ extension LoginController:UITextViewDelegate
         return false
     }
 }
+
+
