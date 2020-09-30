@@ -57,7 +57,7 @@ class SignUpController: UIViewController {
         
     }
     @IBAction func buttonSubmit(_ sender: Any) {
-        // MARK:- Validation
+        // Validation
         let response = Validation.shared.validate(values: (ValidationType.alphabeticString, textFieldBusinessName.text as Any)
             ,(ValidationType.alphabeticString,textFIeldContactName.text  as Any)
             ,(ValidationType.email,textFieldEmailId.text  as Any)

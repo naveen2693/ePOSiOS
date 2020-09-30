@@ -33,7 +33,7 @@ enum ApiEndpointsUrl{
         case createLead = "/rest/data/epos/lead/create"
         case getLeadId = "/rest/data/epos/lead/{lead_id}";
         case updateLead = "/rest/data/epos/lead/update"
-        
+    case gstDetail = "/rest/data/mvs/gst/details"
     }
 }
 

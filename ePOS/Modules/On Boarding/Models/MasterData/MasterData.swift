@@ -8,6 +8,20 @@
 
 import Foundation
 
+enum MasterDataType: String {
+    case businessType = "TYPE OF ENTITY"
+    case eposPOI = "Epos_POI"
+    case mccCode = "Mcc_code"
+    case eposTurnover = "Epos_Turnover"
+    case digiBanner = "Digi_banner"
+    case leadStatus = "Lead_Status"
+    case busRelationType = "Bus_Relation_Type"
+    case individualTitle = "Individual_Title"
+    case electricityBoard = "Electricity_Board"
+//    case gasProvider = ""
+    
+}
+
 struct CodeData: Codable {
     var codeKey: String = ""
     var defaultDescription: String = ""

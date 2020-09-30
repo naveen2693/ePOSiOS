@@ -64,3 +64,12 @@ class MasterDataProvider {
         return plistURL
     }
 }
+//MARK: - dropdown's data
+extension MasterDataProvider {
+    func getDropdownDataFor(_ type: MasterDataType, completion:@escaping (([CodeData]) -> Void)) {
+        searchMasterData(with: type.rawValue) { data in
+            let codeDataArray = data.first?.masterCode ?? [CodeData]()
+            completion(codeDataArray)
+        }
+    }
+}

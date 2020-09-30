@@ -34,6 +34,8 @@ enum ApiService
     
     case getLeadByIdWith(leadId:Int)
     
+    case getGSTDetail(gstNumber: String)
+    
 // MARK:- Configuration
     case getConfigurationsWith(globalChangeNumber:Int)
 }
@@ -85,11 +87,15 @@ extension ApiService : TargetType
             
         case .createLeadWith:
             return ApiEndpointsUrl.OnboardingApiEndpointUrl.createLead.rawValue
+            
+        case .getGSTDetail:
+            return ApiEndpointsUrl.OnboardingApiEndpointUrl.gstDetail.rawValue
         
     // MARK:- Configuration path
         case .getConfigurationsWith:
             return ApiEndpointsUrl.ConfigurationApiEndPointsUrl.configurationUrl.rawValue
            
+        
         }
     }
 
@@ -134,11 +140,14 @@ extension ApiService : TargetType
          case .createLeadWith:
             return .post
             
-        case .getLeadByIdWith:
+        case .getLeadByIdWith, .getGSTDetail:
             return .get
+            
+            
  // MARK:- Configuration Method
         case .getConfigurationsWith:
             return .post
+        
         
         }
     }
@@ -197,12 +206,14 @@ extension ApiService : TargetType
             case .getLeadByIdWith(let leadId):
                 return  .requestJSONEncodable((RequestHandler
                     .createGetLeadIDRequest(leadID: leadId)))
+            
+            case .getGSTDetail(let gstNumber):
+                return .requestParameters(parameters:RequestHandler.createGstDetailRequest(number: gstNumber), encoding: URLEncoding.queryString)
 // MARK:-Configuration task
         case .getConfigurationsWith(let globalChngNum):
             return  .requestJSONEncodable((RequestHandler
                 .createConfigurationRequest(globalChangeNumber: globalChngNum)))
         
-
         
         }
     }
@@ -229,7 +240,7 @@ extension ApiService : TargetType
             case .resetPasswordWith:
                 return RequestHandler.createWebServiceHeaderWithoutAccessToken()
                 
-          case .getManageAccount, .createRequestMasterDataWith, .getCityListWith, .getFetchUserWith, .createLeadWith, .getLeadByIdWith:
+          case .getManageAccount, .createRequestMasterDataWith, .getCityListWith, .getFetchUserWith, .createLeadWith, .getLeadByIdWith, .getGSTDetail:
                  return RequestHandler.createWebServiceHeaderWithAccessToken()
             
             case .getConfigurationsWith:

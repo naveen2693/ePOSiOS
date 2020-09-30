@@ -37,6 +37,7 @@ enum ValidationType {
     case checkBoxChecked
     case confirmPassword
     case otp
+    case pan
 }
 
 enum RegEx: String {
@@ -45,6 +46,8 @@ enum RegEx: String {
     case alphabeticStringWithoutSpace = "^[a-zA-Z]*$" // e.g. hello sandeep
     case alphabeticStringFirstLetterCaps = "^[A-Z]+[a-zA-Z]*$" // SandsHell
     case phoneNo = "(?:(?:\\+|0{0,2})91(\\s*[\\- ]\\s*)?|[0 ]?)?[789]\\d{9}|(\\d[ -]?){10}\\d" // PhoneNo 10-14 Digits
+    case contactName = "^[\\p{L} .'-]+$"
+    case pan = "^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}"
     
     //Change RegEx according to your Requirement
 }
@@ -63,6 +66,7 @@ enum AlertMessages: String {
     case passwordMatch = "Passwords do not match"
     case checkBox = "Please confirm the term and condition"
     case otp = "Please enter valid otp"
+    case pan = "Please enter valid PAN number"
     func localized() -> String {
         return NSLocalizedString(self.rawValue, comment: "")
     }
@@ -86,7 +90,7 @@ class Validation: NSObject {
                     return tempValue
                 }
             case .alphabeticString:
-                if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, regex: .alphabeticStringWithoutSpace, emptyAlert: .emptyAlphabeticString, invalidAlert: .invalidAlphabeticString) {
+                if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, regex: .contactName, emptyAlert: .emptyAlphabeticString, invalidAlert: .invalidAlphabeticString) {
                     return tempValue
                 }
             case .password:
@@ -110,10 +114,15 @@ class Validation: NSObject {
                 if let tempValue = isOtpChecked(otp: (valueToBeChecked.inputValue as? String)!, emptyAlert: .emptyPSW, invalidAlert: .otp) {
                     return tempValue
                 }
+            case .pan:
+                if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, regex: .pan, emptyAlert: .pan, invalidAlert: .pan) {
+                    return tempValue
+                }
             }
         }
         return .success
     }
+    
     
     func isValidString(text: String, regex: RegEx, emptyAlert: AlertMessages, invalidAlert: AlertMessages) -> Valid? {
         if text.isEmpty {

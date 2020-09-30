@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         configureFirebase()
         setAppearance()
-        //TODO: call getOnBoardingData if user is looged in
+        loadApp()
         return true
     }
 
@@ -52,11 +52,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //MARK: - Custom Methods
 extension AppDelegate {
     
+    func loadApp() {
+        if EPOSUserDefaults.getProfile() != nil {
+            getOnBoardingData()
+        } else {
+            showLoginScreen()
+        }
+    }
+    
+    func showLoginScreen() {
+        if let loginController = AppStoryboard.loginScreen.initialViewController() {
+            setRootControllerOnWindowWith(loginController)
+        }
+    }
+    
     func setRootControllerOnWindowWith(_ controller: UIViewController)  {
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let navigationController = UINavigationController(rootViewController: controller)
-        navigationController.isNavigationBarHidden = true
-        self.window?.rootViewController = navigationController
+        if let navController = controller as? UINavigationController {
+            self.window?.rootViewController = navController
+        } else {
+            let navigationController = UINavigationController(rootViewController: controller)
+            navigationController.isNavigationBarHidden = true
+            self.window?.rootViewController = navigationController
+        }
         self.window?.makeKeyAndVisible()
     }
     
@@ -80,11 +98,7 @@ extension AppDelegate {
             switch result {
             case .success(let response):
                 if let workflowState = response as? WorkFlowState {
-                    let leadParams = CreateLeadParams(name: "Matra Sharma", pan: "DIOPS2204B", firmType: "PROPRIETOR", kyc: [], typeOfLead: "EPOS")
-                    OnBoardingRequest.createLeadWith(params: leadParams) { (result) in
-                        
-                    }
-//                    weakSelf?.setOnBoardingNavigationWith(workflowState)
+                    weakSelf?.setOnBoardingNavigationWith(workflowState)
                 }
             case .failure(let error):
                 if let error = error as? APIError, error == .noNetwork {

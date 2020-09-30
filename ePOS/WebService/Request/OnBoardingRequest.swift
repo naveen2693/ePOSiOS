@@ -13,6 +13,10 @@ public struct GetLeadIDKeys:Codable{
     var id:Int?;
 }
 
+struct GstDetailKeys{
+    public var  QUERY_KEY1:String = "gst";
+}
+
 // MARK:-UserList Keys
 public struct UserListKeys{
     let QUERY_KEY1:String = "page";
@@ -73,15 +77,14 @@ public class OnBoardingRequest:BaseRequest{
                 {
                     if checkStatus.status == true
                     {
-                if let profileData = try? BaseRequest.decoder.decode(UserProfile.self, from:response.data) {
-                    EPOSUserDefaults.setProfile(profile: profileData)
-                    EPOSUserDefaults.setCurrentUserState(state: profileData.userType ?? UserState.applicant.rawValue)
-                } else {
-                    fatalError("UserProfile was not created")
-                }
+                        if let profileData = try? BaseRequest.decoder.decode(UserProfile.self, from:response.data) {
+                            EPOSUserDefaults.setProfile(profile: profileData)
+                            EPOSUserDefaults.setCurrentUserState(state: profileData.userType ?? UserState.applicant.rawValue)
+                            loadMasterDataAndProceedToLaunch(mode: Constants.modeValueForMasterData.rawValue, completion: completion);
+                        } else {
+                            fatalError("UserProfile was not created")
+                        }
                 
-                loadMasterDataAndProceedToLaunch(mode: Constants.modeValueForMasterData.rawValue, completion: completion);
-                completion(.success(response))
                 } else
                     {
                         completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
@@ -90,7 +93,7 @@ public class OnBoardingRequest:BaseRequest{
                 }
             case .failure(let error):
                 completion(.failure(BaseError.errorMessage(error)))
-                loadMasterDataAndProceedToLaunch(mode: Constants.modeValueForMasterData.rawValue, completion: completion);
+//                loadMasterDataAndProceedToLaunch(mode: Constants.modeValueForMasterData.rawValue, completion: completion);
                 
             }
             
@@ -110,6 +113,7 @@ public class OnBoardingRequest:BaseRequest{
                 do {
                     let masterData = try BaseRequest.decoder.decode(MasterDataWrapper.self, from:response.data)
                     try? MasterDataProvider().saveMasterDataPlistFile(with: masterData)
+                    getCityDetailsAndProceedToLaunch(completion: completion);
                 } catch DecodingError.dataCorrupted(let context) {
                     debugPrint(context)
                 } catch DecodingError.keyNotFound(let key, let context) {
@@ -124,11 +128,10 @@ public class OnBoardingRequest:BaseRequest{
                 } catch {
                     debugPrint("error: ", error)
                 }
-
-                getCityDetailsAndProceedToLaunch(completion: completion);
                 
             case .failure(let error):
-                getCityDetailsAndProceedToLaunch(completion: completion);
+                completion(.failure(BaseError.errorMessage(error)))
+//                getCityDetailsAndProceedToLaunch(completion: completion);
                 error.errorDescription
                 print(error);
                 
@@ -151,6 +154,7 @@ public class OnBoardingRequest:BaseRequest{
             do {
                 let statesData = try BaseRequest.decoder.decode(StateData.self, from:response.data)
                 try? CityDataProvider().saveSateDataPlistFile(with: statesData)
+                fetchSubUserList(completion: completion)
             } catch DecodingError.dataCorrupted(let context) {
                 debugPrint(context)
             } catch DecodingError.keyNotFound(let key, let context) {
@@ -165,10 +169,11 @@ public class OnBoardingRequest:BaseRequest{
             } catch {
                 debugPrint("error: ", error)
             }
-            fetchSubUserList(completion: completion)
+            
             
         case .failure(let error):
-            fetchSubUserList(completion: completion);
+            completion(.failure(BaseError.errorMessage(error)))
+//            fetchSubUserList(completion: completion);
             print(error);
             
         }
@@ -324,11 +329,45 @@ public class OnBoardingRequest:BaseRequest{
                     debugPrint("error: ", error)
                 }
             case .failure(let error):
-                print(error);
+                completion(.failure(BaseError.errorMessage(error)))
                 
             }
         }
     }
+    
+    static func getGSTDetails(gstNumber: String, completion:@escaping CompletionHandler) {
+            guard NetworkState().isInternetAvailable else {
+    //            completion(.failure(APIError.noNetwork))
+                return
+            }
+            
+            BaseRequest.objMoyaApi.request(.getGSTDetail(gstNumber: gstNumber)) { result in
+                switch result
+                {
+                case .success(let response):
+                    do {
+                        let gstWrapper = try BaseRequest.decoder.decode(GSTDetailWrapper.self, from:response.data)
+                        completion(.success((gstWrapper.result as AnyObject)))
+                    } catch DecodingError.dataCorrupted(let context) {
+                        debugPrint(context)
+                    } catch DecodingError.keyNotFound(let key, let context) {
+                        debugPrint("Key '\(key)' not found:", context.debugDescription)
+                        debugPrint("codingPath:", context.codingPath)
+                    } catch DecodingError.valueNotFound(let value, let context) {
+                        debugPrint("Value '\(value)' not found:", context.debugDescription)
+                        debugPrint("codingPath:", context.codingPath)
+                    } catch DecodingError.typeMismatch(let type, let context)  {
+                        debugPrint("Type '\(type)' mismatch:", context.debugDescription)
+                        debugPrint("codingPath:", context.codingPath)
+                    } catch {
+                        debugPrint("error: ", error)
+                    }
+                case .failure(let error):
+                    completion(.failure(BaseError.errorMessage(error)))
+                    
+                }
+            }
+        }
 }
 
 

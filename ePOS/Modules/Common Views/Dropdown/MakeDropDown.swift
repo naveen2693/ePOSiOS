@@ -77,7 +77,7 @@ class MakeDropDown: UIView{
             self.dropDownTableView?.frame = CGRect(x: 0, y: 0, width: width, height: 0)
             self.dropDownTableView?.reloadData()
             
-            UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.05, options: .curveLinear
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.05, options: .curveLinear
                 , animations: {
                 self.frame.size = CGSize(width: self.width, height: height)
                 self.dropDownTableView?.frame.size = CGSize(width: self.width, height: height)
@@ -93,7 +93,7 @@ class MakeDropDown: UIView{
             + self.offset, width: width, height: 0)
         self.dropDownTableView?.frame = CGRect(x: 0, y: 0, width: width, height: 0)
         self.dropDownTableView?.reloadData()
-        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.05, options: .curveLinear
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.05, options: .curveLinear
             , animations: {
             self.frame.size = CGSize(width: self.width, height: height)
             self.dropDownTableView?.frame.size = CGSize(width: self.width, height: height)
@@ -153,15 +153,15 @@ extension MakeDropDown: UITableViewDelegate, UITableViewDataSource{
 
 //MARK: - UIView Extension
 extension UIView{
-    func addBorders(borderWidth: CGFloat = 0.2, borderColor: CGColor = UIColor.lightGray.cgColor){
+    func addBorders(borderWidth: CGFloat = 0.0, borderColor: CGColor = UIColor.lightGray.cgColor){
         self.layer.borderWidth = borderWidth
         self.layer.borderColor = borderColor
     }
     
     func addShadowToView(shadowRadius: CGFloat = 2, alphaComponent: CGFloat = 0.6) {
         self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: alphaComponent).cgColor
-        self.layer.shadowOffset = CGSize(width: -1, height: 2)
+        self.layer.shadowOffset = CGSize(width: 0, height: 2)
         self.layer.shadowRadius = shadowRadius
-        self.layer.shadowOpacity = 1
+        self.layer.shadowOpacity = 0.7
     }
 }
