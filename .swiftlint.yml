@@ -47,6 +47,10 @@ disabled_rules:
     - file_length
     - cyclomatic_complexity
     - shorthand_operator
+    - pattern_matching_keywords
+    - number_separator
+    - for_where
+    - nesting
 
 opt_in_rules:
     - array_init

@@ -27,6 +27,7 @@ class SignUpController: UIViewController {
         self.textView?.delegate = self
         checkBoxConfiguration()
         populateData()
+        hideKeyboardWhenTappedAround()
         if let unwrappedTextView = textView {
             Util.passTextViewReference(textViewField : unwrappedTextView)
         } else {
@@ -36,11 +37,11 @@ class SignUpController: UIViewController {
     
     
     class func initWith(mobileNumber: String,userData:UserData?) -> SignUpController {
-          let controller = SignUpController.instantiate(appStoryboard: .signupStoryboard)
-          controller.mobileNumber = mobileNumber
-          controller.userData = userData
-          return controller
-      }
+        let controller = SignUpController.instantiate(appStoryboard: .signupStoryboard)
+        controller.mobileNumber = mobileNumber
+        controller.userData = userData
+        return controller
+    }
     
     
     private func populateData()
@@ -58,16 +59,16 @@ class SignUpController: UIViewController {
     }
     @IBAction func buttonSubmit(_ sender: Any) {
         // MARK:- Validation
-        let response = Validation.shared.validate(values: (ValidationType.alphabeticString, textFieldBusinessName.text as Any)
-            ,(ValidationType.alphabeticString,textFIeldContactName.text  as Any)
-            ,(ValidationType.email,textFieldEmailId.text  as Any)
-            ,(ValidationType.password,textFieldPassword.text  as Any)
-            ,(ValidationType.checkBoxChecked,checkBox)
-            ,(ValidationType.confirmPassword,textFieldConfirmPassword.text  as Any))
+        let response = Validation.shared.validate(values: (ValidationMode.businessNameValidation, textFieldBusinessName.text as Any)
+            ,(ValidationMode.contactNameValidation,textFIeldContactName.text  as Any)
+            ,(ValidationMode.email,textFieldEmailId.text  as Any)
+            ,(ValidationMode.password,textFieldPassword.text  as Any)
+            ,(ValidationMode.checkBoxChecked,checkBox)
+            ,(ValidationMode.confirmPassword,textFieldConfirmPassword.text  as Any))
         
         switch response {
         case .success:
-            IntialDataRequest.callApiSignupRequest(signUpData: SignUpData(contactName:textFIeldContactName.text, email:textFieldEmailId.text, establishmentName: textFieldBusinessName.text, password:textFieldPassword.text, referralCode:textFieldReferralCode.text,contactNumber:mobileNumber), completion:{result in
+            IntialDataRequest.callApiSignupRequest(signUpData: SignUpData(contactName:textFIeldContactName.text, email:textFieldEmailId.text, establishmentName: textFieldBusinessName.text, password:textFieldPassword.text, referralCode:textFieldReferralCode.text,contactNumber:mobileNumber), completion:{[weak self] result in
                 switch result {
                     
                 case .success(let response):
@@ -77,7 +78,7 @@ class SignUpController: UIViewController {
                             print(response)
                             
                         case .failure(BaseError.errorMessage(let error)):
-                          self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
+                            self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
                         }
                     });
                     print(response)
@@ -87,46 +88,20 @@ class SignUpController: UIViewController {
                 
             })
         case .failure(_, let message):
-            print(message.localized())
+            self.showAlert(title:Constants.validationFailure.rawValue, message:message.rawValue)
         }
     }
-    //
-    //    public func gotoOTPVerification(mobileNumber:String, User ) {
-    //
-    //   }
-    //
-    //   @Override
-    //   public void gotoSignUp(String mobileNumber, User user) {
-    //       Intent intent = new Intent(this, SignUpActivity.class);
-    //       intent.putExtra(KEY_MOBILE_NUM, mobileNumber);
-    //       intent.putExtra(KEY_USER_PROFILE, user);
-    //       startActivity(intent);
-    //   }
-    //
-    //   @Override
-    //   public void gotoPasswordVerification(String mobileNumber) {
-    //       Intent intent = new Intent(this, PasswordActivity.class);
-    //       intent.putExtra(KEY_MOBILE_NUM, mobileNumber);
-    //       startActivity(intent);
-    //   }
-    //
-    //   @Override
-    //   public void gotoPasswordReset(String mobileNumber) {
-    //       Intent intent = new Intent(this, ResetPasswordActivity.class);
-    //       intent.putExtra(KEY_MOBILE_NUM, mobileNumber);
-    //       startActivity(intent);
-    //   }
-    //
-@objc func onCheckBoxValueChange(_ sender: CheckBox) {
+   
+    @objc func onCheckBoxValueChange(_ sender: CheckBox) {
         checkBox = sender.isChecked;
         checkBox = true;
     }
-private func checkBoxConfiguration()
+    private func checkBoxConfiguration()
     {
         buttonCheckBox?.style = .tick
-        buttonCheckBox?.borderStyle = .roundedSquare(radius: 12)
+        buttonCheckBox?.borderStyle = .square
         buttonCheckBox?.addTarget(self, action: #selector(onCheckBoxValueChange(_:)), for: .valueChanged)
-}
+    }
 }
 // MARK:- CheckBox Configuration
 
@@ -142,3 +117,56 @@ extension SignUpController:UITextViewDelegate
         return false
     }
 }
+
+
+extension SignUpController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if (textField == textFieldEmailId) {
+            let response = Validation.shared.validate(values: (type: ValidationMode.email, inputValue:textFieldEmailId.text as Any))
+            switch response {
+            case .success:
+                textFieldEmailId.trailingAssistiveLabel.text = ""
+            case .failure(_, let message):
+                textFieldEmailId.trailingAssistiveLabel.text = message.rawValue
+            }
+        }
+        else if (textField == textFieldPassword) {
+            let response = Validation.shared.validate(values: (type: ValidationMode.password, inputValue:textFieldPassword.text as Any))
+            switch response {
+            case .success:
+                textFieldPassword.trailingAssistiveLabel.text = ""
+            case .failure(_, let message):
+                textFieldPassword.trailingAssistiveLabel.text = message.rawValue
+            }
+        }
+        else if (textField == textFieldConfirmPassword) {
+            let response = Validation.shared.validate(values: (type: ValidationMode.confirmPassword, inputValue:textFieldConfirmPassword.text as Any))
+            switch response {
+            case .success:
+                textFieldConfirmPassword.trailingAssistiveLabel.text = ""
+            case .failure(_, let message):
+                textFieldConfirmPassword.trailingAssistiveLabel.text = message.rawValue
+            }
+        }
+        else if (textField == textFieldBusinessName) {
+            let response = Validation.shared.validate(values: (type: ValidationMode.businessNameValidation, inputValue:textFieldBusinessName.text as Any))
+            switch response {
+            case .success:
+                textFieldBusinessName.trailingAssistiveLabel.text = ""
+            case .failure(_, let message):
+                textFieldBusinessName.trailingAssistiveLabel.text = message.rawValue
+            }
+        }
+        else if (textField == textFIeldContactName) {
+            let response = Validation.shared.validate(values: (type: ValidationMode.contactNameValidation, inputValue:textFIeldContactName.text as Any))
+            switch response {
+            case .success:
+                textFIeldContactName.trailingAssistiveLabel.text = ""
+            case .failure(_, let message):
+                textFIeldContactName.trailingAssistiveLabel.text = message.rawValue
+            }
+        }
+    }
+    
+}
+

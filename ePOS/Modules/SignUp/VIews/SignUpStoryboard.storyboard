@@ -33,6 +33,9 @@
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Confirm Password"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="ZCN-QI-E6c" id="gyV-xo-FqF"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PRR-wY-BjY" customClass="EPOSTextField">
                                                 <rect key="frame" x="19" y="575" width="375" height="49"/>
@@ -44,6 +47,9 @@
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Referral Code"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="ZCN-QI-E6c" id="blf-CF-hu4"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ter-sZ-RBf" customClass="EPOSTextField">
                                                 <rect key="frame" x="20" y="410" width="375" height="49"/>
@@ -55,6 +61,9 @@
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Set Password"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="ZCN-QI-E6c" id="cFm-g6-gRb"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mLU-rV-OIb" customClass="EPOSTextField">
                                                 <rect key="frame" x="20" y="322" width="375" height="49"/>
@@ -66,6 +75,9 @@
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Email ID"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="ZCN-QI-E6c" id="S3i-uv-iWR"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jY8-6E-yrG" customClass="EPOSTextField">
                                                 <rect key="frame" x="20" y="238" width="375" height="49"/>
@@ -77,6 +89,9 @@
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Mobile Number"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="ZCN-QI-E6c" id="u16-B9-cZ1"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eJk-Tg-vYB" customClass="EPOSTextField">
                                                 <rect key="frame" x="19" y="143" width="375" height="49"/>
@@ -88,6 +103,9 @@
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Contact Name"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="ZCN-QI-E6c" id="fdf-1a-x9P"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qXc-tA-1Fo" customClass="EPOSTextField">
                                                 <rect key="frame" x="20" y="52" width="375" height="49"/>
@@ -99,6 +117,9 @@
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Shop / Business Name"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="ZCN-QI-E6c" id="OG5-m8-tSR"/>
+                                                </connections>
                                             </textField>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="I Agree to Terms of Use &amp; Privacy Policy" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iuA-pK-rzc">
                                                 <rect key="frame" x="48" y="718" width="227" height="49.5"/>
@@ -216,24 +237,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QhC-vi-paq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6621.739130434783" y="750.66964285714278"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="S36-GA-Nt7">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7Yn-iN-YUx" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LRg-3f-yov">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="ZCN-QI-E6c" kind="relationship" relationship="rootViewController" id="JYE-6j-6Ky"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pS0-4A-pED" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5711.594202898551" y="750.66964285714278"/>
         </scene>
     </scenes>
     <resources>

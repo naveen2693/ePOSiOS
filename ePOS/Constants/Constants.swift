@@ -66,10 +66,11 @@ enum Constants:String {
     case errorMessage = "There was some unexpected error. Please try again later"
     case passwordChangeALertMessage = "Password Changed Successfully"
     case apiError = "API Error"
+    case validationFailure = "Validation Failure Message"
 }
 enum ConstantsInt: Int{
     
-      case eposConfigurationId = 30001
+      case eposConfigurationId = 3000_1
 }
 
 enum Boolean:String{

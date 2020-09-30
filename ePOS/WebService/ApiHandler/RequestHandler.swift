@@ -136,8 +136,8 @@ public class RequestHandler{
         request.deviceInfo.verticalRes = "";
         request.deviceInfo.manufacturerName = "";
         request.deviceInfo.deviceModel = "";
-        request.userLoginInfo?.mobileNumber = mobileNumber;
-        request.userLoginInfo?.password = password
+        request.userLoginInfo.mobileNumber = mobileNumber;
+        request.userLoginInfo.password = password
         return request;
     }
     

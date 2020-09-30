@@ -14,8 +14,8 @@
             filePath = "ePOS/Modules/Login/Controllers/ResetPasswordController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "buttonSubmit(_:)"
             landmarkType = "7">
             <Locations>
@@ -62,8 +62,8 @@
             filePath = "ePOS/Modules/Login/Controllers/ResetPasswordController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "buttonSubmit(_:)"
             landmarkType = "7">
             <Locations>
@@ -110,8 +110,8 @@
             filePath = "ePOS/Modules/Login/Controllers/LoginController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "ButtonSubmit(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -126,8 +126,8 @@
             filePath = "ePOS/Modules/Login/Controllers/LoginController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "ButtonSubmit(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -142,8 +142,8 @@
             filePath = "ePOS/Modules/Login/Controllers/ForgotPasswordController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "buttonLogin(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -174,8 +174,8 @@
             filePath = "ePOS/Modules/Login/Controllers/LoginController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "getConfigurationData()"
             landmarkType = "7">
             <Locations>
@@ -222,8 +222,8 @@
             filePath = "ePOS/Modules/Login/Controllers/LoginController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
             landmarkName = "getConfigurationData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -238,8 +238,8 @@
             filePath = "ePOS/Modules/Login/Controllers/LoginController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "decideUserNavigation(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -254,8 +254,8 @@
             filePath = "ePOS/Modules/Login/Controllers/LoginController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "decideUserNavigation(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -270,8 +270,8 @@
             filePath = "ePOS/Modules/Login/Controllers/LoginController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "gotoOtpVerificationController(userData:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -286,8 +286,8 @@
             filePath = "ePOS/Modules/Login/Controllers/LoginController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "decideUserNavigation(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -302,8 +302,8 @@
             filePath = "ePOS/Modules/Login/Controllers/OTPVerificationController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "initWith(mobileNumber:userData:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -318,8 +318,8 @@
             filePath = "ePOS/Modules/Login/Controllers/OTPVerificationController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "gotoSignUpController()"
             landmarkType = "7">
          </BreakpointContent>
@@ -350,9 +350,373 @@
             filePath = "ePOS/Modules/SignUp/Controllers/SignUpControllerViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "initWith(mobileNumber:userData:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D45C7164-BAF4-4B38-BE45-ADF60D2E75BD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ePOS/WebService/Request/IntialDataRequest.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
+            landmarkName = "callLoginApiAfterNumberVerfication(mobileNumber:password:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CC9B2FF3-3EEC-45CF-AD4E-9DD8EE608054"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ePOS/Modules/Login/Controllers/PasswordController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "buttonSubmit(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CC9B2FF3-3EEC-45CF-AD4E-9DD8EE608054 - 6d247aa26ee63b5b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ePOS.PasswordController.buttonSubmit(Any) -&gt; ()"
+                  moduleName = "ePOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhishek/Desktop/Epos/ePOS/Modules/Login/Controllers/PasswordController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "883">
+               </Location>
+               <Location
+                  uuid = "CC9B2FF3-3EEC-45CF-AD4E-9DD8EE608054 - 55afe0ea579a1869"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.AnyObject, ePOS.BaseError&gt;) -&gt; () in ePOS.PasswordController.buttonSubmit(Any) -&gt; ()"
+                  moduleName = "ePOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhishek/Desktop/Epos/ePOS/Modules/Login/Controllers/PasswordController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "115">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "32CA8D6D-60E6-411E-9868-69C14F59F971"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ePOS/WebService/Request/IntialDataRequest.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "308"
+            endingLineNumber = "308"
+            landmarkName = "callLoginApiAfterNumberVerfication(mobileNumber:password:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "32CA8D6D-60E6-411E-9868-69C14F59F971 - f775fb6e139edf73"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static ePOS.IntialDataRequest.callLoginApiAfterNumberVerfication(mobileNumber: Swift.String, password: Swift.String, completion: (Swift.Result&lt;Swift.AnyObject, ePOS.BaseError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "ePOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhishek/Desktop/Epos/ePOS/WebService/Request/IntialDataRequest.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "309"
+                  endingLineNumber = "309"
+                  offsetFromSymbolStart = "79">
+               </Location>
+               <Location
+                  uuid = "32CA8D6D-60E6-411E-9868-69C14F59F971 - 81a444ab3d3f1526"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Moya.Response, Moya.MoyaError&gt;) -&gt; () in static ePOS.IntialDataRequest.callLoginApiAfterNumberVerfication(mobileNumber: Swift.String, password: Swift.String, completion: (Swift.Result&lt;Swift.AnyObject, ePOS.BaseError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "ePOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhishek/Desktop/Epos/ePOS/WebService/Request/IntialDataRequest.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "312"
+                  endingLineNumber = "312"
+                  offsetFromSymbolStart = "458">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "795A3160-437C-4500-A030-3FFC13DC74F0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ePOS/WebService/Request/IntialDataRequest.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "312"
+            endingLineNumber = "312"
+            landmarkName = "callLoginApiAfterNumberVerfication(mobileNumber:password:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "795A3160-437C-4500-A030-3FFC13DC74F0 - 81a444ab3d3f1526"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Moya.Response, Moya.MoyaError&gt;) -&gt; () in static ePOS.IntialDataRequest.callLoginApiAfterNumberVerfication(mobileNumber: Swift.String, password: Swift.String, completion: (Swift.Result&lt;Swift.AnyObject, ePOS.BaseError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "ePOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhishek/Desktop/Epos/ePOS/WebService/Request/IntialDataRequest.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "312"
+                  endingLineNumber = "312"
+                  offsetFromSymbolStart = "458">
+               </Location>
+               <Location
+                  uuid = "795A3160-437C-4500-A030-3FFC13DC74F0 - 81a444ab3d3f1526"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Moya.Response, Moya.MoyaError&gt;) -&gt; () in static ePOS.IntialDataRequest.callLoginApiAfterNumberVerfication(mobileNumber: Swift.String, password: Swift.String, completion: (Swift.Result&lt;Swift.AnyObject, ePOS.BaseError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "ePOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhishek/Desktop/Epos/ePOS/WebService/Request/IntialDataRequest.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "312"
+                  endingLineNumber = "312"
+                  offsetFromSymbolStart = "512">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "88130C33-33FE-404B-83E3-0C3E1C859AAF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ePOS/WebService/Request/IntialDataRequest.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "314"
+            endingLineNumber = "314"
+            landmarkName = "callLoginApiAfterNumberVerfication(mobileNumber:password:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B237EF2B-5E65-4AB4-A045-FFAFB5B7691F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ePOS/WebService/ApiHandler/ApiClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "task"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DA090141-91B7-4DB2-94C2-9A47B0DD8DFF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ePOS/WebService/ApiHandler/RequestHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "createLoginRequest(mobileNumber:password:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F4B200BD-D326-4C53-B8D8-CFA0B005B88A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ePOS/Modules/Login/Controllers/OTPVerificationController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "OTPVerficationController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "F4B200BD-D326-4C53-B8D8-CFA0B005B88A - 5ca48b4a55ce1a7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ePOS.OTPVerficationController.textField6.getter : Swift.Optional&lt;ePOS.OTPTextField&gt;"
+                  moduleName = "ePOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhishek/Desktop/Epos/ePOS/Modules/Login/Controllers/OTPVerificationController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "126">
+               </Location>
+               <Location
+                  uuid = "F4B200BD-D326-4C53-B8D8-CFA0B005B88A - 86d81c946aaef5b3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ePOS.OTPVerficationController.textField6.setter : Swift.Optional&lt;ePOS.OTPTextField&gt;"
+                  moduleName = "ePOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhishek/Desktop/Epos/ePOS/Modules/Login/Controllers/OTPVerificationController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "164">
+               </Location>
+               <Location
+                  uuid = "F4B200BD-D326-4C53-B8D8-CFA0B005B88A - d168993856b20ea0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ePOS.OTPVerficationController.textField6.modify : Swift.Optional&lt;ePOS.OTPTextField&gt;"
+                  moduleName = "ePOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhishek/Desktop/Epos/ePOS/Modules/Login/Controllers/OTPVerificationController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "18">
+               </Location>
+               <Location
+                  uuid = "F4B200BD-D326-4C53-B8D8-CFA0B005B88A - 45d7bc59f9f4a404"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ePOS.OTPVerficationController.textField6.modify : Swift.Optional&lt;ePOS.OTPTextField&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "ePOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhishek/Desktop/Epos/ePOS/Modules/Login/Controllers/OTPVerificationController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  uuid = "F4B200BD-D326-4C53-B8D8-CFA0B005B88A - 4d543c8dfd33b1a2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ePOS.OTPVerficationController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; ePOS.OTPVerficationController"
+                  moduleName = "ePOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhishek/Desktop/Epos/ePOS/Modules/Login/Controllers/OTPVerificationController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "2385">
+               </Location>
+               <Location
+                  uuid = "F4B200BD-D326-4C53-B8D8-CFA0B005B88A - 784b3ed30fa9d3e6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ePOS.OTPVerficationController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;ePOS.OTPVerficationController&gt;"
+                  moduleName = "ePOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhishek/Desktop/Epos/ePOS/Modules/Login/Controllers/OTPVerificationController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "2320">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2F4A5CC3-6907-43B5-B164-0C7579C27F41"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ePOS/Modules/SignUp/Controllers/SignUpControllerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "textFieldDidEndEditing(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DC5283DC-AFE3-4F05-A915-27EE201A1AD4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ePOS/Modules/SignUp/Controllers/SignUpControllerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "textFieldDidEndEditing(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5AEA6B17-D0B0-4AA5-A3DD-396398676579"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ePOS/Modules/Login/Controllers/OTPVerificationController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
+            landmarkName = "textFieldDidDelete()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

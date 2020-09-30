@@ -7,9 +7,15 @@
 //
 
 import Foundation
-extension UIView {
-    func getText() -> String? {
-        return self.responds(to: #selector(getter: UILabel.text)) ?
-        self.perform(#selector(getter: UILabel.text))?.takeUnretainedValue() as? String : nil
-    }
+import UIKit
+extension UIViewController{
+func hideKeyboardWhenTappedAround() {
+       let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+       tap.cancelsTouchesInView = false
+       view.addGestureRecognizer(tap)
+   }
+   
+   @objc func dismissKeyboard() {
+       view.endEditing(true)
+   }
 }

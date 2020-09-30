@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-
+import IQKeyboardManagerSwift
 let appDelegate: AppDelegate = {
     return (UIApplication.shared.delegate as? AppDelegate ?? AppDelegate())
 }()
@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        IQKeyboardManager.shared.enable = true
         configureFirebase()
         setAppearance()
         return true
