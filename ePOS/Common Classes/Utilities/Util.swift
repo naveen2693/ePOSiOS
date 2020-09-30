@@ -55,4 +55,9 @@ public class Util
         }
         return URL(fileURLWithPath: tempFileLoc);
     }
+    
+    static func getUUID() -> String {
+        let uuid = UIDevice.current.identifierForVendor
+        return uuid!.uuidString
+    }
 }

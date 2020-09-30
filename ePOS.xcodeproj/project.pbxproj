@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -1344,6 +1344,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pinelabs.eposdev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SERVER_URL = "";
@@ -1484,6 +1485,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pinelabs.eposdev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SERVER_URL = "";
@@ -1507,6 +1509,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pinelabs.epos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SERVER_URL = "";
