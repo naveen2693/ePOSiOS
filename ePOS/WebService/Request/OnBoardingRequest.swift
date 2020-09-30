@@ -275,29 +275,29 @@ public class OnBoardingRequest:BaseRequest{
     }
     
     private static func checkWorkFlowStateToLaunch(completion:@escaping CompletionHandler) {
-        completion(.success(WorkFlowState.leadNotCreated as AnyObject))
-//        var workflowState = WorkFlowState.leadNotCreated
-//        if let currentLead = EPOSUserDefaults.CurrentLead() {
-//            if currentLead.workFlowState != nil {
-//                workflowState = WorkFlowState(rawValue: currentLead.workFlowState!) ?? workflowState
-//                if workflowState == WorkFlowState.saveBUDetails {
-//// TODO:                   if lead.getBusinessDetail() == nil {
-////                        workFlowState = WorkFlowState.leadInitialized;
-////                        completion(.success(workflowState as AnyObject))
-////                    }
-////                    else {
-////                        completion(.success(workflowState as AnyObject))
-////                    }
-//                } else {
-//                    completion(.success(workflowState as AnyObject))
-//                }
-//            }
-//            else {
-//                completion(.success(workflowState as AnyObject))
-//            }
-//        } else {
-//            completion(.success(workflowState as AnyObject))
-//        }
+//        completion(.success(WorkFlowState.leadNotCreated as AnyObject))
+        var workflowState = WorkFlowState.leadNotCreated
+        if let currentLead = EPOSUserDefaults.CurrentLead() {
+            if currentLead.workFlowState != nil {
+                workflowState = WorkFlowState(rawValue: currentLead.workFlowState!) ?? workflowState
+                if workflowState == WorkFlowState.saveBUDetails {
+                  if currentLead.businessDetail == nil {
+                        workflowState = WorkFlowState.leadInitialized;
+                        completion(.success(workflowState as AnyObject))
+                    }
+                    else {
+                        completion(.success(workflowState as AnyObject))
+                    }
+                } else {
+                    completion(.success(workflowState as AnyObject))
+                }
+            }
+            else {
+                completion(.success(workflowState as AnyObject))
+            }
+        } else {
+            completion(.success(workflowState as AnyObject))
+        }
     }
     
     static func createLeadWith(params: CreateLeadParams, completion:@escaping CompletionHandler) {
