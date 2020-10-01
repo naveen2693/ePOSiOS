@@ -133,6 +133,7 @@
 		997DC803252347A3006ADE48 /* DropdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997DC801252347A3006ADE48 /* DropdownTableViewCell.swift */; };
 		997DC804252347A3006ADE48 /* DropdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 997DC802252347A3006ADE48 /* DropdownTableViewCell.xib */; };
 		997DC8272524A2FE006ADE48 /* GSTDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997DC8262524A2FE006ADE48 /* GSTDetails.swift */; };
+		997DC82B2526064D006ADE48 /* ISO440.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997DC82A2526064D006ADE48 /* ISO440.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -272,6 +273,7 @@
 		997DC801252347A3006ADE48 /* DropdownTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownTableViewCell.swift; sourceTree = "<group>"; };
 		997DC802252347A3006ADE48 /* DropdownTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropdownTableViewCell.xib; sourceTree = "<group>"; };
 		997DC8262524A2FE006ADE48 /* GSTDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSTDetails.swift; sourceTree = "<group>"; };
+		997DC82A2526064D006ADE48 /* ISO440.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO440.swift; sourceTree = "<group>"; };
 		B5B8F0D4F76186F2167A93E4 /* Pods-ePOS.uat.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ePOS.uat.xcconfig"; path = "Target Support Files/Pods-ePOS/Pods-ePOS.uat.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -698,6 +700,7 @@
 		991ADE922506096700932251 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				997DC828252604E3006ADE48 /* Activation */,
 				99186D6225122F7400A9FE07 /* On Boarding */,
 				99186D4F2511D28800A9FE07 /* SignUp */,
 				99186D412511D26400A9FE07 /* Login */,
@@ -723,6 +726,7 @@
 		991ADE97250609E100932251 /* Transactions */ = {
 			isa = PBXGroup;
 			children = (
+				997DC8292526062A006ADE48 /* Transaction Manager */,
 				99186CC92508EFB300A9FE07 /* Models */,
 				99186CC82508EFAA00A9FE07 /* Views */,
 				99186CC72508EFA100A9FE07 /* Controllers */,
@@ -948,6 +952,21 @@
 				997DC8262524A2FE006ADE48 /* GSTDetails.swift */,
 			);
 			path = "GST Docs";
+			sourceTree = "<group>";
+		};
+		997DC828252604E3006ADE48 /* Activation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Activation;
+			sourceTree = "<group>";
+		};
+		997DC8292526062A006ADE48 /* Transaction Manager */ = {
+			isa = PBXGroup;
+			children = (
+				997DC82A2526064D006ADE48 /* ISO440.swift */,
+			);
+			path = "Transaction Manager";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1207,6 +1226,7 @@
 				991ADEA925064E2F00932251 /* UIButtonExtension.swift in Sources */,
 				9919A9C0251A4BA600A67253 /* PackageTableViewCell.swift in Sources */,
 				99186D0E2510922B00A9FE07 /* ShowDialog.swift in Sources */,
+				997DC82B2526064D006ADE48 /* ISO440.swift in Sources */,
 				99186D2A2511D1E000A9FE07 /* CommonWebviewController.swift in Sources */,
 				991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */,
 				99186D142510926800A9FE07 /* EmptyDataViewController.swift in Sources */,

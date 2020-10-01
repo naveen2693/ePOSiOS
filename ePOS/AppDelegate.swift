@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         configureFirebase()
         setAppearance()
-        loadApp()
+//        loadApp()
         return true
     }
 
