@@ -15,7 +15,8 @@ class PasswordController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        hideKeyboardWhenTappedAround()
+        addKeyboardNotifications()
+//        hideKeyboardWhenTappedAround()
     }
     
     

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gt3-ru-PMG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gt3-ru-PMG">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -25,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="328" width="320" height="240"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get Started with ePOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="unp-i3-VvB" customClass="EPOSLabel" customModule="ePOS" customModuleProvider="target">
-                                        <rect key="frame" x="18.5" y="17.5" width="176.5" height="20.5"/>
+                                        <rect key="frame" x="18.5" y="17.5" width="176.5" height="16"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -39,7 +39,7 @@
                                                     <constraint firstAttribute="height" constant="50" id="YAb-aE-OB2"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RdN-Xh-GEk">
                                                 <rect key="frame" x="0.0" y="50" width="165" height="1"/>
@@ -57,7 +57,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="india-flag" translatesAutoresizingMaskIntoConstraints="NO" id="rec-40-ZKC">
-                                        <rect key="frame" x="19" y="73.5" width="49" height="21"/>
+                                        <rect key="frame" x="19" y="69" width="49" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="49" id="3WT-3S-W6C"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="Yql-Yo-QWe"/>
@@ -81,7 +81,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Unz-la-HFi" customClass="CheckBox" customModule="ePOS" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="167" width="28" height="28"/>
+                                        <rect key="frame" x="8" y="171.5" width="28" height="23.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="28" id="C8D-Kx-DSh"/>
@@ -118,7 +118,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ePOS logo" translatesAutoresizingMaskIntoConstraints="NO" id="u4u-Ar-uZk">
-                                <rect key="frame" x="91" y="164" width="138" height="70"/>
+                                <rect key="frame" x="22" y="129" width="276" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="u4u-Ar-uZk" secondAttribute="height" multiplier="136:69" id="mT2-uv-BFd"/>
                                 </constraints>
@@ -225,7 +225,7 @@
                                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="35" id="mqK-Y0-R5u"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="one-time-code"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" textContentType="one-time-code"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eah-M5-1rq" userLabel="TextField-2" customClass="OTPTextField" customModule="ePOS" customModuleProvider="target">
                                                 <rect key="frame" x="38" y="0.0" width="35" height="60"/>
@@ -236,7 +236,7 @@
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="UiU-74-AiR"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="one-time-code"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" textContentType="one-time-code"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l8y-Gn-JAg" userLabel="TextField-3" customClass="OTPTextField" customModule="ePOS" customModuleProvider="target">
                                                 <rect key="frame" x="75.5" y="0.0" width="35" height="60"/>
@@ -248,7 +248,7 @@
                                                     <constraint firstAttribute="width" constant="35" id="dk4-bF-PzC"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="one-time-code"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" textContentType="one-time-code"/>
                                                 <variation key="default">
                                                     <mask key="constraints">
                                                         <exclude reference="C6k-wu-WBe"/>
@@ -263,7 +263,7 @@
                                                     <constraint firstAttribute="height" constant="35" id="xYx-0r-Jz2"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="one-time-code"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" textContentType="one-time-code"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SFw-2e-Z5p" userLabel="TextField-5" customClass="OTPTextField" customModule="ePOS" customModuleProvider="target">
                                                 <rect key="frame" x="151.5" y="0.0" width="35" height="60"/>
@@ -273,7 +273,7 @@
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="tnv-lW-7jN"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="one-time-code"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" textContentType="one-time-code"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="50o-om-VPb" userLabel="TextField-6" customClass="OTPTextField" customModule="ePOS" customModuleProvider="target">
                                                 <rect key="frame" x="189.5" y="0.0" width="35" height="60"/>
@@ -283,7 +283,7 @@
                                                     <constraint firstAttribute="height" constant="35" id="WDP-s0-ct0"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="one-time-code"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" textContentType="one-time-code"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hQN-Nh-gGX" userLabel="TextField-7" customClass="OTPTextField" customModule="ePOS" customModuleProvider="target">
                                                 <rect key="frame" x="227" y="0.0" width="35" height="60"/>
@@ -293,7 +293,7 @@
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="SPM-uY-9yj"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="one-time-code"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" textContentType="one-time-code"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VUa-rk-qaT" userLabel="TextField-8" customClass="OTPTextField" customModule="ePOS" customModuleProvider="target">
                                                 <rect key="frame" x="265" y="0.0" width="35" height="60"/>
@@ -303,7 +303,7 @@
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="OBc-YR-lhZ"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="one-time-code"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" textContentType="one-time-code"/>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -401,10 +401,10 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="afu-b1-vvW" customClass="RoundedCornerView" customModule="ePOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aLr-LU-M24" customClass="EPOSTextField">
+                                            <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aLr-LU-M24" customClass="EPOSTextField">
                                                 <rect key="frame" x="10" y="72" width="300" height="46.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Mobile Number"/>
                                                 </userDefinedRuntimeAttributes>
@@ -412,10 +412,10 @@
                                                     <outlet property="delegate" destination="o1E-I5-JbC" id="x1Q-Lm-n9o"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6u3-ZK-kUM" customClass="EPOSTextField">
+                                            <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6u3-ZK-kUM" customClass="EPOSTextField">
                                                 <rect key="frame" x="10" y="158.5" width="300" height="46.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Enter OTP"/>
                                                 </userDefinedRuntimeAttributes>
@@ -423,10 +423,10 @@
                                                     <outlet property="delegate" destination="o1E-I5-JbC" id="r0c-OF-0B5"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m7p-mI-35d" customClass="EPOSTextField">
+                                            <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m7p-mI-35d" customClass="EPOSTextField">
                                                 <rect key="frame" x="12" y="245" width="300" height="46.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="New Password"/>
                                                 </userDefinedRuntimeAttributes>
@@ -469,10 +469,10 @@
                                                     <constraint firstAttribute="bottom" secondItem="GjS-Wb-izp" secondAttribute="bottom" constant="8" id="hS5-df-F4l"/>
                                                 </constraints>
                                             </view>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nBb-fz-UgA" customClass="EPOSTextField">
+                                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nBb-fz-UgA" customClass="EPOSTextField">
                                                 <rect key="frame" x="10" y="331.5" width="300" height="43"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Confirm Password"/>
                                                 </userDefinedRuntimeAttributes>
@@ -618,7 +618,7 @@
                                         <rect key="frame" x="67" y="44" width="166" height="23"/>
                                         <color key="textColor" name="textBoxBorderColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Password"/>
                                         </userDefinedRuntimeAttributes>
@@ -741,7 +741,7 @@
                                         <rect key="frame" x="67" y="44" width="166" height="23"/>
                                         <color key="textColor" name="textBoxBorderColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Password"/>
                                         </userDefinedRuntimeAttributes>

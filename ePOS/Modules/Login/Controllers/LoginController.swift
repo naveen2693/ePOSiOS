@@ -18,8 +18,10 @@ class LoginController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         textView.isSelectable = true
+//        textFieldMobileNumber.doneAccessory = true
         checkBoxConfiguration()
-        hideKeyboardWhenTappedAround()
+//        addKeyboardNotifications()
+//        hideKeyboardWhenTappedAround()
         if let unwrappedTextView = textView {
             Util.passTextViewReference(textViewField : unwrappedTextView)
         } else {
@@ -31,6 +33,7 @@ class LoginController: UIViewController{
     }
     
     @IBAction func ButtonSubmit(_ sender: Any) {
+        textFieldMobileNumber.resignFirstResponder()
         let response = Validation.shared.validate(values: (type: ValidationMode.phoneNo, inputValue:textFieldMobileNumber.text as Any),(ValidationMode.checkBoxChecked,CheckBox))
         switch response {
         case .success:
