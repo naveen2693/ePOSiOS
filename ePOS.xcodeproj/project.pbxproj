@@ -643,6 +643,7 @@
 		991ADE922506096700932251 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				CE660CF7251DD7FE00D1D8B6 /* Activation */,
 				99186D6225122F7400A9FE07 /* On Boarding */,
 				99186D4F2511D28800A9FE07 /* SignUp */,
 				99186D412511D26400A9FE07 /* Login */,
@@ -826,6 +827,37 @@
 				9919A98F2513796000A67253 /* ConstantNew.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		CE660CF7251DD7FE00D1D8B6 /* Activation */ = {
+			isa = PBXGroup;
+			children = (
+				CE660CFA251DD84700D1D8B6 /* Views */,
+				CE660CF9251DD83200D1D8B6 /* Models */,
+				CE660CF8251DD82700D1D8B6 /* Controllers */,
+			);
+			path = Activation;
+			sourceTree = "<group>";
+		};
+		CE660CF8251DD82700D1D8B6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		CE660CF9251DD83200D1D8B6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CE660CFA251DD84700D1D8B6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1088,7 +1120,6 @@
 				99186D4D2511D27F00A9FE07 /* OtpTextField.swift in Sources */,
 				99186D4C2511D27F00A9FE07 /* OTPVerificationController.swift in Sources */,
 				991ADEA925064E2F00932251 /* UIButtonExtension.swift in Sources */,
-				46161AB025133FA5006D2783 /* GetLeadIDRequest.swift in Sources */,
 				9919A9C0251A4BA600A67253 /* PackageTableViewCell.swift in Sources */,
 				99186D0E2510922B00A9FE07 /* ShowDialog.swift in Sources */,
 				99186D2A2511D1E000A9FE07 /* CommonWebviewController.swift in Sources */,
@@ -1098,7 +1129,6 @@
 				991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */,
 				9919A9962514DCAA00A67253 /* EPOSUserDefaults+Methods.swift in Sources */,
 				99186D17251092A700A9FE07 /* EmptyViewItem.swift in Sources */,
-				99186D3E2511D21100A9FE07 /* CheckUserRequest.swift in Sources */,
 				9919A9A12517528800A67253 /* SearchIFSCViewController.swift in Sources */,
 				99186CEB250A646400A9FE07 /* StatusDemoViewController.swift in Sources */,
 				99186CD02508F03900A9FE07 /* AccountViewController.swift in Sources */,

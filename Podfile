@@ -15,6 +15,7 @@ pod 'Kingfisher'
 pod 'Firebase/Analytics'
 pod 'Firebase/Crashlytics'
 pod 'MaterialComponents/TextControls+OutlinedTextFields'
+pod 'Socket.IO-Client-Swift' '~>11.3.1' # Or latest version
   # Pods for ePOS
 
 end
