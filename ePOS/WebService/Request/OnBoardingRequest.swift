@@ -424,7 +424,12 @@ public class OnBoardingRequest:BaseRequest{
         }
     }
     
-    static func getMerchantVerificationServiceDetailsWith(proofName:String,proofNumber:String,kycType:String,additionalInfo:[String:String], completion:@escaping CompletionHandler) {
+    
+      static func getMerchantVerificationServiceDetailsWith(proofName:String,
+                                                       proofNumber:String,
+                                                       kycType:String,
+                                                       additionalInfo:[String:String],
+                                                       completion:@escaping CompletionHandler) {
         guard NetworkState().isInternetAvailable else {
             //            completion(.failure(APIError.noNetwork))
             return
