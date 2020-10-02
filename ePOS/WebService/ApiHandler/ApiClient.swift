@@ -36,6 +36,8 @@ case getLoginWith(mobileNumber:String,password:String)
     
     case getGSTDetail(gstNumber: String)
     
+    case getMerchantVerificationWith(proofName:String,proofNumber:String,additionalInfo:[String:String])
+    
 // MARK:- Configuration
     case getConfigurationsWith(globalChangeNumber:Int)
 }
@@ -90,11 +92,15 @@ extension ApiService : TargetType
             
         case .getGSTDetail:
             return ApiEndpointsUrl.OnboardingApiEndpointUrl.gstDetail.rawValue
+            
+        case .getMerchantVerificationWith:
+            return ApiEndpointsUrl.OnboardingApiEndpointUrl.getMerchantVerificationDetails.rawValue
         
     // MARK:- Configuration path
         case .getConfigurationsWith:
             return ApiEndpointsUrl.ConfigurationApiEndPointsUrl.configurationUrl.rawValue
-           
+        
+    
         
         }
     }
@@ -140,7 +146,7 @@ extension ApiService : TargetType
          case .createLeadWith:
             return .post
             
-        case .getLeadByIdWith, .getGSTDetail:
+        case .getLeadByIdWith, .getGSTDetail,.getMerchantVerificationWith:
             return .get
             
             
@@ -158,7 +164,7 @@ extension ApiService : TargetType
     
   var validate:ValidationType {
         switch self {
-        case .getCheckUserWith, .getForgotPasswordWith,.getVerifyOtpWith,.getSendOtpWith,.resetPasswordWith,.getLoginWith,.getSignUpWith,.getManageAccount,.createRequestMasterDataWith,.getCityListWith,.getFetchUserWith,.getLeadByIdWith,.getConfigurationsWith, .createLeadWith, .getGSTDetail:
+        case .getCheckUserWith, .getForgotPasswordWith,.getVerifyOtpWith,.getSendOtpWith,.resetPasswordWith,.getLoginWith,.getSignUpWith,.getManageAccount,.createRequestMasterDataWith,.getCityListWith,.getFetchUserWith,.getLeadByIdWith,.getConfigurationsWith, .createLeadWith, .getGSTDetail,.getMerchantVerificationWith:
             return .customCodes([200])
         }
     }
@@ -216,43 +222,27 @@ extension ApiService : TargetType
             
             case .getGSTDetail(let gstNumber):
                 return .requestParameters(parameters:RequestHandler.createGstDetailRequest(number: gstNumber), encoding: URLEncoding.queryString)
+            
+           case .getMerchantVerificationWith(let proofName,let proofNumber,let additionalInfo):
+                  return  .requestJSONEncodable((RequestHandler
+                                 .createMerchantVerificationRequest(proofName: proofName, proofNumber: proofNumber, additionalInfo: additionalInfo)))
+
 // MARK:-Configuration task
-        case .getConfigurationsWith(let globalChngNum):
+          case .getConfigurationsWith(let globalChngNum):
             return  .requestJSONEncodable((RequestHandler
                 .createConfigurationRequest(globalChangeNumber: globalChngNum)))
         
         
         }
     }
+    
     var headers: [String : String]? {
           switch self {
-             case .getCheckUserWith:
-                return RequestHandler.createWebServiceHeaderWithoutAccessToken()
-                        
-            case .getForgotPasswordWith:
-                return RequestHandler.createWebServiceHeaderWithoutAccessToken()
-    
-            case .getVerifyOtpWith:
+          case .getCheckUserWith,.getForgotPasswordWith,.getVerifyOtpWith,.getSendOtpWith,.getLoginWith,.getSignUpWith,.resetPasswordWith,.getConfigurationsWith:
                return RequestHandler.createWebServiceHeaderWithoutAccessToken()
-                
-            case .getSendOtpWith:
-               return RequestHandler.createWebServiceHeaderWithoutAccessToken()
-    
-            case .getLoginWith:
-            return RequestHandler.createWebServiceHeaderWithoutAccessToken()
-    
-            case .getSignUpWith:
-               return RequestHandler.createWebServiceHeaderWithoutAccessToken()
-    
-            case .resetPasswordWith:
-                return RequestHandler.createWebServiceHeaderWithoutAccessToken()
-                
-          case .getManageAccount, .createRequestMasterDataWith, .getCityListWith, .getFetchUserWith, .createLeadWith, .getLeadByIdWith, .getGSTDetail:
+ 
+          case .getManageAccount, .createRequestMasterDataWith, .getCityListWith, .getFetchUserWith, .createLeadWith, .getLeadByIdWith, .getGSTDetail,.getMerchantVerificationWith:
                  return RequestHandler.createWebServiceHeaderWithAccessToken()
-            
-            case .getConfigurationsWith:
-                 return RequestHandler.createWebServiceHeaderWithoutAccessToken()
-            
           
         }
             

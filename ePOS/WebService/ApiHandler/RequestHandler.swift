@@ -182,4 +182,14 @@ public class RequestHandler{
         return param;
     }
     
+    // MARK:- Merchant verification service request
+    public static func createMerchantVerificationRequest(proofName:String,proofNumber:String,additionalInfo:[String:String]) -> MerchantVerficationKeys{
+        var getMerchantVerficationKeys =  MerchantVerficationKeys();
+        getMerchantVerficationKeys.proofId = proofNumber
+        getMerchantVerficationKeys.additionalInfo = additionalInfo
+        getMerchantVerficationKeys.proofName = proofName
+        return getMerchantVerficationKeys;
+    }
+    
+    
 }

@@ -142,6 +142,7 @@ class Validation: NSObject {
                 if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, regex: .pan, emptyAlert: .pan, invalidAlert: .pan) {
                     return tempValue
                 }
+                
             }
         }
         return .success

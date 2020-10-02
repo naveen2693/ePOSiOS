@@ -42,10 +42,10 @@ class PasswordController: UIViewController {
                 IntialDataRequest.callLoginApiAfterNumberVerfication(mobileNumber:unwrappedMobileNumber, password:textFieldPassword.text! ,completion:{[weak self] result in
                     self?.hideLoading()
                     switch result {
-                    case .success(let _):
+                    case .success(_):
                         appDelegate.getOnBoardingData()
                     case .failure(BaseError.errorMessage(let error)):
-                     self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
+                        self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
                     }
                 })
             }
