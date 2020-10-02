@@ -139,7 +139,7 @@ extension PersonalInfoViewController {
         switch response {
         case .success:
             showLoading()
-            let leadParams = CreateLeadParams(name: textFieldNameOnPAN.text!.lowercased(), pan: textFieldPAN.text!.lowercased(), firmType:textFieldCompanyType.text!.uppercased() , kyc: [], typeOfLead: "EPOS")
+            let leadParams = CreateLeadParams(name: textFieldNameOnPAN.text!.lowercased(), pan: textFieldPAN.text!.lowercased(), firmType:textFieldCompanyType.text!.uppercased() , kyc: nil, typeOfLead: "EPOS")
             OnBoardingRequest.createLeadWith(params: leadParams) { [weak self] response in
                 switch response {
                 case .success(_):

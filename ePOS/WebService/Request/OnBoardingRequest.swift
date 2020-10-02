@@ -81,7 +81,7 @@ public class OnBoardingRequest:BaseRequest{
     static func getUserProfileAndProceedToLaunch(showProgress:Bool, completion:@escaping CompletionHandler)
     {
         guard NetworkState().isInternetAvailable else {
-            //            completion(.failure(APIError.noNetwork))
+        completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
             return
         }
         BaseRequest.objMoyaApi.request(.getManageAccount) { result in
@@ -119,7 +119,7 @@ public class OnBoardingRequest:BaseRequest{
     private static func loadMasterDataAndProceedToLaunch(mode :String, completion:@escaping CompletionHandler)
     {
         guard NetworkState().isInternetAvailable else {
-            //            completion(.failure(APIError.noNetwork))
+        completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
             return
         }
         BaseRequest.objMoyaApi.request(.createRequestMasterDataWith(mode: mode)) { result in
@@ -134,6 +134,9 @@ public class OnBoardingRequest:BaseRequest{
                             let masterData = try BaseRequest.decoder.decode(MasterDataWrapper.self, from:response.data)
                             try? MasterDataProvider().saveMasterDataPlistFile(with: masterData)
                             getCityDetailsAndProceedToLaunch(completion: completion);
+                        }
+                        else{
+                           completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
                         }
                     }
                 } catch DecodingError.dataCorrupted(let context) {
@@ -166,7 +169,7 @@ public class OnBoardingRequest:BaseRequest{
     private static func  getCityDetailsAndProceedToLaunch(completion:@escaping CompletionHandler)
     {
         guard NetworkState().isInternetAvailable else {
-            //            completion(.failure(APIError.noNetwork))
+        completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
             return
         }
         let strLastModifiedDate = CityDataProvider().getLastModifiedDate()
@@ -182,7 +185,11 @@ public class OnBoardingRequest:BaseRequest{
                             let statesData = try BaseRequest.decoder.decode(StateData.self, from:response.data)
                             try? CityDataProvider().saveSateDataPlistFile(with: statesData)
                             fetchSubUserList(completion: completion)
-                        }}
+                        }
+                        else{
+                           completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                        }
+                    }
                 } catch DecodingError.dataCorrupted(let context) {
                     debugPrint(context)
                 } catch DecodingError.keyNotFound(let key, let context) {
@@ -212,7 +219,7 @@ public class OnBoardingRequest:BaseRequest{
     private static func fetchSubUserList(completion:@escaping CompletionHandler)
     {
         guard NetworkState().isInternetAvailable else {
-            //            completion(.failure(APIError.noNetwork))
+        completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
             return
         }
         
@@ -262,7 +269,11 @@ public class OnBoardingRequest:BaseRequest{
                             {
                                 getLeadByIdAndProceedToLaunch(leadId: leadId, completion: completion);
                             }
-                        }}
+                        }
+                        else{
+                           completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                        }
+                    }
                 case .failure(let error):
                     fetchSubUserList(completion: completion);
                     print(error);
@@ -284,7 +295,7 @@ public class OnBoardingRequest:BaseRequest{
     private static func  getLeadByIdAndProceedToLaunch(leadId:Int, completion:@escaping CompletionHandler)
     {
         guard NetworkState().isInternetAvailable else {
-            //            completion(.failure(APIError.noNetwork))
+        completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
             return
         }
         BaseRequest.objMoyaApi.request(.getLeadByIdWith(leadId: leadId)) { result in
@@ -304,7 +315,11 @@ public class OnBoardingRequest:BaseRequest{
                             fatalError("Serialization Error")
                         }
                         EPOSUserDefaults.setCurrentStateWorkflow(currentState:workFlowState)
-                    }}
+                    }
+                    else{
+                       completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                    }
+                }
             case .failure(let error):
                 print(error);
                 
@@ -341,10 +356,9 @@ public class OnBoardingRequest:BaseRequest{
     
     static func createLeadWith(params: CreateLeadParams, completion:@escaping CompletionHandler) {
         guard NetworkState().isInternetAvailable else {
-            //            completion(.failure(APIError.noNetwork))
+        completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
             return
         }
-        
         BaseRequest.objMoyaApi.request(.createLeadWith(params: params)) { result in
             switch result
             {
@@ -358,7 +372,9 @@ public class OnBoardingRequest:BaseRequest{
                             EPOSUserDefaults.setLead(lead: leadInfo)
                             completion(.success(response))
                         }
-                        
+                        else{
+                           completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                        }
                     }
                     
                 }catch DecodingError.dataCorrupted(let context) {
@@ -384,7 +400,7 @@ public class OnBoardingRequest:BaseRequest{
     
     static func getGSTDetails(gstNumber: String, completion:@escaping CompletionHandler) {
         guard NetworkState().isInternetAvailable else {
-            //            completion(.failure(APIError.noNetwork))
+        completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
             return
         }
         
@@ -400,7 +416,9 @@ public class OnBoardingRequest:BaseRequest{
                             let gstWrapper = try BaseRequest.decoder.decode(GSTDetailWrapper.self, from:response.data)
                             completion(.success((gstWrapper.result as AnyObject)))
                         }
-                        
+                        else{
+                           completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                        }
                     }
                     
                 }catch DecodingError.dataCorrupted(let context) {
@@ -431,7 +449,7 @@ public class OnBoardingRequest:BaseRequest{
                                                        additionalInfo:[String:String],
                                                        completion:@escaping CompletionHandler) {
         guard NetworkState().isInternetAvailable else {
-            //            completion(.failure(APIError.noNetwork))
+        completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
             return
         }
         
@@ -447,7 +465,9 @@ public class OnBoardingRequest:BaseRequest{
                             let merchantVerificationDetailsWrapper = try BaseRequest.decoder.decode(MerchantverificationResponse.self, from:response.data)
                             completion(.success((merchantVerificationDetailsWrapper.baseResponse as AnyObject)))
                         }
-                        
+                        else{
+                           completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                        }
                     }
                     
                 } catch DecodingError.dataCorrupted(let context) {

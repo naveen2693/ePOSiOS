@@ -44,10 +44,3 @@ public struct BaseResponse:Codable{
     }
 }
 
-public enum APIError:Error{
-   case responseProblem
-   case decodingproblem
-   case responseError
-   case noNetwork
-   
-}

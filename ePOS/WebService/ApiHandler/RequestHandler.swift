@@ -12,7 +12,7 @@ public class RequestHandler{
     internal static func  createWebServiceHeaderWithoutAccessToken() -> [String:String] {
         var headermap = [String:String]();
         let deviceId:String = Util.getUUID()
-        let imeiNum:String = "000000123456723"
+        let imeiNum:String = "000000123456712"
         let advertisingId:String = Util.getUUID()
         headermap[ApiHeaderKeys.requestHeaderClientKey.rawValue] = ClientRequestValues.requestHeaderClientValue.rawValue
         headermap[ApiHeaderKeys.requestHeaderBuildVersionKey.rawValue] = "1.0"// set build-version
@@ -29,16 +29,20 @@ public class RequestHandler{
         //        if(!appUuid.isEmpty) {
         //            headermap[ApiHeaderKeys.requestHeaderUUIDKey.rawValue] = appUuid;
         //        }
-        print(headermap);
+        debugPrint("HEADER ====  Nooooo ==== AccessToken:: \(headermap)");
         return headermap;
     }
     // MARK:-createWebServiceHeaderWithAccessToken
     internal static func  createWebServiceHeaderWithAccessToken() -> [String:String]{
         var headermap =  [String:String]();
         let deviceId:String = Util.getUUID()
-        let imeiNum:String = "000000123456723"
+        let imeiNum:String = "000000123456712"
         let advertisingId:String = Util.getUUID()
-        let appUuid:String = Util.getUUID()
+        var appUuid:String = ""
+        if let uuid = EPOSUserDefaults.getUuid() {
+            appUuid = uuid
+        }
+        
         headermap[ApiHeaderKeys.requestHeaderClientKey.rawValue] = ClientRequestValues.requestHeaderClientValue.rawValue
         headermap[ApiHeaderKeys.requestHeaderBuildVersionKey.rawValue] = "1.0"// set build-version
         headermap[ApiHeaderKeys.requestClientTypeKey.rawValue] = ApiHeaderKeys.requestHeaderClientTypeValue.rawValue;
@@ -55,6 +59,7 @@ public class RequestHandler{
         if(!appUuid.isEmpty) {
             headermap[ApiHeaderKeys.requestHeaderUUIDKey.rawValue] = appUuid;
         }
+        debugPrint("HEADER  ====  AccessToken:: \(headermap)");
         return headermap;
     }
     

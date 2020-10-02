@@ -103,10 +103,8 @@ extension AppDelegate {
                     weakSelf?.setOnBoardingNavigationWith(workflowState)
                 }
             case .failure(let error):
-                if let error = error as? APIError, error == .noNetwork {
-                    
-//                    self.showAlert(title: "ERROR", message: Constants.noNetworkMsg.rawValue)
-                }
+                print("")
+//               self.showAlert(title:Constants.validationFailure.rawValue, message:error)
             }
         });
     }

@@ -61,7 +61,7 @@ class LoginController: UIViewController{
         
         if checkUserModel.userExists?.bool == true  {
             if let userData = checkUserModel.UserData, let udid = userData.appUuid {
-                EPOSUserDefaults.setUdid(udid:udid)
+                EPOSUserDefaults.setUuid(udid: udid)
             }
             if checkUserModel.udfFields != nil,
                 let dict = checkUserModel.udfFields,
@@ -74,7 +74,7 @@ class LoginController: UIViewController{
         } else if let userData = checkUserModel.UserData {
             if userData.mobileVerified?.bool == true {
                 if let udid = userData.appUuid {
-                    EPOSUserDefaults.setUdid(udid:udid)
+                    EPOSUserDefaults.setUuid(udid: udid)
                 }
                 gotoSignUpController(userData: userData)
             }
