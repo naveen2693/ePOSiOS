@@ -33,6 +33,22 @@ public struct CityListKeys:Codable{
     }
 }
 
+// MARK:-Merchant verification service keys
+public struct MerchantVerficationKeys:Codable{
+    var proofName:String?
+    var proofId:String?
+    var additionalInfo:[String:String]?
+    private enum CodingKeys: String, CodingKey {
+        case proofName = "proofName"
+        case proofId = "proofId"
+        case additionalInfo = "additionalInfo"
+    }
+}
+
+
+
+
+
 // MARK:- Master Data Keys
 public struct MasterDataKeys:Codable{
     var mode:String?;
@@ -65,7 +81,7 @@ public class OnBoardingRequest:BaseRequest{
     static func getUserProfileAndProceedToLaunch(showProgress:Bool, completion:@escaping CompletionHandler)
     {
         guard NetworkState().isInternetAvailable else {
-//            completion(.failure(APIError.noNetwork))
+            //            completion(.failure(APIError.noNetwork))
             return
         }
         BaseRequest.objMoyaApi.request(.getManageAccount) { result in
@@ -84,8 +100,8 @@ public class OnBoardingRequest:BaseRequest{
                         } else {
                             fatalError("UserProfile was not created")
                         }
-                
-                } else
+                        
+                    } else
                     {
                         completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
                         
@@ -93,7 +109,7 @@ public class OnBoardingRequest:BaseRequest{
                 }
             case .failure(let error):
                 completion(.failure(BaseError.errorMessage(error)))
-//                loadMasterDataAndProceedToLaunch(mode: Constants.modeValueForMasterData.rawValue, completion: completion);
+                //                loadMasterDataAndProceedToLaunch(mode: Constants.modeValueForMasterData.rawValue, completion: completion);
                 
             }
             
@@ -103,7 +119,7 @@ public class OnBoardingRequest:BaseRequest{
     private static func loadMasterDataAndProceedToLaunch(mode :String, completion:@escaping CompletionHandler)
     {
         guard NetworkState().isInternetAvailable else {
-//            completion(.failure(APIError.noNetwork))
+            //            completion(.failure(APIError.noNetwork))
             return
         }
         BaseRequest.objMoyaApi.request(.createRequestMasterDataWith(mode: mode)) { result in
@@ -111,9 +127,15 @@ public class OnBoardingRequest:BaseRequest{
             {
             case .success(let response):
                 do {
-                    let masterData = try BaseRequest.decoder.decode(MasterDataWrapper.self, from:response.data)
-                    try? MasterDataProvider().saveMasterDataPlistFile(with: masterData)
-                    getCityDetailsAndProceedToLaunch(completion: completion);
+                    if let checkStatus = checkApiResponseStatus(responseData: response.data)
+                    {
+                        if checkStatus.status == true
+                        {
+                            let masterData = try BaseRequest.decoder.decode(MasterDataWrapper.self, from:response.data)
+                            try? MasterDataProvider().saveMasterDataPlistFile(with: masterData)
+                            getCityDetailsAndProceedToLaunch(completion: completion);
+                        }
+                    }
                 } catch DecodingError.dataCorrupted(let context) {
                     debugPrint(context)
                 } catch DecodingError.keyNotFound(let key, let context) {
@@ -129,9 +151,10 @@ public class OnBoardingRequest:BaseRequest{
                     debugPrint("error: ", error)
                 }
                 
+                
             case .failure(let error):
                 completion(.failure(BaseError.errorMessage(error)))
-//                getCityDetailsAndProceedToLaunch(completion: completion);
+                //                getCityDetailsAndProceedToLaunch(completion: completion);
                 error.errorDescription
                 print(error);
                 
@@ -143,50 +166,56 @@ public class OnBoardingRequest:BaseRequest{
     private static func  getCityDetailsAndProceedToLaunch(completion:@escaping CompletionHandler)
     {
         guard NetworkState().isInternetAvailable else {
-//            completion(.failure(APIError.noNetwork))
+            //            completion(.failure(APIError.noNetwork))
             return
         }
         let strLastModifiedDate = CityDataProvider().getLastModifiedDate()
-    BaseRequest.objMoyaApi.request(.getCityListWith(strLastModifiedDate:"\(strLastModifiedDate)")) { result in
-        switch result
-        {
-        case .success(let response):
-            do {
-                let statesData = try BaseRequest.decoder.decode(StateData.self, from:response.data)
-                try? CityDataProvider().saveSateDataPlistFile(with: statesData)
-                fetchSubUserList(completion: completion)
-            } catch DecodingError.dataCorrupted(let context) {
-                debugPrint(context)
-            } catch DecodingError.keyNotFound(let key, let context) {
-                debugPrint("Key '\(key)' not found:", context.debugDescription)
-                debugPrint("codingPath:", context.codingPath)
-            } catch DecodingError.valueNotFound(let value, let context) {
-                debugPrint("Value '\(value)' not found:", context.debugDescription)
-                debugPrint("codingPath:", context.codingPath)
-            } catch DecodingError.typeMismatch(let type, let context)  {
-                debugPrint("Type '\(type)' mismatch:", context.debugDescription)
-                debugPrint("codingPath:", context.codingPath)
-            } catch {
-                debugPrint("error: ", error)
+        BaseRequest.objMoyaApi.request(.getCityListWith(strLastModifiedDate:"\(strLastModifiedDate)")) { result in
+            switch result
+            {
+            case .success(let response):
+                do {
+                    if let checkStatus = checkApiResponseStatus(responseData: response.data)
+                    {
+                        if checkStatus.status == true
+                        {
+                            let statesData = try BaseRequest.decoder.decode(StateData.self, from:response.data)
+                            try? CityDataProvider().saveSateDataPlistFile(with: statesData)
+                            fetchSubUserList(completion: completion)
+                        }}
+                } catch DecodingError.dataCorrupted(let context) {
+                    debugPrint(context)
+                } catch DecodingError.keyNotFound(let key, let context) {
+                    debugPrint("Key '\(key)' not found:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch DecodingError.valueNotFound(let value, let context) {
+                    debugPrint("Value '\(value)' not found:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch DecodingError.typeMismatch(let type, let context)  {
+                    debugPrint("Type '\(type)' mismatch:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch {
+                    debugPrint("error: ", error)
+                }
+                
+                
+            case .failure(let error):
+                completion(.failure(BaseError.errorMessage(error)))
+                //            fetchSubUserList(completion: completion);
+                print(error);
+                
             }
             
-            
-        case .failure(let error):
-            completion(.failure(BaseError.errorMessage(error)))
-//            fetchSubUserList(completion: completion);
-            print(error);
-            
         }
-                
     }
-}
     
     private static func fetchSubUserList(completion:@escaping CompletionHandler)
     {
         guard NetworkState().isInternetAvailable else {
-//            completion(.failure(APIError.noNetwork))
+            //            completion(.failure(APIError.noNetwork))
             return
         }
+        
         
         if let state = EPOSUserDefaults.currentUserState(), state == UserState.merchant.rawValue {
             let userProfileData = EPOSUserDefaults.getProfile();
@@ -203,32 +232,37 @@ public class OnBoardingRequest:BaseRequest{
                 switch result
                 {
                 case .success(let response):
-                    guard let jsonObject: Any = try? JSONSerialization.jsonObject(with: response.data, options: []) as Any,
-                        let jsonData = jsonObject as? [String:Any],
-                        let listSubUsers = jsonData["subUsers"] as? [String:Any]
-                        else
+                    if let checkStatus = checkApiResponseStatus(responseData: response.data)
                     {
-                        fatalError("Serialization Error")
-                    }
-                    for (key,value) in listSubUsers
-                    {
-                        if key == "mobileNumber"{
-                            let mobileNumber  = value as? String
-                            if let unwrappedMobileNumber = mobileNumber{
-                                listmobileNumber.append(unwrappedMobileNumber)
-                            }
-                            else
+                        if checkStatus.status == true
+                        {
+                            guard let jsonObject: Any = try? JSONSerialization.jsonObject(with: response.data, options: []) as Any,
+                                let jsonData = jsonObject as? [String:Any],
+                                let listSubUsers = jsonData["subUsers"] as? [String:Any]
+                                else
                             {
-                                fatalError("Error:Unwrapped error subuser dictionary")
+                                fatalError("Serialization Error")
                             }
-                        }
-                    }
-                    EPOSUserDefaults.setMobileNumberList(stateData: listmobileNumber as AnyObject)
-                    let leadId:Int = 1;//call lead function
-                    if leadId>0
-                    {
-                        getLeadByIdAndProceedToLaunch(leadId: leadId, completion: completion);
-                    }
+                            for (key,value) in listSubUsers
+                            {
+                                if key == "mobileNumber"{
+                                    let mobileNumber  = value as? String
+                                    if let unwrappedMobileNumber = mobileNumber{
+                                        listmobileNumber.append(unwrappedMobileNumber)
+                                    }
+                                    else
+                                    {
+                                        fatalError("Error:Unwrapped error subuser dictionary")
+                                    }
+                                }
+                            }
+                            EPOSUserDefaults.setMobileNumberList(stateData: listmobileNumber as AnyObject)
+                            let leadId:Int = 1;//call lead function
+                            if leadId>0
+                            {
+                                getLeadByIdAndProceedToLaunch(leadId: leadId, completion: completion);
+                            }
+                        }}
                 case .failure(let error):
                     fetchSubUserList(completion: completion);
                     print(error);
@@ -250,22 +284,27 @@ public class OnBoardingRequest:BaseRequest{
     private static func  getLeadByIdAndProceedToLaunch(leadId:Int, completion:@escaping CompletionHandler)
     {
         guard NetworkState().isInternetAvailable else {
-//            completion(.failure(APIError.noNetwork))
+            //            completion(.failure(APIError.noNetwork))
             return
         }
         BaseRequest.objMoyaApi.request(.getLeadByIdWith(leadId: leadId)) { result in
             switch result
             {
             case .success(let response):
-                guard let jsonObject: Any = try? JSONSerialization.jsonObject(with: response.data, options: []) as Any,
-                    let jsonData = jsonObject as? [String:Any],
-                    let leadData = jsonData["lead"] as? [String:Any],
-                    let workFlowState = jsonData["workFlowState"] as? String
-                    else
+                if let checkStatus = checkApiResponseStatus(responseData: response.data)
                 {
-                    fatalError("Serialization Error")
-                }
-                EPOSUserDefaults.setCurrentStateWorkflow(currentState:workFlowState)
+                    if checkStatus.status == true
+                    {
+                        guard let jsonObject: Any = try? JSONSerialization.jsonObject(with: response.data, options: []) as Any,
+                            let jsonData = jsonObject as? [String:Any],
+                            let leadData = jsonData["lead"] as? [String:Any],
+                            let workFlowState = jsonData["workFlowState"] as? String
+                            else
+                        {
+                            fatalError("Serialization Error")
+                        }
+                        EPOSUserDefaults.setCurrentStateWorkflow(currentState:workFlowState)
+                    }}
             case .failure(let error):
                 print(error);
                 
@@ -275,13 +314,13 @@ public class OnBoardingRequest:BaseRequest{
     }
     
     private static func checkWorkFlowStateToLaunch(completion:@escaping CompletionHandler) {
-//        completion(.success(WorkFlowState.leadNotCreated as AnyObject))
+        //        completion(.success(WorkFlowState.leadNotCreated as AnyObject))
         var workflowState = WorkFlowState.leadNotCreated
         if let currentLead = EPOSUserDefaults.CurrentLead() {
             if currentLead.workFlowState != nil {
                 workflowState = WorkFlowState(rawValue: currentLead.workFlowState!) ?? workflowState
                 if workflowState == WorkFlowState.saveBUDetails {
-                  if currentLead.businessDetail == nil {
+                    if currentLead.businessDetail == nil {
                         workflowState = WorkFlowState.leadInitialized;
                         completion(.success(workflowState as AnyObject))
                     }
@@ -302,7 +341,7 @@ public class OnBoardingRequest:BaseRequest{
     
     static func createLeadWith(params: CreateLeadParams, completion:@escaping CompletionHandler) {
         guard NetworkState().isInternetAvailable else {
-//            completion(.failure(APIError.noNetwork))
+            //            completion(.failure(APIError.noNetwork))
             return
         }
         
@@ -311,11 +350,19 @@ public class OnBoardingRequest:BaseRequest{
             {
             case .success(let response):
                 do {
-                    let leadInfo = try BaseRequest.decoder.decode(Lead.self, from:response.data)
-                    EPOSUserDefaults.setLead(lead: leadInfo)
-                    completion(.success(response))
-                } catch DecodingError.dataCorrupted(let context) {
-                    debugPrint(context)
+                    if let checkStatus = checkApiResponseStatus(responseData: response.data)
+                    {
+                        if checkStatus.status == true
+                        {
+                            let leadInfo = try BaseRequest.decoder.decode(Lead.self, from:response.data)
+                            EPOSUserDefaults.setLead(lead: leadInfo)
+                            completion(.success(response))
+                        }
+                        
+                    }
+                    
+                }catch DecodingError.dataCorrupted(let context) {
+                            debugPrint(context)
                 } catch DecodingError.keyNotFound(let key, let context) {
                     debugPrint("Key '\(key)' not found:", context.debugDescription)
                     debugPrint("codingPath:", context.codingPath)
@@ -336,38 +383,88 @@ public class OnBoardingRequest:BaseRequest{
     }
     
     static func getGSTDetails(gstNumber: String, completion:@escaping CompletionHandler) {
-            guard NetworkState().isInternetAvailable else {
-    //            completion(.failure(APIError.noNetwork))
-                return
-            }
-            
-            BaseRequest.objMoyaApi.request(.getGSTDetail(gstNumber: gstNumber)) { result in
-                switch result
-                {
-                case .success(let response):
-                    do {
-                        let gstWrapper = try BaseRequest.decoder.decode(GSTDetailWrapper.self, from:response.data)
-                        completion(.success((gstWrapper.result as AnyObject)))
-                    } catch DecodingError.dataCorrupted(let context) {
-                        debugPrint(context)
-                    } catch DecodingError.keyNotFound(let key, let context) {
-                        debugPrint("Key '\(key)' not found:", context.debugDescription)
-                        debugPrint("codingPath:", context.codingPath)
-                    } catch DecodingError.valueNotFound(let value, let context) {
-                        debugPrint("Value '\(value)' not found:", context.debugDescription)
-                        debugPrint("codingPath:", context.codingPath)
-                    } catch DecodingError.typeMismatch(let type, let context)  {
-                        debugPrint("Type '\(type)' mismatch:", context.debugDescription)
-                        debugPrint("codingPath:", context.codingPath)
-                    } catch {
-                        debugPrint("error: ", error)
+        guard NetworkState().isInternetAvailable else {
+            //            completion(.failure(APIError.noNetwork))
+            return
+        }
+        
+        BaseRequest.objMoyaApi.request(.getGSTDetail(gstNumber: gstNumber)) { result in
+            switch result
+            {
+            case .success(let response):
+                do {
+                    if let checkStatus = checkApiResponseStatus(responseData: response.data)
+                    {
+                        if checkStatus.status == true
+                        {
+                            let gstWrapper = try BaseRequest.decoder.decode(GSTDetailWrapper.self, from:response.data)
+                            completion(.success((gstWrapper.result as AnyObject)))
+                        }
+                        
                     }
-                case .failure(let error):
-                    completion(.failure(BaseError.errorMessage(error)))
                     
+                }catch DecodingError.dataCorrupted(let context) {
+                            debugPrint(context)
+                } catch DecodingError.keyNotFound(let key, let context) {
+                    debugPrint("Key '\(key)' not found:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch DecodingError.valueNotFound(let value, let context) {
+                    debugPrint("Value '\(value)' not found:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch DecodingError.typeMismatch(let type, let context)  {
+                    debugPrint("Type '\(type)' mismatch:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch {
+                    debugPrint("error: ", error)
                 }
+            case .failure(let error):
+                completion(.failure(BaseError.errorMessage(error)))
+                
             }
         }
+    }
+    
+    static func getMerchantVerificationServiceDetailsWith(proofName:String,proofNumber:String,kycType:String,additionalInfo:[String:String], completion:@escaping CompletionHandler) {
+        guard NetworkState().isInternetAvailable else {
+            //            completion(.failure(APIError.noNetwork))
+            return
+        }
+        
+        BaseRequest.objMoyaApi.request(.getMerchantVerificationWith(proofName: proofNumber, proofNumber: proofNumber, additionalInfo:additionalInfo)) { result in
+            switch result
+            {
+            case .success(let response):
+                do {
+                    if let checkStatus = checkApiResponseStatus(responseData: response.data)
+                    {
+                        if checkStatus.status == true
+                        {
+                            let merchantVerificationDetailsWrapper = try BaseRequest.decoder.decode(MerchantverificationResponse.self, from:response.data)
+                            completion(.success((merchantVerificationDetailsWrapper.baseResponse as AnyObject)))
+                        }
+                        
+                    }
+                    
+                } catch DecodingError.dataCorrupted(let context) {
+                            debugPrint(context)
+                } catch DecodingError.keyNotFound(let key, let context) {
+                    debugPrint("Key '\(key)' not found:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch DecodingError.valueNotFound(let value, let context) {
+                    debugPrint("Value '\(value)' not found:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch DecodingError.typeMismatch(let type, let context)  {
+                    debugPrint("Type '\(type)' mismatch:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch {
+                    debugPrint("error: ", error)
+                }
+            case .failure(let error):
+                completion(.failure(BaseError.errorMessage(error)))
+                
+            }
+        }
+    }
 }
 
 

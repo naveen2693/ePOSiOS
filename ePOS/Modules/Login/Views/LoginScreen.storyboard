@@ -159,22 +159,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JOu-eN-ddN">
-                                <rect key="frame" x="0.0" y="56" width="320" height="250"/>
+                                <rect key="frame" x="0.0" y="56" width="340" height="250"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="5m2-hM-2fu">
-                                        <rect key="frame" x="82" y="-6" width="156" height="156"/>
+                                        <rect key="frame" x="92" y="-6" width="156" height="156"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="5m2-hM-2fu" secondAttribute="height" multiplier="1:1" id="bOr-BF-J2b"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Verification" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vb-V4-9VM">
-                                        <rect key="frame" x="97" y="170.5" width="126" height="30"/>
+                                        <rect key="frame" x="107" y="170.5" width="126" height="30"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter OTP sent to" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8R-xN-6BI" customClass="EPOSLabel" customModule="ePOS" customModuleProvider="target">
-                                        <rect key="frame" x="96" y="206" width="128.5" height="19.5"/>
+                                        <rect key="frame" x="96" y="206" width="148" height="19.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="19.5" id="LNr-Fn-xwS"/>
                                         </constraints>
@@ -183,7 +183,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JyP-Fx-Ime">
-                                        <rect key="frame" x="129" y="229" width="62" height="20.5"/>
+                                        <rect key="frame" x="139" y="229" width="62" height="20.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20.5" id="qWF-ta-fOm"/>
                                         </constraints>
@@ -208,10 +208,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dYH-lC-soq" customClass="EPOSShadowView" customModule="ePOS" customModuleProvider="target">
-                                <rect key="frame" x="10" y="345" width="300" height="113.5"/>
+                                <rect key="frame" x="10" y="345" width="320" height="141.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="QBJ-aq-3Zx">
-                                        <rect key="frame" x="10" y="27" width="300" height="60"/>
+                                        <rect key="frame" x="10" y="41" width="300" height="60"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GBa-x0-9fd" userLabel="TextField-1" customClass="OTPTextField" customModule="ePOS" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="35" height="60"/>
@@ -320,10 +320,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RAa-M6-OQ7">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="552" width="340" height="16"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOc-r4-pEL" customClass="EPOSRoundButton" customModule="ePOS" customModuleProvider="target">
-                                        <rect key="frame" x="246" y="-10" width="66" height="66"/>
+                                        <rect key="frame" x="266" y="-10" width="66" height="66"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="66" id="Fo0-dh-tQm"/>
                                             <constraint firstAttribute="width" constant="66" id="g94-Qv-bFA"/>
@@ -345,7 +345,7 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="W1j-v6-GBI" secondAttribute="bottom" constant="11" id="558-Vt-dHr"/>
+                                    <constraint firstAttribute="bottom" secondItem="W1j-v6-GBI" secondAttribute="bottom" constant="-31" id="558-Vt-dHr"/>
                                     <constraint firstItem="W1j-v6-GBI" firstAttribute="leading" secondItem="RAa-M6-OQ7" secondAttribute="leading" constant="8" id="JaO-HU-ShF"/>
                                     <constraint firstItem="yOc-r4-pEL" firstAttribute="trailing" secondItem="RAa-M6-OQ7" secondAttribute="trailingMargin" id="MvD-T0-dfR"/>
                                     <constraint firstItem="yOc-r4-pEL" firstAttribute="top" secondItem="RAa-M6-OQ7" secondAttribute="top" constant="-10" id="UIY-kT-bXW"/>
@@ -401,8 +401,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="afu-b1-vvW" customClass="RoundedCornerView" customModule="ePOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aLr-LU-M24" customClass="EPOSTextField">
-                                                <rect key="frame" x="10" y="72" width="300" height="46.5"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aLr-LU-M24" customClass="EPOSTextField">
+                                                <rect key="frame" x="10" y="72" width="300" height="38.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <userDefinedRuntimeAttributes>
@@ -412,8 +412,8 @@
                                                     <outlet property="delegate" destination="o1E-I5-JbC" id="x1Q-Lm-n9o"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6u3-ZK-kUM" customClass="EPOSTextField">
-                                                <rect key="frame" x="10" y="158.5" width="300" height="46.5"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6u3-ZK-kUM" customClass="EPOSTextField">
+                                                <rect key="frame" x="10" y="150.5" width="300" height="67"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <userDefinedRuntimeAttributes>
@@ -423,8 +423,8 @@
                                                     <outlet property="delegate" destination="o1E-I5-JbC" id="r0c-OF-0B5"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m7p-mI-35d" customClass="EPOSTextField">
-                                                <rect key="frame" x="12" y="245" width="300" height="46.5"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m7p-mI-35d" customClass="EPOSTextField">
+                                                <rect key="frame" x="12" y="257.5" width="300" height="38.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <userDefinedRuntimeAttributes>
@@ -469,8 +469,8 @@
                                                     <constraint firstAttribute="bottom" secondItem="GjS-Wb-izp" secondAttribute="bottom" constant="8" id="hS5-df-F4l"/>
                                                 </constraints>
                                             </view>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nBb-fz-UgA" customClass="EPOSTextField">
-                                                <rect key="frame" x="10" y="331.5" width="300" height="43"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nBb-fz-UgA" customClass="EPOSTextField">
+                                                <rect key="frame" x="10" y="336" width="300" height="38.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <userDefinedRuntimeAttributes>

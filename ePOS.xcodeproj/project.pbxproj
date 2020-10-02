@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		18274840419F503DA1EE880A /* Pods_ePOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F0391820214628F09E9428 /* Pods_ePOS.framework */; };
 		46161AC525137F56006D2783 /* CommonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46161AC425137F55006D2783 /* CommonExtensions.swift */; };
+		4669F0C52525DEF900DEA9F2 /* MerchantVerificationServiceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F0C42525DEF900DEA9F2 /* MerchantVerificationServiceData.swift */; };
+		4669F0C72525E0E000DEA9F2 /* MerchantVerificationAddressData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F0C62525E0E000DEA9F2 /* MerchantVerificationAddressData.swift */; };
 		46BD9B4225160767008DEFEA /* IntialDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B4125160767008DEFEA /* IntialDataRequest.swift */; };
 		46BD9B442516095C008DEFEA /* OnBoardingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B432516095C008DEFEA /* OnBoardingRequest.swift */; };
 		46BD9B46251617A7008DEFEA /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B45251617A7008DEFEA /* BaseRequest.swift */; };
@@ -42,7 +44,6 @@
 		99186D292511D1E000A9FE07 /* WebviewStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99186D262511D1E000A9FE07 /* WebviewStoryBoard.storyboard */; };
 		99186D2A2511D1E000A9FE07 /* CommonWebviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D282511D1E000A9FE07 /* CommonWebviewController.swift */; };
 		99186D3B2511D21000A9FE07 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D342511D21000A9FE07 /* ApiClient.swift */; };
-		99186D3C2511D21000A9FE07 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D352511D21000A9FE07 /* User.swift */; };
 		99186D3D2511D21100A9FE07 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D362511D21000A9FE07 /* RequestHandler.swift */; };
 		99186D4A2511D27F00A9FE07 /* LoginScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99186D442511D27F00A9FE07 /* LoginScreen.storyboard */; };
 		99186D4B2511D27F00A9FE07 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D462511D27F00A9FE07 /* LoginController.swift */; };
@@ -140,6 +141,8 @@
 		22F0391820214628F09E9428 /* Pods_ePOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ePOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3293659E051B6C990362E7F9 /* Pods-ePOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ePOS.debug.xcconfig"; path = "Target Support Files/Pods-ePOS/Pods-ePOS.debug.xcconfig"; sourceTree = "<group>"; };
 		46161AC425137F55006D2783 /* CommonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonExtensions.swift; sourceTree = "<group>"; };
+		4669F0C42525DEF900DEA9F2 /* MerchantVerificationServiceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantVerificationServiceData.swift; sourceTree = "<group>"; };
+		4669F0C62525E0E000DEA9F2 /* MerchantVerificationAddressData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantVerificationAddressData.swift; sourceTree = "<group>"; };
 		46BD9B4125160767008DEFEA /* IntialDataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntialDataRequest.swift; sourceTree = "<group>"; };
 		46BD9B432516095C008DEFEA /* OnBoardingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingRequest.swift; sourceTree = "<group>"; };
 		46BD9B45251617A7008DEFEA /* BaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
@@ -177,7 +180,6 @@
 		99186D2D2511D1F700A9FE07 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		99186D2F2511D1F700A9FE07 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		99186D342511D21000A9FE07 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
-		99186D352511D21000A9FE07 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		99186D362511D21000A9FE07 /* RequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		99186D442511D27F00A9FE07 /* LoginScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginScreen.storyboard; sourceTree = "<group>"; };
 		99186D462511D27F00A9FE07 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -310,6 +312,15 @@
 			children = (
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		4669F0C32525DEA900DEA9F2 /* MerchantVerificationServiceData */ = {
+			isa = PBXGroup;
+			children = (
+				4669F0C42525DEF900DEA9F2 /* MerchantVerificationServiceData.swift */,
+				4669F0C62525E0E000DEA9F2 /* MerchantVerificationAddressData.swift */,
+			);
+			path = MerchantVerificationServiceData;
 			sourceTree = "<group>";
 		};
 		99186CB62508C06500A9FE07 /* TextField */ = {
@@ -506,7 +517,6 @@
 			isa = PBXGroup;
 			children = (
 				99186D342511D21000A9FE07 /* ApiClient.swift */,
-				99186D352511D21000A9FE07 /* User.swift */,
 				99186D362511D21000A9FE07 /* RequestHandler.swift */,
 			);
 			path = ApiHandler;
@@ -648,6 +658,7 @@
 		99186D6525122F9900A9FE07 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4669F0C32525DEA900DEA9F2 /* MerchantVerificationServiceData */,
 				997DC8252524A2E4006ADE48 /* GST Docs */,
 				997DC7F825223441006ADE48 /* LeadData */,
 				997DC7DE2521EEFC006ADE48 /* CityData */,
@@ -1188,7 +1199,7 @@
 				996FD8AE251F17C3001961EE /* UserProfile.swift in Sources */,
 				99186D582511D32E00A9FE07 /* BottomLineTextField.swift in Sources */,
 				997DC8272524A2FE006ADE48 /* GSTDetails.swift in Sources */,
-				99186D3C2511D21000A9FE07 /* User.swift in Sources */,
+				4669F0C52525DEF900DEA9F2 /* MerchantVerificationServiceData.swift in Sources */,
 				9976C95E2501173600FC5DD3 /* DeviceType.swift in Sources */,
 				99186CE6250A2C6500A9FE07 /* EPOSHelper.swift in Sources */,
 				9919A9902513796000A67253 /* ConstantNew.swift in Sources */,
@@ -1208,6 +1219,7 @@
 				9919A9C0251A4BA600A67253 /* PackageTableViewCell.swift in Sources */,
 				99186D0E2510922B00A9FE07 /* ShowDialog.swift in Sources */,
 				99186D2A2511D1E000A9FE07 /* CommonWebviewController.swift in Sources */,
+				4669F0C72525E0E000DEA9F2 /* MerchantVerificationAddressData.swift in Sources */,
 				991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */,
 				99186D142510926800A9FE07 /* EmptyDataViewController.swift in Sources */,
 				991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */,
