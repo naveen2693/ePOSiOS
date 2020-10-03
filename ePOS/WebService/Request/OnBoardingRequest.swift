@@ -26,7 +26,7 @@ public struct UserListKeys{
 }
 
 // MARK:-CityListKeys
-public struct CityListKeys:Codable{
+public struct CityListRequest:Codable{
     var lastModifiedDate:String?;
     private enum CodingKeys: String, CodingKey {
         case lastModifiedDate = "mdafter"
@@ -34,7 +34,7 @@ public struct CityListKeys:Codable{
 }
 
 // MARK:-Merchant verification service keys
-public struct MerchantVerficationKeys:Codable{
+public struct MerchantVerficationRequest:Codable{
     var proofName:String?
     var proofId:String?
     var additionalInfo:[String:String]?
@@ -44,13 +44,8 @@ public struct MerchantVerficationKeys:Codable{
         case additionalInfo = "additionalInfo"
     }
 }
-
-
-
-
-
 // MARK:- Master Data Keys
-public struct MasterDataKeys:Codable{
+public struct MasterDataRequest:Codable{
     var mode:String?;
 }
 //MARK:-DeviceInformationKeys
@@ -75,6 +70,44 @@ struct DeviceInformationKeys : Codable{
         
     }
 }
+
+public struct UpdateLeadRequests:Codable
+{
+    var lead:Lead?;
+    var documents:DocumentDetails?
+    private enum CodingKeys: String, CodingKey {
+    case lead = "lead"
+    case documents = "documents"
+}
+}
+
+public struct SearchIFSCRequest:Codable
+{
+    var bankName:String?;
+    var state:String?
+    var district:String?
+    var branch:String?
+    private enum CodingKeys: String, CodingKey {
+    case bankName = "bankName"
+    case state = "state"
+    case district = "district"
+    case branch = "branch"
+}
+}
+
+public struct BankVerificationRequest:Codable
+{
+    var leadId:Int64?;
+    var task:String?
+    var additionalInfo = [AdditionalInfo]()
+    private enum CodingKeys: String, CodingKey {
+    case leadId = "leadId"
+    case task = "task"
+    case additionalInfo = "additionalInfo"
+}
+}
+
+
 
 public class OnBoardingRequest:BaseRequest{
     

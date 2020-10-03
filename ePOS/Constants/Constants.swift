@@ -35,6 +35,8 @@ enum ApiEndpointsUrl{
         case updateLead = "/rest/data/epos/lead/update"
         case gstDetail = "/rest/data/mvs/gst/details"
         case getMerchantVerificationDetails = "rest/data/mvs/merchantData/{proof}"
+        case searchIFSC = "/rest/data/mvs/ifsc/details"
+        case verifyBankAccount = "/rest/data/epos/lead/createTask"
     }
 }
 
@@ -52,6 +54,7 @@ enum ApiHeaderKeys:String{
     case requuestOsKey = "android_";
     case requestHeaderClientTypeValue = "APP";
     case requestHeaderContentTypeValue = "multipart/form-data";
+   
 }
 
 enum ClientRequestValues :String
@@ -72,6 +75,8 @@ enum Constants:String {
     case noNetworkMsg = "Please check your network connection"
     case apiError = "Error"
     case validationFailure = "ERROR"
+    case verifyAmount = "VERIFY_AMOUNT"
+    
 }
 enum ConstantsInt: Int{
     

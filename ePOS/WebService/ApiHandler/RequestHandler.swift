@@ -72,10 +72,8 @@ public class RequestHandler{
     }
     
     // MARK:-createCheckUserReq
-    public static func createOTPVerifyRequest(mobileNum:String,otp:String) -> OTPVerifyKeys{
-        var request = OTPVerifyKeys();
-        request.mobileNum=mobileNum
-        request.otp=otp;
+    public static func createOTPVerifyRequest(mobileNum:String,otp:String) -> OTPVerifyRequest{
+        var request = OTPVerifyRequest(mobileNum:mobileNum, otp:otp);
         return request;
     }
     
@@ -96,9 +94,8 @@ public class RequestHandler{
     }
     
     // MARK:-createConfigurationRequest
-    public static func  createConfigurationRequest(globalChangeNumber:Int) -> ConfigurationKeys {
-        var request =  ConfigurationKeys();
-        request.globalChngeNumber = globalChangeNumber;
+    public static func  createConfigurationRequest(globalChangeNumber:Int) -> ConfigurationRequest {
+        let request =  ConfigurationRequest(globalChngeNumber: globalChangeNumber);
         return request;
     }
     
@@ -146,18 +143,14 @@ public class RequestHandler{
     }
     
     // MARK:- ResetPasswordRequest
-    static func createResetPasswordRequest(mobileNumber:String, otp:String,password:String) -> ResetPasswordKeys {
-        var objResetPasswordKeys =  ResetPasswordKeys();
-        objResetPasswordKeys.mobileNum = mobileNumber
-        objResetPasswordKeys.otp = otp
-        objResetPasswordKeys.newPassword = password
-        return objResetPasswordKeys;
+    static func createResetPasswordRequest(mobileNumber:String, otp:String,password:String) -> ResetPasswordRequest {
+        let objResetPasswordRequest =  ResetPasswordRequest(mobileNum:mobileNumber, otp:otp, newPassword:password)
+        return objResetPasswordRequest;
     }
     
     // MARK:- createMasterDataReq
-    public static func createMasterDataRequest(mode:String) -> MasterDataKeys {
-        var request = MasterDataKeys();
-        request.mode = mode;
+    public static func createMasterDataRequest(mode:String) -> MasterDataRequest {
+        let request = MasterDataRequest(mode: mode);
         return request;
     }
     
@@ -170,10 +163,9 @@ public class RequestHandler{
     }
     
     // MARK:- createGetCityListRequest
-    public static func createGetCityListRequest(strLastModifiedDate:String) -> CityListKeys{
-        var getCityListRequest =  CityListKeys();
-        getCityListRequest.lastModifiedDate = strLastModifiedDate;
-        return getCityListRequest;
+    public static func createGetCityListRequest(strLastModifiedDate:String) -> CityListRequest{
+        let ObjCityListRequest =  CityListRequest(lastModifiedDate: strLastModifiedDate);
+        return ObjCityListRequest;
     }
     
     // MARK:- createUserListReq
@@ -188,13 +180,28 @@ public class RequestHandler{
     }
     
     // MARK:- Merchant verification service request
-    public static func createMerchantVerificationRequest(proofName:String,proofNumber:String,additionalInfo:[String:String]) -> MerchantVerficationKeys{
-        var getMerchantVerficationKeys =  MerchantVerficationKeys();
-        getMerchantVerficationKeys.proofId = proofNumber
-        getMerchantVerficationKeys.additionalInfo = additionalInfo
-        getMerchantVerficationKeys.proofName = proofName
-        return getMerchantVerficationKeys;
+    public static func createMerchantVerificationRequest(proofName:String,proofNumber:String,additionalInfo:[String:String]) -> MerchantVerficationRequest{
+        let ObjMerchantVerfication =  MerchantVerficationRequest(proofName: proofName, proofId: proofNumber, additionalInfo: additionalInfo);
+        return ObjMerchantVerfication;
     }
+    
+public static func updateLeadRequest(lead:Lead,documents:DocumentDetails) -> UpdateLeadRequests{
+    let updateLead =  UpdateLeadRequests(lead: lead, documents: documents);
+           return updateLead;
+       }
+    
+public static func searchIFSCRequest(bankName:String,stateName:String,distName:String, branchName:String) -> SearchIFSCRequest{
+        let ObjSearchIFSCRequest = SearchIFSCRequest(bankName: bankName, state:stateName, district:distName, branch:branchName);
+           return ObjSearchIFSCRequest;
+       }
+    
+public static func createBankVerificationRequest(leadId:Int64,additionalInfos:[AdditionalInfo]) -> BankVerificationRequest{
+    var objBankVerificationRequest =  BankVerificationRequest(leadId: leadId, task:Constants.verifyAmount.rawValue, additionalInfo: additionalInfos)
+           return objBankVerificationRequest;
+       }
+
+    
+       
     
     
 }

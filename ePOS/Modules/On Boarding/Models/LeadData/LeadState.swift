@@ -26,14 +26,14 @@ struct LeadState : Codable {
         case description = "description"
     }
 
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        id = try values.decodeIfPresent(Int.self, forKey: .id)
-        optlock = try values.decodeIfPresent(Int.self, forKey: .optlock)
-        createdDate = try values.decodeIfPresent(Int.self, forKey: .createdDate)
-        workFlowState = try values.decodeIfPresent(String.self, forKey: .workFlowState)
-        leadStatus = try values.decodeIfPresent(String.self, forKey: .leadStatus)
-        description = try values.decodeIfPresent(String.self, forKey: .description)
-    }
+//    init(from decoder: Decoder) throws {
+//        let values = try decoder.container(keyedBy: CodingKeys.self)
+//        id = try values.decodeIfPresent(Int.self, forKey: .id)
+//        optlock = try values.decodeIfPresent(Int.self, forKey: .optlock)
+//        createdDate = try values.decodeIfPresent(Int.self, forKey: .createdDate)
+//        workFlowState = try values.decodeIfPresent(String.self, forKey: .workFlowState)
+//        leadStatus = try values.decodeIfPresent(String.self, forKey: .leadStatus)
+//        description = try values.decodeIfPresent(String.self, forKey: .description)
+//    }
 
 }
