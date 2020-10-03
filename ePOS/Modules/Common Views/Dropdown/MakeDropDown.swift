@@ -40,6 +40,7 @@ class MakeDropDown: UIView{
     // Other Variables
     var viewPositionRef: CGRect?
     var isDropDownPresent: Bool = false
+    var isDropdownUpsideDown: Bool = false
    
     
     //MARK: - DropDown Methods
@@ -65,6 +66,10 @@ class MakeDropDown: UIView{
         dropDownTableView?.tableFooterView = UIView()
         self.addSubview(dropDownTableView!)
         
+    }
+    
+    func flipDropdownUpsideDown() {
+        dropDownTableView?.transform = CGAffineTransform(rotationAngle: -(CGFloat)(Double.pi))
     }
     
     // Shows Drop Down Menu
@@ -140,6 +145,9 @@ extension MakeDropDown: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = (dropDownTableView?.dequeueReusableCell(withIdentifier: self.cellReusableIdentifier) ?? UITableViewCell())
+        if isDropdownUpsideDown == true {
+            cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+        }
         makeDropDownDataSourceProtocol?.getDataToDropDown(cell: cell, indexPos: indexPath.row, makeDropDownIdentifier: self.makeDropDownIdentifier)
         
         return cell

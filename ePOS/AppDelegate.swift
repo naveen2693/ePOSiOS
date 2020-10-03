@@ -74,7 +74,6 @@ extension AppDelegate {
             self.window?.rootViewController = navController
         } else {
             let navigationController = UINavigationController(rootViewController: controller)
-            navigationController.isNavigationBarHidden = true
             self.window?.rootViewController = navigationController
         }
         self.window?.makeKeyAndVisible()
@@ -86,8 +85,9 @@ extension AppDelegate {
     
     func setOnBoardingNavigationWith(_ state: WorkFlowState) {
         switch state {
-        case .leadNotCreated:
+        case .leadNotCreated, .leadInitialized:
             let controller = PersonalInfoViewController.viewController(state)
+//            let navigationController = AppStoryboard.main.initialViewController()
             setRootControllerOnWindowWith(controller)
         default:
             break

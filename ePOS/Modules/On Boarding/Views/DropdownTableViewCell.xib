@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DropdownOptionsViewController" customModule="ePOS" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DropdownTableViewCell" id="jO7-Le-zRt" customClass="DropdownTableViewCell" customModule="ePOS" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -18,8 +18,36 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nJ6-Rv-mSC" customClass="CheckBox" customModule="ePOS" customModuleProvider="target">
+                        <rect key="frame" x="16" y="0.0" width="25" height="24"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" name="subTextColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="iup-YX-rjE"/>
+                            <constraint firstAttribute="width" constant="25" id="xsD-j3-JrS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fAK-jE-nSg"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isChecked" value="NO"/>
+                            <userDefinedRuntimeAttribute type="color" keyPath="uncheckedBorderColor">
+                                <color key="value" name="subTextColor"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="checkedBorderColor">
+                                <color key="value" name="themeDarkColor"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="checkmarkColor">
+                                <color key="value" name="themeDarkColor"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="2"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="checkboxSelected:" destination="-1" eventType="valueChanged" id="nbR-5q-Vua"/>
+                        </connections>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3h0-nk-HbA" customClass="EPOSLabel" customModule="ePOS" customModuleProvider="target">
-                        <rect key="frame" x="20" y="12" width="42" height="20"/>
+                        <rect key="frame" x="67" y="2" width="42" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" name="textColor"/>
                         <nil key="highlightedColor"/>
@@ -31,21 +59,29 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="3h0-nk-HbA" firstAttribute="leading" secondItem="NO0-JF-xnm" secondAttribute="leading" constant="20" id="BN1-oE-OIb"/>
-                    <constraint firstItem="3h0-nk-HbA" firstAttribute="top" secondItem="NO0-JF-xnm" secondAttribute="top" constant="12" id="F0B-aP-sUy"/>
-                    <constraint firstAttribute="bottom" secondItem="3h0-nk-HbA" secondAttribute="bottom" constant="12" id="MwB-jb-B0a"/>
+                    <constraint firstItem="3h0-nk-HbA" firstAttribute="centerY" secondItem="nJ6-Rv-mSC" secondAttribute="centerY" id="05K-7G-DnL"/>
+                    <constraint firstItem="nJ6-Rv-mSC" firstAttribute="leading" secondItem="NO0-JF-xnm" secondAttribute="leading" constant="16" id="Npp-hN-62V"/>
+                    <constraint firstItem="3h0-nk-HbA" firstAttribute="leading" secondItem="nJ6-Rv-mSC" secondAttribute="trailing" constant="26" id="Opb-ie-aDi"/>
+                    <constraint firstItem="nJ6-Rv-mSC" firstAttribute="top" secondItem="NO0-JF-xnm" secondAttribute="top" id="WSQ-7e-FtF"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="7bp-wn-xLd"/>
             <connections>
+                <outlet property="checkbox" destination="nJ6-Rv-mSC" id="kTf-63-lSW"/>
                 <outlet property="titleLabel" destination="3h0-nk-HbA" id="jgq-Yc-Ibm"/>
             </connections>
             <point key="canvasLocation" x="139" y="126"/>
         </tableViewCell>
     </objects>
     <resources>
+        <namedColor name="subTextColor">
+            <color red="0.46274509803921571" green="0.46274509803921571" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="textColor">
             <color red="0.13725490196078433" green="0.14117647058823529" blue="0.15294117647058825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="themeDarkColor">
+            <color red="0.066666666666666666" green="0.68627450980392157" blue="0.35294117647058826" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
