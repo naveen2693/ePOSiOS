@@ -20,6 +20,9 @@
 		46BD9B50251A8646008DEFEA /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B4F251A8646008DEFEA /* ForgotPasswordController.swift */; };
 		46BD9B52251A8B69008DEFEA /* PasswordResetLinkMsgController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B51251A8B69008DEFEA /* PasswordResetLinkMsgController.swift */; };
 		46BD9B54251AFE80008DEFEA /* GenericSwitchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B53251AFE80008DEFEA /* GenericSwitchingViewController.swift */; };
+		990AF961252854610008A907 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990AF960252854610008A907 /* BottomSheetViewController.swift */; };
+		990AF9642528559C0008A907 /* DropdownOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990AF9622528559C0008A907 /* DropdownOptionsViewController.swift */; };
+		990AF9652528559C0008A907 /* DropdownOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 990AF9632528559C0008A907 /* DropdownOptionsViewController.xib */; };
 		99186CBA2508C08F00A9FE07 /* EPOSTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 99186CB92508C08F00A9FE07 /* EPOSTextField.m */; };
 		99186CBD2508EC6000A9FE07 /* EPOSTextField+FloatText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CBC2508EC6000A9FE07 /* EPOSTextField+FloatText.swift */; };
 		99186CC42508EF5600A9FE07 /* EPOSTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CC32508EF5600A9FE07 /* EPOSTabBarViewController.swift */; };
@@ -152,6 +155,9 @@
 		46BD9B4F251A8646008DEFEA /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
 		46BD9B51251A8B69008DEFEA /* PasswordResetLinkMsgController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetLinkMsgController.swift; sourceTree = "<group>"; };
 		46BD9B53251AFE80008DEFEA /* GenericSwitchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericSwitchingViewController.swift; sourceTree = "<group>"; };
+		990AF960252854610008A907 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
+		990AF9622528559C0008A907 /* DropdownOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownOptionsViewController.swift; sourceTree = "<group>"; };
+		990AF9632528559C0008A907 /* DropdownOptionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropdownOptionsViewController.xib; sourceTree = "<group>"; };
 		99186CB72508C08E00A9FE07 /* ePOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ePOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		99186CB82508C08F00A9FE07 /* EPOSTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EPOSTextField.h; sourceTree = "<group>"; };
 		99186CB92508C08F00A9FE07 /* EPOSTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EPOSTextField.m; sourceTree = "<group>"; };
@@ -323,6 +329,14 @@
 			path = MerchantVerificationServiceData;
 			sourceTree = "<group>";
 		};
+		990AF95F252854450008A907 /* BottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				990AF960252854610008A907 /* BottomSheetViewController.swift */,
+			);
+			path = BottomSheet;
+			sourceTree = "<group>";
+		};
 		99186CB62508C06500A9FE07 /* TextField */ = {
 			isa = PBXGroup;
 			children = (
@@ -415,6 +429,7 @@
 		99186D092510922B00A9FE07 /* Common Views */ = {
 			isa = PBXGroup;
 			children = (
+				990AF95F252854450008A907 /* BottomSheet */,
 				996FD8A7251E0FFA001961EE /* CustomNavigationStyle */,
 				991DF26F251DED4E00AEA1C3 /* BackgroundView */,
 				99186D662512443700A9FE07 /* Dropdown */,
@@ -634,6 +649,8 @@
 				9919A9A02517528800A67253 /* SearchIFSCViewController.xib */,
 				9919A9A325176D9D00A67253 /* IFSCCodeDetailViewController.swift */,
 				9919A9A425176D9D00A67253 /* IFSCCodeDetailViewController.xib */,
+				990AF9622528559C0008A907 /* DropdownOptionsViewController.swift */,
+				990AF9632528559C0008A907 /* DropdownOptionsViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1027,6 +1044,7 @@
 			files = (
 				9976C95B2501165E00FC5DD3 /* Roboto-Thin.ttf in Resources */,
 				991DF26A251CB5C900AEA1C3 /* EPOSLoader.xib in Resources */,
+				990AF9652528559C0008A907 /* DropdownOptionsViewController.xib in Resources */,
 				9976C9502501165E00FC5DD3 /* Roboto-Medium.ttf in Resources */,
 				9976C9572501165E00FC5DD3 /* Roboto-Italic.ttf in Resources */,
 				99186D4A2511D27F00A9FE07 /* LoginScreen.storyboard in Resources */,
@@ -1218,6 +1236,7 @@
 				991ADEA925064E2F00932251 /* UIButtonExtension.swift in Sources */,
 				9919A9C0251A4BA600A67253 /* PackageTableViewCell.swift in Sources */,
 				99186D0E2510922B00A9FE07 /* ShowDialog.swift in Sources */,
+				990AF9642528559C0008A907 /* DropdownOptionsViewController.swift in Sources */,
 				99186D2A2511D1E000A9FE07 /* CommonWebviewController.swift in Sources */,
 				4669F0C72525E0E000DEA9F2 /* MerchantVerificationAddressData.swift in Sources */,
 				991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */,
@@ -1246,6 +1265,7 @@
 				99186D5C2511D37200A9FE07 /* CheckBox.swift in Sources */,
 				997DC7FC2522346D006ADE48 /* LeadProfile.swift in Sources */,
 				9919A9C4251A4BBA00A67253 /* PackageDetailTableViewCell.swift in Sources */,
+				990AF961252854610008A907 /* BottomSheetViewController.swift in Sources */,
 				9976C9092500F05600FC5DD3 /* AppDelegate.swift in Sources */,
 				46BD9B46251617A7008DEFEA /* BaseRequest.swift in Sources */,
 				99186D722512494C00A9FE07 /* PersonalInfoViewController+Dropdown.swift in Sources */,

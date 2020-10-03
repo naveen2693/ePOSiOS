@@ -368,9 +368,9 @@ public class OnBoardingRequest:BaseRequest{
                     {
                         if checkStatus.status == true
                         {
-                            let leadInfo = try BaseRequest.decoder.decode(Lead.self, from:response.data)
-                            EPOSUserDefaults.setLead(lead: leadInfo)
-                            completion(.success(response))
+                            let leadInfo = try BaseRequest.decoder.decode(LeadWrapper.self, from:response.data)
+                            EPOSUserDefaults.setLead(lead: leadInfo.lead)
+                            completion(.success(leadInfo.lead as AnyObject))
                         }
                         else{
                            completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))

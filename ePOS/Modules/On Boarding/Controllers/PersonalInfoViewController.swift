@@ -19,11 +19,16 @@ class PersonalInfoViewController: CustomNavigationStyleViewController {
     @IBOutlet private weak var textFieldGSTIN: EPOSTextField!
     @IBOutlet internal weak var textFieldDocumentType: EPOSTextField!
     @IBOutlet private weak var textFieldDocumentInfo: EPOSTextField!
+    @IBOutlet private weak var textFieldDocumentState: EPOSTextField!
     @IBOutlet private weak var nextButton: EPOSRoundButton!
     @IBOutlet private weak var checkbox: CheckBox!
     @IBOutlet private weak var checkboxInfoLabel: EPOSLabel!
     @IBOutlet private weak var dropdownImageView: UIImageView!
-
+    @IBOutlet weak var scrollContentView: RoundedCornerView!
+    @IBOutlet weak var creamViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var companyTypeButton: UIButton!
+    @IBOutlet weak var documentTypeButton: UIButton!
+    
     let applicationText = "Your epos application ID: "
     private var currentWorkflowState :WorkFlowState = .leadNotCreated
     private var currentLead: Lead? {
@@ -48,15 +53,15 @@ class PersonalInfoViewController: CustomNavigationStyleViewController {
         // Do any additional setup after loading the view.
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        setUpDropDownFor(.businessType)
-    }
-    
     func showPan() {
         textFieldPAN.isHidden = false
         textFieldNameOnPAN.isHidden = false
         nextButton.isEnabled = true
+    }
+    
+    func showState() {
+        textFieldDocumentState.isHidden = textFieldDocumentType.text == ""
+        textFieldDocumentInfo.floatingText = "Enter \(String(describing: textFieldDocumentType.text)) Number"
     }
 
 }
@@ -67,6 +72,7 @@ extension PersonalInfoViewController {
     //MARK: - ConfigureUI
     func configureUIInitially() {
         navigationItem.title = "Registration"
+        setRightTitle(withTitle: "1/3")
         setApplicationID()
         nextButton.isEnabled = false
         textFieldCompanyType.inputView = UIView()
@@ -82,23 +88,34 @@ extension PersonalInfoViewController {
         checkbox.borderStyle = .roundedSquare(radius: 2)
 
         hideAllTextFields()
+        refreshPage()
     }
 
     func setApplicationID() {
         if currentWorkflowState == .leadNotCreated {
-            topCreamView.isHidden = true
+            creamViewHeightConstraint.constant = 0
+            //topCreamView.isHidden = true
         } else if currentLead != nil, let appID = currentLead!.applicationId {
-            topCreamView.isHidden = false
+            //topCreamView.isHidden = false
+            creamViewHeightConstraint.constant = 29
             applicationLabel.text = applicationText + appID
+            scrollContentView.cornerRound = 0
         }
     }
     //MARK: - RefreshPage
     func refreshPage() {
-        if currentLead?.workFlowState == WorkFlowState.leadInitialized.rawValue {
+        if let lead = currentLead, lead.workFlowState == WorkFlowState.leadInitialized.rawValue {
+            MasterDataProvider().getDropdownDataFor(.eposPOI) { (data) in
+                weak var weakSelf = self
+                weakSelf?.dropdownData = data
+            }
+            populateData(from: lead)
             currentWorkflowState = .leadInitialized
             textFieldGSTIN.isHidden = false
             checkbox.isHidden = false
             checkboxInfoLabel.isHidden = false
+            companyTypeButton.isEnabled = false
+            showPan()
         }
         setApplicationID()
         
@@ -120,7 +137,17 @@ extension PersonalInfoViewController {
 
     }
 
-    
+    func populateData(from lead: Lead) {
+        if let type = lead.leadProfile?.firmType {
+            textFieldCompanyType.text = type
+        }
+        if let pan = lead.leadProfile?.pan {
+            textFieldPAN.text = pan
+        }
+        if let panName = lead.leadProfile?.name {
+            textFieldNameOnPAN.text = panName
+        }
+    }
     
     func hideAllTextFields() {
         textFieldPAN.isHidden = true
@@ -128,9 +155,15 @@ extension PersonalInfoViewController {
         textFieldGSTIN.isHidden = true
         textFieldDocumentType.isHidden = true
         textFieldDocumentInfo.isHidden = true
+        textFieldDocumentState.isHidden = true
         checkbox.isHidden = true
         checkboxInfoLabel.isHidden = true
         dropdownImageView.isHidden = true
+    }
+    
+    func hideDocumentFields(_ value: Bool) {
+        textFieldDocumentType.isHidden = value
+        textFieldDocumentInfo.isHidden = value
     }
     
     func createLead() {
@@ -144,11 +177,7 @@ extension PersonalInfoViewController {
                 switch response {
                 case .success(_):
                     self?.refreshPage()
-                    MasterDataProvider().getDropdownDataFor(.eposPOI) { (data) in
-                        weak var weakSelf = self
-                        weakSelf?.dropdownData = data
-                        weakSelf?.hideLoading()
-                    }
+                    self?.hideLoading()
                 case .failure(BaseError.errorMessage(let error)):
                     self?.hideLoading()
                     self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
@@ -159,6 +188,9 @@ extension PersonalInfoViewController {
         }
     }
     
+    func validateDocumentID() {
+        
+    }
 }
 
 
@@ -166,16 +198,19 @@ extension PersonalInfoViewController {
 extension PersonalInfoViewController: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-//        if textField == textFieldCompanyType || textField == textFieldCompanyType {
-//            return false
-//        }
+        if currentWorkflowState == .leadInitialized {
+            if textField == textFieldCompanyType || textField == textFieldPAN || textField == textFieldNameOnPAN {
+                return false
+            }
+        }
+
         return true
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == textFieldCompanyType || textField == textFieldCompanyType {
-            return false
-        }
+//        if textField == textFieldCompanyType || textField == textFieldDocumentType {
+//            return false
+//        }
         if textField == textFieldPAN, textField.text!.count > 10 {
             return false
         }
@@ -192,12 +227,21 @@ extension PersonalInfoViewController: UITextFieldDelegate {
             }
         }
         
+//        if textField == textFieldDocumentType || textField == textFieldCompanyType {
+//            if dropDown.isDropDownPresent {
+//                dropDown.hideDropDown()
+//            }
+//        }
+        
         if textField == textFieldPAN {
             let resultDoc = Validation.shared.validate(values: (ValidationMode.pan, textFieldPAN.text as Any))
             if case Valid.failure(_, let message) = resultDoc {
                 textFieldPAN.trailingAssistiveLabel.text = message.rawValue
+                
             } else {
                 textFieldPAN.trailingAssistiveLabel.text = ""
+                
+                
             }
         }
     }
@@ -211,7 +255,7 @@ extension PersonalInfoViewController {
             if textFieldCompanyType.isFirstResponder == false {
                 textFieldCompanyType.becomeFirstResponder()
             }
-            showDropdown(!dropDown.isDropDownPresent, rows: 3)
+            showDropdown(.businessType)
         } else if sender.tag == 2 {
             if textFieldDocumentType.isHidden == true {
                 return
@@ -219,19 +263,25 @@ extension PersonalInfoViewController {
             if textFieldDocumentType.isFirstResponder == false {
                 textFieldDocumentType.becomeFirstResponder()
             }
-            showDropdown(!dropDown.isDropDownPresent, rows: 6)
+            showDropdown(.eposPOI)
         }
     }
 
-    private func showDropdown(_ show: Bool, rows: Int) {
-        if show == true {
-            dropDown.reloadDropDown(height: self.dropDownRowHeight * CGFloat(rows))
-            dropDown.showDropDown(height: self.dropDownRowHeight * CGFloat(rows))
-        } else {
-            dropDown.hideDropDown()
-        }
+    private func showDropdown(_ type: MasterDataType) {
+        let dropdownController = DropdownOptionsViewController.viewController(with: dropdownData, delegate: self, masterDataType: type)
+        dropdownController.showOptionsFrom(self)
     }
-    @IBAction func checkboxClicked(_ sender: Any) {
+    
+    @IBAction func checkboxClicked(_ sender: CheckBox) {
+        if sender.isChecked {
+            sender.backgroundColor = .darkThemeColor()
+            textFieldGSTIN.isEnabled = false
+            hideDocumentFields(false)
+        } else {
+            sender.backgroundColor = .white
+            textFieldGSTIN.isEnabled = true
+            hideDocumentFields(true)
+        }
     }
 
     @IBAction func nextClicked(_ sender: Any) {
@@ -257,4 +307,19 @@ extension PersonalInfoViewController {
 
     @IBAction func needHelpClicked(_ sender: Any) {
     }
+}
+
+extension PersonalInfoViewController : DropDownOptionsSelectedDelegate {
+    func didSelectOption(_ controller: DropdownOptionsViewController, option: CodeData, type: MasterDataType) {
+        if type == .businessType {
+            textFieldCompanyType.text = option.defaultDescription
+            showPan()
+        } else {
+            textFieldDocumentType.text = option.defaultDescription
+            showState()
+        }
+        controller.dismissSheet()
+    }
+    
+    
 }
