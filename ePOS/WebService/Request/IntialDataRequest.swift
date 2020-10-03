@@ -14,7 +14,7 @@ public struct CheckUserKeys{
 }
 
 // MARK:- OTP Verify Keys
-public struct OTPVerifyKeys:Codable{
+public struct OTPVerifyRequest:Codable{
     var mobileNum:String?;
     var otp:String?;
     private enum CodingKeys: String, CodingKey {
@@ -23,7 +23,7 @@ public struct OTPVerifyKeys:Codable{
     }
 }
 // MARK:- ResetPassword Keys
-public struct ResetPasswordKeys:Codable{
+public struct ResetPasswordRequest:Codable{
     var mobileNum:String?;
     var otp:String?;
     var newPassword:String?;
@@ -79,7 +79,7 @@ public struct SignUpKeys:Codable{
 }
 
 // MARK:-Configuration Field
-public struct ConfigurationKeys : Codable{
+public struct ConfigurationRequest : Codable{
     var globalChngeNumber:Int?;
     private enum CodingKeys: String, CodingKey {
         case globalChngeNumber = "glochngno"

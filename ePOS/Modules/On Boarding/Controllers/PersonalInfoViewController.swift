@@ -141,13 +141,13 @@ extension PersonalInfoViewController {
     }
 
     func populateData(from lead: Lead) {
-        if let type = lead.leadProfile?.firmType {
+        if let type = lead.leadProfile.firmType {
             textFieldCompanyType.text = type
         }
-        if let pan = lead.leadProfile?.pan {
+        if let pan = lead.leadProfile.pan {
             textFieldPAN.text = pan
         }
-        if let panName = lead.leadProfile?.name {
+        if let panName = lead.leadProfile.name {
             textFieldNameOnPAN.text = panName
         }
     }
