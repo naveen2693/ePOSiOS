@@ -41,7 +41,7 @@ class DropdownOptionsViewController: BottomSheetViewController {
     func showOptionsFrom(_ controller: UIViewController) {
         requiredMaxHeight = 200
         if masterDataType == .eposPOI {
-            requiredMaxHeight = 400
+            requiredMaxHeight = 420
         }
         self.addOverlayTo(controller: controller)
         controller.addChild(self)
