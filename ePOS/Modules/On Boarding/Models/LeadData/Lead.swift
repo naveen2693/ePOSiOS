@@ -143,7 +143,7 @@ public struct Lead:Codable{
     var paymentRecieved:String?
     var uniqueUserId:String?
     var leadSchedule : [LeadScheduleDetails]?
-    var leadProfile : [LeadProfileDetails]
+    var leadProfile : LeadProfileDetails
     var additionalInfo : [AdditionalInfo]?
     var id:Int?
     var applicationId:String?
@@ -250,6 +250,11 @@ public struct PackageInfo:Codable{
         case optlock = "optlock"
     }
 }
+struct LeadWrapper : Codable {
+    let lead : Lead
+}
+
+
 
 
 
