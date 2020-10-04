@@ -53,11 +53,14 @@ class PersonalInfoViewController: CustomNavigationStyleViewController {
         setUpDropDownFor(.businessType)
     }
     
+    
     func showPan() {
         textFieldPAN.isHidden = false
         textFieldNameOnPAN.isHidden = false
         nextButton.isEnabled = true
     }
+    
+    
 
 }
 
