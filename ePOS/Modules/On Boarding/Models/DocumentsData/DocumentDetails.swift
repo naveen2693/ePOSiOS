@@ -8,11 +8,11 @@
 
 import Foundation
 public struct DocumentDetails:Codable{
-    var additional:AdditionalItem?
+    var additionals:AdditionalItem?
     var business:BusinessItem?
     var individual:IndividualItem?
     private enum CodingKeys: String, CodingKey {
-        case additional = "additional"
+        case additionals = "additional"
         case business = "business"
         case individual = "individual"
     }

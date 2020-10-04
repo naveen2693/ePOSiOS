@@ -60,7 +60,7 @@ class PersonalInfoViewController: CustomNavigationStyleViewController {
         textFieldNameOnPAN.isHidden = false
         nextButton.isEnabled = true
     }
-    
+
     func showState() {
         textFieldDocumentState.isHidden = textFieldDocumentType.text! != DocumentType.voterId.rawValue
         textFieldDocumentInfo.floatingText = "Enter \(textFieldDocumentType.text!) Number"
