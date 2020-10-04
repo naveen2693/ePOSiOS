@@ -9,7 +9,7 @@
 import Foundation
 // MARK:-Lead State Keys
 public struct LeadProfileDetails:Codable{
-    var id:String?
+    var id:Int?
     var isBusinessPan:String?
     var name:String?
     var pan:String?

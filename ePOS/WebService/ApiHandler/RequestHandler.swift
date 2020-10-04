@@ -162,6 +162,14 @@ public class RequestHandler{
         return dict;
     }
     
+    // MARK:- get packages
+    public static func createGetPackagesRequest(leadId:Int) -> [String:Int] {
+        var dict = [String:Int]();
+        let keys = GetPackagesKeys()
+        dict[keys.QUERY_KEY1] = leadId;
+        return dict;
+    }
+    
     // MARK:- createGetCityListRequest
     public static func createGetCityListRequest(strLastModifiedDate:String) -> CityListRequest{
         let ObjCityListRequest =  CityListRequest(lastModifiedDate: strLastModifiedDate);
@@ -190,10 +198,10 @@ public static func updateLeadRequest(lead:Lead,documents:DocumentDetails) -> Upd
            return updateLead;
        }
     
-public static func searchIFSCRequest(bankName:String,stateName:String,distName:String, branchName:String) -> SearchIFSCRequest{
-        let ObjSearchIFSCRequest = SearchIFSCRequest(bankName: bankName, state:stateName, district:distName, branch:branchName);
-           return ObjSearchIFSCRequest;
-       }
+//public static func searchIFSCRequest(bankName:String,stateName:String,distName:String, branchName:String) -> SearchIFSCRequest{
+//        let ObjSearchIFSCRequest = SearchIFSCRequest(bankName: bankName, state:stateName, district:distName, branch:branchName);
+//           return ObjSearchIFSCRequest;
+//       }
     
 public static func createBankVerificationRequest(leadId:Int64,additionalInfos:[AdditionalInfo]) -> BankVerificationRequest{
     var objBankVerificationRequest =  BankVerificationRequest(leadId: leadId, task:Constants.verifyAmount.rawValue, additionalInfo: additionalInfos)

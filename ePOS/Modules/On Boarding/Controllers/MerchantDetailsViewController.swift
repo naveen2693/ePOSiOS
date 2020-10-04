@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MerchantDetailsViewController: UIViewController {
+class MerchantDetailsViewController: CustomNavigationStyleViewController {
 
     @IBOutlet private weak var textFieldBusinessName: EPOSTextField!
     @IBOutlet private weak var textFieldAddress: EPOSTextField!
@@ -41,4 +41,15 @@ class MerchantDetailsViewController: UIViewController {
         let controller = BankDetailsViewController.viewController(appID: "34h35h43h54h5")
         self.navigationController?.pushViewController(controller, animated: true)
     }
+    
+    @IBAction func stateClicked(_ sender: Any) {
+    }
+    
+    @IBAction func cityClicked(_ sender: Any) {
+    }
+    @IBAction func turnoverClicked(_ sender: Any) {
+    }
+    @IBAction func merchantCategoryClicked(_ sender: Any) {
+    }
+    
 }

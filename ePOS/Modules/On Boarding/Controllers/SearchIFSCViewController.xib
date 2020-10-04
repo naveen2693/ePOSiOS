@@ -10,6 +10,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchIFSCViewController" customModule="ePOS" customModuleProvider="target">
             <connections>
+                <outlet property="buttonBank" destination="k9P-7L-1e3" id="1nK-Yg-DbQ"/>
+                <outlet property="buttonBranch" destination="ZeF-G0-gSS" id="3Rq-Ng-gj0"/>
+                <outlet property="buttonDistrict" destination="EPs-WC-E8C" id="mpf-Ed-O2a"/>
+                <outlet property="buttonState" destination="gGx-6g-pIS" id="fYd-ke-zz5"/>
                 <outlet property="nextButton" destination="lY0-Iy-caa" id="Ow7-yc-0SG"/>
                 <outlet property="textFieldBank" destination="CRj-SZ-CDG" id="Vbd-MR-mgw"/>
                 <outlet property="textFieldBranch" destination="vpf-43-vtV" id="cPI-hx-E3r"/>
@@ -19,7 +23,7 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="EPOSBaseView" customModule="ePOS" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -40,7 +44,20 @@
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Select Bank"/>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="AjL-j1-BCr"/>
+                            </connections>
                         </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k9P-7L-1e3">
+                            <rect key="frame" x="16" y="10.5" width="288" height="50"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="d3W-5D-lgk"/>
+                            </constraints>
+                            <connections>
+                                <action selector="getDetailButtonClicked:" destination="-1" eventType="touchUpInside" id="Xfi-2O-zU3"/>
+                            </connections>
+                        </button>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropdownIcon" translatesAutoresizingMaskIntoConstraints="NO" id="UUm-HL-hLl">
                             <rect key="frame" x="268" y="76" width="14" height="7"/>
                             <constraints>
@@ -55,7 +72,20 @@
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Select State"/>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="gzT-iV-cCd"/>
+                            </connections>
                         </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGx-6g-pIS">
+                            <rect key="frame" x="16" y="54.5" width="288" height="50"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="LQe-nz-5uw"/>
+                            </constraints>
+                            <connections>
+                                <action selector="getDetailButtonClicked:" destination="-1" eventType="touchUpInside" id="OTK-FJ-PHW"/>
+                            </connections>
+                        </button>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropdownIcon" translatesAutoresizingMaskIntoConstraints="NO" id="cs1-qG-7R9">
                             <rect key="frame" x="268" y="120" width="14" height="7"/>
                             <constraints>
@@ -70,7 +100,20 @@
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Select District"/>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="zzl-1b-l9G"/>
+                            </connections>
                         </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EPs-WC-E8C">
+                            <rect key="frame" x="16" y="98.5" width="288" height="50"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="FzJ-4b-FQ0"/>
+                            </constraints>
+                            <connections>
+                                <action selector="getDetailButtonClicked:" destination="-1" eventType="touchUpInside" id="cLf-uv-PT5"/>
+                            </connections>
+                        </button>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropdownIcon" translatesAutoresizingMaskIntoConstraints="NO" id="cen-rc-tZs">
                             <rect key="frame" x="268" y="164" width="14" height="7"/>
                             <constraints>
@@ -85,8 +128,21 @@
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Select Branch"/>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="AKt-HY-lRS"/>
+                            </connections>
                         </textField>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lY0-Iy-caa" customClass="EPOSRoundButton" customModule="ePOS" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZeF-G0-gSS">
+                            <rect key="frame" x="16" y="142.5" width="288" height="50"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="Xnf-F2-9PG"/>
+                            </constraints>
+                            <connections>
+                                <action selector="getDetailButtonClicked:" destination="-1" eventType="touchUpInside" id="6qV-mf-Qm2"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lY0-Iy-caa" customClass="EPOSRoundButton" customModule="ePOS" customModuleProvider="target">
                             <rect key="frame" x="255" y="504" width="46" height="46"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="46" id="69s-KA-YlZ"/>
@@ -102,25 +158,37 @@
                         <constraint firstItem="vpf-43-vtV" firstAttribute="top" secondItem="YW6-cF-LzY" secondAttribute="bottom" constant="27" id="061-co-ccV"/>
                         <constraint firstItem="UUm-HL-hLl" firstAttribute="trailing" secondItem="iPA-Fz-4V2" secondAttribute="trailing" constant="-22" id="0BK-BM-hzQ"/>
                         <constraint firstItem="iPA-Fz-4V2" firstAttribute="top" secondItem="CRj-SZ-CDG" secondAttribute="bottom" constant="27" id="1wU-8S-czl"/>
+                        <constraint firstItem="k9P-7L-1e3" firstAttribute="trailing" secondItem="CRj-SZ-CDG" secondAttribute="trailing" id="8dL-Yx-SaS"/>
                         <constraint firstItem="cs1-qG-7R9" firstAttribute="trailing" secondItem="YW6-cF-LzY" secondAttribute="trailing" constant="-22" id="8gY-SY-miV"/>
                         <constraint firstItem="YW6-cF-LzY" firstAttribute="top" secondItem="iPA-Fz-4V2" secondAttribute="bottom" constant="27" id="APg-Wo-DXc"/>
                         <constraint firstItem="cen-rc-tZs" firstAttribute="centerY" secondItem="vpf-43-vtV" secondAttribute="centerY" id="DHn-hp-ved"/>
                         <constraint firstItem="iPA-Fz-4V2" firstAttribute="leading" secondItem="CRj-SZ-CDG" secondAttribute="leading" id="FCT-9C-O8I"/>
                         <constraint firstItem="YW6-cF-LzY" firstAttribute="leading" secondItem="iPA-Fz-4V2" secondAttribute="leading" id="FLY-Rs-tcK"/>
                         <constraint firstItem="YW6-cF-LzY" firstAttribute="trailing" secondItem="iPA-Fz-4V2" secondAttribute="trailing" id="HB5-WF-IKa"/>
+                        <constraint firstItem="EPs-WC-E8C" firstAttribute="centerY" secondItem="YW6-cF-LzY" secondAttribute="centerY" id="Jlg-dn-ze2"/>
                         <constraint firstItem="cen-rc-tZs" firstAttribute="trailing" secondItem="vpf-43-vtV" secondAttribute="trailing" constant="-22" id="L7a-cM-2b2"/>
                         <constraint firstItem="UUm-HL-hLl" firstAttribute="centerY" secondItem="iPA-Fz-4V2" secondAttribute="centerY" id="LD3-vc-VqU"/>
+                        <constraint firstItem="gGx-6g-pIS" firstAttribute="centerY" secondItem="iPA-Fz-4V2" secondAttribute="centerY" id="NFy-uT-WIe"/>
                         <constraint firstItem="vpf-43-vtV" firstAttribute="leading" secondItem="YW6-cF-LzY" secondAttribute="leading" id="Nol-T6-u2Y"/>
+                        <constraint firstItem="gGx-6g-pIS" firstAttribute="leading" secondItem="iPA-Fz-4V2" secondAttribute="leading" id="QJA-np-4hN"/>
                         <constraint firstItem="Ss1-EN-pXC" firstAttribute="trailing" secondItem="CRj-SZ-CDG" secondAttribute="trailing" constant="-22" id="VR1-0f-PHO"/>
                         <constraint firstItem="vpf-43-vtV" firstAttribute="trailing" secondItem="YW6-cF-LzY" secondAttribute="trailing" id="Wc2-XL-hCi"/>
                         <constraint firstAttribute="trailing" secondItem="CRj-SZ-CDG" secondAttribute="trailing" constant="16" id="X7S-YZ-mbj"/>
                         <constraint firstItem="CRj-SZ-CDG" firstAttribute="top" secondItem="Y2r-v5-PIH" secondAttribute="top" constant="27" id="ZeD-0O-jtT"/>
                         <constraint firstAttribute="bottom" secondItem="lY0-Iy-caa" secondAttribute="bottom" constant="18" id="ZvB-Ce-vLQ"/>
+                        <constraint firstItem="k9P-7L-1e3" firstAttribute="centerY" secondItem="CRj-SZ-CDG" secondAttribute="centerY" id="cxG-he-obq"/>
+                        <constraint firstItem="EPs-WC-E8C" firstAttribute="trailing" secondItem="YW6-cF-LzY" secondAttribute="trailing" id="g4q-HW-Xhe"/>
+                        <constraint firstItem="k9P-7L-1e3" firstAttribute="leading" secondItem="CRj-SZ-CDG" secondAttribute="leading" id="iaO-cm-dM2"/>
                         <constraint firstItem="iPA-Fz-4V2" firstAttribute="trailing" secondItem="CRj-SZ-CDG" secondAttribute="trailing" id="iem-59-68m"/>
+                        <constraint firstItem="ZeF-G0-gSS" firstAttribute="centerY" secondItem="vpf-43-vtV" secondAttribute="centerY" id="igb-w0-9Rn"/>
+                        <constraint firstItem="ZeF-G0-gSS" firstAttribute="leading" secondItem="vpf-43-vtV" secondAttribute="leading" id="ki2-Wq-Fsa"/>
                         <constraint firstItem="cs1-qG-7R9" firstAttribute="centerY" secondItem="YW6-cF-LzY" secondAttribute="centerY" id="llc-k5-vQd"/>
                         <constraint firstItem="Ss1-EN-pXC" firstAttribute="centerY" secondItem="CRj-SZ-CDG" secondAttribute="centerY" id="qM1-2H-C3v"/>
                         <constraint firstItem="CRj-SZ-CDG" firstAttribute="leading" secondItem="Y2r-v5-PIH" secondAttribute="leading" constant="16" id="qY3-Xy-fnz"/>
                         <constraint firstAttribute="trailing" secondItem="lY0-Iy-caa" secondAttribute="trailing" constant="19" id="qeu-0S-yuc"/>
+                        <constraint firstItem="EPs-WC-E8C" firstAttribute="leading" secondItem="YW6-cF-LzY" secondAttribute="leading" id="taR-hy-c58"/>
+                        <constraint firstItem="ZeF-G0-gSS" firstAttribute="trailing" secondItem="vpf-43-vtV" secondAttribute="trailing" id="tni-NE-zom"/>
+                        <constraint firstItem="gGx-6g-pIS" firstAttribute="trailing" secondItem="iPA-Fz-4V2" secondAttribute="trailing" id="zUe-zG-4Jp"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRound">

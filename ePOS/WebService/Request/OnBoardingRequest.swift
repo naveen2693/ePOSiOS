@@ -17,6 +17,10 @@ struct GstDetailKeys{
     public var  QUERY_KEY1:String = "gst";
 }
 
+struct GetPackagesKeys{
+    public var  QUERY_KEY1:String = "leadId";
+}
+
 // MARK:-UserList Keys
 public struct UserListKeys{
     let QUERY_KEY1:String = "page";
@@ -83,7 +87,7 @@ public struct UpdateLeadRequests:Codable
 
 public struct SearchIFSCRequest:Codable
 {
-    var bankName:String?;
+    var bankName:String?
     var state:String?
     var district:String?
     var branch:String?
@@ -92,7 +96,23 @@ public struct SearchIFSCRequest:Codable
     case state = "state"
     case district = "district"
     case branch = "branch"
-}
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        if let name = bankName {
+            try container.encode(name, forKey: .bankName)
+        }
+        if let name = state {
+            try container.encode(name, forKey: .state)
+        }
+        if let name = district {
+            try container.encode(name, forKey: .district)
+        }
+        if let name = branch {
+            try container.encode(name, forKey: .branch)
+        }
+    }
 }
 
 public struct BankVerificationRequest:Codable
@@ -104,7 +124,7 @@ public struct BankVerificationRequest:Codable
     case leadId = "leadId"
     case task = "task"
     case additionalInfo = "additionalInfo"
-}
+    }
 }
 
 
@@ -505,6 +525,113 @@ public class OnBoardingRequest:BaseRequest{
                     }
                     
                 } catch DecodingError.dataCorrupted(let context) {
+                            debugPrint(context)
+                } catch DecodingError.keyNotFound(let key, let context) {
+                    debugPrint("Key '\(key)' not found:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch DecodingError.valueNotFound(let value, let context) {
+                    debugPrint("Value '\(value)' not found:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch DecodingError.typeMismatch(let type, let context)  {
+                    debugPrint("Type '\(type)' mismatch:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch {
+                    debugPrint("error: ", error)
+                }
+            case .failure(let error):
+                completion(.failure(BaseError.errorMessage(error)))
+                
+            }
+        }
+    }
+    
+    static func getPackages(leadId: Int, completion:@escaping CompletionHandler) {
+        guard NetworkState().isInternetAvailable else {
+            completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
+            return
+        }
+        
+        BaseRequest.objMoyaApi.request(.getPackagesWith(leadId: leadId)) { result in
+            switch result
+            {
+            case .success(let response):
+                do {
+                    if let checkStatus = checkApiResponseStatus(responseData: response.data)
+                    {
+                        if checkStatus.status == true
+                        {
+                            let gstWrapper = try BaseRequest.decoder.decode(GSTDetailWrapper.self, from:response.data)
+                            completion(.success((gstWrapper.result as AnyObject)))
+                        }
+                        else{
+                           completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                        }
+                    }
+                    
+                }catch DecodingError.dataCorrupted(let context) {
+                            debugPrint(context)
+                } catch DecodingError.keyNotFound(let key, let context) {
+                    debugPrint("Key '\(key)' not found:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch DecodingError.valueNotFound(let value, let context) {
+                    debugPrint("Value '\(value)' not found:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch DecodingError.typeMismatch(let type, let context)  {
+                    debugPrint("Type '\(type)' mismatch:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch {
+                    debugPrint("error: ", error)
+                }
+            case .failure(let error):
+                completion(.failure(BaseError.errorMessage(error)))
+                
+            }
+        }
+    }
+    
+    static func searchIFSCCodeWith(_ data: SearchIFSCRequest, for type: SearchIFSCType, completion:@escaping CompletionHandler) {
+        guard NetworkState().isInternetAvailable else {
+            completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
+            return
+        }
+        
+        BaseRequest.objMoyaApi.request(.searchIFSCWith(params: data)) { result in
+            switch result
+            {
+            case .success(let response):
+                do {
+                    if let checkStatus = checkApiResponseStatus(responseData: response.data)
+                    {
+                        if checkStatus.status == true
+                        {
+                            switch type {
+                            case .bankName:
+                                let ifscData = try BaseRequest.decoder.decode(Banks.self, from:response.data)
+                                completion(.success((ifscData as AnyObject)))
+                                
+                            case .state:
+                                let ifscData = try BaseRequest.decoder.decode(States.self, from:response.data)
+                                completion(.success((ifscData as AnyObject)))
+                                
+                            case .district:
+                                let ifscData = try BaseRequest.decoder.decode(Districts.self, from:response.data)
+                                completion(.success((ifscData as AnyObject)))
+                                
+                            case .branch:
+                                let ifscData = try BaseRequest.decoder.decode(Branch.self, from:response.data)
+                                completion(.success((ifscData as AnyObject)))
+                                
+                            case .ifscCode:
+                                let ifscData = try BaseRequest.decoder.decode(IFSCDetail.self, from:response.data)
+                                completion(.success((ifscData as AnyObject)))
+                            }
+                        }
+                        else{
+                           completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                        }
+                    }
+                    
+                }catch DecodingError.dataCorrupted(let context) {
                             debugPrint(context)
                 } catch DecodingError.keyNotFound(let key, let context) {
                     debugPrint("Key '\(key)' not found:", context.debugDescription)

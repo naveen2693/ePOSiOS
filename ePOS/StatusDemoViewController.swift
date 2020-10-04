@@ -46,8 +46,21 @@ class StatusDemoViewController: CustomNavigationStyleViewController {
     }
 
     @IBAction func firstClicked(_ sender: Any) {
-        let controller = PersonalInfoViewController.init(nibName: PersonalInfoViewController.className, bundle: nil)
+        let controller = SearchIFSCViewController.viewController(delegate: self)
         self.navigationController?.pushViewController(controller, animated: true)
+//        let allData = [
+//            "Andhra Pradesh",
+//            "Assam",
+//            "Bihar",
+//            "Jharkhand",
+//            "Kerala",
+//            "Nagaland",
+//            "Uttarakhand"
+//        ]
+//
+//            let controller = CustomSearchViewController.viewController(type: .state, data: allData, delegate: self)
+//            self.navigationController?.pushViewController(controller, animated: true)
+
     }
     /*
     // MARK: - Navigation
@@ -67,4 +80,16 @@ extension StatusDemoViewController: EmptyDataControllerDelegate {
     }
     
     
+}
+
+//extension StatusDemoViewController: SearchControllerDelegate {
+//    func didSelectedItem(_ controller: CustomSearchViewController, item: String, at index: Int, for type: SearchType) {
+//        self.navigationController?.popViewController(animated: true)
+//    }
+//}
+
+extension StatusDemoViewController: IFSCSelectedDelegate {
+    func didSelectedIFSC(_ controller: IFSCCodeDetailViewController, code: IFSCDetail) {
+        
+    }
 }

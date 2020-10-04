@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BankDetailsViewController: UIViewController {
+class BankDetailsViewController: CustomNavigationStyleViewController {
 
     @IBOutlet private weak var textFieldAccountNumber: EPOSTextField!
     @IBOutlet private weak var textFieldConfirmAccount: EPOSTextField!
@@ -42,7 +42,13 @@ class BankDetailsViewController: UIViewController {
     }
 
     @IBAction func findIFSCClicked(_ sender: Any) {
-        let controller = SearchIFSCViewController.init(nibName: SearchIFSCViewController.className, bundle: nil)
+        let controller = SearchIFSCViewController.viewController(delegate: self)
         self.navigationController?.pushViewController(controller, animated: true)
+    }
+}
+
+extension BankDetailsViewController: IFSCSelectedDelegate {
+    func didSelectedIFSC(_ controller: IFSCCodeDetailViewController, code: IFSCDetail) {
+        textFieldIFSCCode.text = code.ifscCode
     }
 }

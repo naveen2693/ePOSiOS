@@ -10,6 +10,7 @@ import UIKit
 
 class PackageView: UIView {
     @IBOutlet weak var temp: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
     var view: UIView!
     
@@ -39,4 +40,23 @@ class PackageView: UIView {
             }
             return nibView
         }
+    
+    
+    
+    @IBAction func viewRatesClicked(_ sender: Any) {
+    }
+    
 }
+
+
+//extension PackageView: UITableViewDelegate, UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        <#code#>
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        <#code#>
+//    }
+//
+//
+//}

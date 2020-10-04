@@ -39,6 +39,13 @@
 		990AF961252854610008A907 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990AF960252854610008A907 /* BottomSheetViewController.swift */; };
 		990AF9642528559C0008A907 /* DropdownOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990AF9622528559C0008A907 /* DropdownOptionsViewController.swift */; };
 		990AF9652528559C0008A907 /* DropdownOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 990AF9632528559C0008A907 /* DropdownOptionsViewController.xib */; };
+		990AF9C72529DF040008A907 /* SearchIFSCData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990AF9C62529DF040008A907 /* SearchIFSCData.swift */; };
+		990AF9CD252A0F970008A907 /* CustomSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990AF9C9252A0F970008A907 /* CustomSearchViewController.swift */; };
+		990AF9CE252A0F970008A907 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 990AF9CA252A0F970008A907 /* SearchTableViewCell.xib */; };
+		990AF9CF252A0F970008A907 /* CustomSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 990AF9CB252A0F970008A907 /* CustomSearchViewController.xib */; };
+		990AF9D0252A0F970008A907 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990AF9CC252A0F970008A907 /* SearchTableViewCell.swift */; };
+		990AF9D2252A38A10008A907 /* MasterData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 990AF9D1252A38A10008A907 /* MasterData.plist */; };
+		990AF9D4252A38A80008A907 /* States.plist in Resources */ = {isa = PBXBuildFile; fileRef = 990AF9D3252A38A80008A907 /* States.plist */; };
 		99186CBA2508C08F00A9FE07 /* EPOSTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 99186CB92508C08F00A9FE07 /* EPOSTextField.m */; };
 		99186CBD2508EC6000A9FE07 /* EPOSTextField+FloatText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CBC2508EC6000A9FE07 /* EPOSTextField+FloatText.swift */; };
 		99186CC42508EF5600A9FE07 /* EPOSTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CC32508EF5600A9FE07 /* EPOSTabBarViewController.swift */; };
@@ -190,6 +197,13 @@
 		990AF960252854610008A907 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		990AF9622528559C0008A907 /* DropdownOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownOptionsViewController.swift; sourceTree = "<group>"; };
 		990AF9632528559C0008A907 /* DropdownOptionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropdownOptionsViewController.xib; sourceTree = "<group>"; };
+		990AF9C62529DF040008A907 /* SearchIFSCData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchIFSCData.swift; sourceTree = "<group>"; };
+		990AF9C9252A0F970008A907 /* CustomSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSearchViewController.swift; sourceTree = "<group>"; };
+		990AF9CA252A0F970008A907 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
+		990AF9CB252A0F970008A907 /* CustomSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomSearchViewController.xib; sourceTree = "<group>"; };
+		990AF9CC252A0F970008A907 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		990AF9D1252A38A10008A907 /* MasterData.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = MasterData.plist; sourceTree = "<group>"; };
+		990AF9D3252A38A80008A907 /* States.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = States.plist; sourceTree = "<group>"; };
 		99186CB72508C08E00A9FE07 /* ePOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ePOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		99186CB82508C08F00A9FE07 /* EPOSTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EPOSTextField.h; sourceTree = "<group>"; };
 		99186CB92508C08F00A9FE07 /* EPOSTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EPOSTextField.m; sourceTree = "<group>"; };
@@ -431,6 +445,25 @@
 			path = BottomSheet;
 			sourceTree = "<group>";
 		};
+		990AF9C52529DE7E0008A907 /* IFSCData */ = {
+			isa = PBXGroup;
+			children = (
+				990AF9C62529DF040008A907 /* SearchIFSCData.swift */,
+			);
+			path = IFSCData;
+			sourceTree = "<group>";
+		};
+		990AF9C8252A0F970008A907 /* SearchController */ = {
+			isa = PBXGroup;
+			children = (
+				990AF9C9252A0F970008A907 /* CustomSearchViewController.swift */,
+				990AF9CA252A0F970008A907 /* SearchTableViewCell.xib */,
+				990AF9CB252A0F970008A907 /* CustomSearchViewController.xib */,
+				990AF9CC252A0F970008A907 /* SearchTableViewCell.swift */,
+			);
+			path = SearchController;
+			sourceTree = "<group>";
+		};
 		99186CB62508C06500A9FE07 /* TextField */ = {
 			isa = PBXGroup;
 			children = (
@@ -523,6 +556,7 @@
 		99186D092510922B00A9FE07 /* Common Views */ = {
 			isa = PBXGroup;
 			children = (
+				990AF9C8252A0F970008A907 /* SearchController */,
 				990AF95F252854450008A907 /* BottomSheet */,
 				996FD8A7251E0FFA001961EE /* CustomNavigationStyle */,
 				991DF26F251DED4E00AEA1C3 /* BackgroundView */,
@@ -731,6 +765,8 @@
 		99186D6325122F8400A9FE07 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				990AF9D1252A38A10008A907 /* MasterData.plist */,
+				990AF9D3252A38A80008A907 /* States.plist */,
 				9919A9AD2519E42E00A67253 /* Package */,
 				99186D6D251248EC00A9FE07 /* PersonalInfoViewController.swift */,
 				99186D6E251248EC00A9FE07 /* PersonalInfoViewController.xib */,
@@ -769,6 +805,7 @@
 		99186D6525122F9900A9FE07 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				990AF9C52529DE7E0008A907 /* IFSCData */,
 				46ADF11A252879CA009A9297 /* DocumentsData */,
 				46ADF11725287960009A9297 /* AddressData */,
 				46ADF1142528791E009A9297 /* ContactData */,
@@ -1154,9 +1191,11 @@
 				99186D4A2511D27F00A9FE07 /* LoginScreen.storyboard in Resources */,
 				9976C95A2501165E00FC5DD3 /* Roboto-Bold.ttf in Resources */,
 				9919A9B52519E48900A67253 /* PackageView.xib in Resources */,
+				990AF9D4252A38A80008A907 /* States.plist in Resources */,
 				99186CD42508F07C00A9FE07 /* Transactions.storyboard in Resources */,
 				9919A9A625176D9D00A67253 /* IFSCCodeDetailViewController.xib in Resources */,
 				99186D292511D1E000A9FE07 /* WebviewStoryBoard.storyboard in Resources */,
+				990AF9CF252A0F970008A907 /* CustomSearchViewController.xib in Resources */,
 				9919A9A22517528800A67253 /* SearchIFSCViewController.xib in Resources */,
 				991DF273251DED8000AEA1C3 /* EPOSBaseView.xib in Resources */,
 				9919A9BD251A475C00A67253 /* PackageDetailViewController.xib in Resources */,
@@ -1177,6 +1216,7 @@
 				9976C9532501165E00FC5DD3 /* Roboto-MediumItalic.ttf in Resources */,
 				9976C9262501069D00FC5DD3 /* Colors.xcassets in Resources */,
 				9976C9542501165E00FC5DD3 /* Roboto-ThinItalic.ttf in Resources */,
+				990AF9D2252A38A10008A907 /* MasterData.plist in Resources */,
 				9976C9122500F05800FC5DD3 /* Assets.xcassets in Resources */,
 				9976C9552501165E00FC5DD3 /* Roboto-BoldItalic.ttf in Resources */,
 				991DF26B251CB5C900AEA1C3 /* loadingAnimation.gif in Resources */,
@@ -1188,6 +1228,7 @@
 				99186CD22508F06D00A9FE07 /* Account.storyboard in Resources */,
 				99186D70251248EC00A9FE07 /* PersonalInfoViewController.xib in Resources */,
 				9976C9102500F05700FC5DD3 /* Main.storyboard in Resources */,
+				990AF9CE252A0F970008A907 /* SearchTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1336,6 +1377,8 @@
 				46BD9B4825175327008DEFEA /* ConvertApiParameterIntoObject.swift in Sources */,
 				99186D552511D28800A9FE07 /* SignUpControllerViewController.swift in Sources */,
 				46ADF11925287976009A9297 /* AddressDetails.swift in Sources */,
+				990AF9D0252A0F970008A907 /* SearchTableViewCell.swift in Sources */,
+				990AF9CD252A0F970008A907 /* CustomSearchViewController.swift in Sources */,
 				46BD9B50251A8646008DEFEA /* ForgotPasswordController.swift in Sources */,
 				997DC7F5252200FD006ADE48 /* OnBoardingConstants.swift in Sources */,
 				99186D232511D09400A9FE07 /* Util.swift in Sources */,
@@ -1385,6 +1428,7 @@
 				46ADF11C252879E0009A9297 /* DocumentDetails.swift in Sources */,
 				9919A9C4251A4BBA00A67253 /* PackageDetailTableViewCell.swift in Sources */,
 				46ADF12625287BA2009A9297 /* CommentData.swift in Sources */,
+				990AF9C72529DF040008A907 /* SearchIFSCData.swift in Sources */,
 				990AF961252854610008A907 /* BottomSheetViewController.swift in Sources */,
 				9976C9092500F05600FC5DD3 /* AppDelegate.swift in Sources */,
 				46BD9B46251617A7008DEFEA /* BaseRequest.swift in Sources */,

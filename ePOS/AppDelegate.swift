@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         configureFirebase()
         setAppearance()
-        loadApp()
+//        loadApp()
         return true
     }
 
@@ -110,15 +110,21 @@ extension AppDelegate {
     }
     
     func setAppearance() {
+
         UINavigationBar.appearance().tintColor = UIColor.white
+
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont.mediumFontWith(size: 18), NSAttributedString.Key.foregroundColor: UIColor.white]
 
-        //let backImage = UIImage(named: "backIcon")
-        //backImage = backImage?.stretchableImage(withLeftCapWidth: 15, topCapHeight: 30)
-        //UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage
-        //UIBarButtonItem.appearance().setBackButtonBackgroundImage(backImage, for: .normal, barMetrics: .default)
-        //UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -200, vertical: 0), for:UIBarMetrics.default)
+
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.font: UIFont.mediumFontWith(size: 12), NSAttributedString.Key.foregroundColor: UIColor.subTextColor()]
+
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).borderStyle = .none
+
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = .clear
+        
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.subTextColor()], for: .normal)
 
     }
     
 }
+

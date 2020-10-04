@@ -39,9 +39,11 @@ enum ApiService
     case getMerchantVerificationWith(proofName:String,proofNumber:String,additionalInfo:[String:String])
     case updateLeadWith(lead:Lead,documents:DocumentDetails)
     
-    case searchIFSCWith(bankName:String,stateName:String,distName:String, branchName:String)
+    case searchIFSCWith(params: SearchIFSCRequest)
     
     case BankverificationWith(leadId:Int64,ArrayListAdditionalInfo:[AdditionalInfo])
+    
+    case getPackagesWith(leadId: Int)
     // MARK:- Configuration
     case getConfigurationsWith(globalChangeNumber:Int)
 }
@@ -102,6 +104,9 @@ extension ApiService : TargetType
             
         case .updateLeadWith:
             return ApiEndpointsUrl.OnboardingApiEndpointUrl.updateLead.rawValue
+            
+        case .getPackagesWith:
+            return ApiEndpointsUrl.OnboardingApiEndpointUrl.getPackages.rawValue
         // MARK:- Configuration path
         case .getConfigurationsWith:
             return ApiEndpointsUrl.ConfigurationApiEndPointsUrl.configurationUrl.rawValue
@@ -152,7 +157,7 @@ extension ApiService : TargetType
         case .getFetchUserWith:
             return .get
             
-        case .createLeadWith,.updateLeadWith,.searchIFSCWith,.BankverificationWith:
+        case .createLeadWith,.updateLeadWith,.searchIFSCWith,.BankverificationWith, .getPackagesWith:
             return .post
             
         case .getLeadByIdWith, .getGSTDetail,.getMerchantVerificationWith:
@@ -173,7 +178,7 @@ extension ApiService : TargetType
     
     var validate:ValidationType {
         switch self {
-        case .getCheckUserWith, .getForgotPasswordWith,.getVerifyOtpWith,.getSendOtpWith,.resetPasswordWith,.getLoginWith,.getSignUpWith,.getManageAccount,.createRequestMasterDataWith,.getCityListWith,.getFetchUserWith,.getLeadByIdWith,.getConfigurationsWith, .createLeadWith, .getGSTDetail,.getMerchantVerificationWith,.updateLeadWith,.searchIFSCWith,.BankverificationWith:
+        case .getCheckUserWith, .getForgotPasswordWith,.getVerifyOtpWith,.getSendOtpWith,.resetPasswordWith,.getLoginWith,.getSignUpWith,.getManageAccount,.createRequestMasterDataWith,.getCityListWith,.getFetchUserWith,.getLeadByIdWith,.getConfigurationsWith, .createLeadWith, .getGSTDetail,.getMerchantVerificationWith,.updateLeadWith,.searchIFSCWith,.BankverificationWith, .getPackagesWith:
             return .customCodes([200])
         }
     }
@@ -239,13 +244,15 @@ extension ApiService : TargetType
             return .requestJSONEncodable((RequestHandler
                 .updateLeadRequest(lead: lead, documents: documents)))
             
-        case .searchIFSCWith(let bankName,let stateName,let distName ,let branchName):
-            return .requestJSONEncodable((RequestHandler
-                .searchIFSCRequest(bankName: bankName, stateName: stateName, distName: distName, branchName: branchName)))
+        case .searchIFSCWith(let params):
+            return .requestJSONEncodable(params)
             
         case .BankverificationWith(let leadId,let additionalInfo):
             return .requestJSONEncodable((RequestHandler
                 .createBankVerificationRequest(leadId: leadId, additionalInfos:additionalInfo)))
+        
+        case .getPackagesWith(let leadId):
+            return .requestJSONEncodable(RequestHandler.createGetPackagesRequest(leadId: leadId))
             
         // MARK:-Configuration task
         case .getConfigurationsWith(let globalChngNum):
@@ -261,7 +268,7 @@ extension ApiService : TargetType
         case .getCheckUserWith,.getForgotPasswordWith,.getVerifyOtpWith,.getSendOtpWith,.getLoginWith,.getSignUpWith,.resetPasswordWith,.getConfigurationsWith:
             return RequestHandler.createWebServiceHeaderWithoutAccessToken()
             
-        case .getManageAccount, .createRequestMasterDataWith, .getCityListWith, .getFetchUserWith, .createLeadWith, .getLeadByIdWith, .getGSTDetail,.getMerchantVerificationWith,.updateLeadWith,.searchIFSCWith,.BankverificationWith:
+        case .getManageAccount, .createRequestMasterDataWith, .getCityListWith, .getFetchUserWith, .createLeadWith, .getLeadByIdWith, .getGSTDetail,.getMerchantVerificationWith,.updateLeadWith,.searchIFSCWith,.BankverificationWith, .getPackagesWith:
             return RequestHandler.createWebServiceHeaderWithAccessToken()
             
         }

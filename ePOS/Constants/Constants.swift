@@ -37,6 +37,7 @@ enum ApiEndpointsUrl{
         case getMerchantVerificationDetails = "rest/data/mvs/merchantData/{proof}"
         case searchIFSC = "/rest/data/mvs/ifsc/details"
         case verifyBankAccount = "/rest/data/epos/lead/createTask"
+        case getPackages = "/rest/data/epos/lead/getAllPackages"
     }
 }
 

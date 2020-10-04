@@ -73,3 +73,26 @@ import UIKit
 //    }
 //
 //}
+
+//class SelfSizingTableView: UITableView {
+//    var maxHeight = CGFloat.infinity
+//
+//    override public func layoutSubviews() {
+//        super.layoutSubviews()
+//        if bounds.size != intrinsicContentSize {
+//            invalidateIntrinsicContentSize()
+//        }
+//    }
+//
+//    override var contentSize: CGSize {
+//        didSet {
+//            invalidateIntrinsicContentSize()
+//            setNeedsLayout()
+//        }
+//    }
+//
+//    override var intrinsicContentSize: CGSize {
+//        let height = min(maxHeight, contentSize.height)
+//        return CGSize(width: contentSize.width, height: height)
+//    }
+//}

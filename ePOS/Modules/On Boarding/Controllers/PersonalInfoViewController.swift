@@ -189,7 +189,7 @@ extension PersonalInfoViewController {
                 }
             }
         case .failure(_, let message):
-            showAlert(title: "ERROR", message: message.rawValue)
+            showAlert(title: Constants.apiError.rawValue, message: message.rawValue)
         }
     }
     
