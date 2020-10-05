@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 struct NetworkState {
-
+    
     var isInternetAvailable:Bool
     {
         return NetworkReachabilityManager()!.isReachable
@@ -40,6 +40,13 @@ enum ValidationMode {
     case confirmPassword
     case otp
     case pan
+    case annualTurnover
+    case city
+    case state
+    case businessStartDate
+    case pincode
+    case merchantCategory
+    case businessAddress
 }
 
 enum RegEx: String {
@@ -54,6 +61,9 @@ enum RegEx: String {
     case contactNameValidation = "[A-Za-z0-9]{1,50}([_\\-\\s][A-Za-z0-9]{1,50})*"
     case businessNameValidation = "[0-9A-Za-z]+([\\s]{0,1}[&\\-_|'/@.]{0,1}[\\s]{0,1}[0-9A-Za-z]\\.?)*"
     case otp = "\\d{6}"
+    
+    
+    
     
     //Change RegEx according to your Requirement
 }
@@ -80,6 +90,14 @@ enum AlertMessages: String {
     case emptyBusinessNameMessage = "Please enter the establishment name"
     case contactNameValidationErrorMessage = "Please enter valid contact name "
     case businessNameValidationErrorMessage = "Please enter valid establishment name"
+    case annulturnOverMsg = "Please select annual turnover"
+    case stateMsg = "Please select state"
+    case cityMsg = "Please select city"
+    case businessStartDate = "Please select start date"
+    case pincode = "Please enter valid pincode"
+    case emptyPincode = "Please enter pincode"
+    case merchantCategory = "Please select merchant category"
+    case businessAdressErrormsg = "Please select business address"
     
     
     func localized() -> String {
@@ -126,7 +144,7 @@ class Validation: NSObject {
                     return tempValue
                 }
             case .otp:
-               if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, regex: .otp, emptyAlert: .emptyotp, invalidAlert: .otpErrorMessage) {
+                if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, regex: .otp, emptyAlert: .emptyotp, invalidAlert: .otpErrorMessage) {
                     return tempValue
                 }
                 
@@ -142,6 +160,34 @@ class Validation: NSObject {
                 if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, regex: .pan, emptyAlert: .pan, invalidAlert: .pan) {
                     return tempValue
                 }
+            case .annualTurnover:
+                if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, emptyAlert: .annulturnOverMsg, invalidAlert: .pan) {
+                    return tempValue
+                }
+            case .city:
+                if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, emptyAlert: .cityMsg, invalidAlert: .pan) {
+                    return tempValue
+                }
+            case .state:
+                if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, emptyAlert: .stateMsg, invalidAlert: .pan) {
+                    return tempValue
+                }
+            case .businessStartDate:
+                if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, emptyAlert: .businessStartDate, invalidAlert: .pan) {
+                    return tempValue
+                }
+                case .merchantCategory:
+                    if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, emptyAlert: .merchantCategory, invalidAlert: .pan) {
+                    return tempValue
+                }
+            case .pincode:
+                if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, regex: .otp, emptyAlert: .emptyPincode, invalidAlert: .pincode) {
+                    return tempValue
+                }
+            case .businessAddress:
+                if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, emptyAlert: .businessAdressErrormsg, invalidAlert: .pincode) {
+                    return tempValue
+                }
                 
             }
         }
@@ -154,6 +200,12 @@ class Validation: NSObject {
             return .failure(.error, emptyAlert)
         } else if isValidRegEx(text, regex) != true {
             return .failure(.error, invalidAlert)
+        }
+        return nil
+    }
+    func isValidString(text: String, emptyAlert: AlertMessages, invalidAlert: AlertMessages) -> Valid? {
+        if text.isEmpty {
+            return .failure(.error, emptyAlert)
         }
         return nil
     }

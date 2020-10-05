@@ -34,6 +34,54 @@
             endingLineNumber = "10"
             landmarkName = "Comment"
             landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "E99286FB-7AF3-4463-8049-C189E28DD81F - 514b18398b3c22ca"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ePOS.Comment.init(sortOrder: Swift.Optional&lt;Swift.Int&gt;, comment: Swift.Optional&lt;Swift.String&gt;, commentedBy: Swift.Optional&lt;Swift.String&gt;, optlock: Swift.Optional&lt;Swift.Int&gt;) -&gt; ePOS.Comment"
+                  moduleName = "ePOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhishek/Desktop/Epos/ePOS/Modules/On%20Boarding/Models/DocumentsData/CommentData.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "10"
+                  endingLineNumber = "10"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "E99286FB-7AF3-4463-8049-C189E28DD81F - fe13dfb8d7726156"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ePOS.Comment.init() -&gt; ePOS.Comment"
+                  moduleName = "ePOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhishek/Desktop/Epos/ePOS/Modules/On%20Boarding/Models/DocumentsData/CommentData.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "11"
+                  endingLineNumber = "11"
+                  offsetFromSymbolStart = "35">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "69100F08-887D-49EE-AC12-6EFA9606C50F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ePOS/Modules/On Boarding/Controllers/PersonalInfoViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "474"
+            endingLineNumber = "474"
+            landmarkName = "didSelectOption(_:option:type:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

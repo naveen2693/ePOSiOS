@@ -30,3 +30,15 @@ public struct AddressDetails:Codable{
         case optlock = "optlock"
     }
 }
+
+enum AddressType:String
+{
+case store = "STORE";
+case corparate = "CORPORATE";
+case billing = "BILLING";
+}
+
+enum OwnerShipType:String
+{
+case owner = "OWNED";
+}

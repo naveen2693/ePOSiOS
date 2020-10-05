@@ -46,6 +46,8 @@ enum ApiService
     case getPackagesWith(leadId: Int)
     // MARK:- Configuration
     case getConfigurationsWith(globalChangeNumber:Int)
+    
+    case uploadDocument(uploadDocumentRequest:UploadDocumentRequest)
 }
 extension ApiService : TargetType
 {
@@ -116,6 +118,9 @@ extension ApiService : TargetType
         case .BankverificationWith:
             return ApiEndpointsUrl.OnboardingApiEndpointUrl.verifyBankAccount.rawValue
             
+        case .uploadDocument:
+            return ApiEndpointsUrl.OnboardingApiEndpointUrl.uploadDocument.rawValue
+            
         }
     }
     
@@ -157,7 +162,7 @@ extension ApiService : TargetType
         case .getFetchUserWith:
             return .get
             
-        case .createLeadWith,.updateLeadWith,.searchIFSCWith,.BankverificationWith, .getPackagesWith:
+        case .createLeadWith,.updateLeadWith,.searchIFSCWith,.BankverificationWith,.uploadDocument, .getPackagesWith:
             return .post
             
         case .getLeadByIdWith, .getGSTDetail,.getMerchantVerificationWith:
@@ -178,7 +183,7 @@ extension ApiService : TargetType
     
     var validate:ValidationType {
         switch self {
-        case .getCheckUserWith, .getForgotPasswordWith,.getVerifyOtpWith,.getSendOtpWith,.resetPasswordWith,.getLoginWith,.getSignUpWith,.getManageAccount,.createRequestMasterDataWith,.getCityListWith,.getFetchUserWith,.getLeadByIdWith,.getConfigurationsWith, .createLeadWith, .getGSTDetail,.getMerchantVerificationWith,.updateLeadWith,.searchIFSCWith,.BankverificationWith, .getPackagesWith:
+        case .getCheckUserWith, .getForgotPasswordWith,.getVerifyOtpWith,.getSendOtpWith,.resetPasswordWith,.getLoginWith,.getSignUpWith,.getManageAccount,.createRequestMasterDataWith,.getCityListWith,.getFetchUserWith,.getLeadByIdWith,.getConfigurationsWith, .createLeadWith, .getGSTDetail,.getMerchantVerificationWith,.updateLeadWith,.searchIFSCWith,.BankverificationWith, .getPackagesWith,.uploadDocument:
             return .customCodes([200])
         }
     }
@@ -254,6 +259,9 @@ extension ApiService : TargetType
         case .getPackagesWith(let leadId):
             return .requestJSONEncodable(RequestHandler.createGetPackagesRequest(leadId: leadId))
             
+        case .uploadDocument(let documentRequest):
+            return .requestJSONEncodable(RequestHandler.createUploadDataReq(uploadDocJson: documentRequest))
+            
         // MARK:-Configuration task
         case .getConfigurationsWith(let globalChngNum):
             return  .requestJSONEncodable((RequestHandler
@@ -268,7 +276,7 @@ extension ApiService : TargetType
         case .getCheckUserWith,.getForgotPasswordWith,.getVerifyOtpWith,.getSendOtpWith,.getLoginWith,.getSignUpWith,.resetPasswordWith,.getConfigurationsWith:
             return RequestHandler.createWebServiceHeaderWithoutAccessToken()
             
-        case .getManageAccount, .createRequestMasterDataWith, .getCityListWith, .getFetchUserWith, .createLeadWith, .getLeadByIdWith, .getGSTDetail,.getMerchantVerificationWith,.updateLeadWith,.searchIFSCWith,.BankverificationWith, .getPackagesWith:
+        case .getManageAccount, .createRequestMasterDataWith, .getCityListWith, .getFetchUserWith, .createLeadWith, .getLeadByIdWith, .getGSTDetail,.getMerchantVerificationWith,.updateLeadWith,.searchIFSCWith,.BankverificationWith, .getPackagesWith,.uploadDocument:
             return RequestHandler.createWebServiceHeaderWithAccessToken()
             
         }

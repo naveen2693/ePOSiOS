@@ -193,23 +193,28 @@ public class RequestHandler{
         return ObjMerchantVerfication;
     }
     
-public static func updateLeadRequest(lead:Lead,documents:DocumentDetails) -> UpdateLeadRequests{
-    let updateLead =  UpdateLeadRequests(lead: lead, documents: documents);
-           return updateLead;
-       }
+    public static func updateLeadRequest(lead:Lead,documents:DocumentDetails) -> UpdateLeadRequests{
+        let updateLead =  UpdateLeadRequests(lead: lead, documents: documents);
+        return updateLead;
+    }
     
-//public static func searchIFSCRequest(bankName:String,stateName:String,distName:String, branchName:String) -> SearchIFSCRequest{
-//        let ObjSearchIFSCRequest = SearchIFSCRequest(bankName: bankName, state:stateName, district:distName, branch:branchName);
-//           return ObjSearchIFSCRequest;
-//       }
+    //public static func searchIFSCRequest(bankName:String,stateName:String,distName:String, branchName:String) -> SearchIFSCRequest{
+    //        let ObjSearchIFSCRequest = SearchIFSCRequest(bankName: bankName, state:stateName, district:distName, branch:branchName);
+    //           return ObjSearchIFSCRequest;
+    //       }
     
-public static func createBankVerificationRequest(leadId:Int64,additionalInfos:[AdditionalInfo]) -> BankVerificationRequest{
-    var objBankVerificationRequest =  BankVerificationRequest(leadId: leadId, task:Constants.verifyAmount.rawValue, additionalInfo: additionalInfos)
-           return objBankVerificationRequest;
-       }
-
+    public static func createBankVerificationRequest(leadId:Int64,additionalInfos:[AdditionalInfo]) -> BankVerificationRequest{
+        var objBankVerificationRequest =  BankVerificationRequest(leadId: leadId, task:Constants.verifyAmount.rawValue, additionalInfo: additionalInfos)
+        return objBankVerificationRequest;
+    }
     
-       
+    public static func  createUploadDataReq(uploadDocJson:UploadDocumentRequest) -> UploadDocumentRequest {
+        var request = UploadDocumentRequest()
+        request = uploadDocJson;
+        return request;
+    }
+    
+    
     
     
 }

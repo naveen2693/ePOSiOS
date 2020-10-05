@@ -13,6 +13,7 @@ enum SearchType {
     case state
     case city
     case ifscSearch(SearchIFSCType)
+    case searchStateData(SearchStateData)
     
     func title() -> String {
         switch self {
@@ -30,6 +31,11 @@ enum SearchType {
             return "Search by Branch Name"
         case .ifscSearch(.ifscCode):
             return ""
+        case .searchStateData(.state):
+            return ""
+        case .searchStateData(.city):
+            return ""
+            
         }
     }
     

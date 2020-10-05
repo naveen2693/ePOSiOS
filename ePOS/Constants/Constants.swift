@@ -38,6 +38,7 @@ enum ApiEndpointsUrl{
         case searchIFSC = "/rest/data/mvs/ifsc/details"
         case verifyBankAccount = "/rest/data/epos/lead/createTask"
         case getPackages = "/rest/data/epos/lead/getAllPackages"
+        case uploadDocument =  "/rest/data/epos/lead/uploadDocument"
     }
 }
 

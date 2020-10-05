@@ -88,7 +88,7 @@ extension PersonalInfoViewController {
         }
 
         checkbox.style = .tick
-        checkbox.borderStyle = .roundedSquare(radius: 2)
+        checkbox.borderStyle = .square
 
         hideAllTextFields()
         refreshPage()
@@ -150,6 +150,9 @@ extension PersonalInfoViewController {
         if let panName = lead.leadProfile.name {
             textFieldNameOnPAN.text = panName
         }
+        if let kyc = lead.leadProfile.kyc?.idType {
+            textFieldDocumentType.text = kyc
+        }
     }
     
     func hideAllTextFields() {
@@ -169,6 +172,92 @@ extension PersonalInfoViewController {
         textFieldDocumentInfo.isHidden = value
         textFieldDocumentState.isHidden = true
     }
+    
+    private func updatedOptionBasedOnSelectedProofType(proofType:String) {
+          switch (proofType) {
+          case DocumentType.voterId.rawValue:
+                  let firmType = textFieldCompanyType.text!.uppercased()
+                  if EntityType.proprietor.rawValue.elementsEqual(firmType) {
+                    textFieldDocumentState.isHidden = false
+                  }
+              break;
+            
+          case DocumentType.udhyogAadhar.rawValue:
+              break;
+            
+          case DocumentType.shopNEstablishment.rawValue:
+                textFieldDocumentState.isHidden = false
+                break;
+//
+//              case KYCType.DRIVING_LICENSE: {
+//                  String firmType = spnCompanyType.getTag().toString();
+//                  if (!EntityType.PROPRIETOR.equalsIgnoreCase(firmType)) {
+//                      showShortToast(getString(R.string.err_dl_valid_for_proprietor));
+//                      spnOtherDocument.setSelection(-1);
+//                  } else {
+//                      tipDob.setVisibility(View.VISIBLE);
+//                  }
+//              }
+//              break;
+//              case KYCType.UTILITY_BILL_ELEC: {
+//                  String firmType = spnCompanyType.getTag().toString();
+//                  if (!EntityType.PROPRIETOR.equalsIgnoreCase(firmType)) {
+//                      showShortToast(getString(R.string.err_utility_bill_valid_for_proprietor));
+//                      spnOtherDocument.setSelection(-1);
+//                  } else {
+//                      spnUtilityProvider.setDropDownItems(getStorageManager().getMasterDataDescByType(MASTER_ELECTRICITY_BOARD));
+//                      spnUtilityProvider.setVisibility(View.VISIBLE);
+//                  }
+//              }
+//              break;
+//              case KYCType.UTILITY_BILL_LPG: {
+//                  String firmType = spnCompanyType.getTag().toString();
+//                  if (!EntityType.PROPRIETOR.equalsIgnoreCase(firmType)) {
+//                      showShortToast(getString(R.string.err_utility_bill_valid_for_proprietor));
+//                      spnOtherDocument.setSelection(-1);
+//                  } else {
+//                      spnLpgIdMobile.setDropDownItems(Arrays.asList(MVSProof.LPG_OPTIONS));
+//                      spnLpgIdMobile.setVisibility(View.VISIBLE);
+//                  }
+//              }
+//              break;
+//              case KYCType.FSSAI: {
+//                  String firmType = spnCompanyType.getTag().toString();
+//                  if (!EntityType.PROPRIETOR.equalsIgnoreCase(firmType)) {
+//                      showShortToast(getString(R.string.err_fssai_valid_for_proprietor));
+//                      spnOtherDocument.setSelection(-1);
+//                  }
+//              }
+//              break;
+//              case KYCType.UAN: {
+//                  String firmType = spnCompanyType.getTag().toString();
+//                  if (!EntityType.PROPRIETOR.equalsIgnoreCase(firmType)) {
+//                      showShortToast(getString(R.string.err_uan_valid_for_proprietor));
+//                      spnOtherDocument.setSelection(-1);
+//                  }
+//              }
+//              break;
+          default:
+            return;
+        }
+      }
+
+    
+    
+    private func callMerchantVerificationService()
+    {
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     //MARK: - Create lead API
     func createLead() {
@@ -233,6 +322,8 @@ extension PersonalInfoViewController {
         }
     }
 }
+
+
 
 
 //MARK: - textfield delegate

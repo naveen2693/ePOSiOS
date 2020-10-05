@@ -12,7 +12,7 @@ import Foundation
 protocol NameObject {
     var className: String { get }
     static var className: String { get }
-}
+}    
 
 extension NameObject {
     var className: String {

@@ -15,7 +15,7 @@ public struct LeadProfileDetails:Codable{
     var pan:String?
     var firmType:String?
     var optlock:Int?
-    var kyc :[KYCDetails]?
+    var kyc : KYCDetails?
     private enum CodingKeys: String, CodingKey {
         case id = "id"
         case isBusinessPan = "isBusinessPan"

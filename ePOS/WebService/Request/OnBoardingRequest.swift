@@ -80,9 +80,9 @@ public struct UpdateLeadRequests:Codable
     var lead:Lead?;
     var documents:DocumentDetails?
     private enum CodingKeys: String, CodingKey {
-    case lead = "lead"
-    case documents = "documents"
-}
+        case lead = "lead"
+        case documents = "documents"
+    }
 }
 
 public struct SearchIFSCRequest:Codable
@@ -92,10 +92,10 @@ public struct SearchIFSCRequest:Codable
     var district:String?
     var branch:String?
     private enum CodingKeys: String, CodingKey {
-    case bankName = "bankName"
-    case state = "state"
-    case district = "district"
-    case branch = "branch"
+        case bankName = "bankName"
+        case state = "state"
+        case district = "district"
+        case branch = "branch"
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -121,12 +121,41 @@ public struct BankVerificationRequest:Codable
     var task:String?
     var additionalInfo = [AdditionalInfo]()
     private enum CodingKeys: String, CodingKey {
-    case leadId = "leadId"
-    case task = "task"
-    case additionalInfo = "additionalInfo"
+        case leadId = "leadId"
+        case task = "task"
+        case additionalInfo = "additionalInfo"
     }
 }
 
+public struct UploadDocumentRequest:Codable
+{
+    var mode:Int?;
+    var codeKey:String?
+    var comments:String?;
+    var codeType:String?;
+    var latitude:String?;
+    var longitude:String?
+    var entityType:Int?;
+    var docId:Int?;
+    var entityId:Int?;
+    var source:Int?
+    var leadId:Int?;
+    var fileId:String?
+    private enum CodingKeys: String, CodingKey {
+        case mode = "mode"
+        case codeKey = "codeKey"
+        case comments = "comments"
+        case codeType = "codeType"
+        case latitude = "latitude"
+        case longitude = "longitude"
+        case entityType = "entityType"
+        case docId = "docId"
+        case entityId = "entityId"
+        case source = "source"
+        case leadId = "leadId"
+        case fileId = "fileId"
+    }
+}
 
 
 public class OnBoardingRequest:BaseRequest{
@@ -134,7 +163,7 @@ public class OnBoardingRequest:BaseRequest{
     static func getUserProfileAndProceedToLaunch(showProgress:Bool, completion:@escaping CompletionHandler)
     {
         guard NetworkState().isInternetAvailable else {
-        completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
+            completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
             return
         }
         BaseRequest.objMoyaApi.request(.getManageAccount) { result in
@@ -172,7 +201,7 @@ public class OnBoardingRequest:BaseRequest{
     private static func loadMasterDataAndProceedToLaunch(mode :String, completion:@escaping CompletionHandler)
     {
         guard NetworkState().isInternetAvailable else {
-        completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
+            completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
             return
         }
         BaseRequest.objMoyaApi.request(.createRequestMasterDataWith(mode: mode)) { result in
@@ -189,7 +218,7 @@ public class OnBoardingRequest:BaseRequest{
                             getCityDetailsAndProceedToLaunch(completion: completion);
                         }
                         else{
-                           completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                            completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
                         }
                     }
                 } catch DecodingError.dataCorrupted(let context) {
@@ -222,7 +251,7 @@ public class OnBoardingRequest:BaseRequest{
     private static func  getCityDetailsAndProceedToLaunch(completion:@escaping CompletionHandler)
     {
         guard NetworkState().isInternetAvailable else {
-        completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
+            completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
             return
         }
         let strLastModifiedDate = CityDataProvider().getLastModifiedDate()
@@ -240,7 +269,7 @@ public class OnBoardingRequest:BaseRequest{
                             fetchSubUserList(completion: completion)
                         }
                         else{
-                           completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                            completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
                         }
                     }
                 } catch DecodingError.dataCorrupted(let context) {
@@ -272,7 +301,7 @@ public class OnBoardingRequest:BaseRequest{
     private static func fetchSubUserList(completion:@escaping CompletionHandler)
     {
         guard NetworkState().isInternetAvailable else {
-        completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
+            completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
             return
         }
         
@@ -324,7 +353,7 @@ public class OnBoardingRequest:BaseRequest{
                             }
                         }
                         else{
-                           completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                            completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
                         }
                     }
                 case .failure(let error):
@@ -348,7 +377,7 @@ public class OnBoardingRequest:BaseRequest{
     private static func  getLeadByIdAndProceedToLaunch(leadId:Int, completion:@escaping CompletionHandler)
     {
         guard NetworkState().isInternetAvailable else {
-        completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
+            completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
             return
         }
         BaseRequest.objMoyaApi.request(.getLeadByIdWith(leadId: leadId)) { result in
@@ -370,7 +399,7 @@ public class OnBoardingRequest:BaseRequest{
                         EPOSUserDefaults.setCurrentStateWorkflow(currentState:workFlowState)
                     }
                     else{
-                       completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                        completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
                     }
                 }
             case .failure(let error):
@@ -409,7 +438,7 @@ public class OnBoardingRequest:BaseRequest{
     
     static func createLeadWith(params: CreateLeadParams, completion:@escaping CompletionHandler) {
         guard NetworkState().isInternetAvailable else {
-        completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
+            completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
             return
         }
         BaseRequest.objMoyaApi.request(.createLeadWith(params: params)) { result in
@@ -426,12 +455,58 @@ public class OnBoardingRequest:BaseRequest{
                             completion(.success(leadInfo.lead as AnyObject))
                         }
                         else{
-                           completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                            completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
                         }
                     }
                     
                 }catch DecodingError.dataCorrupted(let context) {
-                            debugPrint(context)
+                    debugPrint(context)
+                } catch DecodingError.keyNotFound(let key, let context) {
+                    debugPrint("Key '\(key)' not found:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch DecodingError.valueNotFound(let value, let context) {
+                    debugPrint("Value '\(value)' not found:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch DecodingError.typeMismatch(let type, let context)  {
+                    debugPrint("Type '\(type)' mismatch:", context.debugDescription)
+                    debugPrint("codingPath:", context.codingPath)
+                } catch {
+                    debugPrint("error: ", error)
+                }
+            case .failure(let error):
+                completion(.failure(BaseError.errorMessage(error)))
+                
+            }
+        }
+    }
+    
+    static func updateLead(leadData:Lead?,documents:DocumentDetails?, completion:@escaping CompletionHandler) {
+        guard NetworkState().isInternetAvailable else {
+            completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
+            return
+        }
+        
+        BaseRequest.objMoyaApi.request(.updateLeadWith(lead:leadData!, documents: documents!)) { result in
+            switch result
+            {
+            case .success(let response):
+                do {
+                    if let checkStatus = checkApiResponseStatus(responseData: response.data)
+                    {
+                        if checkStatus.status == true
+                        {
+                            let leadInfo = try BaseRequest.decoder.decode(LeadWrapper.self, from:response.data)
+                            EPOSUserDefaults.setLead(lead: leadInfo.lead)
+                            completion(.success(leadInfo.lead as AnyObject))
+                        }
+                        else{
+                            completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                        }
+                        
+                    }
+                    
+                }catch DecodingError.dataCorrupted(let context) {
+                    debugPrint(context)
                 } catch DecodingError.keyNotFound(let key, let context) {
                     debugPrint("Key '\(key)' not found:", context.debugDescription)
                     debugPrint("codingPath:", context.codingPath)
@@ -453,7 +528,7 @@ public class OnBoardingRequest:BaseRequest{
     
     static func getGSTDetails(gstNumber: String, completion:@escaping CompletionHandler) {
         guard NetworkState().isInternetAvailable else {
-        completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
+            completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
             return
         }
         
@@ -470,12 +545,12 @@ public class OnBoardingRequest:BaseRequest{
                             completion(.success((gstWrapper.result as AnyObject)))
                         }
                         else{
-                           completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                            completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
                         }
                     }
                     
                 }catch DecodingError.dataCorrupted(let context) {
-                            debugPrint(context)
+                    debugPrint(context)
                 } catch DecodingError.keyNotFound(let key, let context) {
                     debugPrint("Key '\(key)' not found:", context.debugDescription)
                     debugPrint("codingPath:", context.codingPath)
@@ -496,14 +571,14 @@ public class OnBoardingRequest:BaseRequest{
     }
     
     
-      static func varifyDocumentWith(proofName:String,
-                                       proofNumber:String,
-                                       kycType:String?,
-                                       additionalInfo:[String:String],
-                                       completion:@escaping CompletionHandler) {
+    static func varifyDocumentWith(proofName:String,
+                                   proofNumber:String,
+                                   kycType:String?,
+                                   additionalInfo:[String:String],
+                                   completion:@escaping CompletionHandler) {
         
         guard NetworkState().isInternetAvailable else {
-        completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
+            completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
             return
         }
         
@@ -520,12 +595,12 @@ public class OnBoardingRequest:BaseRequest{
                             completion(.success((merchantVerificationDetailsWrapper.baseResponse as AnyObject)))
                         }
                         else{
-                           completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                            completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
                         }
                     }
                     
                 } catch DecodingError.dataCorrupted(let context) {
-                            debugPrint(context)
+                    debugPrint(context)
                 } catch DecodingError.keyNotFound(let key, let context) {
                     debugPrint("Key '\(key)' not found:", context.debugDescription)
                     debugPrint("codingPath:", context.codingPath)
@@ -564,12 +639,12 @@ public class OnBoardingRequest:BaseRequest{
                             completion(.success((gstWrapper.result as AnyObject)))
                         }
                         else{
-                           completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                            completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
                         }
                     }
                     
                 }catch DecodingError.dataCorrupted(let context) {
-                            debugPrint(context)
+                    debugPrint(context)
                 } catch DecodingError.keyNotFound(let key, let context) {
                     debugPrint("Key '\(key)' not found:", context.debugDescription)
                     debugPrint("codingPath:", context.codingPath)
@@ -627,12 +702,12 @@ public class OnBoardingRequest:BaseRequest{
                             }
                         }
                         else{
-                           completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
+                            completion(.failure(BaseError.errorMessage(checkStatus.message as Any)))
                         }
                     }
                     
                 }catch DecodingError.dataCorrupted(let context) {
-                            debugPrint(context)
+                    debugPrint(context)
                 } catch DecodingError.keyNotFound(let key, let context) {
                     debugPrint("Key '\(key)' not found:", context.debugDescription)
                     debugPrint("codingPath:", context.codingPath)
