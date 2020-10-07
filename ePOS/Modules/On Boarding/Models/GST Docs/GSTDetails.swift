@@ -18,8 +18,8 @@ enum DocumentType: String {
     case centralServiceTax = "CENTRAL_SERVICE_TAX";
     case voterId = "VOTER_ID";
     case dL = "DRIVING_LICENSE";
-//    case UTILITY_BILL_ELEC = "UTILITY_BILL_ELEC";
-//    case UTILITY_BILL_LPG = "UTILITY_BILL_LPG";
+    case utilityBillElec = "UTILITY_BILL_ELEC";
+    case utilityBillLPG = "UTILITY_BILL_LPG";
     case fssai = "FSSAI";
     case uan = "UAN";
     case udhyogAadhar = "UDHYOG_AADHAAR";

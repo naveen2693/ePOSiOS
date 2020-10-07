@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		18274840419F503DA1EE880A /* Pods_ePOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F0391820214628F09E9428 /* Pods_ePOS.framework */; };
+		4610954F252C8A6000307585 /* MerchantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4610954E252C8A6000307585 /* MerchantData.swift */; };
 		46161AC525137F56006D2783 /* CommonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46161AC425137F55006D2783 /* CommonExtensions.swift */; };
 		4669F0C52525DEF900DEA9F2 /* MerchantVerificationServiceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F0C42525DEF900DEA9F2 /* MerchantVerificationServiceData.swift */; };
 		4669F0C72525E0E000DEA9F2 /* MerchantVerificationAddressData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F0C62525E0E000DEA9F2 /* MerchantVerificationAddressData.swift */; };
@@ -166,6 +167,7 @@
 		21D6DA97CDA242EDFE4068EE /* Pods-ePOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ePOS.release.xcconfig"; path = "Target Support Files/Pods-ePOS/Pods-ePOS.release.xcconfig"; sourceTree = "<group>"; };
 		22F0391820214628F09E9428 /* Pods_ePOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ePOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3293659E051B6C990362E7F9 /* Pods-ePOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ePOS.debug.xcconfig"; path = "Target Support Files/Pods-ePOS/Pods-ePOS.debug.xcconfig"; sourceTree = "<group>"; };
+		4610954E252C8A6000307585 /* MerchantData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantData.swift; sourceTree = "<group>"; };
 		46161AC425137F55006D2783 /* CommonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonExtensions.swift; sourceTree = "<group>"; };
 		4669F0C42525DEF900DEA9F2 /* MerchantVerificationServiceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantVerificationServiceData.swift; sourceTree = "<group>"; };
 		4669F0C62525E0E000DEA9F2 /* MerchantVerificationAddressData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantVerificationAddressData.swift; sourceTree = "<group>"; };
@@ -357,6 +359,14 @@
 				B5B8F0D4F76186F2167A93E4 /* Pods-ePOS.uat.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		46109550252C8A6B00307585 /* MerchantData */ = {
+			isa = PBXGroup;
+			children = (
+				4610954E252C8A6000307585 /* MerchantData.swift */,
+			);
+			path = MerchantData;
 			sourceTree = "<group>";
 		};
 		46161AB32513411D006D2783 /* Models */ = {
@@ -805,6 +815,7 @@
 		99186D6525122F9900A9FE07 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				46109550252C8A6B00307585 /* MerchantData */,
 				990AF9C52529DE7E0008A907 /* IFSCData */,
 				46ADF11A252879CA009A9297 /* DocumentsData */,
 				46ADF11725287960009A9297 /* AddressData */,
@@ -1362,6 +1373,7 @@
 				99186D5F2511D45600A9FE07 /* Constants.swift in Sources */,
 				99186CC62508EF9500A9FE07 /* HomeViewController.swift in Sources */,
 				99186D3B2511D21000A9FE07 /* ApiClient.swift in Sources */,
+				4610954F252C8A6000307585 /* MerchantData.swift in Sources */,
 				991DF26E251CBB2E00AEA1C3 /* EPOSLoader.swift in Sources */,
 				996FD8AE251F17C3001961EE /* UserProfile.swift in Sources */,
 				99186D582511D32E00A9FE07 /* BottomLineTextField.swift in Sources */,

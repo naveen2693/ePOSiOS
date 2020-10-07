@@ -75,7 +75,7 @@ class MerchantDetailsViewController: CustomNavigationStyleViewController {
                 let addressdetails:[AddressDetails] = [AddressDetails(ownershipType:OwnerShipType.owner.rawValue, pincode:textFieldPinecode.text, address:textFieldAddress.text , addressType: AddressType.store.rawValue, entityName:textFieldBusinessName.text, landMark:textFieldCity.text, state:textFieldState.text)]
                 let lead = EPOSUserDefaults.CurrentLead()
                 if let companyType:String = lead?.leadProfile.firmType{
-                    let objBusinessDetails:[BusinessDetails] = [BusinessDetails(address:addressdetails,operateAs:companyType, registeredName: textFieldBusinessName.text, tradeName: textFieldAddress.text,name:textFieldBusinessName.text)]
+                    let objBusinessDetails:BusinessDetails = BusinessDetails(address:addressdetails,operateAs:companyType, registeredName: textFieldBusinessName.text, tradeName: textFieldAddress.text,name:textFieldBusinessName.text)
                 var lead = EPOSUserDefaults.CurrentLead()
                 lead?.businessDetail = objBusinessDetails
                 OnBoardingRequest.updateLead(leadData:lead,documents:nil, completion:{ result in

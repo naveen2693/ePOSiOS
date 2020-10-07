@@ -14,11 +14,13 @@ public struct KYCDetails:Codable{
     var idType:String?
     var optlock:Int?
     var isVerified:String?
+    var errMsg:String?
     private enum CodingKeys: String, CodingKey {
         case idInformation = "idInformation"
         case description = "description"
         case idType = "idType"
         case optlock = "optlock"
         case isVerified = "isVerified"
+        case errMsg = "errMsg"
     }
 }

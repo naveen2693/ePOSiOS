@@ -53,7 +53,10 @@ struct MerchantVeficationServiceBaseResponse : Codable {
     let epicNumber : String?
     let electricityProvider : String?
     let dateOfCommencement : String?
-    
+    let entityName : String?
+    let establishmentName : String?
+    let assesseeCode :String?
+    let nameOfAssessee :String?
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case status = "status"
@@ -88,6 +91,10 @@ struct MerchantVeficationServiceBaseResponse : Codable {
         case epicNumber = "epicNumber"
         case electricityProvider = "electricityProvider"
         case dateOfCommencement = "dateOfCommencement"
+        case entityName = "entityName"
+        case establishmentName = "establishmentName"
+        case assesseeCode = "assesseeCode"
+        case nameOfAssessee = "nameOfAssessee"
     }
     
     init(from decoder: Decoder) throws {
@@ -125,6 +132,10 @@ struct MerchantVeficationServiceBaseResponse : Codable {
         epicNumber = try values.decodeIfPresent(String.self, forKey: .epicNumber)
         electricityProvider = try values.decodeIfPresent(String.self, forKey: .electricityProvider)
         dateOfCommencement = try values.decodeIfPresent(String.self, forKey: .dateOfCommencement)
-        
+        entityName = try values.decodeIfPresent(String.self, forKey: .entityName)
+        establishmentName = try values.decodeIfPresent(String.self, forKey: .establishmentName)
+        assesseeCode = try values.decodeIfPresent(String.self, forKey: .assesseeCode)
+        nameOfAssessee = try values.decodeIfPresent(String.self, forKey: .nameOfAssessee)
 }
 }
+

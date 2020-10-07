@@ -10,6 +10,7 @@ import Foundation
 // MARK:- Lead Address Request Keys
 public struct AddressDetails:Codable{
     var ownershipType:String?
+    var city : String?
     var pincode:String?
     var address:String?
     var addressType:String?
@@ -28,6 +29,7 @@ public struct AddressDetails:Codable{
         case landMark = "landMark"
         case state = "state"
         case optlock = "optlock"
+        case city = "city"
     }
 }
 

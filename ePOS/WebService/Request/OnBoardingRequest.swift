@@ -48,6 +48,7 @@ public struct MerchantVerficationRequest:Codable{
         case additionalInfo = "additionalInfo"
     }
 }
+
 // MARK:- Master Data Keys
 public struct MasterDataRequest:Codable{
     var mode:String?;
@@ -542,6 +543,22 @@ public class OnBoardingRequest:BaseRequest{
                         if checkStatus.status == true
                         {
                             let gstWrapper = try BaseRequest.decoder.decode(GSTDetailWrapper.self, from:response.data)
+                            var currentLead: Lead? = EPOSUserDefaults.CurrentLead()
+                            var businessDetails =  currentLead?.businessDetail
+                            let  merchantData:MerchantDetails =  saveBusinessDetailAndProceed(data:gstWrapper as AnyObject, type: DocumentType.gstin.rawValue, addressTypeObj:AddressType.store.rawValue)
+                            if let address = merchantData.address{
+                                businessDetails?.address?[0] = address
+                            }
+                            businessDetails?.registeredName = gstWrapper.result?.legalName
+                            
+                            let kyc:KYCDetails = kycBuilder(idType: DocumentType.gstin.rawValue, info:gstNumber, desc:nil)
+                            
+                            businessDetails?.kyc?.append(kyc)
+                            currentLead?.businessDetail = businessDetails
+                            currentLead?.workFlowState = WorkFlowState.saveBUDetails.rawValue
+                            if let updatedLead = currentLead{
+                                EPOSUserDefaults.setLead(lead: updatedLead)
+                            }
                             completion(.success((gstWrapper.result as AnyObject)))
                         }
                         else{
@@ -592,6 +609,25 @@ public class OnBoardingRequest:BaseRequest{
                         if checkStatus.status == true
                         {
                             let merchantVerificationDetailsWrapper = try BaseRequest.decoder.decode(MerchantverificationResponse.self, from:response.data)
+                            var currentLead: Lead? = EPOSUserDefaults.CurrentLead()
+                            var businessDetails =  currentLead?.businessDetail
+                            if let kycValue = kycType{
+                                let  merchantData:MerchantDetails =  saveBusinessDetailAndProceed(data:merchantVerificationDetailsWrapper as AnyObject, type: kycValue, addressTypeObj:AddressType.store.rawValue)
+                                
+                                if let address = merchantData.address{
+                                    businessDetails?.address?[0] = address
+                                }
+                            }
+                            businessDetails?.registeredName = merchantVerificationDetailsWrapper.baseResponse?.entityName
+                            
+                            let kyc:KYCDetails = kycBuilder(idType: DocumentType.gstin.rawValue, info:proofNumber, desc:nil)
+                            
+                            businessDetails?.kyc?.append(kyc)
+                            currentLead?.businessDetail = businessDetails
+                            currentLead?.workFlowState = WorkFlowState.saveBUDetails.rawValue
+                            if let updatedLead = currentLead{
+                                EPOSUserDefaults.setLead(lead: updatedLead)
+                            }
                             completion(.success((merchantVerificationDetailsWrapper.baseResponse as AnyObject)))
                         }
                         else{
@@ -726,8 +762,131 @@ public class OnBoardingRequest:BaseRequest{
             }
         }
     }
+    
+    
+    private static func saveBusinessDetailAndProceed(data: AnyObject, type: String, addressTypeObj:String?) -> MerchantDetails
+    {
+        var addressType = addressTypeObj
+        if addressType == nil {
+            addressType = AddressType.corparate.rawValue
+        }
+        var address = AddressDetails()
+        if type == DocumentType.gstin.rawValue {
+            if let gstDetail = data as? GSTDetails {
+                address.entityName = gstDetail.legalName
+                address.address = gstDetail.primaryAddress
+                address.state = gstDetail.primaryState
+                address.city = gstDetail.primaryCity
+                address.pincode = gstDetail.primaryPincode
+                address.addressType = addressTypeObj
+            }
+        } else
+            if let ObjMerchantVerificationDetails = data as? MerchantVeficationServiceBaseResponse {
+                switch type {
+                case DocumentType.udhyogAadhar.rawValue:
+                    address.entityName = ObjMerchantVerificationDetails.nameOfEnterprise ?? ""
+                    address.address = ObjMerchantVerificationDetails.address ?? ""
+                    address.state = ObjMerchantVerificationDetails.state ?? ""
+                    address.city = ObjMerchantVerificationDetails.primaryCity ?? ""
+                    
+                case DocumentType.voterId.rawValue:
+                    address.entityName = ObjMerchantVerificationDetails.name ?? ""
+                    address.address = ObjMerchantVerificationDetails.address ?? ""
+                    
+                case DocumentType.shopNEstablishment.rawValue:
+                    break
+                    
+                case DocumentType.dL.rawValue:
+                    address.entityName = ObjMerchantVerificationDetails.name ?? ""
+                    address.address = ObjMerchantVerificationDetails.address ?? ""
+                    
+                case DocumentType.utilityBillElec.rawValue:
+                    break
+                    
+                case DocumentType.utilityBillLPG.rawValue:
+                    address.entityName = (ObjMerchantVerificationDetails.nameOfEnterprise != nil) ?  ObjMerchantVerificationDetails.consumerName : ObjMerchantVerificationDetails.name ?? ""
+                    address.address = ObjMerchantVerificationDetails.address ?? ""
+                    
+                case DocumentType.fssai.rawValue:
+                    address.entityName = ObjMerchantVerificationDetails.entityName ?? ""
+                    address.address = ObjMerchantVerificationDetails.address ?? ""
+                    
+                case DocumentType.uan.rawValue:
+                    address.entityName = ObjMerchantVerificationDetails.establishmentName ?? ""
+                    address.address = ObjMerchantVerificationDetails.address ?? ""
+                    address.state = ObjMerchantVerificationDetails.state ?? ""
+                    address.city = ObjMerchantVerificationDetails.primaryCity ?? ""
+                    address.pincode = ObjMerchantVerificationDetails.pincode ?? ""
+                    
+                default:
+                    address.entityName = (ObjMerchantVerificationDetails.assesseeCode == nil) ?  ObjMerchantVerificationDetails.nameOfAssessee : ObjMerchantVerificationDetails.dealer
+                    address.address = ObjMerchantVerificationDetails.address ?? ""
+                }
+                if address.address != nil
+                {
+                    address.state = ObjMerchantVerificationDetails.primaryState ?? ""
+                }
+                if address.city != nil
+                {
+                    address.city = ObjMerchantVerificationDetails.primaryCity ?? ""
+                }
+                if address.pincode != nil
+                {
+                    address.pincode = ObjMerchantVerificationDetails.pincode ?? ""
+                }
+                
+            }
+            else {
+                address.entityName = ""
+                address.address = ""
+                address.state = ""
+                address.city = ""
+                address.pincode = ""
+                address.addressType = ""
+        }
+        let ObjstateData = CityDataProvider();
+        let stateArray = ObjstateData.fetchStateDataList()
+        if stateArray.contains(where: { $0.state == address.state }){
+            if let state = address.state{
+                ObjstateData.searchStateData(with:state, completion: {result in
+                    let cities = result.map { $0.cities}
+                    for value in cities
+                    {
+                        let cityName = value.map { $0.name}
+                        if let city = address.city{
+                            if !(cityName.contains(city))
+                            {
+                                address.city = nil;
+                            }
+                        }
+                    }
+                })
+            }
+        }
+        else
+        {
+            address.state = nil
+            address.city = nil;
+        }
+        let merchantData =  MerchantDetails(tradeName:"", address: address)
+        return merchantData
+    }
+    
+    private static func kycBuilder(idType:String?, info:String?,desc:String?) ->KYCDetails {
+        var kyc =  KYCDetails();
+        kyc.idType = idType
+        if (idType == nil) { //mandatory field
+            kyc.errMsg = "ID type required"
+        }
+        kyc.description = desc;
+        if (info == nil) { //mandatory field
+            kyc.errMsg = "ID info required"
+        }
+        kyc.idInformation = info;
+        return kyc;
+    }
+    
 }
-
 
 
 

@@ -133,7 +133,7 @@ public struct Lead:Codable{
     var pcStoreId:String?
     var typeOfLead:String?
     var individualDetails : [IndividualDetail]?
-    var businessDetail : [BusinessDetails]?
+    var businessDetail : BusinessDetails?
     var pcMerchantId:Int?
     var workFlowState:String?
     var bankAccounts : [BankAccountDetails]?
