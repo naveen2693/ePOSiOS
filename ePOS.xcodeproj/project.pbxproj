@@ -133,7 +133,24 @@
 		997DC803252347A3006ADE48 /* DropdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997DC801252347A3006ADE48 /* DropdownTableViewCell.swift */; };
 		997DC804252347A3006ADE48 /* DropdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 997DC802252347A3006ADE48 /* DropdownTableViewCell.xib */; };
 		997DC8272524A2FE006ADE48 /* GSTDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997DC8262524A2FE006ADE48 /* GSTDetails.swift */; };
-		997DC82B2526064D006ADE48 /* ISO440.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997DC82A2526064D006ADE48 /* ISO440.swift */; };
+		CE971BC5252CACAF00843943 /* TCPIPCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE971BC4252CACAF00843943 /* TCPIPCommunicator.swift */; };
+		CE971BC7252CAD2400843943 /* TCPIPCommunicationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE971BC6252CAD2400843943 /* TCPIPCommunicationHandler.swift */; };
+		CE971BC9252CAD4E00843943 /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE971BC8252CAD4E00843943 /* GlobalData.swift */; };
+		CE971BCB252CB9C000843943 /* ISOProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE971BCA252CB9C000843943 /* ISOProcessor.swift */; };
+		CE971BCD252CBA0000843943 /* StateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE971BCC252CBA0000843943 /* StateMachine.swift */; };
+		CE971BCF252CBA8400843943 /* ISOMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE971BCE252CBA8400843943 /* ISOMessage.swift */; };
+		CE971BD1252CBB2500843943 /* CryptoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE971BD0252CBB2500843943 /* CryptoHandler.swift */; };
+		CE971BD3252CBB8D00843943 /* ISOHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE971BD2252CBB8D00843943 /* ISOHandler.swift */; };
+		CE971BD5252CBD8200843943 /* TerminalParamData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE971BD4252CBD8200843943 /* TerminalParamData.swift */; };
+		CE971BD7252CBD9D00843943 /* TerminalMasterParamData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE971BD6252CBD9D00843943 /* TerminalMasterParamData.swift */; };
+		CECC5407252B530D00C0940E /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC5406252B530D00C0940E /* FileManager.swift */; };
+		CECC5409252B533C00C0940E /* ISO440Activation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC5408252B533C00C0940E /* ISO440Activation.swift */; };
+		CECC540B252B537800C0940E /* ISO320Initialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC540A252B537800C0940E /* ISO320Initialization.swift */; };
+		CECC540D252B539600C0940E /* ISO500Settlement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC540C252B539600C0940E /* ISO500Settlement.swift */; };
+		CECC540F252B540300C0940E /* ISOFieldConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC540E252B540300C0940E /* ISOFieldConstants.swift */; };
+		CECC5411252B586B00C0940E /* ISO320HostCommunicationChangeNumberConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC5410252B586B00C0940E /* ISO320HostCommunicationChangeNumberConstants.swift */; };
+		CECC5413252B67C400C0940E /* ISO320HostUploadChangeNumberConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC5412252B67C400C0940E /* ISO320HostUploadChangeNumberConstants.swift */; };
+		CECC5415252B68A300C0940E /* ISO320PineKeyExchangeChangeNumberConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC5414252B68A300C0940E /* ISO320PineKeyExchangeChangeNumberConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -273,8 +290,25 @@
 		997DC801252347A3006ADE48 /* DropdownTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownTableViewCell.swift; sourceTree = "<group>"; };
 		997DC802252347A3006ADE48 /* DropdownTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropdownTableViewCell.xib; sourceTree = "<group>"; };
 		997DC8262524A2FE006ADE48 /* GSTDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSTDetails.swift; sourceTree = "<group>"; };
-		997DC82A2526064D006ADE48 /* ISO440.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO440.swift; sourceTree = "<group>"; };
 		B5B8F0D4F76186F2167A93E4 /* Pods-ePOS.uat.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ePOS.uat.xcconfig"; path = "Target Support Files/Pods-ePOS/Pods-ePOS.uat.xcconfig"; sourceTree = "<group>"; };
+		CE971BC4252CACAF00843943 /* TCPIPCommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPIPCommunicator.swift; sourceTree = "<group>"; };
+		CE971BC6252CAD2400843943 /* TCPIPCommunicationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPIPCommunicationHandler.swift; sourceTree = "<group>"; };
+		CE971BC8252CAD4E00843943 /* GlobalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
+		CE971BCA252CB9C000843943 /* ISOProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISOProcessor.swift; sourceTree = "<group>"; };
+		CE971BCC252CBA0000843943 /* StateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateMachine.swift; sourceTree = "<group>"; };
+		CE971BCE252CBA8400843943 /* ISOMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISOMessage.swift; sourceTree = "<group>"; };
+		CE971BD0252CBB2500843943 /* CryptoHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoHandler.swift; sourceTree = "<group>"; };
+		CE971BD2252CBB8D00843943 /* ISOHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISOHandler.swift; sourceTree = "<group>"; };
+		CE971BD4252CBD8200843943 /* TerminalParamData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalParamData.swift; sourceTree = "<group>"; };
+		CE971BD6252CBD9D00843943 /* TerminalMasterParamData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalMasterParamData.swift; sourceTree = "<group>"; };
+		CECC5406252B530D00C0940E /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		CECC5408252B533C00C0940E /* ISO440Activation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO440Activation.swift; sourceTree = "<group>"; };
+		CECC540A252B537800C0940E /* ISO320Initialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO320Initialization.swift; sourceTree = "<group>"; };
+		CECC540C252B539600C0940E /* ISO500Settlement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO500Settlement.swift; sourceTree = "<group>"; };
+		CECC540E252B540300C0940E /* ISOFieldConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISOFieldConstants.swift; sourceTree = "<group>"; };
+		CECC5410252B586B00C0940E /* ISO320HostCommunicationChangeNumberConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO320HostCommunicationChangeNumberConstants.swift; sourceTree = "<group>"; };
+		CECC5412252B67C400C0940E /* ISO320HostUploadChangeNumberConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO320HostUploadChangeNumberConstants.swift; sourceTree = "<group>"; };
+		CECC5414252B68A300C0940E /* ISO320PineKeyExchangeChangeNumberConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO320PineKeyExchangeChangeNumberConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -700,7 +734,6 @@
 		991ADE922506096700932251 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				997DC828252604E3006ADE48 /* Activation */,
 				99186D6225122F7400A9FE07 /* On Boarding */,
 				99186D4F2511D28800A9FE07 /* SignUp */,
 				99186D412511D26400A9FE07 /* Login */,
@@ -726,7 +759,9 @@
 		991ADE97250609E100932251 /* Transactions */ = {
 			isa = PBXGroup;
 			children = (
-				997DC8292526062A006ADE48 /* Transaction Manager */,
+				CECC5405252B52AD00C0940E /* Constants */,
+				CECC5404252B529C00C0940E /* Structures */,
+				CECC5403252B527C00C0940E /* Classes */,
 				99186CC92508EFB300A9FE07 /* Models */,
 				99186CC82508EFAA00A9FE07 /* Views */,
 				99186CC72508EFA100A9FE07 /* Controllers */,
@@ -954,19 +989,43 @@
 			path = "GST Docs";
 			sourceTree = "<group>";
 		};
-		997DC828252604E3006ADE48 /* Activation */ = {
+		CECC5403252B527C00C0940E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CECC5406252B530D00C0940E /* FileManager.swift */,
+				CECC5408252B533C00C0940E /* ISO440Activation.swift */,
+				CECC540A252B537800C0940E /* ISO320Initialization.swift */,
+				CECC540C252B539600C0940E /* ISO500Settlement.swift */,
+				CE971BC4252CACAF00843943 /* TCPIPCommunicator.swift */,
+				CE971BC6252CAD2400843943 /* TCPIPCommunicationHandler.swift */,
+				CE971BC8252CAD4E00843943 /* GlobalData.swift */,
+				CE971BCA252CB9C000843943 /* ISOProcessor.swift */,
+				CE971BCC252CBA0000843943 /* StateMachine.swift */,
+				CE971BCE252CBA8400843943 /* ISOMessage.swift */,
+				CE971BD0252CBB2500843943 /* CryptoHandler.swift */,
+				CE971BD2252CBB8D00843943 /* ISOHandler.swift */,
 			);
-			path = Activation;
+			path = Classes;
 			sourceTree = "<group>";
 		};
-		997DC8292526062A006ADE48 /* Transaction Manager */ = {
+		CECC5404252B529C00C0940E /* Structures */ = {
 			isa = PBXGroup;
 			children = (
-				997DC82A2526064D006ADE48 /* ISO440.swift */,
+				CE971BD4252CBD8200843943 /* TerminalParamData.swift */,
+				CE971BD6252CBD9D00843943 /* TerminalMasterParamData.swift */,
 			);
-			path = "Transaction Manager";
+			path = Structures;
+			sourceTree = "<group>";
+		};
+		CECC5405252B52AD00C0940E /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				CECC540E252B540300C0940E /* ISOFieldConstants.swift */,
+				CECC5410252B586B00C0940E /* ISO320HostCommunicationChangeNumberConstants.swift */,
+				CECC5412252B67C400C0940E /* ISO320HostUploadChangeNumberConstants.swift */,
+				CECC5414252B68A300C0940E /* ISO320PineKeyExchangeChangeNumberConstants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1184,11 +1243,16 @@
 				99186D192510959F00A9FE07 /* StatusDialogItem.swift in Sources */,
 				9919A9B02519E45400A67253 /* SelectPackageViewController.swift in Sources */,
 				9976C90D2500F05600FC5DD3 /* ViewController.swift in Sources */,
+				CECC5413252B67C400C0940E /* ISO320HostUploadChangeNumberConstants.swift in Sources */,
 				9919A99D25174B2D00A67253 /* BankDetailsViewController.swift in Sources */,
 				991DF269251CB5C900AEA1C3 /* GifLoader.swift in Sources */,
 				46BD9B4225160767008DEFEA /* IntialDataRequest.swift in Sources */,
 				9919A9942514D83000A67253 /* EPOSUserDefaults.swift in Sources */,
+				CECC540D252B539600C0940E /* ISO500Settlement.swift in Sources */,
+				CE971BC5252CACAF00843943 /* TCPIPCommunicator.swift in Sources */,
+				CE971BD7252CBD9D00843943 /* TerminalMasterParamData.swift in Sources */,
 				46BD9B54251AFE80008DEFEA /* GenericSwitchingViewController.swift in Sources */,
+				CE971BD5252CBD8200843943 /* TerminalParamData.swift in Sources */,
 				997DC7E62521EEFC006ADE48 /* MasterDataProvider.swift in Sources */,
 				46BD9B442516095C008DEFEA /* OnBoardingRequest.swift in Sources */,
 				46BD9B52251A8B69008DEFEA /* PasswordResetLinkMsgController.swift in Sources */,
@@ -1200,6 +1264,7 @@
 				997DC7E52521EEFC006ADE48 /* CityData.swift in Sources */,
 				99186D212511D07E00A9FE07 /* Validation.swift in Sources */,
 				9976C9212501065D00FC5DD3 /* CustomFonts.swift in Sources */,
+				CECC540F252B540300C0940E /* ISOFieldConstants.swift in Sources */,
 				99186D5F2511D45600A9FE07 /* Constants.swift in Sources */,
 				99186CC62508EF9500A9FE07 /* HomeViewController.swift in Sources */,
 				99186D3B2511D21000A9FE07 /* ApiClient.swift in Sources */,
@@ -1207,18 +1272,25 @@
 				996FD8AE251F17C3001961EE /* UserProfile.swift in Sources */,
 				99186D582511D32E00A9FE07 /* BottomLineTextField.swift in Sources */,
 				997DC8272524A2FE006ADE48 /* GSTDetails.swift in Sources */,
+				CECC5409252B533C00C0940E /* ISO440Activation.swift in Sources */,
 				99186D3C2511D21000A9FE07 /* User.swift in Sources */,
 				9976C95E2501173600FC5DD3 /* DeviceType.swift in Sources */,
 				99186CE6250A2C6500A9FE07 /* EPOSHelper.swift in Sources */,
+				CE971BD3252CBB8D00843943 /* ISOHandler.swift in Sources */,
+				CECC5407252B530D00C0940E /* FileManager.swift in Sources */,
 				9919A9902513796000A67253 /* ConstantNew.swift in Sources */,
 				99186CBD2508EC6000A9FE07 /* EPOSTextField+FloatText.swift in Sources */,
 				99186D682512445400A9FE07 /* MakeDropDown.swift in Sources */,
+				CE971BCF252CBA8400843943 /* ISOMessage.swift in Sources */,
+				CE971BC7252CAD2400843943 /* TCPIPCommunicationHandler.swift in Sources */,
 				46BD9B4825175327008DEFEA /* ConvertApiParameterIntoObject.swift in Sources */,
 				99186D552511D28800A9FE07 /* SignUpControllerViewController.swift in Sources */,
 				46BD9B50251A8646008DEFEA /* ForgotPasswordController.swift in Sources */,
 				997DC7F5252200FD006ADE48 /* OnBoardingConstants.swift in Sources */,
 				99186D232511D09400A9FE07 /* Util.swift in Sources */,
 				991ADEA825064E2F00932251 /* UIImageExtension.swift in Sources */,
+				CE971BCD252CBA0000843943 /* StateMachine.swift in Sources */,
+				CE971BD1252CBB2500843943 /* CryptoHandler.swift in Sources */,
 				997DC800252321EE006ADE48 /* CompleteUserData.swift in Sources */,
 				99186D4D2511D27F00A9FE07 /* OtpTextField.swift in Sources */,
 				997DC7E42521EEFC006ADE48 /* CityDataProvider.swift in Sources */,
@@ -1226,10 +1298,11 @@
 				991ADEA925064E2F00932251 /* UIButtonExtension.swift in Sources */,
 				9919A9C0251A4BA600A67253 /* PackageTableViewCell.swift in Sources */,
 				99186D0E2510922B00A9FE07 /* ShowDialog.swift in Sources */,
-				997DC82B2526064D006ADE48 /* ISO440.swift in Sources */,
+				CE971BC9252CAD4E00843943 /* GlobalData.swift in Sources */,
 				99186D2A2511D1E000A9FE07 /* CommonWebviewController.swift in Sources */,
 				991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */,
 				99186D142510926800A9FE07 /* EmptyDataViewController.swift in Sources */,
+				CECC540B252B537800C0940E /* ISO320Initialization.swift in Sources */,
 				991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */,
 				996FD8A9251E1020001961EE /* CustomNavigationStyleViewController.swift in Sources */,
 				991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */,
@@ -1248,6 +1321,7 @@
 				9919A9B32519E47900A67253 /* PackageView.swift in Sources */,
 				99186D0F2510922B00A9FE07 /* FailedPopup.swift in Sources */,
 				9919A9A9251770E100A67253 /* IFSCDetailTableViewCell.swift in Sources */,
+				CECC5411252B586B00C0940E /* ISO320HostCommunicationChangeNumberConstants.swift in Sources */,
 				9919A9BC251A475C00A67253 /* PackageDetailViewController.swift in Sources */,
 				99186D5B2511D37200A9FE07 /* RoundViewCorner.swift in Sources */,
 				99186D4E2511D27F00A9FE07 /* PasswordController.swift in Sources */,
@@ -1258,6 +1332,8 @@
 				46BD9B46251617A7008DEFEA /* BaseRequest.swift in Sources */,
 				99186D722512494C00A9FE07 /* PersonalInfoViewController+Dropdown.swift in Sources */,
 				991DF263251CB33100AEA1C3 /* UIViewController+Protocol.swift in Sources */,
+				CE971BCB252CB9C000843943 /* ISOProcessor.swift in Sources */,
+				CECC5415252B68A300C0940E /* ISO320PineKeyExchangeChangeNumberConstants.swift in Sources */,
 				9919A9A525176D9D00A67253 /* IFSCCodeDetailViewController.swift in Sources */,
 				997DC7FA2522345F006ADE48 /* Lead.swift in Sources */,
 				991ADEAD250662EF00932251 /* EPOSShadowView.swift in Sources */,

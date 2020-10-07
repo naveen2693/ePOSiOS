@@ -114,6 +114,7 @@ PODS:
   - SwiftMessages (8.0.2):
     - SwiftMessages/App (= 8.0.2)
   - SwiftMessages/App (8.0.2)
+  - SwiftSocket (2.0.2)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -124,6 +125,7 @@ DEPENDENCIES:
   - Moya
   - SwiftLint
   - SwiftMessages
+  - SwiftSocket
 
 SPEC REPOS:
   trunk:
@@ -146,6 +148,7 @@ SPEC REPOS:
     - PromisesObjC
     - SwiftLint
     - SwiftMessages
+    - SwiftSocket
 
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
@@ -167,7 +170,8 @@ SPEC CHECKSUMS:
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   SwiftLint: bbfed21bf4451dcbd0f5cdbee44a18e06cf91b12
   SwiftMessages: 633304165351b8e3dcbb81a71f8efcd86f9c1669
+  SwiftSocket: 6f4c9c63fbc5c1d61188936bb3c599fd546f40ae
 
-PODFILE CHECKSUM: 7d68f2c01c5dfc47051c2cc1fa044c2c45c07bfb
+PODFILE CHECKSUM: 270f3d398107fe67b26d349e3362fefe69105683
 
 COCOAPODS: 1.9.3
