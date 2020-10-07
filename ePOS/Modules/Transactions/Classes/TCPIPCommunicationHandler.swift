@@ -12,41 +12,40 @@ import SwiftSocket
 class TCPIPCommunicationHandler
 {
     var mHostIP: String
-    var mHostPort: Int
-    var mClient: TCPClient?
-    var mbIsConnected: Bool
+    var mHostPort: Int32
+    var mClient: TCPClient
+    var mbIsConnected: Bool = false
     var mbIsSSLOn:Bool
     var mConnectionTimeout:Int
     var mSendReceiveTimeout:Int
     
     
-    init(hostIP: String,hostPort: Int,connectionTimeout: Int,sendReceiveTimeout:Int ,bIsSSLOn:Bool)
+    init(hostIP: String,hostPort: Int32,connectionTimeout: Int,sendReceiveTimeout:Int ,bIsSSLOn:Bool)
     {
         mHostIP=hostIP
         mHostPort=hostPort
         mConnectionTimeout=connectionTimeout
         mSendReceiveTimeout=sendReceiveTimeout
         mbIsSSLOn=bIsSSLOn
+        mClient = TCPClient(address: mHostIP, port: mHostPort)
     }
     
-    func Connect()->Bool
+    func Connect() -> Bool
     {
         if(mbIsConnected){
         return true
         }
         
-        guard let client = mClient else { return false}
-            
         if(mbIsSSLOn){
             //TODO Write code for SSL Communication
+            return true
         }
         else{
-        switch client.connect(timeout: mConnectionTimeout) {
+        switch mClient.connect(timeout: mConnectionTimeout) {
         case .success:
           debugPrint("Connection Success");
           return true;
-        case .failure(let error):
-          appendToTextField(string: String(describing: error))
+        case .failure(_):
           debugPrint("Connection Failed");
           return false;
             }
@@ -54,24 +53,23 @@ class TCPIPCommunicationHandler
         
     }
     
-    func SendDataToHost(bArrSendBuffer: [Byte])->Bool
+    func SendDataToHost(bArrSendBuffer: [Byte]) -> Bool
     {
-        guard let client = mClient else { return false}
-        switch client.send(data:bArrSendBuffer)
+        //guard let client = mClient else { return false}
+        switch mClient.send(data:bArrSendBuffer)
         {
         case .success:
             debugPrint("Data Sent Successfully");
             return true;
-        case .failure(let error):
-          appendToTextField(string: String(describing: error))
+        case .failure(_):
           return false;
         }
     }
     
-    func ReceiveDataFromHost()->[Byte]
+    func ReceiveDataFromHost() -> [Byte]?
     {
-        guard let client = client else { return ""}
-        guard let receivedBuffer = client.read(1024*10,timeout:mSendReceiveTimeout)
+        //guard let client = mClient else { return nil}
+        guard let receivedBuffer = mClient.read(1024*10,timeout:mSendReceiveTimeout)
             else { return nil }
      
         //TODO comment later
@@ -80,16 +78,17 @@ class TCPIPCommunicationHandler
         return receivedBuffer
     }
     
-    func ReceiveCompletePacket()->[Byte]
+    func ReceiveCompletePacket() -> [Byte]?
     {
         //TODO check for complete packet
+        return nil
     }
     
-    func disconnect()->Bool
+    func disconnect() -> Bool
     {
         //TODO test
-         guard let client = mClient else { return false}
-         client.close()
+         //guard let client = mClient else { return false}
+         mClient.close()
          return true
     }
 }

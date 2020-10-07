@@ -13,10 +13,10 @@ class TransactionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let iso = ISO440.shared // singleton
-        let isoObject = ISO440()
-        
-        iso.initiateISO()
+//        let iso = ISO440.shared // singleton
+//        let isoObject = ISO440()
+//
+//        iso.initiateISO()
         // Do any additional setup after loading the view.
     }
     
