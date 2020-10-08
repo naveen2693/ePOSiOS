@@ -14,7 +14,7 @@ public struct CheckUserKeys{
 }
 
 // MARK:- OTP Verify Keys
-public struct OTPVerifyKeys:Codable{
+public struct OTPVerifyRequest:Codable{
     var mobileNum:String?;
     var otp:String?;
     private enum CodingKeys: String, CodingKey {
@@ -23,7 +23,7 @@ public struct OTPVerifyKeys:Codable{
     }
 }
 // MARK:- ResetPassword Keys
-public struct ResetPasswordKeys:Codable{
+public struct ResetPasswordRequest:Codable{
     var mobileNum:String?;
     var otp:String?;
     var newPassword:String?;
@@ -79,7 +79,7 @@ public struct SignUpKeys:Codable{
 }
 
 // MARK:-Configuration Field
-public struct ConfigurationKeys : Codable{
+public struct ConfigurationRequest : Codable{
     var globalChngeNumber:Int?;
     private enum CodingKeys: String, CodingKey {
         case globalChngeNumber = "glochngno"
@@ -90,6 +90,11 @@ public struct ConfigurationKeys : Codable{
 public class IntialDataRequest:BaseRequest{
     static func callApiSignupRequest(signUpData:SignUpData,completion:@escaping CompletionHandler)
     {
+        
+        guard NetworkState().isInternetAvailable else {
+        completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
+            return
+        };
         BaseRequest.objMoyaApi.request(.getSignUpWith(signUpData:signUpData)) { result in
             switch result
             {
@@ -103,6 +108,9 @@ public class IntialDataRequest:BaseRequest{
                             EPOSUserDefaults.setProfile(profile: userData.profile)
                             EPOSUserDefaults.setUserId(userID: userData.uniqueUserID)
                             EPOSUserDefaults.setAccessToken(accessToken: userData.accessToken)
+                            if let uuid = userData.profile.appUuid {
+                                EPOSUserDefaults.setUuid(udid: uuid)
+                            }
                             completion(.success(response))
                         } catch DecodingError.dataCorrupted(let context) {
                             debugPrint(context)
@@ -137,6 +145,11 @@ public class IntialDataRequest:BaseRequest{
     // MARK:-checkUserWith
     static func checkUserWith(mobileNumber:String,completion:@escaping CompletionHandler)
     {
+        
+        guard NetworkState().isInternetAvailable else {
+        completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
+            return
+        };
         BaseRequest.objMoyaApi.request(.getCheckUserWith(mobileNumber: mobileNumber)) { result in
             switch result
             {
@@ -169,6 +182,10 @@ public class IntialDataRequest:BaseRequest{
     // MARK:-getConfigurationDataWith
     static func getConfigurationDataWith(globalChangeNumber:Int,completion:@escaping CompletionHandler)
     {
+       guard NetworkState().isInternetAvailable else {
+        completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
+            return
+        };
         BaseRequest.objMoyaApi.request(.getConfigurationsWith(globalChangeNumber:globalChangeNumber)){ result in
             switch result
             {
@@ -219,6 +236,11 @@ public class IntialDataRequest:BaseRequest{
     // MARK:-forgotPasswordCallApiWith
     static func forgotPasswordCallApiWith(mobileNumber:String,completion:@escaping CompletionHandler)
     {
+        
+        guard NetworkState().isInternetAvailable else {
+        completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
+            return
+        };
         BaseRequest.objMoyaApi.request(.getForgotPasswordWith(mobileNumber:mobileNumber)){ result in
             switch result
             {
@@ -247,6 +269,11 @@ public class IntialDataRequest:BaseRequest{
     // MARK:-resetPasswordCallApiwith
     static func resetPasswordCallApiwith(mobileNumber:String,otp:String,newPassword:String,completion:@escaping CompletionHandler)
     {
+        guard NetworkState().isInternetAvailable else {
+        completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
+            return
+        };
+        
         BaseRequest.objMoyaApi.request(.resetPasswordWith(mobileNumber: mobileNumber, otp: otp, newPassword: newPassword)){ result in
             switch result
             {
@@ -272,6 +299,11 @@ public class IntialDataRequest:BaseRequest{
     // MARK:- resendOtpCallApiWith
     static func resendOtpCallApiWith(mobileNumber:String,completion:@escaping CompletionHandler)
     {
+        guard NetworkState().isInternetAvailable else {
+        completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
+            return
+        };
+        
         BaseRequest.objMoyaApi.request(.getSendOtpWith(mobileNumber: mobileNumber)){ result in
             switch result
             {
@@ -297,6 +329,11 @@ public class IntialDataRequest:BaseRequest{
     }
     static func callApiVerifyOtpWith(mobileNumber:String,otp:String,completion:@escaping CompletionHandler)
     {
+        guard NetworkState().isInternetAvailable else {
+        completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
+            return
+        };
+        
         BaseRequest.objMoyaApi.request(.getVerifyOtpWith(mobileNumber: mobileNumber, otp: otp)){ result in
             switch result
             {
@@ -324,6 +361,10 @@ public class IntialDataRequest:BaseRequest{
     // MARK:-callLoginApiAfterNumberVerfication Abhi123@
     static func callLoginApiAfterNumberVerfication(mobileNumber:String,password:String,completion:@escaping CompletionHandler)
     {
+        guard NetworkState().isInternetAvailable else {
+        completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
+            return
+        };
         
         BaseRequest.objMoyaApi.request(.getLoginWith(mobileNumber: mobileNumber, password: password)){ result in
             switch result
@@ -338,6 +379,9 @@ public class IntialDataRequest:BaseRequest{
                             EPOSUserDefaults.setProfile(profile: userData.profile)
                             EPOSUserDefaults.setUserId(userID: userData.uniqueUserID)
                             EPOSUserDefaults.setAccessToken(accessToken: userData.accessToken)
+                            if let uuid = userData.profile.appUuid {
+                                EPOSUserDefaults.setUuid(udid: uuid)
+                            }
                             completion(.success(response))
                         } catch DecodingError.dataCorrupted(let context) {
                             debugPrint(context)
@@ -367,4 +411,12 @@ public class IntialDataRequest:BaseRequest{
             
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
 }

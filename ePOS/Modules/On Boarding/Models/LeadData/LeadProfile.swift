@@ -7,36 +7,21 @@
 //
 
 import Foundation
-
-struct LeadProfile : Codable {
-    let id : Int?
-    let optlock : Int?
-    let pan : String?
-    let name : String?
-    let isBusinessPan : String?
-    let firmType : String?
-    let kyc : [String]?
-
-    enum CodingKeys: String, CodingKey {
-
+// MARK:-Lead State Keys
+public struct LeadProfileDetails:Codable{
+    var id:Int?
+    var isBusinessPan:String?
+    var name:String?
+    var pan:String?
+    var firmType:String?
+    var optlock:Int?
+    var kyc : KYCDetails?
+    private enum CodingKeys: String, CodingKey {
         case id = "id"
-        case optlock = "optlock"
+        case isBusinessPan = "isBusinessPan"
         case pan = "pan"
         case name = "name"
-        case isBusinessPan = "isBusinessPan"
         case firmType = "firmType"
-        case kyc = "kyc"
+        case optlock = "optlock"
     }
-
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        id = try values.decodeIfPresent(Int.self, forKey: .id)
-        optlock = try values.decodeIfPresent(Int.self, forKey: .optlock)
-        pan = try values.decodeIfPresent(String.self, forKey: .pan)
-        name = try values.decodeIfPresent(String.self, forKey: .name)
-        isBusinessPan = try values.decodeIfPresent(String.self, forKey: .isBusinessPan)
-        firmType = try values.decodeIfPresent(String.self, forKey: .firmType)
-        kyc = try values.decodeIfPresent([String].self, forKey: .kyc)
-    }
-
 }

@@ -22,12 +22,14 @@ class SignUpController: UIViewController {
     var userData:UserData?
     var mobileNumber:String!;
     var checkBox:Bool=false;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.textView?.delegate = self
         checkBoxConfiguration()
         populateData()
-        hideKeyboardWhenTappedAround()
+//        addKeyboardNotifications()
+//        hideKeyboardWhenTappedAround()
         if let unwrappedTextView = textView {
             Util.passTextViewReference(textViewField : unwrappedTextView)
         } else {
@@ -68,20 +70,11 @@ class SignUpController: UIViewController {
         
         switch response {
         case .success:
-            IntialDataRequest.callApiSignupRequest(signUpData: SignUpData(contactName:textFIeldContactName.text, email:textFieldEmailId.text, establishmentName: textFieldBusinessName.text, password:textFieldPassword.text, referralCode:textFieldReferralCode.text,contactNumber:mobileNumber), completion:{[weak self] result in
+            IntialDataRequest.callApiSignupRequest(signUpData: SignUpData(contactName:textFIeldContactName.text, email:textFieldEmailId.text, establishmentName: textFieldBusinessName.text, password:textFieldPassword.text, referralCode:textFieldReferralCode.text,contactNumber:mobileNumber), completion:{ result in
                 switch result {
                     
-                case .success(let response):
-                    OnBoardingRequest.getUserProfileAndProceedToLaunch(showProgress: true, completion:{[weak self]result in
-                        switch result {
-                        case .success(let response):
-                            print(response)
-                            
-                        case .failure(BaseError.errorMessage(let error)):
-                            self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
-                        }
-                    });
-                    print(response)
+                case .success(_):
+                    appDelegate.getOnBoardingData()
                 case .failure(let error):
                     print(error)
                 }

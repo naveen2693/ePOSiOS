@@ -58,6 +58,14 @@ public class Util
     
     static func getUUID() -> String {
         let uuid = UIDevice.current.identifierForVendor
-        return uuid!.uuidString
+        var newUUID = uuid!.uuidString.removingWhitespaces()
+        newUUID = newUUID.replacingOccurrences(of: "-", with: "")
+        return newUUID
     }
+    
+//    static func random(digits:Int) -> Int {
+//        let min = Int(pow(Double(10), Double(digits-1))) - 1
+//        let max = Int(pow(Double(10), Double(digits))) - 1
+//        return Int(min...max)
+//    }
 }

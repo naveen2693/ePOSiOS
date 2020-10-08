@@ -9,6 +9,24 @@
 /* Begin PBXBuildFile section */
 		18274840419F503DA1EE880A /* Pods_ePOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F0391820214628F09E9428 /* Pods_ePOS.framework */; };
 		46161AC525137F56006D2783 /* CommonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46161AC425137F55006D2783 /* CommonExtensions.swift */; };
+		4669F0C52525DEF900DEA9F2 /* MerchantVerificationServiceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F0C42525DEF900DEA9F2 /* MerchantVerificationServiceData.swift */; };
+		4669F0C72525E0E000DEA9F2 /* MerchantVerificationAddressData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F0C62525E0E000DEA9F2 /* MerchantVerificationAddressData.swift */; };
+		46ADF104252876CA009A9297 /* BankAccountDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF103252876CA009A9297 /* BankAccountDetails.swift */; };
+		46ADF1062528776D009A9297 /* LeadScheduleDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF1052528776D009A9297 /* LeadScheduleDetails.swift */; };
+		46ADF109252877E0009A9297 /* AdditionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF108252877E0009A9297 /* AdditionalInfo.swift */; };
+		46ADF10B25287803009A9297 /* LeadAgreementDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF10A25287803009A9297 /* LeadAgreementDetails.swift */; };
+		46ADF10E2528785F009A9297 /* BusinessDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF10D2528785F009A9297 /* BusinessDetails.swift */; };
+		46ADF110252878B0009A9297 /* LeadComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF10F252878B0009A9297 /* LeadComments.swift */; };
+		46ADF113252878F1009A9297 /* KycDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF112252878F1009A9297 /* KycDetails.swift */; };
+		46ADF1162528792F009A9297 /* ContactDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF1152528792F009A9297 /* ContactDetails.swift */; };
+		46ADF11925287976009A9297 /* AddressDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF11825287976009A9297 /* AddressDetails.swift */; };
+		46ADF11C252879E0009A9297 /* DocumentDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF11B252879E0009A9297 /* DocumentDetails.swift */; };
+		46ADF11E25287A37009A9297 /* AdditionalItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF11D25287A37009A9297 /* AdditionalItem.swift */; };
+		46ADF12025287A47009A9297 /* BusinessItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF11F25287A47009A9297 /* BusinessItem.swift */; };
+		46ADF12225287A56009A9297 /* IndividualItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF12125287A56009A9297 /* IndividualItem.swift */; };
+		46ADF12425287AF4009A9297 /* DocumentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF12325287AF4009A9297 /* DocumentItem.swift */; };
+		46ADF12625287BA2009A9297 /* CommentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF12525287BA2009A9297 /* CommentData.swift */; };
+		46ADF12825287BB6009A9297 /* DocResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF12725287BB6009A9297 /* DocResources.swift */; };
 		46BD9B4225160767008DEFEA /* IntialDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B4125160767008DEFEA /* IntialDataRequest.swift */; };
 		46BD9B442516095C008DEFEA /* OnBoardingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B432516095C008DEFEA /* OnBoardingRequest.swift */; };
 		46BD9B46251617A7008DEFEA /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B45251617A7008DEFEA /* BaseRequest.swift */; };
@@ -18,6 +36,16 @@
 		46BD9B50251A8646008DEFEA /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B4F251A8646008DEFEA /* ForgotPasswordController.swift */; };
 		46BD9B52251A8B69008DEFEA /* PasswordResetLinkMsgController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B51251A8B69008DEFEA /* PasswordResetLinkMsgController.swift */; };
 		46BD9B54251AFE80008DEFEA /* GenericSwitchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B53251AFE80008DEFEA /* GenericSwitchingViewController.swift */; };
+		990AF961252854610008A907 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990AF960252854610008A907 /* BottomSheetViewController.swift */; };
+		990AF9642528559C0008A907 /* DropdownOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990AF9622528559C0008A907 /* DropdownOptionsViewController.swift */; };
+		990AF9652528559C0008A907 /* DropdownOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 990AF9632528559C0008A907 /* DropdownOptionsViewController.xib */; };
+		990AF9C72529DF040008A907 /* SearchIFSCData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990AF9C62529DF040008A907 /* SearchIFSCData.swift */; };
+		990AF9CD252A0F970008A907 /* CustomSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990AF9C9252A0F970008A907 /* CustomSearchViewController.swift */; };
+		990AF9CE252A0F970008A907 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 990AF9CA252A0F970008A907 /* SearchTableViewCell.xib */; };
+		990AF9CF252A0F970008A907 /* CustomSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 990AF9CB252A0F970008A907 /* CustomSearchViewController.xib */; };
+		990AF9D0252A0F970008A907 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990AF9CC252A0F970008A907 /* SearchTableViewCell.swift */; };
+		990AF9D2252A38A10008A907 /* MasterData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 990AF9D1252A38A10008A907 /* MasterData.plist */; };
+		990AF9D4252A38A80008A907 /* States.plist in Resources */ = {isa = PBXBuildFile; fileRef = 990AF9D3252A38A80008A907 /* States.plist */; };
 		99186CBA2508C08F00A9FE07 /* EPOSTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 99186CB92508C08F00A9FE07 /* EPOSTextField.m */; };
 		99186CBD2508EC6000A9FE07 /* EPOSTextField+FloatText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CBC2508EC6000A9FE07 /* EPOSTextField+FloatText.swift */; };
 		99186CC42508EF5600A9FE07 /* EPOSTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CC32508EF5600A9FE07 /* EPOSTabBarViewController.swift */; };
@@ -42,7 +70,6 @@
 		99186D292511D1E000A9FE07 /* WebviewStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99186D262511D1E000A9FE07 /* WebviewStoryBoard.storyboard */; };
 		99186D2A2511D1E000A9FE07 /* CommonWebviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D282511D1E000A9FE07 /* CommonWebviewController.swift */; };
 		99186D3B2511D21000A9FE07 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D342511D21000A9FE07 /* ApiClient.swift */; };
-		99186D3C2511D21000A9FE07 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D352511D21000A9FE07 /* User.swift */; };
 		99186D3D2511D21100A9FE07 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D362511D21000A9FE07 /* RequestHandler.swift */; };
 		99186D4A2511D27F00A9FE07 /* LoginScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99186D442511D27F00A9FE07 /* LoginScreen.storyboard */; };
 		99186D4B2511D27F00A9FE07 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186D462511D27F00A9FE07 /* LoginController.swift */; };
@@ -158,6 +185,24 @@
 		22F0391820214628F09E9428 /* Pods_ePOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ePOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3293659E051B6C990362E7F9 /* Pods-ePOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ePOS.debug.xcconfig"; path = "Target Support Files/Pods-ePOS/Pods-ePOS.debug.xcconfig"; sourceTree = "<group>"; };
 		46161AC425137F55006D2783 /* CommonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonExtensions.swift; sourceTree = "<group>"; };
+		4669F0C42525DEF900DEA9F2 /* MerchantVerificationServiceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantVerificationServiceData.swift; sourceTree = "<group>"; };
+		4669F0C62525E0E000DEA9F2 /* MerchantVerificationAddressData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantVerificationAddressData.swift; sourceTree = "<group>"; };
+		46ADF103252876CA009A9297 /* BankAccountDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccountDetails.swift; sourceTree = "<group>"; };
+		46ADF1052528776D009A9297 /* LeadScheduleDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadScheduleDetails.swift; sourceTree = "<group>"; };
+		46ADF108252877E0009A9297 /* AdditionalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInfo.swift; sourceTree = "<group>"; };
+		46ADF10A25287803009A9297 /* LeadAgreementDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadAgreementDetails.swift; sourceTree = "<group>"; };
+		46ADF10D2528785F009A9297 /* BusinessDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDetails.swift; sourceTree = "<group>"; };
+		46ADF10F252878B0009A9297 /* LeadComments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadComments.swift; sourceTree = "<group>"; };
+		46ADF112252878F1009A9297 /* KycDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KycDetails.swift; sourceTree = "<group>"; };
+		46ADF1152528792F009A9297 /* ContactDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetails.swift; sourceTree = "<group>"; };
+		46ADF11825287976009A9297 /* AddressDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressDetails.swift; sourceTree = "<group>"; };
+		46ADF11B252879E0009A9297 /* DocumentDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDetails.swift; sourceTree = "<group>"; };
+		46ADF11D25287A37009A9297 /* AdditionalItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalItem.swift; sourceTree = "<group>"; };
+		46ADF11F25287A47009A9297 /* BusinessItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessItem.swift; sourceTree = "<group>"; };
+		46ADF12125287A56009A9297 /* IndividualItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualItem.swift; sourceTree = "<group>"; };
+		46ADF12325287AF4009A9297 /* DocumentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentItem.swift; sourceTree = "<group>"; };
+		46ADF12525287BA2009A9297 /* CommentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentData.swift; sourceTree = "<group>"; };
+		46ADF12725287BB6009A9297 /* DocResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocResources.swift; sourceTree = "<group>"; };
 		46BD9B4125160767008DEFEA /* IntialDataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntialDataRequest.swift; sourceTree = "<group>"; };
 		46BD9B432516095C008DEFEA /* OnBoardingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingRequest.swift; sourceTree = "<group>"; };
 		46BD9B45251617A7008DEFEA /* BaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
@@ -167,6 +212,16 @@
 		46BD9B4F251A8646008DEFEA /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
 		46BD9B51251A8B69008DEFEA /* PasswordResetLinkMsgController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetLinkMsgController.swift; sourceTree = "<group>"; };
 		46BD9B53251AFE80008DEFEA /* GenericSwitchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericSwitchingViewController.swift; sourceTree = "<group>"; };
+		990AF960252854610008A907 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
+		990AF9622528559C0008A907 /* DropdownOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownOptionsViewController.swift; sourceTree = "<group>"; };
+		990AF9632528559C0008A907 /* DropdownOptionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropdownOptionsViewController.xib; sourceTree = "<group>"; };
+		990AF9C62529DF040008A907 /* SearchIFSCData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchIFSCData.swift; sourceTree = "<group>"; };
+		990AF9C9252A0F970008A907 /* CustomSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSearchViewController.swift; sourceTree = "<group>"; };
+		990AF9CA252A0F970008A907 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
+		990AF9CB252A0F970008A907 /* CustomSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomSearchViewController.xib; sourceTree = "<group>"; };
+		990AF9CC252A0F970008A907 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		990AF9D1252A38A10008A907 /* MasterData.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = MasterData.plist; sourceTree = "<group>"; };
+		990AF9D3252A38A80008A907 /* States.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = States.plist; sourceTree = "<group>"; };
 		99186CB72508C08E00A9FE07 /* ePOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ePOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		99186CB82508C08F00A9FE07 /* EPOSTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EPOSTextField.h; sourceTree = "<group>"; };
 		99186CB92508C08F00A9FE07 /* EPOSTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EPOSTextField.m; sourceTree = "<group>"; };
@@ -195,7 +250,6 @@
 		99186D2D2511D1F700A9FE07 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		99186D2F2511D1F700A9FE07 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		99186D342511D21000A9FE07 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
-		99186D352511D21000A9FE07 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		99186D362511D21000A9FE07 /* RequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		99186D442511D27F00A9FE07 /* LoginScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginScreen.storyboard; sourceTree = "<group>"; };
 		99186D462511D27F00A9FE07 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -348,6 +402,104 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		4669F0C32525DEA900DEA9F2 /* MerchantVerificationServiceData */ = {
+			isa = PBXGroup;
+			children = (
+				4669F0C42525DEF900DEA9F2 /* MerchantVerificationServiceData.swift */,
+				4669F0C62525E0E000DEA9F2 /* MerchantVerificationAddressData.swift */,
+			);
+			path = MerchantVerificationServiceData;
+			sourceTree = "<group>";
+		};
+		46ADF1022528767A009A9297 /* BankAccountData */ = {
+			isa = PBXGroup;
+			children = (
+				46ADF103252876CA009A9297 /* BankAccountDetails.swift */,
+			);
+			path = BankAccountData;
+			sourceTree = "<group>";
+		};
+		46ADF107252877CC009A9297 /* AddditonalInfo */ = {
+			isa = PBXGroup;
+			children = (
+				46ADF108252877E0009A9297 /* AdditionalInfo.swift */,
+			);
+			path = AddditonalInfo;
+			sourceTree = "<group>";
+		};
+		46ADF10C25287849009A9297 /* BusinessData */ = {
+			isa = PBXGroup;
+			children = (
+				46ADF10D2528785F009A9297 /* BusinessDetails.swift */,
+			);
+			path = BusinessData;
+			sourceTree = "<group>";
+		};
+		46ADF111252878E0009A9297 /* KycData */ = {
+			isa = PBXGroup;
+			children = (
+				46ADF112252878F1009A9297 /* KycDetails.swift */,
+			);
+			path = KycData;
+			sourceTree = "<group>";
+		};
+		46ADF1142528791E009A9297 /* ContactData */ = {
+			isa = PBXGroup;
+			children = (
+				46ADF1152528792F009A9297 /* ContactDetails.swift */,
+			);
+			path = ContactData;
+			sourceTree = "<group>";
+		};
+		46ADF11725287960009A9297 /* AddressData */ = {
+			isa = PBXGroup;
+			children = (
+				46ADF11825287976009A9297 /* AddressDetails.swift */,
+			);
+			path = AddressData;
+			sourceTree = "<group>";
+		};
+		46ADF11A252879CA009A9297 /* DocumentsData */ = {
+			isa = PBXGroup;
+			children = (
+				46ADF11B252879E0009A9297 /* DocumentDetails.swift */,
+				46ADF11D25287A37009A9297 /* AdditionalItem.swift */,
+				46ADF11F25287A47009A9297 /* BusinessItem.swift */,
+				46ADF12125287A56009A9297 /* IndividualItem.swift */,
+				46ADF12325287AF4009A9297 /* DocumentItem.swift */,
+				46ADF12525287BA2009A9297 /* CommentData.swift */,
+				46ADF12725287BB6009A9297 /* DocResources.swift */,
+			);
+			path = DocumentsData;
+			sourceTree = "<group>";
+		};
+		990AF95F252854450008A907 /* BottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				990AF960252854610008A907 /* BottomSheetViewController.swift */,
+			);
+			path = BottomSheet;
+			sourceTree = "<group>";
+		};
+		990AF9C52529DE7E0008A907 /* IFSCData */ = {
+			isa = PBXGroup;
+			children = (
+				990AF9C62529DF040008A907 /* SearchIFSCData.swift */,
+			);
+			path = IFSCData;
+			sourceTree = "<group>";
+		};
+		990AF9C8252A0F970008A907 /* SearchController */ = {
+			isa = PBXGroup;
+			children = (
+				990AF9C9252A0F970008A907 /* CustomSearchViewController.swift */,
+				990AF9CA252A0F970008A907 /* SearchTableViewCell.xib */,
+				990AF9CB252A0F970008A907 /* CustomSearchViewController.xib */,
+				990AF9CC252A0F970008A907 /* SearchTableViewCell.swift */,
+			);
+			path = SearchController;
+			sourceTree = "<group>";
+		};
 		99186CB62508C06500A9FE07 /* TextField */ = {
 			isa = PBXGroup;
 			children = (
@@ -440,6 +592,8 @@
 		99186D092510922B00A9FE07 /* Common Views */ = {
 			isa = PBXGroup;
 			children = (
+				990AF9C8252A0F970008A907 /* SearchController */,
+				990AF95F252854450008A907 /* BottomSheet */,
 				996FD8A7251E0FFA001961EE /* CustomNavigationStyle */,
 				991DF26F251DED4E00AEA1C3 /* BackgroundView */,
 				99186D662512443700A9FE07 /* Dropdown */,
@@ -542,7 +696,6 @@
 			isa = PBXGroup;
 			children = (
 				99186D342511D21000A9FE07 /* ApiClient.swift */,
-				99186D352511D21000A9FE07 /* User.swift */,
 				99186D362511D21000A9FE07 /* RequestHandler.swift */,
 			);
 			path = ApiHandler;
@@ -648,6 +801,8 @@
 		99186D6325122F8400A9FE07 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				990AF9D1252A38A10008A907 /* MasterData.plist */,
+				990AF9D3252A38A80008A907 /* States.plist */,
 				9919A9AD2519E42E00A67253 /* Package */,
 				99186D6D251248EC00A9FE07 /* PersonalInfoViewController.swift */,
 				99186D6E251248EC00A9FE07 /* PersonalInfoViewController.xib */,
@@ -660,6 +815,8 @@
 				9919A9A02517528800A67253 /* SearchIFSCViewController.xib */,
 				9919A9A325176D9D00A67253 /* IFSCCodeDetailViewController.swift */,
 				9919A9A425176D9D00A67253 /* IFSCCodeDetailViewController.xib */,
+				990AF9622528559C0008A907 /* DropdownOptionsViewController.swift */,
+				990AF9632528559C0008A907 /* DropdownOptionsViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -684,6 +841,15 @@
 		99186D6525122F9900A9FE07 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				990AF9C52529DE7E0008A907 /* IFSCData */,
+				46ADF11A252879CA009A9297 /* DocumentsData */,
+				46ADF11725287960009A9297 /* AddressData */,
+				46ADF1142528791E009A9297 /* ContactData */,
+				46ADF111252878E0009A9297 /* KycData */,
+				46ADF10C25287849009A9297 /* BusinessData */,
+				46ADF107252877CC009A9297 /* AddditonalInfo */,
+				46ADF1022528767A009A9297 /* BankAccountData */,
+				4669F0C32525DEA900DEA9F2 /* MerchantVerificationServiceData */,
 				997DC8252524A2E4006ADE48 /* GST Docs */,
 				997DC7F825223441006ADE48 /* LeadData */,
 				997DC7DE2521EEFC006ADE48 /* CityData */,
@@ -977,6 +1143,9 @@
 				997DC7F92522345F006ADE48 /* Lead.swift */,
 				997DC7FB2522346D006ADE48 /* LeadProfile.swift */,
 				997DC7FD2522347F006ADE48 /* LeadState.swift */,
+				46ADF1052528776D009A9297 /* LeadScheduleDetails.swift */,
+				46ADF10A25287803009A9297 /* LeadAgreementDetails.swift */,
+				46ADF10F252878B0009A9297 /* LeadComments.swift */,
 			);
 			path = LeadData;
 			sourceTree = "<group>";
@@ -1094,14 +1263,17 @@
 			files = (
 				9976C95B2501165E00FC5DD3 /* Roboto-Thin.ttf in Resources */,
 				991DF26A251CB5C900AEA1C3 /* EPOSLoader.xib in Resources */,
+				990AF9652528559C0008A907 /* DropdownOptionsViewController.xib in Resources */,
 				9976C9502501165E00FC5DD3 /* Roboto-Medium.ttf in Resources */,
 				9976C9572501165E00FC5DD3 /* Roboto-Italic.ttf in Resources */,
 				99186D4A2511D27F00A9FE07 /* LoginScreen.storyboard in Resources */,
 				9976C95A2501165E00FC5DD3 /* Roboto-Bold.ttf in Resources */,
 				9919A9B52519E48900A67253 /* PackageView.xib in Resources */,
+				990AF9D4252A38A80008A907 /* States.plist in Resources */,
 				99186CD42508F07C00A9FE07 /* Transactions.storyboard in Resources */,
 				9919A9A625176D9D00A67253 /* IFSCCodeDetailViewController.xib in Resources */,
 				99186D292511D1E000A9FE07 /* WebviewStoryBoard.storyboard in Resources */,
+				990AF9CF252A0F970008A907 /* CustomSearchViewController.xib in Resources */,
 				9919A9A22517528800A67253 /* SearchIFSCViewController.xib in Resources */,
 				991DF273251DED8000AEA1C3 /* EPOSBaseView.xib in Resources */,
 				9919A9BD251A475C00A67253 /* PackageDetailViewController.xib in Resources */,
@@ -1122,6 +1294,7 @@
 				9976C9532501165E00FC5DD3 /* Roboto-MediumItalic.ttf in Resources */,
 				9976C9262501069D00FC5DD3 /* Colors.xcassets in Resources */,
 				9976C9542501165E00FC5DD3 /* Roboto-ThinItalic.ttf in Resources */,
+				990AF9D2252A38A10008A907 /* MasterData.plist in Resources */,
 				9976C9122500F05800FC5DD3 /* Assets.xcassets in Resources */,
 				9976C9552501165E00FC5DD3 /* Roboto-BoldItalic.ttf in Resources */,
 				991DF26B251CB5C900AEA1C3 /* loadingAnimation.gif in Resources */,
@@ -1133,6 +1306,7 @@
 				99186CD22508F06D00A9FE07 /* Account.storyboard in Resources */,
 				99186D70251248EC00A9FE07 /* PersonalInfoViewController.xib in Resources */,
 				9976C9102500F05700FC5DD3 /* Main.storyboard in Resources */,
+				990AF9CE252A0F970008A907 /* SearchTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1246,6 +1420,8 @@
 				CECC5413252B67C400C0940E /* ISO320HostUploadChangeNumberConstants.swift in Sources */,
 				9919A99D25174B2D00A67253 /* BankDetailsViewController.swift in Sources */,
 				991DF269251CB5C900AEA1C3 /* GifLoader.swift in Sources */,
+				46ADF1162528792F009A9297 /* ContactDetails.swift in Sources */,
+				46ADF1062528776D009A9297 /* LeadScheduleDetails.swift in Sources */,
 				46BD9B4225160767008DEFEA /* IntialDataRequest.swift in Sources */,
 				9919A9942514D83000A67253 /* EPOSUserDefaults.swift in Sources */,
 				CECC540D252B539600C0940E /* ISO500Settlement.swift in Sources */,
@@ -1259,9 +1435,11 @@
 				9976C9232501066B00FC5DD3 /* CustomColors.swift in Sources */,
 				99186CCB2508F01400A9FE07 /* TransactionsViewController.swift in Sources */,
 				991DF271251DED7100AEA1C3 /* EPOSBaseView.swift in Sources */,
+				46ADF12025287A47009A9297 /* BusinessItem.swift in Sources */,
 				997DC7FE2522347F006ADE48 /* LeadState.swift in Sources */,
 				997DC803252347A3006ADE48 /* DropdownTableViewCell.swift in Sources */,
 				997DC7E52521EEFC006ADE48 /* CityData.swift in Sources */,
+				46ADF109252877E0009A9297 /* AdditionalInfo.swift in Sources */,
 				99186D212511D07E00A9FE07 /* Validation.swift in Sources */,
 				9976C9212501065D00FC5DD3 /* CustomFonts.swift in Sources */,
 				CECC540F252B540300C0940E /* ISOFieldConstants.swift in Sources */,
@@ -1273,7 +1451,8 @@
 				99186D582511D32E00A9FE07 /* BottomLineTextField.swift in Sources */,
 				997DC8272524A2FE006ADE48 /* GSTDetails.swift in Sources */,
 				CECC5409252B533C00C0940E /* ISO440Activation.swift in Sources */,
-				99186D3C2511D21000A9FE07 /* User.swift in Sources */,
+				46ADF104252876CA009A9297 /* BankAccountDetails.swift in Sources */,
+				4669F0C52525DEF900DEA9F2 /* MerchantVerificationServiceData.swift in Sources */,
 				9976C95E2501173600FC5DD3 /* DeviceType.swift in Sources */,
 				99186CE6250A2C6500A9FE07 /* EPOSHelper.swift in Sources */,
 				CE971BD3252CBB8D00843943 /* ISOHandler.swift in Sources */,
@@ -1283,8 +1462,12 @@
 				99186D682512445400A9FE07 /* MakeDropDown.swift in Sources */,
 				CE971BCF252CBA8400843943 /* ISOMessage.swift in Sources */,
 				CE971BC7252CAD2400843943 /* TCPIPCommunicationHandler.swift in Sources */,
+				46ADF110252878B0009A9297 /* LeadComments.swift in Sources */,
 				46BD9B4825175327008DEFEA /* ConvertApiParameterIntoObject.swift in Sources */,
 				99186D552511D28800A9FE07 /* SignUpControllerViewController.swift in Sources */,
+				46ADF11925287976009A9297 /* AddressDetails.swift in Sources */,
+				990AF9D0252A0F970008A907 /* SearchTableViewCell.swift in Sources */,
+				990AF9CD252A0F970008A907 /* CustomSearchViewController.swift in Sources */,
 				46BD9B50251A8646008DEFEA /* ForgotPasswordController.swift in Sources */,
 				997DC7F5252200FD006ADE48 /* OnBoardingConstants.swift in Sources */,
 				99186D232511D09400A9FE07 /* Util.swift in Sources */,
@@ -1294,12 +1477,17 @@
 				997DC800252321EE006ADE48 /* CompleteUserData.swift in Sources */,
 				99186D4D2511D27F00A9FE07 /* OtpTextField.swift in Sources */,
 				997DC7E42521EEFC006ADE48 /* CityDataProvider.swift in Sources */,
+				46ADF12425287AF4009A9297 /* DocumentItem.swift in Sources */,
 				99186D4C2511D27F00A9FE07 /* OTPVerificationController.swift in Sources */,
 				991ADEA925064E2F00932251 /* UIButtonExtension.swift in Sources */,
+				46ADF10E2528785F009A9297 /* BusinessDetails.swift in Sources */,
 				9919A9C0251A4BA600A67253 /* PackageTableViewCell.swift in Sources */,
 				99186D0E2510922B00A9FE07 /* ShowDialog.swift in Sources */,
 				CE971BC9252CAD4E00843943 /* GlobalData.swift in Sources */,
+				990AF9642528559C0008A907 /* DropdownOptionsViewController.swift in Sources */,
 				99186D2A2511D1E000A9FE07 /* CommonWebviewController.swift in Sources */,
+				46ADF11E25287A37009A9297 /* AdditionalItem.swift in Sources */,
+				4669F0C72525E0E000DEA9F2 /* MerchantVerificationAddressData.swift in Sources */,
 				991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */,
 				99186D142510926800A9FE07 /* EmptyDataViewController.swift in Sources */,
 				CECC540B252B537800C0940E /* ISO320Initialization.swift in Sources */,
@@ -1313,7 +1501,9 @@
 				46BD9B4E251A252C008DEFEA /* ResetPasswordController.swift in Sources */,
 				99186CD02508F03900A9FE07 /* AccountViewController.swift in Sources */,
 				99186D6F251248EC00A9FE07 /* PersonalInfoViewController.swift in Sources */,
+				46ADF10B25287803009A9297 /* LeadAgreementDetails.swift in Sources */,
 				99186CBA2508C08F00A9FE07 /* EPOSTextField.m in Sources */,
+				46ADF113252878F1009A9297 /* KycDetails.swift in Sources */,
 				997DC7E72521EEFC006ADE48 /* MasterData.swift in Sources */,
 				9919A9992517336F00A67253 /* MerchantDetailsViewController.swift in Sources */,
 				99186CC42508EF5600A9FE07 /* EPOSTabBarViewController.swift in Sources */,
@@ -1324,10 +1514,16 @@
 				CECC5411252B586B00C0940E /* ISO320HostCommunicationChangeNumberConstants.swift in Sources */,
 				9919A9BC251A475C00A67253 /* PackageDetailViewController.swift in Sources */,
 				99186D5B2511D37200A9FE07 /* RoundViewCorner.swift in Sources */,
+				46ADF12825287BB6009A9297 /* DocResources.swift in Sources */,
 				99186D4E2511D27F00A9FE07 /* PasswordController.swift in Sources */,
 				99186D5C2511D37200A9FE07 /* CheckBox.swift in Sources */,
 				997DC7FC2522346D006ADE48 /* LeadProfile.swift in Sources */,
+				46ADF12225287A56009A9297 /* IndividualItem.swift in Sources */,
+				46ADF11C252879E0009A9297 /* DocumentDetails.swift in Sources */,
 				9919A9C4251A4BBA00A67253 /* PackageDetailTableViewCell.swift in Sources */,
+				46ADF12625287BA2009A9297 /* CommentData.swift in Sources */,
+				990AF9C72529DF040008A907 /* SearchIFSCData.swift in Sources */,
+				990AF961252854610008A907 /* BottomSheetViewController.swift in Sources */,
 				9976C9092500F05600FC5DD3 /* AppDelegate.swift in Sources */,
 				46BD9B46251617A7008DEFEA /* BaseRequest.swift in Sources */,
 				99186D722512494C00A9FE07 /* PersonalInfoViewController+Dropdown.swift in Sources */,

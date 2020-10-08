@@ -21,12 +21,13 @@ class ResetPasswordController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addKeyboardNotifications()
         otpTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
         if(mobileNumber == nil)
         {
             self.showAlert(title: "Error", message:Constants.errorMessage.rawValue )
         }
-        hideKeyboardWhenTappedAround()
+//        hideKeyboardWhenTappedAround()
         //fillup the mobile Number
         setTextfields();
         
