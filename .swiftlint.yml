@@ -82,6 +82,7 @@ opt_in_rules:
     - redundant_nil_coalescing
     - single_test_class
     - sorted_first_last
+    - empty_count
     - untyped_error_in_catch
 
 identifier_name:

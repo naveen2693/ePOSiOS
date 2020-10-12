@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		18274840419F503DA1EE880A /* Pods_ePOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F0391820214628F09E9428 /* Pods_ePOS.framework */; };
 		46161AC525137F56006D2783 /* CommonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46161AC425137F55006D2783 /* CommonExtensions.swift */; };
+		4646198425330B84009089BC /* SignatureParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4646198325330B84009089BC /* SignatureParams.swift */; };
+		46461987253314A9009089BC /* DeviceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46461986253314A9009089BC /* DeviceState.swift */; };
+		464619892534280A009089BC /* TerminalParamData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464619882534280A009089BC /* TerminalParamData.swift */; };
+		4646198B25342889009089BC /* BatchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4646198A25342889009089BC /* BatchState.swift */; };
+		46AA3E04252F1275005907E1 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AA3E03252F1275005907E1 /* AppConstants.swift */; };
+		46AA3E06252F232F005907E1 /* StructConxData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AA3E05252F232F005907E1 /* StructConxData.swift */; };
+		46AA3E08252F237B005907E1 /* StructConnIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AA3E07252F237B005907E1 /* StructConnIndex.swift */; };
+		46AA3E0A252F24EF005907E1 /* ConnectionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AA3E09252F24EF005907E1 /* ConnectionTypes.swift */; };
 		46BD9B4225160767008DEFEA /* IntialDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B4125160767008DEFEA /* IntialDataRequest.swift */; };
 		46BD9B442516095C008DEFEA /* OnBoardingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B432516095C008DEFEA /* OnBoardingRequest.swift */; };
 		46BD9B46251617A7008DEFEA /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B45251617A7008DEFEA /* BaseRequest.swift */; };
@@ -141,7 +149,7 @@
 		CE971BCF252CBA8400843943 /* ISOMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE971BCE252CBA8400843943 /* ISOMessage.swift */; };
 		CE971BD1252CBB2500843943 /* CryptoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE971BD0252CBB2500843943 /* CryptoHandler.swift */; };
 		CE971BD3252CBB8D00843943 /* ISOHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE971BD2252CBB8D00843943 /* ISOHandler.swift */; };
-		CE971BD5252CBD8200843943 /* TerminalParamData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE971BD4252CBD8200843943 /* TerminalParamData.swift */; };
+		CE971BD5252CBD8200843943 /* TerminalConxData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE971BD4252CBD8200843943 /* TerminalConxData.swift */; };
 		CE971BD7252CBD9D00843943 /* TerminalMasterParamData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE971BD6252CBD9D00843943 /* TerminalMasterParamData.swift */; };
 		CECC5407252B530D00C0940E /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC5406252B530D00C0940E /* FileManager.swift */; };
 		CECC5409252B533C00C0940E /* ISO440Activation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC5408252B533C00C0940E /* ISO440Activation.swift */; };
@@ -158,6 +166,14 @@
 		22F0391820214628F09E9428 /* Pods_ePOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ePOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3293659E051B6C990362E7F9 /* Pods-ePOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ePOS.debug.xcconfig"; path = "Target Support Files/Pods-ePOS/Pods-ePOS.debug.xcconfig"; sourceTree = "<group>"; };
 		46161AC425137F55006D2783 /* CommonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonExtensions.swift; sourceTree = "<group>"; };
+		4646198325330B84009089BC /* SignatureParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureParams.swift; sourceTree = "<group>"; };
+		46461986253314A9009089BC /* DeviceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceState.swift; sourceTree = "<group>"; };
+		464619882534280A009089BC /* TerminalParamData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalParamData.swift; sourceTree = "<group>"; };
+		4646198A25342889009089BC /* BatchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchState.swift; sourceTree = "<group>"; };
+		46AA3E03252F1275005907E1 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		46AA3E05252F232F005907E1 /* StructConxData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructConxData.swift; sourceTree = "<group>"; };
+		46AA3E07252F237B005907E1 /* StructConnIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructConnIndex.swift; sourceTree = "<group>"; };
+		46AA3E09252F24EF005907E1 /* ConnectionTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionTypes.swift; sourceTree = "<group>"; };
 		46BD9B4125160767008DEFEA /* IntialDataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntialDataRequest.swift; sourceTree = "<group>"; };
 		46BD9B432516095C008DEFEA /* OnBoardingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingRequest.swift; sourceTree = "<group>"; };
 		46BD9B45251617A7008DEFEA /* BaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
@@ -299,7 +315,7 @@
 		CE971BCE252CBA8400843943 /* ISOMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISOMessage.swift; sourceTree = "<group>"; };
 		CE971BD0252CBB2500843943 /* CryptoHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoHandler.swift; sourceTree = "<group>"; };
 		CE971BD2252CBB8D00843943 /* ISOHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISOHandler.swift; sourceTree = "<group>"; };
-		CE971BD4252CBD8200843943 /* TerminalParamData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalParamData.swift; sourceTree = "<group>"; };
+		CE971BD4252CBD8200843943 /* TerminalConxData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalConxData.swift; sourceTree = "<group>"; };
 		CE971BD6252CBD9D00843943 /* TerminalMasterParamData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalMasterParamData.swift; sourceTree = "<group>"; };
 		CECC5406252B530D00C0940E /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		CECC5408252B533C00C0940E /* ISO440Activation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO440Activation.swift; sourceTree = "<group>"; };
@@ -1011,8 +1027,15 @@
 		CECC5404252B529C00C0940E /* Structures */ = {
 			isa = PBXGroup;
 			children = (
-				CE971BD4252CBD8200843943 /* TerminalParamData.swift */,
+				CE971BD4252CBD8200843943 /* TerminalConxData.swift */,
 				CE971BD6252CBD9D00843943 /* TerminalMasterParamData.swift */,
+				46AA3E05252F232F005907E1 /* StructConxData.swift */,
+				46AA3E07252F237B005907E1 /* StructConnIndex.swift */,
+				46AA3E09252F24EF005907E1 /* ConnectionTypes.swift */,
+				4646198325330B84009089BC /* SignatureParams.swift */,
+				46461986253314A9009089BC /* DeviceState.swift */,
+				464619882534280A009089BC /* TerminalParamData.swift */,
+				4646198A25342889009089BC /* BatchState.swift */,
 			);
 			path = Structures;
 			sourceTree = "<group>";
@@ -1024,6 +1047,7 @@
 				CECC5410252B586B00C0940E /* ISO320HostCommunicationChangeNumberConstants.swift */,
 				CECC5412252B67C400C0940E /* ISO320HostUploadChangeNumberConstants.swift */,
 				CECC5414252B68A300C0940E /* ISO320PineKeyExchangeChangeNumberConstants.swift */,
+				46AA3E03252F1275005907E1 /* AppConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1252,16 +1276,19 @@
 				CE971BC5252CACAF00843943 /* TCPIPCommunicator.swift in Sources */,
 				CE971BD7252CBD9D00843943 /* TerminalMasterParamData.swift in Sources */,
 				46BD9B54251AFE80008DEFEA /* GenericSwitchingViewController.swift in Sources */,
-				CE971BD5252CBD8200843943 /* TerminalParamData.swift in Sources */,
+				46AA3E08252F237B005907E1 /* StructConnIndex.swift in Sources */,
+				CE971BD5252CBD8200843943 /* TerminalConxData.swift in Sources */,
 				997DC7E62521EEFC006ADE48 /* MasterDataProvider.swift in Sources */,
 				46BD9B442516095C008DEFEA /* OnBoardingRequest.swift in Sources */,
 				46BD9B52251A8B69008DEFEA /* PasswordResetLinkMsgController.swift in Sources */,
 				9976C9232501066B00FC5DD3 /* CustomColors.swift in Sources */,
+				4646198B25342889009089BC /* BatchState.swift in Sources */,
 				99186CCB2508F01400A9FE07 /* TransactionsViewController.swift in Sources */,
 				991DF271251DED7100AEA1C3 /* EPOSBaseView.swift in Sources */,
 				997DC7FE2522347F006ADE48 /* LeadState.swift in Sources */,
 				997DC803252347A3006ADE48 /* DropdownTableViewCell.swift in Sources */,
 				997DC7E52521EEFC006ADE48 /* CityData.swift in Sources */,
+				46AA3E04252F1275005907E1 /* AppConstants.swift in Sources */,
 				99186D212511D07E00A9FE07 /* Validation.swift in Sources */,
 				9976C9212501065D00FC5DD3 /* CustomFonts.swift in Sources */,
 				CECC540F252B540300C0940E /* ISOFieldConstants.swift in Sources */,
@@ -1307,19 +1334,24 @@
 				996FD8A9251E1020001961EE /* CustomNavigationStyleViewController.swift in Sources */,
 				991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */,
 				9919A9962514DCAA00A67253 /* EPOSUserDefaults+Methods.swift in Sources */,
+				46AA3E06252F232F005907E1 /* StructConxData.swift in Sources */,
 				99186D17251092A700A9FE07 /* EmptyViewItem.swift in Sources */,
+				464619892534280A009089BC /* TerminalParamData.swift in Sources */,
 				9919A9A12517528800A67253 /* SearchIFSCViewController.swift in Sources */,
 				99186CEB250A646400A9FE07 /* StatusDemoViewController.swift in Sources */,
 				46BD9B4E251A252C008DEFEA /* ResetPasswordController.swift in Sources */,
 				99186CD02508F03900A9FE07 /* AccountViewController.swift in Sources */,
+				46461987253314A9009089BC /* DeviceState.swift in Sources */,
 				99186D6F251248EC00A9FE07 /* PersonalInfoViewController.swift in Sources */,
 				99186CBA2508C08F00A9FE07 /* EPOSTextField.m in Sources */,
+				46AA3E0A252F24EF005907E1 /* ConnectionTypes.swift in Sources */,
 				997DC7E72521EEFC006ADE48 /* MasterData.swift in Sources */,
 				9919A9992517336F00A67253 /* MerchantDetailsViewController.swift in Sources */,
 				99186CC42508EF5600A9FE07 /* EPOSTabBarViewController.swift in Sources */,
 				991ADEAB250660DB00932251 /* EPOSGradientView.swift in Sources */,
 				9919A9B32519E47900A67253 /* PackageView.swift in Sources */,
 				99186D0F2510922B00A9FE07 /* FailedPopup.swift in Sources */,
+				4646198425330B84009089BC /* SignatureParams.swift in Sources */,
 				9919A9A9251770E100A67253 /* IFSCDetailTableViewCell.swift in Sources */,
 				CECC5411252B586B00C0940E /* ISO320HostCommunicationChangeNumberConstants.swift in Sources */,
 				9919A9BC251A475C00A67253 /* PackageDetailViewController.swift in Sources */,
