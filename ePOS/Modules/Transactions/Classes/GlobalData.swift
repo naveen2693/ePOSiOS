@@ -284,7 +284,7 @@ public class GlobalData
         }
         return AppConstant.TRUE;
     }
-    
+  
  // MARK:-CreateMasterFONTFile
     /**
         * FOR UNICODE FONT FILE
@@ -329,10 +329,6 @@ public class GlobalData
         }
         return AppConstant.TRUE;
     }
-
- 
- 
-    
     
     // MARK:- CreateMasterMINIPVMFile
     private func CreateMasterMINIPVMFile() -> Int {
@@ -374,7 +370,6 @@ public class GlobalData
         return AppConstant.TRUE;
     }
 
-
     /*****************************************************************************
      * Name     :  WriteLoginFile
      * Function :  Write Connection File with current global data
@@ -391,8 +386,8 @@ public class GlobalData
             fatalError("File Append Error")
         }
     }
-    public func ReadLoginAccountFile(fileName:String) -> [LoginAccounts]? {
-        
+
+    public func ReadLoginAccountFile(fileName:String) -> [LoginAccounts] {
         if let list:[LoginAccounts] = FileSystem.ReadFile(strFileName: fileName)
         {
             return list;
@@ -406,6 +401,15 @@ public class GlobalData
         }
         return nil
     }
+
+    }
+    
+    public func getFullSerialNumber() -> String {
+        if let serialNumber = fullSerialNumber{
+           return serialNumber;
+        }
+       }
+
 }
     
 

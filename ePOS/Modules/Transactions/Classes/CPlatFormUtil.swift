@@ -16,7 +16,6 @@ public static func getLast8DigitOfIMEINumber() -> String {
     {
      last8DigitIMEI =  IMEI.substring(from: (IMEI.count - 8),to: IMEI.count)
     }
-    
     return last8DigitIMEI;
 }
 }

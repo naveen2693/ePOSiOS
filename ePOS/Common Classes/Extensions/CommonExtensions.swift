@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CommonCrypto
+<<<<<<< Updated upstream
 extension UITextField{
     @IBInspectable var doneAccessory: Bool{
         get{
@@ -97,6 +98,8 @@ class SelfSizingTableView: UITableView {
     }
 }
 
+=======
+>>>>>>> Stashed changes
 extension UIViewController{
 func hideKeyboardWhenTappedAround() {
        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
@@ -110,14 +113,20 @@ func hideKeyboardWhenTappedAround() {
 }
 
 extension String {
+<<<<<<< Updated upstream
     
+=======
+>>>>>>> Stashed changes
     func hmac(key: String) -> String {
         var digest = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
         CCHmac(CCHmacAlgorithm(kCCHmacAlgSHA256), key, key.count, self, self.count, &digest)
         let data = digest.withUnsafeBytes { DispatchData(bytes: $0) }
         return data.map { String(format: "%02hhx", $0) }.joined()
     }
+<<<<<<< Updated upstream
     
+=======
+>>>>>>> Stashed changes
     func substring(from: Int?, to: Int?) -> String {
            if let start = from {
                guard start < self.count else {
