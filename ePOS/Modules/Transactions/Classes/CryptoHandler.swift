@@ -35,12 +35,6 @@ class CryptoHandler{
     {
         return nil
     }
-
-    static func XOREncrypt(rawdata: [Byte], cipherlen : Int, encrypted: [Byte], lenBuff: Int, uchDynamicInput: [Byte]?, DynamicInputLen: Int, encryptionType: Int) -> [Byte]
-    {
-        let byte = [Byte](repeating: 0x00, count: 50)
-        return byte
-    }
     
     
     func vFnGetSHA1(_ buffer: [UInt8]) -> String
@@ -97,8 +91,7 @@ class CryptoHandler{
              let key = [UInt8] ("GODISGREAT".utf8)
              return key
         case XOREncryptionType.USER_DATA_ENCRYPTION.rawValue:
-            // TODO call PlatformUtils.GetHardWareSerialNumber();
-            var hardwareSerialNumber : [UInt8] = [1,2,3,4]
+            guard var hardwareSerialNumber = PlatformUtils.GetHardWareSerialNumber() else {return nil}
             if hardwareSerialNumber.count < 15 {
                 hardwareSerialNumber = TransactionUtils.ByteArrayZeroPaddingtoLeft(to: hardwareSerialNumber,blockSize:15)
             }

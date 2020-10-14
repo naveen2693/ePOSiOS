@@ -22,6 +22,7 @@ public class PlatformUtils{
      
         } catch {
             debugPrint("Exception Occurred: \(error)")
+            return nil
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(ex));
         }
     }
