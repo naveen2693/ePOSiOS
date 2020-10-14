@@ -38,6 +38,16 @@ enum AppConstant
     static let FALSE = 0;
     
     
+    
+    
+
+    
+    
+    static let MAX_COUNT_CHARGE_SLIP_IMAGES:Int = 100;
+    
+    
+    
+    
     //File Name
     static let TRANSACTIONDATA = "TxnData";                //File storing Parameter data
     static let TERMINALPARAMFILENAME = "Param";                //File storing Parameter dat
@@ -64,6 +74,31 @@ enum AppConstant
     static let TXNFEILD52NAME = "Csvdump";    //DUMP of CSV Data
     static let BILLINGAPPDUMPFILE = "billingappdump";
     static let DEVICE_STATE = "DeviceState"
+    static let USERINFOFILE = "UserInfo"
+    static let  MASTERCGFILE = "MASTERCT"
+    static let MASTERCLRDIMFILE = "MASTERCLRDIMG"
+    static let MASTERFCGFILE = "MASTERFCT"
+    static let MASTERIMFILE = "MASTERIMG"
+    static let MASTERFONTFILE = "MASTERFON"
+    static let MASTERLIBFILE = "MASTERLIB"
+    static let MASTERMINIPVMFILE = "MASTERMINI"
+    static let DEFAULT_ORDINARY_USER = ""
+    static let DEFAULT_ORDINARY_PIN = ""
+    static let DEFAULT_ADMIN_USER = ""
+    static let ORDINARY_USER_TYPE = 3;
+    static let ADM_USER_TYPE = 1;
+    
+    
+    
+    static let MAX_EMV_TAG_TLV_LENGTH = 20;
+    static let DEFAULT_HOSTID = 0x02;
+    static let DEFAULT_CENTRAL_HOSTID = 0x01;
+    static let DEFAULT_HUB_HOSTID = 0x02;
+    static let DEFAULT_LAST_ROC = 100;
+    static let DEFAULT_FIRST_BATCHID = 9001;
+    static let DEFAULT_BATCH_SIZE = 200;
+    
+    static let NoPrintDefaultMessage = "    No Print Enabled\n\n\n   "
     
 }
 

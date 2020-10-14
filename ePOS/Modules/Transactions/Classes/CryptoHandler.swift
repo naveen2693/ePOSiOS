@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 class CryptoHandler{
     
     
@@ -43,4 +44,11 @@ class CryptoHandler{
         return byte
     }
     
+import CommonCrypto
+public class CryptoHandler
+{
+    static func vFnGetSHA256(key:String) ->String
+      {
+        return key.hmac(key: key)
+      }
 }

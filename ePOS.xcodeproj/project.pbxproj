@@ -13,6 +13,12 @@
 		46461987253314A9009089BC /* DeviceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46461986253314A9009089BC /* DeviceState.swift */; };
 		464619892534280A009089BC /* TerminalParamData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464619882534280A009089BC /* TerminalParamData.swift */; };
 		4646198B25342889009089BC /* BatchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4646198A25342889009089BC /* BatchState.swift */; };
+		4646198D25345EA0009089BC /* LoginAccounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4646198C25345EA0009089BC /* LoginAccounts.swift */; };
+		4646198F253578AD009089BC /* CUIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4646198E253578AD009089BC /* CUIHelper.swift */; };
+		4646199125358579009089BC /* Long.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4646199025358579009089BC /* Long.swift */; };
+		46461993253588CF009089BC /* FontStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46461992253588CF009089BC /* FontStruct.swift */; };
+		4646199525358D1E009089BC /* LIbStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4646199425358D1E009089BC /* LIbStruct.swift */; };
+		4646199725359010009089BC /* CPlatFormUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4646199625359010009089BC /* CPlatFormUtil.swift */; };
 		46AA3E04252F1275005907E1 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AA3E03252F1275005907E1 /* AppConstants.swift */; };
 		46AA3E06252F232F005907E1 /* StructConxData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AA3E05252F232F005907E1 /* StructConxData.swift */; };
 		46AA3E08252F237B005907E1 /* StructConnIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AA3E07252F237B005907E1 /* StructConnIndex.swift */; };
@@ -203,6 +209,12 @@
 		46461986253314A9009089BC /* DeviceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceState.swift; sourceTree = "<group>"; };
 		464619882534280A009089BC /* TerminalParamData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalParamData.swift; sourceTree = "<group>"; };
 		4646198A25342889009089BC /* BatchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchState.swift; sourceTree = "<group>"; };
+		4646198C25345EA0009089BC /* LoginAccounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAccounts.swift; sourceTree = "<group>"; };
+		4646198E253578AD009089BC /* CUIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CUIHelper.swift; sourceTree = "<group>"; };
+		4646199025358579009089BC /* Long.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Long.swift; sourceTree = "<group>"; };
+		46461992253588CF009089BC /* FontStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStruct.swift; sourceTree = "<group>"; };
+		4646199425358D1E009089BC /* LIbStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LIbStruct.swift; sourceTree = "<group>"; };
+		4646199625359010009089BC /* CPlatFormUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPlatFormUtil.swift; sourceTree = "<group>"; };
 		46AA3E03252F1275005907E1 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		46AA3E05252F232F005907E1 /* StructConxData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructConxData.swift; sourceTree = "<group>"; };
 		46AA3E07252F237B005907E1 /* StructConnIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructConnIndex.swift; sourceTree = "<group>"; };
@@ -1205,6 +1217,8 @@
 				CE971BD2252CBB8D00843943 /* ISOHandler.swift */,
 				8E4DCFA12534BC1400726EA8 /* CRC32.swift */,
 				8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */,
+				4646198E253578AD009089BC /* CUIHelper.swift */,
+				4646199625359010009089BC /* CPlatFormUtil.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1221,6 +1235,10 @@
 				46461986253314A9009089BC /* DeviceState.swift */,
 				464619882534280A009089BC /* TerminalParamData.swift */,
 				4646198A25342889009089BC /* BatchState.swift */,
+				4646198C25345EA0009089BC /* LoginAccounts.swift */,
+				4646199025358579009089BC /* Long.swift */,
+				46461992253588CF009089BC /* FontStruct.swift */,
+				4646199425358D1E009089BC /* LIbStruct.swift */,
 			);
 			path = Structures;
 			sourceTree = "<group>";
@@ -1456,7 +1474,9 @@
 			files = (
 				99186D3D2511D21100A9FE07 /* RequestHandler.swift in Sources */,
 				46BD9B4A25176F6F008DEFEA /* IntitalDataModel.swift in Sources */,
+				4646199525358D1E009089BC /* LIbStruct.swift in Sources */,
 				99186D192510959F00A9FE07 /* StatusDialogItem.swift in Sources */,
+				4646199125358579009089BC /* Long.swift in Sources */,
 				9919A9B02519E45400A67253 /* SelectPackageViewController.swift in Sources */,
 				9976C90D2500F05600FC5DD3 /* ViewController.swift in Sources */,
 				CECC5413252B67C400C0940E /* ISO320HostUploadChangeNumberConstants.swift in Sources */,
@@ -1470,6 +1490,7 @@
 				CE971BC5252CACAF00843943 /* TCPIPCommunicator.swift in Sources */,
 				CE971BD7252CBD9D00843943 /* TerminalMasterParamData.swift in Sources */,
 				46BD9B54251AFE80008DEFEA /* GenericSwitchingViewController.swift in Sources */,
+				4646199725359010009089BC /* CPlatFormUtil.swift in Sources */,
 				46AA3E08252F237B005907E1 /* StructConnIndex.swift in Sources */,
 				CE971BD5252CBD8200843943 /* TerminalConxData.swift in Sources */,
 				CE971BD5252CBD8200843943 /* TerminalParamData.swift in Sources */,
@@ -1509,6 +1530,7 @@
 				CECC5407252B530D00C0940E /* FileManager.swift in Sources */,
 				9919A9902513796000A67253 /* ConstantNew.swift in Sources */,
 				99186CBD2508EC6000A9FE07 /* EPOSTextField+FloatText.swift in Sources */,
+				4646198D25345EA0009089BC /* LoginAccounts.swift in Sources */,
 				99186D682512445400A9FE07 /* MakeDropDown.swift in Sources */,
 				CE971BCF252CBA8400843943 /* ISOMessage.swift in Sources */,
 				CE971BC7252CAD2400843943 /* TCPIPCommunicationHandler.swift in Sources */,
@@ -1543,6 +1565,7 @@
 				99186D142510926800A9FE07 /* EmptyDataViewController.swift in Sources */,
 				CECC540B252B537800C0940E /* ISO320Initialization.swift in Sources */,
 				991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */,
+				46461993253588CF009089BC /* FontStruct.swift in Sources */,
 				996FD8A9251E1020001961EE /* CustomNavigationStyleViewController.swift in Sources */,
 				991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */,
 				9919A9962514DCAA00A67253 /* EPOSUserDefaults+Methods.swift in Sources */,
@@ -1589,6 +1612,7 @@
 				CECC5415252B68A300C0940E /* ISO320PineKeyExchangeChangeNumberConstants.swift in Sources */,
 				9919A9A525176D9D00A67253 /* IFSCCodeDetailViewController.swift in Sources */,
 				997DC7FA2522345F006ADE48 /* Lead.swift in Sources */,
+				4646198F253578AD009089BC /* CUIHelper.swift in Sources */,
 				991ADEAD250662EF00932251 /* EPOSShadowView.swift in Sources */,
 				46161AC525137F56006D2783 /* CommonExtensions.swift in Sources */,
 				9919A9B92519E57B00A67253 /* iCarousel.m in Sources */,

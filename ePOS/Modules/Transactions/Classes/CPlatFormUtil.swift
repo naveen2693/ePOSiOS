@@ -1,0 +1,21 @@
+//
+//  CPlatFormUtil.swift
+//  ePOS
+//
+//  Created by Abhishek on 13/10/20.
+//  Copyright © 2020 Pinelabs. All rights reserved.
+//
+
+import Foundation
+public class CPlatFormUtils{
+    
+public static func getLast8DigitOfIMEINumber() -> String {
+    var IMEI = "";
+    var last8DigitIMEI = "";
+    IMEI = GlobalData.sharedInstance.getFullSerialNumber();
+        //DeviceManager.getInstance().getIMEI();
+   last8DigitIMEI =  IMEI.substring(from: (IMEI.count - 8),to: IMEI.count)
+    
+    return last8DigitIMEI;
+}
+}

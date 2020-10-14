@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-
 //extension UITextField{
 //    @IBInspectable var doneAccessory: Bool{
 //        get{
@@ -96,3 +95,60 @@ import UIKit
 //        return CGSize(width: contentSize.width, height: height)
 //    }
 //}
+import CommonCrypto
+extension UIViewController{
+func hideKeyboardWhenTappedAround() {
+       let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+       tap.cancelsTouchesInView = false
+       view.addGestureRecognizer(tap)
+   }
+   
+   @objc func dismissKeyboard() {
+       view.endEditing(true)
+   }
+}
+
+extension String {
+    func hmac(key: String) -> String {
+        var digest = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
+        CCHmac(CCHmacAlgorithm(kCCHmacAlgSHA256), key, key.count, self, self.count, &digest)
+        let data = digest.withUnsafeBytes { DispatchData(bytes: $0) }
+        return data.map { String(format: "%02hhx", $0) }.joined()
+    }
+    func substring(from: Int?, to: Int?) -> String {
+           if let start = from {
+               guard start < self.count else {
+                   return ""
+               }
+           }
+
+           if let end = to {
+               guard end >= 0 else {
+                   return ""
+               }
+           }
+
+           if let start = from, let end = to {
+               guard end - start >= 0 else {
+                   return ""
+               }
+           }
+
+           let startIndex: String.Index
+           if let start = from, start >= 0 {
+               startIndex = self.index(self.startIndex, offsetBy: start)
+           } else {
+               startIndex = self.startIndex
+           }
+
+           let endIndex: String.Index
+           if let end = to, end >= 0, end < self.count {
+               endIndex = self.index(self.startIndex, offsetBy: end + 1)
+           } else {
+               endIndex = self.endIndex
+           }
+
+           return String(self[startIndex ..< endIndex])
+       }
+  
+}
