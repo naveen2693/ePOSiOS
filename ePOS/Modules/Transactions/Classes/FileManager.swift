@@ -28,6 +28,33 @@ class FileSystem {
          return bRetval;
     }
    
+    static func SeekRead<T: Codable>(strFileName: String, iOffset: Int) -> T?
+    {
+        let result:[T] = ReadFile(strFileName: strFileName)!
+        let objResult = result[iOffset]
+    
+        return objResult
+    
+    }
+    
+    static func SeekWrite<T: Codable>(strFileName: String, with Obj: T, iOffset: Int) -> Bool
+    {
+        var bResult: Bool = false
+        
+        do{
+            var result: [T] = ReadFile(strFileName: strFileName)!
+        
+            result[iOffset] = Obj
+            
+            bResult = try ReWriteFile(strFileName: strFileName, with: result)
+                    
+        }
+        catch {
+            debugPrint("Exception Caught")
+        }
+        return bResult
+    }
+    
     static func ReadFile<T: Codable>(strFileName: String) -> [T]?
     {
         let result:[T] = []
@@ -67,16 +94,18 @@ class FileSystem {
     
     static func DeleteFile<T: Codable>(strFileName: String, with array: [T]) -> Bool
     {
-        var bRetval: Bool = false;
+        let bRetval: Bool = false;
         do {
-            if FileManager.default.fileExists(atPath: FileSystem.FilePlistURL(strFileName: strFileName, with: array)) {
-                   try FileManager.default.removeItem(atPath: FileSystem.FilePlistURL(strFileName: strFileName, with: array))
+            let pathToPlist: String = try String(contentsOf: FilePlistURL(strFileName: strFileName, with: array))
+            
+             if FileManager.default.fileExists(atPath: pathToPlist) {
+                   try FileManager.default.removeItem(atPath: pathToPlist)
             }
         }
         catch {
             debugPrint("Exception Occurred :  \(error)")
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(e));
-        }
+        } 
         return bRetval;
     }
     
@@ -96,4 +125,18 @@ class FileSystem {
          }
          return plistURL
      }
+    
+    public static func IsFileExist(strFileName: String) -> Bool
+    {
+        let plistURL = Util.masterDataDirectoryURL.appendingPathComponent(strFileName).appendingPathExtension("plist")
+         
+         if FileManager.default.fileExists(atPath: plistURL.path) {
+            return true
+        }
+        else
+        {
+            return false
+        }
+    }
+    
 }

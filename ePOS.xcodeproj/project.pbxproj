@@ -18,6 +18,12 @@
 		46BD9B50251A8646008DEFEA /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B4F251A8646008DEFEA /* ForgotPasswordController.swift */; };
 		46BD9B52251A8B69008DEFEA /* PasswordResetLinkMsgController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B51251A8B69008DEFEA /* PasswordResetLinkMsgController.swift */; };
 		46BD9B54251AFE80008DEFEA /* GenericSwitchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B53251AFE80008DEFEA /* GenericSwitchingViewController.swift */; };
+		8E4DCF9A253402BD00726EA8 /* PlatformUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCF99253402BD00726EA8 /* PlatformUtils.swift */; };
+		8E4DCF9E25340AD700726EA8 /* BatchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCF9D25340AD700726EA8 /* BatchState.swift */; };
+		8E4DCFA025340B8400726EA8 /* AppConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCF9F25340B8400726EA8 /* AppConst.swift */; };
+		8E4DCFA22534BC1400726EA8 /* CRC32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA12534BC1400726EA8 /* CRC32.swift */; };
+		8E4DCFA425354F8A00726EA8 /* LOGIN_ACCOUNTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */; };
+		8E4DCFA625369F1000726EA8 /* BytesUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA525369F1000726EA8 /* BytesUtil.swift */; };
 		99186CBA2508C08F00A9FE07 /* EPOSTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 99186CB92508C08F00A9FE07 /* EPOSTextField.m */; };
 		99186CBD2508EC6000A9FE07 /* EPOSTextField+FloatText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CBC2508EC6000A9FE07 /* EPOSTextField+FloatText.swift */; };
 		99186CC42508EF5600A9FE07 /* EPOSTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CC32508EF5600A9FE07 /* EPOSTabBarViewController.swift */; };
@@ -167,6 +173,12 @@
 		46BD9B4F251A8646008DEFEA /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
 		46BD9B51251A8B69008DEFEA /* PasswordResetLinkMsgController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetLinkMsgController.swift; sourceTree = "<group>"; };
 		46BD9B53251AFE80008DEFEA /* GenericSwitchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericSwitchingViewController.swift; sourceTree = "<group>"; };
+		8E4DCF99253402BD00726EA8 /* PlatformUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformUtils.swift; sourceTree = "<group>"; };
+		8E4DCF9D25340AD700726EA8 /* BatchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchState.swift; sourceTree = "<group>"; };
+		8E4DCF9F25340B8400726EA8 /* AppConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConst.swift; sourceTree = "<group>"; };
+		8E4DCFA12534BC1400726EA8 /* CRC32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRC32.swift; sourceTree = "<group>"; };
+		8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOGIN_ACCOUNTS.swift; sourceTree = "<group>"; };
+		8E4DCFA525369F1000726EA8 /* BytesUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BytesUtil.swift; sourceTree = "<group>"; };
 		99186CB72508C08E00A9FE07 /* ePOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ePOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		99186CB82508C08F00A9FE07 /* EPOSTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EPOSTextField.h; sourceTree = "<group>"; };
 		99186CB92508C08F00A9FE07 /* EPOSTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EPOSTextField.m; sourceTree = "<group>"; };
@@ -899,6 +911,8 @@
 				99186D222511D09400A9FE07 /* Util.swift */,
 				99186CE5250A2C6500A9FE07 /* EPOSHelper.swift */,
 				46BD9B53251AFE80008DEFEA /* GenericSwitchingViewController.swift */,
+				8E4DCF99253402BD00726EA8 /* PlatformUtils.swift */,
+				8E4DCFA525369F1000726EA8 /* BytesUtil.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1004,6 +1018,8 @@
 				CE971BCE252CBA8400843943 /* ISOMessage.swift */,
 				CE971BD0252CBB2500843943 /* CryptoHandler.swift */,
 				CE971BD2252CBB8D00843943 /* ISOHandler.swift */,
+				8E4DCFA12534BC1400726EA8 /* CRC32.swift */,
+				8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1024,6 +1040,8 @@
 				CECC5410252B586B00C0940E /* ISO320HostCommunicationChangeNumberConstants.swift */,
 				CECC5412252B67C400C0940E /* ISO320HostUploadChangeNumberConstants.swift */,
 				CECC5414252B68A300C0940E /* ISO320PineKeyExchangeChangeNumberConstants.swift */,
+				8E4DCF9D25340AD700726EA8 /* BatchState.swift */,
+				8E4DCF9F25340B8400726EA8 /* AppConst.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1253,6 +1271,7 @@
 				CE971BD7252CBD9D00843943 /* TerminalMasterParamData.swift in Sources */,
 				46BD9B54251AFE80008DEFEA /* GenericSwitchingViewController.swift in Sources */,
 				CE971BD5252CBD8200843943 /* TerminalParamData.swift in Sources */,
+				8E4DCFA22534BC1400726EA8 /* CRC32.swift in Sources */,
 				997DC7E62521EEFC006ADE48 /* MasterDataProvider.swift in Sources */,
 				46BD9B442516095C008DEFEA /* OnBoardingRequest.swift in Sources */,
 				46BD9B52251A8B69008DEFEA /* PasswordResetLinkMsgController.swift in Sources */,
@@ -1262,12 +1281,15 @@
 				997DC7FE2522347F006ADE48 /* LeadState.swift in Sources */,
 				997DC803252347A3006ADE48 /* DropdownTableViewCell.swift in Sources */,
 				997DC7E52521EEFC006ADE48 /* CityData.swift in Sources */,
+				8E4DCFA025340B8400726EA8 /* AppConst.swift in Sources */,
 				99186D212511D07E00A9FE07 /* Validation.swift in Sources */,
 				9976C9212501065D00FC5DD3 /* CustomFonts.swift in Sources */,
 				CECC540F252B540300C0940E /* ISOFieldConstants.swift in Sources */,
 				99186D5F2511D45600A9FE07 /* Constants.swift in Sources */,
 				99186CC62508EF9500A9FE07 /* HomeViewController.swift in Sources */,
+				8E4DCFA625369F1000726EA8 /* BytesUtil.swift in Sources */,
 				99186D3B2511D21000A9FE07 /* ApiClient.swift in Sources */,
+				8E4DCF9E25340AD700726EA8 /* BatchState.swift in Sources */,
 				991DF26E251CBB2E00AEA1C3 /* EPOSLoader.swift in Sources */,
 				996FD8AE251F17C3001961EE /* UserProfile.swift in Sources */,
 				99186D582511D32E00A9FE07 /* BottomLineTextField.swift in Sources */,
@@ -1291,6 +1313,7 @@
 				991ADEA825064E2F00932251 /* UIImageExtension.swift in Sources */,
 				CE971BCD252CBA0000843943 /* StateMachine.swift in Sources */,
 				CE971BD1252CBB2500843943 /* CryptoHandler.swift in Sources */,
+				8E4DCFA425354F8A00726EA8 /* LOGIN_ACCOUNTS.swift in Sources */,
 				997DC800252321EE006ADE48 /* CompleteUserData.swift in Sources */,
 				99186D4D2511D27F00A9FE07 /* OtpTextField.swift in Sources */,
 				997DC7E42521EEFC006ADE48 /* CityDataProvider.swift in Sources */,
@@ -1323,6 +1346,7 @@
 				9919A9A9251770E100A67253 /* IFSCDetailTableViewCell.swift in Sources */,
 				CECC5411252B586B00C0940E /* ISO320HostCommunicationChangeNumberConstants.swift in Sources */,
 				9919A9BC251A475C00A67253 /* PackageDetailViewController.swift in Sources */,
+				8E4DCF9A253402BD00726EA8 /* PlatformUtils.swift in Sources */,
 				99186D5B2511D37200A9FE07 /* RoundViewCorner.swift in Sources */,
 				99186D4E2511D27F00A9FE07 /* PasswordController.swift in Sources */,
 				99186D5C2511D37200A9FE07 /* CheckBox.swift in Sources */,
