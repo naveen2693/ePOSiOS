@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-<<<<<<< Updated upstream
 //extension UITextField{
 //    @IBInspectable var doneAccessory: Bool{
 //        get{
@@ -96,7 +95,6 @@ import UIKit
 //        return CGSize(width: contentSize.width, height: height)
 //    }
 //}
->>>>>>> Stashed changes
 import CommonCrypto
 extension UIViewController{
 func hideKeyboardWhenTappedAround() {

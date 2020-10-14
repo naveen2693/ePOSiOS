@@ -42,7 +42,7 @@ class CryptoHandler{
         return byte
     }
     
->>>>>>> Stashed changes
+
 import CommonCrypto
 public class CryptoHandler
 {
@@ -50,5 +50,4 @@ public class CryptoHandler
       {
         return key.hmac(key: key)
       }
->>>>>>> Stashed changes
 }
