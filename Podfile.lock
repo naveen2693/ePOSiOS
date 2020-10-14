@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.2.2)
+  - CryptoSwift (1.3.2)
   - Firebase/Analytics (6.31.1):
     - Firebase/Core
   - Firebase/Core (6.31.1):
@@ -117,6 +118,7 @@ PODS:
   - SwiftSocket (2.0.2)
 
 DEPENDENCIES:
+  - CryptoSwift
   - Firebase/Analytics
   - Firebase/Crashlytics
   - IQKeyboardManagerSwift
@@ -130,6 +132,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - CryptoSwift
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -152,6 +155,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
+  CryptoSwift: 093499be1a94b0cae36e6c26b70870668cb56060
   Firebase: 658370fa0181826a74b7cfca8d68c5856ca749ae
   FirebaseAnalytics: 0ca9aa2af7cc4dc92392b7a78bfc49feaa2eb60f
   FirebaseCore: 6fb954e350af0885803d5aa49865d15d9a6b264c
@@ -172,6 +176,6 @@ SPEC CHECKSUMS:
   SwiftMessages: 633304165351b8e3dcbb81a71f8efcd86f9c1669
   SwiftSocket: 6f4c9c63fbc5c1d61188936bb3c599fd546f40ae
 
-PODFILE CHECKSUM: 270f3d398107fe67b26d349e3362fefe69105683
+PODFILE CHECKSUM: c7f5e7f2f76fad853d2391fd4481c514f6227829
 
 COCOAPODS: 1.9.3

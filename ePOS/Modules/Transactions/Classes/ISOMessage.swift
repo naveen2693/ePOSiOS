@@ -529,7 +529,7 @@ class ISOMessage{
             //Encrypt data
             let encLen: Int = 0;
             
-            encData = CryptoHandler.XOREncrypt(rawdata: data1, cipherlen: length, encrypted: encData, lenBuff: encLen, uchDynamicInput: nil, DynamicInputLen: 0, encryptionType: CryptoHandler.EnXOREncryptionType.USER_DATA_ENCRYPTION.rawValue);
+//            encData = CryptoHandler.XOREncrypt(rawdata: data1, cipherlen: length, encrypted: encData, lenBuff: encLen, uchDynamicInput: nil, DynamicInputLen: 0, encryptionType: enXOREncryptionType.USER_DATA_ENCRYPTION.rawValue);
 
             //The unsigned long  length is to be converted in BCD
             // i.e. if length is 123 bytes in packet it will go like 0x01 0x23
