@@ -51,6 +51,7 @@ disabled_rules:
     - number_separator
     - for_where
     - nesting
+    - empty_count
     - redundant_string_enum_value
     - orphaned_doc_comment
 
@@ -60,7 +61,6 @@ opt_in_rules:
     - closure_end_indentation
     - closure_spacing
     - contains_over_first_not_nil
-    - empty_count
     - extension_access_modifier
     - fallthrough
     - fatal_error_message

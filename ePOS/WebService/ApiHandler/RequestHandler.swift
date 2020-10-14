@@ -73,7 +73,7 @@ public class RequestHandler{
     
     // MARK:-createCheckUserReq
     public static func createOTPVerifyRequest(mobileNum:String,otp:String) -> OTPVerifyRequest{
-        var request = OTPVerifyRequest(mobileNum:mobileNum, otp:otp);
+        let request = OTPVerifyRequest(mobileNum:mobileNum, otp:otp);
         return request;
     }
     

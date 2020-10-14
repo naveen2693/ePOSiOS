@@ -19,12 +19,12 @@
 		46461993253588CF009089BC /* FontStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46461992253588CF009089BC /* FontStruct.swift */; };
 		4646199525358D1E009089BC /* LIbStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4646199425358D1E009089BC /* LIbStruct.swift */; };
 		4646199725359010009089BC /* CPlatFormUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4646199625359010009089BC /* CPlatFormUtil.swift */; };
+		4669F0C52525DEF900DEA9F2 /* MerchantVerificationServiceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F0C42525DEF900DEA9F2 /* MerchantVerificationServiceData.swift */; };
+		4669F0C72525E0E000DEA9F2 /* MerchantVerificationAddressData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F0C62525E0E000DEA9F2 /* MerchantVerificationAddressData.swift */; };
 		46AA3E04252F1275005907E1 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AA3E03252F1275005907E1 /* AppConstants.swift */; };
 		46AA3E06252F232F005907E1 /* StructConxData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AA3E05252F232F005907E1 /* StructConxData.swift */; };
 		46AA3E08252F237B005907E1 /* StructConnIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AA3E07252F237B005907E1 /* StructConnIndex.swift */; };
 		46AA3E0A252F24EF005907E1 /* ConnectionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AA3E09252F24EF005907E1 /* ConnectionTypes.swift */; };
-		4669F0C52525DEF900DEA9F2 /* MerchantVerificationServiceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F0C42525DEF900DEA9F2 /* MerchantVerificationServiceData.swift */; };
-		4669F0C72525E0E000DEA9F2 /* MerchantVerificationAddressData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F0C62525E0E000DEA9F2 /* MerchantVerificationAddressData.swift */; };
 		46ADF104252876CA009A9297 /* BankAccountDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF103252876CA009A9297 /* BankAccountDetails.swift */; };
 		46ADF1062528776D009A9297 /* LeadScheduleDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF1052528776D009A9297 /* LeadScheduleDetails.swift */; };
 		46ADF109252877E0009A9297 /* AdditionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF108252877E0009A9297 /* AdditionalInfo.swift */; };
@@ -51,7 +51,6 @@
 		46BD9B52251A8B69008DEFEA /* PasswordResetLinkMsgController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B51251A8B69008DEFEA /* PasswordResetLinkMsgController.swift */; };
 		46BD9B54251AFE80008DEFEA /* GenericSwitchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B53251AFE80008DEFEA /* GenericSwitchingViewController.swift */; };
 		8E4DCF9A253402BD00726EA8 /* PlatformUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCF99253402BD00726EA8 /* PlatformUtils.swift */; };
-		8E4DCF9E25340AD700726EA8 /* BatchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCF9D25340AD700726EA8 /* BatchState.swift */; };
 		8E4DCFA025340B8400726EA8 /* AppConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCF9F25340B8400726EA8 /* AppConst.swift */; };
 		8E4DCFA22534BC1400726EA8 /* CRC32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA12534BC1400726EA8 /* CRC32.swift */; };
 		8E4DCFA425354F8A00726EA8 /* LOGIN_ACCOUNTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */; };
@@ -215,12 +214,12 @@
 		46461992253588CF009089BC /* FontStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStruct.swift; sourceTree = "<group>"; };
 		4646199425358D1E009089BC /* LIbStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LIbStruct.swift; sourceTree = "<group>"; };
 		4646199625359010009089BC /* CPlatFormUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPlatFormUtil.swift; sourceTree = "<group>"; };
+		4669F0C42525DEF900DEA9F2 /* MerchantVerificationServiceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantVerificationServiceData.swift; sourceTree = "<group>"; };
+		4669F0C62525E0E000DEA9F2 /* MerchantVerificationAddressData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantVerificationAddressData.swift; sourceTree = "<group>"; };
 		46AA3E03252F1275005907E1 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		46AA3E05252F232F005907E1 /* StructConxData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructConxData.swift; sourceTree = "<group>"; };
 		46AA3E07252F237B005907E1 /* StructConnIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructConnIndex.swift; sourceTree = "<group>"; };
 		46AA3E09252F24EF005907E1 /* ConnectionTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionTypes.swift; sourceTree = "<group>"; };
-		4669F0C42525DEF900DEA9F2 /* MerchantVerificationServiceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantVerificationServiceData.swift; sourceTree = "<group>"; };
-		4669F0C62525E0E000DEA9F2 /* MerchantVerificationAddressData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantVerificationAddressData.swift; sourceTree = "<group>"; };
 		46ADF103252876CA009A9297 /* BankAccountDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccountDetails.swift; sourceTree = "<group>"; };
 		46ADF1052528776D009A9297 /* LeadScheduleDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadScheduleDetails.swift; sourceTree = "<group>"; };
 		46ADF108252877E0009A9297 /* AdditionalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInfo.swift; sourceTree = "<group>"; };
@@ -247,7 +246,6 @@
 		46BD9B51251A8B69008DEFEA /* PasswordResetLinkMsgController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetLinkMsgController.swift; sourceTree = "<group>"; };
 		46BD9B53251AFE80008DEFEA /* GenericSwitchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericSwitchingViewController.swift; sourceTree = "<group>"; };
 		8E4DCF99253402BD00726EA8 /* PlatformUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformUtils.swift; sourceTree = "<group>"; };
-		8E4DCF9D25340AD700726EA8 /* BatchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchState.swift; sourceTree = "<group>"; };
 		8E4DCF9F25340B8400726EA8 /* AppConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConst.swift; sourceTree = "<group>"; };
 		8E4DCFA12534BC1400726EA8 /* CRC32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRC32.swift; sourceTree = "<group>"; };
 		8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOGIN_ACCOUNTS.swift; sourceTree = "<group>"; };
@@ -1217,7 +1215,6 @@
 				CE971BD2252CBB8D00843943 /* ISOHandler.swift */,
 				8E4DCFA12534BC1400726EA8 /* CRC32.swift */,
 				8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */,
-
 				4646198E253578AD009089BC /* CUIHelper.swift */,
 				4646199625359010009089BC /* CPlatFormUtil.swift */,
 			);
@@ -1252,7 +1249,6 @@
 				CECC5412252B67C400C0940E /* ISO320HostUploadChangeNumberConstants.swift */,
 				CECC5414252B68A300C0940E /* ISO320PineKeyExchangeChangeNumberConstants.swift */,
 				46AA3E03252F1275005907E1 /* AppConstants.swift */,
-				8E4DCF9D25340AD700726EA8 /* BatchState.swift */,
 				8E4DCF9F25340B8400726EA8 /* AppConst.swift */,
 			);
 			path = Constants;
@@ -1494,7 +1490,7 @@
 				4646199725359010009089BC /* CPlatFormUtil.swift in Sources */,
 				46AA3E08252F237B005907E1 /* StructConnIndex.swift in Sources */,
 				CE971BD5252CBD8200843943 /* TerminalConxData.swift in Sources */,
-				CE971BD5252CBD8200843943 /* TerminalParamData.swift in Sources */,
+				CE971BD5252CBD8200843943 /* TerminalConxData.swift in Sources */,
 				8E4DCFA22534BC1400726EA8 /* CRC32.swift in Sources */,
 				997DC7E62521EEFC006ADE48 /* MasterDataProvider.swift in Sources */,
 				46BD9B442516095C008DEFEA /* OnBoardingRequest.swift in Sources */,
@@ -1517,7 +1513,6 @@
 				99186CC62508EF9500A9FE07 /* HomeViewController.swift in Sources */,
 				8E4DCFA625369F1000726EA8 /* BytesUtil.swift in Sources */,
 				99186D3B2511D21000A9FE07 /* ApiClient.swift in Sources */,
-				8E4DCF9E25340AD700726EA8 /* BatchState.swift in Sources */,
 				991DF26E251CBB2E00AEA1C3 /* EPOSLoader.swift in Sources */,
 				996FD8AE251F17C3001961EE /* UserProfile.swift in Sources */,
 				99186D582511D32E00A9FE07 /* BottomLineTextField.swift in Sources */,

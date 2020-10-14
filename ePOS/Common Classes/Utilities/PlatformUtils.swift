@@ -12,7 +12,7 @@ public class PlatformUtils{
 
   static func GetHardWareSerialNumber() -> [Byte]? {
      do {
-        let m_sParamData: TerminalParamData = GlobalData.singleton.ReadParamFile()!
+        let m_sParamData: TerminalParamData = GlobalData.sharedInstance.ReadParamFile()!
          
         debugPrint("HardWareSerialNumber \(m_sParamData.m_strHardwareSerialNumber)")
         //CLogger.TraceLog(TRACE_INFO, "HardWareSerialNumber[%s]", m_sParamData.m_strHardwareSerialNumber);
@@ -26,10 +26,13 @@ public class PlatformUtils{
         }
     }
     
-    static func getFullSerialNumber() -> [Byte]{
+    static func getFullSerialNumber() -> [Byte]?{
         
-        let bSerialNumber = [Byte](GlobalData.singleton.getFullSerialNumber().utf8)        
+        if let serialNumber = GlobalData.sharedInstance.getFullSerialNumber(){
+         let bSerialNumber = [Byte](serialNumber.utf8)
         return bSerialNumber
+        }
+        return nil
     }
 
 }

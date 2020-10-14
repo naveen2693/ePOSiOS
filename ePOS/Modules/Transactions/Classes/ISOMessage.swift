@@ -60,7 +60,7 @@ class ISOMessage{
             buffer = Array(m_chArrHardwareSerialNumber[0 ..< m_chArrHardwareSerialNumber.count])
             iLocalOffset += m_chArrHardwareSerialNumber.count
 
-            _ = self.addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_49.rawValue, data1: buffer, length: iLocalOffset)
+            _ = self.addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_49, data1: buffer, length: iLocalOffset)
             debugPrint("Field 49 (m_chArrHardwareSerialNumber) \(m_chArrHardwareSerialNumber)")
             
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "Field 49 (m_chArrHardwareSerialNumber)[%s]", new String(m_chArrHardwareSerialNumber));
@@ -79,7 +79,7 @@ class ISOMessage{
             var buffer = [Byte](repeating: 0x00, count: 50)
             var iLocalOffset: Int = 0x00;
             
-            chArrHarwareSerialNumber = PlatformUtils.getFullSerialNumber()
+            if let chArrHarwareSerialNumber = PlatformUtils.getFullSerialNumber(){
             
             let iLenHardwareSerialNum: Int = chArrHarwareSerialNumber.count
 
@@ -90,6 +90,7 @@ class ISOMessage{
                 chArrHardwareSerialNumber = [Byte](repeating: 0x00, count: AppConst.MAX_LEN_HARDWARE_SERIAL_NUMBER)
                 chArrHardwareSerialNumber = Array(chArrHarwareSerialNumber[0 ..< AppConst.MAX_LEN_HARDWARE_SERIAL_NUMBER])
             }
+            
 
 
             /**ADD to feild 59 HADRWARE SERIAL NUMBER **/
@@ -113,7 +114,7 @@ class ISOMessage{
              * ****************************************************************/
             var ulPvmVersion: Int64 = 0
             if (true == FileSystem.IsFileExist(strFileName: AppConst.PVMFILE)) {
-                let globalData: GlobalData = GlobalData.singleton
+                let globalData: GlobalData = GlobalData.sharedInstance
                 _ = globalData.ReadMasterParamFile()
                 
                 if (globalData.m_sMasterParamData!.ulPvmVersion >= 0) {
@@ -134,10 +135,10 @@ class ISOMessage{
             iLocalOffset += iPvmVersionLen;
 
             //Add data (hardware serial number and PVM version) to feild 59
-            _ = self.addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_59.rawValue, data1: buffer, length: iLocalOffset);
+            _ = self.addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_59, data1: buffer, length: iLocalOffset);
             debugPrint("SET->Field 59(PVMversion)[\(strPVMVersion)]")
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "SET->Field 59(PVMversion)[%s]", strPVMVersion);
-        } catch {
+            } }catch {
             debugPrint("Exception Occurred: \(error)")
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(ex));
         }
@@ -149,7 +150,7 @@ class ISOMessage{
           let strISOPacketDate = String(bytes: m_chArrISOPacketDate, encoding: String.Encoding.ascii)
         debugPrint("SET->FIELD 12(CurrentTime) \(String(describing: strISOPacketDate))")
         //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "SET->Field 12(CurrentTime)[%s]", new String(m_chArrISOPacketDate).trim());
-        _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_12.rawValue, data1: m_chArrISOPacketDate, bcd: true)
+        _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_12, data1: m_chArrISOPacketDate, bcd: true)
       }
     
     func packIt(sendee: inout [Byte]) -> Int {
@@ -165,14 +166,14 @@ class ISOMessage{
                 
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_INFO, "Inside method packItHost");
             var buffer =  [Byte](repeating: 0x00, count: 64)
-            let globalData = GlobalData.singleton
+            let globalData = GlobalData.sharedInstance
             var iOffset = 0;
 
             /* ***************************************************************************
             FEILD 6 :: Terminal Type
             ***************************************************************************/
             let TerminalType = Util.GetHardwareType();
-            _ = addField(bitno: ISOFieldConstants.ISO_FIELD_6.rawValue, data1: TerminalType, bcd: true);
+            _ = addField(bitno: ISOFieldConstants.ISO_FIELD_6, data1: TerminalType, bcd: true);
             debugPrint("packItHost SET Field 6(TerminalType) \(AppConst.TERMINAL_TYPE.trimmingCharacters(in: .whitespacesAndNewlines))")
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "packItHost SET Field 6(TerminalType)[%s]", new String(TerminalType).trim());
 
@@ -185,7 +186,7 @@ class ISOMessage{
             FEILD 38 :: Application Version
             ***************************************************************************/
             let chArr2: [Byte] = [Byte](Util.getAppVersion().utf8)
-            _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_38.rawValue, data1: chArr2, bcd: false);
+            _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_38, data1: chArr2, bcd: false);
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "SET->Field 38(APP Version)[%s]", new String(chArr2).trim());
             debugPrint("SET->Field 38(App Version) \(Util.getAppVersion().trimmingCharacters(in: .whitespacesAndNewlines))")
 
@@ -226,7 +227,7 @@ class ISOMessage{
                 iOffset += iLenSecurityToken;
             }
 
-            _ = addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_47.rawValue, data1: uchArrField47Data, length: iOffset)
+            _ = addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_47, data1: uchArrField47Data, length: iOffset)
 
             /* ***************************************************************************
             FEILD 49 ::PED Hardware Serial Number
@@ -270,7 +271,7 @@ class ISOMessage{
                         //System.arraycopy(strPIN.getBytes(), 0, buffer, offset, pinlen);
 
                         offset += pinlen;
-                        _ = addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_50.rawValue, data1: buffer, length: offset);
+                        _ = addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_50, data1: buffer, length: offset);
                        
                         debugPrint("SET->FIELD 50(UserId) \(String(describing: String(bytes: buffer, encoding: String.Encoding.ascii)?.trimmingCharacters(in: .whitespacesAndNewlines)))")
                         
@@ -296,7 +297,7 @@ class ISOMessage{
                 
                 if (!chTempGUIDAuthTokenArr.isEmpty) {
                     
-                    _ = addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_51.rawValue, data1: chTempGUIDAuthTokenArr, length: iGUIDAuthTokenLen);
+                    _ = addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_51, data1: chTempGUIDAuthTokenArr, length: iGUIDAuthTokenLen);
                     
                     debugPrint("SET->Field 51(Auth Token)[\(BytesUtil.byteArray2HexString(arr: chTempGUIDAuthTokenArr))]")
                     //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "SET->Field 51(Auth Token)[%s]", BytesUtil.byteArray2HexString(chTempGUIDAuthTokenArr));
@@ -324,7 +325,7 @@ class ISOMessage{
             if(bToSet)
             {
                 charenBmap = Util.bcd2a(s: enBmap, len: ISO_LEN / 8);
-                _ = addField(bitno: ISOFieldConstants.ISO_FIELD_5.rawValue, data1: charenBmap, bcd: true);
+                _ = addField(bitno: ISOFieldConstants.ISO_FIELD_5, data1: charenBmap, bcd: true);
                 debugPrint("SET->Field 5 (encrypted bitmap) charenBmap [\(String(describing: String(bytes: charenBmap, encoding: String.Encoding.ascii)))] len[\(charenBmap.count)]")
                 
             }
@@ -430,7 +431,6 @@ class ISOMessage{
     
     //Overriden Function
     func addField(bitno: Int, data1: [Byte], bcd: Bool) -> Bool {
-        do {
             
             self.bitmap[bitno - 1] = true;
             if (bcd) {
@@ -463,13 +463,8 @@ class ISOMessage{
             }
             return false
         }
-        catch
-        {
-            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(ex));
-            return false
-        }
 
-    }
+
     
     func addLLLCHARData(bitno: Int, data1: [Byte], length: Int) -> Bool{
           do {
@@ -586,7 +581,7 @@ class ISOMessage{
             debugPrint("GUID Auth topken plain data len[\(iOffset)], uchArrTempData[\(BytesUtil.byteArray2HexString(arr: uchArrTempData))]")
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "GUID Auth token plain data len[%d], uchArrTempData[%s]", iOffset, BytesUtil.byteArray2HexString(uchArrTempData));
 
-            let globalData: GlobalData = GlobalData.singleton
+            let globalData: GlobalData = GlobalData.sharedInstance
             let m_sParamData: TerminalParamData = globalData.ReadParamFile()!
 
             

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum DeviceState {
+public struct DeviceState :Codable {
    static let S_INITIAL     = 0;
    static let S_ACTIVATED   = 1;
    static let S_INITIALIZED = 2;

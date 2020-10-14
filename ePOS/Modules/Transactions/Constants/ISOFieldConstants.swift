@@ -58,7 +58,7 @@ enum ISOFieldConstants
      static let ISO_FIELD_46 = 46;
      static let ISO_FIELD_47 = 47;
      static let ISO_FIELD_48 = 48;
-     static let ISO_FIELD_49 = 49;
+    static let ISO_FIELD_49:Int = 49;
      static let ISO_FIELD_50 = 50;
      static let ISO_FIELD_51 = 51;
      static let ISO_FIELD_52 = 52;

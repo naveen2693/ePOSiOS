@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CommonCrypto
 class CryptoHandler{
     
     
@@ -41,13 +42,8 @@ class CryptoHandler{
         let byte = [Byte](repeating: 0x00, count: 50)
         return byte
     }
-    
-
-import CommonCrypto
-public class CryptoHandler
-{
     static func vFnGetSHA256(key:String) ->String
-      {
-        return key.hmac(key: key)
-      }
+    {
+      return key.hmac(key: key)
+    }
 }
