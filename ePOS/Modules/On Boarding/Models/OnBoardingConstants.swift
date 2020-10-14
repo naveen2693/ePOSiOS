@@ -26,3 +26,9 @@ enum UserState: String {
     case store = "STORE"
     case applicant = "APPLICANT"
 }
+
+enum SearchStateData: String {
+    case city
+    case state
+   
+}

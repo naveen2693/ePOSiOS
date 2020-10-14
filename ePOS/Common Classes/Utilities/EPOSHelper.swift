@@ -12,7 +12,7 @@ import Foundation
 protocol NameObject {
     var className: String { get }
     static var className: String { get }
-}
+}    
 
 extension NameObject {
     var className: String {
@@ -106,4 +106,40 @@ extension String {
             return nil
         }
     }
+}
+
+extension String {
+    func removingWhitespaces() -> String {
+        return components(separatedBy: .whitespaces).joined()
+    }
+}
+
+extension Int {
+    init(_ range: Range<Int> ) {
+        let delta = range.startIndex < 0 ? abs(range.startIndex) : 0
+        let min = UInt32(range.startIndex + delta)
+        let max = UInt32(range.endIndex   + delta)
+        self.init(Int(min + arc4random_uniform(max - min)) - delta)
+    }
+    
+}
+
+extension UISearchBar {
+    func changeSearchBarColor(color: UIColor) {
+        UIGraphicsBeginImageContext(self.frame.size)
+        color.setFill()
+        UIBezierPath(rect: self.frame).fill()
+        let bgImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        self.setSearchFieldBackgroundImage(bgImage, for: .normal)
+    }
+}
+
+extension UINavigationController {
+  func popToViewController(ofClass: AnyClass, animated: Bool = true) {
+    if let vc = viewControllers.last(where: { $0.isKind(of: ofClass) }) {
+      popToViewController(vc, animated: animated)
+    }
+  }
 }

@@ -8,10 +8,15 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PackageView" customModule="ePOS" customModuleProvider="target">
             <connections>
-                <outlet property="temp" destination="9D6-Ll-dAn" id="EQ1-oS-v9h"/>
+                <outlet property="tableView" destination="hDD-31-wnQ" id="Uzv-ae-din"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -22,13 +27,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vGF-eN-LY4" customClass="EPOSShadowView" customModule="ePOS" customModuleProvider="target">
                     <rect key="frame" x="10" y="10" width="320" height="568"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9D6-Ll-dAn">
-                            <rect key="frame" x="139" y="273" width="42" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oEG-z1-BGq" customClass="EPOSGradientView" customModule="ePOS" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -45,12 +43,35 @@
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isHorizontal" value="YES"/>
                             </userDefinedRuntimeAttributes>
                         </view>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hDD-31-wnQ">
+                            <rect key="frame" x="0.0" y="128" width="320" height="355"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        </tableView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iGk-VC-vNG">
+                            <rect key="frame" x="130" y="488" width="60" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="rex-uR-BgQ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="12"/>
+                            <state key="normal" title="View Rates">
+                                <color key="titleColor" name="subTextColor"/>
+                            </state>
+                            <connections>
+                                <action selector="viewRatesClicked:" destination="-1" eventType="touchUpInside" id="dhT-Q7-Gk4"/>
+                            </connections>
+                        </button>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="oEG-z1-BGq" firstAttribute="leading" secondItem="vGF-eN-LY4" secondAttribute="leading" id="3FR-IG-iVB"/>
-                        <constraint firstAttribute="trailing" secondItem="oEG-z1-BGq" secondAttribute="trailing" id="K2t-BK-Sed"/>
-                        <constraint firstItem="oEG-z1-BGq" firstAttribute="top" secondItem="vGF-eN-LY4" secondAttribute="top" id="nZg-JA-llF"/>
+                        <constraint firstItem="iGk-VC-vNG" firstAttribute="top" secondItem="hDD-31-wnQ" secondAttribute="bottom" constant="5" id="0uL-8u-k29"/>
+                        <constraint firstAttribute="trailing" secondItem="hDD-31-wnQ" secondAttribute="trailing" id="7Yd-5t-sSn"/>
+                        <constraint firstAttribute="trailing" secondItem="oEG-z1-BGq" secondAttribute="trailing" id="8Gp-hd-Fdh"/>
+                        <constraint firstItem="oEG-z1-BGq" firstAttribute="top" secondItem="vGF-eN-LY4" secondAttribute="top" id="FUB-RJ-azc"/>
+                        <constraint firstAttribute="bottom" secondItem="iGk-VC-vNG" secondAttribute="bottom" constant="50" id="KGS-pH-lU7"/>
+                        <constraint firstItem="hDD-31-wnQ" firstAttribute="leading" secondItem="vGF-eN-LY4" secondAttribute="leading" id="KRc-Zb-rdN"/>
+                        <constraint firstItem="iGk-VC-vNG" firstAttribute="centerX" secondItem="vGF-eN-LY4" secondAttribute="centerX" id="dsp-Y0-b4O"/>
+                        <constraint firstItem="oEG-z1-BGq" firstAttribute="leading" secondItem="vGF-eN-LY4" secondAttribute="leading" id="hNV-Uf-rcc"/>
+                        <constraint firstItem="hDD-31-wnQ" firstAttribute="top" secondItem="oEG-z1-BGq" secondAttribute="bottom" id="s9r-5k-Vek"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -61,16 +82,19 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="vGF-eN-LY4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="Tsj-Mq-LhT"/>
-                <constraint firstItem="vGF-eN-LY4" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="X8w-2A-fZk"/>
-                <constraint firstItem="vGF-eN-LY4" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="10" id="fsS-Ge-Fud"/>
-                <constraint firstItem="vGF-eN-LY4" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="10" id="xqS-U2-FSq"/>
+                <constraint firstItem="vGF-eN-LY4" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="10" id="OTK-NQ-2XG"/>
+                <constraint firstItem="vGF-eN-LY4" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="10" id="Obw-eM-ROS"/>
+                <constraint firstItem="vGF-eN-LY4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="T4t-Nd-6cn"/>
+                <constraint firstItem="vGF-eN-LY4" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="Ztt-e2-yre"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="138.75" y="121.47887323943662"/>
         </view>
     </objects>
     <resources>
+        <namedColor name="subTextColor">
+            <color red="0.46274509803921571" green="0.46274509803921571" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="themeDarkColor">
             <color red="0.066666666666666666" green="0.68627450980392157" blue="0.35294117647058826" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

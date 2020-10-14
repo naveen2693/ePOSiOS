@@ -7,6 +7,9 @@
 //
 
 import Foundation
+
+public typealias Byte = UInt8
+
 public class Util
 {
     // MARK:-Open Webview
@@ -58,6 +61,41 @@ public class Util
     
     static func getUUID() -> String {
         let uuid = UIDevice.current.identifierForVendor
-        return uuid!.uuidString
+        var newUUID = uuid!.uuidString.removingWhitespaces()
+        newUUID = newUUID.replacingOccurrences(of: "-", with: "")
+        return newUUID
+    }
+    
+    static func GetHardwareType() -> [Byte]
+     {
+         let strHardwareType: String = AppConst.TERMINAL_TYPE;        
+         return [Byte](strHardwareType.utf8)
+     }
+    
+    static func GetCurrentDateTime() -> [Byte]
+    {
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+
+        dateFormatter.dateFormat = "dd/MM/yyyy hh:mm:ss a"
+        let convertedDate: String = dateFormatter.string(from: currentDate)
+        
+        //String formattedDate = new SimpleDateFormat("ddMMyyHHmmss").format(Calendar.getInstance().getTime());
+        return [Byte](convertedDate.utf8)
+    }
+    
+    static func getAppVersion() -> String
+    {
+        return AppConst.APP_VERSION;
+    }
+    
+    static func a2bcd(s : [Byte]) -> [Byte]
+    {
+        return s
+    }
+    
+    static func bcd2a(s: [Byte], len: Int) -> [Byte]
+    {
+        return s
     }
 }

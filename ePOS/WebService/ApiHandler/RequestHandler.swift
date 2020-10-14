@@ -12,7 +12,7 @@ public class RequestHandler{
     internal static func  createWebServiceHeaderWithoutAccessToken() -> [String:String] {
         var headermap = [String:String]();
         let deviceId:String = Util.getUUID()
-        let imeiNum:String = "000000123456723"
+        let imeiNum:String = "000000123456712"
         let advertisingId:String = Util.getUUID()
         headermap[ApiHeaderKeys.requestHeaderClientKey.rawValue] = ClientRequestValues.requestHeaderClientValue.rawValue
         headermap[ApiHeaderKeys.requestHeaderBuildVersionKey.rawValue] = "1.0"// set build-version
@@ -29,16 +29,20 @@ public class RequestHandler{
         //        if(!appUuid.isEmpty) {
         //            headermap[ApiHeaderKeys.requestHeaderUUIDKey.rawValue] = appUuid;
         //        }
-        print(headermap);
+        debugPrint("HEADER ====  Nooooo ==== AccessToken:: \(headermap)");
         return headermap;
     }
     // MARK:-createWebServiceHeaderWithAccessToken
     internal static func  createWebServiceHeaderWithAccessToken() -> [String:String]{
         var headermap =  [String:String]();
         let deviceId:String = Util.getUUID()
-        let imeiNum:String = "000000123456723"
+        let imeiNum:String = "000000123456712"
         let advertisingId:String = Util.getUUID()
-        let appUuid:String = Util.getUUID()
+        var appUuid:String = ""
+        if let uuid = EPOSUserDefaults.getUuid() {
+            appUuid = uuid
+        }
+        
         headermap[ApiHeaderKeys.requestHeaderClientKey.rawValue] = ClientRequestValues.requestHeaderClientValue.rawValue
         headermap[ApiHeaderKeys.requestHeaderBuildVersionKey.rawValue] = "1.0"// set build-version
         headermap[ApiHeaderKeys.requestClientTypeKey.rawValue] = ApiHeaderKeys.requestHeaderClientTypeValue.rawValue;
@@ -55,6 +59,7 @@ public class RequestHandler{
         if(!appUuid.isEmpty) {
             headermap[ApiHeaderKeys.requestHeaderUUIDKey.rawValue] = appUuid;
         }
+        debugPrint("HEADER  ====  AccessToken:: \(headermap)");
         return headermap;
     }
     
@@ -67,10 +72,8 @@ public class RequestHandler{
     }
     
     // MARK:-createCheckUserReq
-    public static func createOTPVerifyRequest(mobileNum:String,otp:String) -> OTPVerifyKeys{
-        var request = OTPVerifyKeys();
-        request.mobileNum=mobileNum
-        request.otp=otp;
+    public static func createOTPVerifyRequest(mobileNum:String,otp:String) -> OTPVerifyRequest{
+        var request = OTPVerifyRequest(mobileNum:mobileNum, otp:otp);
         return request;
     }
     
@@ -91,9 +94,8 @@ public class RequestHandler{
     }
     
     // MARK:-createConfigurationRequest
-    public static func  createConfigurationRequest(globalChangeNumber:Int) -> ConfigurationKeys {
-        var request =  ConfigurationKeys();
-        request.globalChngeNumber = globalChangeNumber;
+    public static func  createConfigurationRequest(globalChangeNumber:Int) -> ConfigurationRequest {
+        let request =  ConfigurationRequest(globalChngeNumber: globalChangeNumber);
         return request;
     }
     
@@ -141,18 +143,14 @@ public class RequestHandler{
     }
     
     // MARK:- ResetPasswordRequest
-    static func createResetPasswordRequest(mobileNumber:String, otp:String,password:String) -> ResetPasswordKeys {
-        var objResetPasswordKeys =  ResetPasswordKeys();
-        objResetPasswordKeys.mobileNum = mobileNumber
-        objResetPasswordKeys.otp = otp
-        objResetPasswordKeys.newPassword = password
-        return objResetPasswordKeys;
+    static func createResetPasswordRequest(mobileNumber:String, otp:String,password:String) -> ResetPasswordRequest {
+        let objResetPasswordRequest =  ResetPasswordRequest(mobileNum:mobileNumber, otp:otp, newPassword:password)
+        return objResetPasswordRequest;
     }
     
     // MARK:- createMasterDataReq
-    public static func createMasterDataRequest(mode:String) -> MasterDataKeys {
-        var request = MasterDataKeys();
-        request.mode = mode;
+    public static func createMasterDataRequest(mode:String) -> MasterDataRequest {
+        let request = MasterDataRequest(mode: mode);
         return request;
     }
     
@@ -164,11 +162,18 @@ public class RequestHandler{
         return dict;
     }
     
+    // MARK:- get packages
+    public static func createGetPackagesRequest(leadId:Int) -> [String:Int] {
+        var dict = [String:Int]();
+        let keys = GetPackagesKeys()
+        dict[keys.QUERY_KEY1] = leadId;
+        return dict;
+    }
+    
     // MARK:- createGetCityListRequest
-    public static func createGetCityListRequest(strLastModifiedDate:String) -> CityListKeys{
-        var getCityListRequest =  CityListKeys();
-        getCityListRequest.lastModifiedDate = strLastModifiedDate;
-        return getCityListRequest;
+    public static func createGetCityListRequest(strLastModifiedDate:String) -> CityListRequest{
+        let ObjCityListRequest =  CityListRequest(lastModifiedDate: strLastModifiedDate);
+        return ObjCityListRequest;
     }
     
     // MARK:- createUserListReq
@@ -181,5 +186,35 @@ public class RequestHandler{
         param[UserListRequest.QUERY_KEY4] = params.sort;
         return param;
     }
+    
+    // MARK:- Merchant verification service request
+    public static func createMerchantVerificationRequest(proofName:String,proofNumber:String,additionalInfo:[String:String]) -> MerchantVerficationRequest{
+        let ObjMerchantVerfication =  MerchantVerficationRequest(proofName: proofName, proofId: proofNumber, additionalInfo: additionalInfo);
+        return ObjMerchantVerfication;
+    }
+    
+    public static func updateLeadRequest(lead:Lead,documents:DocumentDetails) -> UpdateLeadRequests{
+        let updateLead =  UpdateLeadRequests(lead: lead, documents: documents);
+        return updateLead;
+    }
+    
+    //public static func searchIFSCRequest(bankName:String,stateName:String,distName:String, branchName:String) -> SearchIFSCRequest{
+    //        let ObjSearchIFSCRequest = SearchIFSCRequest(bankName: bankName, state:stateName, district:distName, branch:branchName);
+    //           return ObjSearchIFSCRequest;
+    //       }
+    
+    public static func createBankVerificationRequest(leadId:Int64,additionalInfos:[AdditionalInfo]) -> BankVerificationRequest{
+        var objBankVerificationRequest =  BankVerificationRequest(leadId: leadId, task:Constants.verifyAmount.rawValue, additionalInfo: additionalInfos)
+        return objBankVerificationRequest;
+    }
+    
+    public static func  createUploadDataReq(uploadDocJson:UploadDocumentRequest) -> UploadDocumentRequest {
+        var request = UploadDocumentRequest()
+        request = uploadDocJson;
+        return request;
+    }
+    
+    
+    
     
 }

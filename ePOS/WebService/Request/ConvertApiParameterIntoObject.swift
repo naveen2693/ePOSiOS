@@ -32,11 +32,20 @@ struct CreateLeadParams: Codable {
     var kyc: [String]?
     var typeOfLead: String
     
-    public enum CodingKeys: String, CodingKey {
-        case name
-        case pan
-        case firmType
-        case kyc
-        case typeOfLead
+//    public enum CodingKeys: String, CodingKey {
+//        case name
+//        case pan
+//        case firmType
+//        case kyc
+//        case typeOfLead
+//    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(name, forKey: .name)
+        try container.encode(pan, forKey: .pan)
+        try container.encode(firmType, forKey: .firmType)
+        try container.encode(typeOfLead, forKey: .typeOfLead)
+        try container.encode(kyc, forKey: .kyc)
     }
 }

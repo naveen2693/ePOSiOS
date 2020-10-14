@@ -27,6 +27,34 @@ class FileSystem {
         
         return bRetval;
     }
+
+    static func SeekRead<T: Codable>(strFileName: String, iOffset: Int) -> T?
+    {
+        let result:[T] = ReadFile(strFileName: strFileName)!
+        let objResult = result[iOffset]
+    
+        return objResult
+    
+    }
+    
+    static func SeekWrite<T: Codable>(strFileName: String, with Obj: T, iOffset: Int) -> Bool
+    {
+        var bResult: Bool = false
+        
+        do{
+            var result: [T] = ReadFile(strFileName: strFileName)!
+        
+            result[iOffset] = Obj
+            
+            bResult = try ReWriteFile(strFileName: strFileName, with: result)
+                    
+        }
+        catch {
+            debugPrint("Exception Caught")
+        }
+        return bResult
+    }
+
     
     static func ReadFile<T: Codable>(strFileName: String) -> [T]?
     {
@@ -65,9 +93,27 @@ class FileSystem {
         return bRetval
     }
     
+    static func DeleteFile<T: Codable>(strFileName: String, with array: [T]) -> Bool
+    {
+        let bRetval: Bool = false;
+        do {
+            let pathToPlist: String = try String(contentsOf: FilePlistURL(strFileName: strFileName, with: array))
+            
+             if FileManager.default.fileExists(atPath: pathToPlist) {
+                   try FileManager.default.removeItem(atPath: pathToPlist)
+            }
+        }
+        catch {
+            debugPrint("Exception Occurred :  \(error)")
+            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(e));
+        } 
+        return bRetval;
+    }
+    
     private static func FilePlistURL<T: Codable>(strFileName: String, with array: [T]) -> URL{
         
         let plistURL = Util.masterDataDirectoryURL.appendingPathComponent(strFileName).appendingPathExtension("plist")
+
         
         if !FileManager.default.fileExists(atPath: plistURL.path) {
             let encoder = PropertyListEncoder()
@@ -101,4 +147,35 @@ class FileSystem {
         return bRetval;
         
     }
+    
+private static func FilePlistURL<T: Codable>(strFileName: String, with array: [T]) -> URL{
+    
+    let plistURL = Util.masterDataDirectoryURL.appendingPathComponent(strFileName).appendingPathExtension("plist")
+         
+         if !FileManager.default.fileExists(atPath: plistURL.path) {
+             let encoder = PropertyListEncoder()
+             do {
+                 let initialPlistData = try encoder.encode(array)
+                 try initialPlistData.write(to: plistURL)
+                 _ = FileManager.default.createFile(atPath: plistURL.path, contents: initialPlistData, attributes: nil)
+             } catch {
+                 debugPrint("Error Occured in Creating initial StateData Plist")
+             }
+         }
+         return plistURL
+     }
+    
+    public static func IsFileExist(strFileName: String) -> Bool
+    {
+        let plistURL = Util.masterDataDirectoryURL.appendingPathComponent(strFileName).appendingPathExtension("plist")
+         
+         if FileManager.default.fileExists(atPath: plistURL.path) {
+            return true
+        }
+        else
+        {
+            return false
+        }
+    }
+
 }

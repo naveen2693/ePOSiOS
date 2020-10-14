@@ -13,6 +13,9 @@ class TransactionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        debugPrint("Hello World!")
+        
+        
 //        let iso = ISO440.shared // singleton
 //        let isoObject = ISO440()
 //

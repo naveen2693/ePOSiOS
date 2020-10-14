@@ -32,6 +32,7 @@ class OTPVerficationController:UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addKeyboardNotifications()
         // MARK:- Set Fields
         setFields()
         otpTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
@@ -60,14 +61,42 @@ class OTPVerficationController:UIViewController {
         textField6?.delegate = self
         textField7?.delegate = self
         textField8?.delegate = self
+        
         setLastTextField()
         if let textField = textField1 {
             textField.isEnabled = true
-            textField.becomeFirstResponder()
+//            textField.becomeFirstResponder()
         }
-        hideKeyboardWhenTappedAround()
+//        hideKeyboardWhenTappedAround()
         // Do any additional setup after loading the view.
     }
+    
+//    override func keyboardWillShow(notification: NSNotification) {
+//        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+//
+//          // if keyboard size is not available for some reason, dont do anything
+//          return
+//        }
+//
+//        var shouldMoveViewUp = false
+//
+//        if let bottomOfTextField = view.getConvertedFrame(fromSubview: activeTextField)?.maxY {
+//            let topOfKeyboard = self.view.frame.height - (keyboardSize.height + 50.0 )
+//
+//            // if the bottom of Textfield is below the top of keyboard, move up
+//            if topOfKeyboard > 5 {
+//              shouldMoveViewUp = true
+//            }
+//        }
+//
+//        if(shouldMoveViewUp) {
+//          self.view.frame.origin.y = 0 - keyboardSize.height
+//        }
+//    }
+//
+//    override func keyboardWillHide(notification: NSNotification) {
+//
+//    }
     
     private  func setFields()
     {
@@ -173,6 +202,8 @@ class OTPVerficationController:UIViewController {
         default:
             lastTextField = textField8
         }
+        
+//        lastTextField?.doneAccessory = true
     }
     
     private func addBottomLineToTextField(textField : OTPTextField) {
@@ -223,9 +254,13 @@ extension OTPVerficationController: OTPTextFieldDelegate {
             // do nothing
         }
         
+        if let text = activeTextField.text, !text.isEmpty {
+            activeTextField.text = ""
+            return
+        }
         if activeTextField == textField2 {
             print("backButton was pressed in otpTextField2")
-            textField2?.isEnabled = false
+//            textField2?.isEnabled = false
             textField1?.isEnabled = true
             textField1?.becomeFirstResponder()
             textField1?.text = ""
@@ -233,7 +268,7 @@ extension OTPVerficationController: OTPTextFieldDelegate {
         
         if activeTextField == textField3 {
             print("backButton was pressed in otpTextField3")
-            textField3?.isEnabled = false
+//            textField3?.isEnabled = false
             textField2?.isEnabled = true
             textField2?.becomeFirstResponder()
             textField2?.text = ""
@@ -241,7 +276,7 @@ extension OTPVerficationController: OTPTextFieldDelegate {
         
         if activeTextField == textField4 {
             print("backButton was pressed in otpTextField4")
-            textField4?.isEnabled = false
+//            textField4?.isEnabled = false
             textField3?.isEnabled = true
             textField3?.becomeFirstResponder()
             textField3?.text = ""
@@ -249,7 +284,7 @@ extension OTPVerficationController: OTPTextFieldDelegate {
         
         if activeTextField == textField5 {
             print("backButton was pressed in otpTextField4")
-            textField5?.isEnabled = false
+//            textField5?.isEnabled = false
             textField4?.isEnabled = true
             textField4?.becomeFirstResponder()
             textField4?.text = ""
@@ -257,7 +292,7 @@ extension OTPVerficationController: OTPTextFieldDelegate {
         
         if activeTextField == textField6 {
             print("backButton was pressed in otpTextField4")
-            textField6?.isEnabled = false
+//            textField6?.isEnabled = false
             textField5?.isEnabled = true
             textField5?.becomeFirstResponder()
             textField5?.text = ""
@@ -265,7 +300,7 @@ extension OTPVerficationController: OTPTextFieldDelegate {
         
         if activeTextField == textField7 {
             print("backButton was pressed in otpTextField4")
-            textField7?.isEnabled = false
+//            textField7?.isEnabled = false
             textField6?.isEnabled = true
             textField6?.becomeFirstResponder()
             textField6?.text = ""
@@ -273,7 +308,7 @@ extension OTPVerficationController: OTPTextFieldDelegate {
         
         if activeTextField == textField8 {
             print("backButton was pressed in otpTextField4")
-            textField8?.isEnabled = false
+//            textField8?.isEnabled = false
             textField7?.isEnabled = true
             textField7?.becomeFirstResponder()
             textField7?.text = ""
@@ -282,6 +317,16 @@ extension OTPVerficationController: OTPTextFieldDelegate {
 }
 
 extension OTPVerficationController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField != lastTextField {
+//            self.passwordField.becomeFirstResponder()
+            return false
+        }
+
+        return true
+    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
         activeTextField = textField
@@ -294,43 +339,43 @@ extension OTPVerficationController: UITextFieldDelegate {
             if (text.count < 1) && (!string.isEmpty) {
                 
                 if textField == textField1 {
-                    textField1?.isEnabled = false
+//                    textField1?.isEnabled = false
                     textField2?.isEnabled = true
                     textField2?.becomeFirstResponder()
                 }
                 
                 if textField == textField2 {
-                    textField2?.isEnabled = false
+//                    textField2?.isEnabled = false
                     textField3?.isEnabled = true
                     textField3?.becomeFirstResponder()
                 }
                 
                 if textField == textField3 {
-                    textField3?.isEnabled = false
+//                    textField3?.isEnabled = false
                     textField4?.isEnabled = true
                     textField4?.becomeFirstResponder()
                 }
                 
                 if textField == textField4 {
-                    textField4?.isEnabled = false
+//                    textField4?.isEnabled = false
                     textField5?.isEnabled = true
                     textField5?.becomeFirstResponder()
                 }
                 
                 if textField == textField5 {
-                    textField5?.isEnabled = false
+//                    textField5?.isEnabled = false
                     textField6?.isEnabled = true
                     textField6?.becomeFirstResponder()
                 }
                 
                 if textField == textField6 {
-                    textField6?.isEnabled = false
+//                    textField6?.isEnabled = false
                     textField7?.isEnabled = true
                     textField7?.becomeFirstResponder()
                 }
                 
                 if textField == textField7 {
-                    textField7?.isEnabled = false
+//                    textField7?.isEnabled = false
                     textField8?.isEnabled = true
                     textField8?.becomeFirstResponder()
                 }
@@ -344,58 +389,61 @@ extension OTPVerficationController: UITextFieldDelegate {
                 
             } // 11. if the user gets to the last textField and presses the back button everything above will get reversed
             else if (text.count >= 1) && (string.isEmpty) {
-                
-                if textField == textField2 {
-                    textField2?.isEnabled = false
-                    textField1?.isEnabled = true
-                    textField1?.becomeFirstResponder()
-                    textField1?.text = ""
-                }
-                
-                if textField == textField3 {
-                    textField3?.isEnabled = false
-                    textField2?.isEnabled = true
-                    textField2?.becomeFirstResponder()
-                    textField2?.text = ""
-                }
-                
-                if textField == textField4 {
-                    textField4?.isEnabled = false
-                    textField3?.isEnabled = true
-                    textField3?.becomeFirstResponder()
-                    textField3?.text = ""
-                }
-                
-                if textField == textField5 {
-                    textField5?.isEnabled = false
-                    textField4?.isEnabled = true
-                    textField4?.becomeFirstResponder()
-                    textField4?.text = ""
-                }
-                
-                if textField == textField6 {
-                    textField6?.isEnabled = false
-                    textField5?.isEnabled = true
-                    textField5?.becomeFirstResponder()
-                    textField5?.text = ""
-                }
-                
-                if textField == textField7 {
-                    textField7?.isEnabled = false
-                    textField6?.isEnabled = true
-                    textField6?.becomeFirstResponder()
-                    textField6?.text = ""
-                }
-                
-                if textField == textField8 {
-                    textField8?.isEnabled = false
-                    textField7?.isEnabled = true
-                    textField7?.becomeFirstResponder()
-                    textField7?.text = ""
-                }
-                
-                if textField == textField1 {
-                    // do nothing
+                if let text = activeTextField.text, !text.isEmpty {
+                    activeTextField.text = ""
+                } else {
+                    if textField == textField2 {
+    //                    textField2?.isEnabled = false
+                        textField1?.isEnabled = true
+                        textField1?.becomeFirstResponder()
+                        textField1?.text = ""
+                    }
+                    
+                    if textField == textField3 {
+    //                    textField3?.isEnabled = false
+                        textField2?.isEnabled = true
+                        textField2?.becomeFirstResponder()
+                        textField2?.text = ""
+                    }
+                    
+                    if textField == textField4 {
+    //                    textField4?.isEnabled = false
+                        textField3?.isEnabled = true
+                        textField3?.becomeFirstResponder()
+                        textField3?.text = ""
+                    }
+                    
+                    if textField == textField5 {
+    //                    textField5?.isEnabled = false
+                        textField4?.isEnabled = true
+                        textField4?.becomeFirstResponder()
+                        textField4?.text = ""
+                    }
+                    
+                    if textField == textField6 {
+    //                    textField6?.isEnabled = false
+                        textField5?.isEnabled = true
+                        textField5?.becomeFirstResponder()
+                        textField5?.text = ""
+                    }
+                    
+                    if textField == textField7 {
+    //                    textField7?.isEnabled = false
+                        textField6?.isEnabled = true
+                        textField6?.becomeFirstResponder()
+                        textField6?.text = ""
+                    }
+                    
+                    if textField == textField8 {
+                        textField8?.isEnabled = false
+                        textField7?.isEnabled = true
+                        textField7?.becomeFirstResponder()
+                        textField7?.text = ""
+                    }
+                    
+                    if textField == textField1 {
+                        // do nothing
+                    }
                 }
                 
                 textField.text = ""
@@ -405,43 +453,43 @@ extension OTPVerficationController: UITextFieldDelegate {
             else if text.count >= 1 {
                 
                 if textField == textField1 {
-                    textField1?.isEnabled = false
+//                    textField1?.isEnabled = false
                     textField2?.isEnabled = true
                     textField2?.becomeFirstResponder()
                 }
                 
                 if textField == textField2 {
-                    textField2?.isEnabled = false
+//                    textField2?.isEnabled = false
                     textField3?.isEnabled = true
                     textField3?.becomeFirstResponder()
                 }
                 
                 if textField == textField3 {
-                    textField3?.isEnabled = false
+//                    textField3?.isEnabled = false
                     textField4?.isEnabled = true
                     textField4?.becomeFirstResponder()
                 }
                 
                 if textField == textField4 {
-                    textField4?.isEnabled = false
+//                    textField4?.isEnabled = false
                     textField5?.isEnabled = true
                     textField5?.becomeFirstResponder()
                 }
                 
                 if textField == textField5 {
-                    textField5?.isEnabled = false
+//                    textField5?.isEnabled = false
                     textField6?.isEnabled = true
                     textField6?.becomeFirstResponder()
                 }
                 
                 if textField == textField6 {
-                    textField6?.isEnabled = false
+//                    textField6?.isEnabled = false
                     textField7?.isEnabled = true
                     textField7?.becomeFirstResponder()
                 }
                 
                 if textField == textField7 {
-                    textField7?.isEnabled = false
+//                    textField7?.isEnabled = false
                     textField8?.isEnabled = true
                     textField8?.becomeFirstResponder()
                 }

@@ -13,15 +13,16 @@
             <connections>
                 <outlet property="nextButton" destination="Yo6-l9-8A7" id="dCO-mr-IDB"/>
                 <outlet property="tableView" destination="XdW-jW-2Zc" id="3Aa-CH-1jH"/>
+                <outlet property="tableViewHeightConstraint" destination="Wub-Rz-SZg" id="Ey8-U1-Txc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="EPOSBaseView" customModule="ePOS" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hb9-qd-igq" customClass="RoundedCornerView" customModule="ePOS" customModuleProvider="target">
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hb9-qd-igq" customClass="RoundedCornerView" customModule="ePOS" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2aC-zq-9TC">
@@ -61,11 +62,14 @@
                             <viewLayoutGuide key="safeArea" id="e3Z-LB-g08"/>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gqo-h3-ezF" customClass="EPOSShadowView" customModule="ePOS" customModuleProvider="target">
-                            <rect key="frame" x="16" y="27" width="288" height="362"/>
+                            <rect key="frame" x="16" y="30" width="288" height="324"/>
                             <subviews>
-                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="XdW-jW-2Zc">
-                                    <rect key="frame" x="0.0" y="0.0" width="288" height="362"/>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="XdW-jW-2Zc">
+                                    <rect key="frame" x="10" y="10" width="268" height="304"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="304" id="Wub-Rz-SZg"/>
+                                    </constraints>
                                     <color key="separatorColor" name="lightBorderColor"/>
                                     <inset key="separatorInset" minX="21" minY="0.0" maxX="21" maxY="0.0"/>
                                     <connections>
@@ -76,14 +80,14 @@
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
-                                <constraint firstItem="XdW-jW-2Zc" firstAttribute="leading" secondItem="Gqo-h3-ezF" secondAttribute="leading" id="CiU-xW-xkZ"/>
-                                <constraint firstAttribute="bottom" secondItem="XdW-jW-2Zc" secondAttribute="bottom" id="Zla-as-JPG"/>
-                                <constraint firstAttribute="trailing" secondItem="XdW-jW-2Zc" secondAttribute="trailing" id="rbX-As-8gv"/>
-                                <constraint firstItem="XdW-jW-2Zc" firstAttribute="top" secondItem="Gqo-h3-ezF" secondAttribute="top" id="u0x-g7-p1w"/>
+                                <constraint firstItem="XdW-jW-2Zc" firstAttribute="leading" secondItem="Gqo-h3-ezF" secondAttribute="leading" constant="10" id="CiU-xW-xkZ"/>
+                                <constraint firstAttribute="bottom" secondItem="XdW-jW-2Zc" secondAttribute="bottom" constant="10" id="Zla-as-JPG"/>
+                                <constraint firstAttribute="trailing" secondItem="XdW-jW-2Zc" secondAttribute="trailing" constant="10" id="rbX-As-8gv"/>
+                                <constraint firstItem="XdW-jW-2Zc" firstAttribute="top" secondItem="Gqo-h3-ezF" secondAttribute="top" constant="10" id="u0x-g7-p1w"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                    <real key="value" value="5"/>
+                                    <real key="value" value="10"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
@@ -93,10 +97,9 @@
                         <constraint firstItem="Gqo-h3-ezF" firstAttribute="leading" secondItem="hb9-qd-igq" secondAttribute="leading" constant="16" id="24A-0M-Yx5"/>
                         <constraint firstAttribute="bottom" secondItem="2aC-zq-9TC" secondAttribute="bottom" id="9wC-MJ-7rV"/>
                         <constraint firstItem="2aC-zq-9TC" firstAttribute="leading" secondItem="hb9-qd-igq" secondAttribute="leading" id="CbQ-lz-mit"/>
-                        <constraint firstItem="2aC-zq-9TC" firstAttribute="top" secondItem="Gqo-h3-ezF" secondAttribute="bottom" constant="98" id="IDA-XS-kkk"/>
                         <constraint firstAttribute="trailing" secondItem="Gqo-h3-ezF" secondAttribute="trailing" constant="16" id="Y0k-AS-KxU"/>
                         <constraint firstAttribute="trailing" secondItem="2aC-zq-9TC" secondAttribute="trailing" id="mK4-0X-Gni"/>
-                        <constraint firstItem="Gqo-h3-ezF" firstAttribute="top" secondItem="hb9-qd-igq" secondAttribute="top" constant="27" id="xAC-w4-pjg"/>
+                        <constraint firstItem="Gqo-h3-ezF" firstAttribute="top" secondItem="hb9-qd-igq" secondAttribute="top" constant="30" id="xAC-w4-pjg"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRound">

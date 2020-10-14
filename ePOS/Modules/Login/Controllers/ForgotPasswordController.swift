@@ -15,11 +15,12 @@ class ForgotPasswordController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addKeyboardNotifications()
         if(mobileNumber == nil)
         {
             self.showAlert(title: "Error", message:Constants.errorMessage.rawValue )
         }
-        hideKeyboardWhenTappedAround()
+//        hideKeyboardWhenTappedAround()
     }
     
     class func initWith(mobileNumber: String) -> ForgotPasswordController {

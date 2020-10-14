@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+class TerminalMasterParamData: Codable
+{
+    var ulPvmVersion: Int64
+}

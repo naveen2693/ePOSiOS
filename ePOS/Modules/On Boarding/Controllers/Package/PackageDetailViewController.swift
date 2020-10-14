@@ -18,6 +18,11 @@ class PackageDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    class func viewController() -> PackageDetailViewController {
+        let controller = PackageDetailViewController.init(nibName: PackageDetailViewController.className, bundle: nil)
+        return controller
+    }
+    
     private func registerCell() {
         tableView.register(UINib(nibName: PackageDetailTableViewCell.className, bundle: nil), forCellReuseIdentifier: PackageDetailTableViewCell.className)
     }

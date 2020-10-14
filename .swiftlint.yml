@@ -51,6 +51,8 @@ disabled_rules:
     - number_separator
     - for_where
     - nesting
+    - redundant_string_enum_value
+    - orphaned_doc_comment
 
 opt_in_rules:
     - array_init
