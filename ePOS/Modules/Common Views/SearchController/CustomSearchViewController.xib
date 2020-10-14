@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomSearchViewController" customModule="ePOS" customModuleProvider="target">
+            <connections>
+                <outlet property="headerView" destination="VDr-dr-bKj" id="LV6-bp-IGB"/>
+                <outlet property="searchBar" destination="l8B-ci-7nz" id="NEx-sf-EaR"/>
+                <outlet property="tableView" destination="vRQ-6E-Q9q" id="0nU-5c-IkP"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="EPOSBaseView" customModule="ePOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VDr-dr-bKj" customClass="EPOSShadowView" customModule="ePOS" customModuleProvider="target">
+                    <rect key="frame" x="16" y="10" width="288" height="41"/>
+                    <subviews>
+                        <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="l8B-ci-7nz">
+                            <rect key="frame" x="0.0" y="-7.5" width="288" height="56"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="EWT-Zo-Ub6"/>
+                            </connections>
+                        </searchBar>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="l8B-ci-7nz" firstAttribute="centerY" secondItem="VDr-dr-bKj" secondAttribute="centerY" id="ZTx-kb-E6z"/>
+                        <constraint firstItem="l8B-ci-7nz" firstAttribute="leading" secondItem="VDr-dr-bKj" secondAttribute="leading" id="bOG-Gv-ab2"/>
+                        <constraint firstAttribute="height" constant="41" id="haW-Gy-uNs"/>
+                        <constraint firstAttribute="trailing" secondItem="l8B-ci-7nz" secondAttribute="trailing" id="sn0-fb-XOu"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t7k-72-L7x" customClass="RoundedCornerView" customModule="ePOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="75" width="320" height="493"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vRQ-6E-Q9q">
+                            <rect key="frame" x="0.0" y="10" width="320" height="483"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="exi-Ei-bYd"/>
+                                <outlet property="delegate" destination="-1" id="pxz-jN-IGc"/>
+                            </connections>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="vRQ-6E-Q9q" firstAttribute="leading" secondItem="t7k-72-L7x" secondAttribute="leading" id="Mxo-qo-cO4"/>
+                        <constraint firstAttribute="trailing" secondItem="vRQ-6E-Q9q" secondAttribute="trailing" id="Qjd-jS-nG2"/>
+                        <constraint firstItem="vRQ-6E-Q9q" firstAttribute="top" secondItem="t7k-72-L7x" secondAttribute="top" constant="10" id="RWj-ge-fgb"/>
+                        <constraint firstAttribute="bottom" secondItem="vRQ-6E-Q9q" secondAttribute="bottom" id="puT-Na-a2b"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRound">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="t7k-72-L7x" firstAttribute="top" secondItem="VDr-dr-bKj" secondAttribute="bottom" constant="24" id="BGj-zz-Adb"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="t7k-72-L7x" secondAttribute="trailing" id="Foz-1d-YAI"/>
+                <constraint firstItem="VDr-dr-bKj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="LdI-Kv-u82"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VDr-dr-bKj" secondAttribute="trailing" constant="16" id="OzD-RD-93T"/>
+                <constraint firstItem="VDr-dr-bKj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="TLR-yg-901"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="t7k-72-L7x" secondAttribute="bottom" id="XYg-Ua-45A"/>
+                <constraint firstItem="t7k-72-L7x" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="odE-hh-N5q"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="3.75" y="107.74647887323944"/>
+        </view>
+    </objects>
+</document>

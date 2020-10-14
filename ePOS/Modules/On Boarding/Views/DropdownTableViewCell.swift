@@ -10,10 +10,12 @@ import UIKit
 
 class DropdownTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: EPOSLabel?
+    @IBOutlet weak var checkbox: CheckBox?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        checkbox?.style = .circle
+        checkbox?.borderStyle = .rounded
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

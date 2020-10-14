@@ -16,7 +16,6 @@ extension UserDefaults {
     enum UserDefaultKey: String {
         case termsUrl
         case accessToken
-        case udid
         case userId
         case profile
         case masterData
@@ -28,6 +27,7 @@ extension UserDefaults {
         case currentUserState
         case currentLeadID
         case currentLead
+        case uuid
     }
         private init() {}
         
@@ -44,14 +44,14 @@ class EPOSUserDefaults: NSObject {
         return UserDefaults.Configuration.url(forKey: .termsUrl)
     }
     
-    static func setUdid(udid:String)
+    static func setUuid(udid:String)
     {
-        UserDefaults.Configuration.set(udid, forKey: .udid)
+        UserDefaults.Configuration.set(udid, forKey: .uuid)
     }
     
-    static func getUdid() -> String?
+    static func getUuid() -> String?
     {
-        return UserDefaults.Configuration.string(forKey: .udid)
+        return UserDefaults.Configuration.string(forKey: .uuid)
     }
     
     static func setAccessToken(accessToken:String)

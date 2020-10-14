@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         configureFirebase()
         setAppearance()
 //        loadApp()
@@ -73,7 +74,6 @@ extension AppDelegate {
             self.window?.rootViewController = navController
         } else {
             let navigationController = UINavigationController(rootViewController: controller)
-            navigationController.isNavigationBarHidden = true
             self.window?.rootViewController = navigationController
         }
         self.window?.makeKeyAndVisible()
@@ -85,8 +85,9 @@ extension AppDelegate {
     
     func setOnBoardingNavigationWith(_ state: WorkFlowState) {
         switch state {
-        case .leadNotCreated:
+        case .leadNotCreated, .leadInitialized:
             let controller = PersonalInfoViewController.viewController(state)
+//            let navigationController = AppStoryboard.main.initialViewController()
             setRootControllerOnWindowWith(controller)
         default:
             break
@@ -102,24 +103,28 @@ extension AppDelegate {
                     weakSelf?.setOnBoardingNavigationWith(workflowState)
                 }
             case .failure(let error):
-                if let error = error as? APIError, error == .noNetwork {
-                    
-//                    self.showAlert(title: "ERROR", message: Constants.noNetworkMsg.rawValue)
-                }
+                print("")
+//               self.showAlert(title:Constants.validationFailure.rawValue, message:error)
             }
         });
     }
     
     func setAppearance() {
+
         UINavigationBar.appearance().tintColor = UIColor.white
+
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont.mediumFontWith(size: 18), NSAttributedString.Key.foregroundColor: UIColor.white]
 
-        //let backImage = UIImage(named: "backIcon")
-        //backImage = backImage?.stretchableImage(withLeftCapWidth: 15, topCapHeight: 30)
-        //UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage
-        //UIBarButtonItem.appearance().setBackButtonBackgroundImage(backImage, for: .normal, barMetrics: .default)
-        //UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -200, vertical: 0), for:UIBarMetrics.default)
+
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.font: UIFont.mediumFontWith(size: 12), NSAttributedString.Key.foregroundColor: UIColor.subTextColor()]
+
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).borderStyle = .none
+
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = .clear
+        
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.subTextColor()], for: .normal)
 
     }
     
 }
+

@@ -8,6 +8,24 @@
 
 import Foundation
 
+enum DocumentType: String {
+    case pan = "PAN";
+    case gstin = "GSTIN";
+    case tin = "TIN";
+    case vat = "VAT";
+    case aadhar = "AADHAR";
+    case cst = "CST";
+    case centralServiceTax = "CENTRAL_SERVICE_TAX";
+    case voterId = "VOTER_ID";
+    case dL = "DRIVING_LICENSE";
+//    case UTILITY_BILL_ELEC = "UTILITY_BILL_ELEC";
+//    case UTILITY_BILL_LPG = "UTILITY_BILL_LPG";
+    case fssai = "FSSAI";
+    case uan = "UAN";
+    case udhyogAadhar = "UDHYOG_AADHAAR";
+    case shopNEstablishment = "SHOP_N_ESTABLISHMENT";
+}
+
 struct GSTDetails : Codable {
     let id : String?
     let entityType : String?

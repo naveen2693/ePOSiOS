@@ -12,7 +12,7 @@ import UIKit
 class RoundedCornerView: UIView {
     @IBInspectable var cornerRound: CGFloat = 0.0 {
         didSet {
-            self.layer.cornerRadius = 10
+            self.layer.cornerRadius = cornerRound
             self.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         }
     }

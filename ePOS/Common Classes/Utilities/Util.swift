@@ -61,16 +61,19 @@ public class Util
     
     static func getUUID() -> String {
         let uuid = UIDevice.current.identifierForVendor
-        return uuid!.uuidString
+        var newUUID = uuid!.uuidString.removingWhitespaces()
+        newUUID = newUUID.replacingOccurrences(of: "-", with: "")
+        return newUUID
     }
-     
+    
     static func GetHardwareType() -> [Byte]
      {
          let strHardwareType: String = AppConst.TERMINAL_TYPE;        
          return [Byte](strHardwareType.utf8)
      }
     
-    static func GetCurrentDateTime() -> [Byte] {
+    static func GetCurrentDateTime() -> [Byte]
+    {
         let currentDate = Date()
         let dateFormatter = DateFormatter()
 
@@ -81,7 +84,8 @@ public class Util
         return [Byte](convertedDate.utf8)
     }
     
-    static func getAppVersion() -> String {
+    static func getAppVersion() -> String
+    {
         return AppConst.APP_VERSION;
     }
     
@@ -94,5 +98,4 @@ public class Util
     {
         return s
     }
-    
 }

@@ -6,7 +6,7 @@ import Foundation
 import Moya
 enum ApiService
 {
-// MARK:- Login Apis
+    // MARK:- Login Apis
     case getCheckUserWith(mobileNumber:String)
     
     case getForgotPasswordWith(mobileNumber:String)
@@ -17,13 +17,13 @@ enum ApiService
     
     case resetPasswordWith(mobileNumber:String,otp:String,newPassword:String)
     
-case getLoginWith(mobileNumber:String,password:String)
+    case getLoginWith(mobileNumber:String,password:String)
     
-// MARK:- SignUp Apis
+    // MARK:- SignUp Apis
     case getSignUpWith(signUpData:SignUpData)
     
     case getManageAccount
-// MARK:-OnBoarding Apis
+    // MARK:-OnBoarding Apis
     case createRequestMasterDataWith(mode:String)
     
     case getCityListWith(strLastModifiedDate:String)
@@ -36,8 +36,18 @@ case getLoginWith(mobileNumber:String,password:String)
     
     case getGSTDetail(gstNumber: String)
     
-// MARK:- Configuration
+    case getMerchantVerificationWith(proofName:String,proofNumber:String,additionalInfo:[String:String])
+    case updateLeadWith(lead:Lead,documents:DocumentDetails)
+    
+    case searchIFSCWith(params: SearchIFSCRequest)
+    
+    case BankverificationWith(leadId:Int64,ArrayListAdditionalInfo:[AdditionalInfo])
+    
+    case getPackagesWith(leadId: Int)
+    // MARK:- Configuration
     case getConfigurationsWith(globalChangeNumber:Int)
+    
+    case uploadDocument(uploadDocumentRequest:UploadDocumentRequest)
 }
 extension ApiService : TargetType
 {
@@ -47,7 +57,7 @@ extension ApiService : TargetType
     
     var path: String {
         switch self  {
-    // MARK:- Login Apis path
+        // MARK:- Login Apis path
         case .getCheckUserWith:
             return ApiEndpointsUrl.UserDetailsApiEndpointUrl.checkUser.rawValue
             
@@ -65,11 +75,11 @@ extension ApiService : TargetType
         case .getLoginWith:
             return ApiEndpointsUrl.UserDetailsApiEndpointUrl.loginUrl.rawValue
             
-    // MARK:- Sign Apis Path
+        // MARK:- Sign Apis Path
         case .getSignUpWith:
             return ApiEndpointsUrl.UserDetailsApiEndpointUrl.signUpUrl.rawValue
             
-   // MARK:-OnBoarding
+        // MARK:-OnBoarding
         case .getManageAccount:
             return ApiEndpointsUrl.OnboardingApiEndpointUrl.getProfileUrl.rawValue
             
@@ -83,25 +93,40 @@ extension ApiService : TargetType
             return ApiEndpointsUrl.OnboardingApiEndpointUrl.fetchUserList.rawValue
             
         case .getLeadByIdWith:
-           return ApiEndpointsUrl.OnboardingApiEndpointUrl.getLeadId.rawValue
+            return ApiEndpointsUrl.OnboardingApiEndpointUrl.getLeadId.rawValue
             
         case .createLeadWith:
             return ApiEndpointsUrl.OnboardingApiEndpointUrl.createLead.rawValue
             
         case .getGSTDetail:
             return ApiEndpointsUrl.OnboardingApiEndpointUrl.gstDetail.rawValue
-        
-    // MARK:- Configuration path
+            
+        case .getMerchantVerificationWith:
+            return ApiEndpointsUrl.OnboardingApiEndpointUrl.getMerchantVerificationDetails.rawValue
+            
+        case .updateLeadWith:
+            return ApiEndpointsUrl.OnboardingApiEndpointUrl.updateLead.rawValue
+            
+        case .getPackagesWith:
+            return ApiEndpointsUrl.OnboardingApiEndpointUrl.getPackages.rawValue
+        // MARK:- Configuration path
         case .getConfigurationsWith:
             return ApiEndpointsUrl.ConfigurationApiEndPointsUrl.configurationUrl.rawValue
-           
-        
+        case .searchIFSCWith:
+            return ApiEndpointsUrl.OnboardingApiEndpointUrl.searchIFSC.rawValue
+            
+        case .BankverificationWith:
+            return ApiEndpointsUrl.OnboardingApiEndpointUrl.verifyBankAccount.rawValue
+            
+        case .uploadDocument:
+            return ApiEndpointsUrl.OnboardingApiEndpointUrl.uploadDocument.rawValue
+            
         }
     }
-
+    
     var method:Moya.Method {
         switch self{
-// MARK:- Login Apis method
+        // MARK:- Login Apis method
         case .getCheckUserWith:
             return .get
             
@@ -113,21 +138,21 @@ extension ApiService : TargetType
             
         case .getSendOtpWith:
             return .get
-        
+            
         case .resetPasswordWith:
             return .post
-        
+            
         case .getLoginWith:
             return .post
             
-// MARK:- SignUp Apis Method
+        // MARK:- SignUp Apis Method
         case .getSignUpWith:
             return .post
             
         case .getManageAccount:
             return .get
             
-// MARK: - OnBoarding Apis Method
+        // MARK: - OnBoarding Apis Method
         case .createRequestMasterDataWith:
             return .post
             
@@ -136,19 +161,19 @@ extension ApiService : TargetType
             
         case .getFetchUserWith:
             return .get
-        
-         case .createLeadWith:
+            
+        case .createLeadWith,.updateLeadWith,.searchIFSCWith,.BankverificationWith,.uploadDocument, .getPackagesWith:
             return .post
             
-        case .getLeadByIdWith, .getGSTDetail:
+        case .getLeadByIdWith, .getGSTDetail,.getMerchantVerificationWith:
             return .get
             
             
- // MARK:- Configuration Method
+        // MARK:- Configuration Method
         case .getConfigurationsWith:
             return .post
-        
-        
+            
+            
         }
     }
     
@@ -156,21 +181,21 @@ extension ApiService : TargetType
         return Data()
     }
     
-  var validate:ValidationType {
+    var validate:ValidationType {
         switch self {
-        case .getCheckUserWith, .getForgotPasswordWith,.getVerifyOtpWith,.getSendOtpWith,.resetPasswordWith,.getLoginWith,.getSignUpWith,.getManageAccount,.createRequestMasterDataWith,.getCityListWith,.getFetchUserWith,.getLeadByIdWith,.getConfigurationsWith, .createLeadWith, .getGSTDetail:
+        case .getCheckUserWith, .getForgotPasswordWith,.getVerifyOtpWith,.getSendOtpWith,.resetPasswordWith,.getLoginWith,.getSignUpWith,.getManageAccount,.createRequestMasterDataWith,.getCityListWith,.getFetchUserWith,.getLeadByIdWith,.getConfigurationsWith, .createLeadWith, .getGSTDetail,.getMerchantVerificationWith,.updateLeadWith,.searchIFSCWith,.BankverificationWith, .getPackagesWith,.uploadDocument:
             return .customCodes([200])
         }
     }
     
     var task: Task {
         switch self {
-// MARK:- Login Apis task
+        // MARK:- Login Apis task
         case .getCheckUserWith(let mobileNumber):
             return  .requestParameters(parameters:RequestHandler.createCheckUserRequest(mobileNum:mobileNumber), encoding: URLEncoding.queryString)
             
         case .getForgotPasswordWith(let mobileNumber):
-          return .requestParameters(parameters:RequestHandler.createForgotPasswordRequest(mobileNum:mobileNumber), encoding: URLEncoding.queryString)
+            return .requestParameters(parameters:RequestHandler.createForgotPasswordRequest(mobileNum:mobileNumber), encoding: URLEncoding.queryString)
             
         case .getVerifyOtpWith(let mobileNumber,let otp):
             return  .requestJSONEncodable((RequestHandler
@@ -180,81 +205,81 @@ extension ApiService : TargetType
             return  .requestParameters(parameters:RequestHandler.createOTPSendRequest(mobileNum:mobileNumber), encoding: URLEncoding.queryString)
             
         case .resetPasswordWith(let mobileNumber,let otp, let newPassword):
-                  return  .requestJSONEncodable((RequestHandler
-                    .createResetPasswordRequest(mobileNumber:mobileNumber,otp: otp,password: newPassword)))
+            return  .requestJSONEncodable((RequestHandler
+                .createResetPasswordRequest(mobileNumber:mobileNumber,otp: otp,password: newPassword)))
             
         case .getLoginWith(let mobileNumber, let password):
             return  .requestJSONEncodable((RequestHandler
-                                     .createLoginRequest(mobileNumber: mobileNumber, password: password)))
+                .createLoginRequest(mobileNumber: mobileNumber, password: password)))
             
-// MARK:- SignUp Apis task
+        // MARK:- SignUp Apis task
         case .getSignUpWith(let signUpData):
             return  .requestJSONEncodable((RequestHandler
                 .createSignUpRequest(signUpData: signUpData)))
         case .getManageAccount:
             return .requestPlain
+            
+            
+        //  MARK: - ONBoarding tasks
+        case .createRequestMasterDataWith(let mode):
+            return  .requestJSONEncodable((RequestHandler
+                .createMasterDataRequest(mode: mode)))
+            
+        case .getCityListWith(let strLastModifiedDate):
+            return  .requestJSONEncodable((RequestHandler
+                .createGetCityListRequest(strLastModifiedDate: strLastModifiedDate)))
+            
+        case .getFetchUserWith(let listSortParams):
+            return .requestParameters(parameters:RequestHandler.createUserListRequest(params:listSortParams), encoding: URLEncoding.queryString)
+            
+        case .createLeadWith(let params):
+            return .requestJSONEncodable(params)
+            
+        case .getLeadByIdWith(let leadId):
+            return  .requestJSONEncodable((RequestHandler
+                .createGetLeadIDRequest(leadID: leadId)))
+            
+        case .getGSTDetail(let gstNumber):
+            return .requestParameters(parameters:RequestHandler.createGstDetailRequest(number: gstNumber), encoding: URLEncoding.queryString)
+            
+        case .getMerchantVerificationWith(let proofName,let proofNumber,let additionalInfo):
+            return  .requestJSONEncodable((RequestHandler
+                .createMerchantVerificationRequest(proofName: proofName, proofNumber: proofNumber, additionalInfo: additionalInfo)))
+        case .updateLeadWith(let lead,let documents):
+            return .requestJSONEncodable((RequestHandler
+                .updateLeadRequest(lead: lead, documents: documents)))
+            
+        case .searchIFSCWith(let params):
+            return .requestJSONEncodable(params)
+            
+        case .BankverificationWith(let leadId,let additionalInfo):
+            return .requestJSONEncodable((RequestHandler
+                .createBankVerificationRequest(leadId: leadId, additionalInfos:additionalInfo)))
         
+        case .getPackagesWith(let leadId):
+            return .requestJSONEncodable(RequestHandler.createGetPackagesRequest(leadId: leadId))
             
-//  MARK: - ONBoarding tasks
-            case .createRequestMasterDataWith(let mode):
-                 return  .requestJSONEncodable((RequestHandler
-                    .createMasterDataRequest(mode: mode)))
-                
-            case .getCityListWith(let strLastModifiedDate):
-                 return  .requestJSONEncodable((RequestHandler
-                    .createGetCityListRequest(strLastModifiedDate: strLastModifiedDate)))
-                
-            case .getFetchUserWith(let listSortParams):
-                return .requestParameters(parameters:RequestHandler.createUserListRequest(params:listSortParams), encoding: URLEncoding.queryString)
-                
-            case .createLeadWith(let params):
-                return .requestJSONEncodable(params)
+        case .uploadDocument(let documentRequest):
+            return .requestJSONEncodable(RequestHandler.createUploadDataReq(uploadDocJson: documentRequest))
             
-            case .getLeadByIdWith(let leadId):
-                return  .requestJSONEncodable((RequestHandler
-                    .createGetLeadIDRequest(leadID: leadId)))
-            
-            case .getGSTDetail(let gstNumber):
-                return .requestParameters(parameters:RequestHandler.createGstDetailRequest(number: gstNumber), encoding: URLEncoding.queryString)
-// MARK:-Configuration task
+        // MARK:-Configuration task
         case .getConfigurationsWith(let globalChngNum):
             return  .requestJSONEncodable((RequestHandler
                 .createConfigurationRequest(globalChangeNumber: globalChngNum)))
-        
-        
+            
+            
         }
     }
+    
     var headers: [String : String]? {
-          switch self {
-             case .getCheckUserWith:
-                return RequestHandler.createWebServiceHeaderWithoutAccessToken()
-                        
-            case .getForgotPasswordWith:
-                return RequestHandler.createWebServiceHeaderWithoutAccessToken()
-    
-            case .getVerifyOtpWith:
-               return RequestHandler.createWebServiceHeaderWithoutAccessToken()
-                
-            case .getSendOtpWith:
-               return RequestHandler.createWebServiceHeaderWithoutAccessToken()
-    
-            case .getLoginWith:
+        switch self {
+        case .getCheckUserWith,.getForgotPasswordWith,.getVerifyOtpWith,.getSendOtpWith,.getLoginWith,.getSignUpWith,.resetPasswordWith,.getConfigurationsWith:
             return RequestHandler.createWebServiceHeaderWithoutAccessToken()
-    
-            case .getSignUpWith:
-               return RequestHandler.createWebServiceHeaderWithoutAccessToken()
-    
-            case .resetPasswordWith:
-                return RequestHandler.createWebServiceHeaderWithoutAccessToken()
-                
-          case .getManageAccount, .createRequestMasterDataWith, .getCityListWith, .getFetchUserWith, .createLeadWith, .getLeadByIdWith, .getGSTDetail:
-                 return RequestHandler.createWebServiceHeaderWithAccessToken()
             
-            case .getConfigurationsWith:
-                 return RequestHandler.createWebServiceHeaderWithoutAccessToken()
+        case .getManageAccount, .createRequestMasterDataWith, .getCityListWith, .getFetchUserWith, .createLeadWith, .getLeadByIdWith, .getGSTDetail,.getMerchantVerificationWith,.updateLeadWith,.searchIFSCWith,.BankverificationWith, .getPackagesWith,.uploadDocument:
+            return RequestHandler.createWebServiceHeaderWithAccessToken()
             
-          
         }
-            
+        
     }
 }
