@@ -32,7 +32,7 @@ public struct TerminalParamData:Codable {
     var m_bIsTCPAlwaysOn = false;
     var m_bIsAmexEMVDE55HexTagDataEnable = false; // _Amex_Gprs_EMV_Field55_Hex_Data_Tag_Enable
     var m_bIsAmexEMVReceiptEnable = false; // _Amex_Gprs_EMV_Receipt_61_Dump_Enable
-    var m_ulSignUploadChunkSize = false; // _Sign_Upload_Chunk_size
+    var m_ulSignUploadChunkSize:Int64 = 0; // _Sign_Upload_Chunk_size
     var m_ulClessDefPreProcessAmount = false ; // _Cless_PreProcessing_Amount
     var bArrClessDefPreProcessTxnType:[UInt8] = [0]   // _Cless_PreProcessing_TxnType
     var m_strClessMasterParam = ""; // bArrClessMasterParam

@@ -110,6 +110,24 @@ class FileSystem {
         return bRetval;
     }
     
+    
+    static func DeleteFileComplete(strFileName: String) -> Bool
+      {
+          let bRetval: Bool = false;
+          do {
+            let plistURL = Util.masterDataDirectoryURL.appendingPathComponent(strFileName).appendingPathExtension("plist")
+              
+            if FileManager.default.fileExists(atPath: plistURL.path) {
+                try FileManager.default.removeItem(atPath: plistURL.path)
+              }
+          }
+          catch {
+              debugPrint("Exception Occurred :  \(error)")
+              //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(e));
+          }
+          return bRetval;
+      }
+      
     private static func FilePlistURL<T: Codable>(strFileName: String, with array: [T]) -> URL{
         
         let plistURL = Util.masterDataDirectoryURL.appendingPathComponent(strFileName).appendingPathExtension("plist")

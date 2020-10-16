@@ -25,12 +25,12 @@ public struct TerminalConxData:Codable{
 
    //IP Layer
     var bTransactionSSLIPRetryCounter:Int16 = 0;
-    var strTransactionSSLServerIP = "";
-    var iTransactionSSLPort = 0;
-    var strSecondaryTransactionSSLServerIP = "";
+    var strTransactionSSLServerIP:String = "";
+    var iTransactionSSLPort:Int = 0;
+    var strSecondaryTransactionSSLServerIP:String = "";
     var iSecondaryTransactionSSLPort = 0;
-    var strGPRSServiceProvider = "";
-    var strAPN = "";
+    var strGPRSServiceProvider:String = "";
+    var strAPN:String = "";
 
   //WiFi specific configuration
     var strWiFiProfileName = "";

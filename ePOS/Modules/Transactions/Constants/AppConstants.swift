@@ -58,7 +58,6 @@ enum AppConstant
     static let TRANSACTION_AMOUNT_FILE = "TxnAmt";            //File storing transaction da
     static let PRINTDUMPTRANSACTIONFILE = "PrintTxn";            //File storing transaction
     static let TEMP_TRANSACTIONFILENAME = "tempTxn";            //temp File storing transac
-    static let TERMINALMASTERPARAMFILE = "MasterParam.txt";    //File storing master parame
     static let CONNECTIONDATAFILENAME = "Conndata";  //File storing Connection preference
     static let TXNFEILD62NAME = "230dump";//DUMP of chargeslip Data
     static let TEMP_TXNFEILD62NAME = "temp230dump";//temp DUMP of chargeslip Data
@@ -77,17 +76,31 @@ enum AppConstant
     static let USERINFOFILE = "UserInfo"
     static let  MASTERCGFILE = "MASTERCT"
     static let MASTERCLRDIMFILE = "MASTERCLRDIMG"
+    static let PSKSDWNLDFILE = "pskfile"
+    static let AUTOLOGSHIPMENTSMTPCREDENTIAL = "LogShipmentCred"
+    static let AUTOLOGSHIPMENTFILE = "LogShipment"
     static let MASTERFCGFILE = "MASTERFCT"
+    static let TERMINALMASTERPARAMFILE = "MasterParam"
     static let MASTERIMFILE = "MASTERIMG"
     static let MASTERFONTFILE = "MASTERFON"
     static let MASTERLIBFILE = "MASTERLIB"
+    static let BINRANGEFILE = "binrange"
+    static let CONTENT_SERVER_PARAM_FILE = "content_server_parm_file"
+    static let AUTOREVERSALPARFILE = "AutoRev"
     static let MASTERMINIPVMFILE = "MASTERMINI"
+    static let AUTOGPRSALWAYSONPARFILE = "AutoGprs"
+    static let AUTOSETTLEPARFILE = "AutSet"
+    static let MASTERHTLFILE = "MASTERHTL"
+    static let TEMPCSVTXNMAPFILE = "tmpcsvmap"
+    static let  TEMPTXNBINFILE = "tmptxnbin"
+    static let  TEMPBINRANGEFILE = "tmpbinrng"
+    static let AUTOPREMIUMSERVICEPARFILE = "AutoPrem"
     static let DEFAULT_ORDINARY_USER = ""
     static let DEFAULT_ORDINARY_PIN = ""
     static let DEFAULT_ADMIN_USER = ""
     static let ORDINARY_USER_TYPE = 3;
     static let ADM_USER_TYPE = 1;
-    
+    static let APP_VERSION = "080120"
     
     
     static let MAX_EMV_TAG_TLV_LENGTH = 20;
@@ -99,6 +112,33 @@ enum AppConstant
     static let DEFAULT_BATCH_SIZE = 200;
     
     static let NoPrintDefaultMessage = "    No Print Enabled\n\n\n   "
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   static let ACTION_DELETE = 0x00;
+   static let ACTION_ADD = 0x01;
+   static let TAG_DOWNLOAD_ALL = 4;
+   static let MAX_TXN_BIN_PARAMETERES = 4000;
+   static let LEN_INITIALIZATION_BITMAP = 8;
+   static let LEN_BITMAP_PACKET = 2;
+   static let MAX_APP_VERSION_LEN = 6;
+   static let MAX_CONNECTION_TIMEOUT_LEN = 6;
+   static let MAX_PHONENUMBER_LEN = 16;
+   static let MAX_LOGIN_ID_LEN = 20;
+   static let MAX_LOGIN_PASS_LEN = 20;
+   static let MAX_IPADDR_LEN = 20;
+   static let MAX_ISO_PORT_LEN = 10;
+   static let MAX_GPRS_SERVICES_PROVIDER_LEN = 20;
+   static let MAX_WIFI_PROFILE_NAME = 20;
+    
+    
     
 }
 
