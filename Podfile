@@ -17,6 +17,7 @@ pod 'Firebase/Crashlytics'
 pod 'MaterialComponents/TextControls+OutlinedTextFields'
 pod 'IQKeyboardManagerSwift'
 pod 'SwiftSocket'
+pod 'CryptoSwift'
   # Pods for ePOS
 
 end
