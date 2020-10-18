@@ -7,24 +7,17 @@
 //
 
 import Foundation
+import CommonCrypto
 import CryptoSwift
 
-enum XOREncryptionType : Int
-{
-    case SERIAL_LINK_ENCRYPTION = 1;
-    case USER_DATA_ENCRYPTION = 2;
-    case SERIAL_LINK_SHA_ENCRYPTION = 3;
+enum XOREncryptionType {
+       static let INVALID = 0
+       static let SERIAL_LINK_ENCRYPTION  = 1
+       static let USER_DATA_ENCRYPTION  = 2
+       static let SERIAL_LINK_SHA_ENCRYPTION = 3
 }
 
 class CryptoHandler{
-    
-
-    enum EnXOREncryptionType: Int {
-           case INVALID = 0
-           case SERIAL_LINK_ENCRYPTION  = 1
-           case USER_DATA_ENCRYPTION  = 2
-           case SERIAL_LINK_SHA_ENCRYPTION = 3
-    }
     
     static func padLeft(data: String, length: Int, padChar: Character) -> String {
         let remaining = length - data.count;
@@ -58,14 +51,14 @@ class CryptoHandler{
     }
     
     
-    func XOREncrypt(_ bArrDataToEncrypt: [UInt8] , _ encryptionType: Int) -> [UInt8]?
+    static func XOREncrypt(_ bArrDataToEncrypt: [UInt8] , _ encryptionType: Int) -> [UInt8]?
     {
         guard let key = getEncryptionKey(encryptionType) else { return nil }
         
         let iInputLength = bArrDataToEncrypt.count
         let iKeySize = key.count
         
-        var bArrEncryptedData = [UInt8] (repeating: 0, count: iInputLength)
+        var bArrEncryptedData = [UInt8](repeating: 0, count: iInputLength)
         
         for i in 0..<iInputLength
         {
@@ -75,14 +68,14 @@ class CryptoHandler{
         return bArrEncryptedData
     }
     
-    func XORDecrypt(_ bArrDataToDecrypt: [UInt8] , _ encryptionType: Int) -> [UInt8]?
+    static func XORDecrypt(_ bArrDataToDecrypt: [UInt8] , _ encryptionType: Int) -> [UInt8]?
     {
         guard let key = getEncryptionKey(encryptionType) else { return nil }
         
         let iInputLength = bArrDataToDecrypt.count
         let iKeySize = key.count
         
-        var bArrDecryptedData = [UInt8] (repeating: 0, count: iInputLength)
+        var bArrDecryptedData = [UInt8](repeating: 0, count: iInputLength)
         
         for i in 0..<iInputLength
         {
@@ -92,20 +85,20 @@ class CryptoHandler{
         return bArrDecryptedData
     }
     
-    func getEncryptionKey(_ keyType: Int) -> [UInt8]?
+    static func getEncryptionKey(_ keyType: Int) -> [UInt8]?
     {
         switch keyType {
-        case XOREncryptionType.SERIAL_LINK_ENCRYPTION.rawValue:
-             let key = [UInt8] ("GODISGREAT".utf8)
+        case XOREncryptionType.SERIAL_LINK_ENCRYPTION:
+             let key = [UInt8]("GODISGREAT".utf8)
              return key
-        case XOREncryptionType.USER_DATA_ENCRYPTION.rawValue:
-            guard var hardwareSerialNumber = PlatformUtils.GetHardWareSerialNumber() else {return nil}
+        case XOREncryptionType.USER_DATA_ENCRYPTION:
+            guard var hardwareSerialNumber = PlatFormUtils.GetHardWareSerialNumber() else {return nil}
             if hardwareSerialNumber.count < 15 {
                 hardwareSerialNumber = TransactionUtils.ByteArrayZeroPaddingtoLeft(to: hardwareSerialNumber,blockSize:15)
             }
             let key = hardwareSerialNumber
             return key
-        case XOREncryptionType.SERIAL_LINK_SHA_ENCRYPTION.rawValue:
+        case XOREncryptionType.SERIAL_LINK_SHA_ENCRYPTION:
             //Not required for epos as we are not using serial communication
             break
         default:
@@ -115,7 +108,7 @@ class CryptoHandler{
         return nil
     }
     
-    func circularLeftRotate(_ bytetoRotate : UInt8, _ iNumberOfTimes : Int) -> UInt8
+    static func circularLeftRotate(_ bytetoRotate : UInt8, _ iNumberOfTimes : Int) -> UInt8
     {
         var iRotate = iNumberOfTimes - 1
         var byte = bytetoRotate
@@ -126,7 +119,7 @@ class CryptoHandler{
         return bytetoRotate;
     }
     
-    func circularRightRotate(_ bytetoRotate : UInt8, _ iNumberOfTimes : Int) -> UInt8
+    static func circularRightRotate(_ bytetoRotate : UInt8, _ iNumberOfTimes : Int) -> UInt8
     {
         var iRotate = iNumberOfTimes - 1
         var byte = bytetoRotate
@@ -136,9 +129,10 @@ class CryptoHandler{
         }
         return bytetoRotate;
     }
-    
-    
-    
-    
-    
+
+    static func vFnGetSHA256(key:String) -> String
+    {
+      return key.hmac(key: key)
+    }
+
 }

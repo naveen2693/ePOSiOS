@@ -1,17 +1,17 @@
 //
 //  ParameterData.swift
 //  ePOS
-//
-//  Created by Vishal Rathore on 16/10/20.
+//  Created by Abhishek on 14/10/20.
+
 //  Copyright © 2020 Pinelabs. All rights reserved.
 //
 
 import Foundation
 
-struct ParameterData {
-    var uiHostID: Int
-    var ulParameterId: Int
-    var ulParameterLen: Int
-    var chArrParameterVal: [Byte]
-}
+public struct ParameterData {
+    var uiHostID = 0;
+    var ulParameterId = 0;
+    var ulParameterLen = 0;
+    var chArrParameterVal:[Byte] = [];
 
+}

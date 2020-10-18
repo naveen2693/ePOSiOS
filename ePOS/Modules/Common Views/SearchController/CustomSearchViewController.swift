@@ -67,7 +67,11 @@ class CustomSearchViewController: CustomNavigationStyleViewController {
         self.tableView.tableFooterView = UIView()
         filteredData = allData
         searchBar?.changeSearchBarColor(color: .white)
-        searchBar?.searchTextField.attributedPlaceholder = NSAttributedString(string: searchType.title(), attributes: [NSAttributedString.Key.foregroundColor: UIColor.subTextColor()])
+        if #available(iOS 13.0, *) {
+            searchBar?.searchTextField.attributedPlaceholder = NSAttributedString(string: searchType.title(), attributes: [NSAttributedString.Key.foregroundColor: UIColor.subTextColor()])
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
 

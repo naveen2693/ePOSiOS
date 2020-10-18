@@ -9,25 +9,25 @@
 import Foundation
 
 class FileSystem {
-
+    
     static func ReWriteFile<T: Codable>(strFileName: String, with array: [T]) throws -> Bool  {
         var bRetval = false
         let encoder = PropertyListEncoder()
-     
+        
         do {
             let finalPlistData = try encoder.encode(array)
             let filePath = FilePlistURL(strFileName: strFileName, with: array)
             try finalPlistData.write(to: filePath)
             bRetval = true
             
-         } catch {
-              debugPrint("Exception Caught")
-              throw error
-         }
+        } catch {
+            debugPrint("Exception Caught")
+            throw error
+        }
         
-         return bRetval;
+        return bRetval;
     }
-   
+
     static func SeekRead<T: Codable>(strFileName: String, iOffset: Int) -> T?
     {
         let result:[T] = ReadFile(strFileName: strFileName)!
@@ -54,6 +54,7 @@ class FileSystem {
         }
         return bResult
     }
+
     
     static func ReadFile<T: Codable>(strFileName: String) -> [T]?
     {
@@ -70,25 +71,25 @@ class FileSystem {
             return nil
         }
     }
-     
+    
     static func AppendFile<T: Codable>(strFileName: String, with array: [T]) throws -> Bool
     {
         var bRetval = false
         
         var result:[T] = []
-
+        
         do {
-         result = ReadFile(strFileName: strFileName)!
-         result.append(contentsOf: array)
+            result = ReadFile(strFileName: strFileName)!
+            result.append(contentsOf: array)
             
-         bRetval = try ReWriteFile(strFileName: strFileName, with: result)
-                   
+            bRetval = try ReWriteFile(strFileName: strFileName, with: result)
+            
         }
         catch {
             debugPrint("Exception Caught")
             throw error
         }
-               
+        
         return bRetval
     }
     
@@ -109,22 +110,43 @@ class FileSystem {
         return bRetval;
     }
     
+    
+    static func DeleteFileComplete(strFileName: String) -> Bool
+      {
+          let bRetval: Bool = false;
+          do {
+            let plistURL = Util.masterDataDirectoryURL.appendingPathComponent(strFileName).appendingPathExtension("plist")
+              
+            if FileManager.default.fileExists(atPath: plistURL.path) {
+                try FileManager.default.removeItem(atPath: plistURL.path)
+              }
+          }
+          catch {
+              debugPrint("Exception Occurred :  \(error)")
+              //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(e));
+          }
+          return bRetval;
+      }
+      
     private static func FilePlistURL<T: Codable>(strFileName: String, with array: [T]) -> URL{
         
         let plistURL = Util.masterDataDirectoryURL.appendingPathComponent(strFileName).appendingPathExtension("plist")
-         
-         if !FileManager.default.fileExists(atPath: plistURL.path) {
-             let encoder = PropertyListEncoder()
-             do {
-                 let initialPlistData = try encoder.encode(array)
-                 try initialPlistData.write(to: plistURL)
-                 _ = FileManager.default.createFile(atPath: plistURL.path, contents: initialPlistData, attributes: nil)
-             } catch {
-                 debugPrint("Error Occured in Creating initial StateData Plist")
-             }
-         }
-         return plistURL
-     }
+
+        
+        if !FileManager.default.fileExists(atPath: plistURL.path) {
+            let encoder = PropertyListEncoder()
+            do {
+                let initialPlistData = try encoder.encode(array)
+                try initialPlistData.write(to: plistURL)
+                _ = FileManager.default.createFile(atPath: plistURL.path, contents: initialPlistData, attributes: nil)
+            } catch {
+                debugPrint("Error Occured in Creating initial StateData Plist")
+            }
+        }
+        return plistURL
+    }
+    
+ 
     
     public static func IsFileExist(strFileName: String) -> Bool
     {
@@ -138,5 +160,5 @@ class FileSystem {
             return false
         }
     }
-    
+
 }

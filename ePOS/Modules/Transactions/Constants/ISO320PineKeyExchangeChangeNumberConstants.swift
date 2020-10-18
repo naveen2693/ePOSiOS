@@ -7,10 +7,10 @@
 //
 
 import Foundation
-enum ISO320PineKeyExchangeChangeNum :Int
+enum ISO320PineKeyExchangeChangeNum
 {
-    case START_SESSION = 1
-    case RESETKEY_REQ = 2
-    case RENEWKEY_REQ = 3
-    case END_SESSION = 4
+     static let START_SESSION = 1
+     static let RESETKEY_REQ = 2
+     static let RENEWKEY_REQ = 3
+     static let END_SESSION = 4
 }

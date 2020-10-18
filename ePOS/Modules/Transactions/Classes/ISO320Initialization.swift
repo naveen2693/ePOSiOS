@@ -113,8 +113,8 @@ class ISO320Initialization: ISOMessage
     var m_ObjArrParameterData: [ParameterData] = []
 
     // for Lib file download-amitesh
-    var m_ulArrlibIdAdd = [LIBstruct?](repeating: nil, count: AppConst.MAX_LIB_FILE)
-    var m_ulArrlibIdDelete = [LIBstruct?](repeating: nil, count: AppConst.MAX_LIB_FILE)
+    var m_ulArrlibIdAdd = [LIBStruct?](repeating: nil, count: AppConst.MAX_LIB_FILE)
+    var m_ulArrlibIdDelete = [LIBStruct?](repeating: nil, count: AppConst.MAX_LIB_FILE)
 
     var loginAccountsMap = [String : LOGINACCOUNTS]()
 
@@ -132,13 +132,13 @@ class ISO320Initialization: ISOMessage
         do {
             debugPrint("Inside setField7PrintPAD")
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_INFO, "Inside setField7PrintPAD");
-            let length: Int = len[ISOFieldConstants.ISO_FIELD_7.rawValue - 1]
+            let length: Int = len[ISOFieldConstants.ISO_FIELD_7 - 1]
 
             if (length > 0) {
                 //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "ISO_FIELD_7 data[%s]", new String(data[ISOFieldConstants.ISO_FIELD_7.rawValue  - 1]));
-                debugPrint("ISO_FILED_7 data[\(String(bytes: self.data[ISOFieldConstants.ISO_FIELD_7.rawValue - 1], encoding: String.Encoding.ascii)!)]")
+                debugPrint("ISO_FILED_7 data[\(String(bytes: self.data[ISOFieldConstants.ISO_FIELD_7 - 1], encoding: String.Encoding.ascii)!)]")
                 
-                let strISOField7: String = String(bytes: self.data[ISOFieldConstants.ISO_FIELD_7.rawValue - 1], encoding: String.Encoding.ascii)!
+                let strISOField7: String = String(bytes: self.data[ISOFieldConstants.ISO_FIELD_7 - 1], encoding: String.Encoding.ascii)!
                 //String strISOField7 = new String(this.data[IsoFieldConstant.ISO_FIELD_7 - 1])
                 if (strISOField7 == AppConst.AC_PRINT_PAD) {
                     m_bField7PrintPAD = true;
