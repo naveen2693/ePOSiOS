@@ -12,21 +12,34 @@ class ISOMessage{
     
     var ISO_LEN: Int = 64
     
-    var data = [[Byte]](repeating:withUnsafeBytes(of: 0, Array.init), count: 64)
+    var data = [[Byte]](repeating:withUnsafeBytes(of: 0x00, Array.init), count: AppConst.ISO_LEN)
     
-    var msgno: [Byte] = []
+    var msgno = [Byte](repeating: 0x00, count: AppConst.ISO_LEN_MTI)
     
-    var bitmap = [Bool](repeating: false, count: 64)
+    var bitmap = [Bool](repeating: false, count: AppConst.ISO_LEN)
     
-    var encryptedFieldBitmap: [Bool] = []
+    var encryptedFieldBitmap =  [Bool](repeating: false, count: AppConst.ISO_LEN)
     
-    var len = [Int](repeating: 0, count: 64)
+    var len = [Int](repeating: -1, count: 64)
     
-    var m_chArrHardwareSerialNumber: [Byte] = []
+    var m_chArrHardwareSerialNumber = [Byte](repeating: 0x00, count: AppConst.MAX_LEN_HARDWARE_SERIAL_NUMBER)
     
-    var m_chArrISOPacketDate = [Byte](repeating: 0, count: AppConst.MAX_LEN_DATE_TIME)
+    var m_chArrISOPacketDate = [Byte](repeating: 0x00, count: AppConst.MAX_LEN_DATE_TIME)
     
     var m_bIsTerminalActivationPacket: Bool = false
+    
+    var m_bField7PrintPAD: Bool = false
+    
+    func CISOMsgC()
+    {
+        for i in 0 ..< AppConst.ISO_LEN
+        {
+            data[i] = [0x00]
+            bitmap[i] = false
+            encryptedFieldBitmap[i] = false
+            len[i] = -1
+        }
+    }
     
     func vFnSetPEDHardwareSerialNumer() {
           do {
@@ -151,6 +164,10 @@ class ISOMessage{
         //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "SET->Field 12(CurrentTime)[%s]", new String(m_chArrISOPacketDate).trim());
         _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_12.rawValue, data1: m_chArrISOPacketDate, bcd: true)
       }
+    
+    func vFnSetTerminalActivationFlag(bTerminalActivationFlag: Bool) {
+        m_bIsTerminalActivationPacket = bTerminalActivationFlag
+    }
     
     func packIt(sendee: inout [Byte]) -> Int {
          /*We used this function for HostID=1 currently we are not using HostID=1 in this application so this function will be no use.
@@ -471,8 +488,313 @@ class ISOMessage{
 
     }
     
+    func DisplayFeild58() {
+        do {
+            debugPrint("Inside DisplayField58")
+            let globalData: GlobalData = GlobalData.singleton
+            globalData.m_csFinalMsgDisplay58 = ""
+
+            var iAction: Int = 0x00;
+                if (self.bitmap[58 - 1] == true) {
+                    if (self.len[58 - 1] > 0) {
+                        let iDisplayLen: Int = self.len[58 - 1]
+                        let bArrTempField58Data = self.data[58 - 1]
+                    
+                        var _: [Byte]
+                        var iOffset: Int = 0x00;
+                        var chArrDisplayMessage = [Byte](repeating: 0x00, count: 250)
+
+                        //UNICODE PARAMETERS may be use in future so we have not removed these parameters
+                        _ = [Byte](repeating: 0x00, count: 500)
+                        var _: Int = 0
+                        var _: Byte = 0x00
+
+                        var iDispArrOffset: Int = 0x00
+
+                        repeat {
+                            iOffset = iOffset + 1
+                            iAction = Int(bArrTempField58Data[iOffset])
+                            
+                            if (iAction == DisplayMessageMode.ASCII_DUMP.rawValue) {
+                                var iLocalDataLen: Int = 0x00
+                                iOffset = iOffset + 1
+                                iLocalDataLen = Int((Byte)(bArrTempField58Data[iOffset] & 0x000000FF))
+                                iLocalDataLen <<= 8
+                                iOffset = iOffset + 1
+                                iLocalDataLen |= Int((Byte)(bArrTempField58Data[iOffset] & 0x000000FF))
+
+                                //ASCII display message dump
+                                chArrDisplayMessage[iDispArrOffset ..< iDispArrOffset + iLocalDataLen] = ArraySlice<Byte>(bArrTempField58Data[iOffset ..< iOffset + iLocalDataLen])
+                                //System.arraycopy(bArrTempField58Data, iOffset, chArrDisplayMessage, iDispArrOffset, iLocalDataLen);
+                                iDispArrOffset += iLocalDataLen;
+                                iOffset += iLocalDataLen;
+                                globalData.m_csFinalMsgDisplay58 = (String(bytes: chArrDisplayMessage, encoding: String.Encoding.ascii)?.trimmingCharacters(in: .whitespacesAndNewlines))!
+                                
+                            } else if (iAction == DisplayMessageMode.MESSAGE_ID_DUMP.rawValue) {
+                                //parse message id carry out look up concatenate in chArrDisplayMessage
+                                //move the len by 4 bytes
+                                var bArrMessageLength = [Byte](repeating: 0x00, count: 4)
+                                let bArrMessage = [Byte](repeating: 0x00, count: AppConst.MAX_MESSAGE_LEN)
+                                var lMessageId: Int64 = 0x00;
+
+                                bArrMessageLength = Array(bArrTempField58Data[iOffset ..< iOffset + 4])
+                                //System.arraycopy(bArrTempField58Data, iOffset, bArrMessageLength, 0, 4);
+                                bArrMessageLength = Util.bcd2a(s: bArrMessageLength, len: 4)
+                                lMessageId = Util.bytesToLong(bytes: bArrMessageLength)
+                                iOffset = iOffset + 4
+                                
+                                _ = globalData.GetMessage(id: lMessageId, messagebuffer: bArrMessage)
+                                
+                                chArrDisplayMessage[iDispArrOffset ..< iDispArrOffset + bArrMessage.count - 1]
+                                    = ArraySlice<Byte>(bArrMessage[0 ..< bArrMessage.count - 1])
+                                //System.arraycopy(bArrMessage, 0, chArrDisplayMessage, iDispArrOffset, (bArrMessage).length - 1);
+                                iDispArrOffset += bArrMessage.count - 1
+                                globalData.m_csFinalMsgDisplay58 = (String(bytes: chArrDisplayMessage, encoding: String.Encoding.ascii)?.trimmingCharacters(in: .whitespacesAndNewlines))!
+                            }
+                            else {
+                                break
+                            }
+                        } while (iOffset < iDisplayLen)
+                    }
+                } else {
+                    debugPrint("DisplayFeild58 bitmap not set of field 58 ")
+                    //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "DisplayFeild58 bitmap not set of field 58 ");
+                }
+            } catch  {
+                debugPrint("Exception occurred: \(error)")
+                //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(ex));
+            }
+        }
+
+    
+    func unPackHostDirect(bArrSource: [Byte]) -> Bool {
+        do {
+            debugPrint("Inside unPackHostDirect")
+            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_INFO, "Inside unPackHostDirect");
+            CISOMsgC()
+
+            let headerLength: Int = 7
+
+            //Parsing Message Number
+            var bArrMsgNo = [Byte](repeating: 0x00, count: 2)
+            
+            bArrMsgNo = Array(bArrSource[headerLength ..< headerLength + 2])
+            //System.arraycopy(bArrSource, headerLength, bArrMsgNo, 0, 2)
+            msgno = Util.bcd2a(s: bArrMsgNo, len: 2)
+
+            // SKIP Bytes= headerLength(7 Bytes)+MessageNumber(2 Bytes)+BitMap(AppConst.ISO_LEN/8 Bytes)
+            let iSkipLength: Int = (headerLength + 2 + AppConst.ISO_LEN / 8)
+            var bArrtemp = [Byte](repeating: 0x00, count: bArrSource.count - iSkipLength)
+           
+            bArrtemp = Array(bArrSource[iSkipLength ..< iSkipLength + bArrtemp.count])
+            //System.arraycopy(bArrSource, iSkipLength, bArrtemp, 0, bArrtemp.length);
+
+
+            var length: Int = 0                        // Lenght of bytes to read for a field.
+            var bcd: Bool = true
+            var totalLength = 2 + AppConst.ISO_LEN / 8; // MAC
+
+            for i in 0 ..< AppConst.ISO_LEN
+            {
+                var bResult: Byte = bArrSource[headerLength + 2 + i / 8]
+                bResult &= (0x80 >> (i % 8))
+                
+               if (bResult != 0x00) {
+                
+                    bcd = true
+                    length = 0
+                    bitmap[i] = true
+                
+                switch (i + 1) {
+                    case 2:
+                        length = 4
+                    case 3:
+                        length = 3
+                    case 4: fallthrough
+                    case 5:
+                        length = 8
+                    case 6:
+                        length = 1
+                    case 7:
+                        length = 1
+                    case 11:
+                        length = 2
+                    case 12:
+                        length = 6
+                    case 20:
+                        length = 1
+                    case 21:
+                        length = 1
+                    case 22:
+                        length = 5
+                    case 24:
+                        length = 2
+                    case 25:
+                        length = 2
+                    case 26:
+                        length = 3
+                    case 27:
+                        length = 1
+                    case 37:
+                        length = 2
+                    case 38:
+                        length = 6;
+                        bcd = false
+                    case 39:
+                        length = 2
+                    case 40:
+                        length = 2
+                    case 41:
+                        length = 5
+                    case 42:
+                        length = 5
+                    case 43:
+                        length = 6
+                    case 44:
+                        length = 6;
+                        bcd = false
+                    case 45:
+                        length = 3
+                    case 47: fallthrough
+                    case 48: fallthrough
+                    case 49: fallthrough
+                    case 50: fallthrough
+                    case 51: fallthrough
+                    case 52: fallthrough
+                    case 53: fallthrough
+                    case 54: fallthrough
+                    case 55: fallthrough
+                    case 56: fallthrough
+                    case 57: fallthrough
+                    case 58: fallthrough
+                    case 59: fallthrough
+                    case 60: fallthrough
+                    case 61: fallthrough
+                    case 62: fallthrough
+                    case 63:
+
+                        //highly custom code written to handle the limitation of
+                        //j8583 lib at the host.
+                        //Sanjeev
+
+                        //Calculate length packed in BCD
+                        
+                        var iValue1: Int = Int(((bArrtemp[0]) >> 4) & 0x0F)
+                        iValue1 = iValue1 * 1000
+                        
+                        var iValue2: Int = Int(bArrtemp[0] & 0x0F)
+                        iValue2 = iValue2 * 100
+                        length = iValue1 + iValue2;
+                        
+                        iValue1 = Int(((bArrtemp[0]) >> 4) & 0x0F)
+                        iValue1 = iValue1 * 1000
+                        
+                        iValue2 = Int(bArrtemp[0] & 0x0F)
+                        iValue2 = iValue2 * 100
+                        length += iValue1 + iValue2
+                        
+                        var bArrtemp2 = [Byte](repeating: 0x00, count: bArrtemp.count - 2)
+                        bArrtemp2 = Array(bArrtemp[2 ..< 2 + bArrtemp2.count])
+                        //System.arraycopy(bArrtemp, 2, bArrtemp2, 0, bArrtemp2.length)
+                        bArrtemp = bArrtemp2
+                        totalLength += 2
+                        bcd = false
+                    case 64:
+                        length = 8
+                        bcd = false
+
+                    default:
+                    break
+                }    // end switch
+             
+                if (bcd) {
+                    data[i] = [Byte](repeating: 0x00, count: (2 * length + 1))
+                    //data[i] = new byte[(2 * length + 1)];
+                    data[i] = Util.bcd2a(s: bArrtemp, len: length)
+                    len[i] = 2 * length
+                    debugPrint("field[\(i + 1)], length[\(len[i]), Data[\(BytesUtil.bytes2HexString(arr: data[i]))]")
+                    //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "field[%d] length[%d] Data[%s]", i + 1, len[i]BytesUtil.bytes2HexString(data[i]))
+                } else {
+                    data[i] = [Byte](repeating: 0x00, count: length + 1)
+                    data[i] = Array(bArrtemp[0 ..< length])
+                    //System.arraycopy(bArrtemp, 0, data[i], 0, length);
+                    len[i] = length;
+                    debugPrint("field[\(i + 1)], length[\(len[i]), Data[\(BytesUtil.bytes2HexString(arr: data[i]))]")
+                    //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "field[%d] length[%d] Data[%s]", i + 1, len[i]BytesUtil.bytes2HexString(data[i]));
+                    data[i][length] = 0;
+                }
+                
+                var p2 = [Byte](repeating: 0x00, count: bArrtemp.count - length)
+                p2 = Array(bArrtemp[length ..< length + p2.count])
+                //System.arraycopy(bArrtemp, length, p2, 0, p2.length);
+                bArrtemp = p2
+                totalLength += length; //  For MAC
+
+                }// end if data
+
+            }    // end for loop
+
+            if (bitmap[44 - 1]) {
+                debugPrint("field 44 length = \(len[44 - 1]), data = \(BytesUtil.bytes2HexString(arr: data[44 - 1])))")
+                //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "field 44 length = %d data = %s", len[44 - 1], BytesUtil.bytes2HexString(data[44 - 1]));
+
+            }
+
+            if (bitmap[45 - 1]) {
+                debugPrint("field 44 length = \(len[45 - 1]), data = \(BytesUtil.bytes2HexString(arr: data[45 - 1])))")
+                //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "field 45 length = %d data = %s", len[45 - 1], BytesUtil.bytes2HexString(data[45 - 1]));
+
+            }
+
+
+            if (bitmap[58 - 1]) {
+                DisplayFeild58();
+            }
+
+
+            if (!bitmap[64 - 1]) {
+                return true;
+            }
+            //  buffer for crc calculation is allocated here
+            var bArrToCRC = [Byte](repeating: 0x00, count: totalLength - 8)
+            bArrToCRC = Array(bArrSource[headerLength ..< headerLength + totalLength - 8])
+            //System.arraycopy(bArrSource, headerLength, bArrToCRC, 0, totalLength - 8);
+
+            let CRC_len: Int = 8
+            let objCRC32: CRC32 = CRC32()
+            objCRC32.update(buf: bArrToCRC, off: 0, len: totalLength - 8)
+            let crc: Int64 = objCRC32.GetValue()
+
+
+            var strOurCRC = String(format: "%llX", crc)
+            strOurCRC = CryptoHandler.padLeft(data: strOurCRC, length: CRC_len, padChar: "0");
+            let strTheirCRC: String = (String(bytes: data[64 - 1], encoding: String.Encoding.ascii)?.trimmingCharacters(in: .whitespacesAndNewlines))!
+
+            debugPrint("Their MAC is \(strTheirCRC), Our MAC is \(strOurCRC)")
+            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "Their MAC is[%s], Our   MAC is[%s]", strTheirCRC, strOurCRC);
+
+            if (strOurCRC != strTheirCRC) {
+                debugPrint("MAC MISMATCH")
+                //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "MAC MISMATCH");
+                return false;
+            }
+            debugPrint("MAC OK")
+            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "MAC OK");
+            return true
+        } catch {
+            debugPrint("Exception Occured \(error)")
+            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(ex));
+            return false;
+        }
+
+    }
+
     func addLLLCHARData(bitno: Int, data1: [Byte], length: Int) -> Bool{
           do {
+            if (!data[bitno - 1].isEmpty) {
+                 data[bitno - 1] = []
+            }
+                   
               //Set the Bitmap for the corresponding ISO field in the class variable
               self.bitmap[bitno - 1] = true
 
@@ -502,7 +824,7 @@ class ISOMessage{
             //System.arraycopy(data1, 0, this.data[bitno - 1], 2, length)
               return true
           } catch {
-            debugPrint("Exception Occured")
+            debugPrint("Exception Occured \(error)")
               //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(ex))
               return false
           }

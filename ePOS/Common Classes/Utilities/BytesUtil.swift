@@ -14,4 +14,9 @@ class BytesUtil{
          return "true"
      }
     
+    static func bytes2HexString(arr: [Byte]) -> String
+    {
+        return "true"
+    }
+    
 }

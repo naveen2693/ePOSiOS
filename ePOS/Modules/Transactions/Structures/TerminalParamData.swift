@@ -9,7 +9,7 @@
 import Foundation
 
 public struct TerminalParamData: Codable {
-    var m_bIsDataChanged: Bool;
+    var m_bIsDataChanged: Bool
     var m_iBatchState: Int = BatchState.BATCH_EMPTY.rawValue
     var iBatchSize: Int = 200
     var m_strTerminalId: String = "" // left padded with 0 if less than 10

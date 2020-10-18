@@ -13,12 +13,15 @@ final class GlobalData {
     // MARK: - Properties
     static let singleton = GlobalData()
     static var m_sTerminalParamData_Cache: TerminalParamData? = nil
+    
     var m_sMasterParamData: TerminalMasterParamData? = nil
     
     var m_objCurrentLoggedInAccount: LOGINACCOUNTS? = nil
     var m_strCurrentLoggedInUserPIN: String = ""
     var m_bIsLoggedIn: Bool = false
     var fullSerialNumber: String = ""
+    var m_csFinalMsgDisplay58 = ""
+    
     
     func ReadParamFile() -> TerminalParamData? {
         if (GlobalData.m_sTerminalParamData_Cache == nil) {
@@ -77,4 +80,7 @@ final class GlobalData {
         return fullSerialNumber
     }
     
+    func GetMessage(id: Int64, messagebuffer: [Byte]) -> Bool {
+        return true
+    }
 }

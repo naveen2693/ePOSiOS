@@ -18,6 +18,14 @@ enum XOREncryptionType : Int
 
 class CryptoHandler{
     
+
+    enum EnXOREncryptionType: Int {
+           case INVALID = 0
+           case SERIAL_LINK_ENCRYPTION  = 1
+           case USER_DATA_ENCRYPTION  = 2
+           case SERIAL_LINK_SHA_ENCRYPTION = 3
+    }
+    
     static func padLeft(data: String, length: Int, padChar: Character) -> String {
         let remaining = length - data.count;
 

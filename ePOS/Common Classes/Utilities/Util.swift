@@ -98,4 +98,8 @@ public class Util
     {
         return s
     }
+    
+    static func bytesToLong(bytes: [Byte]) -> Int64 {
+        return 0
+    }
 }
