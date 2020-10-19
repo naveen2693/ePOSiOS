@@ -26,6 +26,7 @@
 		46AA3E08252F237B005907E1 /* StructConnIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AA3E07252F237B005907E1 /* StructConnIndex.swift */; };
 		46AA3E0A252F24EF005907E1 /* ConnectionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AA3E09252F24EF005907E1 /* ConnectionTypes.swift */; };
 		46AB5CE52539BB3A00FF814E /* cUtilClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AB5CE42539BB3A00FF814E /* cUtilClass.swift */; };
+		46AB5CE7253D652A00FF814E /* STRUCT_MESSAGE_ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AB5CE6253D652A00FF814E /* STRUCT_MESSAGE_ID.swift */; };
 		46ADF104252876CA009A9297 /* BankAccountDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF103252876CA009A9297 /* BankAccountDetails.swift */; };
 		46ADF1062528776D009A9297 /* LeadScheduleDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF1052528776D009A9297 /* LeadScheduleDetails.swift */; };
 		46ADF109252877E0009A9297 /* AdditionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF108252877E0009A9297 /* AdditionalInfo.swift */; };
@@ -236,6 +237,7 @@
 		46AA3E07252F237B005907E1 /* StructConnIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructConnIndex.swift; sourceTree = "<group>"; };
 		46AA3E09252F24EF005907E1 /* ConnectionTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionTypes.swift; sourceTree = "<group>"; };
 		46AB5CE42539BB3A00FF814E /* cUtilClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cUtilClass.swift; sourceTree = "<group>"; };
+		46AB5CE6253D652A00FF814E /* STRUCT_MESSAGE_ID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STRUCT_MESSAGE_ID.swift; sourceTree = "<group>"; };
 		46ADF103252876CA009A9297 /* BankAccountDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccountDetails.swift; sourceTree = "<group>"; };
 		46ADF1052528776D009A9297 /* LeadScheduleDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadScheduleDetails.swift; sourceTree = "<group>"; };
 		46ADF108252877E0009A9297 /* AdditionalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInfo.swift; sourceTree = "<group>"; };
@@ -1280,6 +1282,7 @@
 				464619882534280A009089BC /* TerminalParamData.swift */,
 				46ED34692537155A00CEF19D /* TerminalPSKData.swift */,
 				46ED346F2537207600CEF19D /* ParameterData.swift */,
+				46AB5CE6253D652A00FF814E /* STRUCT_MESSAGE_ID.swift */,
 			);
 			path = Structures;
 			sourceTree = "<group>";
@@ -1553,6 +1556,7 @@
 				8E4DCFA025340B8400726EA8 /* AppConst.swift in Sources */,
 				46ADF109252877E0009A9297 /* AdditionalInfo.swift in Sources */,
 				99186D212511D07E00A9FE07 /* Validation.swift in Sources */,
+				46AB5CE7253D652A00FF814E /* STRUCT_MESSAGE_ID.swift in Sources */,
 				9976C9212501065D00FC5DD3 /* CustomFonts.swift in Sources */,
 				CECC540F252B540300C0940E /* ISOFieldConstants.swift in Sources */,
 				99186D5F2511D45600A9FE07 /* Constants.swift in Sources */,

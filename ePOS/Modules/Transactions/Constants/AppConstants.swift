@@ -75,6 +75,7 @@ enum AppConstant
     static let DEVICE_STATE = "DeviceState"
     static let USERINFOFILE = "UserInfo"
     static let  MASTERCGFILE = "MASTERCT"
+    static let MASTERMESFILE = "MASTERMSG"
     static let MASTERCLRDIMFILE = "MASTERCLRDIMG"
     static let PSKSDWNLDFILE = "pskfile"
     static let AUTOLOGSHIPMENTSMTPCREDENTIAL = "LogShipmentCred"
