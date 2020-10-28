@@ -18,8 +18,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zd1-cg-yZH" customClass="EPOSLabel" customModule="ePOS" customModuleProvider="target">
-                        <rect key="frame" x="31" y="11.5" width="42" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zd1-cg-yZH" customClass="EPOSLabel" customModule="ePOS" customModuleProvider="target">
+                        <rect key="frame" x="31" y="12" width="42" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" name="textColor"/>
                         <nil key="highlightedColor"/>
@@ -31,8 +31,9 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="zd1-cg-yZH" secondAttribute="bottom" constant="11.5" id="8pe-Oa-4de"/>
                     <constraint firstItem="zd1-cg-yZH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="31" id="KdL-Mx-eH4"/>
-                    <constraint firstItem="zd1-cg-yZH" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Wcm-nK-m3e"/>
+                    <constraint firstItem="zd1-cg-yZH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="q6R-sd-rxu"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

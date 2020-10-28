@@ -13,7 +13,7 @@ public struct BusinessDetails:Codable{
     var websiteAddress:String?
     var externalId:String?
     var operateAs:String?
-    var mccCode:Int?
+    var mccCode:String?
     var tradingCommencedDate:String?
     var kyc : [KYCDetails]?
     var registeredName:String?

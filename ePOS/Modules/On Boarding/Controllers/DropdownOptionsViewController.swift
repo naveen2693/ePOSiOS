@@ -43,6 +43,9 @@ class DropdownOptionsViewController: BottomSheetViewController {
         if masterDataType == .eposPOI {
             requiredMaxHeight = 420
         }
+        if masterDataType == .eposTurnover {
+            requiredMaxHeight = 400
+        }
         self.addOverlayTo(controller: controller)
         controller.addChild(self)
         controller.view.addSubview(self.view)
@@ -53,7 +56,7 @@ class DropdownOptionsViewController: BottomSheetViewController {
         self.view.frame = CGRect(x: 0, y: controller.view.frame.maxY, width: width, height: height)
     }
 
-    @IBAction func checkboxSelected(_ sender: CheckBox) {
+    @objc func checkboxSelected(_ sender: CheckBox) {
         optionDelegate?.didSelectOption(self, option: masterDataOptions![sender.tag - 1] , type: masterDataType)
     }
 }
@@ -84,6 +87,7 @@ extension DropdownOptionsViewController: UITableViewDataSource {
         cell.selectionStyle = .none
         cell.titleLabel?.text = masterDataOptions[indexPath.row].defaultDescription
         cell.checkbox?.tag = indexPath.row + 1
+        cell.checkbox?.addTarget(self, action: #selector(checkboxSelected(_:)), for: .valueChanged)
         return cell
     }
     

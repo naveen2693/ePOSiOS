@@ -58,7 +58,7 @@ enum RegEx: String {
     case phoneNo = "(?:(?:\\+|0{0,2})91(\\s*[\\- ]\\s*)?|[0 ]?)?[789]\\d{9}|(\\d[ -]?){10}\\d" // PhoneNo 10-14 Digits
     case pan = "^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}"
     // MARK:- signUp fields validation regex
-    case contactNameValidation = "[A-Za-z0-9]{1,50}([_\\-\\s][A-Za-z0-9]{1,50})*"
+    case contactNameValidation = "^[\\p{L} .'-]+$"
     case businessNameValidation = "[0-9A-Za-z]+([\\s]{0,1}[&\\-_|'/@.]{0,1}[\\s]{0,1}[0-9A-Za-z]\\.?)*"
     case otp = "\\d{6}"
     
@@ -123,7 +123,7 @@ class Validation: NSObject {
                     return tempValue
                 }
             case .alphabeticString:
-                if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, regex: .contactNameValidation, emptyAlert: .emptyAlphabeticString, invalidAlert: .invalidAlphabeticString) {
+                if let tempValue = isValidString(text: (valueToBeChecked.inputValue as? String)!, emptyAlert: .emptyAlphabeticString, invalidAlert: .invalidAlphabeticString) {
                     return tempValue
                 }
             case .password:

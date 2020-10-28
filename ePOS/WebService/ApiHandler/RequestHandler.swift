@@ -193,8 +193,8 @@ public class RequestHandler{
         return ObjMerchantVerfication;
     }
     
-    public static func updateLeadRequest(lead:Lead,documents:DocumentDetails) -> UpdateLeadRequests{
-        let updateLead =  UpdateLeadRequests(lead: lead, documents: documents);
+    public static func updateLeadRequest(lead:Lead) -> UpdateLeadRequests{
+        let updateLead =  UpdateLeadRequests(lead: lead);
         return updateLead;
     }
     

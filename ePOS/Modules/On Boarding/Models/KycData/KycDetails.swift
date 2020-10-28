@@ -16,9 +16,9 @@ public struct KYCDetails:Codable{
     var isVerified:String?
     var errMsg:String?
     private enum CodingKeys: String, CodingKey {
-        case idInformation = "idInformation"
+        case idInformation = "id_information"
         case description = "description"
-        case idType = "idType"
+        case idType = "id_type"
         case optlock = "optlock"
         case isVerified = "isVerified"
         case errMsg = "errMsg"

@@ -27,9 +27,8 @@ class BankDetailsViewController: CustomNavigationStyleViewController {
         // Do any additional setup after loading the view.
     }
 
-    class func viewController(appID : String) -> BankDetailsViewController {
+    class func viewController() -> BankDetailsViewController {
         let controller = BankDetailsViewController.init(nibName: BankDetailsViewController.className, bundle: nil)
-        controller.eposApplicationID = appID
         return controller
     }
     

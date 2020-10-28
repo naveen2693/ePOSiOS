@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         configureFirebase()
         setAppearance()
-//        loadApp()
+        loadApp()
         return true
     }
 
@@ -88,6 +88,9 @@ extension AppDelegate {
         case .leadNotCreated, .leadInitialized:
             let controller = PersonalInfoViewController.viewController(state)
 //            let navigationController = AppStoryboard.main.initialViewController()
+            setRootControllerOnWindowWith(controller)
+        case .saveBUDetails:
+            let controller = MerchantDetailsViewController.viewController()
             setRootControllerOnWindowWith(controller)
         default:
             break

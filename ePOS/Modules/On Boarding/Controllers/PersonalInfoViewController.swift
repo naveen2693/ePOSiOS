@@ -107,37 +107,30 @@ extension PersonalInfoViewController {
     }
     //MARK: - RefreshPage
     func refreshPage() {
-        if let lead = currentLead, lead.workFlowState == WorkFlowState.leadInitialized.rawValue {
+        if let lead = currentLead, lead.nextWorkFlowState == WorkFlowState.saveBUDetails.rawValue {
             MasterDataProvider().getDropdownDataFor(.eposPOI) { (data) in
                 weak var weakSelf = self
                 weakSelf?.dropdownData = data
             }
             populateData(from: lead)
-            currentWorkflowState = .leadInitialized
-            textFieldGSTIN.isHidden = false
-            checkbox.isHidden = false
-            checkboxInfoLabel.isHidden = false
-            companyTypeButton.isEnabled = false
+//            currentWorkflowState = .leadInitialized
+            if lead.leadProfile  != nil, let _ = lead.leadProfile.pan, let _ = lead.leadProfile.firmType, let _ = lead.leadProfile.name {
+                textFieldGSTIN.isHidden = false
+                checkbox.isHidden = false
+                checkboxInfoLabel.isHidden = false
+                companyTypeButton.isEnabled = false
+            }
+//            else {
+//                textFieldGSTIN.isHidden = false
+//                checkbox.isHidden = false
+//                checkboxInfoLabel.isHidden = false
+//                companyTypeButton.isEnabled = false
+//            }
+            
             showPan()
         }
         setApplicationID()
         
-//        switch currentWorkflowState {
-//        case .one:
-//            hideAllTextFields()
-//        case .two:
-//            textFieldPAN.isHidden = false
-//            textFieldNameOnPAN.isHidden = false
-//        case .three:
-//            textFieldGSTIN.isHidden = false
-//            checkbox.isHidden = false
-//            checkboxInfoLabel.isHidden = false
-//        case .four:
-//            textFieldDocumentType.isHidden = false
-//            textFieldDocumentInfo.isHidden = false
-//            dropdownImageView.isHidden = false
-//        }
-
     }
 
     func populateData(from lead: Lead) {
@@ -145,7 +138,7 @@ extension PersonalInfoViewController {
             textFieldCompanyType.text = type
         }
         if let pan = lead.leadProfile.pan {
-            textFieldPAN.text = pan
+            textFieldPAN.text = pan.uppercased()
         }
         if let panName = lead.leadProfile.name {
             textFieldNameOnPAN.text = panName
@@ -244,21 +237,6 @@ extension PersonalInfoViewController {
 
     
     
-    private func callMerchantVerificationService()
-    {
-        
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     //MARK: - Create lead API
     func createLead() {
         
@@ -267,11 +245,12 @@ extension PersonalInfoViewController {
         switch response {
         case .success:
             showLoading()
-            let leadParams = CreateLeadParams(name: textFieldNameOnPAN.text!.lowercased(), pan: textFieldPAN.text!.lowercased(), firmType:textFieldCompanyType.text!.uppercased() , kyc: nil, typeOfLead: "EPOS")
+            let leadParams = CreateLeadParams(name: textFieldNameOnPAN.text!.uppercased(), pan: textFieldPAN.text!.uppercased(), firmType:textFieldCompanyType.text!.uppercased() , kyc: nil, typeOfLead: "EPOS")
             OnBoardingRequest.createLeadWith(params: leadParams) { [weak self] response in
                 self?.hideLoading()
                 switch response {
                 case .success(_):
+                    self?.currentWorkflowState = .leadInitialized
                     self?.refreshPage()
                 case .failure(BaseError.errorMessage(let error)):
                     self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
@@ -287,22 +266,20 @@ extension PersonalInfoViewController {
         let response = Validation.shared.validate(values: (ValidationMode.alphabeticString, textFieldGSTIN.text as Any))
         switch response {
         case .success:
-//            if textFieldGSTIN.text!.contains(textFieldPAN.text!) {
+            if textFieldGSTIN.text!.lowercased().contains(textFieldPAN.text!.lowercased()) {
                 showLoading()
                 OnBoardingRequest.getGSTDetails(gstNumber: textFieldGSTIN.text!) { [weak self] response in
                     self?.hideLoading()
                     switch response {
-                    case .success(let response):
-                        if let gstDetail = response as? GSTDetails {
-                            self?.varifiedGST = gstDetail
-                        }
+                    case .success(_):
+                        self?.GoToMerchantDetail()
                     case .failure(BaseError.errorMessage(let error)):
                         self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
                     }
                 }
-//            } else {
-//                showAlert(title: "ERROR", message: "GSTIN must contain PAN number")
-//            }
+            } else {
+                showAlert(title: "ERROR", message: "GSTIN must contain PAN number")
+            }
         case .failure(_, let message):
             showAlert(title: "ERROR", message: message.rawValue)
         }
@@ -313,13 +290,16 @@ extension PersonalInfoViewController {
             self?.hideLoading()
             switch response {
             case .success(_):
-                if let gstDetail = response as? GSTDetails {
-                    self?.varifiedGST = gstDetail
-                }
+                self?.GoToMerchantDetail()
             case .failure(BaseError.errorMessage(let error)):
                 self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
             }
         }
+    }
+    
+    func GoToMerchantDetail()  {
+        let controller = MerchantDetailsViewController.viewController()
+        self.navigationController?.pushViewController(controller, animated: true)
     }
   
 }
@@ -388,7 +368,7 @@ extension PersonalInfoViewController: UITextFieldDelegate {
                 textFieldGSTIN.trailingAssistiveLabel.text = "GSTIN must contain PAN number"
 //                nextButton.isEnabled = false
             } else {
-                if !(textFieldGSTIN.text!.contains(textFieldPAN.text!)) {
+                if !(textFieldGSTIN.text!.lowercased().contains(textFieldPAN.text!.lowercased())) {
                     textFieldGSTIN.trailingAssistiveLabel.text = "GSTIN must contain PAN number"
 //                    nextButton.isEnabled = false
                 } else {
@@ -446,22 +426,11 @@ extension PersonalInfoViewController {
                 varifyGSTIN()
             } else {
                 if currentLead!.applicationId != nil {
-                    let controller = MerchantDetailsViewController.viewController(appID: currentLead!.applicationId!)
+                    let controller = MerchantDetailsViewController.viewController()
                     self.navigationController?.pushViewController(controller, animated: true)
                 }
             }
         }
-//        if currentWorkflowState != .four {
-//            var currentWorkFlowIndex = currentWorkflowState.rawValue
-//            currentWorkFlowIndex += 1
-//            currentWorkflowState = WorkFlowState(rawValue: currentWorkFlowIndex) ?? .one
-//            refreshPage()
-//        }
-//        else {
-//            //go to next page
-//            let controller = MerchantDetailsViewController.viewController(appID: "34h35h43h54h5")
-//            self.navigationController?.pushViewController(controller, animated: true)
-//        }
     }
 
     @IBAction func needHelpClicked(_ sender: Any) {

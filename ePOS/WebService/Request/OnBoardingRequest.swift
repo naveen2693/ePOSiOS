@@ -255,7 +255,7 @@ public class OnBoardingRequest:BaseRequest{
             completion(.failure(BaseError.errorMessage(Constants.noNetworkMsg.rawValue)))
             return
         }
-        let strLastModifiedDate = CityDataProvider().getLastModifiedDate()
+        let strLastModifiedDate = 0 //CityDataProvider().getLastModifiedDate()
         BaseRequest.objMoyaApi.request(.getCityListWith(strLastModifiedDate:"\(strLastModifiedDate)")) { result in
             switch result
             {
@@ -487,7 +487,7 @@ public class OnBoardingRequest:BaseRequest{
             return
         }
         
-        BaseRequest.objMoyaApi.request(.updateLeadWith(lead:leadData!, documents: documents!)) { result in
+        BaseRequest.objMoyaApi.request(.updateLeadWith(lead:leadData!)) { result in
             switch result
             {
             case .success(let response):
@@ -544,16 +544,21 @@ public class OnBoardingRequest:BaseRequest{
                         {
                             let gstWrapper = try BaseRequest.decoder.decode(GSTDetailWrapper.self, from:response.data)
                             var currentLead: Lead? = EPOSUserDefaults.CurrentLead()
-                            var businessDetails =  currentLead?.businessDetail
-                            let  merchantData:MerchantDetails =  saveBusinessDetailAndProceed(data:gstWrapper as AnyObject, type: DocumentType.gstin.rawValue, addressTypeObj:AddressType.store.rawValue)
+                            var businessDetails =  currentLead?.businessDetail ?? BusinessDetails()
+                            let  merchantData:MerchantDetails =  saveBusinessDetailAndProceed(data:gstWrapper.result as AnyObject, type: DocumentType.gstin.rawValue, addressTypeObj:AddressType.store.rawValue)
                             if let address = merchantData.address{
-                                businessDetails?.address?[0] = address
+                                businessDetails.address?[0] = address
                             }
-                            businessDetails?.registeredName = gstWrapper.result?.legalName
+                            businessDetails.registeredName = gstWrapper.result?.legalName
                             
                             let kyc:KYCDetails = kycBuilder(idType: DocumentType.gstin.rawValue, info:gstNumber, desc:nil)
-                            
-                            businessDetails?.kyc?.append(kyc)
+                            var kycDetails = businessDetails.kyc
+                            if kycDetails == nil {
+                                kycDetails = [kyc]
+                            } else{
+                                kycDetails?.append(kyc)
+                            }
+                            businessDetails.kyc = kycDetails
                             currentLead?.businessDetail = businessDetails
                             currentLead?.workFlowState = WorkFlowState.saveBUDetails.rawValue
                             if let updatedLead = currentLead{
@@ -610,19 +615,25 @@ public class OnBoardingRequest:BaseRequest{
                         {
                             let merchantVerificationDetailsWrapper = try BaseRequest.decoder.decode(MerchantverificationResponse.self, from:response.data)
                             var currentLead: Lead? = EPOSUserDefaults.CurrentLead()
-                            var businessDetails =  currentLead?.businessDetail
+                            var businessDetails =  currentLead?.businessDetail ?? BusinessDetails()
                             if let kycValue = kycType{
                                 let  merchantData:MerchantDetails =  saveBusinessDetailAndProceed(data:merchantVerificationDetailsWrapper as AnyObject, type: kycValue, addressTypeObj:AddressType.store.rawValue)
                                 
                                 if let address = merchantData.address{
-                                    businessDetails?.address?[0] = address
+                                    businessDetails.address?[0] = address
                                 }
                             }
-                            businessDetails?.registeredName = merchantVerificationDetailsWrapper.baseResponse?.entityName
+                            businessDetails.registeredName = merchantVerificationDetailsWrapper.baseResponse?.entityName
                             
                             let kyc:KYCDetails = kycBuilder(idType: DocumentType.gstin.rawValue, info:proofNumber, desc:nil)
                             
-                            businessDetails?.kyc?.append(kyc)
+                            var kycDetails = businessDetails.kyc
+                            if kycDetails == nil {
+                                kycDetails = [kyc]
+                            } else{
+                                kycDetails?.append(kyc)
+                            }
+                            businessDetails.kyc = kycDetails
                             currentLead?.businessDetail = businessDetails
                             currentLead?.workFlowState = WorkFlowState.saveBUDetails.rawValue
                             if let updatedLead = currentLead{
@@ -845,23 +856,15 @@ public class OnBoardingRequest:BaseRequest{
                 address.addressType = ""
         }
         let ObjstateData = CityDataProvider();
-        let stateArray = ObjstateData.fetchStateDataList()
-        if stateArray.contains(where: { $0.state == address.state }){
-            if let state = address.state{
-                ObjstateData.searchStateData(with:state, completion: {result in
-                    let cities = result.map { $0.cities}
-                    for value in cities
-                    {
-                        let cityName = value.map { $0.name}
-                        if let city = address.city{
-                            if !(cityName.contains(city))
-                            {
-                                address.city = nil;
-                            }
-                        }
-                    }
-                })
-            }
+        if let state = address.state{
+            ObjstateData.searchStateData(with:state, completion: { result in
+                if let cities = result.first?.cities {
+                    let city = cities.filter({$0.name.contains(address.city!)})
+                    address.city = city.first?.name
+                } else {
+                    address.state = nil
+                }
+            })
         }
         else
         {

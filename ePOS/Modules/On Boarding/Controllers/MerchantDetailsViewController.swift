@@ -22,43 +22,65 @@ class MerchantDetailsViewController: CustomNavigationStyleViewController {
     @IBOutlet private weak var nextButton: EPOSRoundButton!
     @IBOutlet weak var labelApplicationID: EPOSLabel?
     
-    private var eposApplicationID: String = ""
+    let applicationText = "Your epos application ID: "
     var ObjstateData = CityDataProvider();
     internal let dropDown = MakeDropDown()
     internal var dropDownRowHeight: CGFloat = 44
     internal var dropdownData: [CodeData] = [CodeData]()
-    let datePicker = UIDatePicker()
+    internal var mccCodeData: [CodeData] = [CodeData]()
+    internal var businessTimestamp: String = ""
+    
+    var datePicker = UIDatePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         populateData()
         configureUIInitially()
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        view.endEditing(true)
+    }
     
     private func populateData()
     {
-         labelApplicationID?.text = eposApplicationID
          if let currentLead = EPOSUserDefaults.CurrentLead() {
-//             if currentLead.workFlowState != nil {
-//                 let workflowState = WorkFlowState(rawValue: currentLead.workFlowState!)
-//                let businessDetails:BusinessDetails = WorkFlowState.saveBUDetails
-//                textFieldBusinessName.text = businessDetails.registeredName
+            if let appId = currentLead.applicationId {
+                labelApplicationID?.text = applicationText + appId
+            }
+            
+            if let businessDetails = currentLead.businessDetail {
+                textFieldBusinessName.text = businessDetails.registeredName
+                if let addresses = businessDetails.address, !addresses.isEmpty {
+                    let address = addresses.filter({
+                        $0.addressType == AddressType.store.rawValue
+                        }).first
+                    textFieldAddress.text = address?.address
+                    textFieldCity.text = address?.city
+                    textFieldState.text = address?.state
+                    textFieldPinecode.text = address?.pincode
+                }
                 
+//                if let turnover = businessDetails.annualTurnover {
+//                    textFieldTurnover.text = turnover
+//                }
+//                if let mccCode = businessDetails.mccCode {
+//                    textFieldMerchantCategory
+//                }
+            }
         }
     }
     
-    class func viewController(appID : String) -> MerchantDetailsViewController {
+    class func viewController() -> MerchantDetailsViewController {
         let controller = MerchantDetailsViewController.init(nibName: MerchantDetailsViewController.className, bundle: nil)
-        controller.eposApplicationID = appID
         return controller
     }
     
     @IBAction func needHelpClicked(_ sender: Any) {
     }
+    
     @IBAction func nextButtonClicked(_ sender: Any) {
-       
         
         let response = Validation.shared.validate(values: (ValidationMode.businessNameValidation, textFieldBusinessName.text as Any)
                    ,(ValidationMode.contactNameValidation,textFieldAddress.text  as Any)
@@ -71,20 +93,34 @@ class MerchantDetailsViewController: CustomNavigationStyleViewController {
                
                switch response {
                case .success:
-                
-                let addressdetails:[AddressDetails] = [AddressDetails(ownershipType:OwnerShipType.owner.rawValue, pincode:textFieldPinecode.text, address:textFieldAddress.text , addressType: AddressType.store.rawValue, entityName:textFieldBusinessName.text, landMark:textFieldCity.text, state:textFieldState.text)]
+                showLoading()
+                let addressdetails:[AddressDetails] = [AddressDetails(ownershipType:OwnerShipType.owner.rawValue, city: textFieldCity.text, pincode:textFieldPinecode.text, address:textFieldAddress.text , addressType: AddressType.store.rawValue, entityName:textFieldBusinessName.text, landMark:textFieldCity.text, state:textFieldState.text)]
                 let lead = EPOSUserDefaults.CurrentLead()
                 if let companyType:String = lead?.leadProfile.firmType{
-                    let objBusinessDetails:BusinessDetails = BusinessDetails(address:addressdetails,operateAs:companyType, registeredName: textFieldBusinessName.text, tradeName: textFieldAddress.text,name:textFieldBusinessName.text)
+                    var businessDetails = lead?.businessDetail
+                    businessDetails?.address = addressdetails
+                    businessDetails?.annualTurnover = "\(textFieldTurnover.tag)"
+                    businessDetails?.mccCode = "\(textFieldMerchantCategory.tag)"
+                    businessDetails?.operateAs = companyType
+                    businessDetails?.incorporationDate = businessTimestamp
+                    businessDetails?.name = textFieldBusinessName.text
+                    businessDetails?.registeredName = textFieldBusinessName.text
+                    businessDetails?.tradeName = textFieldBusinessName.text
                 var lead = EPOSUserDefaults.CurrentLead()
-                lead?.businessDetail = objBusinessDetails
-                OnBoardingRequest.updateLead(leadData:lead,documents:nil, completion:{ result in
+                    if var leadProfile = lead?.leadProfile, let pan = leadProfile.pan {
+                        leadProfile.pan = pan.uppercased()
+                        lead?.leadProfile = leadProfile
+                    }
+                lead?.businessDetail = businessDetails
+                lead?.workFlowState = WorkFlowState.saveBUDetails.rawValue
+                OnBoardingRequest.updateLead(leadData:lead,documents:nil, completion:{ [weak self] result in
+                    self?.hideLoading()
                        switch result {
                        case .success(_):
-                           let controller = BankDetailsViewController.viewController(appID: "34h35h43h54h5")
-                           self.navigationController?.pushViewController(controller, animated: true)
+                           let controller = BankDetailsViewController.viewController()
+                           self?.navigationController?.pushViewController(controller, animated: true)
                        case .failure(let error):
-                           print(error)
+                           self?.showAlert(title:Constants.apiError.rawValue, message:error as? String)
                        }
                        
                    })
@@ -111,60 +147,66 @@ class MerchantDetailsViewController: CustomNavigationStyleViewController {
         showDropdown(.eposTurnover)
         
     }
+    
     @IBAction func merchantCategoryClicked(_ sender: Any) {
         if textFieldMerchantCategory.isFirstResponder == false {
             textFieldMerchantCategory.becomeFirstResponder()
         }
-        showDropdown(.mccCode)
+        prepareForSearchMerchantCategory()
     }
-    func showDatePicker(){
+    
+    func showDatePicker() {
+        
+        datePicker = UIDatePicker.init(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 200))
         datePicker.datePickerMode = .date
-        let toolbar = UIToolbar();
-        toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.bordered, target: self, action: Selector(("donedatePicker")))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItem.Style.bordered, target: self, action: Selector(("cancelDatePicker")))
-        toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
-        textFieldBusinessSince.inputAccessoryView = toolbar
+        datePicker.maximumDate = Date()
+        let calendar = Calendar.current
+        let backDate = calendar.date(byAdding: .year, value: -100, to: Date())
+        datePicker.minimumDate = backDate
+        datePicker.addTarget(self, action: #selector(self.dateChanged), for: .allEvents)
         textFieldBusinessSince.inputView = datePicker
+        let doneButton = UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(self.datePickerDone))
+        let toolBar = UIToolbar.init(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 44))
+        toolBar.setItems([UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil), doneButton], animated: true)
+        textFieldBusinessSince.inputAccessoryView = toolBar
         
     }
     
-    func donedatePicker(){
+    @objc func dateChanged() {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
         textFieldBusinessSince.text = formatter.string(from: datePicker.date)
+        businessTimestamp = "\(Int64((datePicker.date.timeIntervalSince1970 * 1000.0).rounded()))"
         
-        self.view.endEditing(true)
     }
     
-    func cancelDatePicker(){
-        
-        self.view.endEditing(true)
+    @objc func datePickerDone() {
+        textFieldBusinessSince.resignFirstResponder()
     }
     
-    private func prepareForSearchStates()
-    {
+    private func prepareForSearchStates() {
         let stateArray = ObjstateData.fetchStateDataList()
         let states = stateArray.map { $0.state }
-        showSearchControllerWith(states, for: .state)
+        showSearchControllerWith(states, for: .searchStateData(.state))
     }
-    private func prepareForSearchCities()
-    {
+    
+    private func prepareForSearchCities() {
         if let text = textFieldState.text, !text.isEmpty {
             ObjstateData.searchStateData(with: text, completion: {[weak self] result in
-                let cities = result.map { $0.cities}
-                for value in cities
-                {
-                    let cityName = value.map { $0.name}
-                    self?.showSearchControllerWith(cityName, for: .city)
+                if let cities = result.first?.cities.map({ $0.name}) {
+                  self?.showSearchControllerWith(cities, for: .searchStateData(.city))
                 }
             })
         }
     }
     
-    private func showSearchControllerWith(_ data: [String], for type: SearchStateData) {
-        let controller = CustomSearchViewController.viewController(type: .searchStateData(type), data: data, delegate:self)
+    private func prepareForSearchMerchantCategory() {
+        let categories = mccCodeData.map { $0.defaultDescription }
+        showSearchControllerWith(categories, for: .mccCode)
+    }
+    
+    private func showSearchControllerWith(_ data: [String], for type: SearchType) {
+        let controller = CustomSearchViewController.viewController(type: type, data: data, delegate:self)
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -184,6 +226,12 @@ extension MerchantDetailsViewController: SearchControllerDelegate {
             textFieldState.text = item
         case .searchStateData(.city):
             textFieldCity.text =  item
+        case .mccCode:
+            textFieldMerchantCategory.text =  item
+            let categories = mccCodeData.filter({$0.defaultDescription == item})
+            if !categories.isEmpty, let codeKey = categories.first?.codeKey {
+                textFieldMerchantCategory.tag = Int(codeKey) ?? 0
+            }
         default:
             break
         }
@@ -212,8 +260,11 @@ extension MerchantDetailsViewController {
         }
         MasterDataProvider().getDropdownDataFor(.mccCode) { (data) in
             weak var weakSelf = self
-            weakSelf?.dropdownData = data
+            weakSelf?.mccCodeData = data
         }
+        
+        populateData()
+        showDatePicker()
     }
     
     
@@ -224,9 +275,7 @@ extension MerchantDetailsViewController : DropDownOptionsSelectedDelegate {
     func didSelectOption(_ controller: DropdownOptionsViewController, option: CodeData, type: MasterDataType) {
         if type == .eposTurnover {
             textFieldTurnover.text = option.defaultDescription
-        }
-        if type == .mccCode {
-            textFieldTurnover.text = option.defaultDescription
+            textFieldTurnover.tag = Int(option.codeKey) ?? 0
         }
         controller.dismissSheet()
     }

@@ -35,7 +35,7 @@ struct State: Codable {
     
     func isMatching(with searchText: String) -> Bool {
         let searchString = searchText.lowercased()
-        return  self.stateCode.lowercased().contains(searchString)
+        return  self.state.lowercased().contains(searchString)
     }
 }
 

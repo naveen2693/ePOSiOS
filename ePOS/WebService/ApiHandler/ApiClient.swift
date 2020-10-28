@@ -37,7 +37,7 @@ enum ApiService
     case getGSTDetail(gstNumber: String)
     
     case getMerchantVerificationWith(proofName:String,proofNumber:String,additionalInfo:[String:String])
-    case updateLeadWith(lead:Lead,documents:DocumentDetails)
+    case updateLeadWith(lead:Lead)
     
     case searchIFSCWith(params: SearchIFSCRequest)
     
@@ -245,9 +245,9 @@ extension ApiService : TargetType
         case .getMerchantVerificationWith(let proofName,let proofNumber,let additionalInfo):
             return  .requestJSONEncodable((RequestHandler
                 .createMerchantVerificationRequest(proofName: proofName, proofNumber: proofNumber, additionalInfo: additionalInfo)))
-        case .updateLeadWith(let lead,let documents):
+        case .updateLeadWith(let lead):
             return .requestJSONEncodable((RequestHandler
-                .updateLeadRequest(lead: lead, documents: documents)))
+                .updateLeadRequest(lead: lead)))
             
         case .searchIFSCWith(let params):
             return .requestJSONEncodable(params)
