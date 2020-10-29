@@ -7,24 +7,8 @@
 //
 
 import Foundation
-//<<<<<<< HEAD
-//
-//final class GlobalData {
-//
-//    // MARK: - Properties
-//    static let singleton = GlobalData()
-//    static var m_sTerminalParamData_Cache: TerminalParamData? = nil
-//
-//    var m_sMasterParamData: TerminalMasterParamData? = nil
-//
-//    var m_objCurrentLoggedInAccount: LOGINACCOUNTS? = nil
-//    var m_strCurrentLoggedInUserPIN: String = ""
-//    var m_bIsLoggedIn: Bool = false
-//    var fullSerialNumber: String = ""
-//    var m_csFinalMsgDisplay58 = ""
-//
-//=======
-class GlobalData
+
+final class GlobalData
 {
     var  m_sConxData = StructConxData();
     var  fullSerialNumber:String?
@@ -877,11 +861,6 @@ class GlobalData
         _ = FileSystem.SeekWrite(strFileName: FileNameConstants.CONNECTIONDATAFILENAME, with: tData, iOffset: m_sConxData.m_bArrConnIndex.CON_SerialIp.index);
         }
     }
-    
-
-    func GetMessage(id: Int64, messagebuffer: [Byte]) -> Bool {
-        return true
-    }
 
     public func UpdateEthernetIPParameters(ParameterDatas:ParameterData) {
            if var tData:TerminalConxData = FileSystem.SeekRead(strFileName: FileNameConstants.CONNECTIONDATAFILENAME, iOffset: m_sConxData.m_bArrConnIndex.CON_SerialIp.index){
@@ -1717,7 +1696,7 @@ class GlobalData
      *******************************************************************************/
     public func SortBinRangeFile() -> Bool {
         if (true == FileSystem.IsFileExist(strFileName: FileNameConstants.BINRANGEFILE)) {
-            if let listBinRange:[st_BINRange] = FileSystem.ReadFile(strFileName: FileNameConstants.BINRANGEFILE) {
+            if let listBinRange:[StBINRange] = FileSystem.ReadFile(strFileName: FileNameConstants.BINRANGEFILE) {
                 let sortedArray = listBinRange.sorted {
                     (obj1, obj2) -> Bool in
                     return obj1.ulBinLow > obj2.ulBinLow
@@ -1871,7 +1850,7 @@ class GlobalData
         return lTimeInterval;
         
     }
-    
+    // MARK:-GetIMEI
     public static func GetIMEI() -> String{
            if m_strIMEI.isEmpty {
             if let strIMEI:String = PlatFormUtils.getIMEI(){
@@ -1881,7 +1860,7 @@ class GlobalData
            return m_strIMEI;
     }
     
-    
+    // MARK:-ClearBatch
     public func ClearBatch() -> Bool {
         if var m_sParamData =  ReadParamFile(){
             m_sParamData.m_iBatchState = BatchState.BATCH_EMPTY;
@@ -1889,7 +1868,7 @@ class GlobalData
         }
         return true;
     }
-    
+    // MARK:-UnlockBatch
     public func UnlockBatch() -> Bool {
         if var m_sParamData =  ReadParamFile(){
             m_sParamData.m_iBatchState = BatchState.BATCH_EMPTY;
@@ -1898,7 +1877,7 @@ class GlobalData
         return true;
     }
     
-    //MARK;- updateCustomProgressDialog(msg: String)
+    //MARK:- updateCustomProgressDialog(msg: String)
     static public func updateCustomProgressDialog(msg: String) {
     //              CStateMachine.m_context_activity.runOnUiThread(new Runnable() {
     //                  @Override
@@ -1914,11 +1893,101 @@ class GlobalData
     //          }
     }
     
+    // MARK:- updateConnectionDataChangedFlag
+    func UpdateConnectionDataChangedFlag(bFlag: Bool) -> Int {
+        if var listTerminalConxData:[TerminalConxData] = FileSystem.ReadFile(strFileName: FileNameConstants.CONNECTIONDATAFILENAME){
+            let numberOfTerminalConxData = listTerminalConxData.count;
+               if numberOfTerminalConxData > 0 {
+                for _ in 0...numberOfTerminalConxData {
+                       listTerminalConxData[0].bIsDataChanged = bFlag;
+                   }
+                do{
+                _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.CONNECTIONDATAFILENAME, with: listTerminalConxData);
+                }catch
+                {
+                    fatalError("Rewrite: UpdateConnectionDataChangedFlag")
+                }
+               }
+           }
+           return AppConstant.TRUE;
+       }
+    
+    // MARK:-updateParamDataChangedFlag
+    func UpdateParamDataChangedFlag(bFlag: Bool) -> Int {
+        if var tData:TerminalParamData = ReadParamFile() {
+            tData.m_bIsDataChanged = bFlag;
+            _ = WriteParamFile(listParamData:tData);
+        }
+        return AppConstant.TRUE;
+    }
+    
+    // MARK:-UpdateMasterParamDataChangedFlag
+    func UpdateMasterParamDataChangedFlag(bFlag: Bool) -> Int {
+                _ =  ReadMasterParamFile()
+           var masterParamData = TerminalMasterParamData()
+               masterParamData.bIsDataChanged = bFlag;
+               _ = WriteMasterParamFile();
+           return AppConstant.TRUE;
+       }
+    
+    
+    // MARK:-UpdateAutoSettlementDataChangedFlag
+    func UpdateAutoSettlementDataChangedFlag(bFlag: Bool) -> Int {
+            if var m_sAutoSettleParams:AutoSettlementParams =  ReadAutoSettleParams(){
+             m_sAutoSettleParams.m_bIsDataChanged = ((bFlag != false ) ? true : false)
+                var listAutoSettlementParams = [AutoSettlementParams]()
+                listAutoSettlementParams.append(m_sAutoSettleParams)
+                do{
+                    _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.AUTOSETTLEPARFILE, with: listAutoSettlementParams)
+                }catch
+                {
+                    fatalError("Rewrite: UpdateAutoSettlementDataChangedFlag")
+                }
+            
+         }
+         return AppConstant.TRUE;
+    }
+      
+    // MARK:-ReadAutoSettleParams
+    func ReadAutoSettleParams() -> AutoSettlementParams?{
+        var readParams:AutoSettlementParams?;
+        if false == FileSystem.IsFileExist(strFileName: FileNameConstants.AUTOSETTLEPARFILE) {
+              return readParams;
+        }
+        readParams = FileSystem.SeekRead(strFileName: FileNameConstants.AUTOSETTLEPARFILE, iOffset: 0);
+          return readParams;
+
+    }
+    
+    //MARK:- binarySearchMess(FileName: String,key: Int) -> Int
+    func binarySearchMess(FileName: String,key: Int) -> Int {
+        let retIndex = -1;
+        var objStructMessageId =   StructMessageId()
+        objStructMessageId.lmessageId = key;
+        if let ItemList:[StructMessageId] = FileSystem.ReadFile(strFileName: FileName){
+            _ = ItemList.sorted {
+                    (obj1, obj2) -> Bool in
+                    return obj1.lmessageId > obj2.lmessageId
+                }
+        }
+        return retIndex;
+    }
+    
+    //MARK:- getMessage(id: Int64, messagebuffer:[Byte]) -> Bool
+    func GetMessage(id: Int64, messagebuffer:[Byte]) -> Bool {
+        var objStructMessageId = StructMessageId()
+        objStructMessageId.lmessageId = Int(id);
+           var retIndex = -1;
+        retIndex = binarySearchMess(FileName: FileNameConstants.MASTERMESFILE, key: Int(id));
+           if (retIndex >= 0) {
+            if let objStructMessageId:StructMessageId = FileSystem.SeekRead(strFileName: FileNameConstants.MASTERMESFILE, iOffset: retIndex){
+              _ = objStructMessageId.strArrMessage.bytes;
+               return true;
+           } else {
+               return false;
+           }
+       }
+        return false
+    }
+
 }
-
-
-
-
-
-
-

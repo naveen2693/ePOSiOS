@@ -8,10 +8,10 @@
 
 import Foundation
 
-struct st_AIDTxnMapingDetails: Codable {
+struct StAIDTxnMapingDetails: Codable {
 
     var ucAID = [Byte](repeating: 0x00, count: 16)
-    var iHATTxnType: Int
-    var iCSVTxnType: Int
-    var iEMVTxnType: Int
+    var iHATTxnType: Int = 0
+    var iCSVTxnType: Int = 0
+    var iEMVTxnType: Int = 0
 }

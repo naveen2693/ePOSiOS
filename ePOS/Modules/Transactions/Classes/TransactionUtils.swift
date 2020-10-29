@@ -9,7 +9,7 @@
 import Foundation
 
 public typealias Byte = UInt8
-public typealias long = Int64
+public typealias DataLong = Int64
 
 class TransactionUtils
 {

@@ -8,10 +8,10 @@
 
 import Foundation
 
-struct st_TxnBin: Codable {
-    var iBinID: Int
-    var ulBinHigh: long
-    var ulBinLow: long
-    var iEMVAccountSelection: Byte
-    var iIsPinNeeded: Byte
+struct StTxnBin: Codable {
+    var iBinID: Int = 0
+    var ulBinHigh: DataLong = 0
+    var ulBinLow: DataLong = 0
+    var iEMVAccountSelection: Byte?
+    var iIsPinNeeded: Byte?
 }

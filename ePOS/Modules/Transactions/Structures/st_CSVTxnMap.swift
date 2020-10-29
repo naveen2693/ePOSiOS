@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct st_CSVTxnMap: Codable {
-    var ulTxnType: long
-    var bUseEncryption: Byte
+struct StCSVTxnMap: Codable {
+    var ulTxnType: DataLong = 0
+    var bUseEncryption: Byte?
 }

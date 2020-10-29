@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct st_CSVTxnTypeMiniPvmMappingDetails: Codable {
-    var iCsvTxnType: Int
-    var MiniPVMid: Int64
+struct StCSVTxnTypeMiniPvmMappingDetails: Codable {
+    var iCsvTxnType: Int = 0
+    var MiniPVMid: Int64 = 0
 }

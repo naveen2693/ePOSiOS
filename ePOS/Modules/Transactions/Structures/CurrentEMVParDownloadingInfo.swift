@@ -11,7 +11,7 @@ import Foundation
 struct CurrentEMVParDownloadingInfo: Codable {
     
     var chVersion = [Byte](repeating: 0x00, count: 13)
-    var currentpacketCount: Int
-    var totalpacketCount: Int
+    var currentpacketCount: Int = 0
+    var totalpacketCount: Int = 0
     
 }

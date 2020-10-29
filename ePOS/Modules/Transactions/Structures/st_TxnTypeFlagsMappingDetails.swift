@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct st_TxnTypeFlagsMappingDetails: Codable {
+struct StTxnTypeFlagsMappingDetails: Codable {
 
-    var iHATTxnType: Int
-    var iCSVTxnType: Int
-    var bIsCardDataEncryptionNeeded: Bool
-    var iPrintingLocation: Int
-    var bIsIgnoreAmountEnabled: Bool
-    var bIsSignatureRequired: Bool
+    var iHATTxnType: Int = 0
+    var iCSVTxnType: Int = 0
+    var bIsCardDataEncryptionNeeded: Bool = false
+    var iPrintingLocation: Int = 0
+    var bIsIgnoreAmountEnabled: Bool = false
+    var bIsSignatureRequired: Bool = false
 
 }

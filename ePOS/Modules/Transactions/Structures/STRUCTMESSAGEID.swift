@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct STRUCT_MESSAGE_ID: Codable {
+struct StructMESSAGEID: Codable {
     var lmessageId: Int64 = 0
     var  strArrMessage: String = ""
 }

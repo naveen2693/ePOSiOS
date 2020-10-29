@@ -110,7 +110,7 @@ class ISO320Initialization: ISOMessage
     // for CIMB mini pvm download::amitesh
     var m_ulArrMINIPVMIdAdd = [Int64](repeating: 0x00, count: AppConstant.MAX_COUNT_MINIPVM + 1) // MAX_COUNT_MINIPVM
     var m_ulArrMINIPVMIdDelete = [Int64](repeating: 0x00, count: AppConstant.MAX_COUNT_MINIPVM + 1) // MAX_COUNT_MINIPVM
-    var m_ObjArrParameterData: [ParameterData] = []
+    var m_ObjArrParameterData: [ParameterData?] = []
 
     // for Lib file download-amitesh
     var m_ulArrlibIdAdd = [LIBStruct?](repeating: nil, count: AppConstant.MAX_LIB_FILE)
@@ -588,7 +588,7 @@ class ISO320Initialization: ISOMessage
                 (m_iChangeNumber == ISO320ChangeNumberConstants.HOST_MINIPVM_DOWNLOAD))
             {
                 var bArrImageOrChargeSlipRequestBuffer: String
-                var ulVal: long = 0x00;
+                var ulVal: DataLong = 0x00;
 
                 if(m_iChangeNumber == ISO320ChangeNumberConstants.HOST_CHARGESLIP_DOWNLOAD)
                 {
@@ -637,7 +637,7 @@ class ISO320Initialization: ISOMessage
             {
                 debugPrint("EDC_LIB_DOWNLOAD");
 
-                let ulLibId: long = long(m_ulArrlibIdAdd[m_ulTotallibAdded]!.id)
+                let ulLibId: DataLong = DataLong(m_ulArrlibIdAdd[m_ulTotallibAdded]!.id)
                 SetLibDownLoadData(LibId: ulLibId);
 
                 var bLocalBuffer = [Byte](repeating: 0x00, count: 4)
@@ -665,7 +665,7 @@ class ISO320Initialization: ISOMessage
                     numberOfItems = ItemList.count
                     debugPrint("numberOfItems[\(numberOfItems)]");
                     for i in 0 ..< numberOfItems {
-                        let ulcharegSlipId: long = ItemList[i].value;
+                        let ulcharegSlipId: DataLong = ItemList[i].value;
                         if (ulcharegSlipId != 0x0000) {
                             let PadedChargeSlipId: String = String(format: "%08d", ulcharegSlipId);
                             let tempArr: [Byte] = TransactionUtils.a2bcd([Byte](PadedChargeSlipId.utf8))!
@@ -700,7 +700,7 @@ class ISO320Initialization: ISOMessage
                     debugPrint("numberOfItems[\(numberOfItems)]")
 
                     for i in 0 ..< numberOfItems {
-                        let ulcharegSlipId: long = ItemList[i].value
+                        let ulcharegSlipId: DataLong = ItemList[i].value
                         if (ulcharegSlipId != 0x0000) {
                             let res: String = String(format: "%08d", ulcharegSlipId)
                             let PadedChargeSlipId: [Byte] = TransactionUtils.a2bcd([Byte](res.utf8))!
@@ -734,7 +734,7 @@ class ISO320Initialization: ISOMessage
                 if(!ItemList.isEmpty){
                     numberOfItems = ItemList.count
                     for i in 0 ..< numberOfItems {
-                        let ulLibId: long = long(ItemList[i].id)
+                        let ulLibId: DataLong = DataLong(ItemList[i].id)
                         if(ulLibId > 0){
                             bLocalBuffer[iLocalOffset] = Byte((ulLibId >> 24) & 0x000000FF)
                             iLocalOffset += 1
@@ -777,7 +777,7 @@ class ISO320Initialization: ISOMessage
                 if(!ItemList.isEmpty) {
                     numberOfItems = ItemList.count
                     for i in 0 ..< numberOfItems {
-                        let ulImageId: long = ItemList[i].value;
+                        let ulImageId: DataLong = ItemList[i].value;
                         if (ulImageId != 0x0000) {
                             let PadedImageId: String = String(format: "%08d", ulImageId);
                             let tempArr: [Byte] = TransactionUtils.a2bcd([Byte](PadedImageId.utf8))!;
@@ -818,7 +818,7 @@ class ISO320Initialization: ISOMessage
                 if(!ItemList.isEmpty) {
                     numberOfItems = ItemList.count
                     for i in 0 ..< numberOfItems {
-                        let ulImageId: long = ItemList[i].value
+                        let ulImageId: DataLong = ItemList[i].value
                         if (ulImageId != 0x0000) {
                             let PadedImageId: String = String(format: "%08d", ulImageId);
                             let tempArr: [Byte] = TransactionUtils.a2bcd([Byte](PadedImageId.utf8))!;
@@ -844,12 +844,12 @@ class ISO320Initialization: ISOMessage
 
                 var iLocalOffset: Int = 0x00
                 var bLocalBuffer = [Byte](repeating: 0x00, count: AppConstant.MAX_COUNT_MESSAGES * 4)
-                var ulMessId: long = 0
+                var ulMessId: DataLong = 0
 
-                let NumberOFRows: Int = FileSystem.NumberOfRows(strFileName: FileNameConstants.MASTERMESFILE, obj: STRUCT_MESSAGE_ID.self)
+                let NumberOFRows: Int = FileSystem.NumberOfRows(strFileName: FileNameConstants.MASTERMESFILE, obj: StructMESSAGEID.self)
                 for i in 0 ..< NumberOFRows
                 {
-                    let temp: STRUCT_MESSAGE_ID = FileSystem.SeekRead(strFileName: FileNameConstants.MASTERMESFILE, iOffset: i)!
+                    let temp: StructMESSAGEID = FileSystem.SeekRead(strFileName: FileNameConstants.MASTERMESFILE, iOffset: i)!
                     ulMessId = temp.lmessageId;
                     if(ulMessId != 0x0000)
                     {
@@ -1199,7 +1199,7 @@ class ISO320Initialization: ISOMessage
                     debugPrint("numberOfItems Mini pvm[\(numberOfItems)]")
                     
                     for i in 0 ..< numberOfItems {
-                        let ulMiniPVMId: long = ItemList[i].value;
+                        let ulMiniPVMId: DataLong = ItemList[i].value;
                         if (ulMiniPVMId != 0x0000) {
                             let res: String = String(format: "%08d", ulMiniPVMId);
                             let PadedMiniPVMId: [Byte] =  TransactionUtils.a2bcd([Byte](res.utf8))!
@@ -1269,12 +1269,12 @@ class ISO320Initialization: ISOMessage
                 var iLocalOffset: Int = 0x00
                 var numberOfItems: Int = 0
 
-                let ItemList: [long] = Array(GlobalData.m_setAdServerHTL!)
+                let ItemList: [DataLong] = Array(GlobalData.m_setAdServerHTL!)
                 if(!ItemList.isEmpty) {
                     numberOfItems = ItemList.count
                     debugPrint( "numberOfItems HTL[\(numberOfItems)]");
                     for i in 0 ..< numberOfItems {
-                        let ulHTL: long = ItemList[i]
+                        let ulHTL: DataLong = ItemList[i]
                         if (ulHTL != 0x0000) {
                             let res: String = String(format: "%08d", ulHTL);
                             let PadedHTL: [Byte] =  TransactionUtils.a2bcd([Byte](res.utf8))!
@@ -1579,10 +1579,10 @@ class ISO320Initialization: ISOMessage
 
                         //send the request for the next one.for every image downloaded host will send the processing code ends here.
                         if (m_ulTotalMessagesAdded >= m_ulCountOfMessageIdAdd) {
-                            let NumberOFRows: Int = FileSystem.NumberOfRows(strFileName: FileNameConstants.MASTERMESFILE, obj: STRUCT_MESSAGE_ID.self)
+                            let NumberOFRows: Int = FileSystem.NumberOfRows(strFileName: FileNameConstants.MASTERMESFILE, obj: StructMESSAGEID.self)
                             for  i in 0 ..< NumberOFRows
                             {
-                                let temp: STRUCT_MESSAGE_ID = FileSystem.SeekRead(strFileName: FileNameConstants.MASTERMESFILE, iOffset: i)!;
+                                let temp: StructMESSAGEID = FileSystem.SeekRead(strFileName: FileNameConstants.MASTERMESFILE, iOffset: i)!;
                                 if (temp != nil)
                                 {
                                     debugPrint("Message id[%d], Message[%s]", temp.lmessageId, temp.strArrMessage)
@@ -2088,14 +2088,14 @@ class ISO320Initialization: ISOMessage
                             _ = conx.disconnect();
 
                             var i: Int = 0;
-                            var Files = [String?](repeating: nil, count: m_ulCountOflibIdAdd)
+                            var Files = [String](repeating: "", count: m_ulCountOflibIdAdd)
                             
                             while (i < m_ulCountOflibIdAdd) {
-                                Files[i] = m_ulArrlibIdAdd[i]?.LibFileName;
+                                Files[i] = m_ulArrlibIdAdd[i]!.LibFileName;
                                 i += 1
                             }
 
-                            if (!PlatFormUtils.upgradeDll(fileNameList: Files as! [String])) {
+                            if (!PlatFormUtils.upgradeDll(fileNameList: Files)) {
                                 
                                 //TODO: FileSystem Format Directory
                                 //CFileSystem.FormatExternalDirectory();
@@ -2271,7 +2271,7 @@ class ISO320Initialization: ISOMessage
                                         chArrTempChunkSize = Array(data[45 - 1][0 ..< data[45 - 1].count])
                                         //System.arraycopy(data[45 - 1], 0, chArrTempChunkSize, 0, data[45 - 1].length);
                                         
-                                        var ulChunkSize: Long
+                                        var ulChunkSize = Long()
                                         
 
                                         let sArrTempChunkSize = String(bytes: chArrTempChunkSize, encoding: String.Encoding.utf8)
@@ -2378,7 +2378,7 @@ class ISO320Initialization: ISOMessage
     {
         var uchArrBitmap320 = [Byte](repeating: 0x00, count: 4)
         
-        var globalData = GlobalData.singleton
+        let globalData = GlobalData.singleton
         
         uchArrBitmap320 = Array((globalData.m_sMasterParamData?.m_uchArrBitmap320ActiveHost[0 ..< AppConstant.LEN_BITMAP_PACKET])!)
         
@@ -2386,15 +2386,15 @@ class ISO320Initialization: ISOMessage
         
         for it in (0 ..< AppConstant.LEN_BITMAP_PACKET * 8 - 1).reversed()
         {
-            var bResult: Byte = uchArrBitmap320[it/8] & Byte(0x80 >> (it % 8))
+            let bResult: Byte = uchArrBitmap320[it/8] & Byte(0x80 >> (it % 8))
             if (bResult == 0) {
-                globalData.UpdateConnectionDataChangedFlag(false)
-                globalData.UpdateParamDataChangedFlag(false)
+                _ = globalData.UpdateConnectionDataChangedFlag(bFlag: false)
+                _ = globalData.UpdateParamDataChangedFlag(bFlag: false)
             }
         }
         
-        globalData.UpdateMasterParamDataChangedFlag(false)
-        globalData.UpdateAutoSettlementDataChangedFlag(0)
+        _ = globalData.UpdateMasterParamDataChangedFlag(bFlag: false)
+        _ = globalData.UpdateAutoSettlementDataChangedFlag(bFlag: false)
 
         return true;
     }
@@ -2441,7 +2441,7 @@ class ISO320Initialization: ISOMessage
             return false;
         }
         
-        var st_BINRangeList: [st_BINRange] = []
+        var st_BINRangeList: [StBINRange] = []
 
         var iOffset: Int = 0;
         while(length > iOffset)
@@ -2451,28 +2451,28 @@ class ISO320Initialization: ISOMessage
                 break;
             }
 
-            var stBinRange: st_BINRange
+            var stBinRange = StBINRange()
 
             //1 byte KeySlotID
             stBinRange.iKeySlotID = Int((Byte)(p[iOffset] & 0x000000FF))
             iOffset += 1
             
             //4 Byte Bin Low
-            stBinRange.ulBinLow  = Int64((p[iOffset] << 24) & 0xFF000000)
+            stBinRange.ulBinLow  = Int64(p[iOffset] << 24) & Int64(0xFF000000)
             iOffset += 1
-            stBinRange.ulBinLow |= Int64((p[iOffset] << 16) & 0x00FF0000)
+            stBinRange.ulBinLow |= Int64(p[iOffset] << 16) & Int64(0x00FF0000)
             iOffset += 1
-            stBinRange.ulBinLow |= Int64((p[iOffset] << 8) & 0x0000FF00)
+            stBinRange.ulBinLow |= Int64(p[iOffset] << 8) & Int64(0x0000FF00)
             iOffset += 1
             stBinRange.ulBinLow |=  Int64(p[iOffset] & 0x000000FF)
             iOffset += 1
             
             //4 Byte Bin High
-            stBinRange.ulBinHigh  = Int64((p[iOffset] << 24) & 0xFF000000)
+            stBinRange.ulBinHigh  = Int64(p[iOffset] << 24) & Int64(0xFF000000)
             iOffset += 1
-            stBinRange.ulBinHigh |= Int64((p[iOffset] << 16) & 0x00FF0000)
+            stBinRange.ulBinHigh |= Int64(p[iOffset] << 16) & Int64(0x00FF0000)
             iOffset += 1
-            stBinRange.ulBinHigh |= Int64((p[iOffset] <<  8)  & 0x0000FF00)
+            stBinRange.ulBinHigh |= Int64(p[iOffset] <<  8)  & Int64(0x0000FF00)
             iOffset += 1
             stBinRange.ulBinHigh |=  Int64(p[iOffset] & 0x000000FF)
             iOffset += 1
@@ -2519,7 +2519,7 @@ class ISO320Initialization: ISOMessage
         if(FileSystem.IsFileExist(strFileName: FileNameConstants.TEMPBINRANGEFILE))
         {
             debugPrint("TEMPBINRANGEFILE exists")
-            let tempData: [st_BINRange] = []
+            let tempData: [StBINRange] = []
             _ = FileSystem.DeleteFile(strFileName: FileNameConstants.BINRANGEFILE, with: tempData)
             if(true == FileSystem.RenameFile(strNewFileName: FileNameConstants.BINRANGEFILE, strFileName: FileNameConstants.TEMPBINRANGEFILE))
             {
@@ -2564,7 +2564,7 @@ class ISO320Initialization: ISOMessage
         }
         
         debugPrint(length, p);
-        var st_CSVTxnMapList: [st_CSVTxnMap] = []
+        var st_CSVTxnMapList: [StCSVTxnMap] = []
 
         var iOffset: Int = 0
         
@@ -2575,29 +2575,29 @@ class ISO320Initialization: ISOMessage
                 break;
             }
 
-            var stCSVTxnMap: st_CSVTxnMap
+            var structCSVTxnMap = StCSVTxnMap()
 
             //4 Byte Txn Type
-            stCSVTxnMap.ulTxnType  = long((p[iOffset] << 24) & 0xFF000000)
+            structCSVTxnMap.ulTxnType  = DataLong(p[iOffset] << 24) & Int64(0xFF000000)
             iOffset += 1
-            stCSVTxnMap.ulTxnType |= long((p[iOffset] << 16) & 0x00FF0000)
+            structCSVTxnMap.ulTxnType |= DataLong(p[iOffset] << 16) & Int64(0x00FF0000)
             iOffset += 1
-            stCSVTxnMap.ulTxnType |= long((p[iOffset] <<  8) & 0x0000FF00)
+            structCSVTxnMap.ulTxnType |= DataLong(p[iOffset] <<  8) & Int64(0x0000FF00)
             iOffset += 1
-            stCSVTxnMap.ulTxnType |= long(p[iOffset] & 0x000000FF)
+            structCSVTxnMap.ulTxnType |= DataLong(p[iOffset] & 0x000000FF)
             iOffset += 1
             
             //1 Byte Use Encryption Flag
-            stCSVTxnMap.bUseEncryption     = (Byte)(p[iOffset] & 0x000000FF)
+            structCSVTxnMap.bUseEncryption     = (Byte)(p[iOffset] & 0x000000FF)
             iOffset += 1
             
             m_ulCSVTxnMapIterator += 1
 
             debugPrint("CSV Txn Type File it[\(m_ulCSVTxnMapIterator)]")
-            debugPrint("ulTxnType[\(stCSVTxnMap.ulTxnType)]")
-            debugPrint("bUseEncryption[0x%x]", stCSVTxnMap.bUseEncryption)
+            debugPrint("ulTxnType[\(structCSVTxnMap.ulTxnType)]")
+            debugPrint("bUseEncryption[0x%x]", structCSVTxnMap.bUseEncryption!)
 
-            st_CSVTxnMapList.append(stCSVTxnMap);
+            st_CSVTxnMapList.append(structCSVTxnMap);
         }
         
         do{
@@ -2631,7 +2631,7 @@ class ISO320Initialization: ISOMessage
         //if temp bin range file exist, then replace BINRANGE file with temp.
         if(FileSystem.IsFileExist(strFileName: FileNameConstants.TEMPCSVTXNMAPFILE))
         {
-            let tempData: [st_CSVTxnMap] = []
+            let tempData: [StCSVTxnMap] = []
             debugPrint("TEMPCSVTXNTYPEFILE exists")
             _ = FileSystem.DeleteFile(strFileName: FileNameConstants.CSVTXNMAPFILE, with: tempData)
             if(true == FileSystem.RenameFile(strNewFileName: FileNameConstants.CSVTXNMAPFILE,strFileName: FileNameConstants.TEMPCSVTXNMAPFILE))
@@ -2674,7 +2674,7 @@ class ISO320Initialization: ISOMessage
         }
         
         debugPrint(length, p);
-        var st_TxnBinList: [st_TxnBin] = []
+        var st_TxnBinList: [StTxnBin] = []
         
         var iOffset: Int = 0
         while(length > iOffset)
@@ -2684,10 +2684,10 @@ class ISO320Initialization: ISOMessage
                 break
             }
 
-            var stTxnBin: st_TxnBin
+            var structTxnBin = StTxnBin()
 
             var iLocalStructLen: Int = 0
-            iLocalStructLen |= Int((p[iOffset] << 8) & 0x0000FF00)
+            iLocalStructLen |= Int(p[iOffset] << 8) & Int(0x0000FF00)
             iOffset += 1
             iLocalStructLen |= Int(p[iOffset] & 0x000000FF)
             iOffset += 1
@@ -2695,46 +2695,46 @@ class ISO320Initialization: ISOMessage
             var iLocalOffset: Int = iOffset
 
             //1 byte BinID
-            stTxnBin.iBinID = Int((Byte)(p[iLocalOffset] & 0x000000FF))
+            structTxnBin.iBinID = Int((Byte)(p[iLocalOffset] & 0x000000FF))
             iLocalOffset += 1
             
             
             //4 Byte Bin Low
-            stTxnBin.ulBinLow  = long((p[iLocalOffset] << 24) & 0xFF000000)
+            structTxnBin.ulBinLow  = DataLong(p[iLocalOffset] << 24) & Int64(0xFF000000)
             iLocalOffset += 1
-            stTxnBin.ulBinLow |= long((p[iLocalOffset] << 16) & 0x00FF0000)
+            structTxnBin.ulBinLow |= DataLong(p[iLocalOffset] << 16) & Int64(0x00FF0000)
             iLocalOffset += 1
-            stTxnBin.ulBinLow |= long((p[iLocalOffset] <<  8) & 0x0000FF00)
+            structTxnBin.ulBinLow |= DataLong(p[iLocalOffset] <<  8) & Int64(0x0000FF00)
             iLocalOffset += 1
-            stTxnBin.ulBinLow |=  long(p[iLocalOffset] & 0x000000FF)
+            structTxnBin.ulBinLow |=  DataLong(p[iLocalOffset] & 0x000000FF)
             iLocalOffset += 1
             
             //4 Byte Bin High
-            stTxnBin.ulBinHigh  = long((p[iLocalOffset] << 24) & 0xFF000000)
+            structTxnBin.ulBinHigh  = DataLong(p[iLocalOffset] << 24) & Int64(0xFF000000)
             iLocalOffset += 1
-            stTxnBin.ulBinHigh |= long((p[iLocalOffset] << 16) & 0x00FF0000)
+            structTxnBin.ulBinHigh |= DataLong(p[iLocalOffset] << 16) & Int64(0x00FF0000)
             iLocalOffset += 1
-            stTxnBin.ulBinHigh |= long((p[iLocalOffset] <<  8) & 0x0000FF00)
+            structTxnBin.ulBinHigh |= DataLong(p[iLocalOffset] <<  8) & Int64(0x0000FF00)
             iLocalOffset += 1
-            stTxnBin.ulBinHigh |= long(p[iLocalOffset] & 0x000000FF)
+            structTxnBin.ulBinHigh |= DataLong(p[iLocalOffset] & 0x000000FF)
             iLocalOffset += 1
             
             //1 Byte EMV AccountType
-            stTxnBin.iEMVAccountSelection = (Byte)(p[iLocalOffset] & 0x000000FF)
+            structTxnBin.iEMVAccountSelection = (Byte)(p[iLocalOffset] & 0x000000FF)
             iLocalOffset += 1
-            stTxnBin.iIsPinNeeded = (Byte)(p[iLocalOffset] & 0x000000FF)
+            structTxnBin.iIsPinNeeded = (Byte)(p[iLocalOffset] & 0x000000FF)
             iLocalOffset += 1
             
             m_ulTxnBinIterator += 1
 
             debugPrint("Txn Bin File it[\(m_ulTxnBinIterator)]")
-            debugPrint("iBinID[\(stTxnBin.iBinID)]")
-            debugPrint("ulBinLow[\(stTxnBin.ulBinLow)]")
-            debugPrint("ulBinHigh[\(stTxnBin.ulBinHigh)]")
-            debugPrint("iEMVAccountSelection[0x%x]", stTxnBin.iEMVAccountSelection)
-            debugPrint("iIsPinNeeded[0x%x]", stTxnBin.iIsPinNeeded)
+            debugPrint("iBinID[\(structTxnBin.iBinID)]")
+            debugPrint("ulBinLow[\(structTxnBin.ulBinLow)]")
+            debugPrint("ulBinHigh[\(structTxnBin.ulBinHigh)]")
+            debugPrint("iEMVAccountSelection[0x%x]", structTxnBin.iEMVAccountSelection!)
+            debugPrint("iIsPinNeeded[0x%x]", structTxnBin.iIsPinNeeded!)
 
-            st_TxnBinList.append(stTxnBin)
+            st_TxnBinList.append(structTxnBin)
 
             //Local length define the length of local structure
             iOffset += iLocalStructLen
@@ -2772,7 +2772,7 @@ class ISO320Initialization: ISOMessage
         //if temp bin range file exist, then replace BINRANGE file with temp.
         if(FileSystem.IsFileExist(strFileName: FileNameConstants.TEMPTXNBINFILE))
         {
-            let tempData: [st_TxnBin] = []
+            let tempData: [StTxnBin] = []
             debugPrint("TEMPTXNBINFILE exists");
             _ = FileSystem.DeleteFile(strFileName: FileNameConstants.TXNBINFILE, with: tempData)
             
@@ -2836,7 +2836,7 @@ class ISO320Initialization: ISOMessage
             return false;
         }
         debugPrint(length, p)
-        var st_CSVTxnIgnoreAmtList: [st_CSVTxnIgnoreAmt] = []
+        var st_CSVTxnIgnoreAmtList: [StCSVTxnIgnoreAmt] = []
 
         var iOffset: Int = 0;
         while(length > iOffset)
@@ -2846,10 +2846,10 @@ class ISO320Initialization: ISOMessage
                 break;
             }
 
-            var stCSVTxnIgnoreAmt: st_CSVTxnIgnoreAmt
+            var structCSVTxnIgnoreAmt = StCSVTxnIgnoreAmt()
 
             var iLocalStructLen: Int = 0
-            iLocalStructLen |= Int((p[iOffset] << 8) & 0x0000FF00)
+            iLocalStructLen |= Int(p[iOffset] << 8) & Int(0x0000FF00)
             iOffset += 1
             iLocalStructLen |=  Int(p[iOffset] & 0x000000FF)
             iOffset += 1
@@ -2857,27 +2857,27 @@ class ISO320Initialization: ISOMessage
             var iLocalOffset: Int = iOffset;
 
             //2 byte CSV Txn Id
-            stCSVTxnIgnoreAmt.CsvTxnId |= Int((p[iLocalOffset] << 8) & 0x0000FF00)
+            structCSVTxnIgnoreAmt.CsvTxnId |= Int(p[iLocalOffset] << 8) & Int(0x0000FF00)
             iLocalOffset += 1
-            stCSVTxnIgnoreAmt.CsvTxnId |=  Int(p[iLocalOffset] & 0x000000FF)
+            structCSVTxnIgnoreAmt.CsvTxnId |=  Int(p[iLocalOffset] & 0x000000FF)
             iLocalOffset += 1
             
             //1 Byte EMV AccountType
-            stCSVTxnIgnoreAmt.iIsIgnoreAmountEnabled = (Int(p[iLocalOffset] & 0xFF) == 0x01)
+            structCSVTxnIgnoreAmt.iIsIgnoreAmountEnabled = (Int(p[iLocalOffset] & 0xFF) == 0x01)
             iLocalOffset += 1
             
             //1 Byte Signature Required flag
-            stCSVTxnIgnoreAmt.iIsSignatureRequired = (Int(p[iLocalOffset] & 0xFF) == 0x01)
+            structCSVTxnIgnoreAmt.iIsSignatureRequired = (Int(p[iLocalOffset] & 0xFF) == 0x01)
             iLocalOffset += 1
             
             m_ulTotalCSVTxnIgnAmtListIterator += 1
 
             debugPrint("CSV Bin File it[\(m_ulTotalCSVTxnIgnAmtListIterator)]");
-            debugPrint("CsvTxnId[\(stCSVTxnIgnoreAmt.CsvTxnId)]");
-            debugPrint("iIsIgnoreAmountEnabled[\(stCSVTxnIgnoreAmt.iIsIgnoreAmountEnabled)]");
-            debugPrint("iIsSignatureRequired[\(stCSVTxnIgnoreAmt.iIsSignatureRequired)]");
+            debugPrint("CsvTxnId[\(structCSVTxnIgnoreAmt.CsvTxnId)]");
+            debugPrint("iIsIgnoreAmountEnabled[\(structCSVTxnIgnoreAmt.iIsIgnoreAmountEnabled)]");
+            debugPrint("iIsSignatureRequired[\(structCSVTxnIgnoreAmt.iIsSignatureRequired)]");
 
-            st_CSVTxnIgnoreAmtList.append(stCSVTxnIgnoreAmt)
+            st_CSVTxnIgnoreAmtList.append(structCSVTxnIgnoreAmt)
 
             //Local length define the length of local structure
             iOffset += iLocalStructLen;
@@ -2919,7 +2919,7 @@ class ISO320Initialization: ISOMessage
         {
             debugPrint("TEMPCSVTXNIGNAMT exists")
             
-            let tempData: [st_CSVTxnIgnoreAmt] = []
+            let tempData: [StCSVTxnIgnoreAmt] = []
             _ = FileSystem.DeleteFile(strFileName: FileNameConstants.CSVTXNIGNAMT, with: tempData)
             if(true == FileSystem.RenameFile(strNewFileName: FileNameConstants.CSVTXNIGNAMT,strFileName: FileNameConstants.TEMPCSVTXNIGNAMT))
             {
@@ -2996,7 +2996,7 @@ class ISO320Initialization: ISOMessage
             }
             //Logic to append file
 
-            var stEMVTagList: [st_EMV_Tag_List] = []
+            var stEMVTagList: [StEMVTagList] = []
 
             //1 Byte EMV taglen
             stEMVTagList[0].ushLen = Int8(p[iOffset] & 0x000000FF)
@@ -3010,7 +3010,7 @@ class ISO320Initialization: ISOMessage
             }
             else {
                 //2 byte EMV tag value
-                stEMVTagList[0].Value |= Int((p[iOffset] <<  8) & 0x0000FF00)
+                stEMVTagList[0].Value |= Int(p[iOffset] <<  8) & Int(0x0000FF00)
                 iOffset += 1
                 stEMVTagList[0].Value |=  Int(p[iOffset] & 0x000000FF)
                 iOffset += 1
@@ -3123,14 +3123,14 @@ class ISO320Initialization: ISOMessage
             
             if (iParameterValLen > 0) {
                 m_ObjArrParameterData[m_ulParameterIterator] = ParameterData();
-                m_ObjArrParameterData[m_ulParameterIterator].chArrParameterVal = [Byte](repeating: 0x00, count: iParameterValLen)
+                m_ObjArrParameterData[m_ulParameterIterator]!.chArrParameterVal = [Byte](repeating: 0x00, count: iParameterValLen)
                 
-                m_ObjArrParameterData[m_ulParameterIterator].chArrParameterVal = Array(p[iOffset ..< iOffset + iParameterValLen])
+                m_ObjArrParameterData[m_ulParameterIterator]!.chArrParameterVal = Array(p[iOffset ..< iOffset + iParameterValLen])
                 //System.arraycopy(p, iOffset, m_ObjArrParameterData[m_ulParameterIterator].chArrParameterVal, 0, iParameterValLen);
               
-                m_ObjArrParameterData[m_ulParameterIterator].uiHostID = iHostID;
-                m_ObjArrParameterData[m_ulParameterIterator].ulParameterId = iParameterId;
-                m_ObjArrParameterData[m_ulParameterIterator].ulParameterLen = iParameterValLen;
+                m_ObjArrParameterData[m_ulParameterIterator]!.uiHostID = iHostID;
+                m_ObjArrParameterData[m_ulParameterIterator]!.ulParameterId = iParameterId;
+                m_ObjArrParameterData[m_ulParameterIterator]!.ulParameterLen = iParameterValLen;
                 
                 /*CLogger.TraceLog(TRACE_DEBUG, "HOST ID =%d", m_ObjArrParameterData[m_ulParameterIterator].uiHostID);
                 CLogger.TraceLog(TRACE_DEBUG, "ID =%d", m_ObjArrParameterData[m_ulParameterIterator].ulParameterId);
@@ -3157,7 +3157,7 @@ class ISO320Initialization: ISOMessage
 
         for i in 0 ..< m_ulParameterIterator
         {
-            _ = globalData.UpdateParameter(ParameterData: m_ObjArrParameterData[i])
+            _ = globalData.UpdateParameter(ParameterData: m_ObjArrParameterData[i]!)
         }
         
         return 1;
@@ -3205,12 +3205,12 @@ class ISO320Initialization: ISOMessage
         if(ilength >= 2)
         {
             var offset: Int = 0
-            self.m_bCurrentPacketCount = Int64(((pFieldEMVparDef[offset]) << 8) & 0x0000FF00)
+            self.m_bCurrentPacketCount = Int64((pFieldEMVparDef[offset]) << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bCurrentPacketCount |= Int64((pFieldEMVparDef [offset]) & 0x000000FF)
             offset += 1
 
-            self.m_bTotalPacketCount = Int64(((pFieldEMVparDef[offset]) << 8) & 0x0000FF00)
+            self.m_bTotalPacketCount = Int64((pFieldEMVparDef[offset]) << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bTotalPacketCount |= Int64((pFieldEMVparDef [offset]) & 0x000000FF)
             offset += 1
@@ -3343,12 +3343,12 @@ class ISO320Initialization: ISOMessage
         if(ilength >= 2)
         {
             var offset: Int = 0
-            self.m_bCurrentPacketCount = Int64(((pFieldEMVparDef[offset]) << 8) & 0x0000FF00)
+            self.m_bCurrentPacketCount = Int64((pFieldEMVparDef[offset]) << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bCurrentPacketCount |= Int64((pFieldEMVparDef [offset]) & 0x000000FF)
             offset += 1
 
-            self.m_bTotalPacketCount = Int64(((pFieldEMVparDef[offset]) << 8) & 0x0000FF00)
+            self.m_bTotalPacketCount = Int64((pFieldEMVparDef[offset]) << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bTotalPacketCount |= Int64((pFieldEMVparDef [offset]) & 0x000000FF)
             offset += 1
@@ -3505,7 +3505,7 @@ class ISO320Initialization: ISOMessage
         //save EMVPar Version
         if(bitmap[54 - 1])
         {
-            var currentEMVParDwndInfo: CurrentEMVParDownloadingInfo
+            var currentEMVParDwndInfo = CurrentEMVParDownloadingInfo()
             var ItemList: [CurrentEMVParDownloadingInfo] = []
 
             let chEMVParVersion: [Byte] = getEMVParVersion(isoFeild: ISOFieldConstants.ISO_FIELD_54)
@@ -3544,7 +3544,7 @@ class ISO320Initialization: ISOMessage
             var chArrTempChunkSize = [Byte](repeating: 0x00, count: len[45 - 1])
             chArrTempChunkSize = Array(data[45 - 1][0 ..< len[45 - 1]])
             //System.arraycopy(data[45-1],0,chArrTempChunkSize,0,len[45-1]);
-            var ulChunkSize: Long
+            var ulChunkSize = Long()
             ulChunkSize.value = Int64(strtoul(String(bytes: chArrTempChunkSize, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines), nil, 10))
                 //Long.parseLong(new String(chArrTempChunkSize));
 
@@ -3569,7 +3569,7 @@ class ISO320Initialization: ISOMessage
         //save EMVPar Version
         if(bitmap[54 - 1])
         {
-            var currentEMVParDwndInfo: CurrentEMVParDownloadingInfo
+            var currentEMVParDwndInfo = CurrentEMVParDownloadingInfo()
             var ItemList: [CurrentEMVParDownloadingInfo] = []
 
             let chEMVParVersion: [Byte] = getCLESSEMVParVersion(isoFeild: ISOFieldConstants.ISO_FIELD_54)
@@ -3611,7 +3611,7 @@ class ISO320Initialization: ISOMessage
             
             // System.arraycopy(data[45-1],0,chArrTempChunkSize,0,len[45-1]);
 
-            var ulChunkSize: Long
+            var ulChunkSize = Long()
             ulChunkSize.value = Int64(strtoul(String(bytes: chArrTempChunkSize, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines), nil, 10))
             
             var ItemList: [Long] = []
@@ -3658,7 +3658,7 @@ class ISO320Initialization: ISOMessage
 
         if(FileSystem.IsFileExist(strFileName: FileNameConstants.DWNLDEMVPARCHUNKINFO))
         {
-            var ulChunkSize: Long
+            var ulChunkSize = Long()
             let ItemList1: [Long] = FileSystem.ReadFile(strFileName: FileNameConstants.DWNLDEMVPARCHUNKINFO)!
             if(!ItemList1.isEmpty) {
                 ulChunkSize = ItemList1[0]
@@ -3682,7 +3682,7 @@ class ISO320Initialization: ISOMessage
         {
             //Get CLESS EMV PAR version
             debugPrint("DWNLDCLESSPARINFO file esxits");
-            var lastEMVParDwndInfo: CurrentEMVParDownloadingInfo
+            var lastEMVParDwndInfo = CurrentEMVParDownloadingInfo()
             var ItemList: [CurrentEMVParDownloadingInfo] = []
             
             ItemList  = FileSystem.ReadFile(strFileName: FileNameConstants.DWNLDCLESSPARINFO)!
@@ -3708,15 +3708,15 @@ class ISO320Initialization: ISOMessage
 
         if(FileSystem.IsFileExist(strFileName: FileNameConstants.DWNLDCLESSPARCHUNKINFO))
         {
-            var ulChunkSize: Long
+            var ulChunkSize: Long?
             let ItemList1: [Long] = FileSystem.ReadFile(strFileName: FileNameConstants.DWNLDCLESSPARCHUNKINFO)!
             if(!ItemList1.isEmpty)
             {
                 ulChunkSize = ItemList1[0]
             }
             
-            debugPrint("Earlier ulChunkSize[\(ulChunkSize.value)]")
-            let chArrTempChunkSize: String = String(format: "%06d", ulChunkSize.value)
+            debugPrint("Earlier ulChunkSize[\(ulChunkSize!.value)]")
+            let chArrTempChunkSize: String = String(format: "%06d", ulChunkSize!.value)
             _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_45, data1: [Byte](chArrTempChunkSize.utf8), bcd: true)
             debugPrint("Req->Setting field 45");
         }else{
@@ -3747,7 +3747,7 @@ class ISO320Initialization: ISOMessage
 
         if(ilength >= 2){
             var offset: Int = 0;
-            self.m_bCurrentPacketCount = Int64(((pFieldPVMDef[offset]) << 8) & 0x0000FF00)
+            self.m_bCurrentPacketCount = Int64((pFieldPVMDef[offset]) << 8) & Int64(0x0000FF00)
             offset += 1
             debugPrint("this->m_bCurrentPacketCount1[\(self.m_bCurrentPacketCount)]")
             self.m_bCurrentPacketCount |= Int64((pFieldPVMDef[offset]) & 0x000000FF)
@@ -3755,7 +3755,7 @@ class ISO320Initialization: ISOMessage
 
             debugPrint("this->m_bCurrentPacketCount2[\(self.m_bCurrentPacketCount)]")
 
-            self.m_bTotalPacketCount = Int64(((pFieldPVMDef[offset]) << 8) & 0x0000FF00)
+            self.m_bTotalPacketCount = Int64((pFieldPVMDef[offset]) << 8) & Int64(0x0000FF00)
             offset += 1
             debugPrint("this->m_bTotalPacketCount1[%d]",self.m_bTotalPacketCount)
             self.m_bTotalPacketCount |= Int64((pFieldPVMDef [offset]) & 0x000000FF)
@@ -3777,11 +3777,11 @@ class ISO320Initialization: ISOMessage
             {
                 debugPrint("PVM NOT First packet");
                 var _: CurrentDownloadingInfo
-                var ulPVMVersion: Long
+                var ulPVMVersion = Long()
                 ulPVMVersion.value = 0x00
-                if(1 == getPVMVersion(isoFeild: ISOFieldConstants.ISO_FIELD_44,ulPVMVersion: &ulPVMVersion))
+                if(1 == getPVMVersion(isoFeild: ISOFieldConstants.ISO_FIELD_44, ulPVMVersion: &ulPVMVersion))
                 {
-                    debugPrint("m_ulDownloadingPvmVersion[\(m_ulDownloadingPvmVersion)] ,ulPVMVersion[\(ulPVMVersion.value)]");
+                    debugPrint("m_ulDownloadingPvmVersion[\(m_ulDownloadingPvmVersion)] ,ulPVMVersion[\(ulPVMVersion.value)]")
 
                     if(ulPVMVersion.value != m_ulDownloadingPvmVersion)
                     {
@@ -3836,7 +3836,7 @@ class ISO320Initialization: ISOMessage
             debugPrint("PVM file created")
 
             //Store PVM version
-            var ulPVMVersion: Long
+            var ulPVMVersion = Long()
             ulPVMVersion.value = 0x00
             if(1 == getPVMVersion(isoFeild: ISOFieldConstants.ISO_FIELD_59,ulPVMVersion: &ulPVMVersion)){
                 if(true == FileSystem.IsFileExist(strFileName: FileNameConstants.PVMFILE))
@@ -3915,8 +3915,8 @@ class ISO320Initialization: ISOMessage
                     m_ulCountOfMINIPVMIdAdd += 1
                 }else{
                     /** send log **/
-                    var ulVal: long = 0x00;
-                    ulVal = long(strtoul(String(bytes: chArrTemp, encoding: .utf8)!, nil, 10))
+                    var ulVal: DataLong = 0x00;
+                    ulVal = DataLong(strtoul(String(bytes: chArrTemp, encoding: .utf8)!, nil, 10))
                           
                     debugPrint("MINIPVM Id to Add[\(ulVal)] FAILED")
                 }
@@ -3937,7 +3937,7 @@ class ISO320Initialization: ISOMessage
                 
                 if(m_ulCountOfMINIPVMIdDelete < AppConstant.MAX_COUNT_MINIPVM)
                 {
-                    m_ulArrMINIPVMIdDelete[Int(m_ulCountOfMINIPVMIdDelete)] = long(strtoul(String(bytes: chArrTemp, encoding: .utf8)!, nil, 10))
+                    m_ulArrMINIPVMIdDelete[Int(m_ulCountOfMINIPVMIdDelete)] = DataLong(strtoul(String(bytes: chArrTemp, encoding: .utf8)!, nil, 10))
 
                     /** Delete File and Append to deleted list **/
                     let chTemplateName: String = String(format: "ct%08d.plist", m_ulArrMINIPVMIdDelete[Int(m_ulCountOfMINIPVMIdDelete)])
@@ -3966,8 +3966,8 @@ class ISO320Initialization: ISOMessage
                 else
                 {
                           /** send log **/
-                    var ulVal: long = 0x00;
-                    ulVal = long(strtoul(String(bytes: chArrTemp, encoding: .utf8)!, nil, 10))
+                    var ulVal: DataLong = 0x00;
+                    ulVal = DataLong(strtoul(String(bytes: chArrTemp, encoding: .utf8)!, nil, 10))
                     debugPrint("MINIPVM Id to Delete[\(ulVal)] FAILED");
                 }
             }
@@ -3983,12 +3983,12 @@ class ISO320Initialization: ISOMessage
         if(ilength >= 2){
             //moving packet count to 2 bytes
             var offset: Int = 0
-            self.m_bCurrentPacketCount = Int64((pFieldPVMDef [offset] << 8) & 0x0000FF00)
+            self.m_bCurrentPacketCount = Int64(pFieldPVMDef [offset] << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bCurrentPacketCount |= Int64((pFieldPVMDef [offset]) & 0x000000FF)
             offset += 1
 
-            self.m_bTotalPacketCount = Int64((pFieldPVMDef[offset] << 8) & 0x0000FF00)
+            self.m_bTotalPacketCount = Int64(pFieldPVMDef[offset] << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bTotalPacketCount |= Int64((pFieldPVMDef[offset]) & 0x000000FF)
             offset += 1
@@ -4041,8 +4041,8 @@ class ISO320Initialization: ISOMessage
                     m_ulCountOfChargeSlipIdAdd += 1
                 }else{
                     /** send log **/
-                    var ulVal: long = 0x00;
-                    ulVal = long(strtoul(String(bytes: chArrTemp, encoding: .utf8)!, nil, 10))
+                    var ulVal: DataLong = 0x00;
+                    ulVal = DataLong(strtoul(String(bytes: chArrTemp, encoding: .utf8)!, nil, 10))
                     
                     debugPrint("ChargeSlip Id to Add[\(ulVal)] FAILED")
                 }
@@ -4058,7 +4058,7 @@ class ISO320Initialization: ISOMessage
                 debugPrint("DELETE[\(String(describing: String(bytes: chArrTemp, encoding: .utf8)))]")
                 if(m_ulCountOfChargeSlipIdDelete < AppConstant.MAX_COUNT_CHARGE_SLIP_IMAGES)
                 {
-                    m_ulArrChargeSlipIdDelete[Int(m_ulCountOfChargeSlipIdDelete)] = long(strtoul(String(bytes: chArrTemp, encoding: .utf8)!, nil, 10))
+                    m_ulArrChargeSlipIdDelete[Int(m_ulCountOfChargeSlipIdDelete)] = DataLong(strtoul(String(bytes: chArrTemp, encoding: .utf8)!, nil, 10))
 
                     /** Delete File and Append to deleted list **/
                     let chTemplateName: String = String(format: "ct%08d", m_ulArrChargeSlipIdDelete[Int(m_ulCountOfChargeSlipIdDelete)])
@@ -4087,8 +4087,8 @@ class ISO320Initialization: ISOMessage
                 else
                 {
                     /** send log **/
-                    var ulVal: long = 0x00;
-                    ulVal = long(strtoul(String(bytes: chArrTemp, encoding: .utf8)!, nil, 10))
+                    var ulVal: DataLong = 0x00;
+                    ulVal = DataLong(strtoul(String(bytes: chArrTemp, encoding: .utf8)!, nil, 10))
                     debugPrint("ChargeSlip Id to Delete[\(ulVal)] FAILED");
                 }
             }
@@ -4103,12 +4103,12 @@ class ISO320Initialization: ISOMessage
         if(ilength >= 2){
             //moving packet count to 2 bytes
             var offset: Int = 0
-            self.m_bCurrentPacketCount = Int64((pFieldPVMDef [offset] << 8) & 0x0000FF00)
+            self.m_bCurrentPacketCount = Int64(pFieldPVMDef [offset] << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bCurrentPacketCount |= Int64((pFieldPVMDef [offset]) & 0x000000FF)
             offset += 1
 
-            self.m_bTotalPacketCount = Int64((pFieldPVMDef[offset] << 8) & 0x0000FF00)
+            self.m_bTotalPacketCount = Int64(pFieldPVMDef[offset] << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bTotalPacketCount |= Int64((pFieldPVMDef[offset]) & 0x000000FF)
             offset += 1
@@ -4138,12 +4138,12 @@ class ISO320Initialization: ISOMessage
 
             //Amitesh::moving packet count to 2 bytes
             var offset: Int = 0
-            self.m_bCurrentPacketCount = Int64((pFieldPVMDef [offset] << 8) & 0x0000FF00)
+            self.m_bCurrentPacketCount = Int64(pFieldPVMDef [offset] << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bCurrentPacketCount |= Int64((pFieldPVMDef [offset]) & 0x000000FF)
             offset += 1
 
-            self.m_bTotalPacketCount = Int64((pFieldPVMDef[offset] << 8) & 0x0000FF00)
+            self.m_bTotalPacketCount = Int64(pFieldPVMDef[offset] << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bTotalPacketCount |= Int64((pFieldPVMDef[offset]) & 0x000000FF)
             offset += 1
@@ -4151,7 +4151,7 @@ class ISO320Initialization: ISOMessage
         }
 
         if(self.m_bCurrentPacketCount == 0x00){
-            let tempData: [long] = []
+            let tempData: [DataLong] = []
             _ = FileSystem.DeleteFile(strFileName: FileNameConstants.TEMPCGFILE, with: tempData)
         }
 
@@ -4244,7 +4244,7 @@ class ISO320Initialization: ISOMessage
                     m_ulCountOfFixedChargeSlipIdAdd += 1
 
                 }else{
-                    let ulVal: long = Int64(strtoul(String(bytes: chArrTemp, encoding: .utf8), nil, 10))
+                    let ulVal: DataLong = Int64(strtoul(String(bytes: chArrTemp, encoding: .utf8), nil, 10))
                       //  Long.parseLong(new String(chArrTemp));
                     let res = String(format: "chargeslip Id to Add[%d] FAILED", ulVal);
                     debugPrint(res)
@@ -4287,7 +4287,7 @@ class ISO320Initialization: ISOMessage
                     m_ulCountOfFixedChargeSlipIdDelete += 1
                 }else{
                     /** logs **/
-                    let ulVal: long = long(strtoul(String(bytes: chArrTemp, encoding: .utf8), nil, 10))
+                    let ulVal: DataLong = DataLong(strtoul(String(bytes: chArrTemp, encoding: .utf8), nil, 10))
                     let res: String = String(format: "FixedChargeSlip Id to Delete[%d] FAILED", ulVal)
                     debugPrint(res)
                 }
@@ -4302,12 +4302,12 @@ class ISO320Initialization: ISOMessage
         let ilength: Int  = len[53-1];
         if(ilength >= 2){
             var offset: Int = 0;
-            self.m_bCurrentPacketCount = Int64(((pFieldPVMDef[offset]) << 8) & 0x0000FF00)
+            self.m_bCurrentPacketCount = Int64((pFieldPVMDef[offset]) << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bCurrentPacketCount |= Int64((pFieldPVMDef[offset]) & 0x000000FF)
             offset += 1
 
-            self.m_bTotalPacketCount = Int64(((pFieldPVMDef[offset]) << 8) & 0x0000FF00)
+            self.m_bTotalPacketCount = Int64((pFieldPVMDef[offset]) << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bTotalPacketCount |= Int64((pFieldPVMDef[offset]) & 0x000000FF)
             offset += 1
@@ -4338,12 +4338,12 @@ class ISO320Initialization: ISOMessage
         if(ilength >= 2){
             var offset: Int = 0
             
-            self.m_bCurrentPacketCount = Int64(((pFieldPVMDef[offset]) << 8) & 0x0000FF00)
+            self.m_bCurrentPacketCount = Int64((pFieldPVMDef[offset]) << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bCurrentPacketCount |= Int64((pFieldPVMDef[offset]) & 0x000000FF)
             offset += 1
 
-            self.m_bTotalPacketCount = Int64(((pFieldPVMDef[offset]) << 8) & 0x0000FF00)
+            self.m_bTotalPacketCount = Int64((pFieldPVMDef[offset]) << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bTotalPacketCount |= Int64((pFieldPVMDef[offset]) & 0x000000FF)
             offset += 1
@@ -4406,7 +4406,7 @@ class ISO320Initialization: ISOMessage
     }
     
     //MARK:- SearchInCharListLIB(number: long, ItemList: [LIBStruct?], numberOfItems: Int) -> Int
-    func SearchInCharListLIB(number: long, ItemList: [LIBStruct?], numberOfItems: Int) -> Int
+    func SearchInCharListLIB(number: DataLong, ItemList: [LIBStruct?], numberOfItems: Int) -> Int
     {
         var searchedIndex: Int = 255;
         
@@ -4422,7 +4422,7 @@ class ISO320Initialization: ISOMessage
     }
     
     //MARK:- SearchFileNamefromMasterList(id: long)
-    func SearchFileNamefromMasterList(id: long) -> String?
+    func SearchFileNamefromMasterList(id: DataLong) -> String?
     {
         var LibFileName: String?
         debugPrint("Inside SearchFileNamefromMasterList");
@@ -4476,7 +4476,7 @@ class ISO320Initialization: ISOMessage
         }
 
         while((length - iOffset) > 1){
-            var libinfo: LIBStruct
+            var libinfo = LIBStruct()
             action = Int(p[iOffset] & 0x00FF)
             iOffset += 1
             
@@ -4535,7 +4535,7 @@ class ISO320Initialization: ISOMessage
 
                 //Library Id
                 libinfo.id = Int(strtoul(String(bytes: chArrTemp, encoding: .utf8), nil, 10))
-                var _: String = SearchFileNamefromMasterList(id: long(libinfo.id))!
+                var _: String = SearchFileNamefromMasterList(id: DataLong(libinfo.id))!
 
                 if(m_ulCountOflibIdDelete < AppConstant.MAX_LIB_FILE)
                 {
@@ -4571,12 +4571,12 @@ class ISO320Initialization: ISOMessage
         let ilength: Int = len[53-1];
         if(ilength >= 2){
             var offset: Int = 0;
-            self.m_bCurrentPacketCount = Int64(((pFieldPVMDef [offset]) << 8) & 0x0000FF00)
+            self.m_bCurrentPacketCount = Int64((pFieldPVMDef [offset]) << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bCurrentPacketCount |= Int64(((pFieldPVMDef [offset])) & 0x000000FF)
             offset += 1
 
-            self.m_bTotalPacketCount = Int64(((pFieldPVMDef[offset]) << 8) & 0x0000FF00)
+            self.m_bTotalPacketCount = Int64((pFieldPVMDef[offset]) << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bTotalPacketCount |= Int64(((pFieldPVMDef [offset])) & 0x000000FF)
             offset += 1
@@ -4603,12 +4603,12 @@ class ISO320Initialization: ISOMessage
         let ilength: Int  = len[53-1]
         if(ilength >= 2){
             var offset: Int = 0
-            self.m_bCurrentPacketCount = Int64(((pFieldPVMDef[offset]) << 8) & 0x0000FF00)
+            self.m_bCurrentPacketCount = Int64((pFieldPVMDef[offset]) << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bCurrentPacketCount |= Int64((pFieldPVMDef[offset]) & 0x000000FF)
             offset += 1
 
-            self.m_bTotalPacketCount = Int64((pFieldPVMDef [offset] << 8) & 0x0000FF00)
+            self.m_bTotalPacketCount = Int64(pFieldPVMDef [offset] << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bTotalPacketCount |= Int64((pFieldPVMDef [offset]) & 0x000000FF)
             offset += 1
@@ -4715,7 +4715,7 @@ class ISO320Initialization: ISOMessage
         m_ulArrMessageIdAdd = [Int64](repeating: 0x00, count: AppConstant.MAX_COUNT_MESSAGES + 1) // MAX_COUNT_MESSAGES
         m_ulArrMessageIdDelete = [Int64](repeating: 0x00, count: AppConstant.MAX_COUNT_MESSAGES + 1) // MAX_COUNT_MESSAGES
 
-        m_ObjArrParameterData = [ParameterData?](repeating: nil, count: AppConstant.MAX_COUNT_PARAMETERS) as! [ParameterData]
+        m_ObjArrParameterData = [ParameterData?](repeating: nil, count: AppConstant.MAX_COUNT_PARAMETERS)
         
         m_ulCountOfChargeSlipIdAdd = 0x00
         m_ulCountOfChargeSlipIdDelete = 0x00
@@ -4745,14 +4745,14 @@ class ISO320Initialization: ISOMessage
         m_ulBinRangeIterator = 0x00
         // if temp file exist, delete it so that fresh download can occur.
         if (FileSystem.IsFileExist(strFileName: FileNameConstants.TEMPBINRANGEFILE)) {
-            let tempData: [st_BINRange] = []
+            let tempData: [StBINRange] = []
             debugPrint("TEMPBINRANGEFILE exists");
             _ = FileSystem.DeleteFile(strFileName: FileNameConstants.TEMPBINRANGEFILE, with: tempData);
         }
         m_ulCSVTxnMapIterator = 0x00;
         // if temp file exist, delete it so that fresh download can occur.
         if (FileSystem.IsFileExist(strFileName: FileNameConstants.TEMPCSVTXNMAPFILE)) {
-            let tempData: [st_CSVTxnMap] = []
+            let tempData: [StCSVTxnMap] = []
             debugPrint("TEMPCSVTXNMAPFILE exists");
             _ = FileSystem.DeleteFile(strFileName: FileNameConstants.TEMPCSVTXNMAPFILE, with: tempData);
         }
@@ -4761,14 +4761,14 @@ class ISO320Initialization: ISOMessage
         m_ulTxnBinIterator = 0x00;
         // if temp file exist, delete it so that fresh download can occur.
         if (FileSystem.IsFileExist(strFileName: FileNameConstants.TEMPTXNBINFILE)) {
-            let tempData: [st_TxnBin] = []
+            let tempData: [StTxnBin] = []
             debugPrint("TEMPTXNBINFILE exists");
             _ = FileSystem.DeleteFile(strFileName: FileNameConstants.TEMPTXNBINFILE, with: tempData)
         }
         m_ulTotalCSVTxnIgnAmtListIterator = 0x00;
         // if temp file exist, delete it so that fresh download can occur.
         if (FileSystem.IsFileExist(strFileName: FileNameConstants.TEMPCSVTXNIGNAMT)) {
-            let tempData: [st_CSVTxnIgnoreAmt] = []
+            let tempData: [StCSVTxnIgnoreAmt] = []
             debugPrint("TEMPCSVTXNIGNAMT exists");
             _ = FileSystem.DeleteFile(strFileName: FileNameConstants.TEMPCSVTXNIGNAMT, with: tempData)
         }
@@ -4782,7 +4782,7 @@ class ISO320Initialization: ISOMessage
         m_ulTotalTxnwisePrintingLocationIterator = 0x00;
         // if temp file exist, delete it so that fresh download can occur.
         if (FileSystem.IsFileExist(strFileName: FileNameConstants.POSPRINTINGLOCATIONFILE)) {
-            let tempData: [st_POSPrintinglocationDetails] = []
+            let tempData: [StPOSPrintinglocationDetails] = []
             debugPrint("POSPRINTINGLOCATIONFILE exists");
             _ = FileSystem.DeleteFile(strFileName: FileNameConstants.POSPRINTINGLOCATIONFILE, with: tempData);
         }
@@ -4888,11 +4888,11 @@ class ISO320Initialization: ISOMessage
             let ilength: Int = len[53-1]
             if(ilength >= 2){
                 var offset: Int = 0
-                self.m_bCurrentPacketCount = Int64((pFieldPVMDef[offset] << 8) & 0x0000FF00)
+                self.m_bCurrentPacketCount = Int64(pFieldPVMDef[offset] << 8) & Int64(0x0000FF00)
                 offset += 1
                 self.m_bCurrentPacketCount |= Int64((pFieldPVMDef[offset]) & 0x000000FF)
                 offset += 1
-                self.m_bTotalPacketCount = Int64((pFieldPVMDef[offset] << 8) & 0x0000FF00)
+                self.m_bTotalPacketCount = Int64(pFieldPVMDef[offset] << 8) & Int64(0x0000FF00)
                 offset += 1
                 self.m_bTotalPacketCount |= Int64(pFieldPVMDef[offset] & 0x000000FF)
                 offset += 1
@@ -4918,12 +4918,12 @@ class ISO320Initialization: ISOMessage
         let ilength: Int  = len[53-1]
         if(ilength >= 2){
             var offset: Int = 0
-            self.m_bCurrentPacketCount = Int64(((pFieldPVMDef[offset]) << 8) & 0x0000FF00)
+            self.m_bCurrentPacketCount = Int64((pFieldPVMDef[offset]) << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bCurrentPacketCount |= Int64((pFieldPVMDef[offset]) & 0x000000FF)
             offset += 1
 
-            self.m_bTotalPacketCount = Int64(((pFieldPVMDef[offset]) << 8) & 0x0000FF00)
+            self.m_bTotalPacketCount = Int64((pFieldPVMDef[offset]) << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bTotalPacketCount |= Int64((pFieldPVMDef[offset]) & 0x000000FF)
             offset += 1
@@ -4954,7 +4954,7 @@ class ISO320Initialization: ISOMessage
             if(true == FileSystem.RenameFile(strNewFileName: chImageIdName,strFileName: m_chTempImagefileName))
             {
                 /** Append to ADDED LIST File **/
-                var long_obj: [Long]
+                var long_obj: [Long] = []
                 long_obj[0].value = m_ulArrImageIdAdd[m_ulTotalImagesAdded]
                 do{
                     _ = try FileSystem.AppendFile(strFileName: FileNameConstants.ADDIMLIST,with: long_obj)
@@ -5078,12 +5078,12 @@ class ISO320Initialization: ISOMessage
         let ilength: Int = len[53-1]
         if(ilength >= 2){
             var offset: Int = 0
-            self.m_bCurrentPacketCount = Int64((pFieldPVMDef[offset] << 8) & 0x0000FF00)
+            self.m_bCurrentPacketCount = Int64(pFieldPVMDef[offset] << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bCurrentPacketCount |= Int64((pFieldPVMDef[offset]) & 0x000000FF)
             offset += 1
 
-            self.m_bTotalPacketCount = Int64((pFieldPVMDef[offset] << 8) & 0x0000FF00)
+            self.m_bTotalPacketCount = Int64(pFieldPVMDef[offset] << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bTotalPacketCount |= Int64(pFieldPVMDef[offset] & 0x000000FF)
             offset += 1
@@ -5112,12 +5112,12 @@ class ISO320Initialization: ISOMessage
         
         if(ilength >= 2){
             var offset: Int = 0
-            self.m_bCurrentPacketCount = Int64(((pFieldPVMDef[offset]) << 8) & 0x0000FF00)
+            self.m_bCurrentPacketCount = Int64((pFieldPVMDef[offset]) << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bCurrentPacketCount |= Int64((pFieldPVMDef[offset]) & 0x000000FF)
             offset += 1
 
-            self.m_bTotalPacketCount = Int64(((pFieldPVMDef[offset]) << 8) & 0x0000FF00)
+            self.m_bTotalPacketCount = Int64((pFieldPVMDef[offset]) << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bTotalPacketCount |= Int64((pFieldPVMDef[offset]) & 0x000000FF)
             offset += 1
@@ -5149,7 +5149,7 @@ class ISO320Initialization: ISOMessage
             if( true == FileSystem.RenameFile(strNewFileName: chImageIdName,strFileName: m_chTempClrdImagefileName))
             {
                 /** Append to ADDED LIST File **/
-                var long_obj: [Long]
+                var long_obj: [Long] = []
                 long_obj[0].value = m_ulArrColoredImageIdAdd[m_ulTotalColoredImagesAdded]
                 
                 do{
@@ -5241,7 +5241,7 @@ class ISO320Initialization: ISOMessage
         var iOffset: Int = 0x00;
 
         if(self.m_bCurrentPacketCount == 0x00){
-            let messageId: [STRUCT_MESSAGE_ID] = []
+            let messageId: [StructMESSAGEID] = []
             
             _ = FileSystem.DeleteFile(strFileName: FileNameConstants.ADDMSGLIST, with: messageId)
             _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DELETEMSGLIST, with: messageId)
@@ -5256,13 +5256,13 @@ class ISO320Initialization: ISOMessage
                     debugPrint("ADD MessageID[\(String(describing: String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)))]")
                     if(m_ulCountOfMessageIdAdd < AppConstant.MAX_COUNT_MESSAGES)
                     {
-                        m_ulArrMessageIdAdd[m_ulCountOfMessageIdAdd] = long(String(describing: String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)))!
+                        m_ulArrMessageIdAdd[m_ulCountOfMessageIdAdd] = DataLong(String(describing: String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)))!
                         
                         debugPrint("Message Id to Add[\(m_ulArrMessageIdAdd[m_ulCountOfMessageIdAdd])], Count[\(m_ulCountOfMessageIdAdd)]");
                         m_ulCountOfMessageIdAdd += 1
                     }else
                     {
-                        let ulVal: long = long(String(describing: String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)))!
+                        let ulVal: DataLong = DataLong(String(describing: String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)))!
                         debugPrint("Message Id to Add[\(ulVal)] FAILED")
                     }
                 }else{
@@ -5279,7 +5279,7 @@ class ISO320Initialization: ISOMessage
                     debugPrint("m_ulCountOfMessageIdDelete[\(m_ulCountOfMessageIdDelete)]")
                     if(m_ulCountOfMessageIdDelete < AppConstant.MAX_COUNT_MESSAGES)
                     {
-                        m_ulArrMessageIdDelete[m_ulCountOfMessageIdDelete] = long(String(describing: String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)))!
+                        m_ulArrMessageIdDelete[m_ulCountOfMessageIdDelete] = DataLong(String(describing: String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)))!
 
                         var longobj: [Long] = []
                         longobj[0].value = m_ulArrMessageIdDelete[m_ulCountOfMessageIdDelete];
@@ -5299,7 +5299,7 @@ class ISO320Initialization: ISOMessage
                     }
                     else
                     {
-                        let ulVal: Int = Int(long(String(describing: String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)))!)
+                        let ulVal: Int = Int(DataLong(String(describing: String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)))!)
                         let csData: String = String(format: "Message Id to Delete[%d] FAILED", ulVal)
                         debugPrint(csData)
                     }
@@ -5313,11 +5313,11 @@ class ISO320Initialization: ISOMessage
         let ilength: Int = len[53-1]
         if(ilength >= 2){
             var offset: Int = 0
-            self.m_bCurrentPacketCount = Int64((pFieldPVMDef[offset] << 8) & 0x0000FF00)
+            self.m_bCurrentPacketCount = Int64(pFieldPVMDef[offset] << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bCurrentPacketCount |= Int64((pFieldPVMDef[offset]) & 0x000000FF)
             offset += 1
-            self.m_bTotalPacketCount = Int64((pFieldPVMDef[offset] << 8) & 0x0000FF00)
+            self.m_bTotalPacketCount = Int64(pFieldPVMDef[offset] << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bTotalPacketCount |= Int64(pFieldPVMDef[offset] & 0x000000FF)
             offset += 1
@@ -5345,11 +5345,11 @@ class ISO320Initialization: ISOMessage
         if(ilength >= 2)
         {
             var offset: Int = 0
-            self.m_bCurrentPacketCount = Int64(((pFieldPVMDef[offset]) << 8) & 0x0000FF00)
+            self.m_bCurrentPacketCount = Int64((pFieldPVMDef[offset]) << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bCurrentPacketCount |= Int64(((pFieldPVMDef[offset])) & 0x000000FF)
             offset += 1
-            self.m_bTotalPacketCount = Int64(((pFieldPVMDef[offset]) << 8) & 0x0000FF00)
+            self.m_bTotalPacketCount = Int64((pFieldPVMDef[offset]) << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bTotalPacketCount |= Int64((pFieldPVMDef[offset]) & 0x000000FF)
             offset += 1
@@ -5364,7 +5364,7 @@ class ISO320Initialization: ISOMessage
             m_imessageOffset+=length;
             if(m_imessageOffset <= AppConstant.MAX_MESSAGE_LEN)
             {
-                var messageId: [STRUCT_MESSAGE_ID]
+                var messageId: [StructMESSAGEID] = []
                 messageId[0].lmessageId = m_ulArrMessageIdAdd[m_ulTotalMessagesAdded]
                 
                 debugPrint("ADD MessageID[\(messageId[0].lmessageId)], Message[\((String(bytes: m_uchMessage, encoding: String.Encoding.utf8)?.trimmingCharacters(in: .whitespacesAndNewlines))!)], len[\(m_uchMessage.count)]")
@@ -5436,14 +5436,14 @@ class ISO320Initialization: ISOMessage
             iParameterValLen = Int(p[iOffset])
             iOffset += 1
             
-            m_ObjArrParameterData[m_ulParameterIterator].chArrParameterVal = Array(p[iOffset ..< iOffset + iParameterValLen])
+            m_ObjArrParameterData[m_ulParameterIterator]!.chArrParameterVal = Array(p[iOffset ..< iOffset + iParameterValLen])
             //System.arraycopy(p,iOffset,m_ObjArrParameterData[m_ulParameterIterator].chArrParameterVal,0,iParameterValLen);
  
-            m_ObjArrParameterData[m_ulParameterIterator].ulParameterId = iParameterId
-            m_ObjArrParameterData[m_ulParameterIterator].ulParameterLen = iParameterValLen
-            debugPrint("ID[\(m_ObjArrParameterData[m_ulParameterIterator].ulParameterId)]")
-            debugPrint("LEN[\(m_ObjArrParameterData[m_ulParameterIterator].ulParameterLen)]")
-            debugPrint("VALUE[\(TransactionUtils.byteArray2HexString(arr: m_ObjArrParameterData[m_ulParameterIterator].chArrParameterVal))]")
+            m_ObjArrParameterData[m_ulParameterIterator]!.ulParameterId = iParameterId
+            m_ObjArrParameterData[m_ulParameterIterator]!.ulParameterLen = iParameterValLen
+            debugPrint("ID[\(m_ObjArrParameterData[m_ulParameterIterator]!.ulParameterId)]")
+            debugPrint("LEN[\(m_ObjArrParameterData[m_ulParameterIterator]!.ulParameterLen)]")
+            debugPrint("VALUE[\(TransactionUtils.byteArray2HexString(arr: m_ObjArrParameterData[m_ulParameterIterator]!.chArrParameterVal))]")
             m_ulParameterIterator += 1
 
             iOffset += iParameterValLen
@@ -5463,7 +5463,7 @@ class ISO320Initialization: ISOMessage
             return
         }
 
-        var m_sParamData: TerminalParamData
+        var m_sParamData = TerminalParamData()
         let chFileName: String = String(format: "%s",FileNameConstants.TERMINALPARAMFILENAME)
         debugPrint("param file name[\(chFileName)]");
         let list_ofItem: [TerminalParamData] = FileSystem.ReadFile(strFileName: chFileName)!
@@ -5490,7 +5490,7 @@ class ISO320Initialization: ISOMessage
         if(FileSystem.IsFileExist(strFileName: FileNameConstants.DWNLDPVMINFO))
          {
             debugPrint("DWNLDPVMINFO file esxits")
-            var lastPVMDwndInfo: CurrentDownloadingInfo
+            var lastPVMDwndInfo = CurrentDownloadingInfo()
             
             let list_of_Items: [CurrentDownloadingInfo] = FileSystem.ReadFile(strFileName: FileNameConstants.DWNLDPVMINFO)!
             if(!list_of_Items.isEmpty)
@@ -5511,7 +5511,7 @@ class ISO320Initialization: ISOMessage
 
             if(FileSystem.IsFileExist(strFileName: FileNameConstants.DWNLDCHUNKINFO))
              {
-                var ulChunkSize: Long
+                var ulChunkSize = Long()
                 let list_of_Item: [Long] = FileSystem.ReadFile(strFileName: FileNameConstants.DWNLDCHUNKINFO)!
                 if(!list_of_Item.isEmpty)
                 {
@@ -5530,7 +5530,7 @@ class ISO320Initialization: ISOMessage
     }
     
     //MARK:- SetImageDownLoadData(imageId: long)
-    func SetImageDownLoadData(imageId: long)
+    func SetImageDownLoadData(imageId: DataLong)
     {
         m_chTempImagefileName = String(format: "tm%08d", m_ulArrImageIdAdd[m_ulTotalImagesAdded])
         m_chTempImageDwnFile = String(format: "de%08d", m_ulArrImageIdAdd[m_ulTotalImagesAdded])
@@ -5542,7 +5542,7 @@ class ISO320Initialization: ISOMessage
         if(FileSystem.IsFileExist(strFileName: m_chTempImageDwnFile))
         {
             debugPrint("\(m_chTempClrdImageDwnFile) file esxits");
-            var lastIMGDwndInfo: CurrentDownloadingInfo
+            var lastIMGDwndInfo = CurrentDownloadingInfo()
             let list_of_Items: [CurrentDownloadingInfo] = FileSystem.ReadFile(strFileName: m_chTempImageDwnFile)!
             if (!list_of_Items.isEmpty){
                 lastIMGDwndInfo = list_of_Items[0]
@@ -5565,7 +5565,7 @@ class ISO320Initialization: ISOMessage
         
         if(FileSystem.IsFileExist(strFileName: m_chTempImageChunkFile))
         {
-            var ulChunkSize: Long
+            var ulChunkSize = Long()
             let list_of_Items: [Long] = FileSystem.ReadFile(strFileName: m_chTempImageChunkFile)!
             if (!list_of_Items.isEmpty){
                 ulChunkSize = list_of_Items[0]
@@ -5580,7 +5580,7 @@ class ISO320Initialization: ISOMessage
     }
 
     //MARK:- SetColoredImageDownLoadData(imageId: long)
-    func SetColoredImageDownLoadData(imageId: long)
+    func SetColoredImageDownLoadData(imageId: DataLong)
     {
         m_chTempClrdImagefileName = String(format: "tm_clrd%08d", m_ulArrColoredImageIdAdd[m_ulTotalColoredImagesAdded])
         m_chTempClrdImageDwnFile = String(format: "dw_clrd%08d", m_ulArrColoredImageIdAdd[m_ulTotalColoredImagesAdded])
@@ -5592,7 +5592,7 @@ class ISO320Initialization: ISOMessage
         if(FileSystem.IsFileExist(strFileName: m_chTempClrdImageDwnFile))
         {
             debugPrint("\(m_chTempClrdImageDwnFile) file esxits");
-            var lastIMGDwndInfo: CurrentDownloadingInfo
+            var lastIMGDwndInfo = CurrentDownloadingInfo()
             let list_of_Items: [CurrentDownloadingInfo] = FileSystem.ReadFile(strFileName: m_chTempClrdImageDwnFile)!
             if (!list_of_Items.isEmpty){
                 lastIMGDwndInfo = list_of_Items[0]
@@ -5611,7 +5611,7 @@ class ISO320Initialization: ISOMessage
 
         if(FileSystem.IsFileExist(strFileName: m_chTempClrdImageChunkFile))
         {
-            var ulChunkSize: Long
+            var ulChunkSize = Long()
             let list_of_Items: [Long] = FileSystem.ReadFile(strFileName: m_chTempClrdImageChunkFile)!
             if (!list_of_Items.isEmpty){
                 ulChunkSize = list_of_Items[0]
@@ -5626,9 +5626,9 @@ class ISO320Initialization: ISOMessage
     }
     
     //MARK:- SaveImageDownloadInfoVersion(imageId: long) -> Int
-    func SaveImageDownloadInfoVersion(imageId: long) -> Int
+    func SaveImageDownloadInfoVersion(imageId: DataLong) -> Int
     {
-        var currentIMGDwndInfo: CurrentDownloadingInfo
+        var currentIMGDwndInfo = CurrentDownloadingInfo()
         debugPrint("Saving Image Download info !!")
         currentIMGDwndInfo.id = imageId
         currentIMGDwndInfo.currentpacketCount = Int(m_bCurrentPacketCount)
@@ -5649,10 +5649,10 @@ class ISO320Initialization: ISOMessage
             chArrTempChunkSize = Array(data[45 - 1][0 ..< data[45 - 1].count])
             //System.arraycopy(data[45-1],0,chArrTempChunkSize,0,data[45-1].length);
             
-            var ulChunkSize: Long
+            var ulChunkSize = Long()
             ulChunkSize.value = Int64(String(bytes: chArrTempChunkSize, encoding: .utf8)!)! /*strtoul(chArrTempChunkSize, NULL, 10);*/
             debugPrint("ulChunkSize[\(ulChunkSize.value)]");
-            var list_of_Item: [Long]
+            var list_of_Item: [Long] = []
             list_of_Item.append(ulChunkSize)
             do{
                 _ = try FileSystem.ReWriteFile(strFileName: m_chTempImageChunkFile, with: list_of_Item)
@@ -5665,10 +5665,10 @@ class ISO320Initialization: ISOMessage
     }
 
     //MARK:- SaveColoredImageDownloadInfoVersion(imageId: long) -> Int
-    func SaveColoredImageDownloadInfoVersion(imageId: long) -> Int
+    func SaveColoredImageDownloadInfoVersion(imageId: DataLong) -> Int
     {
         
-        var currentIMGDwndInfo: CurrentDownloadingInfo
+        var currentIMGDwndInfo = CurrentDownloadingInfo()
         debugPrint("Saving Colored Image Download info !!")
         currentIMGDwndInfo.id = imageId
         currentIMGDwndInfo.currentpacketCount = Int(m_bCurrentPacketCount)
@@ -5690,10 +5690,10 @@ class ISO320Initialization: ISOMessage
             chArrTempChunkSize = Array(data[45 - 1][0 ..< data[45 - 1].count])
             //System.arraycopy(data[45-1],0,chArrTempChunkSize,0,data[45-1].length);
             
-            var ulChunkSize: Long
+            var ulChunkSize = Long()
             ulChunkSize.value = Int64(String(bytes: chArrTempChunkSize, encoding: .utf8)!)! /*strtoul(chArrTempChunkSize, NULL, 10);*/
             debugPrint("ulChunkSize[\(ulChunkSize.value)]")
-            var list_of_Item: [Long]
+            var list_of_Item: [Long] = []
             list_of_Item.append(ulChunkSize);
             do{
                 _ = try FileSystem.ReWriteFile(strFileName: m_chTempClrdImageChunkFile, with: list_of_Item)
@@ -5707,9 +5707,9 @@ class ISO320Initialization: ISOMessage
     }
 
     //MARK:- SaveFixedChargeSlipDownloadInfoVersion(chargeslipId: long) -> Int
-    func SaveFixedChargeSlipDownloadInfoVersion(chargeslipId: long) -> Int
+    func SaveFixedChargeSlipDownloadInfoVersion(chargeslipId: DataLong) -> Int
     {
-        var currentIMGDwndInfo: CurrentDownloadingInfo
+        var currentIMGDwndInfo = CurrentDownloadingInfo()
         debugPrint("Saving chargeslip Download info !!")
         currentIMGDwndInfo.id = chargeslipId
         currentIMGDwndInfo.currentpacketCount = Int(m_bCurrentPacketCount)
@@ -5730,10 +5730,10 @@ class ISO320Initialization: ISOMessage
             chArrTempChunkSize = Array(data[45 - 1][0 ..< data[45 - 1].count])
             //System.arraycopy(data[45-1],0,chArrTempChunkSize,0,data[45-1].length)
                 
-            var ulChunkSize: Long
+            var ulChunkSize = Long()
             ulChunkSize.value = Int64(String(bytes: chArrTempChunkSize, encoding: .utf8)!)! /*strtoul(chArrTempChunkSize, NULL, 10);*/
             debugPrint("ulChunkSize[\(ulChunkSize.value)]")
-            var list_of_Item: [Long]
+            var list_of_Item: [Long] = []
             list_of_Item.append(ulChunkSize);
             do{
                 _ = try FileSystem.ReWriteFile(strFileName: m_chTempFixedChargeSlipChunkFile, with: list_of_Item);
@@ -5747,7 +5747,7 @@ class ISO320Initialization: ISOMessage
     }
 
     //MARK:- SetFixedChargeSlipDownLoadData(chargeslipId: long)
-    func SetFixedChargeSlipDownLoadData(chargeslipId: long)
+    func SetFixedChargeSlipDownLoadData(chargeslipId: DataLong)
     {
 
         m_chTempFixedChargeSlipfileName = String(format: "tm%08d", m_ulArrFixedChargeSlipIdAdd[m_ulTotalFixedChargeSlipAdded])
@@ -5760,7 +5760,7 @@ class ISO320Initialization: ISOMessage
         if(FileSystem.IsFileExist(strFileName: m_chTempFixedChargeSlipDwnFile))
         {
             debugPrint("\(m_chTempFixedChargeSlipDwnFile) file esxits");
-            var lastIMGDwndInfo: CurrentDownloadingInfo
+            var lastIMGDwndInfo = CurrentDownloadingInfo()
             let list_of_Items: [CurrentDownloadingInfo] = FileSystem.ReadFile(strFileName: m_chTempFixedChargeSlipDwnFile)!
             if (!list_of_Items.isEmpty){
                 lastIMGDwndInfo = list_of_Items[0]
@@ -5779,7 +5779,7 @@ class ISO320Initialization: ISOMessage
 
         if(FileSystem.IsFileExist(strFileName: m_chTemplibChunkFile))
         {
-            var ulChunkSize: Long
+            var ulChunkSize = Long()
             let list_of_Items: [Long] = FileSystem.ReadFile(strFileName: m_chTempFixedChargeSlipChunkFile)!
             if (!list_of_Items.isEmpty){
                 ulChunkSize = list_of_Items[0]
@@ -5796,13 +5796,13 @@ class ISO320Initialization: ISOMessage
     //MARK:- SaveLibDownloadInfoVersion(LibId: Int64) -> Int
     func SaveLibDownloadInfoVersion(LibId: Int64) -> Int
     {
-        var currentLIBDwndInfo: CurrentDownloadingInfo
+        var currentLIBDwndInfo = CurrentDownloadingInfo()
         debugPrint("Saving Lib file info !!");
 
         currentLIBDwndInfo.id = LibId;
         currentLIBDwndInfo.currentpacketCount = Int(m_bCurrentPacketCount)
         currentLIBDwndInfo.totalpacketCount = Int(m_bTotalPacketCount)
-        var list_of_Item: [CurrentDownloadingInfo]
+        var list_of_Item: [CurrentDownloadingInfo] = []
         list_of_Item.append(currentLIBDwndInfo);
         
         do{
@@ -5817,7 +5817,7 @@ class ISO320Initialization: ISOMessage
             var chArrTempChunkSize = [Byte](repeating: 0x00, count: len[45 - 1])
             chArrTempChunkSize = Array(data[45 - 1][0 ..< len[45 - 1]])
 
-            var ulChunkSize: Long
+            var ulChunkSize = Long()
             ulChunkSize.value = Int64(String(bytes: chArrTempChunkSize, encoding: .utf8)!)!
             debugPrint("ulChunkSize[\(ulChunkSize.value)]")
             
@@ -5847,7 +5847,7 @@ class ISO320Initialization: ISOMessage
         if(FileSystem.IsFileExist(strFileName: m_chTemplibDwnFile))
         {
             debugPrint("\(m_chTemplibDwnFile) file esxits");
-            var lastLIBDwndInfo: CurrentDownloadingInfo
+            var lastLIBDwndInfo = CurrentDownloadingInfo()
             let list_of_Items: [CurrentDownloadingInfo] = FileSystem.ReadFile(strFileName: m_chTemplibDwnFile)!
             if (!list_of_Items.isEmpty){
                 lastLIBDwndInfo = list_of_Items[0]
@@ -5866,7 +5866,7 @@ class ISO320Initialization: ISOMessage
 
         if(FileSystem.IsFileExist(strFileName: m_chTemplibChunkFile))
         {
-            var ulChunkSize: Long
+            var ulChunkSize = Long()
             let list_of_Items: [Long] = FileSystem.ReadFile(strFileName: m_chTemplibChunkFile)!
             if (!list_of_Items.isEmpty){
                 ulChunkSize = list_of_Items[0]
@@ -5899,8 +5899,8 @@ class ISO320Initialization: ISOMessage
     {
         if(bitmap[44 - 1])
         {
-            var currentPVMDwndInfo: CurrentDownloadingInfo
-            var ulPVMVersion: Long
+            var currentPVMDwndInfo = CurrentDownloadingInfo()
+            var ulPVMVersion = Long()
             
             if(AppConstant.TRUE == getPVMVersion(isoFeild: ISOFieldConstants.ISO_FIELD_44, ulPVMVersion: &ulPVMVersion)){
                 //carry out str to ul and store it in the database or file system as the case may be this will sent in next time in field 59 in all the next requests.
@@ -5931,10 +5931,10 @@ class ISO320Initialization: ISOMessage
             chArrTempChunkSize = Array(data[45 - 1][0 ..< data[45 - 1].count])
             //System.arraycopy(data[45-1],0,chArrTempChunkSize,0,data[45-1].length);
             
-            var ulChunkSize: Long
+            var ulChunkSize = Long()
             ulChunkSize.value = Int64(String(bytes: chArrTempChunkSize, encoding: .utf8)!)! /*strtoul(chArrTempChunkSize, NULL, 10);*/
             debugPrint("ulChunkSize[\(ulChunkSize.value)]");
-            var list_of_Item: [Long]
+            var list_of_Item: [Long] = []
             list_of_Item.append(ulChunkSize);
             do{
                 _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.DWNLDCHUNKINFO, with: list_of_Item);
@@ -5954,7 +5954,7 @@ class ISO320Initialization: ISOMessage
         if(FileSystem.IsFileExist(strFileName: FileNameConstants.DWNLDCACRTINFO))
          {
             debugPrint("DWNLDCACRTINFO file esxits")
-            var lastCACRTDwndInfo: CurrentDownloadingInfo
+            var lastCACRTDwndInfo = CurrentDownloadingInfo()
             
             let list_of_Items: [CurrentDownloadingInfo] = FileSystem.ReadFile(strFileName: FileNameConstants.DWNLDCACRTINFO)!
             if(!list_of_Items.isEmpty)
@@ -5975,7 +5975,7 @@ class ISO320Initialization: ISOMessage
 
             if(FileSystem.IsFileExist(strFileName: FileNameConstants.DWNLDCACRTCHUNKINFO))
              {
-                var ulChunkSize: Long
+                var ulChunkSize = Long()
                 let list_of_Item: [Long] = FileSystem.ReadFile(strFileName: FileNameConstants.DWNLDCACRTCHUNKINFO)!
                 if(!list_of_Item.isEmpty)
                 {
@@ -6015,8 +6015,8 @@ class ISO320Initialization: ISOMessage
     {
         if(bitmap[44 - 1])
         {
-            var currentCACRTDwndInfo: CurrentDownloadingInfo
-            var ulCACRTVersion: Long
+            var currentCACRTDwndInfo = CurrentDownloadingInfo()
+            var ulCACRTVersion = Long()
             if(AppConstant.TRUE == getCACRTVersion(isoFeild: ISOFieldConstants.ISO_FIELD_44,ulCACRTVersion: &ulCACRTVersion)){
                 //carry out str to ul and store it in the database or file system as the case may be
                 //this will sent in next time in field 59 in all the next requests.
@@ -6025,7 +6025,7 @@ class ISO320Initialization: ISOMessage
                 currentCACRTDwndInfo.currentpacketCount = Int(m_bCurrentPacketCount)
                 currentCACRTDwndInfo.totalpacketCount = Int(m_bTotalPacketCount)
                 
-                let list_of_Item: [CurrentDownloadingInfo]
+                var list_of_Item: [CurrentDownloadingInfo] = []
                 list_of_Item.append(currentCACRTDwndInfo);
                 do{
                     _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.DWNLDCACRTINFO, with: list_of_Item);
@@ -6047,7 +6047,7 @@ class ISO320Initialization: ISOMessage
             chArrTempChunkSize = Array(data[45 - 1][0 ..< len[45 - 1]])
             
             //System.arraycopy(data[45-1],0,chArrTempChunkSize,0,len[45-1]);
-            var ulChunkSize: Long
+            var ulChunkSize = Long()
             ulChunkSize.value = Int64(String(bytes: chArrTempChunkSize, encoding: .utf8)!)!
             debugPrint("ulChunkSize[\(ulChunkSize.value)]")
             var list_of_Item: [Long] = []
@@ -6075,12 +6075,12 @@ class ISO320Initialization: ISOMessage
         
         if(ilength >= 2){
             var offset: Int = 0
-            self.m_bCurrentPacketCount = Int64((pFieldCACRTDef[offset]) << 8 & 0x0000FF00)
+            self.m_bCurrentPacketCount = Int64(pFieldCACRTDef[offset]) << 8 & Int64(0x0000FF00)
             offset += 1
             self.m_bCurrentPacketCount |= Int64(pFieldCACRTDef[offset] & 0x000000FF)
             offset += 1
 
-            self.m_bTotalPacketCount = Int64((pFieldCACRTDef[offset] << 8) & 0x0000FF00 )
+            self.m_bTotalPacketCount = Int64(pFieldCACRTDef[offset] << 8) & Int64(0x0000FF00 )
             offset += 1
             self.m_bTotalPacketCount |= Int64(pFieldCACRTDef[offset] & 0x000000FF )
             offset += 1
@@ -6103,7 +6103,7 @@ class ISO320Initialization: ISOMessage
             {
                 debugPrint("CACRT NOT First packet")
                 var _: CurrentDownloadingInfo
-                var ulCACRTVersion: Long
+                var ulCACRTVersion = Long()
                 if(AppConstant.TRUE == getCACRTVersion(isoFeild: ISOFieldConstants.ISO_FIELD_44, ulCACRTVersion: &ulCACRTVersion))
                 {
                     debugPrint("m_ulDownloadingCACRTVersion[\(m_ulDownloadingCACRTVersion)], ulCACRTVersion[\(ulCACRTVersion)]")
@@ -6161,7 +6161,7 @@ class ISO320Initialization: ISOMessage
             debugPrint("CACRT file created")
 
             //Store PVM version
-            var ulCACRTVersion: Long
+            var ulCACRTVersion = Long()
             if(AppConstant.TRUE == getCACRTVersion(isoFeild: ISOFieldConstants.ISO_FIELD_59,ulCACRTVersion: &ulCACRTVersion)){
                 //carry out str to ul and store it in the database or file system as the case may be
                 //this will sent in next time in field 59 in all the next requests.
@@ -6650,12 +6650,12 @@ class ISO320Initialization: ISOMessage
          if(ilength >= 2) {
             
             var offset: Int = 0
-            self.m_bCurrentPacketCount = Int64((pFieldEDCAppDef[offset] << 8) & 0x0000FF00)
+            self.m_bCurrentPacketCount = Int64(pFieldEDCAppDef[offset] << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bCurrentPacketCount |= Int64(pFieldEDCAppDef[offset] & 0x000000FF)
             offset += 1
 
-            self.m_bTotalPacketCount = Int64((pFieldEDCAppDef[offset] << 8) & 0x0000FF00)
+            self.m_bTotalPacketCount = Int64(pFieldEDCAppDef[offset] << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bTotalPacketCount |= Int64(pFieldEDCAppDef[offset] & 0x000000FF)
             offset += 1
@@ -6833,7 +6833,7 @@ class ISO320Initialization: ISOMessage
     {
         if(bitmap[54 - 1])          //save EDCApp Version
         {
-            var currentEDCAppDwndInfo: CurrentEDCAppDownloadingInfo
+            var currentEDCAppDwndInfo = CurrentEDCAppDownloadingInfo()
             let chEDCAppVersion: [Byte] = getEDCAppVersion(isoFeild: 54)
             if(!chEDCAppVersion.isEmpty)
             {
@@ -6846,7 +6846,7 @@ class ISO320Initialization: ISOMessage
                 debugPrint("Saving Download info !!");
                 debugPrint("Version[\(String(bytes: currentEDCAppDwndInfo.chVersion, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))], CurrPkt[\(currentEDCAppDwndInfo.currentpacketCount)], TotPkt [\(currentEDCAppDwndInfo.totalpacketCount)]")
 
-                var list_of_Item: [CurrentEDCAppDownloadingInfo]
+                var list_of_Item: [CurrentEDCAppDownloadingInfo] = []
                 list_of_Item.append(currentEDCAppDwndInfo)
                 do{
                     _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.DWNLDEDCAPPINFO, with: list_of_Item)
@@ -6890,12 +6890,12 @@ class ISO320Initialization: ISOMessage
         if(FileSystem.IsFileExist(strFileName: FileNameConstants.DWNLDEDCAPPINFO))
         {
             debugPrint("DWNLDEDCAPPINFO file exists")
-            var lastEDCAppDwndInfo: CurrentEDCAppDownloadingInfo
+            var lastEDCAppDwndInfo = CurrentEDCAppDownloadingInfo()
             
             let list_of_Items: [CurrentEDCAppDownloadingInfo] = FileSystem.ReadFile(strFileName: FileNameConstants.DWNLDEDCAPPINFO)!
             
             if(!list_of_Items.isEmpty){
-                lastEDCAppDwndInfo = list_of_Items[0];
+                lastEDCAppDwndInfo = list_of_Items[0]
             }
             
             m_chDownloadingEDCAppVersion = Array(lastEDCAppDwndInfo.chVersion[0 ..< AppConstant.MAX_APP_VERSION_LEN])
@@ -6911,13 +6911,13 @@ class ISO320Initialization: ISOMessage
         
         if(FileSystem.IsFileExist(strFileName: FileNameConstants.DWNLDEDCAPPCHUNKINFO))
         {
-            var ulChunkSize: Int64
-            let list_of_Item: [Int64] = FileSystem.ReadFile(strFileName: FileNameConstants.DWNLDEDCAPPCHUNKINFO)!
+            var ulChunkSize = Long()
+            let list_of_Item: [Long] = FileSystem.ReadFile(strFileName: FileNameConstants.DWNLDEDCAPPCHUNKINFO)!
             if (!list_of_Item.isEmpty){
                 ulChunkSize = list_of_Item[0]
             }
-            debugPrint("Earlier ulChunkSize[\(ulChunkSize)]")
-            var chArrTempChunkSize: String = "\(ulChunkSize)"
+            debugPrint("Earlier ulChunkSize[\(ulChunkSize.value)]")
+            var chArrTempChunkSize: String = "\(ulChunkSize.value)"
             
             chArrTempChunkSize = TransactionUtils.StrLeftPad(data: chArrTempChunkSize, length: 6 , padChar: "0")
             _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_45, data1: [Byte](chArrTempChunkSize.utf8), bcd: true)
@@ -6946,7 +6946,7 @@ class ISO320Initialization: ISOMessage
         }
         
         debugPrint(length, p)
-        var st_POSPrintinglocationDetailsList: [st_POSPrintinglocationDetails] = []
+        var st_POSPrintinglocationDetailsList: [StPOSPrintinglocationDetails] = []
 
         var iOffset: Int = 0
         
@@ -6958,10 +6958,10 @@ class ISO320Initialization: ISOMessage
                 break;
             }
 
-            var stPosLocation: st_POSPrintinglocationDetails
+            var stPosLocation = StPOSPrintinglocationDetails()
             
             var iLocalStructLen: Int = 0;
-            iLocalStructLen |=  Int((p[iOffset] << 8) & 0x0000FF00)
+            iLocalStructLen |=  Int(p[iOffset] << 8) & Int(0x0000FF00)
             iOffset += 1
             iLocalStructLen |=  Int(p[iOffset] & 0x000000FF)
             iOffset += 1
@@ -6969,13 +6969,13 @@ class ISO320Initialization: ISOMessage
             var iLocalOffset: Int = iOffset
 
             //2 Byte HAT Txn Type
-            stPosLocation.iHATTxnType |=  Int((p[iLocalOffset] <<  8) & 0x0000FF00)
+            stPosLocation.iHATTxnType |=  Int(p[iLocalOffset] <<  8) & Int(0x0000FF00)
             iLocalOffset += 1
             stPosLocation.iHATTxnType |=  Int(p[iLocalOffset] & 0x000000FF)
             iLocalOffset += 1
             
             //2 Byte Bin High
-            stPosLocation.iCSVTxnType |=  Int((p[iLocalOffset] <<  8) & 0x0000FF00)
+            stPosLocation.iCSVTxnType |=  Int(p[iLocalOffset] <<  8) & Int(0x0000FF00)
             iLocalOffset += 1
             stPosLocation.iCSVTxnType |=  Int(p[iLocalOffset] & 0x000000FF)
             iLocalOffset += 1
@@ -7077,15 +7077,15 @@ class ISO320Initialization: ISOMessage
         
         debugPrint(length, p)
 
-        var stAIDTxnMapList: [st_AIDTxnMapingDetails] = []
+        var stAIDTxnMapList: [StAIDTxnMapingDetails] = []
         var iOffset: Int = 0
         
         while(length > iOffset)
         {
-            var stAIDTxnMap: st_AIDTxnMapingDetails
+            var stAIDTxnMap = StAIDTxnMapingDetails()
             
             var iLocalStructLen: Int = 0
-            iLocalStructLen |= Int((p[iOffset] << 8) & 0x0000FF00)
+            iLocalStructLen |= Int(p[iOffset] << 8) & Int(0x0000FF00)
             iOffset += 1
             iLocalStructLen |=  Int(p[iOffset] & 0x000000FF)
             iOffset += 1
@@ -7106,13 +7106,13 @@ class ISO320Initialization: ISOMessage
             }
 
             //2 Byte CSV  tXN TYPE
-            stAIDTxnMap.iCSVTxnType |= Int((p[iLocalOffset] << 8) & 0x0000FF00)
+            stAIDTxnMap.iCSVTxnType |= Int(p[iLocalOffset] << 8) & Int(0x0000FF00)
             iLocalOffset += 1
             stAIDTxnMap.iCSVTxnType |=  Int(p[iLocalOffset] & 0x000000FF)
             iLocalOffset  += 1
             
             //2 Byte HAT Txn Type
-            stAIDTxnMap.iHATTxnType |= Int((p[iLocalOffset] << 8) & 0x0000FF00)
+            stAIDTxnMap.iHATTxnType |= Int(p[iLocalOffset] << 8) & Int(0x0000FF00)
             iLocalOffset += 1
             stAIDTxnMap.iHATTxnType |= Int(p[iLocalOffset] & 0x000000FF)
             iLocalOffset += 1
@@ -7164,7 +7164,7 @@ class ISO320Initialization: ISOMessage
         if(FileSystem.IsFileExist(strFileName: FileNameConstants.TEMPAIDEMVTXNTYPEFILE))
         {
             debugPrint("TEMPAIDEMVTXNTYPEFILE exists")
-            let tempStruct: [st_AIDTxnMapingDetails] = []
+            let tempStruct: [StAIDTxnMapingDetails] = []
             
             _ = FileSystem.DeleteFile(strFileName: FileNameConstants.POSAIDEMVTXNTYPEFILE, with: tempStruct)
             if(true == FileSystem.RenameFile(strNewFileName: FileNameConstants.POSAIDEMVTXNTYPEFILE,strFileName: FileNameConstants.TEMPAIDEMVTXNTYPEFILE))
@@ -7211,15 +7211,15 @@ class ISO320Initialization: ISOMessage
         }
         debugPrint(length,p)
 
-        var stTxnTypeFlagsList: [st_TxnTypeFlagsMappingDetails] = []
+        var stTxnTypeFlagsList: [StTxnTypeFlagsMappingDetails] = []
         
         var iOffset: Int = 0
         while(length > iOffset)
         {
-            var stTxnTypeFlags: st_TxnTypeFlagsMappingDetails
+            var stTxnTypeFlags = StTxnTypeFlagsMappingDetails()
 
             var iLocalStructLen: Int = 0
-            iLocalStructLen |= Int((p[iOffset] <<  8) & 0x0000FF00)
+            iLocalStructLen |= Int(p[iOffset] <<  8) & Int(0x0000FF00)
             iOffset += 1
             iLocalStructLen |=  Int(p[iOffset] & 0x000000FF)
             iOffset += 1
@@ -7231,11 +7231,11 @@ class ISO320Initialization: ISOMessage
             iLocalOffset += 1
             
             //HAT Txn Type
-            stTxnTypeFlags.iHATTxnType |= Int((p[iLocalOffset] << 24) & 0xFF000000)
+            stTxnTypeFlags.iHATTxnType |= Int(p[iLocalOffset] << 24) & Int(0xFF000000)
             iLocalOffset += 1
-            stTxnTypeFlags.iHATTxnType |= Int((p[iLocalOffset] << 16) & 0x00FF0000)
+            stTxnTypeFlags.iHATTxnType |= Int(p[iLocalOffset] << 16) & Int(0x00FF0000)
             iLocalOffset += 1
-            stTxnTypeFlags.iHATTxnType |= Int((p[iLocalOffset] << 8) & 0x0000FF00)
+            stTxnTypeFlags.iHATTxnType |= Int(p[iLocalOffset] << 8) & Int(0x0000FF00)
             iLocalOffset += 1
             stTxnTypeFlags.iHATTxnType |=  Int(p[iLocalOffset] & 0x000000FF)
             iLocalOffset += 1
@@ -7246,11 +7246,11 @@ class ISO320Initialization: ISOMessage
             iLocalOffset += 1
             
             //CSV Txn Type
-            stTxnTypeFlags.iCSVTxnType |= Int((p[iLocalOffset] << 24) & 0xFF000000)
+            stTxnTypeFlags.iCSVTxnType |= Int(p[iLocalOffset] << 24) & Int(0xFF000000)
             iLocalOffset += 1
-            stTxnTypeFlags.iCSVTxnType |= Int((p[iLocalOffset] << 16) & 0x00FF0000)
+            stTxnTypeFlags.iCSVTxnType |= Int(p[iLocalOffset] << 16) & Int(0x00FF0000)
             iLocalOffset += 1
-            stTxnTypeFlags.iCSVTxnType |= Int((p[iLocalOffset] << 8) & 0x0000FF00)
+            stTxnTypeFlags.iCSVTxnType |= Int(p[iLocalOffset] << 8) & Int(0x0000FF00)
             iLocalOffset += 1
             stTxnTypeFlags.iCSVTxnType |=  Int(p[iLocalOffset] & 0x000000FF)
             iLocalOffset += 1
@@ -7317,7 +7317,7 @@ class ISO320Initialization: ISOMessage
         //if temp bin range file exist, then replace BINRANGE file with temp.
         if(FileSystem.IsFileExist(strFileName: FileNameConstants.TEMPTXNTYPEFLAGSMAPPINGFILE))
         {
-            let stTxnTypeFlagsList: [st_TxnTypeFlagsMappingDetails] = []
+            let stTxnTypeFlagsList: [StTxnTypeFlagsMappingDetails] = []
             debugPrint("TEMPTXNTYPEFLAGSMAPPINGFILE exists")
             _ = FileSystem.DeleteFile(strFileName: FileNameConstants.POSTXNTYPEFLAGSMAPPINGFILE, with: stTxnTypeFlagsList)
             
@@ -7361,12 +7361,12 @@ class ISO320Initialization: ISOMessage
         
         if(ilength >= 2){
             var offset: Int = 0
-            self.m_bCurrentPacketCount = Int64((pFieldPVMDef[offset] << 8) & 0x0000FF00)
+            self.m_bCurrentPacketCount = Int64(pFieldPVMDef[offset] << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bCurrentPacketCount |= Int64(pFieldPVMDef[offset] & 0x000000FF)
             offset += 1
 
-            self.m_bTotalPacketCount = Int64((pFieldPVMDef[offset] << 8) & 0x0000FF00)
+            self.m_bTotalPacketCount = Int64(pFieldPVMDef[offset] << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bTotalPacketCount |= Int64(pFieldPVMDef[offset] & 0x000000FF)
             offset += 1
@@ -7402,7 +7402,7 @@ class ISO320Initialization: ISOMessage
             if(true == FileSystem.RenameFile(strNewFileName: chMINIPVMIdName,strFileName: m_chTempMINIPVMfileName))
             {
                 /** Append to ADDED LIST File **/
-                var long_obj: [Long]
+                var long_obj: [Long] = []
                 long_obj[0].value = m_ulArrMINIPVMIdAdd[m_ulTotalMINIPVMAdded]
                 
                 do{
@@ -7442,7 +7442,7 @@ class ISO320Initialization: ISOMessage
         {
             debugPrint("\(m_chTempMINIPVMDwnFile) file exists")
             
-            var lastMINIPVMDwndInfo: CurrentDownloadingInfo
+            var lastMINIPVMDwndInfo = CurrentDownloadingInfo()
             var list_of_Items: [CurrentDownloadingInfo] = []
             
             list_of_Items = FileSystem.ReadFile(strFileName: m_chTempMINIPVMDwnFile)!
@@ -7469,16 +7469,16 @@ class ISO320Initialization: ISOMessage
         
         if(FileSystem.IsFileExist(strFileName: m_chTempMINIPVMChunkFile))
         {
-            var ulChunkSize: Int64
-            let list_of_Items: [Int64] = FileSystem.ReadFile(strFileName: m_chTempMINIPVMChunkFile)!
+            var ulChunkSize = Long()
+            let list_of_Items: [Long] = FileSystem.ReadFile(strFileName: m_chTempMINIPVMChunkFile)!
             
             if (!list_of_Items.isEmpty)
             {
                 ulChunkSize = list_of_Items[0]
             }
             
-            debugPrint("Earlier ulChunkSize[\(ulChunkSize)]")
-            let chArrTempChunkSize: String = String(format: "%06d",ulChunkSize)
+            debugPrint("Earlier ulChunkSize[\(ulChunkSize.value)]")
+            let chArrTempChunkSize: String = String(format: "%06d",ulChunkSize.value)
             
             _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_45, data1: [Byte](chArrTempChunkSize.utf8), bcd: true)
             debugPrint("Req->Setting field 45")
@@ -7488,7 +7488,7 @@ class ISO320Initialization: ISOMessage
     //MARK:- SaveMINIPVMDownloadInfoVersion(minipvmId: Int64) -> Int
     func SaveMINIPVMDownloadInfoVersion(minipvmId: Int64) -> Int
     {
-        var currentMINIPVMDwndInfo: CurrentDownloadingInfo
+        var currentMINIPVMDwndInfo = CurrentDownloadingInfo()
         debugPrint("Saving MINI PVM Download info !!")
         
         currentMINIPVMDwndInfo.id = minipvmId
@@ -7552,24 +7552,24 @@ class ISO320Initialization: ISOMessage
         var iOffset: Int = 0
         while(length > iOffset)
         {
-            var stTxnTypeMiniPvm: [st_CSVTxnTypeMiniPvmMappingDetails] = []
+            var stTxnTypeMiniPvm: [StCSVTxnTypeMiniPvmMappingDetails] = []
 
             //CSV Txn Type
-            stTxnTypeMiniPvm[0].iCsvTxnType |= Int((p[iOffset] <<  24) & 0xFF000000)
+            stTxnTypeMiniPvm[0].iCsvTxnType |= Int(p[iOffset] <<  24) & Int(0xFF000000)
             iOffset += 1
-            stTxnTypeMiniPvm[0].iCsvTxnType |= Int((p[iOffset] <<  16) & 0x00FF0000)
+            stTxnTypeMiniPvm[0].iCsvTxnType |= Int(p[iOffset] <<  16) & Int(0x00FF0000)
             iOffset += 1
-            stTxnTypeMiniPvm[0].iCsvTxnType |= Int((p[iOffset] <<  8)  & 0x0000FF00)
+            stTxnTypeMiniPvm[0].iCsvTxnType |= Int(p[iOffset] <<  8)  & Int(0x0000FF00)
             iOffset += 1
             stTxnTypeMiniPvm[0].iCsvTxnType |=  Int(p[iOffset] & 0x000000FF)
             iOffset += 1
 
             //MiniPvm Id
-            stTxnTypeMiniPvm[0].MiniPVMid |= Int64((p[iOffset] <<  24) & 0xFF000000)
+            stTxnTypeMiniPvm[0].MiniPVMid |= Int64(p[iOffset] <<  24) & Int64(0xFF000000)
             iOffset += 1
-            stTxnTypeMiniPvm[0].MiniPVMid |= Int64((p[iOffset] <<  16) & 0x00FF0000)
+            stTxnTypeMiniPvm[0].MiniPVMid |= Int64(p[iOffset] <<  16) & Int64(0x00FF0000)
             iOffset += 1
-            stTxnTypeMiniPvm[0].MiniPVMid |= Int64((p[iOffset] <<  8)  & 0x0000FF00)
+            stTxnTypeMiniPvm[0].MiniPVMid |= Int64(p[iOffset] <<  8)  & Int64(0x0000FF00)
             iOffset += 1
             stTxnTypeMiniPvm[0].MiniPVMid |=  Int64(p[iOffset] & 0x000000FF)
             iOffset += 1
@@ -7601,7 +7601,7 @@ class ISO320Initialization: ISOMessage
             return false;
         }
 
-        var stIsPasswordList = [st_ISPASSWORDDetails]()
+        var stIsPasswordList = [StISPASSWORDDetails]()
         var iOffset: Int = 0
         
         while(length > iOffset)
@@ -7613,28 +7613,28 @@ class ISO320Initialization: ISOMessage
                 break;
             }
             
-            var stIsPassword: st_ISPASSWORDDetails
+            var stIsPassword = StISPASSWORDDetails()
 
             var iLocalStructLen: Int = 0;
             var iLocalOffset: Int = iOffset;
 
             //4 Byte HAT Txn Type
-            stIsPassword.iHATTxnType  = Int((p[iLocalOffset] << 24) & 0xFF000000)
+            stIsPassword.iHATTxnType  = Int(p[iLocalOffset] << 24) & Int(0xFF000000)
             iLocalOffset += 1
-            stIsPassword.iHATTxnType |= Int((p[iLocalOffset] << 16) & 0x00FF0000)
+            stIsPassword.iHATTxnType |= Int(p[iLocalOffset] << 16) & Int(0x00FF0000)
             iLocalOffset += 1
-            stIsPassword.iHATTxnType |= Int((p[iLocalOffset] <<  8) & 0x0000FF00)
+            stIsPassword.iHATTxnType |= Int(p[iLocalOffset] <<  8) & Int(0x0000FF00)
             iLocalOffset += 1
             stIsPassword.iHATTxnType |=  Int(p[iLocalOffset] & 0x000000FF)
             iLocalOffset += 1
             iLocalStructLen+=4;
 
             //4 Byte CSV txn type
-            stIsPassword.iCSVTxnType  = Int((p[iLocalOffset] << 24) & 0xFF000000)
+            stIsPassword.iCSVTxnType  = Int(p[iLocalOffset] << 24) & Int(0xFF000000)
             iLocalOffset += 1
-            stIsPassword.iCSVTxnType |= Int((p[iLocalOffset] << 16) & 0x00FF0000)
+            stIsPassword.iCSVTxnType |= Int(p[iLocalOffset] << 16) & Int(0x00FF0000)
             iLocalOffset += 1
-            stIsPassword.iCSVTxnType |= Int((p[iLocalOffset] <<  8) & 0x0000FF00)
+            stIsPassword.iCSVTxnType |= Int(p[iLocalOffset] <<  8) & Int(0x0000FF00)
             iLocalOffset += 1
             stIsPassword.iCSVTxnType |=  Int(p[iLocalOffset] & 0x000000FF)
             iLocalOffset += 1
@@ -7731,7 +7731,7 @@ class ISO320Initialization: ISOMessage
             debugPrint("TEMPCSVTXNTYPEMINIPVMMAPPINGFILE exists")
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "TEMPCSVTXNTYPEMINIPVMMAPPINGFILE exists");
             
-            let tempStruct: [st_CSVTxnTypeMiniPvmMappingDetails]
+            let tempStruct: [StCSVTxnTypeMiniPvmMappingDetails]  = []
             _ = FileSystem.DeleteFile(strFileName: FileNameConstants.CSVTXNTYPEMINIPVMMAPPINGFILE, with: tempStruct);
             if(true == FileSystem.RenameFile(strNewFileName: FileNameConstants.CSVTXNTYPEMINIPVMMAPPINGFILE,strFileName:  FileNameConstants.TEMPCSVTXNTYPEMINIPVMMAPPINGFILE))
             {
@@ -7780,7 +7780,7 @@ class ISO320Initialization: ISOMessage
             return;
         }
 
-        let tempStruct: [st_CSVTxnTypeMiniPvmMappingDetails]
+        let tempStruct: [StCSVTxnTypeMiniPvmMappingDetails] = []
         _ = FileSystem.DeleteFile(strFileName: FileNameConstants.CSVTXNTYPEMINIPVMMAPPINGFILE, with: tempStruct)
     }
     
@@ -7899,7 +7899,7 @@ class ISO320Initialization: ISOMessage
             }
         }
 
-        var sNewAutoParams: [AutoLogShippingParams]
+        var sNewAutoParams: [AutoLogShippingParams] = []
         sNewAutoParams.append(Obj)
         do{
             _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.AUTOLOGSHIPMENTFILE, with: sNewAutoParams)
@@ -7908,7 +7908,7 @@ class ISO320Initialization: ISOMessage
             fatalError("ReWriteFile : \(FileNameConstants.AUTOLOGSHIPMENTFILE)")
         }
 
-        var sNewAutoCred: [AutoLogShippingCredential]
+        var sNewAutoCred: [AutoLogShippingCredential] = []
         sNewAutoCred.append(ObjCred)
         do{
             _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.AUTOLOGSHIPMENTSMTPCREDENTIAL, with: sNewAutoCred)
@@ -7952,7 +7952,7 @@ class ISO320Initialization: ISOMessage
     //MARK:- SaveAdServerHTLSync()
     func SaveAdServerHTLSync()
     {
-        var llList: [Int64]
+        var llList: [Int64] = []
         for value in GlobalData.m_setAdServerHTL!.sorted()
         {
             llList.append(value)
@@ -7974,7 +7974,7 @@ class ISO320Initialization: ISOMessage
 
         let p: [Byte] = data[61-1]
         var length: Int = len[61-1]
-        let chArrTemp: [Byte]
+        var chArrTemp: [Byte]
         var iOffset = 0x00
 
         //Check for Field 61 present or not
@@ -8044,12 +8044,12 @@ class ISO320Initialization: ISOMessage
         let ilength: Int = len[53-1]
         if(ilength >= 2){
             var offset=0
-            self.m_bCurrentPacketCount = Int64((pFieldPVMDef[offset] << 8 ) & 0x0000FF00)
+            self.m_bCurrentPacketCount = Int64(pFieldPVMDef[offset] << 8 ) & Int64(0x0000FF00)
             offset += 1
             self.m_bCurrentPacketCount |= Int64(pFieldPVMDef[offset] & 0x000000FF)
             
             offset += 1
-            self.m_bTotalPacketCount = Int64((pFieldPVMDef[offset] << 8) & 0x0000FF00)
+            self.m_bTotalPacketCount = Int64(pFieldPVMDef[offset] << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bTotalPacketCount |= Int64(pFieldPVMDef[offset] & 0x000000FF)
             offset += 1
@@ -8223,7 +8223,7 @@ class ISO320Initialization: ISOMessage
         }
 
         if(self.m_bCurrentPacketCount == 0x00){
-            let long: [Int64]
+            let long: [Long] = []
             _ = FileSystem.DeleteFile(strFileName: FileNameConstants.ADDHTLLIST, with: long);
             _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DELETEHTLLIST, with: long);
         }
@@ -8240,7 +8240,7 @@ class ISO320Initialization: ISOMessage
                 if(userInfo.count > 0)
                 {
                     var _: String = "";
-                    let loginAccounts: LOGINACCOUNTS
+                    let loginAccounts = LOGINACCOUNTS()
                     for userInfoTLV in userInfo {
                         switch (userInfoTLV.iTag)
                         {
@@ -8279,11 +8279,11 @@ class ISO320Initialization: ISOMessage
         let ilength: Int = len[53-1]
         if(ilength >= 2){
             var offset: Int = 0
-            self.m_bCurrentPacketCount = Int64((pFieldPVMDef[offset] << 8) & 0x0000FF00)
+            self.m_bCurrentPacketCount = Int64(pFieldPVMDef[offset] << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bCurrentPacketCount |= Int64((pFieldPVMDef[offset]) & 0x000000FF)
             offset += 1
-            self.m_bTotalPacketCount = Int64((pFieldPVMDef[offset] << 8) & 0x0000FF00)
+            self.m_bTotalPacketCount = Int64(pFieldPVMDef[offset] << 8) & Int64(0x0000FF00)
             offset += 1
             self.m_bTotalPacketCount |= Int64((pFieldPVMDef[offset]) & 0x000000FF)
             offset += 1
@@ -8339,13 +8339,13 @@ class ISO320Initialization: ISOMessage
             if(ilength >= 2)
             {
                 var offset: Int = 0
-                self.m_bCurrentPacketCount = Int64(((pFieldEMVparDef [ offset]) << 8) & 0x0000FF00)
+                self.m_bCurrentPacketCount = Int64((pFieldEMVparDef [offset]) << 8) & Int64(0x0000FF00)
                 offset += 1
                 self.m_bCurrentPacketCount |= Int64(((pFieldEMVparDef [offset])) & 0x000000FF)
                 offset += 1
-                self.m_bTotalPacketCount = Int64(((pFieldEMVparDef [offset]) << 8) & 0x0000FF00)
+                self.m_bTotalPacketCount = Int64((pFieldEMVparDef [offset]) << 8) & Int64(0x0000FF00)
                 offset += 1
-                self.m_bTotalPacketCount |= Int64((pFieldEMVparDef [ offset]) & 0x000000FF)
+                self.m_bTotalPacketCount |= Int64((pFieldEMVparDef [offset]) & 0x000000FF)
                 offset += 1
                 
                 debugPrint("Response->Field 53 found")
@@ -8363,7 +8363,7 @@ class ISO320Initialization: ISOMessage
             
             offset_62 += 4;
 
-            var l_content_id: Int64 = Int64((content_id[1] << 8) & 0x0000FF00)  //Long.parseLong(new String(CUtils.bcd2a(content_id,4)),16);
+            var l_content_id: Int64 = Int64(content_id[1] << 8) & Int64(0x0000FF00)  //Long.parseLong(new String(CUtils.bcd2a(content_id,4)),16);
             l_content_id |= Int64(content_id[0] & 0x000000FF)
 
             var _: String = String(format: "im%08d", l_content_id)
@@ -8581,7 +8581,7 @@ class ISO320Initialization: ISOMessage
             debugPrint("DWNLDCONTENTINFO file exists")
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG,"DWNLDCONTENTINFO file esxits");
 
-            var lastContentDwndInfo: CurrentDownloadingInfo
+            var lastContentDwndInfo = CurrentDownloadingInfo()
             let list_of_Items: [CurrentDownloadingInfo] = FileSystem.ReadFile(strFileName: FileNameConstants.DWNLDCONTENTINFO)!
             if(!list_of_Items.isEmpty)
             {
@@ -8611,16 +8611,16 @@ class ISO320Initialization: ISOMessage
 
         if(FileSystem.IsFileExist(strFileName: FileNameConstants.DWNLDCHUNKINFO))
          {
-            var ulChunkSize: Int64
-            let list_of_Item: [Int64] = FileSystem.ReadFile(strFileName: FileNameConstants.DWNLDCHUNKINFO)!
+            var ulChunkSize = Long()
+            let list_of_Item: [Long] = FileSystem.ReadFile(strFileName: FileNameConstants.DWNLDCHUNKINFO)!
             if(!list_of_Item.isEmpty)
             {
                 ulChunkSize = list_of_Item[0]
             }
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG,"Earlier ulChunkSize[%d]",ulChunkSize.value);
-            debugPrint("Earlier ulChunkSize[\(ulChunkSize)]")
+            debugPrint("Earlier ulChunkSize[\(ulChunkSize.value)]")
             
-            var chArrTempChunkSize: String = String(ulChunkSize)
+            var chArrTempChunkSize: String = "\(ulChunkSize.value)"
             chArrTempChunkSize = TransactionUtils.StrLeftPad(data: chArrTempChunkSize, length: 6 , padChar: "0")
             _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_45, data1: [Byte](chArrTempChunkSize.utf8), bcd: true)
             debugPrint("Req->Setting field 45")
@@ -8633,7 +8633,7 @@ class ISO320Initialization: ISOMessage
     {
         if(bitmap[44 - 1])
         {
-            var currentContentDwndInfo: CurrentDownloadingInfo
+            var currentContentDwndInfo = CurrentDownloadingInfo()
             let ulContentVersion: Int64 = 0x00
             debugPrint("Saving Download into !!")
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG,"Saving Download info !!");
@@ -8666,15 +8666,15 @@ class ISO320Initialization: ISOMessage
             
             chArrTempChunkSize = Array(data[45-1][0 ..< data[45-1].count])
             //System.arraycopy(data[45-1],0,chArrTempChunkSize,0,data[45-1].length);
-            var ulChunkSize: Long
+            var ulChunkSize = Long()
             let sArrTempChunkSize = String(bytes: chArrTempChunkSize, encoding: String.Encoding.utf8)
             
-            ulChunkSize.value = Int64(atol(sArrTempChunkSize));
+            ulChunkSize.value = Int64(atol(sArrTempChunkSize))
             
             debugPrint("ulChunkSize[\(ulChunkSize)]")
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG,"ulChunkSize[%d]",ulChunkSize.value);
             
-            let list_of_Item: [Long]
+            var list_of_Item: [Long] = []
             list_of_Item.append(ulChunkSize)
             do{
               _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.DWNLDCONTENTINFO, with: list_of_Item)

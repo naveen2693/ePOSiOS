@@ -9,7 +9,7 @@
 import Foundation
 
 struct CurrentDownloadingInfo: Codable {
-    var id: Int64
-    var currentpacketCount: Int
-    var totalpacketCount: Int
+    var id: Int64 = 0
+    var currentpacketCount: Int = 0
+    var totalpacketCount: Int = 0
 }

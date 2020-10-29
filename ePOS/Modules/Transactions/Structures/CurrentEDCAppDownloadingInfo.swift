@@ -11,7 +11,7 @@ import Foundation
 struct CurrentEDCAppDownloadingInfo: Codable {
 
     var chVersion = [Byte](repeating: 0, count: AppConstant.MAX_APP_VERSION_LEN)
-    var currentpacketCount: Int
-    var totalpacketCount: Int
+    var currentpacketCount: Int = 0
+    var totalpacketCount: Int = 0
     
 }

@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct st_POSPrintinglocationDetails: Codable {
-    var iHATTxnType: Int
-    var iCSVTxnType: Int
-    var iPrintingFlag: Int
+struct StPOSPrintinglocationDetails: Codable {
+    var iHATTxnType: Int = 0
+    var iCSVTxnType: Int = 0
+    var iPrintingFlag: Int = 0
 }

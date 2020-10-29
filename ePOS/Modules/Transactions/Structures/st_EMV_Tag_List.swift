@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct st_EMV_Tag_List: Codable {
+struct StEMVTagList: Codable {
     var ushLen: Int8
     var Value: Int
 }

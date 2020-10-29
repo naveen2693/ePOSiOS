@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct st_CSVTxnIgnoreAmt: Codable {
-    var CsvTxnId: Int
-    var iIsIgnoreAmountEnabled: Bool
-    var iIsSignatureRequired: Bool
+struct StCSVTxnIgnoreAmt: Codable {
+    var CsvTxnId: Int = 0
+    var iIsIgnoreAmountEnabled: Bool = false
+    var iIsSignatureRequired: Bool = false
 }

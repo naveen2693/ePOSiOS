@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct st_ISPASSWORDDetails: Codable {
-    var iHATTxnType: Int
-    var iCSVTxnType: Int
-    var iIsPASSFlag: Int
+struct StISPASSWORDDetails: Codable {
+    var iHATTxnType: Int = 0
+    var iCSVTxnType: Int = 0
+    var iIsPASSFlag: Int = 0
 }
