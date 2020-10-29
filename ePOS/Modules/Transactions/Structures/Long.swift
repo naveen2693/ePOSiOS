@@ -9,5 +9,5 @@
 import Foundation
 public struct Long:Codable
 {
-    static var value = 0;
+    var value: Int64 = 0
 }

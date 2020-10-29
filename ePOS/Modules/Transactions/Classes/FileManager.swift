@@ -10,6 +10,7 @@ import Foundation
 
 class FileSystem {
     
+    //MARK:- ReWriteFile<T: Codable>(strFileName: String, with array: [T]) throws -> Bool
     static func ReWriteFile<T: Codable>(strFileName: String, with array: [T]) throws -> Bool  {
         var bRetval = false
         let encoder = PropertyListEncoder()
@@ -28,6 +29,7 @@ class FileSystem {
         return bRetval;
     }
 
+    //MARK:- SeekRead<T: Codable>(strFileName: String, iOffset: Int) -> T?
     static func SeekRead<T: Codable>(strFileName: String, iOffset: Int) -> T?
     {
         let result:[T] = ReadFile(strFileName: strFileName)!
@@ -37,6 +39,7 @@ class FileSystem {
     
     }
     
+    //MARK:- SeekWrite<T: Codable>(strFileName: String, with Obj: T, iOffset: Int) -> Bool
     static func SeekWrite<T: Codable>(strFileName: String, with Obj: T, iOffset: Int) -> Bool
     {
         var bResult: Bool = false
@@ -55,7 +58,7 @@ class FileSystem {
         return bResult
     }
 
-    
+    //MARK:- ReadFile<T: Codable>(strFileName: String) -> [T]?
     static func ReadFile<T: Codable>(strFileName: String) -> [T]?
     {
         let result:[T] = []
@@ -72,6 +75,7 @@ class FileSystem {
         }
     }
     
+    //MARK:- AppendFile<T: Codable>(strFileName: String, with object: T) throws -> Bool
     static func AppendFile<T: Codable>(strFileName: String, with array: [T]) throws -> Bool
     {
         var bRetval = false
@@ -93,6 +97,7 @@ class FileSystem {
         return bRetval
     }
     
+    //MARK:- DeleteFile<T: Codable>(strFileName: String, with array: [T]) -> Bool
     static func DeleteFile<T: Codable>(strFileName: String, with array: [T]) -> Bool
     {
         let bRetval: Bool = false;
@@ -110,24 +115,80 @@ class FileSystem {
         return bRetval;
     }
     
-    
+    //MARK:-  DeleteFileComplete(strFileName: String) -> Bool
     static func DeleteFileComplete(strFileName: String) -> Bool
-      {
-          let bRetval: Bool = false;
-          do {
-            let plistURL = Util.masterDataDirectoryURL.appendingPathComponent(strFileName).appendingPathExtension("plist")
-              
-            if FileManager.default.fileExists(atPath: plistURL.path) {
-                try FileManager.default.removeItem(atPath: plistURL.path)
-              }
-          }
-          catch {
-              debugPrint("Exception Occurred :  \(error)")
-              //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(e));
-          }
-          return bRetval;
-      }
+    {
+        let bRetval: Bool = false;
+        do {
+        let plistURL = Util.masterDataDirectoryURL.appendingPathComponent(strFileName).appendingPathExtension("plist")
+            
+        if FileManager.default.fileExists(atPath: plistURL.path) {
+            try FileManager.default.removeItem(atPath: plistURL.path)
+            }
+        }
+        catch {
+            debugPrint("Exception Occurred :  \(error)")
+            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(e));
+        }
+        return bRetval;
+    }
+    
+    static func RenameFile(strNewFileName: String, strFileName: String) -> Bool
+     {
+        var bRenameSuccess = false
+        
+        if(!IsFileExist(strFileName: strFileName))
+        {
+            debugPrint("File Doesnt Exist: \(strFileName)")
+        }
+        
+        let plistFileURL = Util.masterDataDirectoryURL.appendingPathComponent(strFileName).appendingPathExtension("plist")
+        let plistNewFileURL = Util.masterDataDirectoryURL.appendingPathComponent(strNewFileName).appendingPathExtension("plist")
+        
+        do {
+            try FileManager.default.moveItem(at: plistFileURL, to: plistNewFileURL)
+            bRenameSuccess = true
+        }
+        catch let error as NSError {
+            debugPrint("Exception Occurred \(error)")
+        }
+        
+         return bRenameSuccess;
+     }
       
+    //MARK:- IsFileExist(strFileName: String) -> Bool
+    static func IsFileExist(strFileName: String) -> Bool
+    {
+        let plistURL = Util.masterDataDirectoryURL.appendingPathComponent(strFileName).appendingPathExtension("plist")
+        
+        if FileManager.default.fileExists(atPath: plistURL.path) {
+            return true
+        }
+        else
+        {
+            return false
+        }
+    }
+    
+    //MARK:- NumberOfRows<T: Codable>(obj: T, strFileName: String) -> Int
+    static func NumberOfRows<T: Codable>(strFileName: String, obj: T.Type) -> Int {
+        var iNumOfRows: Int = 0
+        
+        if(IsFileExist(strFileName: strFileName))
+        {
+            let listObj: [T] = ReadFile(strFileName: strFileName)!
+        
+            if(!listObj.isEmpty)
+            {
+                iNumOfRows = listObj.count
+            }
+        }
+        
+        return iNumOfRows
+    }
+    
+    
+    //MARK:- FilePlistURL<T: Codable>(strFileName: String, with array: [T]) -> URL
     private static func FilePlistURL<T: Codable>(strFileName: String, with array: [T]) -> URL{
         
         let plistURL = Util.masterDataDirectoryURL.appendingPathComponent(strFileName).appendingPathExtension("plist")
@@ -146,19 +207,14 @@ class FileSystem {
         return plistURL
     }
     
- 
-    
-    public static func IsFileExist(strFileName: String) -> Bool
+    //MARK:- GetSHA1ofFile(strFileName: String) -> [Byte]?
+    static func GetSHA1ofFile(strFileName: String) -> [Byte]?
     {
-        let plistURL = Util.masterDataDirectoryURL.appendingPathComponent(strFileName).appendingPathExtension("plist")
-         
-         if FileManager.default.fileExists(atPath: plistURL.path) {
-            return true
-        }
-        else
-        {
-            return false
-        }
+        var buffer: [Byte] = []
+        buffer = ReadFile(strFileName: strFileName)!
+        let SHA1HexString = buffer.sha1().toHexString().uppercased()
+        return [Byte](SHA1HexString.utf8)
     }
-
+    
+ 
 }

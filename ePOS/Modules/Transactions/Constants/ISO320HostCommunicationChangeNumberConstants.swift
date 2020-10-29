@@ -39,6 +39,7 @@ enum ISO320ChangeNumberConstants
      static let AD_SERVER_HTL_SYNC = 27;
      static let HOST_COLORED_IMAGE_ID_DOWNLOAD = 28;
      static let HOST_COLORED_IMAGE_DOWNLOAD = 29;
+     static let EMV_PARM_DWONLOAD = 30; //ignore
     //Below changenumbers are ignored for Digipos
      static let HUB_PINEKEY_EXCHANGE = 31; //ignore
      static let HUB_GET_PINE_SESSION_KEY = 32; //ignore

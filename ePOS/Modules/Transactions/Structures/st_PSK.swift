@@ -7,7 +7,7 @@
 //
 
 import Foundation
-struct StPSK {
+struct StPSK: Codable {
     var iKeySlotID = 0 ;
 
     var uchArrPSKPin:[Byte] = [0] ;

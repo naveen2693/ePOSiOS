@@ -12,27 +12,30 @@ class ISOMessage{
     
     var ISO_LEN: Int = 64
     
-    var data = [[Byte]](repeating:withUnsafeBytes(of: 0x00, Array.init), count: AppConst.ISO_LEN)
+    var data = [[Byte]](repeating:withUnsafeBytes(of: 0x00, Array.init), count: AppConstant.ISO_LEN)
     
-    var msgno = [Byte](repeating: 0x00, count: AppConst.ISO_LEN_MTI)
+    var msgno = [Byte](repeating: 0x00, count: AppConstant.ISO_LEN_MTI)
     
-    var bitmap = [Bool](repeating: false, count: AppConst.ISO_LEN)
+    var bitmap = [Bool](repeating: false, count: AppConstant.ISO_LEN)
     
-    var encryptedFieldBitmap =  [Bool](repeating: false, count: AppConst.ISO_LEN)
+    var encryptedFieldBitmap =  [Bool](repeating: false, count: AppConstant.ISO_LEN)
     
     var len = [Int](repeating: -1, count: 64)
+
+    var m_TPDU = [Byte](repeating: 0x00, count: AppConstant.MAX_LEN_TPDU)
+
+    var m_chArrHardwareSerialNumber = [Byte](repeating: 0x00, count: AppConstant.MAX_LEN_HARDWARE_SERIAL_NUMBER)
     
-    var m_chArrHardwareSerialNumber = [Byte](repeating: 0x00, count: AppConst.MAX_LEN_HARDWARE_SERIAL_NUMBER)
-    
-    var m_chArrISOPacketDate = [Byte](repeating: 0x00, count: AppConst.MAX_LEN_DATE_TIME)
+    var m_chArrISOPacketDate = [Byte](repeating: 0x00, count: AppConstant.MAX_LEN_DATE_TIME)
     
     var m_bIsTerminalActivationPacket: Bool = false
     
     var m_bField7PrintPAD: Bool = false
     
+    //MARK:- CISOMsgC()
     func CISOMsgC()
     {
-        for i in 0 ..< AppConst.ISO_LEN
+        for i in 0 ..< AppConstant.ISO_LEN
         {
             data[i] = [0x00]
             bitmap[i] = false
@@ -41,9 +44,9 @@ class ISOMessage{
         }
     }
     
+    //MARK:- vFnSetPEDHardwareSerialNumer()
     func vFnSetPEDHardwareSerialNumer() {
-          do {
-            
+        do {
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_INFO, "Inside vFnSetPEDHardwareSerialNumer");
             debugPrint("Inside vFnSetPEDHardwareSerialNumer")
             var buffer = [Byte](repeating:0, count: 50)
@@ -57,7 +60,7 @@ class ISOMessage{
             
             let iLenHardwareSerialNum: Int = chArrHarwareSerialNumber.count
 
-              if (iLenHardwareSerialNum <= AppConst.MAX_LEN_HARDWARE_SERIAL_NUMBER) {
+              if (iLenHardwareSerialNum <= AppConstant.MAX_LEN_HARDWARE_SERIAL_NUMBER) {
                   
                  m_chArrHardwareSerialNumber = [Byte](repeating: 0, count: iLenHardwareSerialNum)
                  m_chArrHardwareSerialNumber = Array(chArrHarwareSerialNumber[0 ..< iLenHardwareSerialNum])
@@ -65,7 +68,7 @@ class ISOMessage{
               } else {
                 
                 m_chArrHardwareSerialNumber = [Byte](repeating: 0, count: iLenHardwareSerialNum)
-                m_chArrHardwareSerialNumber = Array(chArrHarwareSerialNumber[0 ..< AppConst.MAX_LEN_HARDWARE_SERIAL_NUMBER])
+                m_chArrHardwareSerialNumber = Array(chArrHarwareSerialNumber[0 ..< AppConstant.MAX_LEN_HARDWARE_SERIAL_NUMBER])
                                  
               }
 
@@ -77,12 +80,13 @@ class ISOMessage{
             debugPrint("Field 49 (m_chArrHardwareSerialNumber) \(m_chArrHardwareSerialNumber)")
             
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "Field 49 (m_chArrHardwareSerialNumber)[%s]", new String(m_chArrHardwareSerialNumber));
-          } catch {
+        } catch {
             debugPrint("Exception Occurred : \(error)")
-              //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(ex));
-          }
-      }
+            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(ex));
+        }
+    }
     
+    //MARK:- vFnSetHardwareSerialNumber()
     func vFnSetHardwareSerialNumber() {
         do {
             var chArrHardwareSerialNumber: [Byte]
@@ -95,12 +99,12 @@ class ISOMessage{
             
             let iLenHardwareSerialNum: Int = chArrHarwareSerialNumber.count
 
-            if (iLenHardwareSerialNum <= AppConst.MAX_LEN_HARDWARE_SERIAL_NUMBER) {
+            if (iLenHardwareSerialNum <= AppConstant.MAX_LEN_HARDWARE_SERIAL_NUMBER) {
                 chArrHardwareSerialNumber = [Byte](repeating: 0x00, count: iLenHardwareSerialNum)
                 chArrHardwareSerialNumber = Array(chArrHarwareSerialNumber[0 ..< iLenHardwareSerialNum])
             } else {
-                chArrHardwareSerialNumber = [Byte](repeating: 0x00, count: AppConst.MAX_LEN_HARDWARE_SERIAL_NUMBER)
-                chArrHardwareSerialNumber = Array(chArrHarwareSerialNumber[0 ..< AppConst.MAX_LEN_HARDWARE_SERIAL_NUMBER])
+                chArrHardwareSerialNumber = [Byte](repeating: 0x00, count: AppConstant.MAX_LEN_HARDWARE_SERIAL_NUMBER)
+                chArrHardwareSerialNumber = Array(chArrHarwareSerialNumber[0 ..< AppConstant.MAX_LEN_HARDWARE_SERIAL_NUMBER])
             }
             
 
@@ -113,7 +117,7 @@ class ISOMessage{
             restData = Array(chArrHardwareSerialNumber[0 ..< chArrHardwareSerialNumber.count])
             buffer.append(contentsOf: restData)
             
-            debugPrint("SET->Field 59 (HardwareSerialNum)[\(String(describing: String(bytes: chArrHardwareSerialNumber, encoding: String.Encoding.ascii)?.trimmingCharacters(in: .whitespacesAndNewlines)))]")
+            debugPrint("SET->Field 59 (HardwareSerialNum)[\(String(describing: String(bytes: chArrHardwareSerialNumber, encoding: String.Encoding.utf8)?.trimmingCharacters(in: .whitespacesAndNewlines)))]")
             
             iLocalOffset += (chArrHardwareSerialNumber).count
             
@@ -122,10 +126,10 @@ class ISOMessage{
 
             /** PVM VERSION **/
             /*****************************************************************
-             *  If pvm.txt does not exist on the file system then set pvm version as 0000.
-             * ****************************************************************/
+            *  If pvm.txt does not exist on the file system then set pvm version as 0000.
+            * ****************************************************************/
             var ulPvmVersion: Int64 = 0
-            if (true == FileSystem.IsFileExist(strFileName: AppConst.PVMFILE)) {
+            if (true == FileSystem.IsFileExist(strFileName: FileNameConstants.PVMFILE)) {
                 let globalData: GlobalData = GlobalData.singleton
                 _ = globalData.ReadMasterParamFile()
                 
@@ -157,18 +161,21 @@ class ISOMessage{
 
     }
     
+    //MARK:- vFnSetIsoPacketDate()
     func vFnSetIsoPacketDate() {
-          m_chArrISOPacketDate = Util.GetCurrentDateTime()
-          let strISOPacketDate = String(bytes: m_chArrISOPacketDate, encoding: String.Encoding.ascii)
+          m_chArrISOPacketDate = TransactionUtils.GetCurrentDateTime()
+          let strISOPacketDate = String(bytes: m_chArrISOPacketDate, encoding: String.Encoding.utf8)
         debugPrint("SET->FIELD 12(CurrentTime) \(String(describing: strISOPacketDate))")
         //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "SET->Field 12(CurrentTime)[%s]", new String(m_chArrISOPacketDate).trim());
         _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_12, data1: m_chArrISOPacketDate, bcd: true)
       }
     
+    //MARK:- vFnSetTerminalActivationFlag(bTerminalActivationFlag: Bool)
     func vFnSetTerminalActivationFlag(bTerminalActivationFlag: Bool) {
         m_bIsTerminalActivationPacket = bTerminalActivationFlag
     }
     
+    //MARK:-  packIt(sendee: inout [Byte]) -> Int
     func packIt(sendee: inout [Byte]) -> Int {
          /*We used this function for HostID=1 currently we are not using HostID=1 in this application so this function will be no use.
           We have removed code for this function
@@ -177,6 +184,7 @@ class ISOMessage{
         return 0
     }
 
+    //MARK:- packItHost(sendee: inout [Byte]) -> Int
     func packItHost(sendee: inout [Byte]) -> Int {
         do {
                 
@@ -188,9 +196,9 @@ class ISOMessage{
             /* ***************************************************************************
             FEILD 6 :: Terminal Type
             ***************************************************************************/
-            let TerminalType = Util.GetHardwareType();
+            let TerminalType = TransactionUtils.GetHardwareType();
             _ = addField(bitno: ISOFieldConstants.ISO_FIELD_6, data1: TerminalType, bcd: true);
-            debugPrint("packItHost SET Field 6(TerminalType) \(AppConst.TERMINAL_TYPE.trimmingCharacters(in: .whitespacesAndNewlines))")
+            debugPrint("packItHost SET Field 6(TerminalType) \(AppConstant.TERMINAL_TYPE.trimmingCharacters(in: .whitespacesAndNewlines))")
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "packItHost SET Field 6(TerminalType)[%s]", new String(TerminalType).trim());
 
             /* ***************************************************************************
@@ -201,10 +209,10 @@ class ISOMessage{
             /* ***************************************************************************
             FEILD 38 :: Application Version
             ***************************************************************************/
-            let chArr2: [Byte] = [Byte](Util.getAppVersion().utf8)
+            let chArr2: [Byte] = [Byte](TransactionUtils.getAppVersion().utf8)
             _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_38, data1: chArr2, bcd: false);
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "SET->Field 38(APP Version)[%s]", new String(chArr2).trim());
-            debugPrint("SET->Field 38(App Version) \(Util.getAppVersion().trimmingCharacters(in: .whitespacesAndNewlines))")
+            debugPrint("SET->Field 38(App Version) \(TransactionUtils.getAppVersion().trimmingCharacters(in: .whitespacesAndNewlines))")
 
             /* ***************************************************************************
             FEILD 47 :: Client ID + Security Token
@@ -289,7 +297,7 @@ class ISOMessage{
                         offset += pinlen;
                         _ = addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_50, data1: buffer, length: offset);
                        
-                        debugPrint("SET->FIELD 50(UserId) \(String(describing: String(bytes: buffer, encoding: String.Encoding.ascii)?.trimmingCharacters(in: .whitespacesAndNewlines)))")
+                        debugPrint("SET->FIELD 50(UserId) \(String(describing: String(bytes: buffer, encoding: String.Encoding.utf8)?.trimmingCharacters(in: .whitespacesAndNewlines)))")
                         
                         //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "SET->Field 50(UserId)[%s]", new String(buffer).trim());
                     }
@@ -315,7 +323,7 @@ class ISOMessage{
                     
                     _ = addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_51, data1: chTempGUIDAuthTokenArr, length: iGUIDAuthTokenLen);
                     
-                    debugPrint("SET->Field 51(Auth Token)[\(BytesUtil.byteArray2HexString(arr: chTempGUIDAuthTokenArr))]")
+                    debugPrint("SET->Field 51(Auth Token)[\(TransactionUtils.byteArray2HexString(arr: chTempGUIDAuthTokenArr))]")
                     //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "SET->Field 51(Auth Token)[%s]", BytesUtil.byteArray2HexString(chTempGUIDAuthTokenArr));
                 }
             }
@@ -340,9 +348,9 @@ class ISOMessage{
             
             if(bToSet)
             {
-                charenBmap = Util.bcd2a(s: enBmap, len: ISO_LEN / 8);
+                charenBmap = TransactionUtils.bcd2a(enBmap, ISO_LEN / 8)!
                 _ = addField(bitno: ISOFieldConstants.ISO_FIELD_5, data1: charenBmap, bcd: true);
-                debugPrint("SET->Field 5 (encrypted bitmap) charenBmap [\(String(describing: String(bytes: charenBmap, encoding: String.Encoding.ascii)))] len[\(charenBmap.count)]")
+                debugPrint("SET->Field 5 (encrypted bitmap) charenBmap [\(String(describing: String(bytes: charenBmap, encoding: String.Encoding.utf8)))] len[\(charenBmap.count)]")
                 
             }
             /* ***************************************************************************
@@ -353,7 +361,7 @@ class ISOMessage{
                 var offset: Int = 0;
 
                 // First tag the message number
-                let out: [Byte] = Util.a2bcd(s: msgno)
+                let out: [Byte] = TransactionUtils.a2bcd(msgno)!
                 //byte[] out = CUtils.a2bcd(msgno);
                 
                 sendee = Array(out[0 ..< out.count])
@@ -365,13 +373,13 @@ class ISOMessage{
                 self.bitmap[64 - 1] = true
                 _ = [Byte](repeating: 0x00, count: CRC_len)
             
-                var bmap = [Byte](repeating: 0x00, count: AppConst.ISO_LEN / 8)
+                var bmap = [Byte](repeating: 0x00, count: AppConstant.ISO_LEN / 8)
                     
 
                 //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "Setting Bitmap");
                 debugPrint("Setting Bitmap")
                 
-                for i in 0 ..< AppConst.ISO_LEN
+                for i in 0 ..< AppConstant.ISO_LEN
                 {
                     if(self.bitmap[i])
                     {
@@ -379,14 +387,14 @@ class ISOMessage{
                     }
                 }
                 
-                sendee = Array(bmap[0 ..< AppConst.ISO_LEN / 8])
+                sendee = Array(bmap[0 ..< AppConstant.ISO_LEN / 8])
                 //System.arraycopy(bmap, 0, sendee, offset, AppConst.ISO_LEN / 8);
-                offset += AppConst.ISO_LEN / 8;
+                offset += AppConstant.ISO_LEN / 8;
 
                 //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "Packing Fields");
                 debugPrint("Packing Fields")
                 
-            for i in 0 ..< AppConst.ISO_LEN
+            for i in 0 ..< AppConstant.ISO_LEN
             {
                 if(!self.bitmap[i]){
                     continue
@@ -446,6 +454,7 @@ class ISOMessage{
         }
     
     //Overriden Function
+    //MARK:- addField(bitno: Int, data1: [Byte], bcd: Bool) -> Bool
     func addField(bitno: Int, data1: [Byte], bcd: Bool) -> Bool {
             
             self.bitmap[bitno - 1] = true;
@@ -454,7 +463,7 @@ class ISOMessage{
                 
                 //TO DO: a2bcd naveen ->
                 var result: String
-                result = String(bytes: data1, encoding: String.Encoding.ascii)!
+                result = String(bytes: data1, encoding: String.Encoding.utf8)!
                 
                 data[bitno - 1] = [Byte](result.utf8)
 //                if (data[bitno - 1] == nil)        //no memory check
@@ -481,7 +490,7 @@ class ISOMessage{
         }
 
 
-    
+    //MARK:- DisplayFeild58()
     func DisplayFeild58() {
         do {
             debugPrint("Inside DisplayField58")
@@ -528,13 +537,13 @@ class ISOMessage{
                                 //parse message id carry out look up concatenate in chArrDisplayMessage
                                 //move the len by 4 bytes
                                 var bArrMessageLength = [Byte](repeating: 0x00, count: 4)
-                                let bArrMessage = [Byte](repeating: 0x00, count: AppConst.MAX_MESSAGE_LEN)
+                                let bArrMessage = [Byte](repeating: 0x00, count: AppConstant.MAX_MESSAGE_LEN)
                                 var lMessageId: Int64 = 0x00;
 
                                 bArrMessageLength = Array(bArrTempField58Data[iOffset ..< iOffset + 4])
                                 //System.arraycopy(bArrTempField58Data, iOffset, bArrMessageLength, 0, 4);
-                                bArrMessageLength = Util.bcd2a(s: bArrMessageLength, len: 4)
-                                lMessageId = Util.bytesToLong(bytes: bArrMessageLength)
+                                bArrMessageLength = TransactionUtils.bcd2a(bArrMessageLength, 4)!
+                                lMessageId = TransactionUtils.bytesToLong(bytes: bArrMessageLength)
                                 iOffset = iOffset + 4
                                 
                                 _ = globalData.GetMessage(id: lMessageId, messagebuffer: bArrMessage)
@@ -543,7 +552,7 @@ class ISOMessage{
                                     = ArraySlice<Byte>(bArrMessage[0 ..< bArrMessage.count - 1])
                                 //System.arraycopy(bArrMessage, 0, chArrDisplayMessage, iDispArrOffset, (bArrMessage).length - 1);
                                 iDispArrOffset += bArrMessage.count - 1
-                                globalData.m_csFinalMsgDisplay58 = (String(bytes: chArrDisplayMessage, encoding: String.Encoding.ascii)?.trimmingCharacters(in: .whitespacesAndNewlines))!
+                                globalData.m_csFinalMsgDisplay58 = (String(bytes: chArrDisplayMessage, encoding: String.Encoding.utf8)?.trimmingCharacters(in: .whitespacesAndNewlines))!
                             }
                             else {
                                 break
@@ -560,7 +569,7 @@ class ISOMessage{
             }
         }
 
-    
+    //MARK:- unPackHostDirect(bArrSource: [Byte]) -> Bool
     func unPackHostDirect(bArrSource: [Byte]) -> Bool {
         do {
             debugPrint("Inside unPackHostDirect")
@@ -574,10 +583,10 @@ class ISOMessage{
             
             bArrMsgNo = Array(bArrSource[headerLength ..< headerLength + 2])
             //System.arraycopy(bArrSource, headerLength, bArrMsgNo, 0, 2)
-            msgno = Util.bcd2a(s: bArrMsgNo, len: 2)
+            msgno = TransactionUtils.bcd2a(bArrMsgNo, 2)!
 
             // SKIP Bytes= headerLength(7 Bytes)+MessageNumber(2 Bytes)+BitMap(AppConst.ISO_LEN/8 Bytes)
-            let iSkipLength: Int = (headerLength + 2 + AppConst.ISO_LEN / 8)
+            let iSkipLength: Int = (headerLength + 2 + AppConstant.ISO_LEN / 8)
             var bArrtemp = [Byte](repeating: 0x00, count: bArrSource.count - iSkipLength)
            
             bArrtemp = Array(bArrSource[iSkipLength ..< iSkipLength + bArrtemp.count])
@@ -586,9 +595,9 @@ class ISOMessage{
 
             var length: Int = 0                        // Lenght of bytes to read for a field.
             var bcd: Bool = true
-            var totalLength = 2 + AppConst.ISO_LEN / 8; // MAC
+            var totalLength = 2 + AppConstant.ISO_LEN / 8; // MAC
 
-            for i in 0 ..< AppConst.ISO_LEN
+            for i in 0 ..< AppConstant.ISO_LEN
             {
                 var bResult: Byte = bArrSource[headerLength + 2 + i / 8]
                 bResult &= (0x80 >> (i % 8))
@@ -704,16 +713,16 @@ class ISOMessage{
                 if (bcd) {
                     data[i] = [Byte](repeating: 0x00, count: (2 * length + 1))
                     //data[i] = new byte[(2 * length + 1)];
-                    data[i] = Util.bcd2a(s: bArrtemp, len: length)
+                    data[i] = TransactionUtils.bcd2a(bArrtemp, length)!
                     len[i] = 2 * length
-                    debugPrint("field[\(i + 1)], length[\(len[i]), Data[\(BytesUtil.bytes2HexString(arr: data[i]))]")
+                    debugPrint("field[\(i + 1)], length[\(len[i]), Data[\(String(describing: TransactionUtils.ByteArrayToHexString(data[i])))]")
                     //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "field[%d] length[%d] Data[%s]", i + 1, len[i]BytesUtil.bytes2HexString(data[i]))
                 } else {
                     data[i] = [Byte](repeating: 0x00, count: length + 1)
                     data[i] = Array(bArrtemp[0 ..< length])
                     //System.arraycopy(bArrtemp, 0, data[i], 0, length);
                     len[i] = length;
-                    debugPrint("field[\(i + 1)], length[\(len[i]), Data[\(BytesUtil.bytes2HexString(arr: data[i]))]")
+                    debugPrint("field[\(i + 1)], length[\(len[i]), Data[\(String(describing: TransactionUtils.ByteArrayToHexString(data[i])))]")
                     //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "field[%d] length[%d] Data[%s]", i + 1, len[i]BytesUtil.bytes2HexString(data[i]));
                     data[i][length] = 0;
                 }
@@ -729,13 +738,13 @@ class ISOMessage{
             }    // end for loop
 
             if (bitmap[44 - 1]) {
-                debugPrint("field 44 length = \(len[44 - 1]), data = \(BytesUtil.bytes2HexString(arr: data[44 - 1])))")
+                debugPrint("field 44 length = \(len[44 - 1]), data = \(String(describing: TransactionUtils.ByteArrayToHexString(data[44 - 1]))))")
                 //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "field 44 length = %d data = %s", len[44 - 1], BytesUtil.bytes2HexString(data[44 - 1]));
 
             }
 
             if (bitmap[45 - 1]) {
-                debugPrint("field 44 length = \(len[45 - 1]), data = \(BytesUtil.bytes2HexString(arr: data[45 - 1])))")
+                debugPrint("field 44 length = \(len[45 - 1]), data = \(String(describing: TransactionUtils.ByteArrayToHexString(data[45 - 1]))))")
                 //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "field 45 length = %d data = %s", len[45 - 1], BytesUtil.bytes2HexString(data[45 - 1]));
 
             }
@@ -762,7 +771,7 @@ class ISOMessage{
 
             var strOurCRC = String(format: "%llX", crc)
             strOurCRC = CryptoHandler.padLeft(data: strOurCRC, length: CRC_len, padChar: "0");
-            let strTheirCRC: String = (String(bytes: data[64 - 1], encoding: String.Encoding.ascii)?.trimmingCharacters(in: .whitespacesAndNewlines))!
+            let strTheirCRC: String = (String(bytes: data[64 - 1], encoding: String.Encoding.utf8)?.trimmingCharacters(in: .whitespacesAndNewlines))!
 
             debugPrint("Their MAC is \(strTheirCRC), Our MAC is \(strOurCRC)")
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "Their MAC is[%s], Our   MAC is[%s]", strTheirCRC, strOurCRC);
@@ -783,6 +792,7 @@ class ISOMessage{
 
     }
 
+    //MARK:- addLLLCHARData(bitno: Int, data1: [Byte], length: Int) -> Bool
     func addLLLCHARData(bitno: Int, data1: [Byte], length: Int) -> Bool{
           do {
             if (!data[bitno - 1].isEmpty) {
@@ -824,6 +834,54 @@ class ISOMessage{
           }
       }
 
+    //MARK:- IsOK() -> Bool
+    func IsOK() -> Bool {
+        do {
+            debugPrint("IsOk bitmap[\(bitmap[39 - 1])]");
+            if (self.bitmap[39 - 1]) {
+                debugPrint("IsOk bitmap[\(bitmap[39 - 1])], data[\(String(bytes: data[39 - 1], encoding: .utf8)!)]");
+                let strRespCode: String = String(bytes: data[39 - 1], encoding: .utf8)!
+                
+                GlobalData.responseCode = strRespCode
+                if (strRespCode.caseInsensitiveCompare(AppConstant.AC_PARTIAL_SETTLEMENT) == ComparisonResult.orderedSame) {
+                    return false;
+                } else if (strRespCode.caseInsensitiveCompare(AppConstant.STR_AC_SUCCESS) != ComparisonResult.orderedSame) {
+                    GlobalData.m_bIsTxnDeclined = true;
+                    return false;
+                }
+            }
+            return true
+        } catch {
+            debugPrint("Exception: \(error )")
+            return false;
+        }
+    }
+    
+    //MARK:- IsReward() -> Bool
+    func IsReward() -> Bool {
+         do {
+             debugPrint("IsReward[\(bitmap[40 - 1])]")
+             if (self.bitmap[40 - 1]) {
+                debugPrint("IsReward data[\(String(describing: TransactionUtils.ByteArrayToHexString(data[40 - 1])))]")
+                
+                let strRespCode: String = String(bytes: data[40 - 1], encoding: .utf8)!
+                
+                 if (strRespCode.caseInsensitiveCompare(AppConstant.STR_AC_SUCCESS) != ComparisonResult.orderedSame) {
+                     GlobalData.m_bIsTxnDeclined = true;
+                     return false;
+                 } else {
+                     return true;
+                 }
+             }
+             return false;
+         } catch {
+             debugPrint("Exception: \(error )")
+             return false;
+         }
+     }
+    
+    
+    //MARK:- addEncryptedLLLCHARData(bitno: Int, data1: [Byte], length: Int) -> Bool
     func addEncryptedLLLCHARData(bitno: Int, data1: [Byte], length: Int) -> Bool {
         do {
             if (!data[bitno - 1].isEmpty) {
@@ -857,7 +915,7 @@ class ISOMessage{
             strVal = CryptoHandler.padLeft(data: strVal, length: 4, padChar: "0");
             
             let bArrVal = [Byte](strVal.utf8)
-            let temp: [Byte] = Util.a2bcd(s: bArrVal);
+            let temp: [Byte] = TransactionUtils.a2bcd(bArrVal)!
 
               //Copy the length to the data feild in bcd format
             self.data[bitno - 1][0] = temp[0];
@@ -880,6 +938,7 @@ class ISOMessage{
 
       }
     
+    //MARK:- bFnGetGUIDAuthToken(iGUIDAuthTokenLen: inout Int) -> [Byte]?
     func bFnGetGUIDAuthToken(iGUIDAuthTokenLen: inout Int) -> [Byte]? {
 
         do {
@@ -901,7 +960,7 @@ class ISOMessage{
             //System.arraycopy(m_chArrHardwareSerialNumber, 0, uchArrTempData, iOffset, m_chArrHardwareSerialNumber.length);
             iOffset += (m_chArrHardwareSerialNumber).count;
 
-            debugPrint("GUID Auth topken plain data len[\(iOffset)], uchArrTempData[\(BytesUtil.byteArray2HexString(arr: uchArrTempData))]")
+            debugPrint("GUID Auth topken plain data len[\(iOffset)], uchArrTempData[\(TransactionUtils.byteArray2HexString(arr: uchArrTempData))]")
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "GUID Auth token plain data len[%d], uchArrTempData[%s]", iOffset, BytesUtil.byteArray2HexString(uchArrTempData));
 
             let globalData: GlobalData = GlobalData.singleton
@@ -928,7 +987,7 @@ class ISOMessage{
             debugPrint("m_strGUID[\(m_sParamData.m_strGUID)]")
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "m_strGUID[%s]", m_sParamData.m_strGUID);
 
-            let chGUIDAuthTokenVal: [Byte] = CryptoHandler.tripleDesEncrypt(masterKey: uchArrKey, Input: uchArrTempData, padChar: "0")!
+            let chGUIDAuthTokenVal: [Byte] = CryptoHandler.tripleDesEncrypt(uchArrKey, uchArrTempData)!
             
             iGUIDAuthTokenLen = chGUIDAuthTokenVal.count
             return chGUIDAuthTokenVal;

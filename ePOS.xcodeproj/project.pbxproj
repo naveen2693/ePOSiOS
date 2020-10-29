@@ -62,13 +62,32 @@
 		46ED347425385C8C00CEF19D /* AutoReversalParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED347325385C8C00CEF19D /* AutoReversalParam.swift */; };
 		46ED34762538603A00CEF19D /* AutoGPRSNetworkParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED34752538603A00CEF19D /* AutoGPRSNetworkParams.swift */; };
 		46ED34782538665000CEF19D /* AutoPremiumServiceParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED34772538665000CEF19D /* AutoPremiumServiceParams.swift */; };
-		8E4DCFA025340B8400726EA8 /* AppConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCF9F25340B8400726EA8 /* AppConst.swift */; };
+		8E10234D2545780200F1A907 /* st_EMV_Tag_List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E10234C2545780200F1A907 /* st_EMV_Tag_List.swift */; };
 		8E4DCFA22534BC1400726EA8 /* CRC32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA12534BC1400726EA8 /* CRC32.swift */; };
 		8E4DCFA425354F8A00726EA8 /* LOGIN_ACCOUNTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */; };
 		8E4DCFA625369F1000726EA8 /* BytesUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA525369F1000726EA8 /* BytesUtil.swift */; };
 		8E927C68253895AC009928D4 /* DisplayMessageMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E927C67253895AC009928D4 /* DisplayMessageMode.swift */; };
 		8E927C6A2539468F009928D4 /* ParameterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E927C692539468F009928D4 /* ParameterData.swift */; };
 		8E927C6E2539470D009928D4 /* LIBStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E927C6D2539470D009928D4 /* LIBStruct.swift */; };
+		8EE32848253C3A7F00616E33 /* CurrentDownloadingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE32847253C3A7E00616E33 /* CurrentDownloadingInfo.swift */; };
+		8EE3284A253C567100616E33 /* STRUCTMESSAGEID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE32849253C567100616E33 /* STRUCTMESSAGEID.swift */; };
+		8EE3284C253C7D9800616E33 /* PCContentTypeID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3284B253C7D9800616E33 /* PCContentTypeID.swift */; };
+		8EE3284E253C7DF900616E33 /* PCImageChangeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3284D253C7DF900616E33 /* PCImageChangeType.swift */; };
+		8EE32850253C97F800616E33 /* TLVObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3284F253C97F800616E33 /* TLVObject.swift */; };
+		8EE32852253D632500616E33 /* st_CSVTxnTypeMiniPvmMappingDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE32851253D632500616E33 /* st_CSVTxnTypeMiniPvmMappingDetails.swift */; };
+		8EE32854253D6B5A00616E33 /* st_ISPASSWORDDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE32853253D6B5A00616E33 /* st_ISPASSWORDDetails.swift */; };
+		8EE32856253DF93B00616E33 /* st_TxnTypeFlagsMappingDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE32855253DF93B00616E33 /* st_TxnTypeFlagsMappingDetails.swift */; };
+		8EE32858253E828300616E33 /* st_AIDTxnMapingDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE32857253E828300616E33 /* st_AIDTxnMapingDetails.swift */; };
+		8EE3285A253EA54100616E33 /* st_POSPrintinglocationDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE32859253EA54100616E33 /* st_POSPrintinglocationDetails.swift */; };
+		8EE3285C253EAA0B00616E33 /* CurrentEDCAppDownloadingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3285B253EAA0B00616E33 /* CurrentEDCAppDownloadingInfo.swift */; };
+		8EE3285E253ED80700616E33 /* PineKeyInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3285D253ED80700616E33 /* PineKeyInjection.swift */; };
+		8EE328612542AA0E00616E33 /* FIleNameConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3285F2542AA0D00616E33 /* FIleNameConstants.swift */; };
+		8EE328622542AA0E00616E33 /* ProcessingCodeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE328602542AA0D00616E33 /* ProcessingCodeConstants.swift */; };
+		8EE32864254447DE00616E33 /* st_CSVTxnMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE32863254447DE00616E33 /* st_CSVTxnMap.swift */; };
+		8EE328682544490A00616E33 /* st_TxnBin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE328672544490A00616E33 /* st_TxnBin.swift */; };
+		8EE3286B2544498000616E33 /* st_CSVTxnIgnoreAmt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3286A2544498000616E33 /* st_CSVTxnIgnoreAmt.swift */; };
+		8EE3286D25444AD300616E33 /* CConx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3286C25444AD300616E33 /* CConx.swift */; };
+		8EF146AD2545259A00C2C26D /* CurrentEMVParDownloadingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF146AC2545259A00C2C26D /* CurrentEMVParDownloadingInfo.swift */; };
 		990AF961252854610008A907 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990AF960252854610008A907 /* BottomSheetViewController.swift */; };
 		990AF9642528559C0008A907 /* DropdownOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990AF9622528559C0008A907 /* DropdownOptionsViewController.swift */; };
 		990AF9652528559C0008A907 /* DropdownOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 990AF9632528559C0008A907 /* DropdownOptionsViewController.xib */; };
@@ -272,13 +291,32 @@
 		46ED347325385C8C00CEF19D /* AutoReversalParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoReversalParam.swift; sourceTree = "<group>"; };
 		46ED34752538603A00CEF19D /* AutoGPRSNetworkParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoGPRSNetworkParams.swift; sourceTree = "<group>"; };
 		46ED34772538665000CEF19D /* AutoPremiumServiceParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPremiumServiceParams.swift; sourceTree = "<group>"; };
-		8E4DCF9F25340B8400726EA8 /* AppConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConst.swift; sourceTree = "<group>"; };
+		8E10234C2545780200F1A907 /* st_EMV_Tag_List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = st_EMV_Tag_List.swift; sourceTree = "<group>"; };
 		8E4DCFA12534BC1400726EA8 /* CRC32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRC32.swift; sourceTree = "<group>"; };
 		8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOGIN_ACCOUNTS.swift; sourceTree = "<group>"; };
 		8E4DCFA525369F1000726EA8 /* BytesUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BytesUtil.swift; sourceTree = "<group>"; };
 		8E927C67253895AC009928D4 /* DisplayMessageMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayMessageMode.swift; sourceTree = "<group>"; };
 		8E927C692539468F009928D4 /* ParameterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterData.swift; sourceTree = "<group>"; };
 		8E927C6D2539470D009928D4 /* LIBStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LIBStruct.swift; sourceTree = "<group>"; };
+		8EE32847253C3A7E00616E33 /* CurrentDownloadingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDownloadingInfo.swift; sourceTree = "<group>"; };
+		8EE32849253C567100616E33 /* STRUCTMESSAGEID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STRUCTMESSAGEID.swift; sourceTree = "<group>"; };
+		8EE3284B253C7D9800616E33 /* PCContentTypeID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCContentTypeID.swift; sourceTree = "<group>"; };
+		8EE3284D253C7DF900616E33 /* PCImageChangeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCImageChangeType.swift; sourceTree = "<group>"; };
+		8EE3284F253C97F800616E33 /* TLVObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLVObject.swift; sourceTree = "<group>"; };
+		8EE32851253D632500616E33 /* st_CSVTxnTypeMiniPvmMappingDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = st_CSVTxnTypeMiniPvmMappingDetails.swift; sourceTree = "<group>"; };
+		8EE32853253D6B5A00616E33 /* st_ISPASSWORDDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = st_ISPASSWORDDetails.swift; sourceTree = "<group>"; };
+		8EE32855253DF93B00616E33 /* st_TxnTypeFlagsMappingDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = st_TxnTypeFlagsMappingDetails.swift; sourceTree = "<group>"; };
+		8EE32857253E828300616E33 /* st_AIDTxnMapingDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = st_AIDTxnMapingDetails.swift; sourceTree = "<group>"; };
+		8EE32859253EA54100616E33 /* st_POSPrintinglocationDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = st_POSPrintinglocationDetails.swift; sourceTree = "<group>"; };
+		8EE3285B253EAA0B00616E33 /* CurrentEDCAppDownloadingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentEDCAppDownloadingInfo.swift; sourceTree = "<group>"; };
+		8EE3285D253ED80700616E33 /* PineKeyInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PineKeyInjection.swift; sourceTree = "<group>"; };
+		8EE3285F2542AA0D00616E33 /* FIleNameConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIleNameConstants.swift; sourceTree = "<group>"; };
+		8EE328602542AA0D00616E33 /* ProcessingCodeConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessingCodeConstants.swift; sourceTree = "<group>"; };
+		8EE32863254447DE00616E33 /* st_CSVTxnMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = st_CSVTxnMap.swift; sourceTree = "<group>"; };
+		8EE328672544490A00616E33 /* st_TxnBin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = st_TxnBin.swift; sourceTree = "<group>"; };
+		8EE3286A2544498000616E33 /* st_CSVTxnIgnoreAmt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = st_CSVTxnIgnoreAmt.swift; sourceTree = "<group>"; };
+		8EE3286C25444AD300616E33 /* CConx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CConx.swift; sourceTree = "<group>"; };
+		8EF146AC2545259A00C2C26D /* CurrentEMVParDownloadingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentEMVParDownloadingInfo.swift; sourceTree = "<group>"; };
 		990AF960252854610008A907 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		990AF9622528559C0008A907 /* DropdownOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownOptionsViewController.swift; sourceTree = "<group>"; };
 		990AF9632528559C0008A907 /* DropdownOptionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropdownOptionsViewController.xib; sourceTree = "<group>"; };
@@ -1230,24 +1268,27 @@
 		CECC5403252B527C00C0940E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				CECC5406252B530D00C0940E /* FileManager.swift */,
-				CECC5408252B533C00C0940E /* ISO440Activation.swift */,
-				CECC540A252B537800C0940E /* ISO320Initialization.swift */,
-				CECC540C252B539600C0940E /* ISO500Settlement.swift */,
-				CE971BC4252CACAF00843943 /* TCPIPCommunicator.swift */,
-				CE971BC6252CAD2400843943 /* TCPIPCommunicationHandler.swift */,
-				CE971BC8252CAD4E00843943 /* GlobalData.swift */,
-				CE971BCA252CB9C000843943 /* ISOProcessor.swift */,
-				CE971BCC252CBA0000843943 /* StateMachine.swift */,
-				CE971BCE252CBA8400843943 /* ISOMessage.swift */,
-				CE971BD0252CBB2500843943 /* CryptoHandler.swift */,
-				CE971BD2252CBB8D00843943 /* ISOHandler.swift */,
-				8E4DCFA12534BC1400726EA8 /* CRC32.swift */,
-				8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */,
-				4646198E253578AD009089BC /* CUIHelper.swift */,
 				4646199625359010009089BC /* CPlatFormUtil.swift */,
+				8E4DCFA12534BC1400726EA8 /* CRC32.swift */,
+				CE971BD0252CBB2500843943 /* CryptoHandler.swift */,
+				4646198E253578AD009089BC /* CUIHelper.swift */,
 				46AB5CE42539BB3A00FF814E /* cUtilClass.swift */,
+				CECC5406252B530D00C0940E /* FileManager.swift */,
+				CE971BC8252CAD4E00843943 /* GlobalData.swift */,
+				CECC540A252B537800C0940E /* ISO320Initialization.swift */,
+				CECC5408252B533C00C0940E /* ISO440Activation.swift */,
+				CECC540C252B539600C0940E /* ISO500Settlement.swift */,
+				CE971BD2252CBB8D00843943 /* ISOHandler.swift */,
+				CE971BCE252CBA8400843943 /* ISOMessage.swift */,
+				CE971BCA252CB9C000843943 /* ISOProcessor.swift */,
+				8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */,
+				CE971BCC252CBA0000843943 /* StateMachine.swift */,
+				CE971BC6252CAD2400843943 /* TCPIPCommunicationHandler.swift */,
+				CE971BC4252CACAF00843943 /* TCPIPCommunicator.swift */,
 				CEB4D2E62536C75700254681 /* TransactionUtils.swift */,
+				8EE3284F253C97F800616E33 /* TLVObject.swift */,
+				8EE3285D253ED80700616E33 /* PineKeyInjection.swift */,
+				8EE3286C25444AD300616E33 /* CConx.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1280,6 +1321,21 @@
 				464619882534280A009089BC /* TerminalParamData.swift */,
 				46ED34692537155A00CEF19D /* TerminalPSKData.swift */,
 				46ED346F2537207600CEF19D /* ParameterData.swift */,
+				8EE32847253C3A7E00616E33 /* CurrentDownloadingInfo.swift */,
+				8EE32849253C567100616E33 /* STRUCTMESSAGEID.swift */,
+				8EE3284B253C7D9800616E33 /* PCContentTypeID.swift */,
+				8EE3284D253C7DF900616E33 /* PCImageChangeType.swift */,
+				8EE32851253D632500616E33 /* st_CSVTxnTypeMiniPvmMappingDetails.swift */,
+				8EE32853253D6B5A00616E33 /* st_ISPASSWORDDetails.swift */,
+				8EE32855253DF93B00616E33 /* st_TxnTypeFlagsMappingDetails.swift */,
+				8EE32857253E828300616E33 /* st_AIDTxnMapingDetails.swift */,
+				8EE32859253EA54100616E33 /* st_POSPrintinglocationDetails.swift */,
+				8EE3285B253EAA0B00616E33 /* CurrentEDCAppDownloadingInfo.swift */,
+				8EE32863254447DE00616E33 /* st_CSVTxnMap.swift */,
+				8EE328672544490A00616E33 /* st_TxnBin.swift */,
+				8EE3286A2544498000616E33 /* st_CSVTxnIgnoreAmt.swift */,
+				8EF146AC2545259A00C2C26D /* CurrentEMVParDownloadingInfo.swift */,
+				8E10234C2545780200F1A907 /* st_EMV_Tag_List.swift */,
 			);
 			path = Structures;
 			sourceTree = "<group>";
@@ -1292,7 +1348,8 @@
 				CECC5412252B67C400C0940E /* ISO320HostUploadChangeNumberConstants.swift */,
 				CECC5414252B68A300C0940E /* ISO320PineKeyExchangeChangeNumberConstants.swift */,
 				46AA3E03252F1275005907E1 /* AppConstants.swift */,
-				8E4DCF9F25340B8400726EA8 /* AppConst.swift */,
+				8EE3285F2542AA0D00616E33 /* FIleNameConstants.swift */,
+				8EE328602542AA0D00616E33 /* ProcessingCodeConstants.swift */,
 				8E927C67253895AC009928D4 /* DisplayMessageMode.swift */,
 				46ED34712537212E00CEF19D /* ParameterIDS.swift */,
 			);
@@ -1519,12 +1576,14 @@
 				99186D192510959F00A9FE07 /* StatusDialogItem.swift in Sources */,
 				4646199125358579009089BC /* Long.swift in Sources */,
 				9919A9B02519E45400A67253 /* SelectPackageViewController.swift in Sources */,
+				8EE328622542AA0E00616E33 /* ProcessingCodeConstants.swift in Sources */,
 				9976C90D2500F05600FC5DD3 /* ViewController.swift in Sources */,
 				CECC5413252B67C400C0940E /* ISO320HostUploadChangeNumberConstants.swift in Sources */,
 				9919A99D25174B2D00A67253 /* BankDetailsViewController.swift in Sources */,
 				991DF269251CB5C900AEA1C3 /* GifLoader.swift in Sources */,
 				46ADF1162528792F009A9297 /* ContactDetails.swift in Sources */,
 				46ED34642537098500CEF19D /* AutoLogShippingCredential.swift in Sources */,
+				8EE3285C253EAA0B00616E33 /* CurrentEDCAppDownloadingInfo.swift in Sources */,
 				46ADF1062528776D009A9297 /* LeadScheduleDetails.swift in Sources */,
 				46BD9B4225160767008DEFEA /* IntialDataRequest.swift in Sources */,
 				9919A9942514D83000A67253 /* EPOSUserDefaults.swift in Sources */,
@@ -1533,8 +1592,12 @@
 				CE971BD7252CBD9D00843943 /* TerminalMasterParamData.swift in Sources */,
 				46BD9B54251AFE80008DEFEA /* GenericSwitchingViewController.swift in Sources */,
 				4646199725359010009089BC /* CPlatFormUtil.swift in Sources */,
+				8EE3286B2544498000616E33 /* st_CSVTxnIgnoreAmt.swift in Sources */,
+				8EE3286D25444AD300616E33 /* CConx.swift in Sources */,
+				8EE32852253D632500616E33 /* st_CSVTxnTypeMiniPvmMappingDetails.swift in Sources */,
 				46AA3E08252F237B005907E1 /* StructConnIndex.swift in Sources */,
 				CE971BD5252CBD8200843943 /* TerminalConxData.swift in Sources */,
+				8EE3284A253C567100616E33 /* STRUCTMESSAGEID.swift in Sources */,
 				CE971BD5252CBD8200843943 /* TerminalConxData.swift in Sources */,
 				8E4DCFA22534BC1400726EA8 /* CRC32.swift in Sources */,
 				46ED346E25371B3500CEF19D /* st_BINRange.swift in Sources */,
@@ -1545,12 +1608,12 @@
 				4646198B25342889009089BC /* BatchState.swift in Sources */,
 				99186CCB2508F01400A9FE07 /* TransactionsViewController.swift in Sources */,
 				991DF271251DED7100AEA1C3 /* EPOSBaseView.swift in Sources */,
+				8EE32864254447DE00616E33 /* st_CSVTxnMap.swift in Sources */,
 				46ADF12025287A47009A9297 /* BusinessItem.swift in Sources */,
 				997DC7FE2522347F006ADE48 /* LeadState.swift in Sources */,
 				997DC803252347A3006ADE48 /* DropdownTableViewCell.swift in Sources */,
 				997DC7E52521EEFC006ADE48 /* CityData.swift in Sources */,
 				46AA3E04252F1275005907E1 /* AppConstants.swift in Sources */,
-				8E4DCFA025340B8400726EA8 /* AppConst.swift in Sources */,
 				46ADF109252877E0009A9297 /* AdditionalInfo.swift in Sources */,
 				99186D212511D07E00A9FE07 /* Validation.swift in Sources */,
 				9976C9212501065D00FC5DD3 /* CustomFonts.swift in Sources */,
@@ -1566,10 +1629,13 @@
 				46AB5CE52539BB3A00FF814E /* cUtilClass.swift in Sources */,
 				46ED34782538665000CEF19D /* AutoPremiumServiceParams.swift in Sources */,
 				CECC5409252B533C00C0940E /* ISO440Activation.swift in Sources */,
+				8EE3284E253C7DF900616E33 /* PCImageChangeType.swift in Sources */,
+				8EE32858253E828300616E33 /* st_AIDTxnMapingDetails.swift in Sources */,
 				8E927C68253895AC009928D4 /* DisplayMessageMode.swift in Sources */,
 				46ADF104252876CA009A9297 /* BankAccountDetails.swift in Sources */,
 				8E927C6A2539468F009928D4 /* ParameterData.swift in Sources */,
 				4669F0C52525DEF900DEA9F2 /* MerchantVerificationServiceData.swift in Sources */,
+				8EE3285A253EA54100616E33 /* st_POSPrintinglocationDetails.swift in Sources */,
 				46ED346A2537155A00CEF19D /* TerminalPSKData.swift in Sources */,
 				9976C95E2501173600FC5DD3 /* DeviceType.swift in Sources */,
 				99186CE6250A2C6500A9FE07 /* EPOSHelper.swift in Sources */,
@@ -1590,11 +1656,14 @@
 				990AF9D0252A0F970008A907 /* SearchTableViewCell.swift in Sources */,
 				990AF9CD252A0F970008A907 /* CustomSearchViewController.swift in Sources */,
 				46BD9B50251A8646008DEFEA /* ForgotPasswordController.swift in Sources */,
+				8EE328682544490A00616E33 /* st_TxnBin.swift in Sources */,
+				8E10234D2545780200F1A907 /* st_EMV_Tag_List.swift in Sources */,
 				997DC7F5252200FD006ADE48 /* OnBoardingConstants.swift in Sources */,
 				99186D232511D09400A9FE07 /* Util.swift in Sources */,
 				991ADEA825064E2F00932251 /* UIImageExtension.swift in Sources */,
 				46ED347425385C8C00CEF19D /* AutoReversalParam.swift in Sources */,
 				CE971BCD252CBA0000843943 /* StateMachine.swift in Sources */,
+				8EE32850253C97F800616E33 /* TLVObject.swift in Sources */,
 				CE971BD1252CBB2500843943 /* CryptoHandler.swift in Sources */,
 				8E4DCFA425354F8A00726EA8 /* LOGIN_ACCOUNTS.swift in Sources */,
 				46ED34702537207600CEF19D /* ParameterData.swift in Sources */,
@@ -1603,7 +1672,9 @@
 				997DC7E42521EEFC006ADE48 /* CityDataProvider.swift in Sources */,
 				46ADF12425287AF4009A9297 /* DocumentItem.swift in Sources */,
 				99186D4C2511D27F00A9FE07 /* OTPVerificationController.swift in Sources */,
+				8EE328612542AA0E00616E33 /* FIleNameConstants.swift in Sources */,
 				991ADEA925064E2F00932251 /* UIButtonExtension.swift in Sources */,
+				8EF146AD2545259A00C2C26D /* CurrentEMVParDownloadingInfo.swift in Sources */,
 				46ADF10E2528785F009A9297 /* BusinessDetails.swift in Sources */,
 				9919A9C0251A4BA600A67253 /* PackageTableViewCell.swift in Sources */,
 				99186D0E2510922B00A9FE07 /* ShowDialog.swift in Sources */,
@@ -1627,22 +1698,26 @@
 				9919A9A12517528800A67253 /* SearchIFSCViewController.swift in Sources */,
 				99186CEB250A646400A9FE07 /* StatusDemoViewController.swift in Sources */,
 				46BD9B4E251A252C008DEFEA /* ResetPasswordController.swift in Sources */,
+				8EE3285E253ED80700616E33 /* PineKeyInjection.swift in Sources */,
 				99186CD02508F03900A9FE07 /* AccountViewController.swift in Sources */,
 				46461987253314A9009089BC /* DeviceState.swift in Sources */,
 				99186D6F251248EC00A9FE07 /* PersonalInfoViewController.swift in Sources */,
 				46ADF10B25287803009A9297 /* LeadAgreementDetails.swift in Sources */,
 				46ED34762538603A00CEF19D /* AutoGPRSNetworkParams.swift in Sources */,
+				8EE32854253D6B5A00616E33 /* st_ISPASSWORDDetails.swift in Sources */,
 				99186CBA2508C08F00A9FE07 /* EPOSTextField.m in Sources */,
 				46AA3E0A252F24EF005907E1 /* ConnectionTypes.swift in Sources */,
 				46ADF113252878F1009A9297 /* KycDetails.swift in Sources */,
 				46882CDC2538727100C908B2 /* ContentServerParamData.swift in Sources */,
 				997DC7E72521EEFC006ADE48 /* MasterData.swift in Sources */,
 				9919A9992517336F00A67253 /* MerchantDetailsViewController.swift in Sources */,
+				8EE32848253C3A7F00616E33 /* CurrentDownloadingInfo.swift in Sources */,
 				CEB4D2E72536C75700254681 /* TransactionUtils.swift in Sources */,
 				99186CC42508EF5600A9FE07 /* EPOSTabBarViewController.swift in Sources */,
 				991ADEAB250660DB00932251 /* EPOSGradientView.swift in Sources */,
 				9919A9B32519E47900A67253 /* PackageView.swift in Sources */,
 				99186D0F2510922B00A9FE07 /* FailedPopup.swift in Sources */,
+				8EE32856253DF93B00616E33 /* st_TxnTypeFlagsMappingDetails.swift in Sources */,
 				4646198425330B84009089BC /* SignatureParams.swift in Sources */,
 				9919A9A9251770E100A67253 /* IFSCDetailTableViewCell.swift in Sources */,
 				CECC5411252B586B00C0940E /* ISO320HostCommunicationChangeNumberConstants.swift in Sources */,
@@ -1669,6 +1744,7 @@
 				997DC7FA2522345F006ADE48 /* Lead.swift in Sources */,
 				4646198F253578AD009089BC /* CUIHelper.swift in Sources */,
 				991ADEAD250662EF00932251 /* EPOSShadowView.swift in Sources */,
+				8EE3284C253C7D9800616E33 /* PCContentTypeID.swift in Sources */,
 				46161AC525137F56006D2783 /* CommonExtensions.swift in Sources */,
 				9919A9B92519E57B00A67253 /* iCarousel.m in Sources */,
 				46ED34722537212E00CEF19D /* ParameterIDS.swift in Sources */,

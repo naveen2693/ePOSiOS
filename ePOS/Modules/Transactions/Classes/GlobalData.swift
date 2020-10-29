@@ -24,24 +24,28 @@ import Foundation
 //    var m_csFinalMsgDisplay58 = ""
 //
 //=======
-final class GlobalData
+class GlobalData
 {
     var  m_sConxData = StructConxData();
     var  fullSerialNumber:String?
     static var m_sTerminalParamData_Cache: TerminalParamData?
     var m_sMasterParamData: TerminalMasterParamData?
     var m_sPSKData:TerminalPSKData?
-    var m_sAutoReversalParams:AutoReversalParams?;
-    var m_sAutoSettleParams:AutoSettlementParams?;
-    var m_sAutoGprsParams:AutoGPRSNetworkParams?;
-    var m_sAutoPremiumServiceParams:AutoPremiumServiceParams?;
-    var m_sMasterParamData_cache:TerminalMasterParamData?;
+    var m_sAutoReversalParams:AutoReversalParams?
+    var m_sAutoSettleParams:AutoSettlementParams?
+    var m_sAutoGprsParams:AutoGPRSNetworkParams?
+    var m_sAutoPremiumServiceParams:AutoPremiumServiceParams?
+    var m_sMasterParamData_cache:TerminalMasterParamData?
     var m_objCurrentLoggedInAccount: LOGINACCOUNTS?
     static var  m_strIMEI = "";
-    var m_setAdServerHTL:Set<Int64>?
-    var m_strCurrentLoggedInUserPIN: String = ""
+    static var m_setAdServerHTL: Set<Int64>?
+    public var m_strCurrentLoggedInUserPIN: String = ""
     var m_bIsLoggedIn: Bool = false
     var m_csFinalMsgDisplay58: String = ""
+    static var responseCode: String = ""
+    static var m_bIsTxnDeclined: Bool = false;
+    
+    var m_mLoginAccountInfo = [String:LOGINACCOUNTS]()
     
     private init() {}
     private static var _shared: GlobalData?
@@ -86,7 +90,7 @@ final class GlobalData
             conxData.strAPN = AppConstant.strAPN;
             //Write this Info into file
             do{
-                _ = try FileSystem.AppendFile(strFileName: AppConstant.CONNECTIONDATAFILENAME, with: [conxData])}
+                _ = try FileSystem.AppendFile(strFileName: FileNameConstants.CONNECTIONDATAFILENAME, with: [conxData])}
             catch
             {
                 fatalError("File Write Error")
@@ -97,7 +101,7 @@ final class GlobalData
         var tData:TerminalConxData?;
         m_sConxData.m_bArrConnIndex =  StructConnIndex();
         
-        if let listParams:[TerminalConxData] = FileSystem.ReadFile(strFileName: AppConstant.CONNECTIONDATAFILENAME)
+        if let listParams:[TerminalConxData] = FileSystem.ReadFile(strFileName: FileNameConstants.CONNECTIONDATAFILENAME)
         {
             if (listParams.count > 0) {
                 let numberOfRow:Int = listParams.count;
@@ -136,7 +140,7 @@ final class GlobalData
     public class func createDeviceStateFile() {
         let deviceState = DeviceState.S_INITIAL;
         do{
-            _ = try FileSystem.AppendFile(strFileName: AppConstant.DEVICE_STATE, with: [deviceState])
+            _ = try FileSystem.AppendFile(strFileName: FileNameConstants.DEVICE_STATE, with: [deviceState])
         }
         catch {
             fatalError("File Write Error")
@@ -147,12 +151,11 @@ final class GlobalData
     func ReadParamFile() -> TerminalParamData? {
         if (GlobalData.m_sTerminalParamData_Cache == nil) {
             
-            if let m_sTerminalParamData:TerminalParamData = FileSystem.SeekRead(strFileName: AppConst.TERMINALPARAMFILENAME, iOffset: 0)
+            if let m_sTerminalParamData:TerminalParamData = FileSystem.SeekRead(strFileName: FileNameConstants.TERMINALPARAMFILENAME, iOffset: 0)
             {
                 GlobalData.m_sTerminalParamData_Cache = m_sTerminalParamData
             }
         }
-        
         return GlobalData.m_sTerminalParamData_Cache
     }
     
@@ -163,7 +166,7 @@ final class GlobalData
             listTerminalMasterParam.append(masterTerminalData);
             m_sMasterParamData_cache = m_sMasterParamData;//Assigning to cache for future use
             do{
-              _ = try FileSystem.ReWriteFile(strFileName: AppConstant.TERMINALMASTERPARAMFILE, with: listTerminalMasterParam);
+              _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.TERMINALMASTERPARAMFILE, with: listTerminalMasterParam);
             }catch
             {
                 fatalError("ReWriteFile : WriteMasterParamFile")
@@ -185,7 +188,7 @@ final class GlobalData
                 GlobalData.m_sTerminalParamData_Cache = listParamData; //Assigning to cache for future use
                 objTerminalParamData = listParamData!
                 
-                _  = try FileSystem.SeekWrite(strFileName: AppConst.TERMINALPARAMFILENAME, with:
+                _  = try FileSystem.SeekWrite(strFileName: FileNameConstants.TERMINALPARAMFILENAME, with:
                     objTerminalParamData, iOffset: 0)
                 
             }catch
@@ -200,7 +203,7 @@ final class GlobalData
     func  ReadMasterParamFile() -> Int {
         if m_sMasterParamData_cache == nil
         {
-            m_sMasterParamData = FileSystem.SeekRead(strFileName: AppConstant.TERMINALMASTERPARAMFILE, iOffset: 0);
+            m_sMasterParamData = FileSystem.SeekRead(strFileName: FileNameConstants.TERMINALMASTERPARAMFILE, iOffset: 0);
             m_sMasterParamData_cache = m_sMasterParamData;
         }
         else
@@ -239,7 +242,7 @@ final class GlobalData
         objLoginAccounts.pin = CUIHelper.generatePassword(password: AppConstant.DEFAULT_ORDINARY_PIN, uuid: UDID);
         objLoginAccounts.createdBy = "EDC";
         objLoginAccounts.accountType = AppConstant.ORDINARY_USER_TYPE;
-        WriteLoginAccountFile(login_accounts: [objLoginAccounts], fileName: AppConstant.USERINFOFILE);
+        WriteLoginAccountFile(login_accounts: [objLoginAccounts], fileName: FileNameConstants.USERINFOFILE);
         
         var reCreateLoginAccounts =  LoginAccounts();
         reCreateLoginAccounts.createdOn = outputFormatter.string(from:Date())
@@ -248,7 +251,7 @@ final class GlobalData
         reCreateLoginAccounts.pin = CUIHelper.generatePassword(password: AppConstant.DEFAULT_ORDINARY_PIN, uuid: UDID);
         objLoginAccounts.createdBy = "EDC";
         objLoginAccounts.accountType = AppConstant.ADM_USER_TYPE;
-        WriteLoginAccountFile(login_accounts: [reCreateLoginAccounts], fileName: AppConstant.USERINFOFILE);
+        WriteLoginAccountFile(login_accounts: [reCreateLoginAccounts], fileName: FileNameConstants.USERINFOFILE);
         
         return AppConstant.TRUE;
     }
@@ -258,7 +261,7 @@ final class GlobalData
     {
         let list = [Long]();
         do{
-            _ = try FileSystem.ReWriteFile(strFileName: AppConstant.MASTERCGFILE, with:list)
+            _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERCGFILE, with:list)
         }catch{
             fatalError("File Rewrite Error ")
         }
@@ -269,7 +272,7 @@ final class GlobalData
         
         let list = [Long]();
         do{
-            _ = try FileSystem.ReWriteFile(strFileName: AppConstant.MASTERIMFILE, with:list)
+            _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERIMFILE, with:list)
         }catch{
             fatalError("File Rewrite Error ")
         }
@@ -282,7 +285,7 @@ final class GlobalData
         
         let list = [Long]();
         do{
-            _ = try FileSystem.ReWriteFile(strFileName: AppConstant.MASTERCLRDIMFILE, with:list)
+            _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERCLRDIMFILE, with:list)
         }catch{
             fatalError("File Rewrite Error ")
         }
@@ -299,7 +302,7 @@ final class GlobalData
     public func CreateMasterCFGFile() -> Int {
         let list = [Long]();
         do{
-            _ = try FileSystem.ReWriteFile(strFileName: AppConstant.MASTERFCGFILE, with:list)
+            _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERFCGFILE, with:list)
         }catch{
             fatalError("File Rewrite Error ")
         }
@@ -323,7 +326,7 @@ final class GlobalData
         }
         let fontlist = [Fontstruct?](repeating:nil, count:maxCountChargeSlip);
         do{
-            _ = try FileSystem.ReWriteFile(strFileName: AppConstant.MASTERFONTFILE, with: fontlist);
+            _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERFONTFILE, with: fontlist);
         }catch
         {
             fatalError("File Write Error: CreateMasterFONTFile")
@@ -343,7 +346,7 @@ final class GlobalData
         
         let LibList =  [LIBStruct]();
         do{
-            _ =  try FileSystem.ReWriteFile(strFileName: AppConstant.MASTERLIBFILE, with: LibList)
+            _ =  try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERLIBFILE, with: LibList)
         }catch
         {
             fatalError("File ReWrite Error : CreateMasterLIBFile")
@@ -355,7 +358,7 @@ final class GlobalData
     private func CreateMasterMINIPVMFile() -> Int {
         let list = [Long]();
         do{
-            _ = try FileSystem.ReWriteFile(strFileName: AppConstant.MASTERFCGFILE, with:list)
+            _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERFCGFILE, with:list)
         }catch{
             fatalError("File Rewrite Error ")
         }
@@ -478,7 +481,7 @@ final class GlobalData
         m_sMasterParamData.m_iHotKeyConfirmationTimeout = 10;
         
         //Save default parameter data
-        if !(FileSystem.IsFileExist(strFileName: AppConstant.TERMINALMASTERPARAMFILE))
+        if !(FileSystem.IsFileExist(strFileName: FileNameConstants.TERMINALMASTERPARAMFILE))
         {
             _  = WriteMasterParamFile();
         }
@@ -486,54 +489,53 @@ final class GlobalData
         {
             _  =  ReadMasterParamFile();
         }
-        return AppConst.TRUE;
+        return AppConstant.TRUE;
     }
-    
-    
+
     func  CreateAdServerHTLFile() {
-        if FileSystem.IsFileExist(strFileName: AppConstant.MASTERHTLFILE)
+        if FileSystem.IsFileExist(strFileName: FileNameConstants.MASTERHTLFILE)
         {
-            m_setAdServerHTL = Set<Int64>();
-            m_setAdServerHTL?.insert(1001);
-            m_setAdServerHTL?.insert(1021);
-            m_setAdServerHTL?.insert(1112);
-            m_setAdServerHTL?.insert(1555);
-            m_setAdServerHTL?.insert(4001);
-            m_setAdServerHTL?.insert(4003);
-            let llList = [m_setAdServerHTL];
+            GlobalData.m_setAdServerHTL = Set<Int64>();
+            GlobalData.m_setAdServerHTL?.insert(1001);
+            GlobalData.m_setAdServerHTL?.insert(1021);
+            GlobalData.m_setAdServerHTL?.insert(1112);
+            GlobalData.m_setAdServerHTL?.insert(1555);
+            GlobalData.m_setAdServerHTL?.insert(4001);
+            GlobalData.m_setAdServerHTL?.insert(4003);
+            let llList = [GlobalData.m_setAdServerHTL];
             do {
-                _ = try FileSystem.ReWriteFile(strFileName: AppConstant.MASTERHTLFILE, with: llList);
+                _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERHTLFILE, with: llList);
             }catch {
                 fatalError("Rewrite File Error: CreateAdServerHTLFile")
             }
         }
         else {
-            if let readData:[Int64] = FileSystem.ReadFile(strFileName: AppConstant.MASTERHTLFILE){
+            if let readData:[Int64] = FileSystem.ReadFile(strFileName: FileNameConstants.MASTERHTLFILE){
                 for data in readData{
-                    m_setAdServerHTL?.insert(data);
+                    GlobalData.m_setAdServerHTL?.insert(data);
                 }
             }
         }
     }
     
     public  func CreateLogShippingFile() {
-        if FileSystem.IsFileExist(strFileName: AppConstant.AUTOLOGSHIPMENTSMTPCREDENTIAL) {
+        if FileSystem.IsFileExist(strFileName: FileNameConstants.AUTOLOGSHIPMENTSMTPCREDENTIAL) {
             let ObjCred =  AutoLogShippingCredential();
             var sNewAutoCred = [AutoLogShippingCredential]();
             sNewAutoCred.append(ObjCred);
             do{
-                _ = try FileSystem.ReWriteFile(strFileName: AppConstant.AUTOLOGSHIPMENTSMTPCREDENTIAL, with: sNewAutoCred);
+                _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.AUTOLOGSHIPMENTSMTPCREDENTIAL, with: sNewAutoCred);
             }catch{
                 fatalError("Rewrite Error: CreateLogShippingFile")
             }
         }
-        if !(FileSystem.IsFileExist(strFileName: AppConstant.AUTOLOGSHIPMENTFILE))
+        if !(FileSystem.IsFileExist(strFileName: FileNameConstants.AUTOLOGSHIPMENTFILE))
         {
             var sNewAutoParams = [AutoLogShippingParams]();
             let ObjAutoLogShippingParams =  AutoLogShippingParams();
             sNewAutoParams.append(ObjAutoLogShippingParams);
             do{
-                _ = try FileSystem.ReWriteFile(strFileName: AppConstant.AUTOLOGSHIPMENTFILE, with: sNewAutoParams);
+                _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.AUTOLOGSHIPMENTFILE, with: sNewAutoParams);
             }catch{
                 fatalError("Rewrite Error: CreateLogShippingFile")
             }
@@ -545,7 +547,7 @@ final class GlobalData
      * @details Initialize Global variables from files present
      */
     public func InitializeFromDatabase() -> Int {
-        LoadFromFiles();
+        _ = LoadFromFiles();
         return AppConstant.TRUE;
     }
     
@@ -561,7 +563,7 @@ final class GlobalData
         var m_mLoginAccountInfo = Dictionary<String,String>();
         m_sAutoSettleParams = AutoSettlementParams();
         _ = ReadMasterParamFile();
-        if let login_accountsList:[LoginAccounts] = ReadLoginAccountFile(fileName: AppConstant.USERINFOFILE)
+        if let login_accountsList:[LoginAccounts] = ReadLoginAccountFile(fileName: FileNameConstants.USERINFOFILE)
         {
             var numberOfAccounts = 0;
             numberOfAccounts = login_accountsList.count ;
@@ -569,20 +571,20 @@ final class GlobalData
                 m_mLoginAccountInfo["m_strUserID"] =  login_accountsList[value].userID
             }
             
-            m_sAutoSettleParams = FileSystem.SeekRead(strFileName: AppConstant.AUTOSETTLEPARFILE, iOffset: 0);
+            m_sAutoSettleParams = FileSystem.SeekRead(strFileName: FileNameConstants.AUTOSETTLEPARFILE, iOffset: 0);
             LoadConnectionIndex();
-            m_sPSKData = FileSystem.SeekRead(strFileName: AppConstant.PSKSDWNLDFILE, iOffset: 0);
-            _ = FileSystem.DeleteFileComplete(strFileName: AppConstant.TEMPBINRANGEFILE);
+            m_sPSKData = FileSystem.SeekRead(strFileName: FileNameConstants.PSKSDWNLDFILE, iOffset: 0);
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.TEMPBINRANGEFILE);
             if ((m_sMasterParamData?.m_bIsBinRangeChanged) != nil) {
                 _ = SortBinRangeFile();
                 m_sMasterParamData?.m_bIsBinRangeChanged = false;
                 _ =  WriteMasterParamFile();
             }
-            _  = FileSystem.DeleteFileComplete(strFileName: AppConstant.TEMPCSVTXNMAPFILE);
+            _  = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.TEMPCSVTXNMAPFILE);
             
             //Transaction Bin
             //delete temp file if present.
-            _  = FileSystem.DeleteFileComplete(strFileName: AppConstant.TEMPTXNBINFILE);
+            _  = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.TEMPTXNBINFILE);
             //if flag true, sort transaction bin file as it is currently downloaded and update flag.
             if ((m_sMasterParamData?.m_bIsTxnBinChanged) != nil) {
                 _ = SortBinRangeFile();
@@ -597,7 +599,7 @@ final class GlobalData
     public func LoadConnectionIndex() {
         var tData:TerminalConxData?;
         m_sConxData.m_bArrConnIndex = StructConnIndex();
-        if let listParams:[TerminalConxData] = FileSystem.ReadFile(strFileName: AppConstant.CONNECTIONDATAFILENAME){
+        if let listParams:[TerminalConxData] = FileSystem.ReadFile(strFileName: FileNameConstants.CONNECTIONDATAFILENAME){
             let numberOfRow = listParams.count;
             for count in 0...numberOfRow  {
                 tData = listParams[count];
@@ -810,7 +812,7 @@ final class GlobalData
     
     
     public func UpdateSerialIPParameters(ParameterDatas:ParameterData) {
-        if var tData:TerminalConxData = FileSystem.SeekRead(strFileName: AppConstant.CONNECTIONDATAFILENAME, iOffset: m_sConxData.m_bArrConnIndex.CON_SerialIp.index){
+        if var tData:TerminalConxData = FileSystem.SeekRead(strFileName: FileNameConstants.CONNECTIONDATAFILENAME, iOffset: m_sConxData.m_bArrConnIndex.CON_SerialIp.index){
             switch (ParameterDatas.ulParameterId) {
             case ParameterIDs._Serial_Transaction_SSL_IP:
                 if (ParameterDatas.chArrParameterVal.count < AppConstant.MAX_IPADDR_LEN) {
@@ -872,7 +874,7 @@ final class GlobalData
             }
         
         SetConnectionChangedFlag(isChanged: true);
-        _ = FileSystem.SeekWrite(strFileName: AppConstant.CONNECTIONDATAFILENAME, with: tData, iOffset: m_sConxData.m_bArrConnIndex.CON_SerialIp.index);
+        _ = FileSystem.SeekWrite(strFileName: FileNameConstants.CONNECTIONDATAFILENAME, with: tData, iOffset: m_sConxData.m_bArrConnIndex.CON_SerialIp.index);
         }
     }
     
@@ -882,7 +884,7 @@ final class GlobalData
     }
 
     public func UpdateEthernetIPParameters(ParameterDatas:ParameterData) {
-           if var tData:TerminalConxData = FileSystem.SeekRead(strFileName: AppConstant.CONNECTIONDATAFILENAME, iOffset: m_sConxData.m_bArrConnIndex.CON_SerialIp.index){
+           if var tData:TerminalConxData = FileSystem.SeekRead(strFileName: FileNameConstants.CONNECTIONDATAFILENAME, iOffset: m_sConxData.m_bArrConnIndex.CON_SerialIp.index){
                switch (ParameterDatas.ulParameterId) {
                case ParameterIDs._Ethernet_Transaction_SSL_IP:
                    if (ParameterDatas.chArrParameterVal.count < AppConstant.MAX_IPADDR_LEN) {
@@ -921,12 +923,12 @@ final class GlobalData
                }
            
            SetConnectionChangedFlag(isChanged: true);
-           _ = FileSystem.SeekWrite(strFileName: AppConstant.CONNECTIONDATAFILENAME, with: tData, iOffset: m_sConxData.m_bArrConnIndex.CON_SerialIp.index);
+           _ = FileSystem.SeekWrite(strFileName: FileNameConstants.CONNECTIONDATAFILENAME, with: tData, iOffset: m_sConxData.m_bArrConnIndex.CON_SerialIp.index);
            }
        }
     
     public func UpdateGPRSParameters(ParameterDatas:ParameterData) {
-           if var tData:TerminalConxData = FileSystem.SeekRead(strFileName: AppConstant.CONNECTIONDATAFILENAME, iOffset: m_sConxData.m_bArrConnIndex.CON_GPRS.index){
+           if var tData:TerminalConxData = FileSystem.SeekRead(strFileName: FileNameConstants.CONNECTIONDATAFILENAME, iOffset: m_sConxData.m_bArrConnIndex.CON_GPRS.index){
                switch (ParameterDatas.ulParameterId) {
                case ParameterIDs._GPRS_Transaction_SSL_IP:
                    if (ParameterDatas.chArrParameterVal.count < AppConstant.MAX_IPADDR_LEN) {
@@ -1003,7 +1005,7 @@ final class GlobalData
                }
            
              SetConnectionChangedFlag(isChanged: true);
-           _ = FileSystem.SeekWrite(strFileName: AppConstant.CONNECTIONDATAFILENAME, with: tData, iOffset: m_sConxData.m_bArrConnIndex.CON_GPRS.index);
+           _ = FileSystem.SeekWrite(strFileName: FileNameConstants.CONNECTIONDATAFILENAME, with: tData, iOffset: m_sConxData.m_bArrConnIndex.CON_GPRS.index);
            }
        }
     
@@ -1073,7 +1075,7 @@ final class GlobalData
     public func UpdateAutoSettlementParametes(ParameterDatas:ParameterData) {
         var isToUpdate = true;
             //Read file
-        if var sParams:AutoSettlementParams = FileSystem.SeekRead(strFileName: AppConstant.AUTOSETTLEPARFILE, iOffset: 0){
+        if var sParams:AutoSettlementParams = FileSystem.SeekRead(strFileName: FileNameConstants.AUTOSETTLEPARFILE, iOffset: 0){
             switch (ParameterDatas.ulParameterId) {
                 case ParameterIDs._Auto_Settlement_Enabled:
                   sParams.m_iAutoSettlementEnabledflag = (String(ParameterDatas.chArrParameterVal[0]) == "1") ? true : false;
@@ -1111,7 +1113,7 @@ final class GlobalData
     public func UpdateAutoGprsParametes(ParameterDatas:ParameterData) {
             var isToUpdate = true;
                 //Read file
-            if var sParams:[AutoGPRSNetworkParams] = FileSystem.ReadFile(strFileName: AppConstant.AUTOSETTLEPARFILE){
+            if var sParams:[AutoGPRSNetworkParams] = FileSystem.ReadFile(strFileName: FileNameConstants.AUTOSETTLEPARFILE){
                 switch (ParameterDatas.ulParameterId) {
                     case ParameterIDs._Auto_Gprs_Always_On_Enabled:
                       sParams[0].m_bIsAutoGPRSNetworkEnableFlag = (String(ParameterDatas.chArrParameterVal[0]) == "1") ? true : false;
@@ -1138,7 +1140,7 @@ final class GlobalData
     public func UpdateAutoReversalParametes(ParameterDatas:ParameterData) {
             var isToUpdate = true;
                 //Read file
-            if var sParams:AutoReversalParams = FileSystem.SeekRead(strFileName: AppConstant.AUTOREVERSALPARFILE, iOffset: 0){
+            if var sParams:AutoReversalParams = FileSystem.SeekRead(strFileName: FileNameConstants.AUTOREVERSALPARFILE, iOffset: 0){
                 switch (ParameterDatas.ulParameterId) {
                     case ParameterIDs._Auto_Reversal_Enabled:
                       sParams.m_bIsAutoReversalEnableFlag = (String(ParameterDatas.chArrParameterVal[0]) == "1") ? true : false;
@@ -1168,7 +1170,7 @@ final class GlobalData
     public func UpdateAutoPremiumServiceParametes(ParameterDatas:ParameterData) {
             var isToUpdate = true;
                 //Read file
-            if var sParams:[AutoPremiumServiceParams] = FileSystem.ReadFile(strFileName: AppConstant.AUTOPREMIUMSERVICEPARFILE){
+            if var sParams:[AutoPremiumServiceParams] = FileSystem.ReadFile(strFileName: FileNameConstants.AUTOPREMIUMSERVICEPARFILE){
                 switch (ParameterDatas.ulParameterId) {
                     case ParameterIDs._Auto_Premium_Service_Enabled:
                       sParams[0].m_iAutoPremiumServiceEnableFlag = (String(ParameterDatas.chArrParameterVal[0]) == "1") ? true : false;
@@ -1461,7 +1463,7 @@ final class GlobalData
             var listAutoSettleParams = [AutoSettlementParams]();
               listAutoSettleParams.append(newParams);
             do{
-                _ = try FileSystem.ReWriteFile(strFileName: AppConstant.AUTOSETTLEPARFILE, with: listAutoSettleParams);
+                _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.AUTOSETTLEPARFILE, with: listAutoSettleParams);
             }catch
             {
                 
@@ -1473,7 +1475,7 @@ final class GlobalData
                var listParams = [AutoPremiumServiceParams]();
                  listParams.append(newParams);
                do{
-                   _ = try FileSystem.ReWriteFile(strFileName: AppConstant.AUTOPREMIUMSERVICEPARFILE, with: listParams);
+                   _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.AUTOPREMIUMSERVICEPARFILE, with: listParams);
                  m_sAutoPremiumServiceParams = newParams;
                }catch
                {
@@ -1487,7 +1489,7 @@ final class GlobalData
                var listAutoReversalParams = [AutoReversalParams]();
                  listAutoReversalParams.append(newParams);
                do{
-                   _ = try FileSystem.ReWriteFile(strFileName: AppConstant.AUTOREVERSALPARFILE, with: listAutoReversalParams);
+                   _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.AUTOREVERSALPARFILE, with: listAutoReversalParams);
                  m_sAutoReversalParams = newParams;
                }catch
                {
@@ -1506,7 +1508,7 @@ final class GlobalData
                   var listParams = [AutoGPRSNetworkParams]();
                     listParams.append(newParams);
                   do{
-                      _ = try FileSystem.ReWriteFile(strFileName: AppConstant.AUTOGPRSALWAYSONPARFILE, with: listParams);
+                      _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.AUTOGPRSALWAYSONPARFILE, with: listParams)
                     m_sAutoGprsParams = newParams;
                   }catch
                   {
@@ -1516,7 +1518,7 @@ final class GlobalData
               }
     
     public func UpdateSignUploadchksizeOnParameters(ParameterDatas:ParameterData) {
-                  var iHostID = ParameterDatas.uiHostID;
+            //var iHostID = ParameterDatas.uiHostID;
               if var m_sParamData:TerminalParamData = ReadParamFile(){
                      switch (ParameterDatas.ulParameterId) {
                          case ParameterIDs._Sign_Upload_Chunk_size:
@@ -1531,7 +1533,7 @@ final class GlobalData
              }
     
     func  ReadContentServerParamFile() -> ContentServerParamData? {
-        if let t_contentServerParamData:ContentServerParamData = FileSystem.SeekRead(strFileName: AppConstant.CONTENT_SERVER_PARAM_FILE, iOffset: 0)
+        if let t_contentServerParamData:ContentServerParamData = FileSystem.SeekRead(strFileName: FileNameConstants.CONTENT_SERVER_PARAM_FILE, iOffset: 0)
         {
             return t_contentServerParamData;
         }
@@ -1542,7 +1544,7 @@ final class GlobalData
         var listOfObjects = [ContentServerParamData]();
           listOfObjects.append(tContentServerParamData);
         do{
-            _  =  try FileSystem.ReWriteFile(strFileName: AppConstant.CONTENT_SERVER_PARAM_FILE, with: listOfObjects);
+            _  =  try FileSystem.ReWriteFile(strFileName: FileNameConstants.CONTENT_SERVER_PARAM_FILE, with: listOfObjects)
         }
         catch{
             fatalError("ReWriteFile: WriteContentServerParamFile")
@@ -1552,8 +1554,8 @@ final class GlobalData
     
     
     public func UpdateClessDefPreProcessingParameters(ParameterDatas:ParameterData) {
-                     _  = ParameterDatas.uiHostID;
-                    var ulAmount:Int64 = 0x00;
+                _  = ParameterDatas.uiHostID;
+                var ulAmount:Int64 = 0x00;
                  if var m_sParamData:TerminalParamData = ReadParamFile(){
                         switch (ParameterDatas.ulParameterId) {
                             case ParameterIDs._Cless_PreProcessing_Amount:
@@ -1585,7 +1587,7 @@ final class GlobalData
                                 }
                                    
                             case ParameterIDs._CIMB_IS_PASSWORD_SETTLEMENT:
-                                var iIsPasswordRequiredForSettlement = false;
+                               var iIsPasswordRequiredForSettlement = false;
                                   if (Int(UInt32(ParameterDatas.chArrParameterVal)) > 0) {
                                       iIsPasswordRequiredForSettlement = true;
                                   } else {
@@ -1654,8 +1656,8 @@ final class GlobalData
     
     
     public func UpdateISCRISEnabledFlagOnParameters(ParameterDatas:ParameterData) {
-                        var iHostID = ParameterDatas.uiHostID;
-                       var iIsBiometricEnabled:Int = 0x00;
+                        var _ = ParameterDatas.uiHostID;
+                       var _:Int = 0x00;
                     if var m_sParamData:TerminalParamData = ReadParamFile(){
                            switch (ParameterDatas.ulParameterId) {
                                case ParameterIDs._IS_CRIS_SUPPORTED:
@@ -1714,14 +1716,14 @@ final class GlobalData
      * @return
      *******************************************************************************/
     public func SortBinRangeFile() -> Bool {
-        if (true == FileSystem.IsFileExist(strFileName: AppConstant.BINRANGEFILE)) {
-            if let listBinRange:[StBINRange] = FileSystem.ReadFile(strFileName: AppConstant.BINRANGEFILE) {
+        if (true == FileSystem.IsFileExist(strFileName: FileNameConstants.BINRANGEFILE)) {
+            if let listBinRange:[st_BINRange] = FileSystem.ReadFile(strFileName: FileNameConstants.BINRANGEFILE) {
                 let sortedArray = listBinRange.sorted {
                     (obj1, obj2) -> Bool in
                     return obj1.ulBinLow > obj2.ulBinLow
                 }
                 do{
-                    _ = try FileSystem.ReWriteFile(strFileName: AppConstant.BINRANGEFILE, with: sortedArray);
+                    _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.BINRANGEFILE, with: sortedArray);
                 }catch
                 {
                     fatalError("File Rewrite Error:SortBinRangeFile " )
@@ -1895,6 +1897,23 @@ final class GlobalData
         }
         return true;
     }
+    
+    //MARK;- updateCustomProgressDialog(msg: String)
+    static public func updateCustomProgressDialog(msg: String) {
+    //              CStateMachine.m_context_activity.runOnUiThread(new Runnable() {
+    //                  @Override
+    //                  public void run() {
+    //                     /* if(MainActivity.progressDialog != null)
+    //                      {
+    //                          MainActivity.progressDialog.setMessage(msg);
+    //                      }*/
+    //                      UIutils.getInstance().upDateCustomProgress(MainActivity.customProgressDialog, msg);
+    //                  }
+    //              });
+    //          } catch (Exception e) {
+    //          }
+    }
+    
 }
 
 

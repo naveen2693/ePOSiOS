@@ -9,8 +9,8 @@
 import Foundation
 public struct AutoLogShippingCredential:Codable
 {
-    var Hostname = ""
-    var Username = ""
-    var Password = ""
-    var port:Int = 0
+    var Hostname: String = ""
+    var Username: String = ""
+    var Password: String = ""
+    var port: Int = 0
 }

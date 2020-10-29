@@ -7,16 +7,3 @@
 //
 
 import Foundation
-
-class BytesUtil{
-    
-    static func byteArray2HexString(arr: [Byte]) -> String {
-         return "true"
-     }
-    
-    static func bytes2HexString(arr: [Byte]) -> String
-    {
-        return "true"
-    }
-    
-}

@@ -8,8 +8,6 @@
 
 import Foundation
 
-public typealias Byte = UInt8
-
 public class Util
 {
     // MARK:-Open Webview
@@ -41,6 +39,7 @@ public class Util
         
     }
     
+    //MARK:- masterDataDirectoryURL: URL
     static var masterDataDirectoryURL: URL {
         var tempFileLoc = "";
         if let library = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).last {
@@ -59,47 +58,11 @@ public class Util
         return URL(fileURLWithPath: tempFileLoc);
     }
     
+    //MARK:- getUUID() -> String
     static func getUUID() -> String {
         let uuid = UIDevice.current.identifierForVendor
         var newUUID = uuid!.uuidString.removingWhitespaces()
         newUUID = newUUID.replacingOccurrences(of: "-", with: "")
         return newUUID
-    }
-    
-    static func GetHardwareType() -> [Byte]
-     {
-         let strHardwareType: String = AppConst.TERMINAL_TYPE;        
-         return [Byte](strHardwareType.utf8)
-     }
-    
-    static func GetCurrentDateTime() -> [Byte]
-    {
-        let currentDate = Date()
-        let dateFormatter = DateFormatter()
-
-        dateFormatter.dateFormat = "dd/MM/yyyy hh:mm:ss a"
-        let convertedDate: String = dateFormatter.string(from: currentDate)
-        
-        //String formattedDate = new SimpleDateFormat("ddMMyyHHmmss").format(Calendar.getInstance().getTime());
-        return [Byte](convertedDate.utf8)
-    }
-    
-    static func getAppVersion() -> String
-    {
-        return AppConst.APP_VERSION;
-    }
-    
-    static func a2bcd(s : [Byte]) -> [Byte]
-    {
-        return s
-    }
-    
-    static func bcd2a(s: [Byte], len: Int) -> [Byte]
-    {
-        return s
-    }
-    
-    static func bytesToLong(bytes: [Byte]) -> Int64 {
-        return 0
     }
 }

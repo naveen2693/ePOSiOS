@@ -7,7 +7,7 @@
 //
 
 import Foundation
-struct StBINRange:Codable {
+struct st_BINRange:Codable {
      var iKeySlotID = 0 ;
     //int iLenBinMax;
     //int iLenBinMin;

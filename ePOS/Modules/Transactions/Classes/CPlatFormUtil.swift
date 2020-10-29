@@ -10,37 +10,45 @@ import Foundation
 
 public class PlatFormUtils{
     
-public static func getLast8DigitOfIMEINumber() -> String {
-    var last8DigitIMEI = "";
+    //MARK:- getLast8DigitOfIMEINumber() -> String
+    static func getLast8DigitOfIMEINumber() -> String {
+        var last8DigitIMEI = "";
     
-    if let IMEI = GlobalData.singleton.getFullSerialNumber()
-    {
-     last8DigitIMEI =  IMEI.substring(from: (IMEI.count - 8),to: IMEI.count)
+        if let IMEI = GlobalData.singleton.getFullSerialNumber()
+        {
+            last8DigitIMEI =  IMEI.substring(from: (IMEI.count - 8),to: IMEI.count)
+        }
+        return last8DigitIMEI;
     }
-    return last8DigitIMEI;
-}
 
-static func getIMEI() -> String? {
+    //MARK:- getIMEI() -> String?
+    static func getIMEI() -> String? {
         let IMEI = "";
-//        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-//        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-//            ActivityCompat.requestPermissions((Activity) context,
-//                    new String[]{Manifest.permission.READ_PHONE_STATE},
-//                    0);
-//            CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "READ_PHONE_STATE Permission Not Granted ");
-//            return "";
-//        }/*else{*/
-//
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            IMEI = telephonyManager.getImei();
-//        } else {
-//            IMEI = telephonyManager.getDeviceId();
-////            }
-//        }
+        //        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        //        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+        //            ActivityCompat.requestPermissions((Activity) context,
+        //                    new String[]{Manifest.permission.READ_PHONE_STATE},
+        //                    0);
+        //            CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "READ_PHONE_STATE Permission Not Granted ");
+        //            return "";
+        //        }/*else{*/
+        //
+        //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        //            IMEI = telephonyManager.getImei();
+        //        } else {
+        //            IMEI = telephonyManager.getDeviceId();
+        ////            }
+        //        }
         return IMEI;
     }
     
+    //MARK:- installApk(fileName: String) -> Bool
+    static func installApk(fileName: String) -> Bool
+    {
+        return true
+    }
     
+    //MARK:- GetHardWareSerialNumber() -> [Byte]?
     static func GetHardWareSerialNumber() -> [Byte]? {
         do {
            let m_sParamData: TerminalParamData = GlobalData.singleton.ReadParamFile()!
@@ -58,12 +66,19 @@ static func getIMEI() -> String? {
            }
        }
        
-       static func getFullSerialNumber() -> [Byte]?{
-           
-           if let serialNumber = GlobalData.singleton.getFullSerialNumber(){
-            let bSerialNumber = [Byte](serialNumber.utf8)
-           return bSerialNumber
-           }
-           return nil
-       }
+    //MARK:- getFullSerialNumber() -> [Byte]?
+    static func getFullSerialNumber() -> [Byte]?{
+
+        if let serialNumber = GlobalData.singleton.getFullSerialNumber(){
+        let bSerialNumber = [Byte](serialNumber.utf8)
+        return bSerialNumber
+        }
+        return nil
+    }
+    
+    //MARK:- upgradeDll(fileNameList: [String]) -> Bool
+    static func upgradeDll(fileNameList: [String]) -> Bool {
+        return true;
+    }
+    
 }
