@@ -56,6 +56,11 @@ disabled_rules:
     - orphaned_doc_comment
     - fallthrough
     - no_fallthrough_only
+    - lower_acl_than_parent
+    - syntactic_sugar
+    - empty_enum_arguments
+    - closure_parameter_position
+    - unused_closure_parameter
 
 opt_in_rules:
     - array_init

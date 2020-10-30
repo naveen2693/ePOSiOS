@@ -21,7 +21,7 @@ class ISO440Activation : ISOMessage
         }
         
         
-    override func packIt(sendee bArrSendDataToHost: inout[Byte])->Int
+    override func packIt(sendee bArrSendDataToHost: inout[Byte]) -> Int
         {
             
             /*    ***************************************************************************
@@ -51,7 +51,7 @@ class ISO440Activation : ISOMessage
         {
             do
             {
-                debugPrint("nside bFnGetTokenDataForHUB ");
+                debugPrint("Inside bFnGetTokenDataForHUB ");
                 let globalData = GlobalData.singleton
                 var terminalParamData = globalData.ReadParamFile();
                 
@@ -134,7 +134,7 @@ class ISO440Activation : ISOMessage
             }
             catch
             {
-                fatalError()
+                fatalError("Exception in bFnGetTokenDataForHUB()")
                 return false
             }
             

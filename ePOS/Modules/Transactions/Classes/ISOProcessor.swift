@@ -10,7 +10,7 @@ import Foundation
 
 class ISOProcessor
 {
-    func DoHUBActivation()->Bool {
+    func DoHUBActivation() -> Bool {
 
         debugPrint("Inside DoHubActivation")
         //CConx conx = CConx.GetInstance();
@@ -71,7 +71,7 @@ class ISOProcessor
         }
         catch
         {
-            fatalError()
+            fatalError("Exception caught in DoHUBActivation()")
             //conx.disconnect();
             return false
         }

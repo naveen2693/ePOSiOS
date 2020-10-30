@@ -10,7 +10,7 @@ import Foundation
 
 class ISOHandler
 {
-    func sendISOPacket(_ iso: ISOMessage)->Bool {
+    func sendISOPacket(_ iso: ISOMessage) -> Bool {
         do {
             debugPrint("Inside SendISO Packet")
             //CConx conx = CConx.GetInstance();
@@ -72,18 +72,18 @@ class ISOHandler
             return bIssent;
         } catch{
             //CGlobalData.csFinalMsg = "Error in Sending Data to Host";
-            fatalError()
+            fatalError("Exception caught in sendISOPacket")
             return false
         }
 
     }
     
-    func getNextMessage(_ iso:ISOMessage)-> Int{
+    func getNextMessage(_ iso:ISOMessage) -> Int{
 
            do {
                debugPrint("Inside getNextMessage")
                
-              guard let bArrReceivedData = TCPIPCommunicator.singleton.ReceiveDataFromHost()
+            guard TCPIPCommunicator.singleton.ReceiveDataFromHost() != nil
               else {
                     debugPrint("getNextMessage Failed")
                     return 0
@@ -98,7 +98,7 @@ class ISOHandler
            } catch  {
                //CGlobalData.csFinalMsg = "Unknown Error";
                //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(ex));
-               fatalError()
+               fatalError("Exception caught in getNextMessage")
                return 0;
            }
 

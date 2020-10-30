@@ -159,7 +159,7 @@ final class GlobalData
         return AppConstant.TRUE;
     }
                 
-    func WriteParamFile(listParamData: TerminalParamData?) ->Int {
+    func WriteParamFile(listParamData: TerminalParamData?) -> Int {
         var objTerminalParamData: TerminalParamData
         
         if (listParamData == nil) {
@@ -172,7 +172,7 @@ final class GlobalData
                 GlobalData.m_sTerminalParamData_Cache = listParamData; //Assigning to cache for future use
                 objTerminalParamData = listParamData!
                 
-                _  = try FileSystem.SeekWrite(strFileName: FileNameConstants.TERMINALPARAMFILENAME, with:
+                _  = FileSystem.SeekWrite(strFileName: FileNameConstants.TERMINALPARAMFILENAME, with:
                     objTerminalParamData, iOffset: 0)
                 
             }catch
@@ -198,7 +198,6 @@ final class GlobalData
             return (AppConstant.FALSE);
         }
         return (AppConstant.TRUE);
-        return AppConstant.TRUE;
     }
     
     
@@ -241,7 +240,7 @@ final class GlobalData
     }
     
     // MARK:- CreateMasterCGFile
-    public func CreateMasterCGFile() ->Int
+    public func CreateMasterCGFile() -> Int
     {
         let list = [Long]();
         do{
@@ -326,7 +325,7 @@ final class GlobalData
      * @function CreateMasterLIBFile
      * @details Create blank CreateMasterLIBFile
      */
-    public func CreateMasterLIBFile() ->Int {
+    public func CreateMasterLIBFile() -> Int {
         
         let LibList =  [LIBStruct]();
         do{
@@ -415,7 +414,7 @@ final class GlobalData
         m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber[7] = Byte(0xFF);
         
         let strInitialValue = "010101000000";
-        let bArrInitialValue = strInitialValue.bytes;
+        _ = strInitialValue.bytes;
         m_sMasterParamData.m_strBinRangeDownloadDate = strInitialValue;
         m_sMasterParamData.m_bIsBinRangeChanged = false;
         
@@ -1006,7 +1005,6 @@ final class GlobalData
                 {
                     t_contentServerParamData.m_strUploadUrl = bytes
                 }
-                   break
                case ParameterIDs._Content_Server_Download_Apk_Url:
                 if let bytes = String(data: Data(ParameterDatas.chArrParameterVal), encoding: .utf8)
                                {
@@ -1534,7 +1532,7 @@ final class GlobalData
     
     public func UpdateClessDefPreProcessingParameters(ParameterDatas:ParameterData) {
                 _  = ParameterDatas.uiHostID;
-                var ulAmount:Int64 = 0x00;
+                var ulAmount:Int64
                  if var m_sParamData:TerminalParamData = ReadParamFile(){
                         switch (ParameterDatas.ulParameterId) {
                             case ParameterIDs._Cless_PreProcessing_Amount:
@@ -1566,7 +1564,7 @@ final class GlobalData
                                 }
                                    
                             case ParameterIDs._CIMB_IS_PASSWORD_SETTLEMENT:
-                               var iIsPasswordRequiredForSettlement = false;
+                                var iIsPasswordRequiredForSettlement: Bool = false
                                   if (Int(UInt32(ParameterDatas.chArrParameterVal)) > 0) {
                                       iIsPasswordRequiredForSettlement = true;
                                   } else {
@@ -1575,7 +1573,7 @@ final class GlobalData
                                _ =  WriteParamFile(listParamData: m_sParamData)
                                    
                             case ParameterIDs._IS_PASSWORD_NEEDED_FOR_SPECIFIC_TXNS:
-                                   var iIsPasswdNeededForSpecificTxns = false;
+                                var iIsPasswdNeededForSpecificTxns: Bool = false
                                      if (Int(UInt32(ParameterDatas.chArrParameterVal)) > 0) {
                                          iIsPasswdNeededForSpecificTxns = true;
                                      } else {
@@ -1747,7 +1745,7 @@ final class GlobalData
     }
     
     
-    public static func GetTimeIntervalLeftInSecondsAccToFrequency(strEventStartTime:String, iFrequencyInSeconds:Int) ->Int64 {
+    public static func GetTimeIntervalLeftInSecondsAccToFrequency(strEventStartTime:String, iFrequencyInSeconds:Int) -> Int64 {
         var lTimeInterval:Int64 = 0
         if strEventStartTime.isEmpty{
             return -1;
@@ -1804,7 +1802,7 @@ final class GlobalData
      * if currentTime 110000 EventStartTime 220000 then output will be 11*3600 seconds
      * if currentTime 110000 EventStartTime 050000 then output will be 18*3600 seconds
      */
-    public static func GetTimeIntervalLeftInSeconds(strEventStartTime:String) ->Int64 {
+    public static func GetTimeIntervalLeftInSeconds(strEventStartTime:String) -> Int64 {
         var lTimeInterval:Int64 = 0;
         if strEventStartTime.isEmpty {
             return -1;

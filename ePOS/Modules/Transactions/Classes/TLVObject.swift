@@ -24,7 +24,7 @@ class TLVObject: Codable {
 
     static func GetTLVObject(buf: [Byte], iOffset: inout Int, length: Int) -> TLVObject?
     {
-        var outTLV: TLVObject? = nil
+        var outTLV: TLVObject?
         var iLocalOffset: Int = iOffset
 
         if(iLocalOffset < length)
@@ -60,7 +60,7 @@ class TLVObject: Codable {
 
     static func ParseTLVBuffer(buf: [Byte], iOffset: inout Int, length: Int) -> [TLVObject]?
     {
-        var output: [TLVObject?]? = nil
+        var output: [TLVObject?]?
 
         while(iOffset < length)
         {

@@ -43,7 +43,7 @@ class TransactionUtils
     //MARK:- ByteArrayToHexArray(_ buffer: [UInt8]) -> [UInt8]?
     public static func ByteArrayToHexArray(_ buffer: [UInt8]) -> [UInt8]? {
         let string = buffer.toHexString()
-        let hexArray = [UInt8] (string.utf8)
+        let hexArray = [UInt8](string.utf8)
         return hexArray
     }
     

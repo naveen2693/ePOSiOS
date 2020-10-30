@@ -212,60 +212,49 @@ class ISO320Initialization: ISOMessage
         let enumReqType: Int = m_iChangeNumber
         
         switch (enumReqType) {
-            case ISO320ChangeNumberConstants.HOST_PVM_DOWNLOAD:
-                if(m_bCurrentPacketCount == 0) {
-                    updateProgressDialog(msg: "PVM");
-                }
-                else {
-                    let str = "PVM [\(m_bCurrentPacketCount)/\(m_bTotalPacketCount)]"
-                    updateProgressDialog(msg: str)
-                }
-                _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_PVM_DLD_START.utf8), bcd: true);
-                break;
-            case ISO320ChangeNumberConstants.HOST_CHARGESLIP_ID_DOWNLOAD:
+                case ISO320ChangeNumberConstants.HOST_PVM_DOWNLOAD:
+                    if(m_bCurrentPacketCount == 0) {
+                        updateProgressDialog(msg: "PVM");
+                    }
+                    else {
+                        let str = "PVM [\(m_bCurrentPacketCount)/\(m_bTotalPacketCount)]"
+                        updateProgressDialog(msg: str)
+                    }
+                    _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_PVM_DLD_START.utf8), bcd: true);
+                case ISO320ChangeNumberConstants.HOST_CHARGESLIP_ID_DOWNLOAD:
                     updateProgressDialog(msg: "CHARGESLIP ID")
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_CHARGE_SLIP_ID_DLD_START.utf8), bcd: true)
-                    break
                 case ISO320ChangeNumberConstants.HOST_CHARGESLIP_DOWNLOAD:
                     let str = "CHARGESLIP [\(m_ulTotalChargeSlipTemplateAdded + 1)/\(m_ulCountOfChargeSlipIdAdd)]"
                     updateProgressDialog(msg: str)
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_CHARGE_SLIP_DLD_START.utf8), bcd: true)
-                    break
                 case ISO320ChangeNumberConstants.HOST_IMAGE_ID_DOWNLOAD:
                     updateProgressDialog(msg: "IMAGE ID")
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_IMAGE_ID_DOWNLOAD_START.utf8), bcd: true)
-                    break
                 case ISO320ChangeNumberConstants.HOST_IMAGE_DOWNLOAD:
                     let str = "IMAGE [\(m_ulTotalImagesAdded + 1)/\(m_ulCountOfImageIdAdd)]"
                     updateProgressDialog(msg: str)
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_IMAGE_DOWNLOAD_START.utf8), bcd: true)
-                    break
                 case ISO320ChangeNumberConstants.HOST_COLORED_IMAGE_ID_DOWNLOAD:
                     updateProgressDialog(msg: "COLORED_IMAGE ID")
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_COLORED_IMAGE_ID_DOWNLOAD_START.utf8), bcd: true)
-                    break
                 case ISO320ChangeNumberConstants.HOST_COLORED_IMAGE_DOWNLOAD:
                     let str = "COLORED IMAGE [\(m_ulTotalColoredImagesAdded + 1)/\(m_ulCountOfColoredImageIdAdd)]"
                     updateProgressDialog(msg: str)
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_COLORED_IMAGE_DOWNLOAD_START.utf8), bcd: true)
-                    break
                 case ISO320ChangeNumberConstants.HOST_BATCH_ID:
                     updateProgressDialog(msg: "BATCH ID")
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_BATCH_ID.utf8), bcd: true);
-                    break;
                 case ISO320ChangeNumberConstants.HOST_CLOCK_SYNC:
                     updateProgressDialog(msg: "CLOCK SYNC");
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_CLOCK_SYNC_START.utf8), bcd: true);
-                    break;
                 case ISO320ChangeNumberConstants.HOST_MESSAGE_ID_LIST_DOWNLOAD:
                     updateProgressDialog(msg: "MESSAGE IDS");
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_MESSAGE_ID_LIST_DLD_START.utf8), bcd: true)
-                    break;
                 case ISO320ChangeNumberConstants.HOST_MESSAGE_DOWNLOAD:
                     let str = "MESSAGE [\(m_ulTotalMessagesAdded + 1)/\(m_ulCountOfMessageIdAdd)]"
                     updateProgressDialog(msg: str);
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_MESSAGE_DLD_START.utf8), bcd: true)
-                    break;
                 case ISO320ChangeNumberConstants.HOST_PARAMETERS_DOWNLOAD:
                     if(m_bCurrentPacketCount == 0) {
                         updateProgressDialog(msg: "PARAMETERS")
@@ -275,7 +264,6 @@ class ISO320Initialization: ISOMessage
                         updateProgressDialog(msg: str)
                     }
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_PARAMETER_START.utf8), bcd: true)
-                    break;
                 case ISO320ChangeNumberConstants.EMV_PARM_DWONLOAD:
                     if(m_bCurrentPacketCount == 0) {
                         updateProgressDialog(msg: "EMV PARAM")
@@ -285,11 +273,9 @@ class ISO320Initialization: ISOMessage
                         updateProgressDialog(msg: str)
                     }
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_EMV_PARAM_START.utf8), bcd: true)
-                    break;
                 case ISO320ChangeNumberConstants.HUB_PARM_UPLOAD:
                     updateProgressDialog(msg: "PARAM UPLOAD")
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_PARAMETER_UPLOAD_START.utf8), bcd: true)
-                    break;
                 case ISO320ChangeNumberConstants.HUB_PARM_DOWNLOAD:
                     if(m_bCurrentPacketCount == 0) {
                         updateProgressDialog(msg: "PARAM DOWNLOAD")
@@ -299,18 +285,15 @@ class ISO320Initialization: ISOMessage
                         updateProgressDialog(msg: str)
                     }
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_PARAMETER_DOWNLOAD_START.utf8), bcd: true)
-                    break
 
                 case ISO320ChangeNumberConstants.HUB_PINEKEY_EXCHANGE:
                     let iTotalCount: Int = ISO320PineKeyExchangeChangeNum.END_SESSION
                     let str = "PINE KEY EXCHANGE [\(m_iPKExchangePacketNumber)/\(iTotalCount)]"
                     updateProgressDialog(msg: str)
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_PINEKEY_EXCHANGE_START.utf8), bcd: true)
-                    break;
                 case ISO320ChangeNumberConstants.HUB_GET_PINE_SESSION_KEY:
                     updateProgressDialog(msg: "SESSION KEY");
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_GETPSK_START.utf8), bcd: true)
-                    break;
                 case ISO320ChangeNumberConstants.HUB_GET_BIN_RANGE:
                     if(m_bCurrentPacketCount == 0) {
                         updateProgressDialog(msg: "BIN RANGE");
@@ -319,8 +302,7 @@ class ISO320Initialization: ISOMessage
                         let str = "BIN RANGE [\(m_bCurrentPacketCount)/\(m_bTotalPacketCount)]"
                         updateProgressDialog(msg: str)
                     }
-                    _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3,data1: [Byte](ProcessingCodeConstants.PC_GETBINRANGE_START.utf8), bcd: true);
-                    break;
+                    _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3,data1: [Byte](ProcessingCodeConstants.PC_GETBINRANGE_START.utf8), bcd: true)
                 case ISO320ChangeNumberConstants.HUB_GET_CSV_TXN_MAP:
                     if(m_bCurrentPacketCount == 0) {
                         updateProgressDialog(msg: "CSV TXN MAP");
@@ -329,8 +311,7 @@ class ISO320Initialization: ISOMessage
                         let str = "CSV TXN MAP [\(m_bCurrentPacketCount)/\(m_bTotalPacketCount)]"
                         updateProgressDialog(msg: str)
                     }
-                    _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_GETCSVTXNMAP_START.utf8), bcd: true);
-                    break;
+                    _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_GETCSVTXNMAP_START.utf8), bcd: true)
                 case ISO320ChangeNumberConstants.HUB_GET_CACRT:
                     if(m_bCurrentPacketCount == 0) {
                         updateProgressDialog(msg: "CA CRT");
@@ -340,7 +321,6 @@ class ISO320Initialization: ISOMessage
                         updateProgressDialog(msg: str)
                     }
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_GETCACRT_START.utf8), bcd: true)
-                    break
                 case ISO320ChangeNumberConstants.HUB_GET_TXN_BIN:
                     if(m_bCurrentPacketCount == 0) {
                         updateProgressDialog(msg: "TXN BIN");
@@ -350,7 +330,6 @@ class ISO320Initialization: ISOMessage
                         updateProgressDialog(msg: str)
                     }
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_GETTXNBIN_START.utf8), bcd: true)
-                    break;
                 case ISO320ChangeNumberConstants.HUB_GET_IGNORE_AMT_CSV_TXN_LIST:
                     if(m_bCurrentPacketCount == 0) {
                         updateProgressDialog(msg: "IGNORE AMT CSV");
@@ -360,7 +339,6 @@ class ISO320Initialization: ISOMessage
                         updateProgressDialog(msg: str)
                     }
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_IGNORE_AMOUNT_CSV_MAP_START.utf8), bcd: true)
-                    break;
                 case ISO320ChangeNumberConstants.HUB_GET_EDC_APP_DOWNLOAD:
                     if(m_bCurrentPacketCount == 0) {
                         updateProgressDialog(msg: "EDC APP DOWNLOAD");
@@ -370,17 +348,14 @@ class ISO320Initialization: ISOMessage
                         updateProgressDialog(msg: str)
                     }
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_EDC_APP_DOWNLOAD_START.utf8), bcd: true)
-                    break;
                 case ISO320ChangeNumberConstants.EDC_FIXED_CHARGESLIP_ID_DOWNLOAD:
                     updateProgressDialog(msg: "FIXED CHARGESLIP ID");
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3,data1: [Byte](ProcessingCodeConstants.PC_EDC_REQUIRED_FIXED_CHARGESLIP_ID_LIST_DOWNLOAD_START.utf8), bcd: true);
-                    break;
                 case ISO320ChangeNumberConstants.EDC_FIXED_CHARGESLIP_DOWNLOAD:
                     let str = "FIXED CHARGESLIP DWND [\(m_ulTotalFixedChargeSlipAdded + 1)/\(m_ulCountOfFixedChargeSlipIdAdd)]"
                     updateProgressDialog(msg: str)
                     
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_EDC_REQUIRED_FIXED_CHARGESLIP_ID_DOWNLOAD_START.utf8), bcd: true)
-                    break;
                 case ISO320ChangeNumberConstants.HUB_GET_EMV_TAG_LIST:
                     if(m_bCurrentPacketCount == 0) {
                         updateProgressDialog(msg: "EMV TAG LIST")
@@ -390,7 +365,6 @@ class ISO320Initialization: ISOMessage
                         updateProgressDialog(msg: str)
                     }
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_EDC_REQUIRED_EMV_TAGS_DOWNLOAD_START.utf8), bcd: true)
-                    break;
                 case ISO320ChangeNumberConstants.HUB_GET_CLESSPARAM:
                     if(m_bCurrentPacketCount == 0) {
                         updateProgressDialog(msg: "CLESS PARAM")
@@ -400,7 +374,6 @@ class ISO320Initialization: ISOMessage
                         updateProgressDialog(msg: str)
                     }
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_EDC_CLESSPARAM_UPDATE_START.utf8), bcd: true)
-                    break;
                 case ISO320ChangeNumberConstants.HUB_GET_CLESS_UPLOAD:
                     if(m_bCurrentPacketCount == 0) {
                         updateProgressDialog(msg: "CLESS UPLOAD")
@@ -410,7 +383,6 @@ class ISO320Initialization: ISOMessage
                         updateProgressDialog(msg: str)
                     }
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_EDC_CLESSPARAM_UPLOAD_START.utf8), bcd: true)
-                    break;
                 case ISO320ChangeNumberConstants.CLESS_PARM_DWONLOAD:
                     if(m_bCurrentPacketCount == 0) {
                         updateProgressDialog(msg: "CLESS XML")
@@ -420,7 +392,6 @@ class ISO320Initialization: ISOMessage
                         updateProgressDialog(msg: str)
                     }
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_EDC_CLESSXML_UPDATE_START.utf8), bcd: true);
-                    break;
                 case ISO320ChangeNumberConstants.EDC_PRINTING_LOCATION_DOWNLOAD:
                     if(m_bCurrentPacketCount == 0) {
                         updateProgressDialog(msg: "EDC PRINTING LOCATION");
@@ -430,7 +401,6 @@ class ISO320Initialization: ISOMessage
                         updateProgressDialog(msg: str)
                     }
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_EDC_PRINTING_LOCATION_DOWNLOAD_START.utf8), bcd: true);
-                    break;
                 case ISO320ChangeNumberConstants.EDC_AID_EMV_TXNTYPE_DOWNLOAD:
                     if(m_bCurrentPacketCount == 0) {
                         updateProgressDialog(msg: "AID EMV TXN TYPE");
@@ -440,7 +410,6 @@ class ISO320Initialization: ISOMessage
                         updateProgressDialog(msg: str)
                     }
                     _ =  addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_EDC_AID_EMV_TXNTYPE_DOWNLOAD_START.utf8), bcd: true);
-                    break;
                 case ISO320ChangeNumberConstants.EDC_TXN_TYPE_FLAGS_MAPPING_DOWNLOAD:
                     if(m_bCurrentPacketCount == 0) {
                         updateProgressDialog(msg: "TXN TYPE FLAGS DOWNLOAD");
@@ -450,25 +419,20 @@ class ISO320Initialization: ISOMessage
                         updateProgressDialog(msg: str)
                     }
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_EDC_TXN_TYPE_FLAGS_DOWNLOAD_START.utf8), bcd: true);
-                    break;
                 case ISO320ChangeNumberConstants.EDC_LIB_LIST_DOWNLOAD:
                     updateProgressDialog(msg: "EDC LIB LIST");
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_EDC_LIB_LIST_DOWNLOAD_START.utf8), bcd: true)
-                    break;
                 case ISO320ChangeNumberConstants.EDC_LIB_DOWNLOAD:
                     let str = "EDC LIB [\(m_ulTotallibAdded + 1)/\(m_ulCountOflibIdAdd)]"
                     updateProgressDialog(msg: str)
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_EDC_LIB_DOWNLOAD_START.utf8), bcd: true)
-                    break;
                 case ISO320ChangeNumberConstants.HOST_MINIPVM_ID_DOWNLOAD:
                     updateProgressDialog(msg: "MINIPVM ID");
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_CIMB_MINIPVM_ID_DOWNLOAD_START.utf8), bcd: true)
-                    break;
                 case ISO320ChangeNumberConstants.HOST_MINIPVM_DOWNLOAD:
                     let str = "MINIPVM [\(m_ulTotalMINIPVMAdded + 1)/\(m_ulCountOfMINIPVMIdAdd)]"
                     updateProgressDialog(msg: str)
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_CIMB_MINIPVM_DOWNLOAD_START.utf8), bcd: true)
-                    break;
                 case ISO320ChangeNumberConstants.CSV_TXN_TYPE_MINIPVM_MAPPING_DOWNLOAD:
                     if(m_bCurrentPacketCount == 0) {
                         updateProgressDialog(msg: "TXN TYPE MINIPVM MAPPING");
@@ -478,7 +442,6 @@ class ISO320Initialization: ISOMessage
                         updateProgressDialog(msg: str)
                     }
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_EDC_CSV_TXN_TYPE_MINIPVM_MAPPING_DOWNLOAD_START.utf8), bcd: true);
-                    break;
                 case ISO320ChangeNumberConstants.EDC_ISPASSWORD_TXN_MAPPING_DOWNLOAD:
                     if(m_bCurrentPacketCount == 0) {
                         updateProgressDialog(msg: "TXN TYPE PASSWORD MAPPING");
@@ -488,7 +451,6 @@ class ISO320Initialization: ISOMessage
                         updateProgressDialog(msg: str)
                     }
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_EDC_TXN_TYPE_PASSWORD_MAPPING_DOWNLOAD_START.utf8), bcd: true);
-                    break;
                 case ISO320ChangeNumberConstants.EDC_LOG_SHIPPING_DETAILS_DOWNLOAD:
                     if(m_bCurrentPacketCount == 0) {
                         updateProgressDialog(msg: "LOG SHIPPING DETAILS");
@@ -498,7 +460,6 @@ class ISO320Initialization: ISOMessage
                         updateProgressDialog(msg: str)
                     }
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_EDC_LOG_SHIPPING_DETAILS_DOWNLOAD_START.utf8), bcd: true);
-                    break;
                 case ISO320ChangeNumberConstants.AD_SERVER_HTL_SYNC:
                     if(m_bCurrentPacketCount == 0) {
                         updateProgressDialog(msg: "AD SERVER HTL SYNC");
@@ -508,7 +469,6 @@ class ISO320Initialization: ISOMessage
                         updateProgressDialog(msg: str)
                     }
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_AD_SERVER_HTL_SYNC_START.utf8), bcd: true)
-                    break;
                 case ISO320ChangeNumberConstants.USER_INFO_SYNC:
                     if(m_bCurrentPacketCount == 0) {
                         updateProgressDialog(msg: "USER INFO SYNC");
@@ -518,7 +478,6 @@ class ISO320Initialization: ISOMessage
                         updateProgressDialog(msg: str)
                     }
                     _ = addField(bitno: ISOFieldConstants.ISO_FIELD_3, data1: [Byte](ProcessingCodeConstants.PC_USER_INFO_SYNC_START.utf8), bcd: true)
-                    break;
                 //Content Server Changes for PC Starts
                 case ISO320ChangeNumberConstants.HOST_CONTENT_DOWNLOAD:
                     updateProgressDialog(msg: "CONTENT SYNC FROM PC");
@@ -569,7 +528,6 @@ class ISO320Initialization: ISOMessage
                     {
                         //Will add logging
                     }
-                    break;
                 //Content Server Changes for PC Ends
                 default:
                     break;
@@ -1393,7 +1351,6 @@ class ISO320Initialization: ISOMessage
                         m_bTotalPacketCount = 0
                         m_iChangeNumber += 1
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.HOST_CHARGESLIP_ID_DOWNLOAD:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CHARGE_SLIP_ID_DLD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CHARGE_SLIP_ID_DLD_END, iLen: 6) == 0)) {
@@ -1412,7 +1369,6 @@ class ISO320Initialization: ISOMessage
                             m_iChangeNumber += 1            //skip the download of charge slip templates.
                         }
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.HOST_CHARGESLIP_DOWNLOAD:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CHARGE_SLIP_DLD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CHARGE_SLIP_DLD_END, iLen: 6) == 0)) {
@@ -1435,7 +1391,6 @@ class ISO320Initialization: ISOMessage
                         
                         _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.TEMPCGFILE)
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.HOST_IMAGE_ID_DOWNLOAD:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_IMAGE_ID_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_IMAGE_ID_DOWNLOAD_END, iLen: 6) == 0)) {
@@ -1453,7 +1408,6 @@ class ISO320Initialization: ISOMessage
                             m_iChangeNumber += 1 //skip the download of charge slip templates.
                         }
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.HOST_IMAGE_DOWNLOAD:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_IMAGE_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_IMAGE_DOWNLOAD_END, iLen: 6) == 0)) {
@@ -1479,7 +1433,6 @@ class ISO320Initialization: ISOMessage
                         m_bCurrentPacketCount = 0
                         m_bTotalPacketCount = 0
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.HOST_COLORED_IMAGE_ID_DOWNLOAD:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_COLORED_IMAGE_ID_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_COLORED_IMAGE_ID_DOWNLOAD_END, iLen: 6) == 0)) {
@@ -1497,7 +1450,6 @@ class ISO320Initialization: ISOMessage
                             m_iChangeNumber += 1 //skip the download of charge slip templates.
                         }
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.HOST_COLORED_IMAGE_DOWNLOAD:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_COLORED_IMAGE_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_COLORED_IMAGE_DOWNLOAD_END, iLen: 6) == 0)) {
@@ -1522,7 +1474,6 @@ class ISO320Initialization: ISOMessage
                         m_bCurrentPacketCount = 0
                         m_bTotalPacketCount = 0
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.HOST_BATCH_ID:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_BATCH_ID, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_BATCH_ID_END, iLen: 6) == 0)) {
@@ -1534,7 +1485,6 @@ class ISO320Initialization: ISOMessage
                         //Update Batch ID
                         m_iChangeNumber += 1
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.HOST_CLOCK_SYNC:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CLOCK_SYNC_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CLOCK_SYNC_END, iLen: 6) == 0)) {
@@ -1545,7 +1495,6 @@ class ISO320Initialization: ISOMessage
                     if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CLOCK_SYNC_END, iLen: 6) == 0) {
                         m_iChangeNumber += 1
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.HOST_MESSAGE_ID_LIST_DOWNLOAD:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_MESSAGE_ID_LIST_DLD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_MESSAGE_ID_LIST_DLD_END, iLen: 6) == 0)) {
@@ -1564,7 +1513,6 @@ class ISO320Initialization: ISOMessage
                             m_iChangeNumber += 1 //skip the download messages
                         }
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.HOST_MESSAGE_DOWNLOAD:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_MESSAGE_DLD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_MESSAGE_DLD_END, iLen: 6) == 0)) {
@@ -1593,7 +1541,6 @@ class ISO320Initialization: ISOMessage
                         m_bCurrentPacketCount = 0;
                         m_bTotalPacketCount = 0;
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.HOST_PARAMETERS_DOWNLOAD:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_PARAMETER_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_PARAMETER_END, iLen: 6) == 0)) {
@@ -1607,8 +1554,7 @@ class ISO320Initialization: ISOMessage
                         _ = CheckForParameterUpdate()
                         ProcessParameterDownloadDateTime()
                     }
-                    break;
-
+ 
                 case ISO320ChangeNumberConstants.EMV_PARM_DWONLOAD:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EMV_PARAM_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EMV_PARAM_END, iLen: 6) == 0))
                     {
@@ -1644,7 +1590,6 @@ class ISO320Initialization: ISOMessage
                         m_bTotalPacketCount = 0
                         m_iChangeNumber += 1
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.HUB_PARM_UPLOAD:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_PARAMETER_UPLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_PARAMETER_UPLOAD_END, iLen: 6) == 0))
@@ -1663,7 +1608,6 @@ class ISO320Initialization: ISOMessage
                             m_iChangeNumber += 1
                         }
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.HUB_PARM_DOWNLOAD:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_PARAMETER_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_PARAMETER_DOWNLOAD_END, iLen: 6) == 0))
@@ -1694,7 +1638,6 @@ class ISO320Initialization: ISOMessage
                             m_iChangeNumber += 1
                         }
                     }
-                    break;
                 case ISO320ChangeNumberConstants.HUB_PINEKEY_EXCHANGE:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_PINEKEY_EXCHANGE_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_PINEKEY_EXCHANGE_END, iLen: 6) == 0))
                     {
@@ -1702,7 +1645,6 @@ class ISO320Initialization: ISOMessage
                     }else{
                         debugPrint("WRONG PROC CODE")
                     }
-                    break
 
                 case ISO320ChangeNumberConstants.HUB_GET_PINE_SESSION_KEY:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETPSK_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETPSK_END, iLen: 6) == 0))
@@ -1715,7 +1657,6 @@ class ISO320Initialization: ISOMessage
                     if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETPSK_END, iLen: 6) == 0) {
                         m_iChangeNumber += 1
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.HUB_GET_BIN_RANGE:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETBINRANGE_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETBINRANGE_END, iLen: 6) == 0))
@@ -1728,7 +1669,6 @@ class ISO320Initialization: ISOMessage
                         m_iChangeNumber += 1
                         ProcessBinRangeDateTime()
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.HUB_GET_CSV_TXN_MAP:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETCSVTXNMAP_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETCSVTXNMAP_END, iLen: 6) == 0))
@@ -1742,7 +1682,6 @@ class ISO320Initialization: ISOMessage
                         m_iChangeNumber += 1
                         ProcessCSVTxnMapVersion()
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.HUB_GET_CACRT:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETCACRT_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETCACRT_END, iLen: 6) == 0))
@@ -1768,7 +1707,6 @@ class ISO320Initialization: ISOMessage
                         m_bTotalPacketCount = 0
                         m_iChangeNumber += 1
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.HUB_GET_TXN_BIN:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETTXNBIN_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETTXNBIN_END, iLen: 6) == 0))
@@ -1780,7 +1718,6 @@ class ISO320Initialization: ISOMessage
                         m_iChangeNumber += 1
                         ProcessTxnBinDateTime()
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.HUB_GET_IGNORE_AMT_CSV_TXN_LIST:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_IGNORE_AMOUNT_CSV_MAP_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_IGNORE_AMOUNT_CSV_MAP_END, iLen: 6) == 0))
@@ -1792,7 +1729,6 @@ class ISO320Initialization: ISOMessage
                         m_iChangeNumber += 1
                         ProcessCSVTxnIgnoreAmtDateTime()
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.HUB_GET_EDC_APP_DOWNLOAD:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_APP_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_APP_DOWNLOAD_END, iLen: 6) == 0))
@@ -1817,7 +1753,6 @@ class ISO320Initialization: ISOMessage
                         m_bTotalPacketCount = 0
                         m_iChangeNumber += 1
                     }
-                    break;
                 case ISO320ChangeNumberConstants.EDC_FIXED_CHARGESLIP_ID_DOWNLOAD://for dynamic chargeslip format
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_REQUIRED_FIXED_CHARGESLIP_ID_LIST_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_REQUIRED_FIXED_CHARGESLIP_ID_LIST_DOWNLOAD_END, iLen: 6) == 0)) {
                         if (bitmap[61 - 1] && bitmap[53 - 1]) {
@@ -1834,7 +1769,6 @@ class ISO320Initialization: ISOMessage
                             m_iChangeNumber += 1 //skip the download of charge slip templates.
                         }
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.EDC_FIXED_CHARGESLIP_DOWNLOAD://for dynamic chargeslip format
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_REQUIRED_FIXED_CHARGESLIP_ID_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_REQUIRED_FIXED_CHARGESLIP_ID_DOWNLOAD_END, iLen: 6) == 0)) {
@@ -1861,8 +1795,7 @@ class ISO320Initialization: ISOMessage
                         m_bCurrentPacketCount = 0
                         m_bTotalPacketCount = 0
                     }
-                    break;
-                case ISO320ChangeNumberConstants.HUB_GET_CLESSPARAM://amitesh::CLess Param download
+        case ISO320ChangeNumberConstants.HUB_GET_CLESSPARAM: break//amitesh::CLess Param download
                  /*   if ((memcmp(new String(data[3-1]), PC_EDC_CLESSPARAM_UPDATE_START, 6) == 0) || (memcmp(new String(data[3-1]), PC_EDC_CLESSPARAM_UPADTE_END, 6) == 0))
                     {
                         if (bitmap[61 - 1])
@@ -1878,7 +1811,6 @@ class ISO320Initialization: ISOMessage
                         }
                     }*/
 
-                    break;
 
                 case ISO320ChangeNumberConstants.HUB_GET_CLESS_UPLOAD://amitesh::for cless param  upload
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_CLESSPARAM_UPLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_CLESSPARAM_UPLOAD_END, iLen: 6) == 0))
@@ -1895,7 +1827,6 @@ class ISO320Initialization: ISOMessage
                     }else{
                         debugPrint("WRONG PROC CODE")
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.CLESS_PARM_DWONLOAD:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_CLESSXML_UPDATE_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_CLESSXML_UPADTE_END, iLen: 6) == 0))
@@ -1926,7 +1857,6 @@ class ISO320Initialization: ISOMessage
                         m_bTotalPacketCount = 0;
                         m_iChangeNumber += 1
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.HUB_GET_EMV_TAG_LIST://amitesh::EMV TAG List download
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_REQUIRED_EMV_TAGS_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_REQUIRED_EMV_TAGS_DOWNLOAD_END, iLen: 6) == 0))
@@ -1943,7 +1873,6 @@ class ISO320Initialization: ISOMessage
                     else{
                         debugPrint("WRONG PROC CODE");
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.EDC_PRINTING_LOCATION_DOWNLOAD:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_PRINTING_LOCATION_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_PRINTING_LOCATION_DOWNLOAD_END, iLen: 6) == 0))
@@ -1957,7 +1886,6 @@ class ISO320Initialization: ISOMessage
                     {
                         m_iChangeNumber += 1
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.EDC_AID_EMV_TXNTYPE_DOWNLOAD:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_AID_EMV_TXNTYPE_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_AID_EMV_TXNTYPE_DOWNLOAD_END, iLen: 6) == 0))
@@ -1976,7 +1904,6 @@ class ISO320Initialization: ISOMessage
                         ProcessAIDEMVTXNTYPEDateTime()
                         m_iChangeNumber += 1
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.EDC_TXN_TYPE_FLAGS_MAPPING_DOWNLOAD:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_TXN_TYPE_FLAGS_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_TXN_TYPE_FLAGS_DOWNLOAD_END, iLen: 6) == 0))
@@ -1995,7 +1922,6 @@ class ISO320Initialization: ISOMessage
                         ProcessTxnTypeFlagsMappingDateTime()
                         m_iChangeNumber += 1
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.EDC_LIB_LIST_DOWNLOAD:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_LIB_LIST_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_LIB_LIST_DOWNLOAD_END, iLen: 6) == 0)) {
@@ -2013,7 +1939,6 @@ class ISO320Initialization: ISOMessage
                             m_iChangeNumber += 1 //skip the download of lib file.
                         }
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.EDC_LIB_DOWNLOAD:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_LIB_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_LIB_DOWNLOAD_END, iLen: 6) == 0)) {
@@ -2106,7 +2031,6 @@ class ISO320Initialization: ISOMessage
 
                     m_bCurrentPacketCount = 0;
                     m_bTotalPacketCount = 0;
-                    break;
 
                 case ISO320ChangeNumberConstants.HOST_MINIPVM_ID_DOWNLOAD:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CIMB_MINIPVM_ID_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CIMB_MINIPVM_ID_DOWNLOAD_END, iLen: 6) == 0)) {
@@ -2125,7 +2049,6 @@ class ISO320Initialization: ISOMessage
                             m_iChangeNumber += 1 //skip the download of charge slip templates.
                         }
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.HOST_MINIPVM_DOWNLOAD:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CIMB_MINIPVM_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CIMB_MINIPVM_DOWNLOAD_END, iLen: 6) == 0)) {
@@ -2152,7 +2075,6 @@ class ISO320Initialization: ISOMessage
                         m_bCurrentPacketCount = 0
                         m_bTotalPacketCount = 0
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.CSV_TXN_TYPE_MINIPVM_MAPPING_DOWNLOAD:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_CSV_TXN_TYPE_MINIPVM_MAPPING_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_CSV_TXN_TYPE_MINIPVM_DOWNLOAD_END, iLen: 6) == 0))
@@ -2169,7 +2091,6 @@ class ISO320Initialization: ISOMessage
                         ProcessCSVTxnTypeMiniPvmMappingDateTime()
                         m_iChangeNumber += 1
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.EDC_ISPASSWORD_TXN_MAPPING_DOWNLOAD:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_EDC_TXN_TYPE_PASSWORD_MAPPING_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_EDC_TXN_TYPE_PASSWORD_MAPPING_DOWNLOAD_END, iLen: 6) == 0))
@@ -2185,7 +2106,6 @@ class ISO320Initialization: ISOMessage
                         ProcessISPasswordDateTime()
                         m_iChangeNumber += 1
                     }
-                    break;
 
                 case ISO320ChangeNumberConstants.EDC_LOG_SHIPPING_DETAILS_DOWNLOAD:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_EDC_LOG_SHIPPING_DETAILS_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_EDC_LOG_SHIPPING_DETAILS_DOWNLOAD_END, iLen: 6) == 0))
@@ -2206,7 +2126,6 @@ class ISO320Initialization: ISOMessage
     //                        m_iChangeNumber += 2;
     //                    }
                     }
-                    break;
                 case ISO320ChangeNumberConstants.AD_SERVER_HTL_SYNC:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_AD_SERVER_HTL_SYNC_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_AD_SERVER_HTL_SYNC_END, iLen: 6) == 0))
                     {
@@ -2218,7 +2137,6 @@ class ISO320Initialization: ISOMessage
                         SaveAdServerHTLSync();
                         m_iChangeNumber += 1
                     }
-                    break;
                 case ISO320ChangeNumberConstants.USER_INFO_SYNC:
                     if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_USER_INFO_SYNC_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_USER_INFO_SYNC_END, iLen: 6) == 0))
                     {
@@ -2230,7 +2148,6 @@ class ISO320Initialization: ISOMessage
                         SaveUserInfoSync();
                         m_iChangeNumber += 1
                     }
-                    break;
                 //Content Server Changes for PC Starts
                 case ISO320ChangeNumberConstants.HOST_CONTENT_DOWNLOAD:
                     if(CConx.isSerial())
@@ -2347,12 +2264,9 @@ class ISO320Initialization: ISOMessage
                     {
                         debugPrint("NOT A SERIAL CONNECTION")
                     }
-                    break
                 //Content Server Changes for PC Ends
                 default:
                     debugPrint("m_iChangeNumber WRONG")
-                    break
-
             }//switch ends
         
         return true;
@@ -6201,24 +6115,18 @@ class ISO320Initialization: ISOMessage
             switch (m_iHostUploadPacketNumber) {
             case ISO320HostUploadChangeNum.SERIAL_UPLOAD_PACKET:
                     getSerialParameters()
-                    break;
                 case ISO320HostUploadChangeNum.GPRS_UPLOAD_PACKET:
                     getGPRSParameters()
-                    break;
                 case ISO320HostUploadChangeNum.ETHERNET_UPLOAD_PACKET:
                     getEthernetParameters()
-                    break;
                 case ISO320HostUploadChangeNum.TERMINAL_PARAM_UPLOAD_PACKET:
                     getTerminalParameters()
-                    break;
                 case ISO320HostUploadChangeNum.MASTER_PARAM_UPLOAD_PACKET:
                     getTerminalMasterParameters()
-                    break;
                 case ISO320HostUploadChangeNum.AUTOSETTLE_UPLOAD_PACKET:
                     getAutoSettlementParameters()
-                    break;
                 default:
-                    break;
+                    break
             }
             if(m_iOffsetBuffer <= 0){
                 m_iHostUploadPacketNumber += 1
@@ -7523,7 +7431,7 @@ class ISO320Initialization: ISOMessage
                 _ = try FileSystem.ReWriteFile(strFileName: m_chTempMINIPVMChunkFile, with: list_of_Items)
             }
             catch{
-                fatalError("")
+                fatalError("Error in ReWriteFile \(m_chTempMINIPVMChunkFile))")
             }
         }
         return AppConstant.TRUE;
@@ -7825,75 +7733,57 @@ class ISO320Initialization: ISOMessage
             {
                 case 0x01:
                     ObjCred.Hostname = String(bytes: bData, encoding: String.Encoding.utf8)!
-                    break;
                 case 0x02:
                     var iPort: Int = Int(bData[0] & 0xFF)
                     iPort = (iPort << 8)
                     iPort |= Int(bData[1] & 0xFF)
                     ObjCred.port = iPort;
-                    break;
                 case 0x03:
                     ObjCred.Username = String(bytes: bData, encoding:  String.Encoding.utf8)!
-                    break;
                 case 0x04:
                     ObjCred.Password = String(bytes: bData, encoding:  String.Encoding.utf8)!
-                    break;
                 case 0x05:
                     Obj.m_bLogEnabledFlag = bData[0] == 1 ? true : false
-                    break;
                 case 0x06:
                     Obj.m_iLogShipmentLevel = Int(bData[0])
-                    break;
                 case 0x07:
                     Obj.m_iLogShipmentRetentionDays = Int(bData[0])
-                    break;
                 case 0x08:
                     var iSize: Int = Int(bData[0] & 0xFF)
                     iSize = (iSize << 8);
                     iSize |= Int(bData[1] & 0xFF)
                     Obj.m_iLogShipmentRetentionSizeInMB = iSize;
-                    break;
                 case 0x09:
                     Obj.m_iLogShipmentFrequency = Int(bData[0])
-                    break;
                 case 0x0A:
                     Obj.m_iLogShipmentRetryCount = Int(bData[0])
-                    break;
                 case 0x0B:
                     var iRetryInterval: Int = Int(bData[0] & 0xFF)
                     iRetryInterval = iRetryInterval << 8
                     iRetryInterval |= Int(bData[1] & 0xFF)
                     Obj.m_iLogShipmentRetryInterval = iRetryInterval
-                    break;
                 case 0x0C:
                     Obj.m_strLogShipmentStartTime = String(bytes: bData, encoding:  String.Encoding.utf8)!
-                    break;
                 case 0x0D:
                     Obj.m_sLogShippingDirecetorypath = String(bytes: bData, encoding:  String.Encoding.utf8)!
-                    break;
                 case 0x0E:
                     Obj.m_strLogBlackListStartTime = String(bytes: bData, encoding:  String.Encoding.utf8)!
-                    break;
                 case 0x0F:
                     Obj.m_strLogBlackListEndTime = String(bytes: bData, encoding:  String.Encoding.utf8)!
-                    break;
                 case 0x10:
                     Obj.m_iAutoLogShippingEnabledFlag = Int(bData[0])
-                    break;
                 case 0x11:
                     var iMaxLogFileSize: Int = Int((bData[0] & 0xFF) << 24)
                     iMaxLogFileSize |= Int((bData[1] & 0xFF) << 16)
                     iMaxLogFileSize |= Int((bData[2] & 0xFF) << 8)
                     iMaxLogFileSize |= Int((bData[3] & 0xFF))
                     Obj.m_iMaxLogFileSize = iMaxLogFileSize;
-                    break;
                 case 0x12:
                     var iMaxLogFileCountOfADay: Int = Int((bData[0] & 0xFF) << 24)
                     iMaxLogFileCountOfADay |= Int((bData[1] & 0xFF) << 16)
                     iMaxLogFileCountOfADay |= Int((bData[2] & 0xFF) << 8)
                     iMaxLogFileCountOfADay |= Int(bData[3] & 0xFF)
                     Obj.m_iMaxLogFileCountOfADay = iMaxLogFileCountOfADay;
-                    break;
                 default:
                     break;
             }
@@ -8246,13 +8136,10 @@ class ISO320Initialization: ISOMessage
                         {
                             case AppConstant.TAG_TLV_LOGIN_INFO_USER_NAME:
                                 loginAccounts.m_strUserID =  String(bytes: userInfoTLV.bData, encoding: String.Encoding.utf8)!
-                                break;
                             case AppConstant.TAG_TLV_LOGIN_INFO_PASSWORD_HASH:
                                 loginAccounts.m_strPIN = String(bytes: userInfoTLV.bData, encoding: String.Encoding.utf8)!
-                                break;
                             case AppConstant.TAG_TLV_LOGIN_INFO_CREATION_DATE_TIME:
                                 loginAccounts.m_strCreatedOn  = String(bytes: userInfoTLV.bData, encoding: String.Encoding.utf8)!
-                                break;
                             case AppConstant.TAG_TLV_LOGIN_INFO_USER_ROLE:
                                 var value : Int8 = 0
                                 for byte in userInfoTLV.bData {
@@ -8260,12 +8147,10 @@ class ISO320Initialization: ISOMessage
                                     value = value | Int8(byte)
                                 }
                                 loginAccounts.m_sAccountType = value
-                                break;
                             case AppConstant.TAG_TLV_LOGIN_INFO_GUID:
                                 loginAccounts.m_strUUID  = String(bytes: userInfoTLV.bData, encoding: String.Encoding.utf8)!
-                                break;
                             default:
-                            break;
+                            break
                         }
                             
                         loginAccountsMap[loginAccounts.m_strUserID] = loginAccounts
@@ -8401,26 +8286,19 @@ class ISO320Initialization: ISOMessage
              {
                  case PCContentTypeID.IMAGE:
                      str_content_type = FileNameConstants.IMAGE;
-                     break;
                  case PCContentTypeID.GIF:
                      str_content_type = FileNameConstants.GIF;
-                     break;
                  case PCContentTypeID.VIDEO:
                      str_content_type = FileNameConstants.VIDEO;
-                     break;
                  case PCContentTypeID.DOCUMENT:
                      str_content_type = FileNameConstants.DOCUMENT;
-                     break;
                  case PCContentTypeID.MUSIC:
                      str_content_type = FileNameConstants.MUSIC;
-                     break;
                  case PCContentTypeID.THEME:
                      str_content_type = FileNameConstants.THEME;
                      debugPrint("RESET on ERR \(str_content_type)")
-                     break;
                  case PCContentTypeID.FONT:
                      str_content_type = FileNameConstants.FONT;
-                     break;
                  default:
                      str_content_type = FileNameConstants.UKNOWN_CONTENT_TYPE;
                      debugPrint("Content ype ID Unknown[\(Content_Type_ID)]")
@@ -8447,18 +8325,15 @@ class ISO320Initialization: ISOMessage
                     debugPrint("Updating bytes to File[\(m_str_current_ContentName)], [\(m_str_temp_ContentName)]")
                     //CLogger.TraceLog(TRACE_ERROR, "Apending bytes to File[%s]", m_str_temp_ContentName);
                     _ = try FileSystem.AppendFile(strFileName: m_str_temp_ContentName, with: imageDump)
-                    break;
                  case PCImageChangeType.UPDATE:
                     debugPrint("Updating bytes to File[\(m_str_current_ContentName)], [\(m_str_temp_ContentName)]")
                     //CLogger.TraceLog(TRACE_ERROR, "Updating bytes to File[%s], [%s]", m_str_current_ContentName, m_str_temp_ContentName);
                     _ = FileSystem.DeleteFile(strFileName: m_str_current_ContentName, with: imageDump)
                     _ = try FileSystem.AppendFile(strFileName: m_str_temp_ContentName, with: imageDump)
-                    break;
                  case PCImageChangeType.DELETE:
                     debugPrint("Deleting bytes to File[\(m_str_current_ContentName)], [\(m_str_temp_ContentName)]")
                     //CLogger.TraceLog(TRACE_ERROR, "Deleting bytes to File[%s]", m_str_current_ContentName);
                     _ = FileSystem.DeleteFile(strFileName: m_str_current_ContentName, with: imageDump)
-                     break;
                 default:
                     break;
             }
@@ -8506,25 +8381,18 @@ class ISO320Initialization: ISOMessage
                 {
                     case PCContentTypeID.IMAGE:
                         str_content_type = FileNameConstants.IMAGE;
-                        break;
                     case PCContentTypeID.GIF:
                         str_content_type = FileNameConstants.GIF;
-                        break;
                     case PCContentTypeID.VIDEO:
                         str_content_type = FileNameConstants.VIDEO;
-                        break;
                     case PCContentTypeID.DOCUMENT:
                         str_content_type = FileNameConstants.DOCUMENT;
-                        break;
                     case PCContentTypeID.MUSIC:
                         str_content_type = FileNameConstants.MUSIC;
-                        break;
                     case PCContentTypeID.THEME:
                         str_content_type = FileNameConstants.THEME;
-                        break;
                     case PCContentTypeID.FONT:
                         str_content_type = FileNameConstants.FONT;
-                        break;
                     default:
                         str_content_type = FileNameConstants.UKNOWN_CONTENT_TYPE;
                         debugPrint("Content type Unknown[\(content_type)]")

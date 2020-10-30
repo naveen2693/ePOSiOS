@@ -6,7 +6,6 @@
 //  Copyright © 2020 Pinelabs. All rights reserved.
 //
 import Foundation
-import Foundation
 import Alamofire
 
 struct NetworkState {

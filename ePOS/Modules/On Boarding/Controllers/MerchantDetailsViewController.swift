@@ -40,7 +40,7 @@ class MerchantDetailsViewController: CustomNavigationStyleViewController {
     private func populateData()
     {
          labelApplicationID?.text = eposApplicationID
-         if let currentLead = EPOSUserDefaults.CurrentLead() {
+        if EPOSUserDefaults.CurrentLead() != nil {
 //             if currentLead.workFlowState != nil {
 //                 let workflowState = WorkFlowState(rawValue: currentLead.workFlowState!)
 //                let businessDetails:BusinessDetails = WorkFlowState.saveBUDetails

@@ -390,7 +390,7 @@ public class OnBoardingRequest:BaseRequest{
                     {
                         guard let jsonObject: Any = try? JSONSerialization.jsonObject(with: response.data, options: []) as Any,
                             let jsonData = jsonObject as? [String:Any],
-                            let leadData = jsonData["lead"] as? [String:Any],
+                            let _ = jsonData["lead"] as? [String:Any],
                             let workFlowState = jsonData["workFlowState"] as? String
                             else
                         {

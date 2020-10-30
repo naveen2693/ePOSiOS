@@ -204,7 +204,7 @@ public class RequestHandler{
     //       }
     
     public static func createBankVerificationRequest(leadId:Int64,additionalInfos:[AdditionalInfo]) -> BankVerificationRequest{
-        var objBankVerificationRequest =  BankVerificationRequest(leadId: leadId, task:Constants.verifyAmount.rawValue, additionalInfo: additionalInfos)
+        let objBankVerificationRequest =  BankVerificationRequest(leadId: leadId, task:Constants.verifyAmount.rawValue, additionalInfo: additionalInfos)
         return objBankVerificationRequest;
     }
     

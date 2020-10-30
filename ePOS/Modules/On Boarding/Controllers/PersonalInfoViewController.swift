@@ -180,14 +180,12 @@ extension PersonalInfoViewController {
                   if EntityType.proprietor.rawValue.elementsEqual(firmType) {
                     textFieldDocumentState.isHidden = false
                   }
-              break;
             
           case DocumentType.udhyogAadhar.rawValue:
               break;
             
           case DocumentType.shopNEstablishment.rawValue:
                 textFieldDocumentState.isHidden = false
-                break;
 //
 //              case KYCType.DRIVING_LICENSE: {
 //                  String firmType = spnCompanyType.getTag().toString();
@@ -372,7 +370,7 @@ extension PersonalInfoViewController: UITextFieldDelegate {
         
         if textField == textFieldDocumentInfo {
             let resultDoc = Validation.shared.validate(values: (ValidationMode.alphabeticString, textFieldDocumentInfo.text as Any))
-            if case Valid.failure(_, let message) = resultDoc {
+            if case Valid.failure(_, _) = resultDoc {
                 textFieldDocumentInfo.trailingAssistiveLabel.text = "Please provide valid ID"
                 
             } else {
@@ -383,7 +381,7 @@ extension PersonalInfoViewController: UITextFieldDelegate {
         
         if textField == textFieldGSTIN {
             let resultDoc = Validation.shared.validate(values: (ValidationMode.alphabeticString, textFieldGSTIN.text as Any))
-            if case Valid.failure(_, let message) = resultDoc {
+            if case Valid.failure(_, _) = resultDoc {
                 textFieldGSTIN.trailingAssistiveLabel.text = "GSTIN must contain PAN number"
 //                nextButton.isEnabled = false
             } else {
