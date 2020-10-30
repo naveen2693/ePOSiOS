@@ -71,7 +71,6 @@
 		8E927C6A2539468F009928D4 /* ParameterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E927C692539468F009928D4 /* ParameterData.swift */; };
 		8E927C6E2539470D009928D4 /* LIBStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E927C6D2539470D009928D4 /* LIBStruct.swift */; };
 		8EE32848253C3A7F00616E33 /* CurrentDownloadingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE32847253C3A7E00616E33 /* CurrentDownloadingInfo.swift */; };
-		8EE3284A253C567100616E33 /* STRUCTMESSAGEID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE32849253C567100616E33 /* STRUCTMESSAGEID.swift */; };
 		8EE3284C253C7D9800616E33 /* PCContentTypeID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3284B253C7D9800616E33 /* PCContentTypeID.swift */; };
 		8EE3284E253C7DF900616E33 /* PCImageChangeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3284D253C7DF900616E33 /* PCImageChangeType.swift */; };
 		8EE32850253C97F800616E33 /* TLVObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3284F253C97F800616E33 /* TLVObject.swift */; };
@@ -301,7 +300,6 @@
 		8E927C692539468F009928D4 /* ParameterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterData.swift; sourceTree = "<group>"; };
 		8E927C6D2539470D009928D4 /* LIBStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LIBStruct.swift; sourceTree = "<group>"; };
 		8EE32847253C3A7E00616E33 /* CurrentDownloadingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDownloadingInfo.swift; sourceTree = "<group>"; };
-		8EE32849253C567100616E33 /* STRUCTMESSAGEID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STRUCTMESSAGEID.swift; sourceTree = "<group>"; };
 		8EE3284B253C7D9800616E33 /* PCContentTypeID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCContentTypeID.swift; sourceTree = "<group>"; };
 		8EE3284D253C7DF900616E33 /* PCImageChangeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCImageChangeType.swift; sourceTree = "<group>"; };
 		8EE3284F253C97F800616E33 /* TLVObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLVObject.swift; sourceTree = "<group>"; };
@@ -1333,7 +1331,6 @@
 				46AB5CE6253D652A00FF814E /* STRUCT_MESSAGE_ID.swift */,
 				46AA3E07252F237B005907E1 /* StructConnIndex.swift */,
 				46AA3E05252F232F005907E1 /* StructConxData.swift */,
-				8EE32849253C567100616E33 /* STRUCTMESSAGEID.swift */,
 				CE971BD4252CBD8200843943 /* TerminalConxData.swift */,
 				CE971BD6252CBD9D00843943 /* TerminalMasterParamData.swift */,
 				464619882534280A009089BC /* TerminalParamData.swift */,
@@ -1600,7 +1597,6 @@
 				8EE32852253D632500616E33 /* st_CSVTxnTypeMiniPvmMappingDetails.swift in Sources */,
 				46AA3E08252F237B005907E1 /* StructConnIndex.swift in Sources */,
 				CE971BD5252CBD8200843943 /* TerminalConxData.swift in Sources */,
-				8EE3284A253C567100616E33 /* STRUCTMESSAGEID.swift in Sources */,
 				CE971BD5252CBD8200843943 /* TerminalConxData.swift in Sources */,
 				8E4DCFA22534BC1400726EA8 /* CRC32.swift in Sources */,
 				46ED346E25371B3500CEF19D /* st_BINRange.swift in Sources */,

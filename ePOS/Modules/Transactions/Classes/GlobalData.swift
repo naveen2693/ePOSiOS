@@ -1960,11 +1960,11 @@ final class GlobalData
     }
     
     //MARK:- binarySearchMess(FileName: String,key: Int) -> Int
-    func binarySearchMess(FileName: String,key: Int) -> Int {
+    func binarySearchMess(FileName: String, key: Int) -> Int {
         let retIndex = -1;
-        var objStructMessageId =   StructMessageId()
-        objStructMessageId.lmessageId = key;
-        if let ItemList:[StructMessageId] = FileSystem.ReadFile(strFileName: FileName){
+        var objStructMessageId =   StructMESSAGEID()
+        objStructMessageId.lmessageId = Int64(key);
+        if let ItemList:[StructMESSAGEID] = FileSystem.ReadFile(strFileName: FileName){
             _ = ItemList.sorted {
                     (obj1, obj2) -> Bool in
                     return obj1.lmessageId > obj2.lmessageId
@@ -1975,12 +1975,12 @@ final class GlobalData
     
     //MARK:- getMessage(id: Int64, messagebuffer:[Byte]) -> Bool
     func GetMessage(id: Int64, messagebuffer:[Byte]) -> Bool {
-        var objStructMessageId = StructMessageId()
-        objStructMessageId.lmessageId = Int(id);
+        var objStructMessageId = StructMESSAGEID()
+        objStructMessageId.lmessageId = id;
            var retIndex = -1;
         retIndex = binarySearchMess(FileName: FileNameConstants.MASTERMESFILE, key: Int(id));
            if (retIndex >= 0) {
-            if let objStructMessageId:StructMessageId = FileSystem.SeekRead(strFileName: FileNameConstants.MASTERMESFILE, iOffset: retIndex){
+            if let objStructMessageId:StructMESSAGEID = FileSystem.SeekRead(strFileName: FileNameConstants.MASTERMESFILE, iOffset: retIndex){
               _ = objStructMessageId.strArrMessage.bytes;
                return true;
            } else {

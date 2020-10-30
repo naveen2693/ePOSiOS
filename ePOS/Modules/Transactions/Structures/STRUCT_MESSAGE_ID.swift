@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct StructMessageId:Codable {
-    var lmessageId:Int = 0;
-    var strArrMessage:String = "";
+struct StructMESSAGEID: Codable {
+    var lmessageId: Int64 = 0
+    var  strArrMessage: String = ""
 }
