@@ -15,6 +15,13 @@ class TransactionsViewController: UIViewController {
 
         debugPrint("Hello World!")
         
+        let globalData = GlobalData.singleton
+        _ = globalData.FirstInitialize()
+        
+        let isoprocessor = ISOProcessor()
+        isoprocessor.DoHUBActivation()
+        
+        
         
 //        let iso = ISO440.shared // singleton
 //        let isoObject = ISO440()

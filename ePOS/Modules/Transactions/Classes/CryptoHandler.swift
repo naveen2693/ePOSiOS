@@ -46,6 +46,13 @@ class CryptoHandler{
         return SHA256HexString
     }
     
+    //MARK:- vFnGetCRC32(_ buffer: [UInt8]) -> String
+    static func GetCRC32(_ buffer: [UInt8]) -> UInt32
+    {
+        let crcValue = buffer.crc32()
+        return crcValue
+    }
+    
     //MARK:- XOREncrypt(_ bArrDataToEncrypt: [UInt8] , _ encryptionType: Int) -> [UInt8]?
     static func XOREncrypt(_ bArrDataToEncrypt: [UInt8] , _ encryptionType: Int) -> [UInt8]?
     {

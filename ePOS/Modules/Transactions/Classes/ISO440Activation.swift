@@ -20,6 +20,11 @@ class ISO440Activation : ISOMessage
             //super.CISOMsgC()
         }
         
+    
+    func Test()
+    {
+        
+    }
         
     override func packIt(sendee bArrSendDataToHost: inout[Byte]) -> Int
         {
@@ -27,7 +32,7 @@ class ISO440Activation : ISOMessage
             /*    ***************************************************************************
              FEILD 0 ::Message Type
              ***************************************************************************/
-            //msgno = AppConst.ACTIVATIONREQ.getBytes();
+            msgno = [Byte](ProcessingCodeConstants.ACTIVATIONREQ.utf8);
             //var bArrHardwareConfig = PlatformUtils.GetHardwareConfiguration();
             //            if (bArrHardwareConfig !=null)
             //            {
@@ -42,8 +47,11 @@ class ISO440Activation : ISOMessage
             /*
              * FEILD 3 ::Processing Code
              */
-            //addField(ISOFieldConstants.ISO_FIELD_3,AppConst.PC_ONLINE_TRANSACTION_REQ.getBytes(), true);
-            //vFnSetTerminalActivationFlag(true);
+           _ =  addField(bitno:ISOFieldConstants.ISO_FIELD_3,
+                         data1:[Byte](ProcessingCodeConstants.PC_ONLINE_TRANSACTION_REQ.utf8),
+                         bcd:true);
+            
+            vFnSetTerminalActivationFlag(bTerminalActivationFlag:true);
         }
         
         

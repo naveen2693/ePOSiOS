@@ -6637,7 +6637,7 @@ class ISO320Initialization: ISOMessage
                      debugPrint("bFileisOK memcmp SHA1 OK")
                      bFileisOK = true
                  }else{
-                     globalData.m_csFinalMsgDisplay58 = "New App SHA1 Mismatch" + "\n" + "Initialization Failed!!!"
+                     globalData.mFinalMsgDisplayField58 = "New App SHA1 Mismatch" + "\n" + "Initialization Failed!!!"
                     
                     debugPrint("chArrFileSha1Download[\(String(bytes: uchArrFileSha1Downloaded, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))], chArrFileSha1Calculated[\(String(bytes: uchArrFileSha1Calculated, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))]")
                  }
@@ -6713,7 +6713,7 @@ class ISO320Initialization: ISOMessage
 
                         if (!PlatFormUtils.installApk(fileName: FileNameConstants.EDCAPPFILE)){
                             
-                             globalData.m_csFinalMsgDisplay58 = "New App Installation Failed" + "\n" + "Initialization Failed!!!";
+                             globalData.mFinalMsgDisplayField58 = "New App Installation Failed" + "\n" + "Initialization Failed!!!";
                             //TODO : yet to Implement - Format for directory
                             //CFileSystem.FormatExternalDirectory();
                              return false;

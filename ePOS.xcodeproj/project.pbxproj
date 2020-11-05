@@ -64,7 +64,6 @@
 		46ED34762538603A00CEF19D /* AutoGPRSNetworkParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED34752538603A00CEF19D /* AutoGPRSNetworkParams.swift */; };
 		46ED34782538665000CEF19D /* AutoPremiumServiceParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED34772538665000CEF19D /* AutoPremiumServiceParams.swift */; };
 		8E10234D2545780200F1A907 /* st_EMV_Tag_List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E10234C2545780200F1A907 /* st_EMV_Tag_List.swift */; };
-		8E4DCFA22534BC1400726EA8 /* CRC32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA12534BC1400726EA8 /* CRC32.swift */; };
 		8E4DCFA425354F8A00726EA8 /* LOGIN_ACCOUNTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */; };
 		8E4DCFA625369F1000726EA8 /* BytesUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA525369F1000726EA8 /* BytesUtil.swift */; };
 		8E927C68253895AC009928D4 /* DisplayMessageMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E927C67253895AC009928D4 /* DisplayMessageMode.swift */; };
@@ -293,7 +292,6 @@
 		46ED34752538603A00CEF19D /* AutoGPRSNetworkParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoGPRSNetworkParams.swift; sourceTree = "<group>"; };
 		46ED34772538665000CEF19D /* AutoPremiumServiceParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPremiumServiceParams.swift; sourceTree = "<group>"; };
 		8E10234C2545780200F1A907 /* st_EMV_Tag_List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = st_EMV_Tag_List.swift; sourceTree = "<group>"; };
-		8E4DCFA12534BC1400726EA8 /* CRC32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRC32.swift; sourceTree = "<group>"; };
 		8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOGIN_ACCOUNTS.swift; sourceTree = "<group>"; };
 		8E4DCFA525369F1000726EA8 /* BytesUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BytesUtil.swift; sourceTree = "<group>"; };
 		8E927C67253895AC009928D4 /* DisplayMessageMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayMessageMode.swift; sourceTree = "<group>"; };
@@ -1269,7 +1267,6 @@
 			isa = PBXGroup;
 			children = (
 				4646199625359010009089BC /* CPlatFormUtil.swift */,
-				8E4DCFA12534BC1400726EA8 /* CRC32.swift */,
 				CE971BD0252CBB2500843943 /* CryptoHandler.swift */,
 				4646198E253578AD009089BC /* CUIHelper.swift */,
 				46AB5CE42539BB3A00FF814E /* cUtilClass.swift */,
@@ -1598,7 +1595,6 @@
 				46AA3E08252F237B005907E1 /* StructConnIndex.swift in Sources */,
 				CE971BD5252CBD8200843943 /* TerminalConxData.swift in Sources */,
 				CE971BD5252CBD8200843943 /* TerminalConxData.swift in Sources */,
-				8E4DCFA22534BC1400726EA8 /* CRC32.swift in Sources */,
 				46ED346E25371B3500CEF19D /* st_BINRange.swift in Sources */,
 				997DC7E62521EEFC006ADE48 /* MasterDataProvider.swift in Sources */,
 				46BD9B442516095C008DEFEA /* OnBoardingRequest.swift in Sources */,

@@ -9,6 +9,6 @@
 import Foundation
 
 struct StructMESSAGEID: Codable {
-    var lmessageId: Int64 = 0
+    var  lmessageId: Int64 = 0
     var  strArrMessage: String = ""
 }

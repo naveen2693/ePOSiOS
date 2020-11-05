@@ -25,7 +25,8 @@ final class GlobalData
     static var m_setAdServerHTL: Set<Int64>?
     public var m_strCurrentLoggedInUserPIN: String = ""
     var m_bIsLoggedIn: Bool = false
-    var m_csFinalMsgDisplay58: String = ""
+    var mFinalMsgDisplayField58: String = ""
+    var mFinalMsgActivation:String = ""
     static var responseCode: String = ""
     static var m_bIsTxnDeclined: Bool = false;
     
@@ -89,7 +90,7 @@ final class GlobalData
         {
             if (listParams.count > 0) {
                 let numberOfRow:Int = listParams.count;
-                for i in 0...numberOfRow {
+                for i in 0..<numberOfRow {
                     tData = listParams[i];
                     if (ConnectionTypes.DIALUP_SERIAL == tData?.iConnType) {
                         m_sConxData.m_bArrConnIndex.CON_SerialIp.index = i;
@@ -159,8 +160,8 @@ final class GlobalData
         return AppConstant.TRUE;
     }
                 
-    func WriteParamFile(listParamData: TerminalParamData?) -> Int {
-        var objTerminalParamData: TerminalParamData
+    func WriteParamFile(listParamData: TerminalParamData?)-> Int {
+        var objTerminalParamData = [TerminalParamData]()
         
         if (listParamData == nil) {
             return 0;
@@ -170,10 +171,9 @@ final class GlobalData
         {
             do {
                 GlobalData.m_sTerminalParamData_Cache = listParamData; //Assigning to cache for future use
-                objTerminalParamData = listParamData!
-                
-                _  = FileSystem.SeekWrite(strFileName: FileNameConstants.TERMINALPARAMFILENAME, with:
-                    objTerminalParamData, iOffset: 0)
+                objTerminalParamData.append(listParamData!)
+                _  = try FileSystem.ReWriteFile(strFileName: FileNameConstants.TERMINALPARAMFILENAME, with:
+                    objTerminalParamData)
                 
             }catch
             {
@@ -304,7 +304,7 @@ final class GlobalData
     private func CreateMasterFONTFile() -> Int{
         let maxCountChargeSlip = AppConstant.MAX_COUNT_CHARGE_SLIP_IMAGES + 1
         var UnicodefontId = [Fontstruct?](repeating:nil, count:maxCountChargeSlip)
-        for index in 0...maxCountChargeSlip{
+        for index in 0..<maxCountChargeSlip{
             UnicodefontId[index] = Fontstruct();
         }
         let fontlist = [Fontstruct?](repeating:nil, count:maxCountChargeSlip);
@@ -354,7 +354,7 @@ final class GlobalData
      * @function CreateParamFile
      * @details Create terminal param file
      */
-    public func CreateParamFile() -> Int {
+public func CreateParamFile() -> Int {
         var terminalParamData =  TerminalParamData();
         terminalParamData.iCurrentBatchId = AppConstant.DEFAULT_FIRST_BATCHID;
         terminalParamData.iBatchSize = AppConstant.DEFAULT_BATCH_SIZE;
@@ -367,8 +367,8 @@ final class GlobalData
         terminalParamData.m_iIsPasswdNeededForSpecificTxns = false;
         terminalParamData.m_iIsPasswordRequiredForSettlement = false;
         terminalParamData.m_strSettlementNSpecificTxnsPassword = "123456";
-        let strParamDownloadDate = "010111115959";
-        terminalParamData.m_strParamDownloadDate = strParamDownloadDate;
+        //let strParamDownloadDate = "010111115959";
+        terminalParamData.m_strParamDownloadDate = "010111115959";
         terminalParamData.m_bIsDataChanged = true;
         terminalParamData.m_strNoPrintMessage = AppConstant.NoPrintDefaultMessage;
         terminalParamData.m_iIsCRISEnabled = 0;
@@ -395,26 +395,26 @@ final class GlobalData
         m_sMasterParamData.bIsBitmap440ActiveHostSet = false;
         m_sMasterParamData.bIsBitmap500ActiveHostSet = false;
         
-        m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber[0] = 0x00;
-        m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber[1] = 0x00;
-        m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber[2] = 0x00;
-        m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber[3] = 0x00;
-        m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber[4] = 0x00;
-        m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber[5] = 0x00;
-        m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber[6] = 0x00;
-        m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber[7] = 0x00;
+        m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber.append(0x00);
+        m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber.append(0x00);
+        m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber.append(0x00);
+        m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber.append(0x00);
+        m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber.append(0x00);
+        m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber.append(0x00);
+        m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber.append(0x00);
+        m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber.append(0x00);
         
-        m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber[0] = Byte(0xFF);
-        m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber[1] = Byte(0xFF);
-        m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber[2] = Byte(0xFF);
-        m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber[3] = Byte(0xFF);
-        m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber[4] = Byte(0xFF);
-        m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber[5] = Byte(0xFF);
-        m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber[6] = Byte(0xFF);
-        m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber[7] = Byte(0xFF);
+        m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber.append(Byte(0xFF));
+        m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber.append(Byte(0xFF));
+        m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber.append(Byte(0xFF));
+        m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber.append(Byte(0xFF));
+        m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber.append(Byte(0xFF));
+        m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber.append(Byte(0xFF));
+        m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber.append(Byte(0xFF));
+        m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber.append(Byte(0xFF));
         
         let strInitialValue = "010101000000";
-        _ = strInitialValue.bytes;
+        let bArrInitialValue = strInitialValue.bytes;
         m_sMasterParamData.m_strBinRangeDownloadDate = strInitialValue;
         m_sMasterParamData.m_bIsBinRangeChanged = false;
         
@@ -1958,10 +1958,10 @@ final class GlobalData
     }
     
     //MARK:- binarySearchMess(FileName: String,key: Int) -> Int
-    func binarySearchMess(FileName: String, key: Int) -> Int {
+    func binarySearchMess(FileName: String, key: Int64) -> Int {
         let retIndex = -1;
         var objStructMessageId =   StructMESSAGEID()
-        objStructMessageId.lmessageId = Int64(key);
+        objStructMessageId.lmessageId = key;
         if let ItemList:[StructMESSAGEID] = FileSystem.ReadFile(strFileName: FileName){
             _ = ItemList.sorted {
                     (obj1, obj2) -> Bool in
@@ -1971,21 +1971,188 @@ final class GlobalData
         return retIndex;
     }
     
-    //MARK:- getMessage(id: Int64, messagebuffer:[Byte]) -> Bool
-    func GetMessage(id: Int64, messagebuffer:[Byte]) -> Bool {
+    //MARK:- getMessage(id: Int64) -> Bool
+    func GetMessage(id: Int64) -> [Byte]? {
         var objStructMessageId = StructMESSAGEID()
-        objStructMessageId.lmessageId = id;
-           var retIndex = -1;
-        retIndex = binarySearchMess(FileName: FileNameConstants.MASTERMESFILE, key: Int(id));
+        objStructMessageId.lmessageId = id
+           var retIndex = -1
+           retIndex = binarySearchMess(FileName: FileNameConstants.MASTERMESFILE, key: id)
            if (retIndex >= 0) {
             if let objStructMessageId:StructMESSAGEID = FileSystem.SeekRead(strFileName: FileNameConstants.MASTERMESFILE, iOffset: retIndex){
-              _ = objStructMessageId.strArrMessage.bytes;
-               return true;
+               let bArrMessage = objStructMessageId.strArrMessage.bytes
+               return bArrMessage
            } else {
-               return false;
+               return nil
            }
        }
-        return false
+        return nil
     }
+    
+    
+    /***************************
+        * Name     :  FirstInitialize
+        * Function :  Initialize the global data/ This function must be called for
+        * initailizing global data and Communication data
+        * Parameter:
+        * Return   :
+        ***************************/
+       public func FirstInitialize() {
+           
+           //Create MasterCGFile
+           _ = CreateMasterCGFile();
+
+           //Create MasterIMFile
+           _ = CreateMasterIMFile();
+
+           //Create MasterCLRDIMFile
+           _ = CreateMasterCLRDIMFile();
+
+           //create MaterFCGfile
+           _ = CreateMasterCFGFile();
+
+           //create MaterFONTfile
+           _ = CreateMasterFONTFile();//FOR UNICODE FONT FILE
+
+           //create MaterLIbfile
+           _ = CreateMasterLIBFile();//FOR Library FILE
+
+           //create CIMB minipvm file
+           _ = CreateMasterMINIPVMFile();
+
+           //Create ParamFile
+           _ = CreateParamFile();
+           
+           //Create UserAccountInfo File
+           _ = CreateUserAccountFile();
+
+           //Create UserInfo File
+           _ = CreateMasterParamFile();
+
+           _ = CreateAdServerHTLFile();
+
+           //Create Conx File
+           _ = createConnectionFile();
+
+           _ = createConnectionFile();
+
+           _ = GlobalData.CreateSignatureParamFile();
+
+           _ = GlobalData.createDeviceStateFile();
+
+           _ = CreateLogShippingFile();
+
+           //Save default Auto Settle params
+           if (false == FileSystem.IsFileExist(strFileName: FileNameConstants.AUTOSETTLEPARFILE)) {
+              _ =  WriteDefaultAutoSettleParams();
+           }
+
+           //Save default Auto Reversal params
+           if (false == FileSystem.IsFileExist(strFileName:FileNameConstants.AUTOREVERSALPARFILE)) {
+              _ =  WriteDefaultAutoReversalParams();
+           }
+
+           //Save default Auto Gprs params
+           if (false == FileSystem.IsFileExist(strFileName:FileNameConstants.AUTOGPRSALWAYSONPARFILE)) {
+              _ =  WriteDefaultAutoGprsParams();
+           }
+
+           //Save default Auto Premium Service params
+            if (false == FileSystem.IsFileExist(strFileName:FileNameConstants.AUTOPREMIUMSERVICEPARFILE)) {
+              _ =  WriteDefaultAutoPremiumServiceParams();
+           }
+           //return retVal;
+       }
+       
+       
+       public func WriteDefaultAutoSettleParams() -> Bool {
+             var defaultparams =  AutoSettlementParams();
+             defaultparams.m_iAutoSettlementEnabledflag = false;
+             defaultparams.m_strSettlementStartTime = "233000";
+             defaultparams.m_iSettlementFrequency = 1;
+             defaultparams.m_iSettlementRetryCount = 5;
+             defaultparams.m_iSettlementRetryIntervalInSeconds = 120;
+             defaultparams.m_bIsDataChanged = true;
+
+             //Write the file
+             var listAutoSettleParams = [AutoSettlementParams]();
+             listAutoSettleParams.append(defaultparams);
+           do{
+          _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.AUTOSETTLEPARFILE, with: listAutoSettleParams);
+           }catch{
+               fatalError("Rewrite Function: WriteDefaultAutoSettleParams")
+           }
+
+             //Populate the updated params
+             m_sAutoSettleParams = defaultparams;
+             return true;
+         }
+       
+       /********* AUTO REVERSAL PARAMS ***********/
+       public func WriteDefaultAutoReversalParams() -> Bool {
+                var defaultparams =  AutoReversalParams();
+                defaultparams.m_bIsAutoReversalEnableFlag = false;
+                defaultparams.m_iAutoReversalFirstTryIntervalInSecs = 600;
+                defaultparams.m_iAutoReversalRetryIntervalInSecs = 60;
+                defaultparams.m_iAutoReversalMaxRetryCount = 5;
+                defaultparams.m_bIsDataChanged = true;
+
+                //Write the file
+                var listAutoSettleParams = [AutoReversalParams]();
+                listAutoSettleParams.append(defaultparams);
+              do{
+             _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.AUTOREVERSALPARFILE, with: listAutoSettleParams);
+              }catch{
+                  fatalError("Rewrite Function: WriteDefaultAutoSettleParams")
+              }
+
+                //Populate the updated params
+                m_sAutoReversalParams = defaultparams;
+                return true;
+            }
+          
+     /********* AUTO GPRS PARAMS ***********/
+          public func WriteDefaultAutoGprsParams() -> Bool {
+                   var defaultparams =  AutoGPRSNetworkParams();
+                   defaultparams.m_bIsAutoGPRSNetworkEnableFlag = false;
+                   defaultparams.m_iAutoGPRSNetworkRetryInterval = 60;
+                   defaultparams.m_bIsDataChanged = true;
+
+                   //Write the file
+                   var listAutoSettleParams = [AutoGPRSNetworkParams]();
+                   listAutoSettleParams.append(defaultparams);
+                 do{
+                _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.AUTOGPRSALWAYSONPARFILE, with: listAutoSettleParams);
+                 }catch{
+                     fatalError("Rewrite Function: WriteDefaultAutoSettleParams")
+                 }
+
+                   //Populate the updated params
+                   m_sAutoGprsParams = defaultparams;
+                   return true;
+               }
+       
+    
+       /********* AUTO Premium Service PARAMS ***********/
+             public func WriteDefaultAutoPremiumServiceParams() -> Bool {
+                      var defaultparams =  AutoPremiumServiceParams();
+                      defaultparams.m_iAutoPremiumServiceEnableFlag = false;
+                      defaultparams.m_strAutoPremiumServiceStartTime = "230000";
+                      defaultparams.m_iAutoPremiumServiceFrequency = 1;
+                      defaultparams.m_iAutoPremiumServiceRetryCount = 5;
+                      defaultparams.m_iAutoPremiumServiceRetryIntervalInSeconds = 120;
+                      defaultparams.m_bIsDataChanged = true;
+                      //Write the file
+                      var listAutoSettleParams = [AutoPremiumServiceParams]();
+                      listAutoSettleParams.append(defaultparams);
+                    do{
+                   _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.AUTOPREMIUMSERVICEPARFILE, with: listAutoSettleParams);
+                    }catch{
+                        fatalError("Rewrite Function: WriteDefaultAutoSettleParams")
+                    }
+
+                      //Populate the updated params
+                      m_sAutoPremiumServiceParams = defaultparams;
+                      return true;
+                  }
 
 }
