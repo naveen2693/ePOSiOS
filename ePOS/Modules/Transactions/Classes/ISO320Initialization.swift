@@ -176,7 +176,7 @@ class ISO320Initialization: ISOMessage
         return 1;
     }
     
-    //MARK:- memcmp
+    //MARK:- memcmp(str1: String, str2: String, iLen: Int) -> Int
     func memcmp(str1: String, str2: String, iLen: Int) -> Int
     {
         if ((str1.count > 0) && (str2.count > 0) && (str1.count >= iLen) && ( str2.count >= iLen))
@@ -831,22 +831,23 @@ class ISO320Initialization: ISOMessage
             if(m_iChangeNumber == ISO320ChangeNumberConstants.HOST_PARAMETERS_DOWNLOAD){
 
                 debugPrint("m_iChangeNumber = PARAMETERS_DOWNLOAD");
-                let chFileName: String = String(format: "%s.plist", FileNameConstants.TERMINALPARAMFILENAME)
+                let chFileName: String = String(format: "%s", FileNameConstants.TERMINALPARAMFILENAME)
                 debugPrint("param file name[\(chFileName)]");
 
-                let ItemList: [TerminalParamData] = FileSystem.ReadFile(strFileName: chFileName)!
-                debugPrint("m_sParamDownloadDate[\(ItemList[0].m_strParamDownloadDate)]");
+                if let ItemList: [TerminalParamData] = FileSystem.ReadFile(strFileName: chFileName) {
+                    debugPrint("m_sParamDownloadDate[\(ItemList[0].m_strParamDownloadDate)]");
 
-                // Left pad with '0'
-                var tmmBuf: [Byte] = [Byte](repeating: 0x00, count: 12)
-                let tempData: [Byte] = [Byte](ItemList[0].m_strParamDownloadDate.utf8)
-                tmmBuf = Array(tempData[0 ..< 12])
+                    // Left pad with '0'
+                    var tmmBuf: [Byte] = [Byte](repeating: 0x00, count: 12)
+                    let tempData: [Byte] = [Byte](ItemList[0].m_strParamDownloadDate.utf8)
+                    tmmBuf = Array(tempData[0 ..< 12])
                 
-                //System.arraycopy(ItemList[0].m_strParamDownloadDate.utf8,0,tmmBuf,0,12);
-                let chArrParamDownLoadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmmBuf, encoding: .utf8)!, length: 12,padChar: "0");
-                _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_43, data1: [Byte](chArrParamDownLoadDate.utf8), bcd: true);
-                debugPrint("Req->Setting field 43");
-
+                    //System.arraycopy(ItemList[0].m_strParamDownloadDate.utf8,0,tmmBuf,0,12);
+                    let chArrParamDownLoadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmmBuf, encoding: .utf8)!, length: 12,padChar: "0");
+                    _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_43, data1: [Byte](chArrParamDownLoadDate.utf8), bcd: true);
+                    debugPrint("Req->Setting field 43");
+                }
+                
                 if(m_ulLastParameterId > 0 ){
                     var bLocalBuffer = [Byte](repeating: 0x00, count: 50)
                     var iLocalOffset: Int = 0x00
@@ -899,7 +900,7 @@ class ISO320Initialization: ISOMessage
                  in case if no date time is available then set it to 1 jan 2011 11 59 59
                  this date time will be stored in the flash when parameter download has ended. */
 
-                let chFileName: String = String(format: "%s.plist", FileNameConstants.TERMINALPARAMFILENAME);
+                let chFileName: String = String(format: "%s", FileNameConstants.TERMINALPARAMFILENAME);
                 debugPrint("param file name[\(chFileName)]")
 
                 //List<TerminalParamData>ItemList = CFileSystem.ReadFile(m_cntx, TerminalParamData[].class, chFileName);
@@ -1530,7 +1531,7 @@ class ISO320Initialization: ISOMessage
                             let NumberOFRows: Int = FileSystem.NumberOfRows(strFileName: FileNameConstants.MASTERMESFILE, obj: StructMESSAGEID.self)
                             for  i in 0 ..< NumberOFRows
                             {
-                                let temp: StructMESSAGEID = FileSystem.SeekRead(strFileName: FileNameConstants.MASTERMESFILE, iOffset: i)!;
+                                let temp: StructMESSAGEID = FileSystem.SeekRead(strFileName: FileNameConstants.MASTERMESFILE, iOffset: i)!
                                 if (temp != nil)
                                 {
                                     debugPrint("Message id[%d], Message[%s]", temp.lmessageId, temp.strArrMessage)
@@ -3092,7 +3093,7 @@ class ISO320Initialization: ISOMessage
         }
 
         var _: [TerminalParamData] = []
-        let chFileName: String = String(format: "%s.plist",FileNameConstants.TERMINALPARAMFILENAME);
+        let chFileName: String = String(format: "%s",FileNameConstants.TERMINALPARAMFILENAME);
         debugPrint("param file name[\(chFileName)]");
             
         var tData: TerminalParamData = GlobalData.singleton.ReadParamFile()!
@@ -3622,15 +3623,15 @@ class ISO320Initialization: ISOMessage
 
         if(FileSystem.IsFileExist(strFileName: FileNameConstants.DWNLDCLESSPARCHUNKINFO))
         {
-            var ulChunkSize: Long?
+            var ulChunkSize = Long()
             let ItemList1: [Long] = FileSystem.ReadFile(strFileName: FileNameConstants.DWNLDCLESSPARCHUNKINFO)!
             if(!ItemList1.isEmpty)
             {
                 ulChunkSize = ItemList1[0]
             }
             
-            debugPrint("Earlier ulChunkSize[\(ulChunkSize!.value)]")
-            let chArrTempChunkSize: String = String(format: "%06d", ulChunkSize!.value)
+            debugPrint("Earlier ulChunkSize[\(ulChunkSize.value)]")
+            let chArrTempChunkSize: String = String(format: "%06d", ulChunkSize.value)
             _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_45, data1: [Byte](chArrTempChunkSize.utf8), bcd: true)
             debugPrint("Req->Setting field 45");
         }else{
@@ -3854,7 +3855,7 @@ class ISO320Initialization: ISOMessage
                     m_ulArrMINIPVMIdDelete[Int(m_ulCountOfMINIPVMIdDelete)] = DataLong(strtoul(String(bytes: chArrTemp, encoding: .utf8)!, nil, 10))
 
                     /** Delete File and Append to deleted list **/
-                    let chTemplateName: String = String(format: "ct%08d.plist", m_ulArrMINIPVMIdDelete[Int(m_ulCountOfMINIPVMIdDelete)])
+                    let chTemplateName: String = String(format: "ct%08d", m_ulArrMINIPVMIdDelete[Int(m_ulCountOfMINIPVMIdDelete)])
                     let tempData: [Long] = []
                     _ = FileSystem.DeleteFile(strFileName: chTemplateName, with: tempData)
 
@@ -4180,7 +4181,7 @@ class ISO320Initialization: ISOMessage
                         //Long.parseLong(new String(chArrTemp));
 
                     /** Delete File and Append to deleted list **/
-                    let tempData: [Int64] = []
+                    let tempData: [Long] = []
                     let chFileName: String = String(format: "im%08d",m_ulArrFixedChargeSlipIdDelete[m_ulCountOfFixedChargeSlipIdDelete]);
                     _ = FileSystem.DeleteFile(strFileName: chFileName, with: tempData)
 
@@ -4844,7 +4845,7 @@ class ISO320Initialization: ISOMessage
             debugPrint("Response->Field 53 found in ProcessImageDownload");
         }
 
-        let tempData: [Int64] = []
+        let tempData: [Long] = []
         if(self.m_bCurrentPacketCount == 0x01){
             debugPrint("******Image download*********");
             _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DWNLDCHUNKINFO, with: tempData);
@@ -5038,7 +5039,7 @@ class ISO320Initialization: ISOMessage
             debugPrint("Response->Field 53 found in ProcessImageDownload")
         }
 
-        let tempData: [Int64] = []
+        let tempData: [Long] = []
         if(self.m_bCurrentPacketCount == 0x01){
             debugPrint("******Colored Image download*********");
             _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DWNLDCHUNKINFO, with: tempData)
@@ -6696,7 +6697,7 @@ class ISO320Initialization: ISOMessage
                         {
                             fatalError("Error in ReWriteFile, strFileName: \(FileNameConstants.USERINFOFILE)")
                         }
-                        let strConnectionDataFile: String = String(format: "%s.plist", FileNameConstants.CONNECTIONDATAFILENAME)
+                        let strConnectionDataFile: String = String(format: "%s", FileNameConstants.CONNECTIONDATAFILENAME)
                          
                         let bArrConxData: [Byte] = FileSystem.ReadFile(strFileName: strConnectionDataFile)!
                         
@@ -6775,11 +6776,11 @@ class ISO320Initialization: ISOMessage
             chArrTempChunkSize = Array(data[45 - 1][0 ..< data[45 - 1].count])
             //System.arraycopy(data[45-1],0,chArrTempChunkSize,0,data[45-1].length);
 
-            var ulChunkSize: Int64
-            ulChunkSize = Int64(String(bytes: chArrTempChunkSize, encoding: .utf8)!)!
-            debugPrint("ulChunkSize[\(ulChunkSize)]")
+            var ulChunkSize = Long()
+            ulChunkSize.value = Int64(String(bytes: chArrTempChunkSize, encoding: .utf8)!)!
+            debugPrint("ulChunkSize[\(ulChunkSize.value)]")
             
-            var list_of_Item: [Int64] = []
+            var list_of_Item: [Long] = []
             list_of_Item.append(ulChunkSize);
             do{
                 _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.DWNLDEDCAPPCHUNKINFO, with: list_of_Item)
@@ -7282,7 +7283,7 @@ class ISO320Initialization: ISOMessage
             debugPrint("Response->Field 53 found in ProcessMINIPVMDownload")
         }
 
-        let tempData: [Int64] = []
+        let tempData: [Long] = []
         
         if(self.m_bCurrentPacketCount == 0x01){
             debugPrint("*******MINIPVM download*****")
@@ -7303,7 +7304,7 @@ class ISO320Initialization: ISOMessage
                 fatalError("Error in AppendFile \(m_chTempMINIPVMfileName)")
             }
             
-            let chMINIPVMIdName: String = String(format: "%d.plist",m_ulArrMINIPVMIdAdd[m_ulTotalMINIPVMAdded])
+            let chMINIPVMIdName: String = String(format: "%d",m_ulArrMINIPVMIdAdd[m_ulTotalMINIPVMAdded])
             _ = FileSystem.DeleteFile(strFileName: chMINIPVMIdName, with: tempData)
             
             debugPrint("chMINIPVMIdName[\(chMINIPVMIdName)]")
@@ -7419,12 +7420,12 @@ class ISO320Initialization: ISOMessage
        
             chArrTempChunkSize = Array(data[45 - 1][0 ..< len[45 - 1]])
             //System.arraycopy(data[45-1],0,chArrTempChunkSize,0,len[45-1]);
-            var ulChunkSize: Int64
-            ulChunkSize = Int64(String(bytes: chArrTempChunkSize, encoding: String.Encoding.utf8)!)!
+            var ulChunkSize = Long()
+            ulChunkSize.value = Int64(String(bytes: chArrTempChunkSize, encoding: String.Encoding.utf8)!)!
             
-            debugPrint("ulChunkSize[\(ulChunkSize)]")
+            debugPrint("ulChunkSize[\(ulChunkSize.value)]")
             
-            var list_of_Items: [Int64] = []
+            var list_of_Items: [Long] = []
             list_of_Items.append(ulChunkSize)
             
             do {
@@ -7875,9 +7876,8 @@ class ISO320Initialization: ISOMessage
         }
 
         if(self.m_bCurrentPacketCount == 0x00){
-            let llList: [Int64] = []
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.ADDHTLLIST, with: llList)
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DELETEHTLLIST, with: llList)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.ADDHTLLIST)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DELETEHTLLIST)
         }
 
         while(length > 0){
@@ -8113,9 +8113,8 @@ class ISO320Initialization: ISOMessage
         }
 
         if(self.m_bCurrentPacketCount == 0x00){
-            let long: [Long] = []
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.ADDHTLLIST, with: long);
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DELETEHTLLIST, with: long);
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.ADDHTLLIST)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DELETEHTLLIST)
         }
 
         var iOffset: Int = 0
@@ -8481,6 +8480,7 @@ class ISO320Initialization: ISOMessage
          {
             var ulChunkSize = Long()
             let list_of_Item: [Long] = FileSystem.ReadFile(strFileName: FileNameConstants.DWNLDCHUNKINFO)!
+            
             if(!list_of_Item.isEmpty)
             {
                 ulChunkSize = list_of_Item[0]

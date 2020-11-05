@@ -30,6 +30,10 @@ final class GlobalData
     static var responseCode: String = ""
     static var m_bIsTxnDeclined: Bool = false;
     
+    static var m_iMaxBytesToAddPrinter: Int = 9000
+    var m_bPrinterData = [Byte](repeating: 0x00, count: 20000)
+    var m_iPrintLen: Int = 0
+    
     var m_mLoginAccountInfo = [String:LOGINACCOUNTS]()
     
     private init() {}

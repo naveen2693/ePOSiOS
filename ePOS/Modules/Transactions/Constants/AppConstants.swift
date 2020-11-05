@@ -138,5 +138,19 @@ enum AppConstant
     static let ID_KEYSLOTID = 0
     static let ID_KEYSLOTPIN = 1
     static let ID_KEYSLOTTLE = 2
+ 
+    static let PRINTDUMP_CHARGESLIPMODE: Byte = 0x01
+    static let PRINTDUMP_RAWMODE: Byte = 0x02
+    static let PRINTDUMP_IMAGEMODE: Byte = 0x03
+    static let PRINTDUMP_BARCODEMODE: Byte = 0x04
+    static let PRINTDUMP_PRINTMESSAGEMODE: Byte = 0x05
+    static let PRINTDUMP_DISPLAYMODE: Byte = 0x06
+    static let PRINTDUMP_QRCODEMODEBASE64: Byte = 0x0B
+    static let PRINTDUMP_QRCODEMODE: Byte = 0x09
+    static let PRINTDUMP_QRCODEPD: Byte = 0x0A
+    
+    static let PRINTDUMP_SIZE24: Int = 24
+    static let PRINTDUMP_SIZE40: Int = 40
+    static let PRINTDUMP_SIZE48: Int = 48
     
 }

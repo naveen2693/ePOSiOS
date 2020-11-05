@@ -64,6 +64,9 @@
 		46ED34762538603A00CEF19D /* AutoGPRSNetworkParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED34752538603A00CEF19D /* AutoGPRSNetworkParams.swift */; };
 		46ED34782538665000CEF19D /* AutoPremiumServiceParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED34772538665000CEF19D /* AutoPremiumServiceParams.swift */; };
 		8E10234D2545780200F1A907 /* st_EMV_Tag_List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E10234C2545780200F1A907 /* st_EMV_Tag_List.swift */; };
+		8E13826225518568000F7C21 /* PrinterHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E13826125518568000F7C21 /* PrinterHandler.swift */; };
+		8E1382642551882F000F7C21 /* PrinterDataDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1382632551882F000F7C21 /* PrinterDataDisplay.swift */; };
+		8E4DCFA22534BC1400726EA8 /* CRC32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA12534BC1400726EA8 /* CRC32.swift */; };
 		8E4DCFA425354F8A00726EA8 /* LOGIN_ACCOUNTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */; };
 		8E4DCFA625369F1000726EA8 /* BytesUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA525369F1000726EA8 /* BytesUtil.swift */; };
 		8E927C68253895AC009928D4 /* DisplayMessageMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E927C67253895AC009928D4 /* DisplayMessageMode.swift */; };
@@ -292,6 +295,9 @@
 		46ED34752538603A00CEF19D /* AutoGPRSNetworkParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoGPRSNetworkParams.swift; sourceTree = "<group>"; };
 		46ED34772538665000CEF19D /* AutoPremiumServiceParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPremiumServiceParams.swift; sourceTree = "<group>"; };
 		8E10234C2545780200F1A907 /* st_EMV_Tag_List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = st_EMV_Tag_List.swift; sourceTree = "<group>"; };
+		8E13826125518568000F7C21 /* PrinterHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterHandler.swift; sourceTree = "<group>"; };
+		8E1382632551882F000F7C21 /* PrinterDataDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterDataDisplay.swift; sourceTree = "<group>"; };
+		8E4DCFA12534BC1400726EA8 /* CRC32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRC32.swift; sourceTree = "<group>"; };
 		8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOGIN_ACCOUNTS.swift; sourceTree = "<group>"; };
 		8E4DCFA525369F1000726EA8 /* BytesUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BytesUtil.swift; sourceTree = "<group>"; };
 		8E927C67253895AC009928D4 /* DisplayMessageMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayMessageMode.swift; sourceTree = "<group>"; };
@@ -1286,6 +1292,8 @@
 				8EE3284F253C97F800616E33 /* TLVObject.swift */,
 				8EE3285D253ED80700616E33 /* PineKeyInjection.swift */,
 				8EE3286C25444AD300616E33 /* CConx.swift */,
+				8E13826125518568000F7C21 /* PrinterHandler.swift */,
+				8E1382632551882F000F7C21 /* PrinterDataDisplay.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1585,6 +1593,7 @@
 				46BD9B4225160767008DEFEA /* IntialDataRequest.swift in Sources */,
 				9919A9942514D83000A67253 /* EPOSUserDefaults.swift in Sources */,
 				CECC540D252B539600C0940E /* ISO500Settlement.swift in Sources */,
+				8E13826225518568000F7C21 /* PrinterHandler.swift in Sources */,
 				CE971BC5252CACAF00843943 /* TCPIPCommunicator.swift in Sources */,
 				CE971BD7252CBD9D00843943 /* TerminalMasterParamData.swift in Sources */,
 				46BD9B54251AFE80008DEFEA /* GenericSwitchingViewController.swift in Sources */,
@@ -1721,6 +1730,7 @@
 				99186D5B2511D37200A9FE07 /* RoundViewCorner.swift in Sources */,
 				46ADF12825287BB6009A9297 /* DocResources.swift in Sources */,
 				99186D4E2511D27F00A9FE07 /* PasswordController.swift in Sources */,
+				8E1382642551882F000F7C21 /* PrinterDataDisplay.swift in Sources */,
 				99186D5C2511D37200A9FE07 /* CheckBox.swift in Sources */,
 				997DC7FC2522346D006ADE48 /* LeadProfile.swift in Sources */,
 				46ADF12225287A56009A9297 /* IndividualItem.swift in Sources */,
