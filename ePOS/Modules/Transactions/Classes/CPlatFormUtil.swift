@@ -10,15 +10,15 @@ import Foundation
 
 public class PlatFormUtils{
     
-    //MARK:- getLast8DigitOfIMEINumber() -> String
-    static func getLast8DigitOfIMEINumber() -> String {
-        var last8DigitIMEI = "";
+    //MARK:- getLast8DigitOfFullSerialNumber() -> String
+    static func getLast8DigitOfFullSerialNumber() -> String {
+        var last8digitFullSerialNumber = "";
     
-        if let IMEI = GlobalData.singleton.getFullSerialNumber()
+        if let fullSerialNumber = GlobalData.singleton.getFullSerialNumber()
         {
-            last8DigitIMEI =  IMEI.substring(from: (IMEI.count - 8),to: IMEI.count)
+            last8digitFullSerialNumber =  fullSerialNumber.substring(from: (fullSerialNumber.count - 8),to: fullSerialNumber.count)
         }
-        return last8DigitIMEI;
+        return last8digitFullSerialNumber;
     }
 
     //MARK:- getIMEI() -> String?

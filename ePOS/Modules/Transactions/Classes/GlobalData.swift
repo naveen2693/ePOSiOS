@@ -11,7 +11,7 @@ import Foundation
 final class GlobalData
 {
     var  m_sConxData = StructConxData();
-    var  fullSerialNumber:String?
+    var  fullSerialNumber:String? = "EPOSIOS12345678"
     static var m_sTerminalParamData_Cache: TerminalParamData?
     var m_sMasterParamData: TerminalMasterParamData?
     var m_sPSKData:TerminalPSKData?
@@ -376,7 +376,7 @@ public func CreateParamFile() -> Int {
         terminalParamData.m_bIsDataChanged = true;
         terminalParamData.m_strNoPrintMessage = AppConstant.NoPrintDefaultMessage;
         terminalParamData.m_iIsCRISEnabled = 0;
-        terminalParamData.m_strHardwareSerialNumber = PlatFormUtils.getLast8DigitOfIMEINumber();
+        terminalParamData.m_strHardwareSerialNumber = PlatFormUtils.getLast8DigitOfFullSerialNumber();
         _ = WriteParamFile(listParamData: terminalParamData);
         return AppConstant.TRUE;
     }
@@ -1746,6 +1746,10 @@ public func CreateParamFile() -> Int {
             return serialNumber;
         }
         return nil
+    }
+    
+    public func setFullSerialNumber(_ fullSerialNumberInput:String) {
+        fullSerialNumber = fullSerialNumberInput
     }
     
     

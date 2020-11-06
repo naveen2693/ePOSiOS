@@ -13,7 +13,6 @@ class ISOProcessor
     func DoHUBActivation() -> Bool {
 
         debugPrint("Inside DoHubActivation")
-        //CConx conx = CConx.GetInstance();
 
         let globalData = GlobalData.singleton
 
@@ -21,16 +20,7 @@ class ISOProcessor
         globalData.mFinalMsgDisplayField58 = "";
 
         do {
-//            if !conx.requestForDial()
-//            {
-//                //globalData.csFinalMsg = "Connection Failed! Please Check your Internet Connectivity";
-//                return false;
-//            } else if (!conx.waitForConnect()) {
-//                CGlobalData.csFinalMsg = "Connection Failed!";
-//                conx.disconnect();
-//                return AppConst.FALSE;
-//            }
-
+            
             if(!TCPIPCommunicator.singleton.Connect())
             {
                 return false
@@ -43,7 +33,7 @@ class ISOProcessor
             debugPrint("Sending ISO 440 packet.")
             iso440.SetActivationRequestData();
 
-            if (!isohandler.sendISOPacket(iso440)==true)
+            if (!isohandler.sendISOPacket(iso440))
             {
                 debugPrint("Sending ISO 440 packet Failed")
                 globalData.mFinalMsgActivation = "Activation Failed!";

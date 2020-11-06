@@ -48,16 +48,13 @@ class ISOMessage{
     func vFnSetPEDHardwareSerialNumer() {
         do {
             debugPrint("Inside vFnSetPEDHardwareSerialNumer")
-            //TODO Uncomment Naveen
-//            guard let chArrHarwareSerialNumber = PlatFormUtils.GetHardWareSerialNumber()
-//            else
-//            {
-//                return
-//            }
-            let bArrHarwareSerialNumber = [Byte]("987654321".utf8)
+            guard let bArrHarwareSerialNumber = PlatFormUtils.GetHardWareSerialNumber()
+            else{
+                return
+            }
             var iLenHardwareSerialNum: Int = bArrHarwareSerialNumber.count
 
-              if (iLenHardwareSerialNum <= AppConstant.MAX_LEN_HARDWARE_SERIAL_NUMBER) {
+            if (iLenHardwareSerialNum <= AppConstant.MAX_LEN_HARDWARE_SERIAL_NUMBER) {
                 //Array Sliced assign new one
                  m_chArrHardwareSerialNumber = Array(bArrHarwareSerialNumber[0 ..< iLenHardwareSerialNum])
               } else {
@@ -80,17 +77,11 @@ class ISOMessage{
             var buffer = [Byte](repeating: 0x00, count: 150)
             var iOffset: Int = 0x00;
             
-            //TODO Uncomment Naveen
-            let hardwareSerialNumber:[Byte]?  = [Byte]("987654321".utf8)
-            
-            //TODO Uncomment Naveen
-            guard var bArrHardwareSerialNumber = hardwareSerialNumber/*PlatFormUtils.getFullSerialNumber()*/else {return}
+            guard var bArrHardwareSerialNumber = PlatFormUtils.getFullSerialNumber() else {return}
             
             var iLenHardwareSerialNum: Int = bArrHardwareSerialNumber.count
 
-            if (iLenHardwareSerialNum <= AppConstant.MAX_LEN_HARDWARE_SERIAL_NUMBER) {
-                bArrHardwareSerialNumber = Array(bArrHardwareSerialNumber[0 ..< iLenHardwareSerialNum])
-            } else {
+            if (iLenHardwareSerialNum > AppConstant.MAX_LEN_HARDWARE_SERIAL_NUMBER) {
                 bArrHardwareSerialNumber = Array(bArrHardwareSerialNumber[0 ..< AppConstant.MAX_LEN_HARDWARE_SERIAL_NUMBER])
                 iLenHardwareSerialNum = AppConstant.MAX_LEN_HARDWARE_SERIAL_NUMBER
             }

@@ -37,7 +37,7 @@ class ISOHandler
             
             //5Bytes TPDU
             bArrSendDataToHost[0...4] = iso.m_TPDU[0...4]
-            iOffset += AppConstant.MAX_LEN_TPDU;
+            iOffset += AppConstant.MAX_LEN_TPDU
             
             //Length in 2 Bytes
             bArrSendDataToHost[iOffset] = (UInt8) (iReceivedPacketLength >> 8)
@@ -50,7 +50,7 @@ class ISOHandler
             iOffset += iReceivedPacketLength;
 
             bIssent = TCPIPCommunicator.singleton.SendDataToHost(bArrSendBuffer:bArrSendDataToHost)
-            return bIssent;
+            return bIssent
         } catch{
             //CGlobalData.csFinalMsg = "Error in Sending Data to Host";
             fatalError("Exception caught in sendISOPacket")
