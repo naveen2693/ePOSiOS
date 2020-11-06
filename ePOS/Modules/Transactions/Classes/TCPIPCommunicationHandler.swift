@@ -55,7 +55,6 @@ class TCPIPCommunicationHandler
     
     func SendDataToHost(bArrSendBuffer: [Byte]) -> Bool
     {
-        //guard let client = mClient else { return false}
         switch mClient.send(data:bArrSendBuffer)
         {
         case .success:
@@ -68,7 +67,6 @@ class TCPIPCommunicationHandler
     
     func ReceiveDataFromHost() -> [Byte]?
     {
-        //guard let client = mClient else { return nil}
         guard let receivedBuffer = mClient.read(1024*10,timeout:mSendReceiveTimeout)
             else { return nil }
      
@@ -80,14 +78,54 @@ class TCPIPCommunicationHandler
     
     func ReceiveCompletePacket() -> [Byte]?
     {
-        //TODO check for complete packet
+        guard var bArrReceivedDataTemp = ReceiveDataFromHost() else  {return nil}
+        
+        var iLength:Int = 0
+        var iOffset:Int = 0
+        let iHeaderLength:Int = 7
+        
+        if(bArrReceivedDataTemp.count < iHeaderLength){
+        return nil
+        }else {
+            iLength = Int(bArrReceivedDataTemp[5] & 0x000000FF)
+            iLength <<= 8
+            iLength |= Int(bArrReceivedDataTemp[6] & 0x000000FF)
+        }
+        if (iLength == 0){
+            return nil
+        }
+        if(iLength+iHeaderLength == bArrReceivedDataTemp.count){
+            return bArrReceivedDataTemp
+        }
+        
+        var bArrCompletePacket = [Byte](repeating: 0, count: 0)
+        bArrCompletePacket.append(contentsOf: Array(bArrReceivedDataTemp[0..<bArrReceivedDataTemp.count]))
+        
+        iOffset += bArrReceivedDataTemp.count
+        
+        var iRetryCount:Int = 0
+        while((iOffset-iHeaderLength) < iLength){
+            bArrReceivedDataTemp = ReceiveDataFromHost()!
+            bArrCompletePacket.append(contentsOf: Array(bArrReceivedDataTemp[0..<bArrReceivedDataTemp.count]))
+            iOffset = iOffset+bArrReceivedDataTemp.count
+            iRetryCount += 1
+            
+            if(iRetryCount>100){
+                break
+            }
+        }
+        
+        if((iOffset-iHeaderLength)==iLength){
+            let strReceivedData = TransactionUtils.bcd2a(bArrCompletePacket)
+            debugPrint("Received Data [\(strReceivedData)]") //TODO Uncomment Later Added for testing
+            return bArrCompletePacket
+        }
+        
         return nil
     }
     
     func disconnect() -> Bool
     {
-        //TODO test
-         //guard let client = mClient else { return false}
          mClient.close()
          return true
     }

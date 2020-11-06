@@ -63,15 +63,16 @@ class ISOHandler
         
          do {
               debugPrint("Inside getNextMessage")
-              guard let bArrReceivedData = TCPIPCommunicator.singleton.ReceiveDataFromHost()
-              else
-              {
+              guard let bArrReceivedData = TCPIPCommunicator.singleton.ReceiveCompletePacket()
+              else{
                     debugPrint("getNextMessage Failed")
-                    return 0 }
-                    if (!iso.unPackHostDirect(bArrSource:bArrReceivedData)) { return 0;}
-                    guard let strMsgNumber = String(bytes: iso.msgno, encoding: .utf8) else {return 0}
-                    guard let iMsgNumber:Int = Int(strMsgNumber) else {return 0}
-                    return iMsgNumber;
+                    return 0
+                
+               }
+               if (!iso.unPackHostDirect(bArrSource:bArrReceivedData)) { return 0}
+               guard let strMsgNumber = String(bytes: iso.msgno, encoding: .utf8) else {return 0}
+               guard let iMsgNumber:Int = Int(strMsgNumber) else {return 0}
+               return iMsgNumber;
            }
          catch {
                fatalError("Exception caught in getNextMessage")
