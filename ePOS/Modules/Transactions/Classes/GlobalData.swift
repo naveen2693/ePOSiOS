@@ -34,6 +34,10 @@ final class GlobalData
     var m_bPrinterData = [Byte](repeating: 0x00, count: 20000)
     var m_iPrintLen: Int = 0
     
+    static var m_bIsFiled58Absent: Bool = false;
+    static var m_csFinalMsgDisplay58: String = ""
+    static var m_csFinalMsgDoHubInitialization: String = ""
+    
     var m_mLoginAccountInfo = [String:LOGINACCOUNTS]()
     
     private init() {}
@@ -57,7 +61,7 @@ final class GlobalData
         let iConnType:Int = 0;
         let iConxPriority:Int = 0;
         let maxCommunication:Int = AppConstant.MAX_COMMUNICATION_CHANNEL
-        for _ in  0...maxCommunication
+        for _ in  0 ..< maxCommunication
         {
             var conxData = TerminalConxData();
             conxData.iConnType += iConnType;
@@ -144,6 +148,11 @@ final class GlobalData
             {
                 GlobalData.m_sTerminalParamData_Cache = m_sTerminalParamData
             }
+            else{
+                let terminalParamData = TerminalParamData()
+                GlobalData.m_sTerminalParamData_Cache = terminalParamData
+            }
+            
         }
         return GlobalData.m_sTerminalParamData_Cache
     }
@@ -164,7 +173,7 @@ final class GlobalData
         return AppConstant.TRUE;
     }
                 
-    func WriteParamFile(listParamData: TerminalParamData?)-> Int {
+    func WriteParamFile(listParamData: TerminalParamData?) -> Int {
         var objTerminalParamData = [TerminalParamData]()
         
         if (listParamData == nil) {
@@ -191,19 +200,26 @@ final class GlobalData
     func  ReadMasterParamFile() -> Int {
         if m_sMasterParamData_cache == nil
         {
-            m_sMasterParamData = FileSystem.SeekRead(strFileName: FileNameConstants.TERMINALMASTERPARAMFILE, iOffset: 0);
-            m_sMasterParamData_cache = m_sMasterParamData;
+            if let m_sMasterParamData: TerminalMasterParamData = FileSystem.SeekRead(strFileName: FileNameConstants.TERMINALMASTERPARAMFILE, iOffset: 0)
+            {
+                m_sMasterParamData_cache = m_sMasterParamData
+            }
+            else
+            {
+                let terminalMasterParamData = TerminalMasterParamData()
+                m_sMasterParamData_cache = terminalMasterParamData
+            }
         }
         else
         {
             m_sMasterParamData = m_sMasterParamData_cache;
         }
+        
         if (m_sMasterParamData == nil) {
             return (AppConstant.FALSE);
         }
         return (AppConstant.TRUE);
     }
-    
     
     func setFullSerialNumber(fullSerialNumber: String) {
         //setting full serial number from remote to be used in activation to generate Short Serial number
@@ -382,90 +398,101 @@ public func CreateParamFile() -> Int {
     }
     
     
-    
     public func CreateMasterParamFile() -> Int{
-        var m_sMasterParamData =  TerminalMasterParamData();
+        m_sMasterParamData =  TerminalMasterParamData();
         
         //App version
-        m_sMasterParamData.m_strAppVersion = AppConstant.APP_VERSION;
+        m_sMasterParamData!.m_strAppVersion = AppConstant.APP_VERSION;
         
-        m_sMasterParamData.m_strEMVParVersion = "121212121212";
+        m_sMasterParamData!.m_strEMVParVersion = "121212121212";
         
         //for contactless
-        m_sMasterParamData.m_strCLESSEMVParVersion = "121212121212";
+        m_sMasterParamData!.m_strCLESSEMVParVersion = "121212121212";
         
-        m_sMasterParamData.bIsDataChanged = true;
-        m_sMasterParamData.bIsBitmap320ActiveHostSet = false;
-        m_sMasterParamData.bIsBitmap440ActiveHostSet = false;
-        m_sMasterParamData.bIsBitmap500ActiveHostSet = false;
+        m_sMasterParamData!.bIsDataChanged = true;
+        m_sMasterParamData!.bIsBitmap320ActiveHostSet = false;
+        m_sMasterParamData!.bIsBitmap440ActiveHostSet = false;
+        m_sMasterParamData!.bIsBitmap500ActiveHostSet = false;
         
-        m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber.append(0x00);
-        m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber.append(0x00);
-        m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber.append(0x00);
-        m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber.append(0x00);
-        m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber.append(0x00);
-        m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber.append(0x00);
-        m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber.append(0x00);
-        m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber.append(0x00);
+        m_sMasterParamData!.m_uchArrBitmap320CentralChangeNumber[0] = Byte(0x00)
+        m_sMasterParamData!.m_uchArrBitmap320CentralChangeNumber[1] = Byte(0x00)
+        m_sMasterParamData!.m_uchArrBitmap320CentralChangeNumber[2] = Byte(0x00)
+        m_sMasterParamData!.m_uchArrBitmap320CentralChangeNumber[3] = Byte(0x00)
+        m_sMasterParamData!.m_uchArrBitmap320CentralChangeNumber[4] = Byte(0x00)
+        m_sMasterParamData!.m_uchArrBitmap320CentralChangeNumber[5] = Byte(0x00)
+        m_sMasterParamData!.m_uchArrBitmap320CentralChangeNumber[6] = Byte(0x00)
+        m_sMasterParamData!.m_uchArrBitmap320CentralChangeNumber[7] = Byte(0x00)
         
-        m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber.append(Byte(0xFF));
-        m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber.append(Byte(0xFF));
-        m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber.append(Byte(0xFF));
-        m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber.append(Byte(0xFF));
-        m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber.append(Byte(0xFF));
-        m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber.append(Byte(0xFF));
-        m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber.append(Byte(0xFF));
-        m_sMasterParamData.m_uchArrBitmap320HUBChangeNumber.append(Byte(0xFF));
+        m_sMasterParamData!.m_uchArrBitmap320HUBChangeNumber[0] = Byte(0xFF)
+        m_sMasterParamData!.m_uchArrBitmap320HUBChangeNumber[1] = Byte(0xFF)
+        m_sMasterParamData!.m_uchArrBitmap320HUBChangeNumber[2] = Byte(0xFF)
+        m_sMasterParamData!.m_uchArrBitmap320HUBChangeNumber[3] = Byte(0xFF)
+        m_sMasterParamData!.m_uchArrBitmap320HUBChangeNumber[4] = Byte(0xFF)
+        m_sMasterParamData!.m_uchArrBitmap320HUBChangeNumber[5] = Byte(0xFF)
+        m_sMasterParamData!.m_uchArrBitmap320HUBChangeNumber[6] = Byte(0xFF)
+        m_sMasterParamData!.m_uchArrBitmap320HUBChangeNumber[7] = Byte(0xFF)
+        
+        m_sMasterParamData!.m_uchArrBitmap320ActiveHost[0] = Byte(0x00)
+        m_sMasterParamData!.m_uchArrBitmap320ActiveHost[1] = Byte(0x00)
+        m_sMasterParamData!.m_uchArrBitmap320ActiveHost[2] = Byte(0x00)
+        
+        m_sMasterParamData!.m_uchArrBitmap440ActiveHost[0] = Byte(0x00)
+        m_sMasterParamData!.m_uchArrBitmap440ActiveHost[1] = Byte(0x00)
+        m_sMasterParamData!.m_uchArrBitmap440ActiveHost[2] = Byte(0x00)
+    
+        m_sMasterParamData!.m_uchArrBitmap500ActiveHost[0] = Byte(0x00)
+        m_sMasterParamData!.m_uchArrBitmap500ActiveHost[1] = Byte(0x00)
+        m_sMasterParamData!.m_uchArrBitmap500ActiveHost[2] = Byte(0x00)
         
         let strInitialValue = "010101000000";
         let bArrInitialValue = strInitialValue.bytes;
-        m_sMasterParamData.m_strBinRangeDownloadDate = strInitialValue;
-        m_sMasterParamData.m_bIsBinRangeChanged = false;
+        m_sMasterParamData!.m_strBinRangeDownloadDate = strInitialValue;
+        m_sMasterParamData!.m_bIsBinRangeChanged = false;
         
         //Transaction Bin
-        m_sMasterParamData.m_strTxnBinDownloadDate = strInitialValue;
-        m_sMasterParamData.m_bIsTxnBinChanged = false;
+        m_sMasterParamData!.m_strTxnBinDownloadDate = strInitialValue;
+        m_sMasterParamData!.m_bIsTxnBinChanged = false;
         
-        m_sMasterParamData.m_strCSVTxnMapVersion = strInitialValue;
+        m_sMasterParamData!.m_strCSVTxnMapVersion = strInitialValue;
         
-        m_sMasterParamData.m_strAIDEMVTXNTYPEDownloadDate = strInitialValue;
+        m_sMasterParamData!.m_strAIDEMVTXNTYPEDownloadDate = strInitialValue;
         
-        m_sMasterParamData.m_strTxnTypeFlagsMappingDownloadDate = strInitialValue;
+        m_sMasterParamData!.m_strTxnTypeFlagsMappingDownloadDate = strInitialValue;
         
         //CSV transaction Ignore Amt List
-        m_sMasterParamData.m_strIgnoreAmtCSVTxnListDownloadDate = strInitialValue;
+        m_sMasterParamData!.m_strIgnoreAmtCSVTxnListDownloadDate = strInitialValue;
         
         //EMV TAG  List
-        m_sMasterParamData.m_strEMVTagListDownloadDate = strInitialValue;
+        m_sMasterParamData!.m_strEMVTagListDownloadDate = strInitialValue;
         
         //cless param  List
-        m_sMasterParamData.m_strCLessParamDownloadDate = strInitialValue;
+        m_sMasterParamData!.m_strCLessParamDownloadDate = strInitialValue;
         
         //AID EMV TXNTYPE
-        m_sMasterParamData.m_strAIDEMVTXNTYPEDownloadDate = strInitialValue;
+        m_sMasterParamData!.m_strAIDEMVTXNTYPEDownloadDate = strInitialValue;
         
         //TXNTYPE Flags Mapping  abhishek added 23/11/2015
-        m_sMasterParamData.m_strAIDEMVTXNTYPEDownloadDate = strInitialValue;
-        m_sMasterParamData.m_strCsvTxnTypeMiniPvmMappingDownloadDate = strInitialValue;
-        m_sMasterParamData.m_strISPasswordDownloadDate = strInitialValue;
-        m_sMasterParamData.m_strLogShippingDownloadDate = strInitialValue;
+        m_sMasterParamData!.m_strAIDEMVTXNTYPEDownloadDate = strInitialValue;
+        m_sMasterParamData!.m_strCsvTxnTypeMiniPvmMappingDownloadDate = strInitialValue;
+        m_sMasterParamData!.m_strISPasswordDownloadDate = strInitialValue;
+        m_sMasterParamData!.m_strLogShippingDownloadDate = strInitialValue;
         
         //Use Pine Encryption Key
         //Ini we will be using Bank Keys so this flag is 0.
-        m_sMasterParamData.m_iUsePineEncryptionKeys = 0;
+        m_sMasterParamData!.m_iUsePineEncryptionKeys = 0;
         
         // Use Default Key Slot Only
         //Ini we will be using only single default KeyslotID (10)
-        m_sMasterParamData.m_iUseDefaultKeySlotOnly = true;
+        m_sMasterParamData!.m_iUseDefaultKeySlotOnly = true;
         
         //Additional Parameters
-        m_sMasterParamData.m_iOnlinePinFirstCharTimeout = 60;
-        m_sMasterParamData.m_iOnlinePinInterCharTimeout = 30;
-        m_sMasterParamData.m_iMinPinLength = 4;
-        m_sMasterParamData.m_iMaxPinLength = 12;
-        m_sMasterParamData.m_iDisplayMenuTimeout = 40;
-        m_sMasterParamData.m_iDisplayMessasgeTimeout = 2;
-        m_sMasterParamData.m_iHotKeyConfirmationTimeout = 10;
+        m_sMasterParamData!.m_iOnlinePinFirstCharTimeout = 60;
+        m_sMasterParamData!.m_iOnlinePinInterCharTimeout = 30;
+        m_sMasterParamData!.m_iMinPinLength = 4;
+        m_sMasterParamData!.m_iMaxPinLength = 12;
+        m_sMasterParamData!.m_iDisplayMenuTimeout = 40;
+        m_sMasterParamData!.m_iDisplayMessasgeTimeout = 2;
+        m_sMasterParamData!.m_iHotKeyConfirmationTimeout = 10;
         
         //Save default parameter data
         if !(FileSystem.IsFileExist(strFileName: FileNameConstants.TERMINALMASTERPARAMFILE))
@@ -476,6 +503,7 @@ public func CreateParamFile() -> Int {
         {
             _  =  ReadMasterParamFile();
         }
+        
         return AppConstant.TRUE;
     }
 
@@ -554,7 +582,7 @@ public func CreateParamFile() -> Int {
         {
             var numberOfAccounts = 0;
             numberOfAccounts = login_accountsList.count ;
-            for value in 0...numberOfAccounts {
+            for value in 0 ..< numberOfAccounts {
                 m_mLoginAccountInfo["m_strUserID"] =  login_accountsList[value].userID
             }
             
@@ -588,7 +616,7 @@ public func CreateParamFile() -> Int {
         m_sConxData.m_bArrConnIndex = StructConnIndex();
         if let listParams:[TerminalConxData] = FileSystem.ReadFile(strFileName: FileNameConstants.CONNECTIONDATAFILENAME){
             let numberOfRow = listParams.count;
-            for count in 0...numberOfRow  {
+            for count in 0 ..< numberOfRow  {
                 tData = listParams[count];
                 if ConnectionTypes.DIALUP_SERIAL == tData?.iConnType {
                     m_sConxData.m_bArrConnIndex.CON_SerialIp.index = count;
@@ -993,7 +1021,7 @@ public func CreateParamFile() -> Int {
     
     
     public func UpdateContentServerParams(ParameterDatas:ParameterData) {
-        if var t_contentServerParamData = ReadContentServerParamFile(){
+        if var t_contentServerParamData = GlobalData.ReadContentServerParamFile(){
            switch (ParameterDatas.ulParameterId) {
                case ParameterIDs._Content_Server_Download_Url:
                 if let bytes = String(data: Data(ParameterDatas.chArrParameterVal), encoding: .utf8)
@@ -1029,9 +1057,9 @@ public func CreateParamFile() -> Int {
            default: break
                 
         }
-        _ = WriteContentServerParamFile(tContentServerParamData: t_contentServerParamData);
+            _ = GlobalData.WriteContentServerParamFile(tContentServerParamData: t_contentServerParamData);
         }
-       }
+    }
 
 
     
@@ -1189,25 +1217,39 @@ public func CreateParamFile() -> Int {
            if (m_sMasterParamData != nil) {
                switch (ParameterDatas.ulParameterId) {
                    case ParameterIDs._Online_Pin_First_Char_Timeout:
-                       let firstCharTimeOut = Int(UInt32(ParameterDatas.chArrParameterVal));
-                       if (firstCharTimeOut > 90 || firstCharTimeOut < 15) {
-                        m_sMasterParamData?.m_iOnlinePinFirstCharTimeout = 60;
-                       } else {
-                        m_sMasterParamData?.m_iOnlinePinFirstCharTimeout = firstCharTimeOut;
-                       }
+                        var firstCharTimeOut = 0
+                        for byte in ParameterDatas.chArrParameterVal {
+                            firstCharTimeOut = firstCharTimeOut << 8
+                            firstCharTimeOut = firstCharTimeOut | Int(byte)
+                        }
+                        //let firstCharTimeOut = Int(UInt32(ParameterDatas.chArrParameterVal));
+                        if (firstCharTimeOut > 90 || firstCharTimeOut < 15) {
+                            m_sMasterParamData?.m_iOnlinePinFirstCharTimeout = 60;
+                        } else {
+                            m_sMasterParamData?.m_iOnlinePinFirstCharTimeout = firstCharTimeOut;
+                        }
                        
-
                    case ParameterIDs._Online_Pin_Interchar_Timeout:
-                       let interCharTimeOut = Int(UInt32(ParameterDatas.chArrParameterVal));
-                       if (interCharTimeOut > 60 || interCharTimeOut < 30) {
-                           m_sMasterParamData?.m_iOnlinePinInterCharTimeout = 30;
-                       } else {
-                           m_sMasterParamData?.m_iOnlinePinInterCharTimeout = interCharTimeOut;
-                       }
-                       
+                        var interCharTimeOut = 0
+                        for byte in ParameterDatas.chArrParameterVal {
+                            interCharTimeOut = interCharTimeOut << 8
+                            interCharTimeOut = interCharTimeOut | Int(byte)
+                        }
+                
+                        //let interCharTimeOut = Int(UInt32(ParameterDatas.chArrParameterVal));
+                        if (interCharTimeOut > 60 || interCharTimeOut < 30) {
+                            m_sMasterParamData?.m_iOnlinePinInterCharTimeout = 30;
+                        } else {
+                            m_sMasterParamData?.m_iOnlinePinInterCharTimeout = interCharTimeOut;
+                        }
 
                    case ParameterIDs._Min_Pin_Length:
-                       let minPinLength = Int(UInt32(ParameterDatas.chArrParameterVal));
+                        var minPinLength = 0
+                        for byte in ParameterDatas.chArrParameterVal {
+                            minPinLength = minPinLength << 8
+                            minPinLength = minPinLength | Int(byte)
+                        }
+                        //let minPinLength = Int(UInt32(ParameterDatas.chArrParameterVal));
                        if (minPinLength < 4) {
                            m_sMasterParamData?.m_iMinPinLength = 4;
                        } else {
@@ -1216,7 +1258,13 @@ public func CreateParamFile() -> Int {
                        
 
                    case ParameterIDs._Max_Pin_Length:
-                       let maxPinLength = Int(UInt32(ParameterDatas.chArrParameterVal));
+                        var maxPinLength = 0
+                        for byte in ParameterDatas.chArrParameterVal {
+                            maxPinLength = maxPinLength << 8
+                            maxPinLength = maxPinLength | Int(byte)
+                       }
+                        
+                       //let maxPinLength = Int(UInt32(ParameterDatas.chArrParameterVal));
                        if (maxPinLength > 12) {
                            m_sMasterParamData?.m_iMaxPinLength = 12;
                        } else {
@@ -1225,59 +1273,89 @@ public func CreateParamFile() -> Int {
                        
 
                    case ParameterIDs._Display_Menu_Timeout:
-                    let DisplayMenuTimeout = Int(UInt32(ParameterDatas.chArrParameterVal));
-                       if (DisplayMenuTimeout < 10 || DisplayMenuTimeout > 1200) {
-                           m_sMasterParamData?.m_iDisplayMenuTimeout = 40;
-                       } else {
-                           m_sMasterParamData?.m_iDisplayMenuTimeout = DisplayMenuTimeout;
-                       }
+                        var DisplayMenuTimeout = 0
+                        for byte in ParameterDatas.chArrParameterVal {
+                            DisplayMenuTimeout = DisplayMenuTimeout << 8
+                            DisplayMenuTimeout = DisplayMenuTimeout | Int(byte)
+                        }
+        
+                        //let DisplayMenuTimeout = Int(UInt32(ParameterDatas.chArrParameterVal));
+                        if (DisplayMenuTimeout < 10 || DisplayMenuTimeout > 1200) {
+                            m_sMasterParamData?.m_iDisplayMenuTimeout = 40;
+                        } else {
+                            m_sMasterParamData?.m_iDisplayMenuTimeout = DisplayMenuTimeout;
+                        }
                        
 
                    case ParameterIDs._Display_Message_Timeout:
-                    let DisplayMessageTimeout = Int(UInt32(ParameterDatas.chArrParameterVal));
-                       if (DisplayMessageTimeout < 1 || DisplayMessageTimeout > 60) {
-                           m_sMasterParamData?.m_iDisplayMessasgeTimeout = 2;
-                       } else {
-                           m_sMasterParamData?.m_iDisplayMessasgeTimeout = DisplayMessageTimeout;
-                       }
-                      
-                       
+                        var DisplayMessageTimeout = 0
+                        for byte in ParameterDatas.chArrParameterVal {
+                            DisplayMessageTimeout = DisplayMessageTimeout << 8
+                            DisplayMessageTimeout = DisplayMessageTimeout | Int(byte)
+                        }
+                    
+                        //let DisplayMessageTimeout = Int(UInt32(ParameterDatas.chArrParameterVal));
+                        if (DisplayMessageTimeout < 1 || DisplayMessageTimeout > 60) {
+                            m_sMasterParamData?.m_iDisplayMessasgeTimeout = 2;
+                        } else {
+                            m_sMasterParamData?.m_iDisplayMessasgeTimeout = DisplayMessageTimeout;
+                        }
 
                    case ParameterIDs._HotKey_Confirmation_Timeout:
-                       let HotKeyConfirmationTimeout = Int(UInt32(ParameterDatas.chArrParameterVal));
-                       if (HotKeyConfirmationTimeout < 5 || HotKeyConfirmationTimeout > 60) {
-                           m_sMasterParamData?.m_iHotKeyConfirmationTimeout = 10;
-                       } else {
-                           m_sMasterParamData?.m_iHotKeyConfirmationTimeout = HotKeyConfirmationTimeout;
-                       }
+                        var HotKeyConfirmationTimeout = 0
+                        for byte in ParameterDatas.chArrParameterVal {
+                            HotKeyConfirmationTimeout = HotKeyConfirmationTimeout << 8
+                            HotKeyConfirmationTimeout = HotKeyConfirmationTimeout | Int(byte)
+                        }
+                        
+                        //let HotKeyConfirmationTimeout = Int(UInt32(ParameterDatas.chArrParameterVal));
+                        if (HotKeyConfirmationTimeout < 5 || HotKeyConfirmationTimeout > 60) {
+                            m_sMasterParamData?.m_iHotKeyConfirmationTimeout = 10;
+                        } else {
+                            m_sMasterParamData?.m_iHotKeyConfirmationTimeout = HotKeyConfirmationTimeout;
+                        }
                        
                    case ParameterIDs._Is_Pin_Required_Service_Code_6:
-                       let iVal = Int(UInt32(ParameterDatas.chArrParameterVal));
-                       if (0 == iVal) {
-                           m_sMasterParamData?.m_bIsAskPInForServiceCode6 = false;
-                       } else {
-                           m_sMasterParamData?.m_bIsAskPInForServiceCode6 = true;
-                       }
+                        var iVal = 0
+                        for byte in ParameterDatas.chArrParameterVal {
+                            iVal = iVal << 8
+                            iVal = iVal | Int(byte)
+                        }
+                    
+                        //let iVal = Int(UInt32(ParameterDatas.chArrParameterVal));
+                        if (0 == iVal) {
+                            m_sMasterParamData?.m_bIsAskPInForServiceCode6 = false;
+                        } else {
+                            m_sMasterParamData?.m_bIsAskPInForServiceCode6 = true;
+                        }
                      
-                   
-                   
                    case ParameterIDs._Is_Pin_Bypass_Service_Code_6:
-                       let iVal = Int(UInt32(ParameterDatas.chArrParameterVal));
-                       if (0 == iVal) {
-                           m_sMasterParamData?.m_bIsPinBypassForServiceCode6 = false;
-                       } else {
-                           m_sMasterParamData?.m_bIsPinBypassForServiceCode6 = true;
-                       }
-                     
-                   
+                        var iVal = 0
+                        for byte in ParameterDatas.chArrParameterVal {
+                            iVal = iVal << 8
+                            iVal = iVal | Int(byte)
+                        }
+                        
+                        //let iVal = Int(UInt32(ParameterDatas.chArrParameterVal));
+                        if (0 == iVal) {
+                            m_sMasterParamData?.m_bIsPinBypassForServiceCode6 = false;
+                        } else {
+                            m_sMasterParamData?.m_bIsPinBypassForServiceCode6 = true;
+                        }
 
                    case ParameterIDs._Ignore_Integrated_TXN_Amount_EMV_TXN:
-                       let iVal = Int(UInt32(ParameterDatas.chArrParameterVal));
-                       if (0 == iVal) {
-                           m_sMasterParamData?.m_bIsIngnoreIngeratedAmountEMVTxn = false;
-                       } else {
-                           m_sMasterParamData?.m_bIsIngnoreIngeratedAmountEMVTxn = true;
-                       }
+                        var iVal = 0
+                        for byte in ParameterDatas.chArrParameterVal {
+                            iVal = iVal << 8
+                            iVal = iVal | Int(byte)
+                        }
+                        
+                        //let iVal = Int(UInt32(ParameterDatas.chArrParameterVal));
+                        if (0 == iVal) {
+                            m_sMasterParamData?.m_bIsIngnoreIngeratedAmountEMVTxn = false;
+                        } else {
+                            m_sMasterParamData?.m_bIsIngnoreIngeratedAmountEMVTxn = true;
+                        }
                        
                     default:
                        return;
@@ -1295,11 +1373,15 @@ public func CreateParamFile() -> Int {
                 if (ParameterDatas.ulParameterLen == AppConstant.LEN_INITIALIZATION_BITMAP) {
                     chArrAsciiParamData = CUtil.a2bcd(s: ParameterDatas.chArrParameterVal);
                     iLenParamData = ParameterDatas.ulParameterLen / 2;
-                    m_sMasterParamData?.m_uchArrBitmap320CentralChangeNumber = "0x00".bytes
+                    
+                    let tempArray: [Byte] = Array(chArrAsciiParamData[0 ..< iLenParamData])
+                    m_sMasterParamData?.m_uchArrBitmap320CentralChangeNumber = tempArray
+                    
+                    //m_sMasterParamData?.m_uchArrBitmap320CentralChangeNumber.append(contentsOf: "0x00".bytes)
                     let centralChangeNumberArray = m_sMasterParamData?.m_uchArrBitmap320CentralChangeNumber
-                    if let wrappedValue = centralChangeNumberArray?[0...iLenParamData]
+                    if let wrappedValue = centralChangeNumberArray?[0 ..< iLenParamData]
                     {
-                        chArrAsciiParamData[0...iLenParamData] = wrappedValue
+                        chArrAsciiParamData[0..<iLenParamData] = wrappedValue
                     }
                 }
               
@@ -1307,36 +1389,49 @@ public func CreateParamFile() -> Int {
                 if ((ParameterDatas.ulParameterLen / 2) == AppConstant.LEN_INITIALIZATION_BITMAP) {
                     chArrAsciiParamData = CUtil.a2bcd(s: ParameterDatas.chArrParameterVal);
                     iLenParamData = ParameterDatas.ulParameterLen / 2;
-                    m_sMasterParamData?.m_uchArrBitmap320HUBChangeNumber = "0x00".bytes;
+                    
+                    let tempArray: [Byte] = Array(chArrAsciiParamData[0 ..< iLenParamData])
+                    m_sMasterParamData?.m_uchArrBitmap320HUBChangeNumber = tempArray
+                    
+                    //m_sMasterParamData?.m_uchArrBitmap320HUBChangeNumber.append(contentsOf: "0x00".bytes)
                     let centralChangeNumberArray = m_sMasterParamData?.m_uchArrBitmap320HUBChangeNumber
-                    if let wrappedValue = centralChangeNumberArray?[0...iLenParamData]
+                    if let wrappedValue = centralChangeNumberArray?[0..<iLenParamData]
                     {
-                        chArrAsciiParamData[0...iLenParamData] = wrappedValue
+                        chArrAsciiParamData[0..<iLenParamData] = wrappedValue
                     }
                 }
                
             case ParameterIDs._Packet_Send_320:
                 if (ParameterDatas.ulParameterLen == AppConstant.LEN_BITMAP_PACKET * 2) {
-                    chArrAsciiParamData = CUtil.a2bcd(s:ParameterDatas.chArrParameterVal);
-                    iLenParamData = ParameterDatas.ulParameterLen / 2;
-                    m_sMasterParamData?.m_uchArrBitmap320ActiveHost = "0x00".bytes;
+                    chArrAsciiParamData = CUtil.a2bcd(s:ParameterDatas.chArrParameterVal)
+                    iLenParamData = ParameterDatas.ulParameterLen / 2
+                
+                    let tempArray: [Byte] = Array(chArrAsciiParamData[0 ..< iLenParamData])
+                    m_sMasterParamData?.m_uchArrBitmap320ActiveHost = tempArray
+                    
                     let centralChangeNumberArray = m_sMasterParamData?.m_uchArrBitmap320ActiveHost
-                    if let wrappedValue = centralChangeNumberArray?[0...iLenParamData]
+                    if let wrappedValue = centralChangeNumberArray?[0 ..< iLenParamData]
                     {
-                        chArrAsciiParamData[0...iLenParamData] = wrappedValue
+                        chArrAsciiParamData[0 ..< iLenParamData] = wrappedValue
                     }
                     m_sMasterParamData?.bIsBitmap320ActiveHostSet = true;
+        
+                    
                 }
                
             case ParameterIDs._Packet_Send_440:
                 if (ParameterDatas.ulParameterLen == AppConstant.LEN_BITMAP_PACKET * 2) {
                     chArrAsciiParamData = CUtil.a2bcd(s:ParameterDatas.chArrParameterVal);
                     iLenParamData = ParameterDatas.ulParameterLen / 2;
-                    m_sMasterParamData?.m_uchArrBitmap440ActiveHost =  "0x00".bytes;
+                    
+                    let tempArray: [Byte] = Array(chArrAsciiParamData[0 ..< iLenParamData])
+                    m_sMasterParamData?.m_uchArrBitmap440ActiveHost = tempArray
+                    
+                    //m_sMasterParamData?.m_uchArrBitmap440ActiveHost.append(contentsOf: "0x00".bytes)
                     let centralChangeNumberArray = m_sMasterParamData?.m_uchArrBitmap440ActiveHost
-                    if let wrappedValue = centralChangeNumberArray?[0...iLenParamData]
+                    if let wrappedValue = centralChangeNumberArray?[0 ..< iLenParamData]
                     {
-                        chArrAsciiParamData[0...iLenParamData] = wrappedValue
+                        chArrAsciiParamData[0 ..< iLenParamData] = wrappedValue
                     }
                     m_sMasterParamData?.bIsBitmap440ActiveHostSet = true;
                 }
@@ -1345,11 +1440,15 @@ public func CreateParamFile() -> Int {
                 if (ParameterDatas.ulParameterLen == AppConstant.LEN_BITMAP_PACKET * 2) {
                     chArrAsciiParamData = CUtil.a2bcd(s:ParameterDatas.chArrParameterVal);
                     iLenParamData = ParameterDatas.ulParameterLen / 2;
-                    m_sMasterParamData?.m_uchArrBitmap500ActiveHost =  "0x00".bytes;
+                    
+                    let tempArray: [Byte] = Array(chArrAsciiParamData[0 ..< iLenParamData])
+                    m_sMasterParamData?.m_uchArrBitmap500ActiveHost = tempArray
+                    
+                    //m_sMasterParamData?.m_uchArrBitmap500ActiveHost.append(contentsOf: "0x00".bytes)
                     let centralChangeNumberArray = m_sMasterParamData?.m_uchArrBitmap500ActiveHost
-                    if let wrappedValue = centralChangeNumberArray?[0...iLenParamData]
+                    if let wrappedValue = centralChangeNumberArray?[0 ..< iLenParamData]
                     {
-                        chArrAsciiParamData[0...iLenParamData] = wrappedValue
+                        chArrAsciiParamData[0 ..< iLenParamData] = wrappedValue
                     }
                     m_sMasterParamData?.bIsBitmap500ActiveHostSet = true;
                 }
@@ -1513,7 +1612,7 @@ public func CreateParamFile() -> Int {
                  }
              }
     
-    func  ReadContentServerParamFile() -> ContentServerParamData? {
+    static func  ReadContentServerParamFile() -> ContentServerParamData? {
         if let t_contentServerParamData:ContentServerParamData = FileSystem.SeekRead(strFileName: FileNameConstants.CONTENT_SERVER_PARAM_FILE, iOffset: 0)
         {
             return t_contentServerParamData;
@@ -1521,7 +1620,7 @@ public func CreateParamFile() -> Int {
            return nil
     }
     
-     func WriteContentServerParamFile(tContentServerParamData:ContentServerParamData) -> Bool{
+     static func WriteContentServerParamFile(tContentServerParamData:ContentServerParamData) -> Bool{
         var listOfObjects = [ContentServerParamData]();
           listOfObjects.append(tContentServerParamData);
         do{
@@ -1536,18 +1635,25 @@ public func CreateParamFile() -> Int {
     
     public func UpdateClessDefPreProcessingParameters(ParameterDatas:ParameterData) {
                 _  = ParameterDatas.uiHostID;
-                var ulAmount:Int64
+                var ulAmount:Int64 = 0
                  if var m_sParamData:TerminalParamData = ReadParamFile(){
                         switch (ParameterDatas.ulParameterId) {
                             case ParameterIDs._Cless_PreProcessing_Amount:
-                                ulAmount = Int64(UInt32(ParameterDatas.chArrParameterVal));
+                                for byte in ParameterDatas.chArrParameterVal {
+                                    ulAmount = ulAmount << 8
+                                    ulAmount = ulAmount | Int64(byte)
+                                }
+                                //ulAmount = Int64(UInt32(ParameterDatas.chArrParameterVal));
                                 
                          case ParameterIDs._Cless_PreProcessing_TxnType:
                                m_sParamData.bArrClessDefPreProcessTxnType[0] = ParameterDatas.chArrParameterVal[0];
                             
                          case ParameterIDs._Cless_MaxIntegration_TxnAmt:
-                                ulAmount = Int64(UInt32(ParameterDatas.chArrParameterVal));
-                                
+                            for byte in ParameterDatas.chArrParameterVal {
+                                    ulAmount = ulAmount << 8
+                                    ulAmount = ulAmount | Int64(byte)
+                                }
+                            //ulAmount = Int64(UInt32(ParameterDatas.chArrParameterVal));
                          
                             default:
                                 return;
@@ -1904,7 +2010,7 @@ public func CreateParamFile() -> Int {
         if var listTerminalConxData:[TerminalConxData] = FileSystem.ReadFile(strFileName: FileNameConstants.CONNECTIONDATAFILENAME){
             let numberOfTerminalConxData = listTerminalConxData.count;
                if numberOfTerminalConxData > 0 {
-                for _ in 0...numberOfTerminalConxData {
+                for _ in 0 ..< numberOfTerminalConxData {
                        listTerminalConxData[0].bIsDataChanged = bFlag;
                    }
                 do{
@@ -2162,5 +2268,357 @@ public func CreateParamFile() -> Int {
                       m_sAutoPremiumServiceParams = defaultparams;
                       return true;
                   }
+    
+    func UpdateMessageFile() -> Bool {
+        if (FileSystem.IsFileExist(strFileName: FileNameConstants.DELETEMSGLIST)) {
+            //          var numberOfItemtoDelete = FileSystem.NumberOfRows(DELETEMSGLIST);
+            let numberOfItemtoDelete = 0;
+            for _ in 0..<numberOfItemtoDelete {
+                // MARK:- Neeed to complete this statement
+                //        objmessageIdToDelete = CFileSystem.ReadRecord(m_context, LONG[].class, DELETEMSGLIST, i);
+                let objmessageIdToDelete:Long?
+               // if let unwrappedobjmessageIdToDelete = objmessageIdToDelete{
+                    //_ = DeleteMessageFromFile(messageIdToDelete: unwrappedobjmessageIdToDelete);
+                //}
+            }
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DELETEMSGLIST)
+        }
 
+        if (FileSystem.IsFileExist(strFileName: FileNameConstants.ADDMSGLIST)) {
+            //var numberOfItemtoAdd = FileSystem.NumberOfRows(ADDMSGLIST);
+            let numberOfItemtoAdd = 0
+            for _ in 0..<numberOfItemtoAdd {
+                let objmessageId:[StructMESSAGEID]?
+                //objmessageId = FileSystem.ReadRecord(AppConstant.ADDMSGLIST, i)
+                /*if let unwrappedobjmessageId  = objmessageId{
+                    do{
+                        _ = try FileSystem.AppendFile(strFileName: FileNameConstants.MASTERMESFILE, with: unwrappedobjmessageId);
+                    }
+                    catch{
+                        print("AppendFile: UpdateMessageFile")
+                    }
+                    _ =  FileSystem.DeleteFileComplete(strFileName: FileNameConstants.ADDMSGLIST)
+                } else {
+                    return true
+                }*/
+            }
+        }
+          _ = SortMessageFile();
+          return true;
+    }
+
+    func DeleteMessageFromFile(messageIdToDelete:Long) -> Bool {
+        if var messageIdlisobj:[StructMESSAGEID] = FileSystem.ReadFile(strFileName: FileNameConstants.MASTERMESFILE){
+            if (!messageIdlisobj.isEmpty) {
+                for i in 0..<messageIdlisobj.count
+                {
+                    if (messageIdlisobj[i].lmessageId == messageIdToDelete.value) {
+                        messageIdlisobj.remove(at:i)
+                        break;
+                    }
+                }
+            }
+            do {
+                _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERMESFILE, with: messageIdlisobj);
+            }catch{
+                debugPrint("ReWriteFile: DeleteMessageFromFile " )
+            }
+        }
+        return true;
+    }
+
+    public func SortMessageFile() -> Bool {
+        if let ItemList:[StructMESSAGEID] = FileSystem.ReadFile(strFileName: FileNameConstants.MASTERMESFILE){
+            if ((ItemList.count > 0)) {
+                let sortedArray = ItemList.sorted {
+                    (obj1, obj2) -> Bool in
+                    return obj1.lmessageId > obj2.lmessageId
+                }
+                do {
+                    _ =  try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERMESFILE, with: sortedArray);
+                }catch{
+                    debugPrint("SortMessageFile");
+                }
+            }
+        }
+        return true
+    }
+
+     public func  UpdateMasterCTFile() -> Bool{
+        if ((FileSystem.IsFileExist(strFileName: FileNameConstants.ADDCTLIST)) || (FileSystem.IsFileExist(strFileName: FileNameConstants.DELETECTLIST)))
+        {
+            _ = SyncFiles(MasterFile: FileNameConstants.MASTERCGFILE, AddListFile: FileNameConstants.ADDCTLIST, DeleteListFile: FileNameConstants.DELETECTLIST);
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.ADDCTLIST);
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DELETECTLIST);
+        }
+        return true;
+    }
+ 
+    public func UpdateMasterIMFile() -> Bool {
+        if ((FileSystem.IsFileExist(strFileName: FileNameConstants.ADDIMLIST)) || (FileSystem.IsFileExist(strFileName: FileNameConstants.DELETEIMLIST))) {
+            SyncFiles(MasterFile: FileNameConstants.MASTERIMFILE, AddListFile: FileNameConstants.ADDIMLIST, DeleteListFile: FileNameConstants.DELETEIMLIST);
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.ADDIMLIST);
+
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DELETEIMLIST);
+
+        }
+        return true;
+    }
+        
+    public func UpdateMasterCLRDIMFile() -> Bool {
+
+            if ((FileSystem.IsFileExist(strFileName: FileNameConstants.ADDCLRDIMLIST)) || (FileSystem.IsFileExist(strFileName: FileNameConstants.DELETECLRDIMLIST))) {
+
+                SyncFiles(MasterFile: FileNameConstants.MASTERCLRDIMFILE, AddListFile: FileNameConstants.ADDCLRDIMLIST, DeleteListFile: FileNameConstants.DELETECLRDIMLIST);
+
+             _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.ADDCLRDIMLIST);
+
+             _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DELETECLRDIMLIST);
+
+            }
+
+            return true;
+
+        }
+    
+    //for dynamic chargeslip
+    public func UpdateMasterFCGFile() -> Bool {
+        if ((FileSystem.IsFileExist(strFileName: FileNameConstants.ADDFCTLIST)) || (FileSystem.IsFileExist(strFileName: FileNameConstants.DELETEFCTLIST))) {
+
+            SyncFiles(MasterFile: FileNameConstants.MASTERFCGFILE, AddListFile: FileNameConstants.ADDFCTLIST, DeleteListFile: FileNameConstants.DELETEFCTLIST);
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.ADDFCTLIST);
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DELETEFCTLIST);
+        }
+        return true
+    }
+
+    //for UniCode Font File download
+    public func UpdateMasterFONTFile() -> Bool{
+        if ((FileSystem.IsFileExist(strFileName: FileNameConstants.ADDFONTLIST)) || (FileSystem.IsFileExist(strFileName: FileNameConstants.DELETEFONTLIST))) {
+    
+            SyncFiles(MasterFile: FileNameConstants.MASTERFONTFILE, AddListFile: FileNameConstants.ADDFONTLIST, DeleteListFile: FileNameConstants.DELETEFONTLIST);
+
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.ADDFONTLIST);
+
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DELETEFONTLIST);
+
+        }
+        return true
+    }
+
+    func SyncFiles(MasterFile:String, AddListFile:String, DeleteListFile:String)
+    {
+        var listItem:[Long]?
+        var DeleteListData:[Long]?
+        var AddListData:[Long]?
+        var numberOfItems = 0;
+
+        if (FileSystem.IsFileExist(strFileName:MasterFile)) {
+            if (FileSystem.IsFileExist(strFileName: DeleteListFile)) {
+                listItem = FileSystem.ReadFile(strFileName: MasterFile);
+                if var list = listItem {
+                    if(list.count>0){
+                        numberOfItems = list.count;
+                    }
+
+                    var numberOfItemtoDelete:Int64 = 0;
+
+                    DeleteListData = FileSystem.ReadFile(strFileName: DeleteListFile)
+                    if let DeleteList =  DeleteListData{
+                        if (!DeleteList.isEmpty) {
+                            numberOfItemtoDelete = Int64(DeleteList.count);
+                        }
+                        
+                        for _ in  0..<numberOfItemtoDelete{
+                            for i in 0..<list.count{
+                                if(list[i].value == DeleteList[i].value) {
+                                    list.remove(at: i);
+                                    break;
+                            }
+                        }
+                    }
+
+                    if ((list.count > 0)) {
+                        let sortedArray = list.sorted {
+                            (obj1, obj2) -> Bool in
+                            return obj1.value > obj2.value
+                        }
+                        do {
+                            _ = try  FileSystem.ReWriteFile(strFileName: MasterFile, with: sortedArray);
+
+                        }catch{
+                            fatalError("ReWriteFile")
+                        }
+                    }
+                }
+            }
+
+            if (FileSystem.IsFileExist(strFileName: AddListFile)) {
+                    numberOfItems = 0;
+                    listItem = FileSystem.ReadFile(strFileName: MasterFile)
+
+                    if var list = listItem{
+                        if(!(list.isEmpty)) {
+                            numberOfItems = list.count;
+                        }
+                        var numberOfItemtoAdd = 0;
+                        AddListData = FileSystem.ReadFile(strFileName: AddListFile)
+                        if let AddList = AddListData{
+                        if (!AddList.isEmpty) {
+                            numberOfItemtoAdd = AddList.count;
+                        }
+                        
+                        for i in  0..<numberOfItemtoAdd {
+                            if (numberOfItems <= 100) {
+                                if (list == nil) {
+                                    list = [Long]();
+                                }
+                                list.append(AddList[i]);
+                                numberOfItems += 1;
+                            }
+                        }
+                        
+                        if (list.count > 0) {
+                            let sortedArray = list.sorted {
+                                (obj1, obj2) -> Bool in
+                                    return obj1.value > obj2.value
+                            }
+                            do {
+                                _ = try  FileSystem.ReWriteFile(strFileName: MasterFile, with: sortedArray);
+                            }catch{
+                                print("ReWriteFile")
+                            }
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+
+    //for LIBrary File download
+    func UpdateMasterLIBFile() -> Bool {
+        if let libUpgrade:[Byte] = FileSystem.ReadFile(strFileName: FileNameConstants.EDCLIBSTATUS){
+          if (libUpgrade[0] == 1) {
+            _ =  FileSystem.DeleteFileComplete(strFileName: FileNameConstants.EDCLIBSTATUS);
+
+            if ((FileSystem.IsFileExist(strFileName: FileNameConstants.ADDLIBLIST)) || (FileSystem.IsFileExist( strFileName: FileNameConstants.DELETELIBLIST))) {
+
+                SyncLibFiles(MasterFile: FileNameConstants.MASTERLIBFILE, AddListFile: FileNameConstants.ADDLIBLIST, DeleteListFile: FileNameConstants.DELETELIBLIST);
+
+                 _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.ADDLIBLIST);
+
+                _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DELETELIBLIST);
+
+                }
+            }
+        }
+        return true;
+    }
+
+    func UpdateMasterMINIPVMFile() -> Bool {
+        if ((FileSystem.IsFileExist(strFileName: FileNameConstants.ADDMINIPVMLIST)) || (FileSystem.IsFileExist(strFileName: FileNameConstants.DELETEMINIPVMLIST))) {
+
+            SyncFiles(MasterFile: FileNameConstants.MASTERMINIPVMFILE, AddListFile: FileNameConstants.ADDMINIPVMLIST, DeleteListFile: FileNameConstants.DELETEMINIPVMLIST);
+
+            _ =  FileSystem.DeleteFileComplete(strFileName: FileNameConstants.ADDMINIPVMLIST);
+
+            _ =  FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DELETEMINIPVMLIST);
+
+          }
+          return true
+      }
+
+    
+    func SyncLibFiles(MasterFile:String, AddListFile:String, DeleteListFile:String)
+    {
+        var listItem:[LIBStruct]?
+        var DeleteListData:[LIBStruct]?
+        var AddListData:[LIBStruct]?
+        var numberOfItems = 0
+        
+        if (FileSystem.IsFileExist(strFileName:MasterFile)) {
+            if (FileSystem.IsFileExist(strFileName: DeleteListFile)) {
+                listItem = FileSystem.ReadFile(strFileName:MasterFile);
+                if var list = listItem {
+                    if(list.count>0){
+                        numberOfItems = list.count;
+                    }
+                    var numberOfItemtoDelete:Int64 = 0;
+
+                    DeleteListData = FileSystem.ReadFile(strFileName: DeleteListFile)
+                    if let DeleteList =  DeleteListData{
+                        if (!DeleteList.isEmpty) {
+                            numberOfItemtoDelete = Int64(DeleteList.count);
+                        }
+                        
+                        for _ in  0..<numberOfItemtoDelete{
+                            for i in 0..<list.count{
+                                if(list[i].id == DeleteList[i].id) {
+                                    list.remove(at: i);
+                                    break;
+                                }
+                            }
+                        }
+
+                        if ((list.count > 0)) {
+                            let sortedArray = list.sorted{
+                                (obj1, obj2) -> Bool in
+                                return obj1.id > obj2.id
+                            }
+                            do {
+                                _ = try  FileSystem.ReWriteFile(strFileName: MasterFile, with: sortedArray);
+                            }catch{
+                                fatalError("ReWriteFile")
+                            }
+                        }
+                    }
+                }
+                
+                if (FileSystem.IsFileExist(strFileName: AddListFile)) {
+                    numberOfItems = 0;
+                    listItem = FileSystem.ReadFile(strFileName: MasterFile)
+                    if var list = listItem{
+                        if(!(list.isEmpty)) {
+                            numberOfItems = list.count;
+                        }
+                        var numberOfItemtoAdd = 0;
+                        AddListData = FileSystem.ReadFile(strFileName: AddListFile)
+
+                        if let AddList = AddListData{
+                            if (!AddList.isEmpty) {
+                                numberOfItemtoAdd = AddList.count
+                            }
+                            
+                        for i in  0..<numberOfItemtoAdd {
+                            if (numberOfItems <= 100) {
+                                if (list == nil) {
+                                    list = [LIBStruct]();
+                                }
+                                list.append(AddList[i]);
+                                numberOfItems += 1;
+                            }
+                        }
+                            
+                        if (list.count > 0) {
+                            let sortedArray = list.sorted {
+                                (obj1, obj2) -> Bool in
+                                return obj1.id > obj2.id
+                            }
+                                
+                                do {
+                                    _ = try  FileSystem.ReWriteFile(strFileName: MasterFile, with: sortedArray);
+                                }catch{
+                                debugPrint("ReWriteFile")
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
 }

@@ -66,7 +66,8 @@
 		8E10234D2545780200F1A907 /* st_EMV_Tag_List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E10234C2545780200F1A907 /* st_EMV_Tag_List.swift */; };
 		8E13826225518568000F7C21 /* PrinterHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E13826125518568000F7C21 /* PrinterHandler.swift */; };
 		8E1382642551882F000F7C21 /* PrinterDataDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1382632551882F000F7C21 /* PrinterDataDisplay.swift */; };
-		8E4DCFA22534BC1400726EA8 /* CRC32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA12534BC1400726EA8 /* CRC32.swift */; };
+		8E13826625551D4F000F7C21 /* RetVal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E13826525551D4F000F7C21 /* RetVal.swift */; };
+		8E13826825551F80000F7C21 /* StringConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E13826725551F80000F7C21 /* StringConstant.swift */; };
 		8E4DCFA425354F8A00726EA8 /* LOGIN_ACCOUNTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */; };
 		8E4DCFA625369F1000726EA8 /* BytesUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA525369F1000726EA8 /* BytesUtil.swift */; };
 		8E927C68253895AC009928D4 /* DisplayMessageMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E927C67253895AC009928D4 /* DisplayMessageMode.swift */; };
@@ -297,7 +298,8 @@
 		8E10234C2545780200F1A907 /* st_EMV_Tag_List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = st_EMV_Tag_List.swift; sourceTree = "<group>"; };
 		8E13826125518568000F7C21 /* PrinterHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterHandler.swift; sourceTree = "<group>"; };
 		8E1382632551882F000F7C21 /* PrinterDataDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterDataDisplay.swift; sourceTree = "<group>"; };
-		8E4DCFA12534BC1400726EA8 /* CRC32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRC32.swift; sourceTree = "<group>"; };
+		8E13826525551D4F000F7C21 /* RetVal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetVal.swift; sourceTree = "<group>"; };
+		8E13826725551F80000F7C21 /* StringConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConstant.swift; sourceTree = "<group>"; };
 		8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOGIN_ACCOUNTS.swift; sourceTree = "<group>"; };
 		8E4DCFA525369F1000726EA8 /* BytesUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BytesUtil.swift; sourceTree = "<group>"; };
 		8E927C67253895AC009928D4 /* DisplayMessageMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayMessageMode.swift; sourceTree = "<group>"; };
@@ -1357,6 +1359,8 @@
 				8EE328602542AA0D00616E33 /* ProcessingCodeConstants.swift */,
 				8E927C67253895AC009928D4 /* DisplayMessageMode.swift */,
 				46ED34712537212E00CEF19D /* ParameterIDS.swift */,
+				8E13826525551D4F000F7C21 /* RetVal.swift */,
+				8E13826725551F80000F7C21 /* StringConstant.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1641,6 +1645,7 @@
 				8E927C6A2539468F009928D4 /* ParameterData.swift in Sources */,
 				4669F0C52525DEF900DEA9F2 /* MerchantVerificationServiceData.swift in Sources */,
 				8EE3285A253EA54100616E33 /* st_POSPrintinglocationDetails.swift in Sources */,
+				8E13826625551D4F000F7C21 /* RetVal.swift in Sources */,
 				46ED346A2537155A00CEF19D /* TerminalPSKData.swift in Sources */,
 				9976C95E2501173600FC5DD3 /* DeviceType.swift in Sources */,
 				99186CE6250A2C6500A9FE07 /* EPOSHelper.swift in Sources */,
@@ -1694,6 +1699,7 @@
 				CECC540B252B537800C0940E /* ISO320Initialization.swift in Sources */,
 				991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */,
 				46461993253588CF009089BC /* FontStruct.swift in Sources */,
+				8E13826825551F80000F7C21 /* StringConstant.swift in Sources */,
 				996FD8A9251E1020001961EE /* CustomNavigationStyleViewController.swift in Sources */,
 				991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */,
 				9919A9962514DCAA00A67253 /* EPOSUserDefaults+Methods.swift in Sources */,

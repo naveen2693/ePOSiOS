@@ -44,6 +44,20 @@ class ISOMessage{
         }
     }
     
+    //MARK:- CISOMsgD()
+    func CISOMsgD() {
+        debugPrint("Inside CISOMsgD");
+        for i in 0 ..< AppConstant.ISO_LEN {
+             if (nil != self.data[i]) {
+                 self.data[i] = [0x00]
+             }
+             self.data[i] = [0x00]
+             self.len[i] = 0
+             self.bitmap[i] = false
+             self.encryptedFieldBitmap[i] = false
+         }
+     }
+    
     //MARK:- vFnSetPEDHardwareSerialNumer()
     func vFnSetPEDHardwareSerialNumer() {
         do {
@@ -809,7 +823,7 @@ class ISOMessage{
 
             debugPrint("m_strGUID[\(m_sParamData.m_strGUID)]")
             
-            guard let bArrGUIDAuthTokenEncrypted: [Byte] = CryptoHandler.tripleDesEncrypt(bArrKey, bArrGUIDPlainData) else{return nil}
+            guard let bArrGUIDAuthTokenEncrypted: [Byte] = CryptoHandler.tripleDesEncrypt(bArrGUIDPlainData, bArrKey) else{return nil}
             
             return bArrGUIDAuthTokenEncrypted;
         } catch {

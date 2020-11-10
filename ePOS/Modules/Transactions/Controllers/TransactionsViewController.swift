@@ -19,8 +19,31 @@ class TransactionsViewController: UIViewController {
         _ = globalData.FirstInitialize()
         
         let isoprocessor = ISOProcessor()
-        isoprocessor.DoHUBActivation()
+        _ = isoprocessor.DoHUBActivation()
         
+
+        /*globalData.UpdateMasterCTFile()
+        globalData.UpdateMasterIMFile()
+        globalData.UpdateMasterCLRDIMFile()
+        globalData.UpdateMasterFCGFile()
+        globalData.UpdateMasterFONTFile()
+        globalData.UpdateMasterLIBFile()
+        globalData.UpdateMasterMINIPVMFile()*/
+
+        var iInitResponse = RetVal.RET_NOT_OK
+        debugPrint("before DoHUBInitialization")
+        iInitResponse = isoprocessor.DoHUBInitialization()
+
+        //Update master CT file and master IM
+        //CUIHelper.SetMessage("PROCESSING");
+        /*globalData.UpdateMessageFile()
+        globalData.UpdateMasterCTFile()
+        globalData.UpdateMasterIMFile()
+        globalData.UpdateMasterCLRDIMFile()
+        globalData.UpdateMasterFCGFile()
+        globalData.UpdateMasterFONTFile()
+        globalData.UpdateMasterLIBFile()
+        globalData.UpdateMasterMINIPVMFile()*/
         
         
 //        let iso = ISO440.shared // singleton

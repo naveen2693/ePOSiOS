@@ -7,15 +7,16 @@
 //
 
 import Foundation
-public struct TerminalMasterParamData:Codable
+
+struct TerminalMasterParamData: Codable
 {
     var ulPvmVersion: Int64 = 0
     var bIsDataChanged = false;
-    var m_uchArrBitmap320CentralChangeNumber:[Byte] = [(Byte(AppConstant.LEN_INITIALIZATION_BITMAP)+Byte(1))];
-    var m_uchArrBitmap320HUBChangeNumber:[Byte] = [(Byte(AppConstant.LEN_INITIALIZATION_BITMAP)+Byte(1))];
-    var m_uchArrBitmap320ActiveHost:[Byte] = [(Byte(AppConstant.LEN_BITMAP_PACKET)+Byte(1))];
-    var m_uchArrBitmap440ActiveHost:[Byte] = [(Byte(AppConstant.LEN_BITMAP_PACKET)+Byte(1))];
-    var m_uchArrBitmap500ActiveHost:[Byte] = [(Byte(AppConstant.LEN_BITMAP_PACKET)+Byte(1))];
+    var m_uchArrBitmap320CentralChangeNumber = [Byte](repeating: 0x00, count: 9/*(AppConstant.LEN_INITIALIZATION_BITMAP + 1)*/)
+    var m_uchArrBitmap320HUBChangeNumber = [Byte](repeating: 0x00, count: 9/*(AppConstant.LEN_INITIALIZATION_BITMAP + 1)*/)
+    var m_uchArrBitmap320ActiveHost = [Byte](repeating: 0x00, count: 3/*(AppConstant.LEN_BITMAP_PACKET + 1)*/)
+    var m_uchArrBitmap440ActiveHost = [Byte](repeating: 0x00, count: 3/*(AppConstant.LEN_BITMAP_PACKET + 1)*/)
+    var m_uchArrBitmap500ActiveHost = [Byte](repeating: 0x00, count: 3/*(AppConstant.LEN_BITMAP_PACKET + 1)*/)
     var bIsBitmap320ActiveHostSet = false;
     var bIsBitmap440ActiveHostSet = false;
     var bIsBitmap500ActiveHostSet = false;

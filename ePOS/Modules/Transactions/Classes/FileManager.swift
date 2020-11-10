@@ -32,11 +32,14 @@ class FileSystem {
     //MARK:- SeekRead<T: Codable>(strFileName: String, iOffset: Int) -> T?
     static func SeekRead<T: Codable>(strFileName: String, iOffset: Int) -> T?
     {
+        var objResult: T?
         let result:[T] = ReadFile(strFileName: strFileName)!
-        let objResult = result[iOffset]
-    
+        if (!result.isEmpty)
+        {
+            objResult = result[iOffset]
+        }
+        
         return objResult
-    
     }
     
     //MARK:- SeekWrite<T: Codable>(strFileName: String, with Obj: T, iOffset: Int) -> Bool

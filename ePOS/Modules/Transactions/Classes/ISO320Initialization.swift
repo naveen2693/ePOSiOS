@@ -153,11 +153,11 @@ class ISO320Initialization: ISOMessage
     }
     
     //MARK: - insertTLV(iParamID: Int, chArrParamData: [Byte], dataLen: Int) -> Int
-    func insertTLV(iParamID: Int, chArrParamData: [Byte], dataLen: Int) -> Int
+    func insertTLV(iHostId: Int ,iParamID: Int, chArrParamData: [Byte], dataLen: Int) -> Int
     {
         if(dataLen > 0){
-            //m_chArrBuffer[m_iOffsetBuffer] = (Byte)(iHostID & 0xFF)
-            //m_iOffsetBuffer += 1
+            m_chArrBuffer[m_iOffsetBuffer] = (Byte)(iHostId & 0xFF)
+            m_iOffsetBuffer += 1
             m_chArrBuffer[m_iOffsetBuffer] = (Byte)((iParamID >> 8) & 0xFF)
             m_iOffsetBuffer += 1
             m_chArrBuffer[m_iOffsetBuffer] = (Byte)(iParamID & 0xFF)
@@ -831,7 +831,7 @@ class ISO320Initialization: ISOMessage
             if(m_iChangeNumber == ISO320ChangeNumberConstants.HOST_PARAMETERS_DOWNLOAD){
 
                 debugPrint("m_iChangeNumber = PARAMETERS_DOWNLOAD");
-                let chFileName: String = String(format: "%s", FileNameConstants.TERMINALPARAMFILENAME)
+                let chFileName: String = String(format: "%@", FileNameConstants.TERMINALPARAMFILENAME)
                 debugPrint("param file name[\(chFileName)]");
 
                 if let ItemList: [TerminalParamData] = FileSystem.ReadFile(strFileName: chFileName) {
@@ -890,7 +890,7 @@ class ISO320Initialization: ISOMessage
                  * Data                   //Add In Field 61
                  ******************************************************************************/
 
-                packHostUploadPacket();
+                packHostUploadPacket()
             }
 
             if (m_iChangeNumber == ISO320ChangeNumberConstants.HUB_PARM_DOWNLOAD)
@@ -900,7 +900,7 @@ class ISO320Initialization: ISOMessage
                  in case if no date time is available then set it to 1 jan 2011 11 59 59
                  this date time will be stored in the flash when parameter download has ended. */
 
-                let chFileName: String = String(format: "%s", FileNameConstants.TERMINALPARAMFILENAME);
+                let chFileName: String = String(format: "%@", FileNameConstants.TERMINALPARAMFILENAME);
                 debugPrint("param file name[\(chFileName)]")
 
                 //List<TerminalParamData>ItemList = CFileSystem.ReadFile(m_cntx, TerminalParamData[].class, chFileName);
@@ -1534,7 +1534,7 @@ class ISO320Initialization: ISOMessage
                                 let temp: StructMESSAGEID = FileSystem.SeekRead(strFileName: FileNameConstants.MASTERMESFILE, iOffset: i)!
                                 if (temp != nil)
                                 {
-                                    debugPrint("Message id[%d], Message[%s]", temp.lmessageId, temp.strArrMessage)
+                                    debugPrint("Message id[%@], Message[%@]", temp.lmessageId, temp.strArrMessage)
                                 }
                             }
                             m_iChangeNumber += 1
@@ -2291,11 +2291,14 @@ class ISO320Initialization: ISOMessage
      //MARK:- UpdateUploadDataChangedFlag() -> Bool
     func UpdateUploadDataChangedFlag() -> Bool
     {
-        var uchArrBitmap320 = [Byte](repeating: 0x00, count: 4)
+        var uchArrBitmap320 = [Byte](repeating: 0x00, count: 0)
         
         let globalData = GlobalData.singleton
         
-        uchArrBitmap320 = Array((globalData.m_sMasterParamData?.m_uchArrBitmap320ActiveHost[0 ..< AppConstant.LEN_BITMAP_PACKET])!)
+        let bArrTemp = globalData.m_sMasterParamData!.m_uchArrBitmap320ActiveHost[0 ..< AppConstant.LEN_BITMAP_PACKET]
+        
+        uchArrBitmap320.append(contentsOf: bArrTemp)
+        //uchArrBitmap320 = Array((globalData.m_sMasterParamData?.m_uchArrBitmap320ActiveHost[0 ..< AppConstant.LEN_BITMAP_PACKET])!)
         
         //System.arraycopy(globalData.m_sMasterParamData.m_uchArrBitmap320ActiveHost,0,uchArrBitmap320,0,AppConst.LEN_BITMAP_PACKET);
         
@@ -2434,8 +2437,7 @@ class ISO320Initialization: ISOMessage
         if(FileSystem.IsFileExist(strFileName: FileNameConstants.TEMPBINRANGEFILE))
         {
             debugPrint("TEMPBINRANGEFILE exists")
-            let tempData: [StBINRange] = []
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.BINRANGEFILE, with: tempData)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.BINRANGEFILE)
             if(true == FileSystem.RenameFile(strNewFileName: FileNameConstants.BINRANGEFILE, strFileName: FileNameConstants.TEMPBINRANGEFILE))
             {
                 debugPrint("BINRANGEFILE rename done")
@@ -2546,9 +2548,8 @@ class ISO320Initialization: ISOMessage
         //if temp bin range file exist, then replace BINRANGE file with temp.
         if(FileSystem.IsFileExist(strFileName: FileNameConstants.TEMPCSVTXNMAPFILE))
         {
-            let tempData: [StCSVTxnMap] = []
             debugPrint("TEMPCSVTXNTYPEFILE exists")
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.CSVTXNMAPFILE, with: tempData)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.CSVTXNMAPFILE)
             if(true == FileSystem.RenameFile(strNewFileName: FileNameConstants.CSVTXNMAPFILE,strFileName: FileNameConstants.TEMPCSVTXNMAPFILE))
             {
                 debugPrint("CSVTXNMAPFILE rename done");
@@ -2687,9 +2688,8 @@ class ISO320Initialization: ISOMessage
         //if temp bin range file exist, then replace BINRANGE file with temp.
         if(FileSystem.IsFileExist(strFileName: FileNameConstants.TEMPTXNBINFILE))
         {
-            let tempData: [StTxnBin] = []
             debugPrint("TEMPTXNBINFILE exists");
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.TXNBINFILE, with: tempData)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.TXNBINFILE)
             
             if(true == FileSystem.RenameFile(strNewFileName: FileNameConstants.TXNBINFILE, strFileName: FileNameConstants.TEMPTXNBINFILE))
             {
@@ -2834,8 +2834,7 @@ class ISO320Initialization: ISOMessage
         {
             debugPrint("TEMPCSVTXNIGNAMT exists")
             
-            let tempData: [StCSVTxnIgnoreAmt] = []
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.CSVTXNIGNAMT, with: tempData)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.CSVTXNIGNAMT)
             if(true == FileSystem.RenameFile(strNewFileName: FileNameConstants.CSVTXNIGNAMT,strFileName: FileNameConstants.TEMPCSVTXNIGNAMT))
             {
                 debugPrint("CSVTXNIGNAMT rename done");
@@ -2972,7 +2971,7 @@ class ISO320Initialization: ISOMessage
         if(FileSystem.IsFileExist(strFileName: FileNameConstants.TEMPEMVTAGLIST))
         {
             debugPrint("TEMPCSVTXNIGNAMT exists");
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.EMVTAGLIST, with: ["0"])
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.EMVTAGLIST)
             if(true == FileSystem.RenameFile(strNewFileName: FileNameConstants.EMVTAGLIST, strFileName: FileNameConstants.TEMPEMVTAGLIST))
             {
                 debugPrint("EMVTAGLIST rename done")
@@ -3093,7 +3092,7 @@ class ISO320Initialization: ISOMessage
         }
 
         var _: [TerminalParamData] = []
-        let chFileName: String = String(format: "%s",FileNameConstants.TERMINALPARAMFILENAME);
+        let chFileName: String = String(format: "%@",FileNameConstants.TERMINALPARAMFILENAME);
         debugPrint("param file name[\(chFileName)]");
             
         var tData: TerminalParamData = GlobalData.singleton.ReadParamFile()!
@@ -3136,12 +3135,10 @@ class ISO320Initialization: ISOMessage
 
         if(self.m_bCurrentPacketCount == 0x01)
         {
-            let tempData: [CurrentEMVParDownloadingInfo] = []
-            let tempData1: [Long] = []
             debugPrint("******* EMV PAR Data******");
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.TEMEMVPARFILE, with: p)
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DWNLDEMVPARINFO, with: tempData)
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DWNLDEMVPARCHUNKINFO, with: tempData1)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.TEMEMVPARFILE)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DWNLDEMVPARINFO)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DWNLDEMVPARCHUNKINFO)
         }
          else{
             
@@ -3157,12 +3154,9 @@ class ISO320Initialization: ISOMessage
                        {
                            //stop PVM download
                            //clean data
-                            let tempData: [CurrentEMVParDownloadingInfo] = []
-                            let tempData1: [Long] = []
-                         
-                            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.TEMEMVPARFILE, with: p)
-                            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DWNLDEMVPARINFO, with: tempData)
-                            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DWNLDEMVPARCHUNKINFO, with: tempData1)
+                            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.TEMEMVPARFILE)
+                            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DWNLDEMVPARINFO)
+                            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DWNLDEMVPARCHUNKINFO)
                 
                             debugPrint("New EMV being downloaded")
                             return false
@@ -3201,7 +3195,7 @@ class ISO320Initialization: ISOMessage
             
             if(true == FileSystem.IsFileExist(strFileName: FileNameConstants.EMVPARFILE))
             {
-                _ = FileSystem.DeleteFile(strFileName: FileNameConstants.EMVPARFILE, with: p)
+                _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.EMVPARFILE)
                 debugPrint("EMVPARFILE file deleted")
             }
             _ = FileSystem.RenameFile(strNewFileName: FileNameConstants.EMVPARFILE, strFileName: FileNameConstants.TEMEMVPARFILE)
@@ -3274,12 +3268,10 @@ class ISO320Initialization: ISOMessage
 
         if(self.m_bCurrentPacketCount == 0x01)
         {
-            let tempData: [CurrentEMVParDownloadingInfo] = []
-            let tempData1: [Long] = []
             debugPrint("*******CLESS EMV PAR Data******");
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.TEMCLESSPARFILE, with: p)
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DWNLDCLESSPARINFO, with: tempData)
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DWNLDCLESSPARCHUNKINFO, with: tempData1)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.TEMCLESSPARFILE)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DWNLDCLESSPARINFO)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DWNLDCLESSPARCHUNKINFO)
         }
         else{
             if(bitmap[54 - 1])
@@ -3294,12 +3286,9 @@ class ISO320Initialization: ISOMessage
                        {
                            //stop PVM download
                            //clean data
-                            let tempData: [CurrentEMVParDownloadingInfo] = []
-                            let tempData1: [Long] = []
-                         
-                            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.TEMCLESSPARFILE, with: p)
-                            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DWNLDCLESSPARINFO, with: tempData)
-                            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DWNLDCLESSPARCHUNKINFO, with: tempData1)
+                            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.TEMCLESSPARFILE)
+                            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DWNLDCLESSPARINFO)
+                            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DWNLDCLESSPARCHUNKINFO)
                 
                             debugPrint("New cless being downloaded")
                             return false
@@ -3338,7 +3327,7 @@ class ISO320Initialization: ISOMessage
             
             if(true == FileSystem.IsFileExist(strFileName: FileNameConstants.CLESSPARFILE))
             {
-                _ = FileSystem.DeleteFile(strFileName: FileNameConstants.CLESSPARFILE, with: p)
+                _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.CLESSPARFILE)
                 debugPrint("CLESSPARFILE file deleted")
             }
             _ = FileSystem.RenameFile(strNewFileName: FileNameConstants.CLESSPARFILE, strFileName: FileNameConstants.TEMCLESSPARFILE)
@@ -3681,11 +3670,10 @@ class ISO320Initialization: ISOMessage
 
         if(self.m_bCurrentPacketCount == 0x01)
         {
-            let tempData: [Long] = []
             debugPrint("**********PVM Data*********");
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.TEMPVMFILE, with: p)
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DWNLDPVMINFO, with: p)
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DWNLDCHUNKINFO, with: tempData)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.TEMPVMFILE)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DWNLDPVMINFO)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DWNLDCHUNKINFO)
         }
         else{
             if(bitmap[44 - 1])
@@ -3700,12 +3688,11 @@ class ISO320Initialization: ISOMessage
 
                     if(ulPVMVersion.value != m_ulDownloadingPvmVersion)
                     {
-                        let tempData: [Long] = []
                         //stop PVM download
                         //clean data
-                        _ = FileSystem.DeleteFile(strFileName: FileNameConstants.TEMPVMFILE, with: p)
-                        _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DWNLDPVMINFO, with: p)
-                        _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DWNLDCHUNKINFO, with: tempData)
+                        _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.TEMPVMFILE)
+                        _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DWNLDPVMINFO)
+                        _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DWNLDCHUNKINFO)
                         debugPrint("New PVM being downloaded");
                         return false;
                     }
@@ -3744,7 +3731,7 @@ class ISO320Initialization: ISOMessage
             //FileSystem.AppendByteFile(m_cntx,AppConst.TEMPVMFILE,p,length);
             if(true == FileSystem.IsFileExist(strFileName: FileNameConstants.PVMFILE))
             {
-                _ = FileSystem.DeleteFile(strFileName: FileNameConstants.PVMFILE, with: p);
+                _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.PVMFILE)
                 debugPrint("PVM file deleted");
             }
             _ = FileSystem.RenameFile(strNewFileName: FileNameConstants.PVMFILE,strFileName: FileNameConstants.TEMPVMFILE);
@@ -3856,8 +3843,7 @@ class ISO320Initialization: ISOMessage
 
                     /** Delete File and Append to deleted list **/
                     let chTemplateName: String = String(format: "ct%08d", m_ulArrMINIPVMIdDelete[Int(m_ulCountOfMINIPVMIdDelete)])
-                    let tempData: [Long] = []
-                    _ = FileSystem.DeleteFile(strFileName: chTemplateName, with: tempData)
+                    _ = FileSystem.DeleteFileComplete(strFileName: chTemplateName)
 
                     if(false == FileSystem.IsFileExist(strFileName: chTemplateName))
                     {
@@ -3929,9 +3915,8 @@ class ISO320Initialization: ISOMessage
         }
 
         if(self.m_bCurrentPacketCount == 0x00){
-            let tempData: [Long] = []
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.ADDCTLIST, with: tempData)
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DELETECTLIST, with: tempData)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.ADDCTLIST)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DELETECTLIST)
         }
 
         while(length > 0){
@@ -3977,8 +3962,7 @@ class ISO320Initialization: ISOMessage
 
                     /** Delete File and Append to deleted list **/
                     let chTemplateName: String = String(format: "ct%08d", m_ulArrChargeSlipIdDelete[Int(m_ulCountOfChargeSlipIdDelete)])
-                    let tempData: [Long] = []
-                    _ = FileSystem.DeleteFile(strFileName: chTemplateName, with: tempData)
+                    _ = FileSystem.DeleteFileComplete(strFileName: chTemplateName)
 
                     if(false == FileSystem.IsFileExist(strFileName: chTemplateName))
                     {
@@ -4066,8 +4050,7 @@ class ISO320Initialization: ISOMessage
         }
 
         if(self.m_bCurrentPacketCount == 0x00){
-            let tempData: [DataLong] = []
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.TEMPCGFILE, with: tempData)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.TEMPCGFILE)
         }
 
         if(self.m_bCurrentPacketCount == self.m_bTotalPacketCount)
@@ -4082,8 +4065,7 @@ class ISO320Initialization: ISOMessage
             //CFileSystem.AppendByteFile(m_cntx,AppConst.TEMPCGFILE,p,length);
 
             let chTemplateName: String = String(format: "ct%08d",m_ulArrChargeSlipIdAdd[Int(m_ulTotalChargeSlipTemplateAdded)])
-            let tempData: [Long] = []
-            _ = FileSystem.DeleteFile(strFileName: chTemplateName, with: tempData)
+            _ = FileSystem.DeleteFileComplete(strFileName: chTemplateName)
             
             if(true == FileSystem.RenameFile(strNewFileName: chTemplateName, strFileName: FileNameConstants.TEMPCGFILE))
             {
@@ -4132,9 +4114,8 @@ class ISO320Initialization: ISOMessage
 
         if(self.m_bCurrentPacketCount == 0x00)
         {
-            let tempData: [Long] = []
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.ADDFCTLIST, with: tempData)
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DELETEFCTLIST, with: tempData)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.ADDFCTLIST)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DELETEFCTLIST)
         }
         
 
@@ -4181,9 +4162,8 @@ class ISO320Initialization: ISOMessage
                         //Long.parseLong(new String(chArrTemp));
 
                     /** Delete File and Append to deleted list **/
-                    let tempData: [Long] = []
                     let chFileName: String = String(format: "im%08d",m_ulArrFixedChargeSlipIdDelete[m_ulCountOfFixedChargeSlipIdDelete]);
-                    _ = FileSystem.DeleteFile(strFileName: chFileName, with: tempData)
+                    _ = FileSystem.DeleteFileComplete(strFileName: chFileName)
 
                     var temp_obj: [Long] = []
                     temp_obj[0].value = m_ulArrFixedChargeSlipIdDelete[m_ulCountOfFixedChargeSlipIdDelete]
@@ -4196,7 +4176,7 @@ class ISO320Initialization: ISOMessage
                         fatalError("Error in AppendFile, strFileName: \(FileNameConstants.DELETEFCTLIST)")
                     }
                     
-                    _ = FileSystem.DeleteFile(strFileName: chFileName, with:  tempData)
+                    _ = FileSystem.DeleteFileComplete(strFileName: chFileName)
 
                     /** Increment counts for Image id and Image id delete **/
                     m_ulCountOfFixedChargeSlipIdDelete += 1
@@ -4267,10 +4247,9 @@ class ISO320Initialization: ISOMessage
 
         if(self.m_bCurrentPacketCount == 0x01){
             debugPrint("******fixed chargeslip download*********")
-            let tempData: [Long] = []
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DWNLDCGFINFO, with: tempData)
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.TEMPFCGFILE, with: tempData)
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DWNLDCHUNKINFO, with: tempData)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DWNLDCGFINFO)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.TEMPFCGFILE)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DWNLDCHUNKINFO)
         }
 
         if(self.m_bCurrentPacketCount == self.m_bTotalPacketCount)
@@ -4286,7 +4265,7 @@ class ISO320Initialization: ISOMessage
             
             //CFileSystem.AppendByteFile(m_chTempFixedChargeSlipfileName,p);
             let chFixedChargeSlipIdName: String = String(format: "ch%08d", m_ulArrFixedChargeSlipIdAdd[m_ulTotalFixedChargeSlipAdded])
-            _ = FileSystem.DeleteFile(strFileName: chFixedChargeSlipIdName, with: p)
+            _ = FileSystem.DeleteFileComplete(strFileName: chFixedChargeSlipIdName)
 
             if(true == FileSystem.RenameFile(strNewFileName: chFixedChargeSlipIdName,strFileName: m_chTempFixedChargeSlipfileName))
             {
@@ -4385,9 +4364,8 @@ class ISO320Initialization: ISOMessage
 
         if(self.m_bCurrentPacketCount == 0x00)
         {
-            let tempData: [LIBStruct] = []
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.ADDLIBLIST, with: tempData)
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DELETELIBLIST, with: tempData)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.ADDLIBLIST)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DELETELIBLIST)
         }
 
         while((length - iOffset) > 1){
@@ -4574,9 +4552,8 @@ class ISO320Initialization: ISOMessage
                 }
             }
             else {
-                debugPrint("memcmp SHA1 Failed");
-                let tempData: [LIBStruct?] = []
-                _ = FileSystem.DeleteFile(strFileName: m_chTemplibfileName, with: tempData);
+                debugPrint("memcmp SHA1 Failed")
+                _ = FileSystem.DeleteFileComplete(strFileName: m_chTemplibfileName)
                 return false;
             }
         }
@@ -4660,32 +4637,28 @@ class ISO320Initialization: ISOMessage
         m_ulBinRangeIterator = 0x00
         // if temp file exist, delete it so that fresh download can occur.
         if (FileSystem.IsFileExist(strFileName: FileNameConstants.TEMPBINRANGEFILE)) {
-            let tempData: [StBINRange] = []
             debugPrint("TEMPBINRANGEFILE exists");
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.TEMPBINRANGEFILE, with: tempData);
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.TEMPBINRANGEFILE)
         }
         m_ulCSVTxnMapIterator = 0x00;
         // if temp file exist, delete it so that fresh download can occur.
         if (FileSystem.IsFileExist(strFileName: FileNameConstants.TEMPCSVTXNMAPFILE)) {
-            let tempData: [StCSVTxnMap] = []
             debugPrint("TEMPCSVTXNMAPFILE exists");
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.TEMPCSVTXNMAPFILE, with: tempData);
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.TEMPCSVTXNMAPFILE);
         }
         
         // Transaction Bin
         m_ulTxnBinIterator = 0x00;
         // if temp file exist, delete it so that fresh download can occur.
         if (FileSystem.IsFileExist(strFileName: FileNameConstants.TEMPTXNBINFILE)) {
-            let tempData: [StTxnBin] = []
             debugPrint("TEMPTXNBINFILE exists");
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.TEMPTXNBINFILE, with: tempData)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.TEMPTXNBINFILE)
         }
         m_ulTotalCSVTxnIgnAmtListIterator = 0x00;
         // if temp file exist, delete it so that fresh download can occur.
         if (FileSystem.IsFileExist(strFileName: FileNameConstants.TEMPCSVTXNIGNAMT)) {
-            let tempData: [StCSVTxnIgnoreAmt] = []
             debugPrint("TEMPCSVTXNIGNAMT exists");
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.TEMPCSVTXNIGNAMT, with: tempData)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.TEMPCSVTXNIGNAMT)
         }
         
         m_chDownloadingEDCAppVersion = [Byte](repeating: 0x00, count: AppConstant.MAX_APP_VERSION_LEN + 1)// Parameter to store current
@@ -4697,9 +4670,8 @@ class ISO320Initialization: ISOMessage
         m_ulTotalTxnwisePrintingLocationIterator = 0x00;
         // if temp file exist, delete it so that fresh download can occur.
         if (FileSystem.IsFileExist(strFileName: FileNameConstants.POSPRINTINGLOCATIONFILE)) {
-            let tempData: [StPOSPrintinglocationDetails] = []
             debugPrint("POSPRINTINGLOCATIONFILE exists");
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.POSPRINTINGLOCATIONFILE, with: tempData);
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.POSPRINTINGLOCATIONFILE);
         }
 
         m_ulTotalTxnwiseIsPasswordIterator = 0x00;
@@ -4726,9 +4698,8 @@ class ISO320Initialization: ISOMessage
         }
 
         if(self.m_bCurrentPacketCount == 0x00){
-            let long_obj: [Long] = []
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.ADDIMLIST, with: long_obj);
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DELETEIMLIST, with: long_obj);
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.ADDIMLIST);
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DELETEIMLIST);
         }
         while(length > 0){
             var temp = [Byte](repeating: 0x00, count: 4)
@@ -4775,7 +4746,7 @@ class ISO320Initialization: ISOMessage
                     let chFileName: String = String(format: "im%08d",m_ulArrImageIdDelete[m_ulCountOfImageIdDelete])
 
                     var long_obj: [Long] = []
-                    _ = FileSystem.DeleteFile(strFileName: chFileName, with: long_obj)
+                    _ = FileSystem.DeleteFileComplete(strFileName: chFileName)
                     long_obj[0].value = m_ulArrImageIdDelete[m_ulCountOfImageIdDelete];
                     do{
                         _ = try FileSystem.AppendFile(strFileName: FileNameConstants.DELETEIMLIST, with: long_obj);
@@ -4845,10 +4816,9 @@ class ISO320Initialization: ISOMessage
             debugPrint("Response->Field 53 found in ProcessImageDownload");
         }
 
-        let tempData: [Long] = []
         if(self.m_bCurrentPacketCount == 0x01){
             debugPrint("******Image download*********");
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DWNLDCHUNKINFO, with: tempData);
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DWNLDCHUNKINFO);
         }
 
         if(self.m_bCurrentPacketCount == self.m_bTotalPacketCount)
@@ -4864,7 +4834,7 @@ class ISO320Initialization: ISOMessage
             
             //CFileSystem.AppendByteFile(m_cntx,m_chTempImagefileName,p,length);
             let chImageIdName: String = String(format: "im%08d",m_ulArrImageIdAdd[m_ulTotalImagesAdded])
-            _ = FileSystem.DeleteFile(strFileName: chImageIdName, with: p);
+            _ = FileSystem.DeleteFileComplete(strFileName: chImageIdName);
 
             if(true == FileSystem.RenameFile(strNewFileName: chImageIdName,strFileName: m_chTempImagefileName))
             {
@@ -4915,9 +4885,8 @@ class ISO320Initialization: ISOMessage
         }
 
         if(self.m_bCurrentPacketCount == 0x00){
-            let long_obj: [Long] = []
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.ADDCLRDIMLIST, with: long_obj);
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DELETECLRDIMLIST, with: long_obj);
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.ADDCLRDIMLIST);
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DELETECLRDIMLIST);
         }
         while(length > 0){
             var temp = [Byte](repeating: 0x00, count: 4)
@@ -4964,7 +4933,7 @@ class ISO320Initialization: ISOMessage
                     let chFileName: String = String(format: "im%08d",m_ulArrColoredImageIdDelete[m_ulCountOfColoredImageIdDelete])
 
                     var long_obj: [Long] = []
-                    _ = FileSystem.DeleteFile(strFileName: chFileName, with: long_obj)
+                    _ = FileSystem.DeleteFileComplete(strFileName: chFileName)
                     long_obj[0].value = m_ulArrColoredImageIdDelete[m_ulCountOfColoredImageIdDelete];
                     do{
                         _ = try FileSystem.AppendFile(strFileName: FileNameConstants.DELETECLRDIMLIST, with: long_obj);
@@ -5039,10 +5008,9 @@ class ISO320Initialization: ISOMessage
             debugPrint("Response->Field 53 found in ProcessImageDownload")
         }
 
-        let tempData: [Long] = []
         if(self.m_bCurrentPacketCount == 0x01){
             debugPrint("******Colored Image download*********");
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DWNLDCHUNKINFO, with: tempData)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DWNLDCHUNKINFO)
         }
 
         if(self.m_bCurrentPacketCount == self.m_bTotalPacketCount)
@@ -5059,7 +5027,7 @@ class ISO320Initialization: ISOMessage
             
             let chImageIdName: String = String(format: "im_clrd%08d",m_ulArrColoredImageIdAdd[m_ulTotalColoredImagesAdded])
  
-            _ = FileSystem.DeleteFile(strFileName: chImageIdName, with: p)
+            _ = FileSystem.DeleteFileComplete(strFileName: chImageIdName)
 
             if( true == FileSystem.RenameFile(strNewFileName: chImageIdName,strFileName: m_chTempClrdImagefileName))
             {
@@ -5111,8 +5079,13 @@ class ISO320Initialization: ISOMessage
         var chArrTempBatch = [Byte](repeating: 0x00, count: len[26 - 1])
         chArrTempBatch = Array(data[26 - 1][0 ..< len[26 - 1]])
         
+        let data = NSData(bytes: chArrTempBatch, length: chArrTempBatch.count)
+        var ulBatchID : Int8 = 0
+        data.getBytes(&ulBatchID, length: 4)
+        ulBatchID = Int8(bigEndian: ulBatchID)
+        
         //System.arraycopy(data[26-1],0,chArrTempBatch,0,len[26-1]);
-        let ulBatchID: Int8 = Int8(String(bytes: chArrTempBatch, encoding: .utf8)!)!
+        //let ulBatchID: Int8 = Int8(String(bytes: chArrTempBatch, encoding: .utf8)!)!
 
         //store this as the current batch id in Global Data
         let  globalData = GlobalData.singleton
@@ -5156,10 +5129,8 @@ class ISO320Initialization: ISOMessage
         var iOffset: Int = 0x00;
 
         if(self.m_bCurrentPacketCount == 0x00){
-            let messageId: [StructMESSAGEID] = []
-            
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.ADDMSGLIST, with: messageId)
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DELETEMSGLIST, with: messageId)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.ADDMSGLIST)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DELETEMSGLIST)
         }
 
         while(length > 0){
@@ -5379,7 +5350,7 @@ class ISO320Initialization: ISOMessage
         }
 
         var m_sParamData = TerminalParamData()
-        let chFileName: String = String(format: "%s",FileNameConstants.TERMINALPARAMFILENAME)
+        let chFileName: String = String(format: "%@",FileNameConstants.TERMINALPARAMFILENAME)
         debugPrint("param file name[\(chFileName)]");
         let list_ofItem: [TerminalParamData] = FileSystem.ReadFile(strFileName: chFileName)!
         if(!list_ofItem.isEmpty)
@@ -5404,7 +5375,7 @@ class ISO320Initialization: ISOMessage
         //If fileexist
         if(FileSystem.IsFileExist(strFileName: FileNameConstants.DWNLDPVMINFO))
          {
-            debugPrint("DWNLDPVMINFO file esxits")
+            debugPrint("x")
             var lastPVMDwndInfo = CurrentDownloadingInfo()
             
             let list_of_Items: [CurrentDownloadingInfo] = FileSystem.ReadFile(strFileName: FileNameConstants.DWNLDPVMINFO)!
@@ -5413,7 +5384,7 @@ class ISO320Initialization: ISOMessage
                 lastPVMDwndInfo = list_of_Items[0]
              }
              //Get PVM version
-             m_ulDownloadingCACRTVersion = lastPVMDwndInfo.id;
+            m_ulDownloadingPvmVersion = lastPVMDwndInfo.id;
             m_bCurrentPacketCount = Int64(lastPVMDwndInfo.currentpacketCount);
             m_bTotalPacketCount   = Int64(lastPVMDwndInfo.totalpacketCount);
             debugPrint("m_ulDownloadingPvmVersion[\(m_ulDownloadingPvmVersion)], m_bCurrentPacketCount[\(m_bCurrentPacketCount)], m_bTotalPacketCount[\(m_bTotalPacketCount)]");
@@ -6008,9 +5979,9 @@ class ISO320Initialization: ISOMessage
             //CLogger.TraceLog("\n**********PVM Data*********\n");
             debugPrint("**********CA CRT Data*********")
             
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.TEMCACRTFILE, with: p)
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DWNLDCACRTINFO, with: p)
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DWNLDCACRTCHUNKINFO, with: p)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.TEMCACRTFILE)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DWNLDCACRTINFO)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DWNLDCACRTCHUNKINFO)
         }
         else{
 
@@ -6027,9 +5998,9 @@ class ISO320Initialization: ISOMessage
                     {
                         //stop CACRT download
                         //clean data
-                        _ = FileSystem.DeleteFile(strFileName: FileNameConstants.TEMCACRTFILE, with: p)
-                        _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DWNLDCACRTINFO, with: p)
-                        _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DWNLDCACRTCHUNKINFO, with: p)
+                        _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.TEMCACRTFILE)
+                        _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DWNLDCACRTINFO)
+                        _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DWNLDCACRTCHUNKINFO)
                         debugPrint("New CACRT being downloaded");
                         return false;
                     }
@@ -6068,7 +6039,7 @@ class ISO320Initialization: ISOMessage
             
             if(true == FileSystem.IsFileExist(strFileName: FileNameConstants.CACRTFILE))
             {
-                _ = FileSystem.DeleteFile(strFileName: FileNameConstants.CACRTFILE, with: p);
+                _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.CACRTFILE)
                 debugPrint("CACRT file deleted")
             }
             
@@ -6140,16 +6111,18 @@ class ISO320Initialization: ISOMessage
     func getSerialParameters()
     {
         let globalData = GlobalData.singleton
-        var uchArrBitmap320 = [Byte](repeating: 0x00, count: 4)
+        var uchArrBitmap320 = [Byte](repeating: 0x00, count: 0)
         
-        uchArrBitmap320 = Array(globalData.m_sMasterParamData!.m_uchArrBitmap320ActiveHost[0 ..< AppConstant.LEN_BITMAP_PACKET])
+        let bArrTemp = globalData.m_sMasterParamData!.m_uchArrBitmap320ActiveHost[0 ..< AppConstant.LEN_BITMAP_PACKET]
+        
+        uchArrBitmap320.append(contentsOf: bArrTemp)
         //System.arraycopy(GlobalData.m_sMasterParamData.m_uchArrBitmap320ActiveHost,0,uchArrBitmap320,0,AppConst.LEN_BITMAP_PACKET);
 
         for it in (0 ..< AppConstant.LEN_BITMAP_PACKET * 8 - 1).reversed()
         {
             if ((uchArrBitmap320[it/8] & (0x80 >> (it%8))) != 0 )
             {
-                let chArrConnectionDataFile: String = String(format: "%s",FileNameConstants.CONNECTIONDATAFILENAME);
+                let chArrConnectionDataFile: String = String(format: "%@",FileNameConstants.CONNECTIONDATAFILENAME);
                 debugPrint("chArrConnectionDataFile[\(chArrConnectionDataFile)]")
 
                 let tData: TerminalConxData? = FileSystem.SeekRead(strFileName: chArrConnectionDataFile,iOffset: globalData.m_sConxData.m_bArrConnIndex.CON_SerialIp.index)!
@@ -6158,22 +6131,22 @@ class ISO320Initialization: ISOMessage
                     
                     if (tData!.bIsDataChanged == true) {
 
-                        _ = insertTLV(iParamID: ParameterIDs._Serial_Transaction_SSL_IP, chArrParamData: [Byte](tData!.strTransactionSSLServerIP.utf8), dataLen: tData!.strTransactionSSLServerIP.count)
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Serial_Transaction_SSL_IP, chArrParamData: [Byte](tData!.strTransactionSSLServerIP.utf8), dataLen: tData!.strTransactionSSLServerIP.count)
                         let chArrTransactionSSLPort: String = String(format: "%d",tData!.iTransactionSSLPort)
-                        _ = insertTLV(iParamID: ParameterIDs._Serial_Transaction_SSL_IP, chArrParamData: [Byte](chArrTransactionSSLPort.utf8), dataLen: chArrTransactionSSLPort.count);
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Serial_Transaction_SSL_IP, chArrParamData: [Byte](chArrTransactionSSLPort.utf8), dataLen: chArrTransactionSSLPort.count);
    
                         
-                        _ = insertTLV(iParamID: ParameterIDs._Serial_Secondary_Transaction_SSL_IP, chArrParamData: [Byte](tData!.strSecondaryTransactionSSLServerIP.utf8), dataLen: tData!.strSecondaryTransactionSSLServerIP.count)
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Serial_Secondary_Transaction_SSL_IP, chArrParamData: [Byte](tData!.strSecondaryTransactionSSLServerIP.utf8), dataLen: tData!.strSecondaryTransactionSSLServerIP.count)
                         let chArrSecondaryTransactionSSLPort: String = String(format: "%d",tData!.iSecondaryTransactionSSLPort)
-                        _ = insertTLV(iParamID: ParameterIDs._Serial_Secondary_Transaction_SSL_Port, chArrParamData: [Byte](chArrSecondaryTransactionSSLPort.utf8), dataLen: chArrSecondaryTransactionSSLPort.count)
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Serial_Secondary_Transaction_SSL_Port, chArrParamData: [Byte](chArrSecondaryTransactionSSLPort.utf8), dataLen: chArrSecondaryTransactionSSLPort.count)
         
                         let chArrConnTimeout: String = String(format: "%d",tData!.iConnTimeout)
-                        _ = insertTLV(iParamID: ParameterIDs._Serial_Connect_Timeout, chArrParamData: [Byte](chArrConnTimeout.utf8),dataLen: chArrConnTimeout.count)
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Serial_Connect_Timeout, chArrParamData: [Byte](chArrConnTimeout.utf8),dataLen: chArrConnTimeout.count)
                         let chArrSendRecTimeout: String = String(format: "%d",tData!.iSendRecTimeout)
-                        _ = insertTLV(iParamID: ParameterIDs._Serial_Send_Rec_Timeout, chArrParamData: [Byte](chArrSendRecTimeout.utf8), dataLen: chArrSendRecTimeout.count)
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Serial_Send_Rec_Timeout, chArrParamData: [Byte](chArrSendRecTimeout.utf8), dataLen: chArrSendRecTimeout.count)
 
-                        _ = insertTLV(iParamID: ParameterIDs._Serial_User_Id, chArrParamData: [Byte](tData!.strLoginID.utf8), dataLen: tData!.strLoginID.count)
-                        _ = insertTLV(iParamID: ParameterIDs._Serial_Password, chArrParamData: [Byte](tData!.strPassword.utf8), dataLen: tData!.strPassword.count)
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Serial_User_Id, chArrParamData: [Byte](tData!.strLoginID.utf8), dataLen: tData!.strLoginID.count)
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Serial_Password, chArrParamData: [Byte](tData!.strPassword.utf8), dataLen: tData!.strPassword.count)
                     }
                 }
             }
@@ -6187,8 +6160,12 @@ class ISO320Initialization: ISOMessage
     {
         let globalData = GlobalData.singleton
         
-        var uchArrBitmap320 =  [Byte](repeating: 0x00, count: 4)
-        uchArrBitmap320 = Array(globalData.m_sMasterParamData!.m_uchArrBitmap320ActiveHost[0 ..< AppConstant.LEN_BITMAP_PACKET])
+        var uchArrBitmap320 =  [Byte](repeating: 0x00, count: 0)
+        
+        let bArrTemp = globalData.m_sMasterParamData!.m_uchArrBitmap320ActiveHost[0 ..< AppConstant.LEN_BITMAP_PACKET]
+        uchArrBitmap320.append(contentsOf: bArrTemp)
+        
+        //uchArrBitmap320 = Array(globalData.m_sMasterParamData!.m_uchArrBitmap320ActiveHost[0 ..< AppConstant.LEN_BITMAP_PACKET])
         
         //System.arraycopy(GlobalData.m_sMasterParamData.m_uchArrBitmap320ActiveHost,0,uchArrBitmap320,0,AppConst.LEN_BITMAP_PACKET);
 
@@ -6196,7 +6173,7 @@ class ISO320Initialization: ISOMessage
         {
             if ((uchArrBitmap320[it/8] & (0x80 >> (it%8))) != 0) {
                 
-                let chArrConnectionDataFile: String = String(format: "%s", FileNameConstants.CONNECTIONDATAFILENAME)
+                let chArrConnectionDataFile: String = String(format: "%@", FileNameConstants.CONNECTIONDATAFILENAME)
                 
                 debugPrint("chArrConnectionDataFile[\(chArrConnectionDataFile)]");
                 
@@ -6207,30 +6184,30 @@ class ISO320Initialization: ISOMessage
                     
                     if (tData!.bIsDataChanged == true) {
                         
-                        _ = insertTLV(iParamID: ParameterIDs._GPRS_Transaction_SSL_IP, chArrParamData: [Byte](tData!.strTransactionSSLServerIP.utf8), dataLen: tData!.strTransactionSSLServerIP.count)
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._GPRS_Transaction_SSL_IP, chArrParamData: [Byte](tData!.strTransactionSSLServerIP.utf8), dataLen: tData!.strTransactionSSLServerIP.count)
                         let chArrTransactionSSLPort: String = String(format: "%d",tData!.iTransactionSSLPort)
-                        _ = insertTLV(iParamID: ParameterIDs._GPRS_Transaction_SSL_Port, chArrParamData: [Byte](chArrTransactionSSLPort.utf8), dataLen: chArrTransactionSSLPort.count);
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._GPRS_Transaction_SSL_Port, chArrParamData: [Byte](chArrTransactionSSLPort.utf8), dataLen: chArrTransactionSSLPort.count);
 
                         
-                        _ = insertTLV(iParamID: ParameterIDs._GPRS_Secondary_Transaction_SSL_IP, chArrParamData: [Byte](tData!.strSecondaryTransactionSSLServerIP.utf8), dataLen: tData!.strSecondaryTransactionSSLServerIP.count)
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._GPRS_Secondary_Transaction_SSL_IP, chArrParamData: [Byte](tData!.strSecondaryTransactionSSLServerIP.utf8), dataLen: tData!.strSecondaryTransactionSSLServerIP.count)
                         
                         let chArrSecondaryTransactionSSLPort: String = String(format: "%d",tData!.iSecondaryTransactionSSLPort)
-                        _ = insertTLV(iParamID: ParameterIDs._GPRS_Secondary_Transaction_SSL_Port, chArrParamData: [Byte](chArrSecondaryTransactionSSLPort.utf8), dataLen: chArrSecondaryTransactionSSLPort.count);
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._GPRS_Secondary_Transaction_SSL_Port, chArrParamData: [Byte](chArrSecondaryTransactionSSLPort.utf8), dataLen: chArrSecondaryTransactionSSLPort.count);
                         
                         
                         let chArrConnTimeout: String = String(format: "%d",tData!.iConnTimeout)
-                        _ = insertTLV(iParamID: ParameterIDs._GPRS_Connect_Timeout, chArrParamData: [Byte](chArrConnTimeout.utf8),dataLen: chArrConnTimeout.count)
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._GPRS_Connect_Timeout, chArrParamData: [Byte](chArrConnTimeout.utf8),dataLen: chArrConnTimeout.count)
                         let chArrSendRecTimeout: String = String(format: "%d",tData!.iSendRecTimeout)
-                        _ = insertTLV(iParamID: ParameterIDs._GPRS_Send_Rec_Timeout, chArrParamData: [Byte](chArrSendRecTimeout.utf8), dataLen: chArrSendRecTimeout.count)
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._GPRS_Send_Rec_Timeout, chArrParamData: [Byte](chArrSendRecTimeout.utf8), dataLen: chArrSendRecTimeout.count)
                         
                         
 
-                        _ = insertTLV(iParamID: ParameterIDs._GPRS_User_Id, chArrParamData: [Byte](tData!.strLoginID.utf8), dataLen: tData!.strLoginID.count)
-                        _ = insertTLV(iParamID: ParameterIDs._GPRS_Password, chArrParamData: [Byte](tData!.strPassword.utf8), dataLen: tData!.strPassword.count)
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._GPRS_User_Id, chArrParamData: [Byte](tData!.strLoginID.utf8), dataLen: tData!.strLoginID.count)
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._GPRS_Password, chArrParamData: [Byte](tData!.strPassword.utf8), dataLen: tData!.strPassword.count)
 
-                        _ = insertTLV(iParamID: ParameterIDs._GPRS_GPRS_Service_provider, chArrParamData: [Byte](tData!.strGPRSServiceProvider.utf8), dataLen: tData!.strGPRSServiceProvider.count)
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._GPRS_GPRS_Service_provider, chArrParamData: [Byte](tData!.strGPRSServiceProvider.utf8), dataLen: tData!.strGPRSServiceProvider.count)
 
-                        _ = insertTLV(iParamID: ParameterIDs._GPRS_APN_Name, chArrParamData: [Byte](tData!.strAPN.utf8), dataLen: tData!.strAPN.count)    // Sunder S: Added for APN as a downloadable param : 25-Mar-2015
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._GPRS_APN_Name, chArrParamData: [Byte](tData!.strAPN.utf8), dataLen: tData!.strAPN.count)    // Sunder S: Added for APN as a downloadable param : 25-Mar-2015
                     }
                 }
             }
@@ -6243,14 +6220,18 @@ class ISO320Initialization: ISOMessage
     {
         let  globalData = GlobalData.singleton
 
-        var uchArrBitmap320 = [Byte](repeating: 0x00, count: 4)
-        uchArrBitmap320 = Array(globalData.m_sMasterParamData!.m_uchArrBitmap320ActiveHost[0 ..< AppConstant.LEN_BITMAP_PACKET])
+        var uchArrBitmap320 = [Byte](repeating: 0x00, count: 0)
+        let bArrTemp = globalData.m_sMasterParamData!.m_uchArrBitmap320ActiveHost[0 ..< AppConstant.LEN_BITMAP_PACKET]
+       
+        uchArrBitmap320.append(contentsOf: bArrTemp)
+        
+        //uchArrBitmap320 = Array(globalData.m_sMasterParamData!.m_uchArrBitmap320ActiveHost[0 ..< AppConstant.LEN_BITMAP_PACKET])
         //System.arraycopy(GlobalData.m_sMasterParamData.m_uchArrBitmap320ActiveHost,0,uchArrBitmap320,0,AppConst.LEN_BITMAP_PACKET);
 
         for it in (0 ..< AppConstant.LEN_BITMAP_PACKET * 8 - 1).reversed()
         {
             if ((uchArrBitmap320[it/8] & (0x80 >> (it % 8))) != 0 ) {
-                let chArrConnectionDataFile: String = String(format: "%s", FileNameConstants.CONNECTIONDATAFILENAME)
+                let chArrConnectionDataFile: String = String(format: "%@", FileNameConstants.CONNECTIONDATAFILENAME)
                 debugPrint("chArrConnectionDataFile[\(chArrConnectionDataFile)]")
 
                 
@@ -6261,18 +6242,18 @@ class ISO320Initialization: ISOMessage
                     
                     if (tData!.bIsDataChanged == true) {
 
-                        _ = insertTLV(iParamID: ParameterIDs._Ethernet_Transaction_SSL_IP, chArrParamData: [Byte](tData!.strTransactionSSLServerIP.utf8), dataLen: tData!.strTransactionSSLServerIP.count)
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Ethernet_Transaction_SSL_IP, chArrParamData: [Byte](tData!.strTransactionSSLServerIP.utf8), dataLen: tData!.strTransactionSSLServerIP.count)
                          let chArrTransactionSSLPort: String = String(format: "%d",tData!.iTransactionSSLPort)
-                        _ = insertTLV(iParamID: ParameterIDs._Ethernet_Transaction_SSL_Port, chArrParamData: [Byte](chArrTransactionSSLPort.utf8), dataLen: chArrTransactionSSLPort.count)
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Ethernet_Transaction_SSL_Port, chArrParamData: [Byte](chArrTransactionSSLPort.utf8), dataLen: chArrTransactionSSLPort.count)
 
-                        _ = insertTLV(iParamID: ParameterIDs._Ethernet_Secondary_Transaction_SSL_IP, chArrParamData: [Byte](tData!.strSecondaryTransactionSSLServerIP.utf8), dataLen: tData!.strSecondaryTransactionSSLServerIP.count)
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Ethernet_Secondary_Transaction_SSL_IP, chArrParamData: [Byte](tData!.strSecondaryTransactionSSLServerIP.utf8), dataLen: tData!.strSecondaryTransactionSSLServerIP.count)
                         let chArrSecondaryTransactionSSLPort: String = String(format: "%d",tData!.iSecondaryTransactionSSLPort)
-                        _ = insertTLV(iParamID: ParameterIDs._Ethernet_Secondary_Transaction_SSL_Port, chArrParamData: [Byte](chArrSecondaryTransactionSSLPort.utf8) , dataLen: chArrSecondaryTransactionSSLPort.count);
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Ethernet_Secondary_Transaction_SSL_Port, chArrParamData: [Byte](chArrSecondaryTransactionSSLPort.utf8) , dataLen: chArrSecondaryTransactionSSLPort.count);
 
                         let chArrConnTimeout: String = String(format: "%d",tData!.iConnTimeout)
-                        _ = insertTLV(iParamID: ParameterIDs._Ethernet_Connect_Timeout, chArrParamData: [Byte](chArrConnTimeout.utf8),dataLen: chArrConnTimeout.count)
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Ethernet_Connect_Timeout, chArrParamData: [Byte](chArrConnTimeout.utf8),dataLen: chArrConnTimeout.count)
                         let chArrSendRecTimeout: String = String(format: "%d",tData!.iSendRecTimeout)
-                        _ = insertTLV(iParamID: ParameterIDs._Ethernet_Send_Rec_Timeout, chArrParamData: [Byte](chArrSendRecTimeout.utf8), dataLen: chArrSendRecTimeout.count)
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Ethernet_Send_Rec_Timeout, chArrParamData: [Byte](chArrSendRecTimeout.utf8), dataLen: chArrSendRecTimeout.count)
                     }
                 }
             }
@@ -6285,16 +6266,18 @@ class ISO320Initialization: ISOMessage
     {
         let  globalData = GlobalData.singleton
 
-        var uchArrBitmap320 = [Byte](repeating: 0x00, count: 4)
+        var uchArrBitmap320 = [Byte](repeating: 0x00, count: 0)
+        let bArrTemp = globalData.m_sMasterParamData!.m_uchArrBitmap320ActiveHost[0 ..< AppConstant.LEN_BITMAP_PACKET]
         
-        uchArrBitmap320 = Array(globalData.m_sMasterParamData!.m_uchArrBitmap320ActiveHost[0 ..< AppConstant.LEN_BITMAP_PACKET])
+        uchArrBitmap320.append(contentsOf: bArrTemp)
+        //uchArrBitmap320 = Array(globalData.m_sMasterParamData!.m_uchArrBitmap320ActiveHost[0 ..< AppConstant.LEN_BITMAP_PACKET])
         //System.arraycopy(GlobalData.m_sMasterParamData.m_uchArrBitmap320ActiveHost,0,uchArrBitmap320,0,AppConst.LEN_BITMAP_PACKET);
 
         for it in (0 ..< AppConstant.LEN_BITMAP_PACKET * 8 - 1).reversed()
         {
             if ((uchArrBitmap320[it/8] & ((0x80 >> (it % 8)))) != 0) {
 
-                let chArrTerminalParamDataFile: String = String(format: "%s", FileNameConstants.TERMINALPARAMFILENAME)
+                let chArrTerminalParamDataFile: String = String(format: "%@", FileNameConstants.TERMINALPARAMFILENAME)
                 debugPrint("chArrTerminalParamDataFile[\(chArrTerminalParamDataFile)]");
 
                 let tData: TerminalParamData? = globalData.ReadParamFile()!
@@ -6302,13 +6285,13 @@ class ISO320Initialization: ISOMessage
                 if (tData != nil) {
                     if (tData!.m_bIsDataChanged == true) {
                         let chArrBatchSize: String = String(format: "%d",tData!.iBatchSize);
-                        _ = insertTLV(iParamID: ParameterIDs._Batch_Size, chArrParamData: [Byte](chArrBatchSize.utf8), dataLen: chArrBatchSize.count);
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Batch_Size, chArrParamData: [Byte](chArrBatchSize.utf8), dataLen: chArrBatchSize.count);
 
                         let chArrSecondaryIPMaxRetryCount: String = String(format: "%d",tData!.m_SecondaryIPMaxRetryCount);
-                        _ = insertTLV(iParamID: ParameterIDs._Secondary_IP_Max_Retry_Count, chArrParamData: [Byte](chArrSecondaryIPMaxRetryCount.utf8), dataLen: chArrSecondaryIPMaxRetryCount.count);
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Secondary_IP_Max_Retry_Count, chArrParamData: [Byte](chArrSecondaryIPMaxRetryCount.utf8), dataLen: chArrSecondaryIPMaxRetryCount.count);
 
                         let chArrEMVChipRetryCount: String = String(format: "%d",tData!.m_EMVChipRetryCount);
-                        _ = insertTLV(iParamID: ParameterIDs._EMVFallbackChipRetryCounter, chArrParamData: [Byte](chArrEMVChipRetryCount.utf8), dataLen: chArrEMVChipRetryCount.count);
+                        _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._EMVFallbackChipRetryCounter, chArrParamData: [Byte](chArrEMVChipRetryCount.utf8), dataLen: chArrEMVChipRetryCount.count);
                     }
                 }
             }
@@ -6327,20 +6310,20 @@ class ISO320Initialization: ISOMessage
             if (tAutoSettlementData!.m_bIsDataChanged == true) {
 
                 let bArrSettlementStartTime: [Byte] = [Byte](tAutoSettlementData!.m_strSettlementStartTime.utf8)
-                _ = insertTLV(iParamID: ParameterIDs._Settlement_Start_Time, chArrParamData: bArrSettlementStartTime, dataLen: bArrSettlementStartTime.count)
+                _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Settlement_Start_Time, chArrParamData: bArrSettlementStartTime, dataLen: bArrSettlementStartTime.count)
 
                 let bArrSettlementFrequency: [Byte] = withUnsafeBytes(of: tAutoSettlementData!.m_iSettlementFrequency.bigEndian, Array.init)
-                _ = insertTLV(iParamID: ParameterIDs._Settlement_Frequency, chArrParamData: bArrSettlementFrequency, dataLen: bArrSettlementFrequency.count)
+                _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Settlement_Frequency, chArrParamData: bArrSettlementFrequency, dataLen: bArrSettlementFrequency.count)
 
                 let bArrSettlementRetryCount: [Byte] = withUnsafeBytes(of: tAutoSettlementData!.m_iSettlementRetryCount.bigEndian, Array.init)
-                _ = insertTLV(iParamID: ParameterIDs._Settlement_Retry_Count, chArrParamData: bArrSettlementRetryCount, dataLen: bArrSettlementRetryCount.count)
+                _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Settlement_Retry_Count, chArrParamData: bArrSettlementRetryCount, dataLen: bArrSettlementRetryCount.count)
 
                 let bArrSettlementRetryInterval: [Byte] = withUnsafeBytes(of: tAutoSettlementData!.m_iSettlementRetryIntervalInSeconds.bigEndian, Array.init)
-                _ = insertTLV(iParamID: ParameterIDs._Settlement_Retry_Interval, chArrParamData: bArrSettlementRetryInterval, dataLen: bArrSettlementRetryInterval.count)
+                _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Settlement_Retry_Interval, chArrParamData: bArrSettlementRetryInterval, dataLen: bArrSettlementRetryInterval.count)
 
                 let iAutoSettlementEnabledFlag: Int = tAutoSettlementData!.m_iAutoSettlementEnabledflag ? 1 : 0
                 let bArrSettlementFlag: [Byte] = withUnsafeBytes(of: iAutoSettlementEnabledFlag.bigEndian, Array.init)
-                _ = insertTLV(iParamID: ParameterIDs._Auto_Settlement_Enabled, chArrParamData: bArrSettlementFlag, dataLen: 1)
+                _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Auto_Settlement_Enabled, chArrParamData: bArrSettlementFlag, dataLen: 1)
             }
         }
     }
@@ -6354,39 +6337,39 @@ class ISO320Initialization: ISOMessage
         
         if (tData != nil){
             if (tData!.bIsDataChanged) {
-                _ = insertTLV(iParamID: ParameterIDs._HSM_Primay_IP, chArrParamData: [Byte](tData!.m_strHSMPrimaryIP.utf8), dataLen: tData!.m_strHSMPrimaryIP.count)
+                _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._HSM_Primay_IP, chArrParamData: [Byte](tData!.m_strHSMPrimaryIP.utf8), dataLen: tData!.m_strHSMPrimaryIP.count)
 
                 let sHSMPrimaryPort: String = String(format: "%d",tData!.m_lHSMPrimaryPort)
-                _ = insertTLV(iParamID: ParameterIDs._HSM_Primay_Port, chArrParamData: [Byte](sHSMPrimaryPort.utf8), dataLen: sHSMPrimaryPort.count)
+                _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._HSM_Primay_Port, chArrParamData: [Byte](sHSMPrimaryPort.utf8), dataLen: sHSMPrimaryPort.count)
 
-                _ = insertTLV(iParamID: ParameterIDs._HSM_Secondary_IP, chArrParamData: [Byte](tData!.m_strHSMSecondaryIP.utf8), dataLen: tData!.m_strHSMSecondaryIP.count)
+                _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._HSM_Secondary_IP, chArrParamData: [Byte](tData!.m_strHSMSecondaryIP.utf8), dataLen: tData!.m_strHSMSecondaryIP.count)
 
                 let HSMSecondaryPort: String = String(format: "%d",tData!.m_lHSMSecondaryPort)
-                _ = insertTLV(iParamID: ParameterIDs._HSM_Secondary_Port, chArrParamData: [Byte](HSMSecondaryPort.utf8), dataLen: HSMSecondaryPort.count)
+                _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._HSM_Secondary_Port, chArrParamData: [Byte](HSMSecondaryPort.utf8), dataLen: HSMSecondaryPort.count)
 
                 let chArrHSMRetryCount: String = String(format: "%d",tData!.m_iHSMRetryCount)
-                _ = insertTLV(iParamID: ParameterIDs._HSM_Retry_Count, chArrParamData: [Byte](chArrHSMRetryCount.utf8), dataLen: chArrHSMRetryCount.count)
+                _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._HSM_Retry_Count, chArrParamData: [Byte](chArrHSMRetryCount.utf8), dataLen: chArrHSMRetryCount.count)
 
                 let chArrOnlinePinFirstCharTimeout: String = String(format: "%d",tData!.m_iOnlinePinFirstCharTimeout)
-                _ = insertTLV(iParamID: ParameterIDs._Online_Pin_First_Char_Timeout, chArrParamData: [Byte](chArrOnlinePinFirstCharTimeout.utf8), dataLen: chArrOnlinePinFirstCharTimeout.count)
+                _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Online_Pin_First_Char_Timeout, chArrParamData: [Byte](chArrOnlinePinFirstCharTimeout.utf8), dataLen: chArrOnlinePinFirstCharTimeout.count)
 
                 let chArrOnlinePinInterCharTimeout: String = String(format: "%d",tData!.m_iOnlinePinInterCharTimeout)
-                _ = insertTLV(iParamID: ParameterIDs._Online_Pin_Interchar_Timeout, chArrParamData: [Byte](chArrOnlinePinInterCharTimeout.utf8), dataLen: chArrOnlinePinInterCharTimeout.count)
+                _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Online_Pin_Interchar_Timeout, chArrParamData: [Byte](chArrOnlinePinInterCharTimeout.utf8), dataLen: chArrOnlinePinInterCharTimeout.count)
 
                 let chArrMinPinLength: String = String(format: "%d",tData!.m_iMinPinLength)
-                _ = insertTLV(iParamID: ParameterIDs._Min_Pin_Length, chArrParamData: [Byte](chArrMinPinLength.utf8), dataLen: chArrMinPinLength.count)
+                _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Min_Pin_Length, chArrParamData: [Byte](chArrMinPinLength.utf8), dataLen: chArrMinPinLength.count)
 
                 let chArrMaxPinLength: String = String(format: "%d",tData!.m_iMaxPinLength)
-                _ = insertTLV(iParamID: ParameterIDs._Max_Pin_Length, chArrParamData: [Byte](chArrMaxPinLength.utf8), dataLen: chArrMaxPinLength.count)
+                _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Max_Pin_Length, chArrParamData: [Byte](chArrMaxPinLength.utf8), dataLen: chArrMaxPinLength.count)
 
                 let chArrDisplayMenuTimeout: String = String(format: "%d",tData!.m_iDisplayMenuTimeout)
-                _ = insertTLV(iParamID: ParameterIDs._Display_Menu_Timeout, chArrParamData: [Byte](chArrDisplayMenuTimeout.utf8), dataLen: chArrDisplayMenuTimeout.count)
+                _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Display_Menu_Timeout, chArrParamData: [Byte](chArrDisplayMenuTimeout.utf8), dataLen: chArrDisplayMenuTimeout.count)
 
                 let chArrDisplayMessasgeTimeout: String = String(format: "%d",tData!.m_iDisplayMessasgeTimeout)
-                _ = insertTLV(iParamID: ParameterIDs._Display_Message_Timeout, chArrParamData: [Byte](chArrDisplayMessasgeTimeout.utf8), dataLen: chArrDisplayMessasgeTimeout.count)
+                _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._Display_Message_Timeout, chArrParamData: [Byte](chArrDisplayMessasgeTimeout.utf8), dataLen: chArrDisplayMessasgeTimeout.count)
 
                 let chArrHotKeyConfirmationTimeout: String = String(format: "%d",tData!.m_iHotKeyConfirmationTimeout)
-                _ = insertTLV(iParamID: ParameterIDs._HotKey_Confirmation_Timeout, chArrParamData: [Byte](chArrHotKeyConfirmationTimeout.utf8), dataLen: chArrHotKeyConfirmationTimeout.count)
+                _ = insertTLV(iHostId: 2, iParamID: ParameterIDs._HotKey_Confirmation_Timeout, chArrParamData: [Byte](chArrHotKeyConfirmationTimeout.utf8), dataLen: chArrHotKeyConfirmationTimeout.count)
               }
           }
     }
@@ -6697,7 +6680,7 @@ class ISO320Initialization: ISOMessage
                         {
                             fatalError("Error in ReWriteFile, strFileName: \(FileNameConstants.USERINFOFILE)")
                         }
-                        let strConnectionDataFile: String = String(format: "%s", FileNameConstants.CONNECTIONDATAFILENAME)
+                        let strConnectionDataFile: String = String(format: "%@", FileNameConstants.CONNECTIONDATAFILENAME)
                          
                         let bArrConxData: [Byte] = FileSystem.ReadFile(strFileName: strConnectionDataFile)!
                         
@@ -7073,9 +7056,8 @@ class ISO320Initialization: ISOMessage
         if(FileSystem.IsFileExist(strFileName: FileNameConstants.TEMPAIDEMVTXNTYPEFILE))
         {
             debugPrint("TEMPAIDEMVTXNTYPEFILE exists")
-            let tempStruct: [StAIDTxnMapingDetails] = []
-            
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.POSAIDEMVTXNTYPEFILE, with: tempStruct)
+
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.POSAIDEMVTXNTYPEFILE)
             if(true == FileSystem.RenameFile(strNewFileName: FileNameConstants.POSAIDEMVTXNTYPEFILE,strFileName: FileNameConstants.TEMPAIDEMVTXNTYPEFILE))
             {
                debugPrint("POSAIDEMVTXNTYPEFILE rename done")
@@ -7226,9 +7208,8 @@ class ISO320Initialization: ISOMessage
         //if temp bin range file exist, then replace BINRANGE file with temp.
         if(FileSystem.IsFileExist(strFileName: FileNameConstants.TEMPTXNTYPEFLAGSMAPPINGFILE))
         {
-            let stTxnTypeFlagsList: [StTxnTypeFlagsMappingDetails] = []
             debugPrint("TEMPTXNTYPEFLAGSMAPPINGFILE exists")
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.POSTXNTYPEFLAGSMAPPINGFILE, with: stTxnTypeFlagsList)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.POSTXNTYPEFLAGSMAPPINGFILE)
             
             if(true == FileSystem.RenameFile(strNewFileName: FileNameConstants.POSTXNTYPEFLAGSMAPPINGFILE,strFileName: FileNameConstants.TEMPTXNTYPEFLAGSMAPPINGFILE))
             {
@@ -7283,15 +7264,13 @@ class ISO320Initialization: ISOMessage
             debugPrint("Response->Field 53 found in ProcessMINIPVMDownload")
         }
 
-        let tempData: [Long] = []
-        
         if(self.m_bCurrentPacketCount == 0x01){
             debugPrint("*******MINIPVM download*****")
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_INFO,"******MINIPVM download*********");
             
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DWNLDMINIPVMINFO, with: tempData)
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.TEMMINIPVMFILE, with: tempData)
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.DWNLDCHUNKINFO, with: tempData)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DWNLDMINIPVMINFO)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.TEMMINIPVMFILE)
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DWNLDCHUNKINFO)
         }
 
         if(self.m_bCurrentPacketCount == self.m_bTotalPacketCount)
@@ -7305,7 +7284,7 @@ class ISO320Initialization: ISOMessage
             }
             
             let chMINIPVMIdName: String = String(format: "%d",m_ulArrMINIPVMIdAdd[m_ulTotalMINIPVMAdded])
-            _ = FileSystem.DeleteFile(strFileName: chMINIPVMIdName, with: tempData)
+            _ = FileSystem.DeleteFileComplete(strFileName: chMINIPVMIdName)
             
             debugPrint("chMINIPVMIdName[\(chMINIPVMIdName)]")
             if(true == FileSystem.RenameFile(strNewFileName: chMINIPVMIdName,strFileName: m_chTempMINIPVMfileName))
@@ -7566,7 +7545,7 @@ class ISO320Initialization: ISOMessage
             iOffset += iLocalStructLen;
         }
 
-        _ = FileSystem.DeleteFile(strFileName: FileNameConstants.ISPASSWORDMAPPINGFILE, with: stIsPasswordList)
+        _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.ISPASSWORDMAPPINGFILE)
         
         do{
             _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.ISPASSWORDMAPPINGFILE, with: stIsPasswordList)
@@ -7640,8 +7619,7 @@ class ISO320Initialization: ISOMessage
             debugPrint("TEMPCSVTXNTYPEMINIPVMMAPPINGFILE exists")
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "TEMPCSVTXNTYPEMINIPVMMAPPINGFILE exists");
             
-            let tempStruct: [StCSVTxnTypeMiniPvmMappingDetails]  = []
-            _ = FileSystem.DeleteFile(strFileName: FileNameConstants.CSVTXNTYPEMINIPVMMAPPINGFILE, with: tempStruct);
+            _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.CSVTXNTYPEMINIPVMMAPPINGFILE);
             if(true == FileSystem.RenameFile(strNewFileName: FileNameConstants.CSVTXNTYPEMINIPVMMAPPINGFILE,strFileName:  FileNameConstants.TEMPCSVTXNTYPEMINIPVMMAPPINGFILE))
             {
                 debugPrint("CSVTXNTYPEMINIPVMMAPPINGFILE rename done")
@@ -7690,7 +7668,7 @@ class ISO320Initialization: ISOMessage
         }
 
         let tempStruct: [StCSVTxnTypeMiniPvmMappingDetails] = []
-        _ = FileSystem.DeleteFile(strFileName: FileNameConstants.CSVTXNTYPEMINIPVMMAPPINGFILE, with: tempStruct)
+        _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.CSVTXNTYPEMINIPVMMAPPINGFILE)
     }
     
     //MARK:- ProcessLogShippingDetailsDownload()
@@ -8312,8 +8290,7 @@ class ISO320Initialization: ISOMessage
 
              if(m_bCurrentPacketCount == 1)//if(str_previous_ImageName != str_current_ImageName && str_previous_ImageName != null && str_current_ImageName != null)
              {
-                let bytes: [Byte] = []
-                _ = FileSystem.DeleteFile(strFileName: m_str_temp_ContentName, with: bytes);
+                _ = FileSystem.DeleteFileComplete(strFileName: m_str_temp_ContentName);
                  //An extra check to remove previous temp file
              }
              //m_str_temp_ContentName = m_str_current_ContentName + ".temp";
@@ -8327,12 +8304,12 @@ class ISO320Initialization: ISOMessage
                  case PCImageChangeType.UPDATE:
                     debugPrint("Updating bytes to File[\(m_str_current_ContentName)], [\(m_str_temp_ContentName)]")
                     //CLogger.TraceLog(TRACE_ERROR, "Updating bytes to File[%s], [%s]", m_str_current_ContentName, m_str_temp_ContentName);
-                    _ = FileSystem.DeleteFile(strFileName: m_str_current_ContentName, with: imageDump)
+                    _ = FileSystem.DeleteFileComplete(strFileName: m_str_current_ContentName)
                     _ = try FileSystem.AppendFile(strFileName: m_str_temp_ContentName, with: imageDump)
                  case PCImageChangeType.DELETE:
                     debugPrint("Deleting bytes to File[\(m_str_current_ContentName)], [\(m_str_temp_ContentName)]")
                     //CLogger.TraceLog(TRACE_ERROR, "Deleting bytes to File[%s]", m_str_current_ContentName);
-                    _ = FileSystem.DeleteFile(strFileName: m_str_current_ContentName, with: imageDump)
+                    _ = FileSystem.DeleteFileComplete(strFileName: m_str_current_ContentName)
                 default:
                     break;
             }
@@ -8405,8 +8382,7 @@ class ISO320Initialization: ISOMessage
                 {
                     debugPrint("Deleting bytes to File[\(m_str_current_ContentName)]")
                     //CLogger.TraceLog(TRACE_ERROR, "Deleting bytes to File[%s]", m_str_current_ContentName);
-                    let bytes: [Byte] = []
-                    _ = FileSystem.DeleteFile(strFileName: m_str_current_ContentName, with: bytes);
+                    _ = FileSystem.DeleteFileComplete(strFileName: m_str_current_ContentName)
                 }
                 offset += file_name_length;
             }

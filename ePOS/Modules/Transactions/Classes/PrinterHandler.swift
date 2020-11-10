@@ -327,7 +327,7 @@ class PrinterHandler{
     //                    }
 
                     } else if (bPrintMode == AppConstant.PRINTDUMP_QRCODEMODE) {
-                        let strTxnField52Name: String = String(format: "%s", FileNameConstants.TXNFEILD52NAME)
+                        let strTxnField52Name: String = String(format: "%@", FileNameConstants.TXNFEILD52NAME)
                         debugPrint("txn field 52 file name[\(FileNameConstants.TXNFEILD52NAME)]")
 
                         let bArrField52Data: [Byte] = FileSystem.ReadFile(strFileName: strTxnField52Name)!
@@ -339,7 +339,7 @@ class PrinterHandler{
                             strQRCode.append(strField52Data);
                         }
                     } else if (bPrintMode == AppConstant.PRINTDUMP_QRCODEMODEBASE64) {
-                        let strTxnField52Name = String(format: "%s", FileNameConstants.TXNFEILD52NAME)
+                        let strTxnField52Name = String(format: "@", FileNameConstants.TXNFEILD52NAME)
                         debugPrint("txn field 52 file name[\(FileNameConstants.TXNFEILD52NAME)]")
 
                         let bArrField52Data: [Byte] = FileSystem.ReadFile(strFileName: strTxnField52Name)!
