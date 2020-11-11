@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		18274840419F503DA1EE880A /* Pods_ePOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F0391820214628F09E9428 /* Pods_ePOS.framework */; };
 		46161AC525137F56006D2783 /* CommonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46161AC425137F55006D2783 /* CommonExtensions.swift */; };
+		46386C232548A9100038F183 /* TransactionHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46386C222548A9100038F183 /* TransactionHistoryViewController.swift */; };
 		4646198425330B84009089BC /* SignatureParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4646198325330B84009089BC /* SignatureParams.swift */; };
 		46461987253314A9009089BC /* DeviceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46461986253314A9009089BC /* DeviceState.swift */; };
 		464619892534280A009089BC /* TerminalParamData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464619882534280A009089BC /* TerminalParamData.swift */; };
@@ -20,13 +21,19 @@
 		4646199725359010009089BC /* CPlatFormUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4646199625359010009089BC /* CPlatFormUtil.swift */; };
 		4669F0C52525DEF900DEA9F2 /* MerchantVerificationServiceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F0C42525DEF900DEA9F2 /* MerchantVerificationServiceData.swift */; };
 		4669F0C72525E0E000DEA9F2 /* MerchantVerificationAddressData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F0C62525E0E000DEA9F2 /* MerchantVerificationAddressData.swift */; };
+		467A25A125596305004CDFFD /* STRUCT_MESSAGE_ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467A25A025596305004CDFFD /* STRUCT_MESSAGE_ID.swift */; };
+		4686C4AA254FF5410076FEFB /* CStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686C4A9254FF5410076FEFB /* CStateMachine.swift */; };
 		46882CDC2538727100C908B2 /* ContentServerParamData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46882CDB2538727100C908B2 /* ContentServerParamData.swift */; };
 		46AA3E04252F1275005907E1 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AA3E03252F1275005907E1 /* AppConstants.swift */; };
 		46AA3E06252F232F005907E1 /* StructConxData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AA3E05252F232F005907E1 /* StructConxData.swift */; };
 		46AA3E08252F237B005907E1 /* StructConnIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AA3E07252F237B005907E1 /* StructConnIndex.swift */; };
 		46AA3E0A252F24EF005907E1 /* ConnectionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AA3E09252F24EF005907E1 /* ConnectionTypes.swift */; };
 		46AB5CE52539BB3A00FF814E /* cUtilClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AB5CE42539BB3A00FF814E /* cUtilClass.swift */; };
-		46AB5CE7253D652A00FF814E /* STRUCT_MESSAGE_ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AB5CE6253D652A00FF814E /* STRUCT_MESSAGE_ID.swift */; };
+		46AB5D0925429A6000FF814E /* FIleNameConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AB5D0825429A6000FF814E /* FIleNameConstants.swift */; };
+		46AB5D0B2542A08F00FF814E /* ProcessingCodeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AB5D0A2542A08F00FF814E /* ProcessingCodeConstants.swift */; };
+		46AB5D0E2544C91300FF814E /* CollectionaShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AB5D0D2544C91300FF814E /* CollectionaShadowView.swift */; };
+		46AB5D1025457C8100FF814E /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AB5D0F25457C8100FF814E /* CollectionViewCell.swift */; };
+		46AB5D142546E6AD00FF814E /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AB5D132546E6AD00FF814E /* AccountTableViewController.swift */; };
 		46ADF104252876CA009A9297 /* BankAccountDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF103252876CA009A9297 /* BankAccountDetails.swift */; };
 		46ADF1062528776D009A9297 /* LeadScheduleDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF1052528776D009A9297 /* LeadScheduleDetails.swift */; };
 		46ADF109252877E0009A9297 /* AdditionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADF108252877E0009A9297 /* AdditionalInfo.swift */; };
@@ -52,6 +59,38 @@
 		46BD9B50251A8646008DEFEA /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B4F251A8646008DEFEA /* ForgotPasswordController.swift */; };
 		46BD9B52251A8B69008DEFEA /* PasswordResetLinkMsgController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B51251A8B69008DEFEA /* PasswordResetLinkMsgController.swift */; };
 		46BD9B54251AFE80008DEFEA /* GenericSwitchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B53251AFE80008DEFEA /* GenericSwitchingViewController.swift */; };
+		46E293C5255BAC0B00826954 /* src.xml in Resources */ = {isa = PBXBuildFile; fileRef = 46E293A0255BAC0B00826954 /* src.xml */; };
+		46E293C6255BAC0B00826954 /* CDisplayMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293A2255BAC0B00826954 /* CDisplayMenu.swift */; };
+		46E293C7255BAC0B00826954 /* CDisplayGetAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293A3255BAC0B00826954 /* CDisplayGetAmount.swift */; };
+		46E293C8255BAC0B00826954 /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293A4255BAC0B00826954 /* XMLParser.swift */; };
+		46E293C9255BAC0B00826954 /* CSecureLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293A5255BAC0B00826954 /* CSecureLib.swift */; };
+		46E293CA255BAC0B00826954 /* CDisplayMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293A6255BAC0B00826954 /* CDisplayMenuItem.swift */; };
+		46E293CB255BAC0B00826954 /* ChildNodeClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293A7255BAC0B00826954 /* ChildNodeClass.swift */; };
+		46E293CC255BAC0B00826954 /* CBaseNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293A8255BAC0B00826954 /* CBaseNode.swift */; };
+		46E293CD255BAC0B00826954 /* CDisplayDataEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293A9255BAC0B00826954 /* CDisplayDataEntry.swift */; };
+		46E293CE255BAC0B00826954 /* CDisplayMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293AA255BAC0B00826954 /* CDisplayMessage.swift */; };
+		46E293CF255BAC0B00826954 /* ParserWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293AB255BAC0B00826954 /* ParserWrapper.swift */; };
+		46E293D0255BAC0B00826954 /* CPineKeyInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293AC255BAC0B00826954 /* CPineKeyInjection.swift */; };
+		46E293D1255BAC0B00826954 /* XMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293AE255BAC0B00826954 /* XMLNode.swift */; };
+		46E293D2255BAC0B00826954 /* TerminalTransactionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293B0255BAC0B00826954 /* TerminalTransactionData.swift */; };
+		46E293D3255BAC0B00826954 /* TxnTLVData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293B1255BAC0B00826954 /* TxnTLVData.swift */; };
+		46E293D4255BAC0B00826954 /* CsvData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293B2255BAC0B00826954 /* CsvData.swift */; };
+		46E293D5255BAC0B00826954 /* TLVTxData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293B3255BAC0B00826954 /* TLVTxData.swift */; };
+		46E293D6255BAC0B00826954 /* PvmNodeActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293B4255BAC0B00826954 /* PvmNodeActions.swift */; };
+		46E293D7255BAC0B00826954 /* SecureData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293B5255BAC0B00826954 /* SecureData.swift */; };
+		46E293D8255BAC0B00826954 /* XMLAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293B6255BAC0B00826954 /* XMLAttribute.swift */; };
+		46E293D9255BAC0B00826954 /* ExecutionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293B7255BAC0B00826954 /* ExecutionResult.swift */; };
+		46E293DB255BAC0B00826954 /* EMVTxnType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293B9255BAC0B00826954 /* EMVTxnType.swift */; };
+		46E293DC255BAC0B00826954 /* RESET_RESPONSE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293BA255BAC0B00826954 /* RESET_RESPONSE.swift */; };
+		46E293DD255BAC0B00826954 /* ImageListParserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293BB255BAC0B00826954 /* ImageListParserModel.swift */; };
+		46E293DF255BAC0B00826954 /* QRCodeParsingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293BD255BAC0B00826954 /* QRCodeParsingData.swift */; };
+		46E293E0255BAC0B00826954 /* ITEMVAL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293BE255BAC0B00826954 /* ITEMVAL.swift */; };
+		46E293E1255BAC0B00826954 /* PrintData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293BF255BAC0B00826954 /* PrintData.swift */; };
+		46E293E2255BAC0B00826954 /* PvmListParserVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293C0255BAC0B00826954 /* PvmListParserVO.swift */; };
+		46E293E3255BAC0B00826954 /* QRCodeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293C1255BAC0B00826954 /* QRCodeData.swift */; };
+		46E293E4255BAC0B00826954 /* PvmNodeTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293C2255BAC0B00826954 /* PvmNodeTypes.swift */; };
+		46E293E5255BAC0B00826954 /* ZMK_KEY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293C3255BAC0B00826954 /* ZMK_KEY.swift */; };
+		46E293E6255BAC0B00826954 /* QRCodeScanningParserVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293C4255BAC0B00826954 /* QRCodeScanningParserVO.swift */; };
 		46ED34642537098500CEF19D /* AutoLogShippingCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED34632537098500CEF19D /* AutoLogShippingCredential.swift */; };
 		46ED346625370B8A00CEF19D /* AutoLogShippingParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED346525370B8A00CEF19D /* AutoLogShippingParams.swift */; };
 		46ED346825370CE300CEF19D /* AutoSettlementParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED346725370CE300CEF19D /* AutoSettlementParams.swift */; };
@@ -241,6 +280,7 @@
 		22F0391820214628F09E9428 /* Pods_ePOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ePOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3293659E051B6C990362E7F9 /* Pods-ePOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ePOS.debug.xcconfig"; path = "Target Support Files/Pods-ePOS/Pods-ePOS.debug.xcconfig"; sourceTree = "<group>"; };
 		46161AC425137F55006D2783 /* CommonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonExtensions.swift; sourceTree = "<group>"; };
+		46386C222548A9100038F183 /* TransactionHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryViewController.swift; sourceTree = "<group>"; };
 		4646198325330B84009089BC /* SignatureParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureParams.swift; sourceTree = "<group>"; };
 		46461986253314A9009089BC /* DeviceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceState.swift; sourceTree = "<group>"; };
 		464619882534280A009089BC /* TerminalParamData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalParamData.swift; sourceTree = "<group>"; };
@@ -252,13 +292,19 @@
 		4646199625359010009089BC /* CPlatFormUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPlatFormUtil.swift; sourceTree = "<group>"; };
 		4669F0C42525DEF900DEA9F2 /* MerchantVerificationServiceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantVerificationServiceData.swift; sourceTree = "<group>"; };
 		4669F0C62525E0E000DEA9F2 /* MerchantVerificationAddressData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantVerificationAddressData.swift; sourceTree = "<group>"; };
+		467A25A025596305004CDFFD /* STRUCT_MESSAGE_ID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STRUCT_MESSAGE_ID.swift; sourceTree = "<group>"; };
+		4686C4A9254FF5410076FEFB /* CStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CStateMachine.swift; sourceTree = "<group>"; };
 		46882CDB2538727100C908B2 /* ContentServerParamData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentServerParamData.swift; sourceTree = "<group>"; };
 		46AA3E03252F1275005907E1 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		46AA3E05252F232F005907E1 /* StructConxData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructConxData.swift; sourceTree = "<group>"; };
 		46AA3E07252F237B005907E1 /* StructConnIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructConnIndex.swift; sourceTree = "<group>"; };
 		46AA3E09252F24EF005907E1 /* ConnectionTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionTypes.swift; sourceTree = "<group>"; };
 		46AB5CE42539BB3A00FF814E /* cUtilClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cUtilClass.swift; sourceTree = "<group>"; };
-		46AB5CE6253D652A00FF814E /* STRUCT_MESSAGE_ID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STRUCT_MESSAGE_ID.swift; sourceTree = "<group>"; };
+		46AB5D0825429A6000FF814E /* FIleNameConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIleNameConstants.swift; sourceTree = "<group>"; };
+		46AB5D0A2542A08F00FF814E /* ProcessingCodeConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingCodeConstants.swift; sourceTree = "<group>"; };
+		46AB5D0D2544C91300FF814E /* CollectionaShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionaShadowView.swift; sourceTree = "<group>"; };
+		46AB5D0F25457C8100FF814E /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		46AB5D132546E6AD00FF814E /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
 		46ADF103252876CA009A9297 /* BankAccountDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccountDetails.swift; sourceTree = "<group>"; };
 		46ADF1052528776D009A9297 /* LeadScheduleDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadScheduleDetails.swift; sourceTree = "<group>"; };
 		46ADF108252877E0009A9297 /* AdditionalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInfo.swift; sourceTree = "<group>"; };
@@ -284,6 +330,38 @@
 		46BD9B4F251A8646008DEFEA /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
 		46BD9B51251A8B69008DEFEA /* PasswordResetLinkMsgController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetLinkMsgController.swift; sourceTree = "<group>"; };
 		46BD9B53251AFE80008DEFEA /* GenericSwitchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericSwitchingViewController.swift; sourceTree = "<group>"; };
+		46E293A0255BAC0B00826954 /* src.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = src.xml; sourceTree = "<group>"; };
+		46E293A2255BAC0B00826954 /* CDisplayMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDisplayMenu.swift; sourceTree = "<group>"; };
+		46E293A3255BAC0B00826954 /* CDisplayGetAmount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDisplayGetAmount.swift; sourceTree = "<group>"; };
+		46E293A4255BAC0B00826954 /* XMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
+		46E293A5255BAC0B00826954 /* CSecureLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSecureLib.swift; sourceTree = "<group>"; };
+		46E293A6255BAC0B00826954 /* CDisplayMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDisplayMenuItem.swift; sourceTree = "<group>"; };
+		46E293A7255BAC0B00826954 /* ChildNodeClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildNodeClass.swift; sourceTree = "<group>"; };
+		46E293A8255BAC0B00826954 /* CBaseNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBaseNode.swift; sourceTree = "<group>"; };
+		46E293A9255BAC0B00826954 /* CDisplayDataEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDisplayDataEntry.swift; sourceTree = "<group>"; };
+		46E293AA255BAC0B00826954 /* CDisplayMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDisplayMessage.swift; sourceTree = "<group>"; };
+		46E293AB255BAC0B00826954 /* ParserWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserWrapper.swift; sourceTree = "<group>"; };
+		46E293AC255BAC0B00826954 /* CPineKeyInjection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPineKeyInjection.swift; sourceTree = "<group>"; };
+		46E293AE255BAC0B00826954 /* XMLNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLNode.swift; sourceTree = "<group>"; };
+		46E293B0255BAC0B00826954 /* TerminalTransactionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TerminalTransactionData.swift; sourceTree = "<group>"; };
+		46E293B1255BAC0B00826954 /* TxnTLVData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TxnTLVData.swift; sourceTree = "<group>"; };
+		46E293B2255BAC0B00826954 /* CsvData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CsvData.swift; sourceTree = "<group>"; };
+		46E293B3255BAC0B00826954 /* TLVTxData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TLVTxData.swift; sourceTree = "<group>"; };
+		46E293B4255BAC0B00826954 /* PvmNodeActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PvmNodeActions.swift; sourceTree = "<group>"; };
+		46E293B5255BAC0B00826954 /* SecureData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureData.swift; sourceTree = "<group>"; };
+		46E293B6255BAC0B00826954 /* XMLAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLAttribute.swift; sourceTree = "<group>"; };
+		46E293B7255BAC0B00826954 /* ExecutionResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecutionResult.swift; sourceTree = "<group>"; };
+		46E293B9255BAC0B00826954 /* EMVTxnType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EMVTxnType.swift; sourceTree = "<group>"; };
+		46E293BA255BAC0B00826954 /* RESET_RESPONSE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RESET_RESPONSE.swift; sourceTree = "<group>"; };
+		46E293BB255BAC0B00826954 /* ImageListParserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageListParserModel.swift; sourceTree = "<group>"; };
+		46E293BD255BAC0B00826954 /* QRCodeParsingData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeParsingData.swift; sourceTree = "<group>"; };
+		46E293BE255BAC0B00826954 /* ITEMVAL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITEMVAL.swift; sourceTree = "<group>"; };
+		46E293BF255BAC0B00826954 /* PrintData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintData.swift; sourceTree = "<group>"; };
+		46E293C0255BAC0B00826954 /* PvmListParserVO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PvmListParserVO.swift; sourceTree = "<group>"; };
+		46E293C1255BAC0B00826954 /* QRCodeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeData.swift; sourceTree = "<group>"; };
+		46E293C2255BAC0B00826954 /* PvmNodeTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PvmNodeTypes.swift; sourceTree = "<group>"; };
+		46E293C3255BAC0B00826954 /* ZMK_KEY.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZMK_KEY.swift; sourceTree = "<group>"; };
+		46E293C4255BAC0B00826954 /* QRCodeScanningParserVO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeScanningParserVO.swift; sourceTree = "<group>"; };
 		46ED34632537098500CEF19D /* AutoLogShippingCredential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLogShippingCredential.swift; sourceTree = "<group>"; };
 		46ED346525370B8A00CEF19D /* AutoLogShippingParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLogShippingParams.swift; sourceTree = "<group>"; };
 		46ED346725370CE300CEF19D /* AutoSettlementParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSettlementParams.swift; sourceTree = "<group>"; };
@@ -523,6 +601,14 @@
 			path = MerchantVerificationServiceData;
 			sourceTree = "<group>";
 		};
+		46AB5D0C2544C82900FF814E /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				46AB5D0F25457C8100FF814E /* CollectionViewCell.swift */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
 		46ADF1022528767A009A9297 /* BankAccountData */ = {
 			isa = PBXGroup;
 			children = (
@@ -583,6 +669,77 @@
 				46ADF12725287BB6009A9297 /* DocResources.swift */,
 			);
 			path = DocumentsData;
+			sourceTree = "<group>";
+		};
+		46E2939E255BAC0B00826954 /* PVM_Module */ = {
+			isa = PBXGroup;
+			children = (
+				46E2939F255BAC0B00826954 /* XMLFiles */,
+				46E293A1255BAC0B00826954 /* PVMClasses */,
+				46E293AD255BAC0B00826954 /* XMLParserLibraryClass */,
+				46E293AF255BAC0B00826954 /* PVMStructures */,
+			);
+			path = PVM_Module;
+			sourceTree = "<group>";
+		};
+		46E2939F255BAC0B00826954 /* XMLFiles */ = {
+			isa = PBXGroup;
+			children = (
+				46E293A0255BAC0B00826954 /* src.xml */,
+			);
+			path = XMLFiles;
+			sourceTree = "<group>";
+		};
+		46E293A1255BAC0B00826954 /* PVMClasses */ = {
+			isa = PBXGroup;
+			children = (
+				46E293A2255BAC0B00826954 /* CDisplayMenu.swift */,
+				46E293A3255BAC0B00826954 /* CDisplayGetAmount.swift */,
+				46E293A4255BAC0B00826954 /* XMLParser.swift */,
+				46E293A5255BAC0B00826954 /* CSecureLib.swift */,
+				46E293A6255BAC0B00826954 /* CDisplayMenuItem.swift */,
+				46E293A7255BAC0B00826954 /* ChildNodeClass.swift */,
+				46E293A8255BAC0B00826954 /* CBaseNode.swift */,
+				46E293A9255BAC0B00826954 /* CDisplayDataEntry.swift */,
+				46E293AA255BAC0B00826954 /* CDisplayMessage.swift */,
+				46E293AB255BAC0B00826954 /* ParserWrapper.swift */,
+				46E293AC255BAC0B00826954 /* CPineKeyInjection.swift */,
+			);
+			path = PVMClasses;
+			sourceTree = "<group>";
+		};
+		46E293AD255BAC0B00826954 /* XMLParserLibraryClass */ = {
+			isa = PBXGroup;
+			children = (
+				46E293AE255BAC0B00826954 /* XMLNode.swift */,
+			);
+			path = XMLParserLibraryClass;
+			sourceTree = "<group>";
+		};
+		46E293AF255BAC0B00826954 /* PVMStructures */ = {
+			isa = PBXGroup;
+			children = (
+				46E293B0255BAC0B00826954 /* TerminalTransactionData.swift */,
+				46E293B1255BAC0B00826954 /* TxnTLVData.swift */,
+				46E293B2255BAC0B00826954 /* CsvData.swift */,
+				46E293B3255BAC0B00826954 /* TLVTxData.swift */,
+				46E293B4255BAC0B00826954 /* PvmNodeActions.swift */,
+				46E293B5255BAC0B00826954 /* SecureData.swift */,
+				46E293B6255BAC0B00826954 /* XMLAttribute.swift */,
+				46E293B7255BAC0B00826954 /* ExecutionResult.swift */,
+				46E293B9255BAC0B00826954 /* EMVTxnType.swift */,
+				46E293BA255BAC0B00826954 /* RESET_RESPONSE.swift */,
+				46E293BB255BAC0B00826954 /* ImageListParserModel.swift */,
+				46E293BD255BAC0B00826954 /* QRCodeParsingData.swift */,
+				46E293BE255BAC0B00826954 /* ITEMVAL.swift */,
+				46E293BF255BAC0B00826954 /* PrintData.swift */,
+				46E293C0255BAC0B00826954 /* PvmListParserVO.swift */,
+				46E293C1255BAC0B00826954 /* QRCodeData.swift */,
+				46E293C2255BAC0B00826954 /* PvmNodeTypes.swift */,
+				46E293C3255BAC0B00826954 /* ZMK_KEY.swift */,
+				46E293C4255BAC0B00826954 /* QRCodeScanningParserVO.swift */,
+			);
+			path = PVMStructures;
 			sourceTree = "<group>";
 		};
 		990AF95F252854450008A907 /* BottomSheet */ = {
@@ -659,6 +816,8 @@
 			isa = PBXGroup;
 			children = (
 				99186CCA2508F01400A9FE07 /* TransactionsViewController.swift */,
+				46AB5D132546E6AD00FF814E /* AccountTableViewController.swift */,
+				46386C222548A9100038F183 /* TransactionHistoryViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1012,6 +1171,7 @@
 		991ADE922506096700932251 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				46E2939E255BAC0B00826954 /* PVM_Module */,
 				99186D6225122F7400A9FE07 /* On Boarding */,
 				99186D4F2511D28800A9FE07 /* SignUp */,
 				99186D412511D26400A9FE07 /* Login */,
@@ -1037,6 +1197,7 @@
 		991ADE97250609E100932251 /* Transactions */ = {
 			isa = PBXGroup;
 			children = (
+				46AB5D0C2544C82900FF814E /* CollectionView */,
 				CECC5405252B52AD00C0940E /* Constants */,
 				CECC5404252B529C00C0940E /* Structures */,
 				CECC5403252B527C00C0940E /* Classes */,
@@ -1076,6 +1237,7 @@
 				991ADEA3250646E500932251 /* EPOSLabel.swift */,
 				991ADEAA250660DB00932251 /* EPOSGradientView.swift */,
 				991ADEAC250662EF00932251 /* EPOSShadowView.swift */,
+				46AB5D0D2544C91300FF814E /* CollectionaShadowView.swift */,
 			);
 			path = "Custom Classes";
 			sourceTree = "<group>";
@@ -1296,6 +1458,7 @@
 				8EE3286C25444AD300616E33 /* CConx.swift */,
 				8E13826125518568000F7C21 /* PrinterHandler.swift */,
 				8E1382632551882F000F7C21 /* PrinterDataDisplay.swift */,
+				4686C4A9254FF5410076FEFB /* CStateMachine.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1335,7 +1498,6 @@
 				46ED346B2537159600CEF19D /* st_PSK.swift */,
 				8EE328672544490A00616E33 /* st_TxnBin.swift */,
 				8EE32855253DF93B00616E33 /* st_TxnTypeFlagsMappingDetails.swift */,
-				46AB5CE6253D652A00FF814E /* STRUCT_MESSAGE_ID.swift */,
 				46AA3E07252F237B005907E1 /* StructConnIndex.swift */,
 				46AA3E05252F232F005907E1 /* StructConxData.swift */,
 				CE971BD4252CBD8200843943 /* TerminalConxData.swift */,
@@ -1343,6 +1505,7 @@
 				464619882534280A009089BC /* TerminalParamData.swift */,
 				46ED34692537155A00CEF19D /* TerminalPSKData.swift */,
 				46ED346F2537207600CEF19D /* ParameterData.swift */,
+				467A25A025596305004CDFFD /* STRUCT_MESSAGE_ID.swift */,
 			);
 			path = Structures;
 			sourceTree = "<group>";
@@ -1361,6 +1524,8 @@
 				46ED34712537212E00CEF19D /* ParameterIDS.swift */,
 				8E13826525551D4F000F7C21 /* RetVal.swift */,
 				8E13826725551F80000F7C21 /* StringConstant.swift */,
+				46AB5D0825429A6000FF814E /* FIleNameConstants.swift */,
+				46AB5D0A2542A08F00FF814E /* ProcessingCodeConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1445,6 +1610,7 @@
 				9919A9A22517528800A67253 /* SearchIFSCViewController.xib in Resources */,
 				991DF273251DED8000AEA1C3 /* EPOSBaseView.xib in Resources */,
 				9919A9BD251A475C00A67253 /* PackageDetailViewController.xib in Resources */,
+				46E293C5255BAC0B00826954 /* src.xml in Resources */,
 				99186D102510922B00A9FE07 /* FailedPopup.xib in Resources */,
 				997DC804252347A3006ADE48 /* DropdownTableViewCell.xib in Resources */,
 				99186D152510926800A9FE07 /* EmptyDataViewController.xib in Resources */,
@@ -1580,19 +1746,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46E293E4255BAC0B00826954 /* PvmNodeTypes.swift in Sources */,
 				99186D3D2511D21100A9FE07 /* RequestHandler.swift in Sources */,
 				46BD9B4A25176F6F008DEFEA /* IntitalDataModel.swift in Sources */,
 				99186D192510959F00A9FE07 /* StatusDialogItem.swift in Sources */,
+				46E293D9255BAC0B00826954 /* ExecutionResult.swift in Sources */,
 				4646199125358579009089BC /* Long.swift in Sources */,
 				9919A9B02519E45400A67253 /* SelectPackageViewController.swift in Sources */,
 				8EE328622542AA0E00616E33 /* ProcessingCodeConstants.swift in Sources */,
 				9976C90D2500F05600FC5DD3 /* ViewController.swift in Sources */,
+				46E293CD255BAC0B00826954 /* CDisplayDataEntry.swift in Sources */,
+				46AB5D0925429A6000FF814E /* FIleNameConstants.swift in Sources */,
 				CECC5413252B67C400C0940E /* ISO320HostUploadChangeNumberConstants.swift in Sources */,
 				9919A99D25174B2D00A67253 /* BankDetailsViewController.swift in Sources */,
+				46E293D0255BAC0B00826954 /* CPineKeyInjection.swift in Sources */,
 				991DF269251CB5C900AEA1C3 /* GifLoader.swift in Sources */,
 				46ADF1162528792F009A9297 /* ContactDetails.swift in Sources */,
 				46ED34642537098500CEF19D /* AutoLogShippingCredential.swift in Sources */,
 				8EE3285C253EAA0B00616E33 /* CurrentEDCAppDownloadingInfo.swift in Sources */,
+				4686C4AA254FF5410076FEFB /* CStateMachine.swift in Sources */,
 				46ADF1062528776D009A9297 /* LeadScheduleDetails.swift in Sources */,
 				46BD9B4225160767008DEFEA /* IntialDataRequest.swift in Sources */,
 				9919A9942514D83000A67253 /* EPOSUserDefaults.swift in Sources */,
@@ -1600,6 +1772,7 @@
 				8E13826225518568000F7C21 /* PrinterHandler.swift in Sources */,
 				CE971BC5252CACAF00843943 /* TCPIPCommunicator.swift in Sources */,
 				CE971BD7252CBD9D00843943 /* TerminalMasterParamData.swift in Sources */,
+				46386C232548A9100038F183 /* TransactionHistoryViewController.swift in Sources */,
 				46BD9B54251AFE80008DEFEA /* GenericSwitchingViewController.swift in Sources */,
 				4646199725359010009089BC /* CPlatFormUtil.swift in Sources */,
 				8EE3286B2544498000616E33 /* st_CSVTxnIgnoreAmt.swift in Sources */,
@@ -1613,22 +1786,26 @@
 				46BD9B442516095C008DEFEA /* OnBoardingRequest.swift in Sources */,
 				46BD9B52251A8B69008DEFEA /* PasswordResetLinkMsgController.swift in Sources */,
 				9976C9232501066B00FC5DD3 /* CustomColors.swift in Sources */,
+				46E293D7255BAC0B00826954 /* SecureData.swift in Sources */,
 				4646198B25342889009089BC /* BatchState.swift in Sources */,
 				99186CCB2508F01400A9FE07 /* TransactionsViewController.swift in Sources */,
 				991DF271251DED7100AEA1C3 /* EPOSBaseView.swift in Sources */,
 				8EE32864254447DE00616E33 /* st_CSVTxnMap.swift in Sources */,
 				46ADF12025287A47009A9297 /* BusinessItem.swift in Sources */,
 				997DC7FE2522347F006ADE48 /* LeadState.swift in Sources */,
+				46AB5D1025457C8100FF814E /* CollectionViewCell.swift in Sources */,
 				997DC803252347A3006ADE48 /* DropdownTableViewCell.swift in Sources */,
+				46E293C9255BAC0B00826954 /* CSecureLib.swift in Sources */,
 				997DC7E52521EEFC006ADE48 /* CityData.swift in Sources */,
 				46AA3E04252F1275005907E1 /* AppConstants.swift in Sources */,
 				46ADF109252877E0009A9297 /* AdditionalInfo.swift in Sources */,
+				46E293E5255BAC0B00826954 /* ZMK_KEY.swift in Sources */,
 				99186D212511D07E00A9FE07 /* Validation.swift in Sources */,
-				46AB5CE7253D652A00FF814E /* STRUCT_MESSAGE_ID.swift in Sources */,
 				9976C9212501065D00FC5DD3 /* CustomFonts.swift in Sources */,
 				CECC540F252B540300C0940E /* ISOFieldConstants.swift in Sources */,
 				99186D5F2511D45600A9FE07 /* Constants.swift in Sources */,
 				99186CC62508EF9500A9FE07 /* HomeViewController.swift in Sources */,
+				46E293E0255BAC0B00826954 /* ITEMVAL.swift in Sources */,
 				8E4DCFA625369F1000726EA8 /* BytesUtil.swift in Sources */,
 				99186D3B2511D21000A9FE07 /* ApiClient.swift in Sources */,
 				991DF26E251CBB2E00AEA1C3 /* EPOSLoader.swift in Sources */,
@@ -1637,8 +1814,10 @@
 				997DC8272524A2FE006ADE48 /* GSTDetails.swift in Sources */,
 				46AB5CE52539BB3A00FF814E /* cUtilClass.swift in Sources */,
 				46ED34782538665000CEF19D /* AutoPremiumServiceParams.swift in Sources */,
+				46E293D1255BAC0B00826954 /* XMLNode.swift in Sources */,
 				CECC5409252B533C00C0940E /* ISO440Activation.swift in Sources */,
 				8EE3284E253C7DF900616E33 /* PCImageChangeType.swift in Sources */,
+				46E293D4255BAC0B00826954 /* CsvData.swift in Sources */,
 				8EE32858253E828300616E33 /* st_AIDTxnMapingDetails.swift in Sources */,
 				8E927C68253895AC009928D4 /* DisplayMessageMode.swift in Sources */,
 				46ADF104252876CA009A9297 /* BankAccountDetails.swift in Sources */,
@@ -1646,7 +1825,9 @@
 				4669F0C52525DEF900DEA9F2 /* MerchantVerificationServiceData.swift in Sources */,
 				8EE3285A253EA54100616E33 /* st_POSPrintinglocationDetails.swift in Sources */,
 				8E13826625551D4F000F7C21 /* RetVal.swift in Sources */,
+				46E293CE255BAC0B00826954 /* CDisplayMessage.swift in Sources */,
 				46ED346A2537155A00CEF19D /* TerminalPSKData.swift in Sources */,
+				46AB5D142546E6AD00FF814E /* AccountTableViewController.swift in Sources */,
 				9976C95E2501173600FC5DD3 /* DeviceType.swift in Sources */,
 				99186CE6250A2C6500A9FE07 /* EPOSHelper.swift in Sources */,
 				8E927C6E2539470D009928D4 /* LIBStruct.swift in Sources */,
@@ -1655,14 +1836,18 @@
 				9919A9902513796000A67253 /* ConstantNew.swift in Sources */,
 				99186CBD2508EC6000A9FE07 /* EPOSTextField+FloatText.swift in Sources */,
 				4646198D25345EA0009089BC /* LoginAccounts.swift in Sources */,
+				46E293D6255BAC0B00826954 /* PvmNodeActions.swift in Sources */,
 				99186D682512445400A9FE07 /* MakeDropDown.swift in Sources */,
 				46ED346C2537159600CEF19D /* st_PSK.swift in Sources */,
+				46E293CF255BAC0B00826954 /* ParserWrapper.swift in Sources */,
 				CE971BCF252CBA8400843943 /* ISOMessage.swift in Sources */,
 				CE971BC7252CAD2400843943 /* TCPIPCommunicationHandler.swift in Sources */,
 				46ADF110252878B0009A9297 /* LeadComments.swift in Sources */,
 				46BD9B4825175327008DEFEA /* ConvertApiParameterIntoObject.swift in Sources */,
 				99186D552511D28800A9FE07 /* SignUpControllerViewController.swift in Sources */,
 				46ADF11925287976009A9297 /* AddressDetails.swift in Sources */,
+				46E293D5255BAC0B00826954 /* TLVTxData.swift in Sources */,
+				46E293E2255BAC0B00826954 /* PvmListParserVO.swift in Sources */,
 				990AF9D0252A0F970008A907 /* SearchTableViewCell.swift in Sources */,
 				990AF9CD252A0F970008A907 /* CustomSearchViewController.swift in Sources */,
 				46BD9B50251A8646008DEFEA /* ForgotPasswordController.swift in Sources */,
@@ -1675,6 +1860,7 @@
 				CE971BCD252CBA0000843943 /* StateMachine.swift in Sources */,
 				8EE32850253C97F800616E33 /* TLVObject.swift in Sources */,
 				CE971BD1252CBB2500843943 /* CryptoHandler.swift in Sources */,
+				46E293D2255BAC0B00826954 /* TerminalTransactionData.swift in Sources */,
 				8E4DCFA425354F8A00726EA8 /* LOGIN_ACCOUNTS.swift in Sources */,
 				46ED34702537207600CEF19D /* ParameterData.swift in Sources */,
 				997DC800252321EE006ADE48 /* CompleteUserData.swift in Sources */,
@@ -1688,6 +1874,8 @@
 				46ADF10E2528785F009A9297 /* BusinessDetails.swift in Sources */,
 				9919A9C0251A4BA600A67253 /* PackageTableViewCell.swift in Sources */,
 				99186D0E2510922B00A9FE07 /* ShowDialog.swift in Sources */,
+				46E293D3255BAC0B00826954 /* TxnTLVData.swift in Sources */,
+				46E293CC255BAC0B00826954 /* CBaseNode.swift in Sources */,
 				CE971BC9252CAD4E00843943 /* GlobalData.swift in Sources */,
 				46ED346825370CE300CEF19D /* AutoSettlementParams.swift in Sources */,
 				990AF9642528559C0008A907 /* DropdownOptionsViewController.swift in Sources */,
@@ -1703,6 +1891,7 @@
 				996FD8A9251E1020001961EE /* CustomNavigationStyleViewController.swift in Sources */,
 				991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */,
 				9919A9962514DCAA00A67253 /* EPOSUserDefaults+Methods.swift in Sources */,
+				467A25A125596305004CDFFD /* STRUCT_MESSAGE_ID.swift in Sources */,
 				46AA3E06252F232F005907E1 /* StructConxData.swift in Sources */,
 				99186D17251092A700A9FE07 /* EmptyViewItem.swift in Sources */,
 				464619892534280A009089BC /* TerminalParamData.swift in Sources */,
@@ -1711,8 +1900,10 @@
 				46BD9B4E251A252C008DEFEA /* ResetPasswordController.swift in Sources */,
 				8EE3285E253ED80700616E33 /* PineKeyInjection.swift in Sources */,
 				99186CD02508F03900A9FE07 /* AccountViewController.swift in Sources */,
+				46E293E1255BAC0B00826954 /* PrintData.swift in Sources */,
 				46461987253314A9009089BC /* DeviceState.swift in Sources */,
 				99186D6F251248EC00A9FE07 /* PersonalInfoViewController.swift in Sources */,
+				46E293CB255BAC0B00826954 /* ChildNodeClass.swift in Sources */,
 				46ADF10B25287803009A9297 /* LeadAgreementDetails.swift in Sources */,
 				46ED34762538603A00CEF19D /* AutoGPRSNetworkParams.swift in Sources */,
 				8EE32854253D6B5A00616E33 /* st_ISPASSWORDDetails.swift in Sources */,
@@ -1722,22 +1913,30 @@
 				46882CDC2538727100C908B2 /* ContentServerParamData.swift in Sources */,
 				997DC7E72521EEFC006ADE48 /* MasterData.swift in Sources */,
 				9919A9992517336F00A67253 /* MerchantDetailsViewController.swift in Sources */,
+				46E293DB255BAC0B00826954 /* EMVTxnType.swift in Sources */,
 				8EE32848253C3A7F00616E33 /* CurrentDownloadingInfo.swift in Sources */,
 				CEB4D2E72536C75700254681 /* TransactionUtils.swift in Sources */,
 				99186CC42508EF5600A9FE07 /* EPOSTabBarViewController.swift in Sources */,
 				991ADEAB250660DB00932251 /* EPOSGradientView.swift in Sources */,
+				46AB5D0B2542A08F00FF814E /* ProcessingCodeConstants.swift in Sources */,
 				9919A9B32519E47900A67253 /* PackageView.swift in Sources */,
 				99186D0F2510922B00A9FE07 /* FailedPopup.swift in Sources */,
 				8EE32856253DF93B00616E33 /* st_TxnTypeFlagsMappingDetails.swift in Sources */,
 				4646198425330B84009089BC /* SignatureParams.swift in Sources */,
+				46E293E6255BAC0B00826954 /* QRCodeScanningParserVO.swift in Sources */,
 				9919A9A9251770E100A67253 /* IFSCDetailTableViewCell.swift in Sources */,
 				CECC5411252B586B00C0940E /* ISO320HostCommunicationChangeNumberConstants.swift in Sources */,
 				9919A9BC251A475C00A67253 /* PackageDetailViewController.swift in Sources */,
 				99186D5B2511D37200A9FE07 /* RoundViewCorner.swift in Sources */,
+				46E293CA255BAC0B00826954 /* CDisplayMenuItem.swift in Sources */,
 				46ADF12825287BB6009A9297 /* DocResources.swift in Sources */,
+				46E293DF255BAC0B00826954 /* QRCodeParsingData.swift in Sources */,
+				46E293C7255BAC0B00826954 /* CDisplayGetAmount.swift in Sources */,
 				99186D4E2511D27F00A9FE07 /* PasswordController.swift in Sources */,
 				8E1382642551882F000F7C21 /* PrinterDataDisplay.swift in Sources */,
 				99186D5C2511D37200A9FE07 /* CheckBox.swift in Sources */,
+				46E293C6255BAC0B00826954 /* CDisplayMenu.swift in Sources */,
+				46E293C8255BAC0B00826954 /* XMLParser.swift in Sources */,
 				997DC7FC2522346D006ADE48 /* LeadProfile.swift in Sources */,
 				46ADF12225287A56009A9297 /* IndividualItem.swift in Sources */,
 				46ADF11C252879E0009A9297 /* DocumentDetails.swift in Sources */,
@@ -1749,8 +1948,11 @@
 				46BD9B46251617A7008DEFEA /* BaseRequest.swift in Sources */,
 				99186D722512494C00A9FE07 /* PersonalInfoViewController+Dropdown.swift in Sources */,
 				991DF263251CB33100AEA1C3 /* UIViewController+Protocol.swift in Sources */,
+				46E293D8255BAC0B00826954 /* XMLAttribute.swift in Sources */,
 				CE971BCB252CB9C000843943 /* ISOProcessor.swift in Sources */,
+				46E293E3255BAC0B00826954 /* QRCodeData.swift in Sources */,
 				46ED346625370B8A00CEF19D /* AutoLogShippingParams.swift in Sources */,
+				46AB5D0E2544C91300FF814E /* CollectionaShadowView.swift in Sources */,
 				CECC5415252B68A300C0940E /* ISO320PineKeyExchangeChangeNumberConstants.swift in Sources */,
 				9919A9A525176D9D00A67253 /* IFSCCodeDetailViewController.swift in Sources */,
 				997DC7FA2522345F006ADE48 /* Lead.swift in Sources */,
@@ -1758,8 +1960,10 @@
 				991ADEAD250662EF00932251 /* EPOSShadowView.swift in Sources */,
 				8EE3284C253C7D9800616E33 /* PCContentTypeID.swift in Sources */,
 				46161AC525137F56006D2783 /* CommonExtensions.swift in Sources */,
+				46E293DC255BAC0B00826954 /* RESET_RESPONSE.swift in Sources */,
 				9919A9B92519E57B00A67253 /* iCarousel.m in Sources */,
 				46ED34722537212E00CEF19D /* ParameterIDS.swift in Sources */,
+				46E293DD255BAC0B00826954 /* ImageListParserModel.swift in Sources */,
 				99186D4B2511D27F00A9FE07 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

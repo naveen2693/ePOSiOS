@@ -8155,7 +8155,7 @@ class ISO320Initialization: ISOMessage
     //MARK:- SaveUserInfoSync()
     func SaveUserInfoSync()
     {
-        let globalData = GlobalData.singleton
+        var globalData = GlobalData.singleton
         globalData.m_mLoginAccountInfo.removeAll()
         globalData.m_mLoginAccountInfo = loginAccountsMap
         loginAccountsMap.removeAll()

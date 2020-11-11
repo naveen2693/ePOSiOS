@@ -10,8 +10,10 @@ import Foundation
 
 enum AppConstant
 {
+
     static let MAX_COMMUNICATION_CHANNEL = 4
     static let iMaxSerialOnlineSessionLength = 200
+    static let LocalTLE = false;
     static let iMinConxTimeout = 5
     static let iInterCharTimeout = 5
     static let iMinConxTimeoutSerial = 20
@@ -47,6 +49,39 @@ enum AppConstant
     static let DEFAULT_ADMIN_USER = ""
     static let ORDINARY_USER_TYPE = 3
     static let ADM_USER_TYPE = 1
+
+    static let MAX_TXN_STEPS_WITH_TLV_DATA = 100;
+    static let MAX_TXN_TLV_DATA_LEN  = 500
+    static let  RESET_PTMK = (1);
+    static let RENEW_PTMK = (2);
+    static let keySlotMap:[[Int]] = [[10, 10, 12],
+    [14, 14, 16],
+    [18, 18, 20],
+    [22, 22, 24],
+    [26, 26, 28],
+    [30, 30, 32],
+    [34, 34, 36],
+    [38, 38, 40]];
+
+    static let ID_KEYSLOTID = 0;
+    static let ID_KEYSLOTPIN = 1;
+    static let ID_KEYSLOTTLE = 2;
+    static let KEYSLOT_PMK = 0x02;
+    static let KEYSLOT_ENCPMK = 0x01;
+    static let UNKNOWN_ERROR = 0x09;
+    static let INVALID_TAG = 0x0000;
+    static let INVALID_TAG_LEN = 0x00;
+    static let E_COM0 = 2;
+    static let COM0 = (1 << E_COM0);
+    static let E_COM5 = 10;                                    /*!< event number for COM5 */
+    static let COM5 = (1 << E_COM5);/*!< event mask used as parameter for ttestall */
+
+    static let E_COM_EXT = 26; /*!< event number for COM_EXT many drivers as COM20, COM21, COM_KEYSPAN, COM_SL, ... */
+    static let COM_EXT = (1 << E_COM_EXT);/*!< event mask used as parameter for ttestall */
+
+
+    static let NUM_KEYSLOTS = 8;
+
     
     
     static let MAX_EMV_TAG_TLV_LENGTH = 20
@@ -58,6 +93,7 @@ enum AppConstant
     
     static let NoPrintDefaultMessage = "    No Print Enabled\n\n\n   "
     
+
     static let MAX_TXN_ISPASSWORD_PARAMETERES = 200
     
     static let ACTION_DELETE = 0x00
@@ -122,22 +158,7 @@ enum AppConstant
     
     static let MAX_COUNT_LIBRARY = 500
     static let DEFAULT_NUM_KEYSLOT = 1
-    static let NUM_KEYSLOTS = 8
-    static let keySlotMap: [[Int]] =
-    [
-      [10, 10, 12],
-      [14, 14, 16],
-      [18, 18, 20],
-      [22, 22, 24],
-      [26, 26, 28],
-      [30, 30, 32],
-      [34, 34, 36],
-      [38, 38, 40]
-    ]
-    
-    static let ID_KEYSLOTID = 0
-    static let ID_KEYSLOTPIN = 1
-    static let ID_KEYSLOTTLE = 2
+ 
  
     static let PRINTDUMP_CHARGESLIPMODE: Byte = 0x01
     static let PRINTDUMP_RAWMODE: Byte = 0x02
@@ -153,4 +174,46 @@ enum AppConstant
     static let PRINTDUMP_SIZE40: Int = 40
     static let PRINTDUMP_SIZE48: Int = 48
     
+//    static let ISO_LEN = 64;
+//    static let MAX_LEN_DATE_TIME = 12;
+//    static let MAX_LEN_TPDU = 5;
+//    static let ISO_LEN_MTI = 4;
+//    static let MAX_LEN_HARDWARE_SERIAL_NUMBER = 100;
+    static let ISO_PACKET_MAX_LEN = 19999;
+    static let LEN_ISO_PACKET_LEN = 2;
+    static let MAX_CONFIG_SIZE = 1000;
+    static let DEFAULT_BIN_KEYSLOTID = 10;
+    
+    
+    
+    
+    
+    
+    
+//   static let ACTION_DELETE = 0x00;
+//   static let ACTION_ADD = 0x01;
+//   static let TAG_DOWNLOAD_ALL = 4;
+//   static let MAX_TXN_BIN_PARAMETERES = 4000;
+//   static let LEN_INITIALIZATION_BITMAP = 8;
+//   static let LEN_BITMAP_PACKET = 2;
+//   static let MAX_APP_VERSION_LEN = 6;
+//   static let MAX_CONNECTION_TIMEOUT_LEN = 6;
+//   static let MAX_PHONENUMBER_LEN = 16;
+//   static let MAX_LOGIN_ID_LEN = 20;
+//   static let MAX_LOGIN_PASS_LEN = 20;
+//   static let MAX_IPADDR_LEN = 20;
+//   static let MAX_ISO_PORT_LEN = 10;
+//   static let MAX_GPRS_SERVICES_PROVIDER_LEN = 20;
+//   static let MAX_WIFI_PROFILE_NAME = 20;
+    //--------------Pad Style------------------
+   static let _LEFT_PAD = 0;
+   static let _RIGHT_PAD = 1;
+    
+    
+    
 }
+
+enum enum_InputMethod {
+    case NUMERIC_ENTRY, ALPHANUMERIC_ENTRY
+}
+

@@ -19,6 +19,7 @@ enum FileNameConstants
        static let PRINTDUMPTRANSACTIONFILE = "PrintTxn";
        static let TEMP_TRANSACTIONFILENAME = "tempTxn";
        static let TERMINALMASTERPARAMFILE = "MasterParam";
+
        static let CONNECTIONDATAFILENAME = "Conndata";
        static let TXNFEILD62NAME = "230dump";
        static let TEMP_TXNFEILD62NAME = "temp230dump";
@@ -36,7 +37,9 @@ enum FileNameConstants
        static let CONNECTIONDATA1 = "Conndata1";
        static let CONNECTIONDATA2 = "Conndata2";
        static let CONNECTIONCFG = "Conncfg";
+
        static let TRANSACTIONFILE = "Txn"
+
        static let TERMINALPARAMFILE = "Params"
        static let TERMINALHUBPARAMFILE = "HubParams"
        static let USERINFOFILE = "UserInfo"
@@ -68,7 +71,9 @@ enum FileNameConstants
        static let PRINTDATAFILE = "PRINTDATA"
        static let TXNFEILD62 = "230dump";
        static let SETTLEMENTPRINT = "STTLPRINT";
+
        static let MASTERMINIPVMFILE = "MASTERMINI";
+
        static let DWNLDPVMINFO = "dwpvminfo";
        static let TRACEFILE = "Trace";
        static let TEMPTRACEFILE = "TempTrace";
@@ -118,7 +123,9 @@ enum FileNameConstants
        static let EDCLIBSTATUS = "LIB";
        //EMV TAG download::Amitesh
        static let TEMPEMVTAGLIST = "tmpemvtaglist";
+
        static let EMVTAGLIST = "emvtaglist";
+
        static let TMPSIGNATURECAPTURFILE = "tmpsigfile";
        static let SIGNATUREPARAMFILE = "signparam";
        static let TEMPCLESSPARAM = "tmpcless";
@@ -141,6 +148,8 @@ enum FileNameConstants
        //CIMB MIni PVM download:: amitesh
        static let ADDMINIPVMLIST = "ADDMPVM";
        static let DELETEMINIPVMLIST = "DELMINIPVM";
+
+
        static let DWNLDMINIPVMINFO = "dwmpvminfo";
        static let TEMMINIPVMFILE = "tempmpvm";
        static let TEMPCSVTXNTYPEMINIPVMMAPPINGFILE = "TmpTxnMPvm";
@@ -150,6 +159,7 @@ enum FileNameConstants
        static let ADDHTLLIST = "ADDHTLLIST";
        static let DELETEHTLLIST = "DELHTLLIST";
        static let DEVICE_STATE = "DeviceState";
+
     
        static let CONTENT_SERVER_PARAM_FILE = "content_server_parm_file";
        static let CONTENT_SERVER_APK_INFO_FILE = "content_server_apk_info_file";
@@ -166,4 +176,5 @@ enum FileNameConstants
        static let FONT = "font"
        static let UKNOWN_CONTENT_TYPE = "unknown_content_type"
     
+
 }
