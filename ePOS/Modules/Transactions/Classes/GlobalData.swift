@@ -875,7 +875,11 @@ final class GlobalData
                 
             case ParameterIDs._Serial_Transaction_SSL_Port:
                 if (ParameterDatas.chArrParameterVal.count < AppConstant.MAX_ISO_PORT_LEN) {
-                    tData.iTransactionSSLPort =  Int(UInt32(ParameterDatas.chArrParameterVal))
+                    var tempData: Int = 0
+                    let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                    tempData = Int(strTempData) ?? 0
+
+                    tData.iTransactionSSLPort = tempData /*Int(UInt32(ParameterDatas.chArrParameterVal))*/
                 }
                 
             case ParameterIDs._Serial_Secondary_Transaction_SSL_IP:
@@ -888,18 +892,29 @@ final class GlobalData
                 
             case ParameterIDs._Serial_Secondary_Transaction_SSL_Port:
                 if (ParameterDatas.chArrParameterVal.count < AppConstant.MAX_ISO_PORT_LEN) {
-                    tData.iSecondaryTransactionSSLPort = Int(UInt32(ParameterDatas.chArrParameterVal))
+                    var tempData: Int = 0
+                    let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                    tempData = Int(strTempData) ?? 0
                     
+                    tData.iSecondaryTransactionSSLPort = tempData /*Int(UInt32(ParameterDatas.chArrParameterVal))*/
                 }
                 
             case ParameterIDs._Serial_Connect_Timeout:
                 if ((ParameterDatas.chArrParameterVal.count + 2) < AppConstant.MAX_CONNECTION_TIMEOUT_LEN) {
-                    tData.iConnTimeout =  Int(UInt32(ParameterDatas.chArrParameterVal))
+                    var tempData: Int = 0
+                    let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                    tempData = Int(strTempData) ?? 0
+                    
+                    tData.iConnTimeout =  tempData /*Int(UInt32(ParameterDatas.chArrParameterVal))*/
                 }
                 
             case ParameterIDs._Serial_Send_Rec_Timeout:
                 if ((ParameterDatas.chArrParameterVal.count + 2) < AppConstant.MAX_CONNECTION_TIMEOUT_LEN) {
-                    tData.iSendRecTimeout = Int(UInt32(ParameterDatas.chArrParameterVal))
+                    var tempData: Int = 0
+                    let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                    tempData = Int(strTempData) ?? 0
+                    
+                    tData.iSendRecTimeout = tempData /*Int(UInt32(ParameterDatas.chArrParameterVal))*/
                 }
                 
             case ParameterIDs._Serial_User_Id:
@@ -916,8 +931,6 @@ final class GlobalData
                     {
                         tData.strPassword = bytes
                     }
-                    
-                    
                 }
                 
             default:
@@ -939,7 +952,6 @@ final class GlobalData
                         tData.strTransactionSSLServerIP = bytes
                     }
                 }
-                
             case ParameterIDs._Ethernet_Secondary_Transaction_SSL_IP:
                 if (ParameterDatas.chArrParameterVal.count < AppConstant.MAX_IPADDR_LEN) {
                     if let bytes = String(data: Data(ParameterDatas.chArrParameterVal), encoding: .utf8)
@@ -950,18 +962,27 @@ final class GlobalData
                 
             case ParameterIDs._Ethernet_Transaction_SSL_Port:
                 if (ParameterDatas.chArrParameterVal.count < AppConstant.MAX_ISO_PORT_LEN) {
-                    tData.iSecondaryTransactionSSLPort = Int(UInt32(ParameterDatas.chArrParameterVal))
+                    var tempData: Int = 0
+                    let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                    tempData = Int(strTempData) ?? 0
                     
+                    tData.iSecondaryTransactionSSLPort = tempData /*Int(UInt32(ParameterDatas.chArrParameterVal))*/
                 }
                 
             case ParameterIDs._Ethernet_Connect_Timeout:
                 if ((ParameterDatas.chArrParameterVal.count + 2) < AppConstant.MAX_CONNECTION_TIMEOUT_LEN) {
-                    tData.iConnTimeout =  Int(UInt32(ParameterDatas.chArrParameterVal))
+                    var tempData: Int = 0
+                    let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                    tempData = Int(strTempData) ?? 0
+                    tData.iConnTimeout = tempData /*Int(UInt32(ParameterDatas.chArrParameterVal))*/
                 }
                 
             case ParameterIDs._Ethernet_Send_Rec_Timeout:
                 if ((ParameterDatas.chArrParameterVal.count + 2) < AppConstant.MAX_CONNECTION_TIMEOUT_LEN) {
-                    tData.iSendRecTimeout = Int(UInt32(ParameterDatas.chArrParameterVal))
+                    var tempData: Int = 0
+                    let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                    tempData = Int(strTempData) ?? 0
+                    tData.iSendRecTimeout = tempData /*Int(UInt32(ParameterDatas.chArrParameterVal))*/
                 }
                 
             default:
@@ -986,7 +1007,10 @@ final class GlobalData
                 
             case ParameterIDs._GPRS_Transaction_SSL_Port:
                 if (ParameterDatas.chArrParameterVal.count < AppConstant.MAX_ISO_PORT_LEN) {
-                    tData.iTransactionSSLPort =  Int(UInt32(ParameterDatas.chArrParameterVal))
+                    var tempData: Int = 0
+                    let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                    tempData = Int(strTempData) ?? 0
+                    tData.iTransactionSSLPort =  tempData /*Int(UInt32(ParameterDatas.chArrParameterVal))*/
                 }
                 
             case ParameterIDs._GPRS_Secondary_Transaction_SSL_IP:
@@ -999,18 +1023,26 @@ final class GlobalData
                 
             case ParameterIDs._GPRS_Secondary_Transaction_SSL_Port:
                 if (ParameterDatas.chArrParameterVal.count < AppConstant.MAX_ISO_PORT_LEN) {
-                    tData.iSecondaryTransactionSSLPort = Int(UInt32(ParameterDatas.chArrParameterVal))
-                    
+                    var tempData: Int = 0
+                    let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                    tempData = Int(strTempData) ?? 0
+                    tData.iSecondaryTransactionSSLPort = tempData/*Int(UInt32(ParameterDatas.chArrParameterVal))*/
                 }
                 
             case ParameterIDs._GPRS_Connect_Timeout:
                 if ((ParameterDatas.chArrParameterVal.count + 2) < AppConstant.MAX_CONNECTION_TIMEOUT_LEN) {
-                    tData.iConnTimeout =  Int(UInt32(ParameterDatas.chArrParameterVal))
+                    var tempData: Int = 0
+                    let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                    tempData = Int(strTempData) ?? 0
+                    tData.iConnTimeout = tempData /*Int(UInt32(ParameterDatas.chArrParameterVal))*/
                 }
                 
             case ParameterIDs._GPRS_Send_Rec_Timeout:
                 if ((ParameterDatas.chArrParameterVal.count + 2) < AppConstant.MAX_CONNECTION_TIMEOUT_LEN) {
-                    tData.iSendRecTimeout = Int(UInt32(ParameterDatas.chArrParameterVal))
+                    var tempData: Int = 0
+                    let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                    tempData = Int(strTempData) ?? 0
+                    tData.iSendRecTimeout = tempData /*Int(UInt32(ParameterDatas.chArrParameterVal))*/
                 }
                 
             case ParameterIDs._GPRS_User_Id:
@@ -1086,9 +1118,17 @@ final class GlobalData
                 }
                 
             case ParameterIDs._Content_Server_Socket_Time_Out:
-                t_contentServerParamData.m_iSocketTimeOut = Int(UInt32(ParameterDatas.chArrParameterVal)) * 1000;
+                var tempData: Int = 0
+                let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                tempData = Int(strTempData) ?? 0
+                
+                t_contentServerParamData.m_iSocketTimeOut = tempData/*Int(UInt32(ParameterDatas.chArrParameterVal))*/ * 1000;
             case ParameterIDs._Content_Server_Connection_Time_Out:
-                t_contentServerParamData.m_iConnectionTimeOut = Int(UInt32(ParameterDatas.chArrParameterVal)) * 1000;
+                var tempData: Int = 0
+                let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                tempData = Int(strTempData) ?? 0
+                
+                t_contentServerParamData.m_iConnectionTimeOut = tempData/*Int(UInt32(ParameterDatas.chArrParameterVal))*/ * 1000;
                 
             default: break
                 
@@ -1104,7 +1144,10 @@ final class GlobalData
         if var m_sParamData:TerminalParamData = ReadParamFile(){
             switch (ParameterDatas.ulParameterId) {
             case ParameterIDs._Batch_Size:
-                m_sParamData.iBatchSize = Int(UInt32(ParameterDatas.chArrParameterVal));
+                var tempData: Int = 0
+                let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                tempData = Int(strTempData) ?? 0
+                m_sParamData.iBatchSize = tempData/*Int(UInt32(ParameterDatas.chArrParameterVal));*/
                 
             default:
                 return;
@@ -1130,18 +1173,27 @@ final class GlobalData
                 {
                     sParams.m_strSettlementStartTime = bytes
                 }
-                
-                
+            
             case ParameterIDs._Settlement_Frequency:
-                sParams.m_iSettlementFrequency = Int(UInt32(ParameterDatas.chArrParameterVal));
+                var tempData: Int = 0
+                let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                tempData = Int(strTempData) ?? 0
+                
+                sParams.m_iSettlementFrequency = tempData /*Int(UInt32(ParameterDatas.chArrParameterVal));*/
                 
             case ParameterIDs._Settlement_Retry_Count:
-                sParams.m_iSettlementRetryCount = Int(UInt32(ParameterDatas.chArrParameterVal))
+                var tempData: Int = 0
+                let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                tempData = Int(strTempData) ?? 0
+                sParams.m_iSettlementRetryCount = tempData /*Int(UInt32(ParameterDatas.chArrParameterVal))*/
                 
                 
             case ParameterIDs._Settlement_Retry_Interval:
-                sParams.m_iSettlementRetryIntervalInSeconds = Int(UInt32(ParameterDatas.chArrParameterVal))
+                var tempData: Int = 0
+                let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                tempData = Int(strTempData) ?? 0
                 
+                sParams.m_iSettlementRetryIntervalInSeconds = tempData /*Int(UInt32(ParameterDatas.chArrParameterVal))*/
                 
             default:
                 isToUpdate = false;
@@ -1164,8 +1216,10 @@ final class GlobalData
                 sParams[0].m_bIsAutoGPRSNetworkEnableFlag = (String(ParameterDatas.chArrParameterVal[0]) == "1") ? true : false;
                 
             case ParameterIDs._Auto_Gprs_Always_On_Retry_Interval:
-                sParams[0].m_iAutoGPRSNetworkRetryInterval = Int(UInt32(ParameterDatas.chArrParameterVal))
-                
+                var tempData: Int = 0
+                let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                tempData = Int(strTempData) ?? 0
+                sParams[0].m_iAutoGPRSNetworkRetryInterval = tempData /*Int(UInt32(ParameterDatas.chArrParameterVal))*/
                 
             default:
                 isToUpdate = false;
@@ -1179,9 +1233,6 @@ final class GlobalData
         }
     }
     
-    
-    
-    
     public func UpdateAutoReversalParametes(ParameterDatas:ParameterData) {
         var isToUpdate = true;
         //Read file
@@ -1191,14 +1242,23 @@ final class GlobalData
                 sParams.m_bIsAutoReversalEnableFlag = (String(ParameterDatas.chArrParameterVal[0]) == "1") ? true : false;
                 
             case ParameterIDs._Auto_Reversal_First_Try_Interval:
-                sParams.m_iAutoReversalFirstTryIntervalInSecs = Int(UInt32(ParameterDatas.chArrParameterVal));
+                var tempData: Int = 0
+                let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                tempData = Int(strTempData) ?? 0
+                
+                sParams.m_iAutoReversalFirstTryIntervalInSecs = tempData /*Int(UInt32(ParameterDatas.chArrParameterVal));*/
                 
             case ParameterIDs._Auto_Reversal_Retry_Interval:
-                sParams.m_iAutoReversalRetryIntervalInSecs = Int(UInt32(ParameterDatas.chArrParameterVal));
+                var tempData: Int = 0
+                let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                tempData = Int(strTempData) ?? 0
+                sParams.m_iAutoReversalRetryIntervalInSecs = tempData /*Int(UInt32(ParameterDatas.chArrParameterVal));*/
                 
             case ParameterIDs._Auto_Reversal_Max_Retry_Count:
-                sParams.m_iAutoReversalMaxRetryCount = Int(UInt32(ParameterDatas.chArrParameterVal))
-                
+                var tempData: Int = 0
+                let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                tempData = Int(strTempData) ?? 0
+                sParams.m_iAutoReversalMaxRetryCount = tempData /*Int(UInt32(ParameterDatas.chArrParameterVal))*/
                 
             default:
                 isToUpdate = false;
@@ -1221,7 +1281,11 @@ final class GlobalData
                 sParams[0].m_iAutoPremiumServiceEnableFlag = (String(ParameterDatas.chArrParameterVal[0]) == "1") ? true : false;
                 
             case ParameterIDs._Auto_Premium_Service_Retry_Interval:
-                sParams[0].m_iAutoPremiumServiceRetryIntervalInSeconds = Int(UInt32(ParameterDatas.chArrParameterVal));
+                var tempData: Int = 0
+                let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                tempData = Int(strTempData) ?? 0
+                
+                sParams[0].m_iAutoPremiumServiceRetryIntervalInSeconds = tempData /*Int(UInt32(ParameterDatas.chArrParameterVal));*/
                 
             case ParameterIDs._Auto_Premium_Service_Start_Time:
                 if let bytes = String(data: Data(ParameterDatas.chArrParameterVal), encoding: .utf8)
@@ -1230,10 +1294,16 @@ final class GlobalData
                 }
                 
             case ParameterIDs._Auto_Premium_Service_Frequency:
-                sParams[0].m_iAutoPremiumServiceFrequency = Int(UInt32(ParameterDatas.chArrParameterVal))
+                var tempData: Int = 0
+                let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                tempData = Int(strTempData) ?? 0
+                sParams[0].m_iAutoPremiumServiceFrequency = tempData /*Int(UInt32(ParameterDatas.chArrParameterVal))*/
                 
             case ParameterIDs._Auto_Premium_Service_Retry_Count:
-                sParams[0].m_iAutoPremiumServiceRetryCount = Int(UInt32(ParameterDatas.chArrParameterVal))
+                var tempData: Int = 0
+                let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                tempData = Int(strTempData) ?? 0
+                sParams[0].m_iAutoPremiumServiceRetryCount = tempData /*Int(UInt32(ParameterDatas.chArrParameterVal))*/
                 
             default:
                 isToUpdate = false;
@@ -1246,110 +1316,160 @@ final class GlobalData
             }
         }
     }
-    
+
+   
     
     public func UpdateTerminalMasterAdditionalParameters(ParameterDatas:ParameterData) {
-        _ = ReadMasterParamFile();
-        if (m_sMasterParamData != nil) {
-            switch (ParameterDatas.ulParameterId) {
-            case ParameterIDs._Online_Pin_First_Char_Timeout:
-                let firstCharTimeOut = Int(UInt32(ParameterDatas.chArrParameterVal));
-                if (firstCharTimeOut > 90 || firstCharTimeOut < 15) {
-                    m_sMasterParamData?.m_iOnlinePinFirstCharTimeout = 60;
-                } else {
-                    m_sMasterParamData?.m_iOnlinePinFirstCharTimeout = firstCharTimeOut;
-                }
+           _ = ReadMasterParamFile();
+           if (m_sMasterParamData != nil) {
+               switch (ParameterDatas.ulParameterId) {
+                   case ParameterIDs._Online_Pin_First_Char_Timeout:
+                        var firstCharTimeOut = 0
+                        var tempData: Int = 0
+                        let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                        tempData = Int(strTempData) ?? 0
+                        firstCharTimeOut = tempData
+                        //let firstCharTimeOut = Int(UInt32(ParameterDatas.chArrParameterVal));
+                        if (firstCharTimeOut > 90 || firstCharTimeOut < 15) {
+                            m_sMasterParamData?.m_iOnlinePinFirstCharTimeout = 60;
+                        } else {
+                            m_sMasterParamData?.m_iOnlinePinFirstCharTimeout = firstCharTimeOut;
+                        }
+                       
+                   case ParameterIDs._Online_Pin_Interchar_Timeout:
+                        var interCharTimeOut = 0
+                        var tempData: Int = 0
+                        let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                        tempData = Int(strTempData) ?? 0
+                        interCharTimeOut = tempData
                 
-                
-            case ParameterIDs._Online_Pin_Interchar_Timeout:
-                let interCharTimeOut = Int(UInt32(ParameterDatas.chArrParameterVal));
-                if (interCharTimeOut > 60 || interCharTimeOut < 30) {
-                    m_sMasterParamData?.m_iOnlinePinInterCharTimeout = 30;
-                } else {
-                    m_sMasterParamData?.m_iOnlinePinInterCharTimeout = interCharTimeOut;
-                }
-                
-                
-            case ParameterIDs._Min_Pin_Length:
-                let minPinLength = Int(UInt32(ParameterDatas.chArrParameterVal));
-                if (minPinLength < 4) {
-                    m_sMasterParamData?.m_iMinPinLength = 4;
-                } else {
-                    m_sMasterParamData?.m_iMinPinLength = minPinLength;
-                }
-                
-                
-            case ParameterIDs._Max_Pin_Length:
-                let maxPinLength = Int(UInt32(ParameterDatas.chArrParameterVal));
-                if (maxPinLength > 12) {
-                    m_sMasterParamData?.m_iMaxPinLength = 12;
-                } else {
-                    m_sMasterParamData?.m_iMaxPinLength = maxPinLength;
-                }
-                
-                
-            case ParameterIDs._Display_Menu_Timeout:
-                let DisplayMenuTimeout = Int(UInt32(ParameterDatas.chArrParameterVal));
-                if (DisplayMenuTimeout < 10 || DisplayMenuTimeout > 1200) {
-                    m_sMasterParamData?.m_iDisplayMenuTimeout = 40;
-                } else {
-                    m_sMasterParamData?.m_iDisplayMenuTimeout = DisplayMenuTimeout;
-                }
-                
-                
-            case ParameterIDs._Display_Message_Timeout:
-                let DisplayMessageTimeout = Int(UInt32(ParameterDatas.chArrParameterVal));
-                if (DisplayMessageTimeout < 1 || DisplayMessageTimeout > 60) {
-                    m_sMasterParamData?.m_iDisplayMessasgeTimeout = 2;
-                } else {
-                    m_sMasterParamData?.m_iDisplayMessasgeTimeout = DisplayMessageTimeout;
-                }
-                
-                
-                
-            case ParameterIDs._HotKey_Confirmation_Timeout:
-                let HotKeyConfirmationTimeout = Int(UInt32(ParameterDatas.chArrParameterVal));
-                if (HotKeyConfirmationTimeout < 5 || HotKeyConfirmationTimeout > 60) {
-                    m_sMasterParamData?.m_iHotKeyConfirmationTimeout = 10;
-                } else {
-                    m_sMasterParamData?.m_iHotKeyConfirmationTimeout = HotKeyConfirmationTimeout;
-                }
-                
-            case ParameterIDs._Is_Pin_Required_Service_Code_6:
-                let iVal = Int(UInt32(ParameterDatas.chArrParameterVal));
-                if (0 == iVal) {
-                    m_sMasterParamData?.m_bIsAskPInForServiceCode6 = false;
-                } else {
-                    m_sMasterParamData?.m_bIsAskPInForServiceCode6 = true;
-                }
-                
-                
-                
-            case ParameterIDs._Is_Pin_Bypass_Service_Code_6:
-                let iVal = Int(UInt32(ParameterDatas.chArrParameterVal));
-                if (0 == iVal) {
-                    m_sMasterParamData?.m_bIsPinBypassForServiceCode6 = false;
-                } else {
-                    m_sMasterParamData?.m_bIsPinBypassForServiceCode6 = true;
-                }
-                
-                
-                
-            case ParameterIDs._Ignore_Integrated_TXN_Amount_EMV_TXN:
-                let iVal = Int(UInt32(ParameterDatas.chArrParameterVal));
-                if (0 == iVal) {
-                    m_sMasterParamData?.m_bIsIngnoreIngeratedAmountEMVTxn = false;
-                } else {
-                    m_sMasterParamData?.m_bIsIngnoreIngeratedAmountEMVTxn = true;
-                }
-                
-            default:
-                return;
-            }
-            _ = WriteMasterParamFile();
-        }
-    }
-    
+                        //let interCharTimeOut = Int(UInt32(ParameterDatas.chArrParameterVal));
+                        if (interCharTimeOut > 60 || interCharTimeOut < 30) {
+                            m_sMasterParamData?.m_iOnlinePinInterCharTimeout = 30;
+                        } else {
+                            m_sMasterParamData?.m_iOnlinePinInterCharTimeout = interCharTimeOut;
+                        }
+
+                   case ParameterIDs._Min_Pin_Length:
+                        var minPinLength = 0
+                        var tempData: Int = 0
+                        let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                        tempData = Int(strTempData) ?? 0
+                        minPinLength = tempData
+                        //let minPinLength = Int(UInt32(ParameterDatas.chArrParameterVal));
+                       if (minPinLength < 4) {
+                           m_sMasterParamData?.m_iMinPinLength = 4;
+                       } else {
+                           m_sMasterParamData?.m_iMinPinLength = minPinLength;
+                       }
+                       
+
+                   case ParameterIDs._Max_Pin_Length:
+                        var maxPinLength = 0
+                        var tempData: Int = 0
+                        let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                        tempData = Int(strTempData) ?? 0
+                        maxPinLength = tempData
+                        
+                       //let maxPinLength = Int(UInt32(ParameterDatas.chArrParameterVal));
+                       if (maxPinLength > 12) {
+                           m_sMasterParamData?.m_iMaxPinLength = 12;
+                       } else {
+                           m_sMasterParamData?.m_iMaxPinLength = maxPinLength;
+                       }
+                       
+
+                   case ParameterIDs._Display_Menu_Timeout:
+                        var DisplayMenuTimeout = 0
+                        var tempData: Int = 0
+                        let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                        tempData = Int(strTempData) ?? 0
+                        DisplayMenuTimeout = tempData
+        
+                        //let DisplayMenuTimeout = Int(UInt32(ParameterDatas.chArrParameterVal));
+                        if (DisplayMenuTimeout < 10 || DisplayMenuTimeout > 1200) {
+                            m_sMasterParamData?.m_iDisplayMenuTimeout = 40;
+                        } else {
+                            m_sMasterParamData?.m_iDisplayMenuTimeout = DisplayMenuTimeout;
+                        }
+                       
+
+                   case ParameterIDs._Display_Message_Timeout:
+                        var DisplayMessageTimeout = 0
+                        var tempData: Int = 0
+                        let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                        tempData = Int(strTempData) ?? 0
+                        DisplayMessageTimeout = tempData
+                    
+                        //let DisplayMessageTimeout = Int(UInt32(ParameterDatas.chArrParameterVal));
+                        if (DisplayMessageTimeout < 1 || DisplayMessageTimeout > 60) {
+                            m_sMasterParamData?.m_iDisplayMessasgeTimeout = 2;
+                        } else {
+                            m_sMasterParamData?.m_iDisplayMessasgeTimeout = DisplayMessageTimeout;
+                        }
+
+                   case ParameterIDs._HotKey_Confirmation_Timeout:
+                        var HotKeyConfirmationTimeout = 0
+                        var tempData: Int = 0
+                        let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                        tempData = Int(strTempData) ?? 0
+                        HotKeyConfirmationTimeout = tempData
+                        
+                        //let HotKeyConfirmationTimeout = Int(UInt32(ParameterDatas.chArrParameterVal));
+                        if (HotKeyConfirmationTimeout < 5 || HotKeyConfirmationTimeout > 60) {
+                            m_sMasterParamData?.m_iHotKeyConfirmationTimeout = 10;
+                        } else {
+                            m_sMasterParamData?.m_iHotKeyConfirmationTimeout = HotKeyConfirmationTimeout;
+                        }
+                       
+                   case ParameterIDs._Is_Pin_Required_Service_Code_6:
+                        var iVal = 0
+                        var tempData: Int = 0
+                        let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                        tempData = Int(strTempData) ?? 0
+                        iVal = tempData
+                    
+                        //let iVal = Int(UInt32(ParameterDatas.chArrParameterVal));
+                        if (0 == iVal) {
+                            m_sMasterParamData?.m_bIsAskPInForServiceCode6 = false;
+                        } else {
+                            m_sMasterParamData?.m_bIsAskPInForServiceCode6 = true;
+                        }
+                     
+                   case ParameterIDs._Is_Pin_Bypass_Service_Code_6:
+                        var iVal = 0
+                        var tempData: Int = 0
+                        let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                        tempData = Int(strTempData) ?? 0
+                        iVal = tempData
+                        
+                        //let iVal = Int(UInt32(ParameterDatas.chArrParameterVal));
+                        if (0 == iVal) {
+                            m_sMasterParamData?.m_bIsPinBypassForServiceCode6 = false;
+                        } else {
+                            m_sMasterParamData?.m_bIsPinBypassForServiceCode6 = true;
+                        }
+
+                   case ParameterIDs._Ignore_Integrated_TXN_Amount_EMV_TXN:
+                        var iVal = 0
+                        var tempData: Int = 0
+                        let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                        tempData = Int(strTempData) ?? 0
+                        iVal = tempData
+                        
+                        //let iVal = Int(UInt32(ParameterDatas.chArrParameterVal));
+                        if (0 == iVal) {
+                            m_sMasterParamData?.m_bIsIngnoreIngeratedAmountEMVTxn = false;
+                        } else {
+                            m_sMasterParamData?.m_bIsIngnoreIngeratedAmountEMVTxn = true;
+                        }
+                       
+                    default:
+                       return;
+               }
+               _ = WriteMasterParamFile();
+           }
+       }
     
     public func UpdateTerminalMasterParameters(ParameterDatas:ParameterData) {
         var chArrAsciiParamData:[Byte] = [];
@@ -1361,25 +1481,31 @@ final class GlobalData
                 chArrAsciiParamData = CUtil.a2bcd(s: ParameterDatas.chArrParameterVal);
                 iLenParamData = ParameterDatas.ulParameterLen / 2;
                 
-                
                 let tempArray: [Byte] = Array(chArrAsciiParamData[0 ..< iLenParamData])
                 m_sMasterParamData?.m_uchArrBitmap320CentralChangeNumber = tempArray
                 
                 //m_sMasterParamData?.m_uchArrBitmap320CentralChangeNumber.append(contentsOf: "0x00".bytes)
-                //m_sMasterParamData.m_uchArrBitmap320CentralChangeNumber = "0x00".bytes
-                m_sMasterParamData?.m_uchArrBitmap320CentralChangeNumber[0..<iLenParamData] = chArrAsciiParamData[0..<iLenParamData]
+                let centralChangeNumberArray = m_sMasterParamData?.m_uchArrBitmap320CentralChangeNumber
+                if let wrappedValue = centralChangeNumberArray?[0 ..< iLenParamData]
+                {
+                    chArrAsciiParamData[0..<iLenParamData] = wrappedValue
+                }
             }
             
         case ParameterIDs._Initialization_Parameter_Enabled_HUB:
             if ((ParameterDatas.ulParameterLen / 2) == AppConstant.LEN_INITIALIZATION_BITMAP) {
                 chArrAsciiParamData = CUtil.a2bcd(s: ParameterDatas.chArrParameterVal);
                 iLenParamData = ParameterDatas.ulParameterLen / 2;
+                
                 let tempArray: [Byte] = Array(chArrAsciiParamData[0 ..< iLenParamData])
                 m_sMasterParamData?.m_uchArrBitmap320HUBChangeNumber = tempArray
                 
                 //m_sMasterParamData?.m_uchArrBitmap320HUBChangeNumber.append(contentsOf: "0x00".bytes)
-                m_sMasterParamData?.m_uchArrBitmap320HUBChangeNumber = "0x00".bytes
-                m_sMasterParamData?.m_uchArrBitmap320HUBChangeNumber[0..<iLenParamData] = chArrAsciiParamData[0..<iLenParamData]
+                let centralChangeNumberArray = m_sMasterParamData?.m_uchArrBitmap320HUBChangeNumber
+                if let wrappedValue = centralChangeNumberArray?[0..<iLenParamData]
+                {
+                    chArrAsciiParamData[0..<iLenParamData] = wrappedValue
+                }
             }
             
         case ParameterIDs._Packet_Send_320:
@@ -1390,31 +1516,30 @@ final class GlobalData
                 let tempArray: [Byte] = Array(chArrAsciiParamData[0 ..< iLenParamData])
                 m_sMasterParamData?.m_uchArrBitmap320ActiveHost = tempArray
                 
-                chArrAsciiParamData = CUtil.a2bcd(s:ParameterDatas.chArrParameterVal);
-                iLenParamData = ParameterDatas.ulParameterLen / 2;
-                m_sMasterParamData?.m_uchArrBitmap320ActiveHost = "0x00".bytes;
-                m_sMasterParamData?.m_uchArrBitmap320ActiveHost[0..<iLenParamData] = chArrAsciiParamData[0..<iLenParamData]
+                let centralChangeNumberArray = m_sMasterParamData?.m_uchArrBitmap320ActiveHost
+                if let wrappedValue = centralChangeNumberArray?[0 ..< iLenParamData]
+                {
+                    chArrAsciiParamData[0 ..< iLenParamData] = wrappedValue
+                }
                 m_sMasterParamData?.bIsBitmap320ActiveHostSet = true;
+                
+                
             }
             
         case ParameterIDs._Packet_Send_440:
             if (ParameterDatas.ulParameterLen == AppConstant.LEN_BITMAP_PACKET * 2) {
                 chArrAsciiParamData = CUtil.a2bcd(s:ParameterDatas.chArrParameterVal);
                 iLenParamData = ParameterDatas.ulParameterLen / 2;
+                
                 let tempArray: [Byte] = Array(chArrAsciiParamData[0 ..< iLenParamData])
                 m_sMasterParamData?.m_uchArrBitmap440ActiveHost = tempArray
                 
                 //m_sMasterParamData?.m_uchArrBitmap440ActiveHost.append(contentsOf: "0x00".bytes)
-                //                    let centralChangeNumberArray = m_sMasterParamData?.m_uchArrBitmap440ActiveHost
-                //                    if let wrappedValue = centralChangeNumberArray?[0 ..< iLenParamData]
-                //                    {
-                //                        chArrAsciiParamData[0 ..< iLenParamData] = wrappedValue
-                //                    }
-                //                    m_sMasterParamData?.bIsBitmap440ActiveHostSet = true;
-                
-                m_sMasterParamData?.m_uchArrBitmap440ActiveHost =  "0x00".bytes;
-                _ = m_sMasterParamData?.m_uchArrBitmap440ActiveHost
-                m_sMasterParamData?.m_uchArrBitmap440ActiveHost[0..<iLenParamData] = chArrAsciiParamData[0..<iLenParamData]
+                let centralChangeNumberArray = m_sMasterParamData?.m_uchArrBitmap440ActiveHost
+                if let wrappedValue = centralChangeNumberArray?[0 ..< iLenParamData]
+                {
+                    chArrAsciiParamData[0 ..< iLenParamData] = wrappedValue
+                }
                 m_sMasterParamData?.bIsBitmap440ActiveHostSet = true;
             }
             
@@ -1423,20 +1548,16 @@ final class GlobalData
                 chArrAsciiParamData = CUtil.a2bcd(s:ParameterDatas.chArrParameterVal);
                 iLenParamData = ParameterDatas.ulParameterLen / 2;
                 
-                
+
                 let tempArray: [Byte] = Array(chArrAsciiParamData[0 ..< iLenParamData])
                 m_sMasterParamData?.m_uchArrBitmap500ActiveHost = tempArray
                 
                 //m_sMasterParamData?.m_uchArrBitmap500ActiveHost.append(contentsOf: "0x00".bytes)
-                //                    let centralChangeNumberArray = m_sMasterParamData?.m_uchArrBitmap500ActiveHost
-                //                    if let wrappedValue = centralChangeNumberArray?[0 ..< iLenParamData]
-                //                    {
-                //                        chArrAsciiParamData[0 ..< iLenParamData] = wrappedValue
-                //                    }
-                //                    m_sMasterParamData?.bIsBitmap500ActiveHostSet = true;
-                m_sMasterParamData?.m_uchArrBitmap500ActiveHost =  "0x00".bytes;
-                
-                m_sMasterParamData?.m_uchArrBitmap500ActiveHost[0..<iLenParamData] = chArrAsciiParamData[0..<iLenParamData]
+                let centralChangeNumberArray = m_sMasterParamData?.m_uchArrBitmap500ActiveHost
+                if let wrappedValue = centralChangeNumberArray?[0 ..< iLenParamData]
+                {
+                    chArrAsciiParamData[0 ..< iLenParamData] = wrappedValue
+                }
                 m_sMasterParamData?.bIsBitmap500ActiveHostSet = true;
             }
             
@@ -1450,7 +1571,11 @@ final class GlobalData
             
         case ParameterIDs._HSM_Primay_Port:
             if (ParameterDatas.chArrParameterVal.count < AppConstant.MAX_ISO_PORT_LEN) {
-                m_sMasterParamData?.m_lHSMPrimaryPort = Int64(UInt32(ParameterDatas.chArrParameterVal));
+                var tempData: Int64 = 0
+                let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                tempData = Int64(strTempData) ?? 0
+                
+                m_sMasterParamData?.m_lHSMPrimaryPort = tempData/*Int64(UInt32(ParameterDatas.chArrParameterVal));*/
             }
             
         case ParameterIDs._HSM_Secondary_IP:
@@ -1461,17 +1586,29 @@ final class GlobalData
             
         case ParameterIDs._HSM_Secondary_Port:
             if (ParameterDatas.chArrParameterVal.count < AppConstant.MAX_ISO_PORT_LEN) {
-                m_sMasterParamData?.m_lHSMSecondaryPort = Int64(UInt32(ParameterDatas.chArrParameterVal));
+                var tempData: Int64 = 0
+                let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                tempData = Int64(strTempData) ?? 0
+                
+                m_sMasterParamData?.m_lHSMSecondaryPort = tempData /*Int64(UInt32(ParameterDatas.chArrParameterVal));*/
             }
             
         case ParameterIDs._HSM_Retry_Count:
-            m_sMasterParamData?.m_iHSMRetryCount = Int(Int64(UInt32(ParameterDatas.chArrParameterVal)));
+            var tempData: Int = 0
+            let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+            tempData = Int(strTempData) ?? 0
+            
+            m_sMasterParamData?.m_iHSMRetryCount = tempData /*Int(Int64(UInt32(ParameterDatas.chArrParameterVal)));*/
             
         //Use Pine Encryption Key
         case ParameterIDs._Use_Pine_Key_Encryption:
             let iEarlierUsePineEncryptionKeys = m_sMasterParamData?.m_iUsePineEncryptionKeys;
             
-            m_sMasterParamData?.m_iUsePineEncryptionKeys = Int(UInt32(ParameterDatas.chArrParameterVal));
+            var tempData: Int = 0
+            let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+            tempData = Int(strTempData) ?? 0
+            
+            m_sMasterParamData?.m_iUsePineEncryptionKeys = tempData /*Int(UInt32(ParameterDatas.chArrParameterVal))*/
             //If Application is to use PINE KEYS Force PMK and PTMK exchange
             if ((0 == iEarlierUsePineEncryptionKeys) && (m_sMasterParamData?.m_iUsePineEncryptionKeys != 0)) {
                 m_sMasterParamData?.m_bIsPKExchangePacket = true;
@@ -1489,34 +1626,39 @@ final class GlobalData
     
     public func UpdatePPPTCPAlwaysOnParameters(ParameterDatas:ParameterData) {
         _ = ParameterDatas.uiHostID;
-        if var m_sParamData:TerminalParamData = ReadParamFile(){
-            switch (ParameterDatas.ulParameterId) {
-            case ParameterIDs._Amex_Gprs_EMV_Field55_Hex_Data_Tag_Enable:
-                m_sParamData.m_bIsAmexEMVDE55HexTagDataEnable = (String(ParameterDatas.chArrParameterVal[0]) == "1") ? true : false;
-                
-            case ParameterIDs._Amex_Gprs_EMV_Receipt_61_Dump_Enable:
-                m_sParamData.m_bIsAmexEMVReceiptEnable = (String(ParameterDatas.chArrParameterVal[0]) == "1") ? true : false;
-                
-            case ParameterIDs._Always_On_GPRS_PPP:
-                m_sParamData.m_bIsPPPAlwaysOn = (String(ParameterDatas.chArrParameterVal[0]) == "1") ? true : false;
-            case ParameterIDs._Always_On_GPRS_TCP:
-                m_sParamData.m_bIsTCPAlwaysOn = (String(ParameterDatas.chArrParameterVal[0]) == "1") ? true : false;
-                
-                
-            default:
-                return;
-            }
-            _ = WriteParamFile(listParamData: m_sParamData);
-        }
-    }
+
+            if var m_sParamData:TerminalParamData = ReadParamFile(){
+                   switch (ParameterDatas.ulParameterId) {
+                       case ParameterIDs._Amex_Gprs_EMV_Field55_Hex_Data_Tag_Enable:
+                           m_sParamData.m_bIsAmexEMVDE55HexTagDataEnable = (String(ParameterDatas.chArrParameterVal[0]) == "1") ? true : false;
+                           
+                    case ParameterIDs._Amex_Gprs_EMV_Receipt_61_Dump_Enable:
+                        m_sParamData.m_bIsAmexEMVReceiptEnable = (String(ParameterDatas.chArrParameterVal[0]) == "1") ? true : false;
+                        
+                    case ParameterIDs._Always_On_GPRS_PPP:
+                        m_sParamData.m_bIsPPPAlwaysOn = (String(ParameterDatas.chArrParameterVal[0]) == "1") ? true : false;
+                    case ParameterIDs._Always_On_GPRS_TCP:
+                        m_sParamData.m_bIsTCPAlwaysOn = (String(ParameterDatas.chArrParameterVal[0]) == "1") ? true : false;
+                        
+                    
+                       default:
+                           return;
+                   }
+                _ = WriteParamFile(listParamData: m_sParamData);
+               }
+           }
     
-    
+   
     public func UpdateSecondaryIPMaxRetryCounterParameters(ParameterDatas:ParameterData) {
         _  = ParameterDatas.uiHostID;
         if var m_sParamData:TerminalParamData = ReadParamFile(){
             switch (ParameterDatas.ulParameterId) {
             case ParameterIDs._Secondary_IP_Max_Retry_Count:
-                m_sParamData.m_SecondaryIPMaxRetryCount = Int(UInt32(ParameterDatas.chArrParameterVal));
+                var tempData: Int = 0
+                let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                tempData = Int(strTempData) ?? 0
+                
+                m_sParamData.m_SecondaryIPMaxRetryCount = tempData /*Int(UInt32(ParameterDatas.chArrParameterVal))*/
                 
             default:
                 return;
@@ -1524,7 +1666,6 @@ final class GlobalData
             _ = WriteParamFile(listParamData: m_sParamData);
         }
     }
-    
     
     func UpdateAutoSettleParamFile(newParams:AutoSettlementParams) -> Bool {
         var listAutoSettleParams = [AutoSettlementParams]();
@@ -1620,32 +1761,32 @@ final class GlobalData
     }
     
     
-    public func UpdateClessDefPreProcessingParameters(ParameterDatas:ParameterData) {
-        _  = ParameterDatas.uiHostID;
-        var ulAmount:Int64 = 0
-        if var m_sParamData:TerminalParamData = ReadParamFile(){
+   public func UpdateClessDefPreProcessingParameters(ParameterDatas:ParameterData) {
+    _  = ParameterDatas.uiHostID;
+    var ulAmount:Int64 = 0
+     if var m_sParamData:TerminalParamData = ReadParamFile(){
             switch (ParameterDatas.ulParameterId) {
-            case ParameterIDs._Cless_PreProcessing_Amount:
-                for byte in ParameterDatas.chArrParameterVal {
-                    ulAmount = ulAmount << 8
-                    ulAmount = ulAmount | Int64(byte)
-                }
+                case ParameterIDs._Cless_PreProcessing_Amount:
+                    var tempData: Int64 = 0
+                    let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                    tempData = Int64(strTempData) ?? 0
+                    ulAmount = tempData
+                    //ulAmount = Int64(UInt32(ParameterDatas.chArrParameterVal));
+                    
+             case ParameterIDs._Cless_PreProcessing_TxnType:
+                   m_sParamData.bArrClessDefPreProcessTxnType[0] = ParameterDatas.chArrParameterVal[0];
+                
+             case ParameterIDs._Cless_MaxIntegration_TxnAmt:
+                var tempData: Int64 = 0
+                let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                tempData = Int64(strTempData) ?? 0
+                ulAmount = tempData
                 //ulAmount = Int64(UInt32(ParameterDatas.chArrParameterVal));
-                
-            case ParameterIDs._Cless_PreProcessing_TxnType:
-                m_sParamData.bArrClessDefPreProcessTxnType[0] = ParameterDatas.chArrParameterVal[0];
-                
-            case ParameterIDs._Cless_MaxIntegration_TxnAmt:
-                for byte in ParameterDatas.chArrParameterVal {
-                    ulAmount = ulAmount << 8
-                    ulAmount = ulAmount | Int64(byte)
-                }
-                //ulAmount = Int64(UInt32(ParameterDatas.chArrParameterVal));
-                
-            default:
-                return;
+             
+                default:
+                    return;
             }
-            _ = WriteParamFile(listParamData: m_sParamData);
+        _ = WriteParamFile(listParamData: m_sParamData);
         }
     }
     
@@ -1662,7 +1803,12 @@ final class GlobalData
                 
             case ParameterIDs._CIMB_IS_PASSWORD_SETTLEMENT:
                 var iIsPasswordRequiredForSettlement: Bool = false
-                if (Int(UInt32(ParameterDatas.chArrParameterVal)) > 0) {
+                
+                var tempData: Int = 0
+                let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!
+                tempData = Int(strTempData) ?? 0
+                
+                if (tempData/*Int(UInt32(ParameterDatas.chArrParameterVal))*/ > 0) {
                     iIsPasswordRequiredForSettlement = true;
                 } else {
                     iIsPasswordRequiredForSettlement = false;
@@ -1671,7 +1817,11 @@ final class GlobalData
                 
             case ParameterIDs._IS_PASSWORD_NEEDED_FOR_SPECIFIC_TXNS:
                 var iIsPasswdNeededForSpecificTxns: Bool = false
-                if (Int(UInt32(ParameterDatas.chArrParameterVal)) > 0) {
+                var tempData: Int = 0
+                let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!
+                tempData = Int(strTempData) ?? 0
+                
+                if (tempData/*Int(UInt32(ParameterDatas.chArrParameterVal))*/  > 0) {
                     iIsPasswdNeededForSpecificTxns = true;
                 } else {
                     iIsPasswdNeededForSpecificTxns = false;
@@ -1685,21 +1835,24 @@ final class GlobalData
         }
     }
     
-    
-    
     public func UpdateBiometricEnabledFlagOnParameters(ParameterDatas:ParameterData) {
-        _ = ParameterDatas.uiHostID;
-        var iIsBiometricEnabled:Int = 0x00;
+
+        _ = ParameterDatas.uiHostID
+        var iIsBiometricEnabled:Int = 0x00
         if var m_sParamData:TerminalParamData = ReadParamFile(){
             switch (ParameterDatas.ulParameterId) {
             case ParameterIDs._IS_BIOMETRIC_ENABLED:
-                iIsBiometricEnabled = Int(UInt32(ParameterDatas.chArrParameterVal));
-                m_sParamData.m_iIsBiometricEnabled = iIsBiometricEnabled;
+                var tempData: Int = 0
+                let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!
+                tempData = Int(strTempData) ?? 0
+                
+                iIsBiometricEnabled = tempData/*Int(UInt32(ParameterDatas.chArrParameterVal))*/
+                m_sParamData.m_iIsBiometricEnabled = iIsBiometricEnabled
                 
             default:
-                return;
+                return
             }
-            _ = WriteParamFile(listParamData: m_sParamData);
+            _ = WriteParamFile(listParamData: m_sParamData)
         }
     }
     
@@ -1709,12 +1862,16 @@ final class GlobalData
         if var m_sParamData:TerminalParamData = ReadParamFile(){
             switch (ParameterDatas.ulParameterId) {
             case ParameterIDs._EMVFallbackChipRetryCounter:
-                m_sParamData.m_EMVChipRetryCount = Int(UInt32(ParameterDatas.chArrParameterVal));
-                m_sParamData.m_iIsBiometricEnabled = iIsBiometricEnabled;
+                var tempData: Int = 0
+                let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!
+                tempData = Int(strTempData) ?? 0
+
+                m_sParamData.m_EMVChipRetryCount = tempData/*Int(UInt32(ParameterDatas.chArrParameterVal));*/
+                m_sParamData.m_iIsBiometricEnabled = iIsBiometricEnabled
                 
             case ParameterIDs._EMV_MERCHANT_CATEGORY_CODE:
                 if (ParameterDatas.chArrParameterVal.count > 0) {
-                    if let bytes = String(data: Data(ParameterDatas.chArrParameterVal), encoding: .utf8)
+                    if let bytes = String(data: Data(ParameterDatas.chArrParameterVal), encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines)
                     {
                         m_sParamData.m_strMCCEMV  = bytes
                     }
@@ -1726,8 +1883,7 @@ final class GlobalData
             _ = WriteParamFile(listParamData:m_sParamData);
         }
     }
-    
-    
+
     
     public func UpdateISCRISEnabledFlagOnParameters(ParameterDatas:ParameterData) {
         var _ = ParameterDatas.uiHostID;
@@ -1735,7 +1891,12 @@ final class GlobalData
         if var m_sParamData:TerminalParamData = ReadParamFile(){
             switch (ParameterDatas.ulParameterId) {
             case ParameterIDs._IS_CRIS_SUPPORTED:
-                let iIsRISEnabled = Int(UInt32(ParameterDatas.chArrParameterVal));
+
+                var tempData: Int = 0
+                let strTempData = String(bytes: ParameterDatas.chArrParameterVal, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                tempData = Int(strTempData) ?? 0
+                
+                let iIsRISEnabled = tempData/*Int(UInt32(ParameterDatas.chArrParameterVal));*/
                 m_sParamData.m_iIsCRISEnabled = iIsRISEnabled;
                 
             default:
@@ -1744,8 +1905,7 @@ final class GlobalData
             _ =  WriteParamFile(listParamData:m_sParamData);
         }
     }
-    
-    
+
     public func UpdateNoPrintMessage(ParameterDatas:ParameterData) {
         _ = ParameterDatas.uiHostID;
         var iMessagelen:Int = 0;
@@ -1758,7 +1918,6 @@ final class GlobalData
                     {
                         m_sParamData.m_strNoPrintMessage = bytes
                     }
-                    
                 }
                 
             default:
@@ -1767,9 +1926,7 @@ final class GlobalData
             _  = WriteParamFile(listParamData:m_sParamData);
         }
     }
-    
-    
-    
+
     /*****************************************************************************
      * Name     :  SetConnectionChangedFlag
      * Function :  Set ConnectionChanged FLAG
