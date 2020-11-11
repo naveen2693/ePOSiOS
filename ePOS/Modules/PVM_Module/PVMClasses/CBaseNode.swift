@@ -232,10 +232,6 @@ class CBaseNode {
     
     // MARK:- GotoParent
     public func GotoParent() -> CBaseNode? {
-        /*if(MainActivity.bIsMainScreenRequest) {
-         return null;
-         }*/
-        // Just for added safety
         if let cbaseNode = CStateMachine.stateMachine.GetRootNode(){
             if cbaseNode is CBaseNode {
                 GlobalData.singleton.InitializeTxnTlvData();
@@ -249,17 +245,20 @@ class CBaseNode {
                         if (unwrappedparent2 is CBaseNode){
                             return nil;
                         }
-                        return (unwrappedparent2);
                     }
                 }
+                 return (self.Parent?.Parent);
             }
+           
         }
         else {
             if let unwrappedparent1 = self.Parent{
                 clearTLVDataWithTag(currentNode: unwrappedparent1);
+                return (self.Parent);
             }
-            return (self.Parent);
+            return nil
         }
+        return nil
     }
     
     // MARK:- clearTLVDataWithTag
