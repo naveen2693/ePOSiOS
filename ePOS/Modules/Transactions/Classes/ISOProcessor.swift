@@ -185,9 +185,9 @@ class ISOProcessor
                     return RetVal.RET_NOT_OK
                 } else {
                     ip320HostComm.CISOMsgD()
+                    }
                 }
-                }
-            while (ip320HostComm.m_iChangeNumber <= ISO320ChangeNumberConstants.HOST_COLORED_IMAGE_DOWNLOAD)//);EDC_LOG_SHIPPING_DETAILS_DOWNLOAD
+                while (ip320HostComm.m_iChangeNumber <= ISO320ChangeNumberConstants.HOST_COLORED_IMAGE_DOWNLOAD)//);EDC_LOG_SHIPPING_DETAILS_DOWNLOAD
 
 
             ip320HostComm.CISO320MsgD()

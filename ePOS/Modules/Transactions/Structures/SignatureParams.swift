@@ -8,8 +8,8 @@
 
 import Foundation
 
-public struct SignatureParams {
-    var SignatureDeviceType:[UInt8] = [0];
-    var bArrSignatureComPort:[UInt8] = [0];
+struct SignatureParams: Codable {
+    var SignatureDeviceType = [Byte](repeating: 0x00, count: 20)
+    var bArrSignatureComPort = [Byte](repeating: 0x00, count: 4)
     var IsSignDeviceConnected:Bool = false;
 }

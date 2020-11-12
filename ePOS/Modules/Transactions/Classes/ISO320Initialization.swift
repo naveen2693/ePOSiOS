@@ -137,9 +137,9 @@ class ISO320Initialization: ISOMessage
             let length: Int = len[ISOFieldConstants.ISO_FIELD_7 - 1]
 
             if (length > 0) {
-                debugPrint("ISO_FILED_7 data[\(String(bytes: self.data[ISOFieldConstants.ISO_FIELD_7 - 1], encoding: String.Encoding.utf8)!)]")
+                debugPrint("ISO_FILED_7 data[\(String(bytes: self.data[ISOFieldConstants.ISO_FIELD_7 - 1], encoding: String.Encoding.ascii)!)]")
                 
-                let strISOField7: String = String(bytes: self.data[ISOFieldConstants.ISO_FIELD_7 - 1], encoding: String.Encoding.utf8)!
+                let strISOField7: String = String(bytes: self.data[ISOFieldConstants.ISO_FIELD_7 - 1], encoding: String.Encoding.ascii)!
                 //String strISOField7 = new String(this.data[IsoFieldConstant.ISO_FIELD_7 - 1])
                 if (strISOField7 == AppConstant.AC_PRINT_PAD) {
                     m_bField7PrintPAD = true;
@@ -202,7 +202,7 @@ class ISO320Initialization: ISOMessage
         ***************************************************************************/
         
         let copyData: [Byte] = [Byte](AppConstant.DOWNDATAREQ.utf8)
-        msgno = Array(copyData[0 ..< copyData.count])
+        msgno = [Byte](copyData[0 ..< copyData.count])
         //System.arraycopy(AppConst.DOWNDATAREQ.getBytes(), 0, msgno, 0, AppConst.DOWNDATAREQ.length());
 
         /****************************************************************************
@@ -509,7 +509,7 @@ class ISO320Initialization: ISOMessage
                             iLocalOffset += 1
                             buffer[iLocalOffset] = Byte(b & 0x000000FF);
                             iLocalOffset += 1
-                            debugPrint("AppConstant.IsoFieldConstant.ISO_FIELD_53[\(String(describing: String(bytes: buffer, encoding: .utf8)))]")
+                            debugPrint("AppConstant.IsoFieldConstant.ISO_FIELD_53[\(String(describing: String(bytes: buffer, encoding: .ascii)))]")
 
                             _ = addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_53, data1: buffer, length: iLocalOffset)
                             debugPrint("Req->Setting field 53")
@@ -740,7 +740,7 @@ class ISO320Initialization: ISOMessage
                             let PadedImageId: String = String(format: "%08d", ulImageId);
                             let tempArr: [Byte] = TransactionUtils.a2bcd([Byte](PadedImageId.utf8))!;
                             
-                            bLocalBuffer = Array(tempArr[0 ..< 4])
+                            bLocalBuffer = [Byte](tempArr[0 ..< 4])
                             //System.arraycopy(tempArr,0,bLocalBuffer,iLocalOffset,4);
                             debugPrint("ImageId[\(PadedImageId)]")
                             iLocalOffset += 4;
@@ -780,7 +780,7 @@ class ISO320Initialization: ISOMessage
                         if (ulImageId != 0x0000) {
                             let PadedImageId: String = String(format: "%08d", ulImageId);
                             let tempArr: [Byte] = TransactionUtils.a2bcd([Byte](PadedImageId.utf8))!;
-                            bLocalBuffer = Array(tempArr[0 ..< 4])
+                            bLocalBuffer = [Byte](tempArr[0 ..< 4])
                             //System.arraycopy(tempArr,0,bLocalBuffer,iLocalOffset,4);
                             debugPrint("ImageId[\(PadedImageId)]");
                             iLocalOffset += 4;
@@ -840,10 +840,10 @@ class ISO320Initialization: ISOMessage
                     // Left pad with '0'
                     var tmmBuf: [Byte] = [Byte](repeating: 0x00, count: 12)
                     let tempData: [Byte] = [Byte](ItemList[0].m_strParamDownloadDate.utf8)
-                    tmmBuf = Array(tempData[0 ..< 12])
+                    tmmBuf = [Byte](tempData[0 ..< 12])
                 
                     //System.arraycopy(ItemList[0].m_strParamDownloadDate.utf8,0,tmmBuf,0,12);
-                    let chArrParamDownLoadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmmBuf, encoding: .utf8)!, length: 12,padChar: "0");
+                    let chArrParamDownLoadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmmBuf, encoding: .ascii)!, length: 12,padChar: "0");
                     _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_43, data1: [Byte](chArrParamDownLoadDate.utf8), bcd: true);
                     debugPrint("Req->Setting field 43");
                 }
@@ -911,10 +911,10 @@ class ISO320Initialization: ISOMessage
                     // Left pad with '0'
                     var tmmBuf = [Byte](repeating: 0x00, count: 12)
                     let tempData: [Byte] = [Byte](tData.m_strParamDownloadDate.utf8)
-                    tmmBuf = Array(tempData[0 ..< 12])
+                    tmmBuf = [Byte](tempData[0 ..< 12])
                     //System.arraycopy(tData.m_strParamDownloadDate.utf8,0,tmmBuf,0,12);
                     
-                    let chArrParamDownLoadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmmBuf, encoding: .utf8)!, length: 12, padChar: "0");
+                    let chArrParamDownLoadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmmBuf, encoding: .ascii)!, length: 12, padChar: "0");
                     _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_43, data1: [Byte](chArrParamDownLoadDate.utf8), bcd: true);
                 }
 
@@ -1030,10 +1030,10 @@ class ISO320Initialization: ISOMessage
             if(m_iChangeNumber == ISO320ChangeNumberConstants.HUB_GET_BIN_RANGE){
                 var tmmBuf = [Byte](repeating: 0x00, count: 12)
                 let tempData: [Byte] = [Byte](globalData.m_sMasterParamData!.m_strBinRangeDownloadDate.utf8)
-                tmmBuf = Array(tempData[0 ..< 12])
+                tmmBuf = [Byte](tempData[0 ..< 12])
                 
                 //System.arraycopy(globalData.m_sMasterParamData!.m_strBinRangeDownloadDate.utf8,0,tmmBuf,0,12);
-                let chArrParamDownLoadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmmBuf,encoding: .utf8)!, length: 12,padChar: "0");
+                let chArrParamDownLoadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmmBuf,encoding: .ascii)!, length: 12,padChar: "0");
                 _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_43, data1: [Byte](chArrParamDownLoadDate.utf8), bcd: true);
             }
 
@@ -1045,10 +1045,10 @@ class ISO320Initialization: ISOMessage
             if(m_iChangeNumber == ISO320ChangeNumberConstants.HUB_GET_CSV_TXN_MAP){
                 var tmpBuff = [Byte](repeating: 0x00, count: 12)
                 let tempData: [Byte] = [Byte](globalData.m_sMasterParamData!.m_strCSVTxnMapVersion.utf8)
-                tmpBuff = Array(tempData[0 ..< 12])
+                tmpBuff = [Byte](tempData[0 ..< 12])
 
                 //System.arraycopy(GlobalData.m_sMasterParamData.m_strCSVTxnMapVersion.utf8,0,tmpBuff,0,12);
-                let chArrParamDownLoadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmpBuff, encoding: .utf8)!, length: 12, padChar: "0")
+                let chArrParamDownLoadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmpBuff, encoding: .ascii)!, length: 12, padChar: "0")
                 _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_43, data1: [Byte](chArrParamDownLoadDate.utf8), bcd: true)
             }
 
@@ -1056,21 +1056,21 @@ class ISO320Initialization: ISOMessage
             if(m_iChangeNumber == ISO320ChangeNumberConstants.HUB_GET_TXN_BIN){
                 var tmpBuff = [Byte](repeating: 0x00, count: 12)
                 let tempData: [Byte] = [Byte](globalData.m_sMasterParamData!.m_strTxnBinDownloadDate.utf8)
-                tmpBuff = Array(tempData[0 ..< 12])
+                tmpBuff = [Byte](tempData[0 ..< 12])
 
                 
                 //System.arraycopy(GlobalData.m_sMasterParamData.m_strTxnBinDownloadDate.utf8,0,tmpBuff,0,12);
-                let chArrParamDownLoadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmpBuff, encoding: .utf8)!, length: 12, padChar: "0")
+                let chArrParamDownLoadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmpBuff, encoding: .ascii)!, length: 12, padChar: "0")
                 _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_43, data1: [Byte](chArrParamDownLoadDate.utf8), bcd: true)
             }
 
             if(m_iChangeNumber == ISO320ChangeNumberConstants.HUB_GET_IGNORE_AMT_CSV_TXN_LIST){
                 var tmpBuff = [Byte](repeating: 0x00, count: 12)
                 let tempData: [Byte] = [Byte](globalData.m_sMasterParamData!.m_strIgnoreAmtCSVTxnListDownloadDate.utf8)
-                tmpBuff = Array(tempData[0 ..< 12])
+                tmpBuff = [Byte](tempData[0 ..< 12])
 
                 //System.arraycopy(GlobalData.m_sMasterParamData.m_strIgnoreAmtCSVTxnListDownloadDate.utf8,0,tmpBuff,0,12);
-                let chArrParamDownLoadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmpBuff, encoding: .utf8)!, length: 12, padChar: "0");
+                let chArrParamDownLoadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmpBuff, encoding: .ascii)!, length: 12, padChar: "0");
                 _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_43, data1: [Byte](chArrParamDownLoadDate.utf8), bcd: true);
             }
 
@@ -1080,10 +1080,10 @@ class ISO320Initialization: ISOMessage
                  ****************************************/
                 var tmpBuff = [Byte](repeating: 0x00, count: 12)
                 let tempData: [Byte] = [Byte](globalData.m_sMasterParamData!.m_strEMVTagListDownloadDate.utf8)
-                tmpBuff = Array(tempData[0 ..< 12])
+                tmpBuff = [Byte](tempData[0 ..< 12])
                 
                 //System.arraycopy(GlobalData.m_sMasterParamData.m_strEMVTagListDownloadDate.utf8,0,tmpBuff,0,12);
-                let chArrParamDownLoadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmpBuff, encoding: .utf8)!, length: 12, padChar: "0");
+                let chArrParamDownLoadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmpBuff, encoding: .ascii)!, length: 12, padChar: "0");
                 _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_43, data1: [Byte](chArrParamDownLoadDate.utf8), bcd: true)
             }
 
@@ -1091,10 +1091,10 @@ class ISO320Initialization: ISOMessage
             if(m_iChangeNumber == ISO320ChangeNumberConstants.HUB_GET_CLESSPARAM){
                 var tmpBuff = [Byte](repeating: 0x00, count: 12)
                 let tempData: [Byte] = [Byte](globalData.m_sMasterParamData!.m_strCLessParamDownloadDate.utf8)
-                tmpBuff = Array(tempData[0 ..< 12])
+                tmpBuff = [Byte](tempData[0 ..< 12])
 
                 //System.arraycopy(GlobalData.m_sMasterParamData.m_strCLessParamDownloadDate.utf8,0,tmpBuff,0,12);
-                let chArrParamDownLoadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmpBuff, encoding: .utf8)!, length: 12, padChar: "0");
+                let chArrParamDownLoadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmpBuff, encoding: .ascii)!, length: 12, padChar: "0");
                 _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_43,data1: [Byte](chArrParamDownLoadDate.utf8), bcd: true);
             }
                 /*    ***************************************************************************
@@ -1123,10 +1123,10 @@ class ISO320Initialization: ISOMessage
 
                 var tmpBuff = [Byte](repeating: 0x00, count: 12)
                 let tempData: [Byte] = [Byte](globalData.m_sMasterParamData!.m_strAIDEMVTXNTYPEDownloadDate.utf8)
-                tmpBuff = Array(tempData[0 ..< 12])
+                tmpBuff = [Byte](tempData[0 ..< 12])
                 
                 //System.arraycopy(GlobalData.m_sMasterParamData.m_strAIDEMVTXNTYPEDownloadDate.utf8,0,tmpBuff,0,12);
-                let chArrParamDownLoadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmpBuff, encoding: .utf8)!, length: 12, padChar: "0")
+                let chArrParamDownLoadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmpBuff, encoding: .ascii)!, length: 12, padChar: "0")
                 _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_43,data1: [Byte](chArrParamDownLoadDate.utf8), bcd: true)
             }
 
@@ -1136,10 +1136,10 @@ class ISO320Initialization: ISOMessage
 
                 var tmpBuff = [Byte](repeating: 0x00, count: 12)
                 let tempData: [Byte] = [Byte](globalData.m_sMasterParamData!.m_strTxnTypeFlagsMappingDownloadDate.utf8)
-                tmpBuff = Array(tempData[0 ..< 12])
+                tmpBuff = [Byte](tempData[0 ..< 12])
                                
                 //System.arraycopy(GlobalData.m_sMasterParamData.m_strTxnTypeFlagsMappingDownloadDate.utf8,0,tmpBuff,0,12);
-                let chArrParamDownLoadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmpBuff, encoding: .utf8)!, length: 12, padChar: "0");
+                let chArrParamDownLoadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmpBuff, encoding: .ascii)!, length: 12, padChar: "0");
                 _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_43,data1: [Byte](chArrParamDownLoadDate.utf8), bcd: true)
             }
             /************************************************************************
@@ -1184,10 +1184,10 @@ class ISO320Initialization: ISOMessage
 
                 var tmpBuff = [Byte](repeating: 0x00, count: 12)
                 let tempData: [Byte] = [Byte](globalData.m_sMasterParamData!.m_strCsvTxnTypeMiniPvmMappingDownloadDate.utf8)
-                tmpBuff = Array(tempData[0 ..< 12])
+                tmpBuff = [Byte](tempData[0 ..< 12])
                 
                 //System.arraycopy(GlobalData.m_sMasterParamData.m_strCsvTxnTypeMiniPvmMappingDownloadDate.utf8,0,tmpBuff,0,12);
-                let chArrParamDownLoadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmpBuff, encoding: .utf8)!, length: 12, padChar: "0");
+                let chArrParamDownLoadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmpBuff, encoding: .ascii)!, length: 12, padChar: "0");
                 _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_43,data1: [Byte](chArrParamDownLoadDate.utf8), bcd: true)
             }
 
@@ -1198,10 +1198,10 @@ class ISO320Initialization: ISOMessage
 
                 var tmpBuff = [Byte](repeating: 0x00, count: 12)
                 let tempData: [Byte] = [Byte](globalData.m_sMasterParamData!.m_strISPasswordDownloadDate.utf8)
-                tmpBuff = Array(tempData[0 ..< 12])
+                tmpBuff = [Byte](tempData[0 ..< 12])
                 
                 //System.arraycopy(GlobalData.m_sMasterParamData.m_strISPasswordDownloadDate.utf8,0,tempBuff,0,12);
-                let chArrISPasswordDownloadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmpBuff, encoding: .utf8)!, length: 12, padChar: "0")
+                let chArrISPasswordDownloadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmpBuff, encoding: .ascii)!, length: 12, padChar: "0")
                 _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_43,data1: [Byte](chArrISPasswordDownloadDate.utf8), bcd: true);
             }
 
@@ -1211,10 +1211,10 @@ class ISO320Initialization: ISOMessage
 
                 var tmpBuff = [Byte](repeating: 0x00, count: 12)
                 let tempData: [Byte] = [Byte](globalData.m_sMasterParamData!.m_strLogShippingDownloadDate.utf8)
-                tmpBuff = Array(tempData[0 ..< 12])
+                tmpBuff = [Byte](tempData[0 ..< 12])
                 
                 //System.arraycopy(GlobalData.m_sMasterParamData.m_strLogShippingDownloadDate.utf8,0,tempBuff,0,12);
-                let chArrISPasswordDownloadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmpBuff, encoding: .utf8)!, length: 12,padChar: "0")
+                let chArrISPasswordDownloadDate: String = TransactionUtils.StrLeftPad(data: String(bytes: tmpBuff, encoding: .ascii)!, length: 12,padChar: "0")
                 _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_43,data1: [Byte](chArrISPasswordDownloadDate.utf8) , bcd: true)
             }
 
@@ -1282,7 +1282,7 @@ class ISO320Initialization: ISOMessage
                 buffer[iLocalOffset] = Byte( b & 0x000000FF)
                 iLocalOffset += 1
                 
-                debugPrint("AppConst.IsoFieldConstant.ISO_FIELD_53[\(String(describing: String(bytes: buffer, encoding: .utf8)))]")
+                debugPrint("AppConst.IsoFieldConstant.ISO_FIELD_53[\(String(describing: String(bytes: buffer, encoding: .ascii)))]")
 
                 _ = addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_53, data1: buffer, length: iLocalOffset);
                 debugPrint("Req->Setting field 53")
@@ -1312,7 +1312,7 @@ class ISO320Initialization: ISOMessage
             let p: [Byte] = data[7 - 1]
             debugPrint("bitmap[7][0x%x]", p[0])
             
-            if(memcmp(str1: String(bytes: self.data[7-1], encoding: .utf8)!, str2: "01", iLen: 2) == 0){
+            if(memcmp(str1: String(bytes: self.data[7-1], encoding: .ascii)!, str2: "01", iLen: 2) == 0){
                 let globalData = GlobalData.singleton
                 
                 _ = globalData.ReadMasterParamFile()
@@ -1328,7 +1328,7 @@ class ISO320Initialization: ISOMessage
         switch (number)
         {
                 case ISO320ChangeNumberConstants.HOST_PVM_DOWNLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_PVM_DLD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_PVM_DLD_END, iLen: 6) == 0))
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_PVM_DLD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_PVM_DLD_END, iLen: 6) == 0))
                     {
                         if (bitmap[61 - 1] && bitmap[53 - 1])
                         {
@@ -1338,7 +1338,7 @@ class ISO320Initialization: ISOMessage
                         }
                     }
 
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_PVM_DLD_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_PVM_DLD_END, iLen: 6) == 0) {
                         //Delete the temp downloadfile
                         //this will handle the scenario when we have some xyz PVM version and
                         //downloading xya version which was not sucessful.
@@ -1354,7 +1354,7 @@ class ISO320Initialization: ISOMessage
                     }
 
                 case ISO320ChangeNumberConstants.HOST_CHARGESLIP_ID_DOWNLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CHARGE_SLIP_ID_DLD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CHARGE_SLIP_ID_DLD_END, iLen: 6) == 0)) {
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_CHARGE_SLIP_ID_DLD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_CHARGE_SLIP_ID_DLD_END, iLen: 6) == 0)) {
                         if (bitmap[61 - 1] && bitmap[53 - 1]) {
                             debugPrint("Response->field 61 and 53 found charge slip Id download")
                             //check for multi packets
@@ -1362,7 +1362,7 @@ class ISO320Initialization: ISOMessage
                         }
                     }
 
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CHARGE_SLIP_ID_DLD_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_CHARGE_SLIP_ID_DLD_END, iLen: 6) == 0) {
                         m_bCurrentPacketCount = 0;
                         m_bTotalPacketCount = 0;
                         m_iChangeNumber += 1
@@ -1372,7 +1372,7 @@ class ISO320Initialization: ISOMessage
                     }
 
                 case ISO320ChangeNumberConstants.HOST_CHARGESLIP_DOWNLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CHARGE_SLIP_DLD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CHARGE_SLIP_DLD_END, iLen: 6) == 0)) {
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_CHARGE_SLIP_DLD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_CHARGE_SLIP_DLD_END, iLen: 6) == 0)) {
                         if (bitmap[61 - 1] && bitmap[53 - 1]) {
                             debugPrint("Response->field 61 and 53 found charge slip download")
 
@@ -1380,7 +1380,7 @@ class ISO320Initialization: ISOMessage
                             ProcessChargeSlipDownload()
                         }
                     }
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CHARGE_SLIP_DLD_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_CHARGE_SLIP_DLD_END, iLen: 6) == 0) {
                         //one charge slip download finished.
                         m_ulTotalChargeSlipTemplateAdded += 1
 
@@ -1394,14 +1394,14 @@ class ISO320Initialization: ISOMessage
                     }
 
                 case ISO320ChangeNumberConstants.HOST_IMAGE_ID_DOWNLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_IMAGE_ID_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_IMAGE_ID_DOWNLOAD_END, iLen: 6) == 0)) {
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_IMAGE_ID_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_IMAGE_ID_DOWNLOAD_END, iLen: 6) == 0)) {
                         if (bitmap[61 - 1] && bitmap[53 - 1]) {
                             debugPrint("Response->field 61 and 53 found Image Id download")
                             //check for multi packets
                             ProcessImageIdDownload();
                         }
                     }
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_IMAGE_ID_DOWNLOAD_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_IMAGE_ID_DOWNLOAD_END, iLen: 6) == 0) {
                         m_bCurrentPacketCount = 0;
                         m_bTotalPacketCount = 0;
                         m_iChangeNumber += 1
@@ -1411,7 +1411,7 @@ class ISO320Initialization: ISOMessage
                     }
 
                 case ISO320ChangeNumberConstants.HOST_IMAGE_DOWNLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_IMAGE_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_IMAGE_DOWNLOAD_END, iLen: 6) == 0)) {
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_IMAGE_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_IMAGE_DOWNLOAD_END, iLen: 6) == 0)) {
                         if (bitmap[61 - 1] && bitmap[53 - 1]) {
                            debugPrint("Response->field 61 and 53 found Image download")
                             //check for multi packets
@@ -1420,7 +1420,7 @@ class ISO320Initialization: ISOMessage
                             }
                         }
                     }
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_IMAGE_DOWNLOAD_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_IMAGE_DOWNLOAD_END, iLen: 6) == 0) {
                         _ = FileSystem.DeleteFileComplete(strFileName: m_chTempImageDwnFile)
                         _ = FileSystem.DeleteFileComplete(strFileName: m_chTempImagefileName)
                         _ = FileSystem.DeleteFileComplete(strFileName: m_chTempImageChunkFile)
@@ -1436,14 +1436,14 @@ class ISO320Initialization: ISOMessage
                     }
 
                 case ISO320ChangeNumberConstants.HOST_COLORED_IMAGE_ID_DOWNLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_COLORED_IMAGE_ID_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_COLORED_IMAGE_ID_DOWNLOAD_END, iLen: 6) == 0)) {
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_COLORED_IMAGE_ID_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_COLORED_IMAGE_ID_DOWNLOAD_END, iLen: 6) == 0)) {
                         if (bitmap[61 - 1] && bitmap[53 - 1]) {
                             debugPrint("Response->field 61 and 53 found Colored Image Id download")
                             //check for multi packets
                             ProcessColoredImageIdDownload()
                         }
                     }
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_COLORED_IMAGE_ID_DOWNLOAD_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_COLORED_IMAGE_ID_DOWNLOAD_END, iLen: 6) == 0) {
                         m_bCurrentPacketCount = 0;
                         m_bTotalPacketCount = 0;
                         m_iChangeNumber += 1
@@ -1453,7 +1453,7 @@ class ISO320Initialization: ISOMessage
                     }
 
                 case ISO320ChangeNumberConstants.HOST_COLORED_IMAGE_DOWNLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_COLORED_IMAGE_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_COLORED_IMAGE_DOWNLOAD_END, iLen: 6) == 0)) {
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_COLORED_IMAGE_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_COLORED_IMAGE_DOWNLOAD_END, iLen: 6) == 0)) {
                         if (bitmap[61 - 1] && bitmap[53 - 1]) {
                             debugPrint("Response->field 61 and 53 found Colored Image download")
                             //check for multi packets
@@ -1462,7 +1462,7 @@ class ISO320Initialization: ISOMessage
                             }
                         }
                     }
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_COLORED_IMAGE_DOWNLOAD_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_COLORED_IMAGE_DOWNLOAD_END, iLen: 6) == 0) {
                         _ = FileSystem.DeleteFileComplete(strFileName: m_chTempClrdImageDwnFile)
                         _ = FileSystem.DeleteFileComplete(strFileName: m_chTempClrdImagefileName)
                         _ = FileSystem.DeleteFileComplete(strFileName: m_chTempClrdImageChunkFile)
@@ -1477,28 +1477,28 @@ class ISO320Initialization: ISOMessage
                     }
 
                 case ISO320ChangeNumberConstants.HOST_BATCH_ID:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_BATCH_ID, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_BATCH_ID_END, iLen: 6) == 0)) {
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_BATCH_ID, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_BATCH_ID_END, iLen: 6) == 0)) {
                         if(bitmap[26 - 1]){
                             ProcessBatchId()
                         }
                     }
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_BATCH_ID_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_BATCH_ID_END, iLen: 6) == 0) {
                         //Update Batch ID
                         m_iChangeNumber += 1
                     }
 
                 case ISO320ChangeNumberConstants.HOST_CLOCK_SYNC:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CLOCK_SYNC_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CLOCK_SYNC_END, iLen: 6) == 0)) {
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_CLOCK_SYNC_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_CLOCK_SYNC_END, iLen: 6) == 0)) {
                         if(bitmap[12 - 1]){
                             ProcessClockSynchronization()
                         }
                     }
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CLOCK_SYNC_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_CLOCK_SYNC_END, iLen: 6) == 0) {
                         m_iChangeNumber += 1
                     }
 
                 case ISO320ChangeNumberConstants.HOST_MESSAGE_ID_LIST_DOWNLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_MESSAGE_ID_LIST_DLD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_MESSAGE_ID_LIST_DLD_END, iLen: 6) == 0)) {
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_MESSAGE_ID_LIST_DLD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_MESSAGE_ID_LIST_DLD_END, iLen: 6) == 0)) {
                         if (bitmap[61 - 1] && bitmap[53 - 1]) {
                             debugPrint("Response->field 61 and 53 found Image Id download")
                             //check for multi packets process message Id download
@@ -1506,7 +1506,7 @@ class ISO320Initialization: ISOMessage
                         }
                     }
 
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_MESSAGE_ID_LIST_DLD_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_MESSAGE_ID_LIST_DLD_END, iLen: 6) == 0) {
                         m_bCurrentPacketCount = 0;
                         m_bTotalPacketCount = 0;
                         m_iChangeNumber += 1
@@ -1516,13 +1516,13 @@ class ISO320Initialization: ISOMessage
                     }
 
                 case ISO320ChangeNumberConstants.HOST_MESSAGE_DOWNLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_MESSAGE_DLD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_MESSAGE_DLD_END, iLen: 6) == 0)) {
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_MESSAGE_DLD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_MESSAGE_DLD_END, iLen: 6) == 0)) {
                         //check for multi packets
                         //process message download and store it
                         ProcessMessageDownload()
                     }
 
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_MESSAGE_DLD_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_MESSAGE_DLD_END, iLen: 6) == 0) {
                         m_imessageOffset = 0;
                         m_ulTotalMessagesAdded += 1
 
@@ -1544,11 +1544,11 @@ class ISO320Initialization: ISOMessage
                     }
 
                 case ISO320ChangeNumberConstants.HOST_PARAMETERS_DOWNLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_PARAMETER_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_PARAMETER_END, iLen: 6) == 0)) {
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_PARAMETER_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_PARAMETER_END, iLen: 6) == 0)) {
                         ProcessParameterDownload();
                     }
 
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_PARAMETER_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_PARAMETER_END, iLen: 6) == 0) {
                         m_iChangeNumber += 1
                         //store parameter updation last date time for sending it next time parse field 43
 
@@ -1557,7 +1557,7 @@ class ISO320Initialization: ISOMessage
                     }
  
                 case ISO320ChangeNumberConstants.EMV_PARM_DWONLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EMV_PARAM_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EMV_PARAM_END, iLen: 6) == 0))
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EMV_PARAM_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EMV_PARAM_END, iLen: 6) == 0))
                     {
                         if (bitmap[61 - 1] && bitmap[53 - 1])
                         {
@@ -1567,7 +1567,7 @@ class ISO320Initialization: ISOMessage
                         }
                     }
 
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EMV_PARAM_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EMV_PARAM_END, iLen: 6) == 0) {
                         //Delete the temp downloadfile
                         //this will handle the scenario when we have some xyz PVM version and
                         //downloading xya version which was not sucessful.
@@ -1593,7 +1593,7 @@ class ISO320Initialization: ISOMessage
                     }
 
                 case ISO320ChangeNumberConstants.HUB_PARM_UPLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_PARAMETER_UPLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_PARAMETER_UPLOAD_END, iLen: 6) == 0))
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_PARAMETER_UPLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_PARAMETER_UPLOAD_END, iLen: 6) == 0))
                     {
                         if (bitmap[61 - 1] && bitmap[53 - 1]){
                             //Nothing TO DO
@@ -1611,14 +1611,14 @@ class ISO320Initialization: ISOMessage
                     }
 
                 case ISO320ChangeNumberConstants.HUB_PARM_DOWNLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_PARAMETER_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_PARAMETER_DOWNLOAD_END, iLen: 6) == 0))
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_PARAMETER_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_PARAMETER_DOWNLOAD_END, iLen: 6) == 0))
                     {
                         ProcessHubParmDownload()
                     }else{
                         debugPrint("WRONG PROC CODE")
                     }
 
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_PARAMETER_DOWNLOAD_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_PARAMETER_DOWNLOAD_END, iLen: 6) == 0) {
                         m_iChangeNumber += 1
                         ProcessHubParmDownloadDateTime()
 
@@ -1640,7 +1640,7 @@ class ISO320Initialization: ISOMessage
                         }
                     }
                 case ISO320ChangeNumberConstants.HUB_PINEKEY_EXCHANGE:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_PINEKEY_EXCHANGE_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_PINEKEY_EXCHANGE_END, iLen: 6) == 0))
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_PINEKEY_EXCHANGE_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_PINEKEY_EXCHANGE_END, iLen: 6) == 0))
                     {
                         _ = ProcessPineKeyExchangeResponse()
                     }else{
@@ -1648,44 +1648,44 @@ class ISO320Initialization: ISOMessage
                     }
 
                 case ISO320ChangeNumberConstants.HUB_GET_PINE_SESSION_KEY:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETPSK_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETPSK_END, iLen: 6) == 0))
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_GETPSK_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_GETPSK_END, iLen: 6) == 0))
                     {
                         _ = ProcessPSKDownload()
                     }else{
                         debugPrint("WRONG PROC CODE")
 
                     }
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETPSK_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_GETPSK_END, iLen: 6) == 0) {
                         m_iChangeNumber += 1
                     }
 
                 case ISO320ChangeNumberConstants.HUB_GET_BIN_RANGE:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETBINRANGE_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETBINRANGE_END, iLen: 6) == 0))
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_GETBINRANGE_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_GETBINRANGE_END, iLen: 6) == 0))
                     {
                         _ = ProcessBinRangeDownload()
                     }else{
                         debugPrint("WRONG PROC CODE")
                     }
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETBINRANGE_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_GETBINRANGE_END, iLen: 6) == 0) {
                         m_iChangeNumber += 1
                         ProcessBinRangeDateTime()
                     }
 
                 case ISO320ChangeNumberConstants.HUB_GET_CSV_TXN_MAP:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETCSVTXNMAP_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETCSVTXNMAP_END, iLen: 6) == 0))
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_GETCSVTXNMAP_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_GETCSVTXNMAP_END, iLen: 6) == 0))
                     {
                         _ = ProcessCSVTxnMapDownload()
                     }else{
                         debugPrint("WRONG PROC CODE");
 
                     }
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETCSVTXNMAP_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_GETCSVTXNMAP_END, iLen: 6) == 0) {
                         m_iChangeNumber += 1
                         ProcessCSVTxnMapVersion()
                     }
 
                 case ISO320ChangeNumberConstants.HUB_GET_CACRT:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETCACRT_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETCACRT_END, iLen: 6) == 0))
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_GETCACRT_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_GETCACRT_END, iLen: 6) == 0))
                     {
                         if (bitmap[61 - 1] && bitmap[53 - 1])
                         {
@@ -1694,7 +1694,7 @@ class ISO320Initialization: ISOMessage
                             }
                         }
                     }
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETCACRT_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_GETCACRT_END, iLen: 6) == 0) {
                         //Delete the temp downloadfile
                         //this will handle the scenario when we have some xyz PVM version and
                         //downloading xya version which was not sucessful.
@@ -1710,29 +1710,29 @@ class ISO320Initialization: ISOMessage
                     }
 
                 case ISO320ChangeNumberConstants.HUB_GET_TXN_BIN:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETTXNBIN_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETTXNBIN_END, iLen: 6) == 0))
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_GETTXNBIN_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_GETTXNBIN_END, iLen: 6) == 0))
                     {
                         _ = ProcessTxnBinDownload();
                     }
 
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_GETTXNBIN_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_GETTXNBIN_END, iLen: 6) == 0) {
                         m_iChangeNumber += 1
                         ProcessTxnBinDateTime()
                     }
 
                 case ISO320ChangeNumberConstants.HUB_GET_IGNORE_AMT_CSV_TXN_LIST:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_IGNORE_AMOUNT_CSV_MAP_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_IGNORE_AMOUNT_CSV_MAP_END, iLen: 6) == 0))
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_IGNORE_AMOUNT_CSV_MAP_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_IGNORE_AMOUNT_CSV_MAP_END, iLen: 6) == 0))
                     {
                         _ = ProcessCSVTxnIgnoreAmtListDownload()
                     }
 
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_IGNORE_AMOUNT_CSV_MAP_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_IGNORE_AMOUNT_CSV_MAP_END, iLen: 6) == 0) {
                         m_iChangeNumber += 1
                         ProcessCSVTxnIgnoreAmtDateTime()
                     }
 
                 case ISO320ChangeNumberConstants.HUB_GET_EDC_APP_DOWNLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_APP_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_APP_DOWNLOAD_END, iLen: 6) == 0))
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_APP_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_APP_DOWNLOAD_END, iLen: 6) == 0))
                     {
                         if (bitmap[61 - 1] && bitmap[53 - 1])
                         {
@@ -1745,7 +1745,7 @@ class ISO320Initialization: ISOMessage
                         }
                     }
 
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_APP_DOWNLOAD_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_APP_DOWNLOAD_END, iLen: 6) == 0) {
                         _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.TEMEDCAPPFILE)
                         _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DWNLDEDCAPPINFO)
                         _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DWNLDEDCAPPCHUNKINFO)
@@ -1755,14 +1755,14 @@ class ISO320Initialization: ISOMessage
                         m_iChangeNumber += 1
                     }
                 case ISO320ChangeNumberConstants.EDC_FIXED_CHARGESLIP_ID_DOWNLOAD://for dynamic chargeslip format
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_REQUIRED_FIXED_CHARGESLIP_ID_LIST_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_REQUIRED_FIXED_CHARGESLIP_ID_LIST_DOWNLOAD_END, iLen: 6) == 0)) {
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_REQUIRED_FIXED_CHARGESLIP_ID_LIST_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_REQUIRED_FIXED_CHARGESLIP_ID_LIST_DOWNLOAD_END, iLen: 6) == 0)) {
                         if (bitmap[61 - 1] && bitmap[53 - 1]) {
                             debugPrint("Response->field 61 and 53 found charge chargeslip Id download")
                             //check for multi packets
                             ProcessFixedChargeSlipIdDownload()
                         }
                     }
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_REQUIRED_FIXED_CHARGESLIP_ID_LIST_DOWNLOAD_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_REQUIRED_FIXED_CHARGESLIP_ID_LIST_DOWNLOAD_END, iLen: 6) == 0) {
                         m_bCurrentPacketCount = 0
                         m_bTotalPacketCount = 0
                         m_iChangeNumber += 1
@@ -1772,7 +1772,7 @@ class ISO320Initialization: ISOMessage
                     }
 
                 case ISO320ChangeNumberConstants.EDC_FIXED_CHARGESLIP_DOWNLOAD://for dynamic chargeslip format
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_REQUIRED_FIXED_CHARGESLIP_ID_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_REQUIRED_FIXED_CHARGESLIP_ID_DOWNLOAD_END, iLen: 6) == 0)) {
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_REQUIRED_FIXED_CHARGESLIP_ID_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_REQUIRED_FIXED_CHARGESLIP_ID_DOWNLOAD_END, iLen: 6) == 0)) {
                         if (bitmap[61 - 1] && bitmap[53 - 1]) {
                             debugPrint("Response->field 61 and 53 found Chargeslip download")
                             //check for multi packets
@@ -1782,7 +1782,7 @@ class ISO320Initialization: ISOMessage
                         }
                     }
 
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_REQUIRED_FIXED_CHARGESLIP_ID_DOWNLOAD_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_REQUIRED_FIXED_CHARGESLIP_ID_DOWNLOAD_END, iLen: 6) == 0) {
                         _ = FileSystem.DeleteFileComplete(strFileName: m_chTempFixedChargeSlipDwnFile)
                         _ = FileSystem.DeleteFileComplete(strFileName: m_chTempFixedChargeSlipfileName)
                         _ = FileSystem.DeleteFileComplete(strFileName: m_chTempFixedChargeSlipChunkFile)
@@ -1814,14 +1814,14 @@ class ISO320Initialization: ISOMessage
 
 
                 case ISO320ChangeNumberConstants.HUB_GET_CLESS_UPLOAD://amitesh::for cless param  upload
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_CLESSPARAM_UPLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_CLESSPARAM_UPLOAD_END, iLen: 6) == 0))
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_CLESSPARAM_UPLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_CLESSPARAM_UPLOAD_END, iLen: 6) == 0))
                     {
                         if (bitmap[61 - 1] && bitmap[53 - 1]){
                             //Nothing TO DO
                         }
 
                         // Check for number of Packets upload.
-                        if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_CLESSPARAM_UPLOAD_END, iLen: 6) == 0)
+                        if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_CLESSPARAM_UPLOAD_END, iLen: 6) == 0)
                         {
                             m_iChangeNumber += 1
                         }
@@ -1830,7 +1830,7 @@ class ISO320Initialization: ISOMessage
                     }
 
                 case ISO320ChangeNumberConstants.CLESS_PARM_DWONLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_CLESSXML_UPDATE_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_CLESSXML_UPADTE_END, iLen: 6) == 0))
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_CLESSXML_UPDATE_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_CLESSXML_UPADTE_END, iLen: 6) == 0))
                     {
                         if (bitmap[61 - 1] && bitmap[53 - 1]) {
                             if (!ProcessCLESSEMVParDownload()) {
@@ -1838,7 +1838,7 @@ class ISO320Initialization: ISOMessage
                             }
                         }
                     }
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_CLESSXML_UPADTE_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_CLESSXML_UPADTE_END, iLen: 6) == 0) {
                         //Delete the temp downloadfile
                         //this will handle the scenario when we have some xyz PVM version and
                         //downloading xya version which was not sucessful.
@@ -1860,13 +1860,13 @@ class ISO320Initialization: ISOMessage
                     }
 
                 case ISO320ChangeNumberConstants.HUB_GET_EMV_TAG_LIST://amitesh::EMV TAG List download
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_REQUIRED_EMV_TAGS_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_REQUIRED_EMV_TAGS_DOWNLOAD_END, iLen: 6) == 0))
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_REQUIRED_EMV_TAGS_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_REQUIRED_EMV_TAGS_DOWNLOAD_END, iLen: 6) == 0))
                     {
                         if (bitmap[61 - 1] && bitmap[53 - 1])
                         {
                             _ = ProcessEMVTagListDownload()
                         }
-                        if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_REQUIRED_EMV_TAGS_DOWNLOAD_END, iLen: 6) == 0) {
+                        if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_REQUIRED_EMV_TAGS_DOWNLOAD_END, iLen: 6) == 0) {
                             m_iChangeNumber += 1
                             ProcessEMVTagListDateTime()
                         }
@@ -1876,20 +1876,20 @@ class ISO320Initialization: ISOMessage
                     }
 
                 case ISO320ChangeNumberConstants.EDC_PRINTING_LOCATION_DOWNLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_PRINTING_LOCATION_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_PRINTING_LOCATION_DOWNLOAD_END, iLen: 6) == 0))
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_PRINTING_LOCATION_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_PRINTING_LOCATION_DOWNLOAD_END, iLen: 6) == 0))
                     {
                         _ = ProcessPrintingLocationDetailsDownload()
                     }else
                     {
                         debugPrint("WRONG PROC CODE")
                     }
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_PRINTING_LOCATION_DOWNLOAD_END, iLen: 6) == 0)
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_PRINTING_LOCATION_DOWNLOAD_END, iLen: 6) == 0)
                     {
                         m_iChangeNumber += 1
                     }
 
                 case ISO320ChangeNumberConstants.EDC_AID_EMV_TXNTYPE_DOWNLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_AID_EMV_TXNTYPE_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_AID_EMV_TXNTYPE_DOWNLOAD_END, iLen: 6) == 0))
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_AID_EMV_TXNTYPE_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_AID_EMV_TXNTYPE_DOWNLOAD_END, iLen: 6) == 0))
                     {
                         if (bitmap[61 - 1])
                         {
@@ -1899,7 +1899,7 @@ class ISO320Initialization: ISOMessage
                     {
                         debugPrint("WRONG PROC CODE")
                     }
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_AID_EMV_TXNTYPE_DOWNLOAD_END, iLen: 6) == 0)
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_AID_EMV_TXNTYPE_DOWNLOAD_END, iLen: 6) == 0)
                     {
                         //manage download date
                         ProcessAIDEMVTXNTYPEDateTime()
@@ -1907,7 +1907,7 @@ class ISO320Initialization: ISOMessage
                     }
 
                 case ISO320ChangeNumberConstants.EDC_TXN_TYPE_FLAGS_MAPPING_DOWNLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_TXN_TYPE_FLAGS_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_TXN_TYPE_FLAGS_DOWNLOAD_END, iLen: 6) == 0))
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_TXN_TYPE_FLAGS_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_TXN_TYPE_FLAGS_DOWNLOAD_END, iLen: 6) == 0))
                     {
                         if (bitmap[61 - 1])
                         {
@@ -1917,7 +1917,7 @@ class ISO320Initialization: ISOMessage
                     {
                         debugPrint("WRONG PROC CODE");
                     }
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_TXN_TYPE_FLAGS_DOWNLOAD_END, iLen: 6) == 0)
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_TXN_TYPE_FLAGS_DOWNLOAD_END, iLen: 6) == 0)
                     {
                         //manage download date
                         ProcessTxnTypeFlagsMappingDateTime()
@@ -1925,14 +1925,14 @@ class ISO320Initialization: ISOMessage
                     }
 
                 case ISO320ChangeNumberConstants.EDC_LIB_LIST_DOWNLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_LIB_LIST_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_LIB_LIST_DOWNLOAD_END, iLen: 6) == 0)) {
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_LIB_LIST_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_LIB_LIST_DOWNLOAD_END, iLen: 6) == 0)) {
                         if (bitmap[61 - 1] && bitmap[53 - 1]) {
                             debugPrint("Response->field 61 and 53 found Lib download")
                             ProcessLibIdDownload();
                         }
                     }
 
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_LIB_LIST_DOWNLOAD_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_LIB_LIST_DOWNLOAD_END, iLen: 6) == 0) {
                         m_bCurrentPacketCount = 0;
                         m_bTotalPacketCount = 0;
                         m_iChangeNumber += 1
@@ -1942,7 +1942,7 @@ class ISO320Initialization: ISOMessage
                     }
 
                 case ISO320ChangeNumberConstants.EDC_LIB_DOWNLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_LIB_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_LIB_DOWNLOAD_END, iLen: 6) == 0)) {
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_LIB_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_LIB_DOWNLOAD_END, iLen: 6) == 0)) {
                         if (bitmap[61 - 1] && bitmap[53 - 1]) {
                             debugPrint("Response->field 61 and 53 found Lib");
 
@@ -1952,7 +1952,7 @@ class ISO320Initialization: ISOMessage
                         }
                     }
 
-                    if( memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_LIB_DOWNLOAD_END, iLen: 6) == 0){
+                    if( memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_LIB_DOWNLOAD_END, iLen: 6) == 0){
                         debugPrint("PC_EDC_LIB_DOWNLOAD_END")
                         let globalData = GlobalData.singleton
 
@@ -2034,7 +2034,7 @@ class ISO320Initialization: ISOMessage
                     m_bTotalPacketCount = 0;
 
                 case ISO320ChangeNumberConstants.HOST_MINIPVM_ID_DOWNLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CIMB_MINIPVM_ID_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CIMB_MINIPVM_ID_DOWNLOAD_END, iLen: 6) == 0)) {
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_CIMB_MINIPVM_ID_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_CIMB_MINIPVM_ID_DOWNLOAD_END, iLen: 6) == 0)) {
                         if (bitmap[61 - 1] && bitmap[53 - 1]) {
                             debugPrint("Response->field 61 and 53 found MINI PVM Id download")
                             //check for multi packets
@@ -2042,7 +2042,7 @@ class ISO320Initialization: ISOMessage
                             _ = ProcessMINIPVMIdDownload()
                         }
                     }
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CIMB_MINIPVM_ID_DOWNLOAD_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_CIMB_MINIPVM_ID_DOWNLOAD_END, iLen: 6) == 0) {
                         m_bCurrentPacketCount = 0
                         m_bTotalPacketCount = 0
                         m_iChangeNumber += 1
@@ -2052,7 +2052,7 @@ class ISO320Initialization: ISOMessage
                     }
 
                 case ISO320ChangeNumberConstants.HOST_MINIPVM_DOWNLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CIMB_MINIPVM_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CIMB_MINIPVM_DOWNLOAD_END, iLen: 6) == 0)) {
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_CIMB_MINIPVM_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_CIMB_MINIPVM_DOWNLOAD_END, iLen: 6) == 0)) {
                         if (bitmap[61 - 1] && bitmap[53 - 1]) {
                             debugPrint("Response->field 61 and 53 found MINIPVM download")
 
@@ -2062,7 +2062,7 @@ class ISO320Initialization: ISOMessage
                             }
                         }
                     }
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_CIMB_MINIPVM_DOWNLOAD_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_CIMB_MINIPVM_DOWNLOAD_END, iLen: 6) == 0) {
                         _ = FileSystem.DeleteFileComplete(strFileName: m_chTempMINIPVMDwnFile)
                         _ = FileSystem.DeleteFileComplete(strFileName: m_chTempMINIPVMfileName)
                         _ = FileSystem.DeleteFileComplete(strFileName: m_chTempMINIPVMChunkFile)
@@ -2078,7 +2078,7 @@ class ISO320Initialization: ISOMessage
                     }
 
                 case ISO320ChangeNumberConstants.CSV_TXN_TYPE_MINIPVM_MAPPING_DOWNLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_CSV_TXN_TYPE_MINIPVM_MAPPING_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_CSV_TXN_TYPE_MINIPVM_DOWNLOAD_END, iLen: 6) == 0))
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_CSV_TXN_TYPE_MINIPVM_MAPPING_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_CSV_TXN_TYPE_MINIPVM_DOWNLOAD_END, iLen: 6) == 0))
                     {
                         RemoveCsvTxnTypeMiniPvmMappingFile()
                         if (bitmap[61 - 1])
@@ -2087,14 +2087,14 @@ class ISO320Initialization: ISOMessage
                         }
                     }
 
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_EDC_CSV_TXN_TYPE_MINIPVM_DOWNLOAD_END, iLen: 6) == 0)
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_EDC_CSV_TXN_TYPE_MINIPVM_DOWNLOAD_END, iLen: 6) == 0)
                     {
                         ProcessCSVTxnTypeMiniPvmMappingDateTime()
                         m_iChangeNumber += 1
                     }
 
                 case ISO320ChangeNumberConstants.EDC_ISPASSWORD_TXN_MAPPING_DOWNLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_EDC_TXN_TYPE_PASSWORD_MAPPING_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_EDC_TXN_TYPE_PASSWORD_MAPPING_DOWNLOAD_END, iLen: 6) == 0))
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_EDC_TXN_TYPE_PASSWORD_MAPPING_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_EDC_TXN_TYPE_PASSWORD_MAPPING_DOWNLOAD_END, iLen: 6) == 0))
                     {
                         if (bitmap[61 - 1])
                         {
@@ -2102,20 +2102,20 @@ class ISO320Initialization: ISOMessage
                         }
                     }
 
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_EDC_TXN_TYPE_PASSWORD_MAPPING_DOWNLOAD_END, iLen: 6) == 0)
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_EDC_TXN_TYPE_PASSWORD_MAPPING_DOWNLOAD_END, iLen: 6) == 0)
                     {
                         ProcessISPasswordDateTime()
                         m_iChangeNumber += 1
                     }
 
                 case ISO320ChangeNumberConstants.EDC_LOG_SHIPPING_DETAILS_DOWNLOAD:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_EDC_LOG_SHIPPING_DETAILS_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_EDC_LOG_SHIPPING_DETAILS_DOWNLOAD_END, iLen: 6) == 0))
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_EDC_LOG_SHIPPING_DETAILS_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_EDC_LOG_SHIPPING_DETAILS_DOWNLOAD_END, iLen: 6) == 0))
                     {
                         if (bitmap[61 - 1]) {
                             _ = ProcessLogShippingDetailsDownload()
                         }
                     }
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_EDC_LOG_SHIPPING_DETAILS_DOWNLOAD_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_EDC_LOG_SHIPPING_DETAILS_DOWNLOAD_END, iLen: 6) == 0) {
                         _ = ProcessLogShipingDtTime()
                         m_iChangeNumber += 1
     //                    if(CConx.isSerial())
@@ -2128,24 +2128,24 @@ class ISO320Initialization: ISOMessage
     //                    }
                     }
                 case ISO320ChangeNumberConstants.AD_SERVER_HTL_SYNC:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_AD_SERVER_HTL_SYNC_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_AD_SERVER_HTL_SYNC_END, iLen: 6) == 0))
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_AD_SERVER_HTL_SYNC_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_AD_SERVER_HTL_SYNC_END, iLen: 6) == 0))
                     {
                         if (bitmap[61 - 1]) {
                             ProcessAdServerHTLSync();
                         }
                     }
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_AD_SERVER_HTL_SYNC_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_AD_SERVER_HTL_SYNC_END, iLen: 6) == 0) {
                         SaveAdServerHTLSync();
                         m_iChangeNumber += 1
                     }
                 case ISO320ChangeNumberConstants.USER_INFO_SYNC:
-                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_USER_INFO_SYNC_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_USER_INFO_SYNC_END, iLen: 6) == 0))
+                    if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_USER_INFO_SYNC_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_USER_INFO_SYNC_END, iLen: 6) == 0))
                     {
                         if (bitmap[61 - 1]) {
                             ProcessUserInfoSync();
                         }
                     }
-                    if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_USER_INFO_SYNC_END, iLen: 6) == 0) {
+                    if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines), str2: ProcessingCodeConstants.PC_USER_INFO_SYNC_END, iLen: 6) == 0) {
                         SaveUserInfoSync();
                         m_iChangeNumber += 1
                     }
@@ -2154,7 +2154,7 @@ class ISO320Initialization: ISOMessage
                     if(CConx.isSerial())
                     {
                         m_bis_last_content = false;
-                        if ((memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_OEM_ALL_CONTENT_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_OEM_ALL_CONTENT_DOWNLOAD_END, iLen: 6) == 0))
+                        if ((memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_OEM_ALL_CONTENT_DOWNLOAD_START, iLen: 6) == 0) || (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_OEM_ALL_CONTENT_DOWNLOAD_END, iLen: 6) == 0))
                         {
                             //Either field 61 or field 62 has to come in case of start and end otherwise its an error scenario
                             if(bitmap[61 - 1] == false && bitmap[62 - 1] == false)
@@ -2191,9 +2191,11 @@ class ISO320Initialization: ISOMessage
                                         
                                         var ulChunkSize = Long()
                                         
-
-                                        let sArrTempChunkSize = String(bytes: chArrTempChunkSize, encoding: String.Encoding.utf8)
-                                        ulChunkSize.value = Int64(atol(sArrTempChunkSize))
+                                        var tempData: Int64 = 0
+                                        let strTempData = String(describing: String(bytes: chArrTempChunkSize, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))
+                                        tempData = Int64(strTempData) ?? 0
+                                        
+                                        ulChunkSize.value = tempData
                                         
                                         m_temp_content_chunk = ulChunkSize.value
                                         debugPrint("Response->field 61 and 45 found Image download")
@@ -2222,7 +2224,7 @@ class ISO320Initialization: ISOMessage
                                 }
                             }
                         }
-                        if(memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_OEM_ALL_CONTENT_DOWNLOAD_END, iLen: 6) == 0)
+                        if(memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_OEM_ALL_CONTENT_DOWNLOAD_END, iLen: 6) == 0)
                         {
                             if (bitmap[61 - 1])
                             {
@@ -2254,7 +2256,7 @@ class ISO320Initialization: ISOMessage
                                 }
                             }
                         }
-                        if (memcmp(str1: String(bytes: data[3-1], encoding: .utf8)!, str2: ProcessingCodeConstants.PC_OEM_CONTENT_DOWNLOAD_NO_IMAGE, iLen: 6) == 0)
+                        if (memcmp(str1: String(bytes: data[3-1], encoding: .ascii)!, str2: ProcessingCodeConstants.PC_OEM_CONTENT_DOWNLOAD_NO_IMAGE, iLen: 6) == 0)
                         {
                             m_iChangeNumber += 1
                             m_bCurrentPacketCount = 0  // may be this won't be required, will check later .
@@ -2429,7 +2431,7 @@ class ISO320Initialization: ISOMessage
         _ = globalData.ReadMasterParamFile()
 
         //if previous version is same as current version then do nothing
-        if(globalData.m_sMasterParamData!.m_strBinRangeDownloadDate == String(bytes: data[43 - 1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)){
+        if(globalData.m_sMasterParamData!.m_strBinRangeDownloadDate == String(bytes: data[43 - 1], encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)){
             return;
         }
 
@@ -2450,7 +2452,7 @@ class ISO320Initialization: ISOMessage
         // if version is different(the file is downloaded) then set reset flag and bin range changed flag true.
         // the bin range changed flag will ensure in loading files to sort bin range file.
 
-        globalData.m_sMasterParamData!.m_strBinRangeDownloadDate = String(bytes: data[43 - 1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
+        globalData.m_sMasterParamData!.m_strBinRangeDownloadDate = String(bytes: data[43 - 1], encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
         debugPrint("m_strBinRangeDownloadDate[\(globalData.m_sMasterParamData!.m_strBinRangeDownloadDate)]")
 
         globalData.m_sMasterParamData!.m_bIsBinRangeChanged = true
@@ -2541,7 +2543,7 @@ class ISO320Initialization: ISOMessage
         _ = globalData.ReadMasterParamFile()
 
         //if previous version is same as current version then do nothing
-        if(globalData.m_sMasterParamData!.m_strCSVTxnMapVersion == String(bytes: data[43 - 1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)){
+        if(globalData.m_sMasterParamData!.m_strCSVTxnMapVersion == String(bytes: data[43 - 1], encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)){
             return;
         }
 
@@ -2561,7 +2563,7 @@ class ISO320Initialization: ISOMessage
 
         // if version is different(the file is downloaded) then set reset flag and bin range changed flag true.
         // the bin range changed flag will ensure in loading files to sort bin range file.
-        globalData.m_sMasterParamData!.m_strCSVTxnMapVersion = String(bytes: data[43 - 1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
+        globalData.m_sMasterParamData!.m_strCSVTxnMapVersion = String(bytes: data[43 - 1], encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
         debugPrint("m_strCSVTxnMapVersion[\(globalData.m_sMasterParamData!.m_strCSVTxnMapVersion)]")
 
         //TODO:- statemachine class needed
@@ -2681,7 +2683,7 @@ class ISO320Initialization: ISOMessage
         _ = globalData.ReadMasterParamFile()
 
         //if previous version is same as current version then do nothing
-        if(globalData.m_sMasterParamData!.m_strTxnBinDownloadDate == String(bytes: data[43 - 1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)){
+        if(globalData.m_sMasterParamData!.m_strTxnBinDownloadDate == String(bytes: data[43 - 1], encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)){
             return;
         }
 
@@ -2702,7 +2704,7 @@ class ISO320Initialization: ISOMessage
 
         // if version is different(the file is downloaded) then set reset flag and bin range changed flag true.
         // the bin range changed flag will ensure in loading files to sort bin range file.
-        globalData.m_sMasterParamData!.m_strTxnBinDownloadDate = String(bytes: data[43 - 1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
+        globalData.m_sMasterParamData!.m_strTxnBinDownloadDate = String(bytes: data[43 - 1], encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
         debugPrint("m_strTxnBinDownloadDate[\(globalData.m_sMasterParamData!.m_strTxnBinDownloadDate)]")
 
         globalData.m_sMasterParamData!.m_bIsTxnBinChanged = true
@@ -2723,7 +2725,7 @@ class ISO320Initialization: ISOMessage
 
         if((!bitmap[61 - 1]) || (len[61-1] <= 0))
         {
-            if(globalData.m_sMasterParamData!.m_strIgnoreAmtCSVTxnListDownloadDate == String(bytes: data[43 - 1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))
+            if(globalData.m_sMasterParamData!.m_strIgnoreAmtCSVTxnListDownloadDate == String(bytes: data[43 - 1], encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))
             {
                 //No Change in Ignore List
                 debugPrint("No Change in Ignore List")
@@ -2825,7 +2827,7 @@ class ISO320Initialization: ISOMessage
         _ = globalData.ReadMasterParamFile();
 
         //if previous version is same as current version then do nothing
-        if(globalData.m_sMasterParamData!.m_strIgnoreAmtCSVTxnListDownloadDate == String(bytes: data[43 - 1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)){
+        if(globalData.m_sMasterParamData!.m_strIgnoreAmtCSVTxnListDownloadDate == String(bytes: data[43 - 1], encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)){
             return
         }
 
@@ -2847,7 +2849,7 @@ class ISO320Initialization: ISOMessage
 
         // if version is different(the file is downloaded) then set reset flag and bin range changed flag true.
         // the bin range changed flag will ensure in loading files to sort bin range file.
-        globalData.m_sMasterParamData!.m_strIgnoreAmtCSVTxnListDownloadDate = String(bytes: data[43 - 1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
+        globalData.m_sMasterParamData!.m_strIgnoreAmtCSVTxnListDownloadDate = String(bytes: data[43 - 1], encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
         debugPrint("m_strIgnoreAmtCSVTxnListDownloadDate[\(globalData.m_sMasterParamData!.m_strIgnoreAmtCSVTxnListDownloadDate)]")
 
         //TODO: StateMachine Class needed
@@ -2869,7 +2871,7 @@ class ISO320Initialization: ISOMessage
             chArrDownloadDate = Array(data[43 - 1][0 ..< data[43 - 1].count])
             //System.arraycopy(data[43-1],0,chArrDownloadDate,0,data[43-1].length);
          
-            if(globalData.m_sMasterParamData!.m_strEMVTagListDownloadDate == String(bytes: chArrDownloadDate, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))
+            if(globalData.m_sMasterParamData!.m_strEMVTagListDownloadDate == String(bytes: chArrDownloadDate, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))
             {
                 //No Change in EMV Tag List
                 debugPrint("No Change in EMV Tag List")
@@ -2913,7 +2915,7 @@ class ISO320Initialization: ISOMessage
             var stEMVTagList: [StEMVTagList] = []
 
             //1 Byte EMV taglen
-            stEMVTagList[0].ushLen = Int8(p[iOffset] & 0x000000FF)
+            stEMVTagList[0].ushLen = Int16(p[iOffset] & 0x000000FF)
             iOffset += 1
             
             if(stEMVTagList[0].ushLen == 1)
@@ -2963,7 +2965,7 @@ class ISO320Initialization: ISOMessage
         _ = globalData.ReadMasterParamFile()
 
         //if previous version is same as current version then do nothing
-        if(globalData.m_sMasterParamData!.m_strEMVTagListDownloadDate == String(bytes: data[43 - 1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)){
+        if(globalData.m_sMasterParamData!.m_strEMVTagListDownloadDate == String(bytes: data[43 - 1], encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)){
             return;
         }
 
@@ -2984,7 +2986,7 @@ class ISO320Initialization: ISOMessage
 
         // if version is different(the file is downloaded) then set reset flag and bin range changed flag true.
         // the bin range changed flag will ensure in loading files to sort bin range file.
-        globalData.m_sMasterParamData!.m_strEMVTagListDownloadDate = String(bytes: data[43 - 1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
+        globalData.m_sMasterParamData!.m_strEMVTagListDownloadDate = String(bytes: data[43 - 1], encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
         debugPrint("m_strEMVTagListDownloadDate[\(globalData.m_sMasterParamData!.m_strEMVTagListDownloadDate)]")
 
 
@@ -3039,7 +3041,7 @@ class ISO320Initialization: ISOMessage
                 m_ObjArrParameterData[m_ulParameterIterator] = ParameterData();
                 m_ObjArrParameterData[m_ulParameterIterator]!.chArrParameterVal = [Byte](repeating: 0x00, count: iParameterValLen)
                 
-                m_ObjArrParameterData[m_ulParameterIterator]!.chArrParameterVal = Array(p[iOffset ..< iOffset + iParameterValLen])
+                m_ObjArrParameterData[m_ulParameterIterator]!.chArrParameterVal = [Byte](p[iOffset ..< iOffset + iParameterValLen])
                 //System.arraycopy(p, iOffset, m_ObjArrParameterData[m_ulParameterIterator].chArrParameterVal, 0, iParameterValLen);
               
                 m_ObjArrParameterData[m_ulParameterIterator]!.uiHostID = iHostID;
@@ -3098,7 +3100,7 @@ class ISO320Initialization: ISOMessage
         var tData: TerminalParamData = GlobalData.singleton.ReadParamFile()!
         
         if(tData != nil){
-            tData.m_strParamDownloadDate =  (String(bytes: data[43 - 1], encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines))!
+            tData.m_strParamDownloadDate =  (String(bytes: data[43 - 1], encoding: .ascii)?.trimmingCharacters(in: .whitespacesAndNewlines))!
             _ = GlobalData.singleton.WriteParamFile(listParamData: tData)
             debugPrint("m_sParamDownloadDate[\(tData.m_strParamDownloadDate)]")
         }
@@ -3148,9 +3150,9 @@ class ISO320Initialization: ISOMessage
                 let chEMVparVersion: [Byte] = getEMVParVersion(isoFeild: ISOFieldConstants.ISO_FIELD_54)
                 if(!chEMVparVersion.isEmpty)
                 {
-                    debugPrint("m_chDownloadingEMVparVersion[\(String(describing: String(bytes: m_chDownloadingEMVparVersion, encoding: .utf8)))] ,chEMVparVersion[\(String(bytes: chEMVparVersion, encoding: .utf8)!)]")
+                    debugPrint("m_chDownloadingEMVparVersion[\(String(describing: String(bytes: m_chDownloadingEMVparVersion, encoding: .ascii)))] ,chEMVparVersion[\(String(bytes: chEMVparVersion, encoding: .ascii)!)]")
                     
-                    if(false != (String(bytes: chEMVparVersion, encoding: .utf8) == String(bytes: m_chDownloadingEMVparVersion, encoding: .utf8)))
+                    if(false != (String(bytes: chEMVparVersion, encoding: .ascii) == String(bytes: m_chDownloadingEMVparVersion, encoding: .ascii)))
                        {
                            //stop PVM download
                            //clean data
@@ -3210,7 +3212,7 @@ class ISO320Initialization: ISOMessage
                     //this will sent in next time in field 59 in all the next requests.
                 if(true == FileSystem.IsFileExist(strFileName: FileNameConstants.EMVPARFILE))
                 {
-                    if(!(globalData.m_sMasterParamData!.m_strEMVParVersion == String(bytes: chEMVParVersion, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)))
+                    if(!(globalData.m_sMasterParamData!.m_strEMVParVersion == String(bytes: chEMVParVersion, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)))
                     {
                         retValParse = 0;
                         //TODO: Statemachine Class needed
@@ -3218,7 +3220,7 @@ class ISO320Initialization: ISOMessage
                     }
                 }
                 if(0 == retValParse){
-                    globalData.m_sMasterParamData!.m_strEMVParVersion = String(bytes: chEMVParVersion, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                    globalData.m_sMasterParamData!.m_strEMVParVersion = String(bytes: chEMVParVersion, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
                     _ = globalData.WriteMasterParamFile()
                 }
             }
@@ -3280,9 +3282,9 @@ class ISO320Initialization: ISOMessage
                 let chEMVparVersion: [Byte] = getCLESSEMVParVersion(isoFeild: ISOFieldConstants.ISO_FIELD_54)
                 if(!chEMVparVersion.isEmpty)
                 {
-                    debugPrint("m_chDownloadingCLESSEMVparVersion[\(String(describing: String(bytes: m_chDownloadingCLESSEMVparVersion, encoding: .utf8)))] ,chEMVparVersion[\(String(bytes: chEMVparVersion, encoding: .utf8)!)]")
+                    debugPrint("m_chDownloadingCLESSEMVparVersion[\(String(describing: String(bytes: m_chDownloadingCLESSEMVparVersion, encoding: .ascii)))] ,chEMVparVersion[\(String(bytes: chEMVparVersion, encoding: .ascii)!)]")
                     
-                    if(false != (String(bytes: chEMVparVersion, encoding: .utf8) == String(bytes: m_chDownloadingCLESSEMVparVersion, encoding: .utf8)))
+                    if(false != (String(bytes: chEMVparVersion, encoding: .ascii) == String(bytes: m_chDownloadingCLESSEMVparVersion, encoding: .ascii)))
                        {
                            //stop PVM download
                            //clean data
@@ -3342,7 +3344,7 @@ class ISO320Initialization: ISOMessage
                     //this will sent in next time in field 59 in all the next requests.
                 if(true == FileSystem.IsFileExist(strFileName: FileNameConstants.CLESSPARFILE))
                 {
-                    if(!(globalData.m_sMasterParamData!.m_strCLESSEMVParVersion == String(bytes: chEMVParVersion, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)))
+                    if(!(globalData.m_sMasterParamData!.m_strCLESSEMVParVersion == String(bytes: chEMVParVersion, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)))
                     {
                         retValParse = 0;
                         //TODO: Statemachine Class needed
@@ -3350,7 +3352,7 @@ class ISO320Initialization: ISOMessage
                     }
                 }
                 if(0 == retValParse){
-                    globalData.m_sMasterParamData!.m_strCLESSEMVParVersion = String(bytes: chEMVParVersion, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                    globalData.m_sMasterParamData!.m_strCLESSEMVParVersion = String(bytes: chEMVParVersion, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
                     _ = globalData.WriteMasterParamFile()
                 }
             }
@@ -3422,7 +3424,7 @@ class ISO320Initialization: ISOMessage
                 currentEMVParDwndInfo.totalpacketCount = Int(m_bTotalPacketCount)
 
                 debugPrint("Saving Download info !!")
-                debugPrint("Version[\(String(bytes: currentEMVParDwndInfo.chVersion, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))]")
+                debugPrint("Version[\(String(bytes: currentEMVParDwndInfo.chVersion, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))]")
                 debugPrint("CurrPkt[\(currentEMVParDwndInfo.currentpacketCount)]")
                 debugPrint("TotPkt [\(currentEMVParDwndInfo.totalpacketCount)]")
                 ItemList.append(currentEMVParDwndInfo)
@@ -3446,10 +3448,15 @@ class ISO320Initialization: ISOMessage
         if(bitmap[45 - 1])
         {
             var chArrTempChunkSize = [Byte](repeating: 0x00, count: len[45 - 1])
-            chArrTempChunkSize = Array(data[45 - 1][0 ..< len[45 - 1]])
+            chArrTempChunkSize = [Byte](data[45 - 1][0 ..< len[45 - 1]])
             //System.arraycopy(data[45-1],0,chArrTempChunkSize,0,len[45-1]);
             var ulChunkSize = Long()
-            ulChunkSize.value = Int64(strtoul(String(bytes: chArrTempChunkSize, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines), nil, 10))
+            
+            var tempData: Int64 = 0
+            let strTempData = String(describing: String(bytes: chArrTempChunkSize, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))
+            tempData = Int64(strTempData) ?? 0
+            
+            ulChunkSize.value = tempData
                 //Long.parseLong(new String(chArrTempChunkSize));
 
             var ItemList: [Long] = []
@@ -3487,7 +3494,7 @@ class ISO320Initialization: ISOMessage
                 ItemList.append(currentEMVParDwndInfo)
 
                 debugPrint("Saving Download info !!")
-                debugPrint("Version[\(String(bytes: currentEMVParDwndInfo.chVersion, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))]")
+                debugPrint("Version[\(String(bytes: currentEMVParDwndInfo.chVersion, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))]")
                 
                 debugPrint("CurrPkt[\(currentEMVParDwndInfo.currentpacketCount)]")
                 debugPrint("TotPkt [\(currentEMVParDwndInfo.totalpacketCount)]")
@@ -3516,7 +3523,12 @@ class ISO320Initialization: ISOMessage
             // System.arraycopy(data[45-1],0,chArrTempChunkSize,0,len[45-1]);
 
             var ulChunkSize = Long()
-            ulChunkSize.value = Int64(strtoul(String(bytes: chArrTempChunkSize, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines), nil, 10))
+            
+            var tempData: Int64 = 0
+            let strTempData = String(describing: String(bytes: chArrTempChunkSize, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))
+            tempData = Int64(strTempData) ?? 0
+            
+            ulChunkSize.value = tempData
             
             var ItemList: [Long] = []
             ItemList.append(ulChunkSize)
@@ -3552,7 +3564,7 @@ class ISO320Initialization: ISOMessage
                 
                 m_bCurrentPacketCount = Int64(lastEMVParDwndInfo.currentpacketCount)
                 m_bTotalPacketCount = Int64(lastEMVParDwndInfo.totalpacketCount)
-                debugPrint("m_chDownloadingEMVparVersion[\(String(describing: String(bytes: m_chDownloadingEMVparVersion, encoding: .utf8)))], m_bCurrentPacketCount[\(m_bCurrentPacketCount)], m_bTotalPacketCount[\(m_bTotalPacketCount)]")
+                debugPrint("m_chDownloadingEMVparVersion[\(String(describing: String(bytes: m_chDownloadingEMVparVersion, encoding: .ascii)))], m_bCurrentPacketCount[\(m_bCurrentPacketCount)], m_bTotalPacketCount[\(m_bTotalPacketCount)]")
                 _ = self.addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_54, data1: m_chDownloadingEMVparVersion, length: 12)
                 debugPrint( "Req->Setting field 54")
             }
@@ -3601,8 +3613,8 @@ class ISO320Initialization: ISOMessage
             m_bCurrentPacketCount = Int64(lastEMVParDwndInfo.currentpacketCount)
             m_bTotalPacketCount   = Int64(lastEMVParDwndInfo.totalpacketCount)
             
-            debugPrint("Earlier m_chDownloadingCLESSEMVparVersion[\(String(describing: String(bytes: m_chDownloadingCLESSEMVparVersion, encoding: .utf8)))]")
-            debugPrint("Earlier m_chDownloadingCLESSEMVparVersion[\(String(describing: String(bytes: m_chDownloadingCLESSEMVparVersion, encoding: .utf8))) m_bCurrentPacketCount(\(m_bCurrentPacketCount)] m_bTotalPacketCount(\(m_bTotalPacketCount))")
+            debugPrint("Earlier m_chDownloadingCLESSEMVparVersion[\(String(describing: String(bytes: m_chDownloadingCLESSEMVparVersion, encoding: .ascii)))]")
+            debugPrint("Earlier m_chDownloadingCLESSEMVparVersion[\(String(describing: String(bytes: m_chDownloadingCLESSEMVparVersion, encoding: .ascii))) m_bCurrentPacketCount(\(m_bCurrentPacketCount)] m_bTotalPacketCount(\(m_bTotalPacketCount))")
             //debugPrint("m_chDownloadingCLESSEMVparVersion[%s], m_bCurrentPacketCount[%d], m_bTotalPacketCount[%d]",new String(m_chDownloadingCLESSEMVparVersion),m_bCurrentPacketCount,m_bTotalPacketCount);
             _ = self.addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_54, data1: m_chDownloadingCLESSEMVparVersion, length: 12)
             debugPrint("Req->Setting field 54")
@@ -3796,12 +3808,12 @@ class ISO320Initialization: ISOMessage
             
             var temp = [Byte](repeating: 0x00, count: 4)
                   
-            temp = Array(p[iOffset ..< iOffset + 4])
+            temp = [Byte](p[iOffset ..< iOffset + 4])
             //System.arraycopy(p,iOffset,temp,0,4);
             chArrTemp = TransactionUtils.bcd2a(temp, 4)!;
             iOffset += 4;
 
-            debugPrint("MINIPVM ID from Host[\(String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))], Action[\((p[iOffset] == AppConstant.ACTION_ADD ? "ACTION_ADD" : p[iOffset] == AppConstant.ACTION_DELETE ? "ACTION_DELETE" : "Unknown ACtion"))]")
+            debugPrint("MINIPVM ID from Host[\(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))], Action[\((p[iOffset] == AppConstant.ACTION_ADD ? "ACTION_ADD" : p[iOffset] == AppConstant.ACTION_DELETE ? "ACTION_DELETE" : "Unknown ACtion"))]")
             debugPrint("Action[%0x0x]", p[iOffset])
             
             if(p[iOffset] == AppConstant.ACTION_ADD)
@@ -3809,7 +3821,7 @@ class ISO320Initialization: ISOMessage
                 debugPrint("ADD ID[\(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))]")
                 
                 if(m_ulCountOfMINIPVMIdAdd < AppConstant.MAX_COUNT_MINIPVM){
-                    m_ulArrMINIPVMIdAdd[Int(m_ulCountOfMINIPVMIdAdd)] = Int64(strtoul(String(bytes: chArrTemp, encoding: .utf8)!, nil, 10))
+                    m_ulArrMINIPVMIdAdd[Int(m_ulCountOfMINIPVMIdAdd)] = Int64(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
 
                     debugPrint("MINIPVM Id to Add[\(m_ulArrMINIPVMIdAdd[Int(m_ulCountOfMINIPVMIdAdd)])], Count[\(m_ulCountOfMINIPVMIdAdd)]")
 
@@ -3818,7 +3830,7 @@ class ISO320Initialization: ISOMessage
                 }else{
                     /** send log **/
                     var ulVal: DataLong = 0x00;
-                    ulVal = DataLong(strtoul(String(bytes: chArrTemp, encoding: .utf8)!, nil, 10))
+                    ulVal = Int64(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
                           
                     debugPrint("MINIPVM Id to Add[\(ulVal)] FAILED")
                 }
@@ -3839,7 +3851,7 @@ class ISO320Initialization: ISOMessage
                 
                 if(m_ulCountOfMINIPVMIdDelete < AppConstant.MAX_COUNT_MINIPVM)
                 {
-                    m_ulArrMINIPVMIdDelete[Int(m_ulCountOfMINIPVMIdDelete)] = DataLong(strtoul(String(bytes: chArrTemp, encoding: .utf8)!, nil, 10))
+                    m_ulArrMINIPVMIdDelete[Int(m_ulCountOfMINIPVMIdDelete)] = Int64(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
 
                     /** Delete File and Append to deleted list **/
                     let chTemplateName: String = String(format: "ct%08d", m_ulArrMINIPVMIdDelete[Int(m_ulCountOfMINIPVMIdDelete)])
@@ -3868,7 +3880,7 @@ class ISO320Initialization: ISOMessage
                 {
                           /** send log **/
                     var ulVal: DataLong = 0x00;
-                    ulVal = DataLong(strtoul(String(bytes: chArrTemp, encoding: .utf8)!, nil, 10))
+                    ulVal = Int64(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
                     debugPrint("MINIPVM Id to Delete[\(ulVal)] FAILED");
                 }
             }
@@ -3922,18 +3934,18 @@ class ISO320Initialization: ISOMessage
         while(length > 0){
             var temp = [Byte](repeating: 0x00, count: 4)
             
-            temp = Array(p[iOffset ..< iOffset + 4])
+            temp = [Byte](p[iOffset ..< iOffset + 4])
             //System.arraycopy(p,iOffset,temp,0,4);
             chArrTemp = TransactionUtils.bcd2a(temp, 4)!
             iOffset += 4;
 
-            debugPrint("IAMGE ID from Host[\(String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))], Action[\((p[iOffset] == AppConstant.ACTION_ADD ? "ACTION_ADD" : p[iOffset] == AppConstant.ACTION_DELETE ? "ACTION_DELETE" : "Unknown ACtion"))]")
+            debugPrint("IAMGE ID from Host[\(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))], Action[\((p[iOffset] == AppConstant.ACTION_ADD ? "ACTION_ADD" : p[iOffset] == AppConstant.ACTION_DELETE ? "ACTION_DELETE" : "Unknown ACtion"))]")
             debugPrint("Action[%0x0x]", p[iOffset])
       
             if(p[iOffset] == AppConstant.ACTION_ADD)
             {
                 if(m_ulCountOfChargeSlipIdAdd < AppConstant.MAX_COUNT_CHARGE_SLIP_IMAGES){
-                    m_ulArrChargeSlipIdAdd[Int(m_ulCountOfChargeSlipIdAdd)] = Int64(strtoul(String(bytes: chArrTemp, encoding: .utf8)!, nil, 10))
+                    m_ulArrChargeSlipIdAdd[Int(m_ulCountOfChargeSlipIdAdd)] = Int64(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
 
                     debugPrint("ChargeSlip Id to Add[\(m_ulArrChargeSlipIdAdd[Int(m_ulCountOfChargeSlipIdAdd)])], Count[\(m_ulCountOfChargeSlipIdAdd)]");
 
@@ -3942,7 +3954,7 @@ class ISO320Initialization: ISOMessage
                 }else{
                     /** send log **/
                     var ulVal: DataLong = 0x00;
-                    ulVal = DataLong(strtoul(String(bytes: chArrTemp, encoding: .utf8)!, nil, 10))
+                    ulVal = Int64(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
                     
                     debugPrint("ChargeSlip Id to Add[\(ulVal)] FAILED")
                 }
@@ -3955,10 +3967,10 @@ class ISO320Initialization: ISOMessage
                  * we will read the list one by one and send the request to host for this
                  * and download the chargeslip template and image in the same way.
                  **************************************************************************/
-                debugPrint("DELETE[\(String(describing: String(bytes: chArrTemp, encoding: .utf8)))]")
+                debugPrint("DELETE[\(String(describing: String(bytes: chArrTemp, encoding: .ascii)))]")
                 if(m_ulCountOfChargeSlipIdDelete < AppConstant.MAX_COUNT_CHARGE_SLIP_IMAGES)
                 {
-                    m_ulArrChargeSlipIdDelete[Int(m_ulCountOfChargeSlipIdDelete)] = DataLong(strtoul(String(bytes: chArrTemp, encoding: .utf8)!, nil, 10))
+                    m_ulArrChargeSlipIdDelete[Int(m_ulCountOfChargeSlipIdDelete)] = Int64(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
 
                     /** Delete File and Append to deleted list **/
                     let chTemplateName: String = String(format: "ct%08d", m_ulArrChargeSlipIdDelete[Int(m_ulCountOfChargeSlipIdDelete)])
@@ -3987,7 +3999,7 @@ class ISO320Initialization: ISOMessage
                 {
                     /** send log **/
                     var ulVal: DataLong = 0x00;
-                    ulVal = DataLong(strtoul(String(bytes: chArrTemp, encoding: .utf8)!, nil, 10))
+                    ulVal = DataLong(strtoul(String(bytes: chArrTemp, encoding: .ascii)!, nil, 10))
                     debugPrint("ChargeSlip Id to Delete[\(ulVal)] FAILED");
                 }
             }
@@ -4121,26 +4133,26 @@ class ISO320Initialization: ISOMessage
 
         while(length > 0){
             var temp = [Byte](repeating: 0x00, count: 4)
-            temp = Array(p[iOffset ..< iOffset + 4])
+            temp = [Byte](p[iOffset ..< iOffset + 4])
             
             //System.arraycopy(p,iOffset,temp,0,4);
             chArrTemp = TransactionUtils.bcd2a(temp, 4)!;
             iOffset += 4;
 
-            debugPrint("IAMGE ID from Host[\(String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))], Action[\((p[iOffset] == AppConstant.ACTION_ADD ? "ACTION_ADD" : p[iOffset]==AppConstant.ACTION_DELETE ? "ACTION_DELETE" : "Unknown ACtion"))]")
+            debugPrint("IAMGE ID from Host[\(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))], Action[\((p[iOffset] == AppConstant.ACTION_ADD ? "ACTION_ADD" : p[iOffset]==AppConstant.ACTION_DELETE ? "ACTION_DELETE" : "Unknown ACtion"))]")
             debugPrint("Action[%0x0x]", p[iOffset])
             
       
             if(p[iOffset] == AppConstant.ACTION_ADD){
-                debugPrint("ADD ID[\(String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))]");
+                debugPrint("ADD ID[\(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))]");
                 if(m_ulCountOfFixedChargeSlipIdAdd < AppConstant.MAX_COUNT_CHARGE_SLIP_IMAGES){
-                    m_ulArrFixedChargeSlipIdAdd[m_ulCountOfFixedChargeSlipIdAdd] = Int64(strtoul(String(bytes: chArrTemp, encoding: .utf8), nil, 10))
+                    m_ulArrFixedChargeSlipIdAdd[m_ulCountOfFixedChargeSlipIdAdd] = Int64(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
 
                     /** Increment counts for Image id and Image id add **/
                     m_ulCountOfFixedChargeSlipIdAdd += 1
 
                 }else{
-                    let ulVal: DataLong = Int64(strtoul(String(bytes: chArrTemp, encoding: .utf8), nil, 10))
+                    let ulVal: DataLong = Int64(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
                       //  Long.parseLong(new String(chArrTemp));
                     let res = String(format: "chargeslip Id to Add[%d] FAILED", ulVal);
                     debugPrint(res)
@@ -4154,11 +4166,11 @@ class ISO320Initialization: ISOMessage
                  * we will read the list one by one and send the request to host for this
                  * and download the chargeslip template and image in the same way.
                  **************************************************************************/
-                debugPrint("DELETE[\(String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))]")
+                debugPrint("DELETE[\(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))]")
                 debugPrint("m_ulCountOfFixedChargeSlipIdDelete[\(m_ulCountOfFixedChargeSlipIdDelete)] ")
                 
                 if(m_ulCountOfFixedChargeSlipIdDelete < AppConstant.MAX_COUNT_CHARGE_SLIP_IMAGES){
-                    m_ulArrFixedChargeSlipIdDelete[m_ulCountOfFixedChargeSlipIdDelete] = Int64(strtoul(String(bytes: chArrTemp, encoding: .utf8), nil, 10))
+                    m_ulArrFixedChargeSlipIdDelete[m_ulCountOfFixedChargeSlipIdDelete] = Int64(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
                         //Long.parseLong(new String(chArrTemp));
 
                     /** Delete File and Append to deleted list **/
@@ -4182,7 +4194,7 @@ class ISO320Initialization: ISOMessage
                     m_ulCountOfFixedChargeSlipIdDelete += 1
                 }else{
                     /** logs **/
-                    let ulVal: DataLong = DataLong(strtoul(String(bytes: chArrTemp, encoding: .utf8), nil, 10))
+                    let ulVal: DataLong = Int64(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
                     let res: String = String(format: "FixedChargeSlip Id to Delete[%d] FAILED", ulVal)
                     debugPrint(res)
                 }
@@ -4375,7 +4387,7 @@ class ISO320Initialization: ISOMessage
             
             var temp = [Byte](repeating: 0x00, count: 4)
             
-            temp = Array(p[iOffset ..< iOffset + 4])
+            temp = [Byte](p[iOffset ..< iOffset + 4])
             //System.arraycopy(p,iOffset,temp,0,4);
             chArrTemp = TransactionUtils.bcd2a(temp, 4)!
             iOffset += 4;
@@ -4384,7 +4396,7 @@ class ISO320Initialization: ISOMessage
             debugPrint("Action[%d]",action);
             if(action == AppConstant.ACTION_ADD){
                 //Library Id
-                libinfo.id =  Int(strtoul(String(bytes: chArrTemp, encoding: .utf8), nil, 16))
+                libinfo.id =  Int(strtoul(String(bytes: chArrTemp, encoding: .ascii), nil, 16))
                 //Long.parseLong(new String(chArrTemp),16);
 
                 //Length of tag
@@ -4393,10 +4405,10 @@ class ISO320Initialization: ISOMessage
                 
                 //Lib File name
                 var tempFileName = [Byte](repeating: 0x00, count: lenTag)
-                tempFileName = Array(p[iOffset ..< iOffset + lenTag])
+                tempFileName = [Byte](p[iOffset ..< iOffset + lenTag])
                 
                 //System.arraycopy(p,iOffset,tempFileName,0,lenTag);
-                libinfo.LibFileName = String(bytes: tempFileName, encoding: .utf8)!
+                libinfo.LibFileName = String(bytes: tempFileName, encoding: .ascii)!
                 iOffset += lenTag
 
                 debugPrint("Lib[\(libinfo.id)], lenTag[\(lenTag)]");
@@ -4427,7 +4439,7 @@ class ISO320Initialization: ISOMessage
                 debugPrint("m_ulCountOflibIdDelete[\(m_ulCountOflibIdDelete)] ")
 
                 //Library Id
-                libinfo.id = Int(strtoul(String(bytes: chArrTemp, encoding: .utf8), nil, 10))
+                libinfo.id = Int(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
                 var _: String = SearchFileNamefromMasterList(id: DataLong(libinfo.id))!
 
                 if(m_ulCountOflibIdDelete < AppConstant.MAX_LIB_FILE)
@@ -4533,7 +4545,7 @@ class ISO320Initialization: ISOMessage
                     debugPrint("bFileisOK memcmp SHA1 OK");
                     bFileisOK = true
                 }else{
-                    debugPrint("chArrFileSha1Download[\(String(bytes: uchArrFileSha1Downloaded, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))], chArrFileSha1Calculated[\(String(bytes: uchArrFileSha1Downloaded, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))]")
+                    debugPrint("chArrFileSha1Download[\(String(bytes: uchArrFileSha1Downloaded, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))], chArrFileSha1Calculated[\(String(bytes: uchArrFileSha1Downloaded, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))]")
                 }
             }
 
@@ -4703,18 +4715,18 @@ class ISO320Initialization: ISOMessage
         }
         while(length > 0){
             var temp = [Byte](repeating: 0x00, count: 4)
-            temp = Array(p[0 ..< 4])
+            temp = [Byte](p[iOffset ..< iOffset + 4])
             
             //System.arraycopy(p,iOffset,temp,0,4);
             chArrTemp = TransactionUtils.bcd2a(temp, 4)!
             iOffset += 4;
 
-            debugPrint("IAMGE ID from Host[\(String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))], Action[\((p[iOffset] == AppConstant.ACTION_ADD ? "ACTION_ADD" : p[iOffset]==AppConstant.ACTION_DELETE ? "ACTION_DELETE" : "Unknown ACtion"))]")
+            debugPrint("IAMGE ID from Host[\(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))], Action[\((p[iOffset] == AppConstant.ACTION_ADD ? "ACTION_ADD" : p[iOffset]==AppConstant.ACTION_DELETE ? "ACTION_DELETE" : "Unknown ACtion"))]")
             debugPrint("Action = p[iOffset]")
             if(p[iOffset] == AppConstant.ACTION_ADD){
-                debugPrint(String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))
+                debugPrint(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))
                 if(m_ulCountOfImageIdAdd < AppConstant.MAX_COUNT_CHARGE_SLIP_IMAGES){
-                    m_ulArrImageIdAdd[m_ulCountOfImageIdAdd] = Int64(String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))!
+                    m_ulArrImageIdAdd[m_ulCountOfImageIdAdd] = Int64(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
 
                     let csData: String = String(format: "Image Id to Add[\(m_ulArrImageIdAdd[m_ulCountOfImageIdAdd])], Count[\(m_ulCountOfImageIdAdd)]")
                     debugPrint(csData)
@@ -4722,14 +4734,14 @@ class ISO320Initialization: ISOMessage
                     /** Increment counts for Image id and Image id add **/
                     m_ulCountOfColoredImageIdAdd += 1
                 }else{
-                    let ulVal: Int64 = Int64(String(bytes: chArrTemp, encoding: .utf8)!)!
+                    let ulVal: Int64 = Int64(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
                     let csData: String = String(format: "Image Id to Add[\(ulVal)] FAILED");
                     debugPrint(csData);
                 }
             }
             else{
 
-                debugPrint(String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines));
+                debugPrint(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines));
                 /*************************************************************************
                 * Write the action for delete skipped on PC but basically
                 * Create 2 list one for ADD and other for delete
@@ -4740,7 +4752,7 @@ class ISO320Initialization: ISOMessage
 
                 debugPrint("m_ulCountOfImageIdDelete[\(m_ulCountOfImageIdDelete)]")
                 if(m_ulCountOfImageIdDelete < AppConstant.MAX_COUNT_CHARGE_SLIP_IMAGES){
-                    m_ulArrImageIdDelete[m_ulCountOfImageIdDelete] = Int64(String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))!
+                    m_ulArrImageIdDelete[m_ulCountOfImageIdDelete] = Int64(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
 
                     /** Delete File and Append to deleted list **/
                     let chFileName: String = String(format: "im%08d",m_ulArrImageIdDelete[m_ulCountOfImageIdDelete])
@@ -4761,7 +4773,7 @@ class ISO320Initialization: ISOMessage
                     m_ulCountOfImageIdDelete += 1
 
                     }else{
-                        let csData: String = String(format: "Image Id to Delete[\(Int64(String(bytes: chArrTemp, encoding: .utf8)!)!)]FAILED")
+                        let csData: String = String(format: "Image Id to Delete[\(Int64(String(bytes: chArrTemp, encoding: .ascii)!)!)]FAILED")
                         debugPrint(csData)
                     }
                 }
@@ -4890,18 +4902,19 @@ class ISO320Initialization: ISOMessage
         }
         while(length > 0){
             var temp = [Byte](repeating: 0x00, count: 4)
-            temp = Array(p[0 ..< 4])
+            temp = [Byte](p[iOffset ..< iOffset + 4])
             
             //System.arraycopy(p,iOffset,temp,0,4);
             chArrTemp = TransactionUtils.bcd2a(temp, 4)!
             iOffset += 4
 
-            debugPrint("IAMGE ID from Host[\(String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))], Action[\((p[iOffset] == AppConstant.ACTION_ADD ? "ACTION_ADD" : p[iOffset]==AppConstant.ACTION_DELETE ? "ACTION_DELETE" : "Unknown ACtion"))]")
+            debugPrint("IAMGE ID from Host[\(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))], Action[\((p[iOffset] == AppConstant.ACTION_ADD ? "ACTION_ADD" : p[iOffset]==AppConstant.ACTION_DELETE ? "ACTION_DELETE" : "Unknown ACtion"))]")
             debugPrint("Action = p[iOffset]")
             if(p[iOffset] == AppConstant.ACTION_ADD){
-                debugPrint(String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))
+                debugPrint(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))
                 if(m_ulCountOfColoredImageIdAdd < AppConstant.MAX_COUNT_CHARGE_SLIP_IMAGES){
-                    m_ulArrColoredImageIdAdd[m_ulCountOfColoredImageIdAdd] = Int64(String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))!
+                    
+                    m_ulArrColoredImageIdAdd[m_ulCountOfColoredImageIdAdd] = Int64(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
 
                     let csData: String = String(format: "Image Id to Add[\(m_ulArrColoredImageIdAdd[m_ulCountOfColoredImageIdAdd])], Count[\(m_ulCountOfColoredImageIdAdd)]")
                     debugPrint(csData)
@@ -4909,14 +4922,14 @@ class ISO320Initialization: ISOMessage
                     /** Increment counts for Image id and Image id add **/
                     m_ulCountOfColoredImageIdAdd += 1
                 }else{
-                    let ulVal: Int64 = Int64(String(bytes: chArrTemp, encoding: .utf8)!)!
+                    let ulVal: Int64 = Int64(String(bytes: chArrTemp, encoding: .ascii)!) ?? 0
                     let csData: String = String(format: "Image Id to Add[\(ulVal)] FAILED");
                     debugPrint(csData);
                 }
             }
             else{
 
-                debugPrint(String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines));
+                debugPrint(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines));
                 /*************************************************************************
                  * Write the action for delete skipped on PC but basically
                  * Create 2 list one for ADD and other for delete
@@ -4927,7 +4940,7 @@ class ISO320Initialization: ISOMessage
 
                 debugPrint("m_ulCountOfImageIdDelete[\(m_ulCountOfColoredImageIdDelete)]")
                 if(m_ulCountOfColoredImageIdDelete < AppConstant.MAX_COUNT_CHARGE_SLIP_IMAGES){
-                    m_ulArrColoredImageIdDelete[m_ulCountOfColoredImageIdDelete] = Int64(String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))!
+                    m_ulArrColoredImageIdDelete[m_ulCountOfColoredImageIdDelete] = Int64(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
 
                     /** Delete File and Append to deleted list **/
                     let chFileName: String = String(format: "im%08d",m_ulArrColoredImageIdDelete[m_ulCountOfColoredImageIdDelete])
@@ -4949,7 +4962,7 @@ class ISO320Initialization: ISOMessage
                     m_ulCountOfColoredImageIdDelete += 1
 
                 }else{
-                    let csData: String = String(format: "Image Id to Delete[\(Int64(String(bytes: chArrTemp, encoding: .utf8)!)!)] FAILED")
+                    let csData: String = String(format: "Image Id to Delete[\(Int64(String(bytes: chArrTemp, encoding: .ascii)!) ?? 0)] FAILED")
                     debugPrint(csData)
                 }
             }
@@ -5077,15 +5090,14 @@ class ISO320Initialization: ISOMessage
         }
 
         var chArrTempBatch = [Byte](repeating: 0x00, count: len[26 - 1])
-        chArrTempBatch = Array(data[26 - 1][0 ..< len[26 - 1]])
+        chArrTempBatch = [Byte](data[26 - 1][0 ..< len[26 - 1]])
         
-        let data = NSData(bytes: chArrTempBatch, length: chArrTempBatch.count)
-        var ulBatchID : Int8 = 0
-        data.getBytes(&ulBatchID, length: 4)
-        ulBatchID = Int8(bigEndian: ulBatchID)
+        var ulBatchID: Int16 = 0
+        let strTempData = String(bytes: chArrTempBatch, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
+        ulBatchID = Int16(strTempData) ?? Int16(0)
         
         //System.arraycopy(data[26-1],0,chArrTempBatch,0,len[26-1]);
-        //let ulBatchID: Int8 = Int8(String(bytes: chArrTempBatch, encoding: .utf8)!)!
+        //let ulBatchID: Int16 = Int16(String(bytes: chArrTempBatch, encoding: .utf8)!)!
 
         //store this as the current batch id in Global Data
         let  globalData = GlobalData.singleton
@@ -5139,20 +5151,28 @@ class ISO320Initialization: ISOMessage
             iOffset += 4
 
                 if(p[iOffset] == AppConstant.ACTION_ADD){
-                    debugPrint("ADD MessageID[\(String(describing: String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)))]")
+                    debugPrint("ADD MessageID[\(String(describing: String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)))]")
                     if(m_ulCountOfMessageIdAdd < AppConstant.MAX_COUNT_MESSAGES)
                     {
-                        m_ulArrMessageIdAdd[m_ulCountOfMessageIdAdd] = DataLong(String(describing: String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)))!
+                        var tempData: Int64 = 0
+                        let strTempData = String(describing: String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))
+                        tempData = Int64(strTempData) ?? 0
+                        
+                        m_ulArrMessageIdAdd[m_ulCountOfMessageIdAdd] = tempData
                         
                         debugPrint("Message Id to Add[\(m_ulArrMessageIdAdd[m_ulCountOfMessageIdAdd])], Count[\(m_ulCountOfMessageIdAdd)]");
                         m_ulCountOfMessageIdAdd += 1
                     }else
                     {
-                        let ulVal: DataLong = DataLong(String(describing: String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)))!
+                        var tempData: Int64 = 0
+                        let strTempData = String(describing: String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))
+                        tempData = Int64(strTempData) ?? 0
+                        
+                        let ulVal: DataLong = tempData
                         debugPrint("Message Id to Add[\(ulVal)] FAILED")
                     }
                 }else{
-                   debugPrint("DELETE MessageID[\(String(describing: String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)))]")
+                   debugPrint("DELETE MessageID[\(String(describing: String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)))]")
                     
                     /*************************************************************************
                      * Write the action for delete skipped on PC but basically
@@ -5165,7 +5185,7 @@ class ISO320Initialization: ISOMessage
                     debugPrint("m_ulCountOfMessageIdDelete[\(m_ulCountOfMessageIdDelete)]")
                     if(m_ulCountOfMessageIdDelete < AppConstant.MAX_COUNT_MESSAGES)
                     {
-                        m_ulArrMessageIdDelete[m_ulCountOfMessageIdDelete] = DataLong(String(describing: String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)))!
+                        m_ulArrMessageIdDelete[m_ulCountOfMessageIdDelete] = DataLong(String(describing: String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))) ?? 0
 
                         var longobj: [Long] = []
                         longobj[0].value = m_ulArrMessageIdDelete[m_ulCountOfMessageIdDelete];
@@ -5185,7 +5205,11 @@ class ISO320Initialization: ISOMessage
                     }
                     else
                     {
-                        let ulVal: Int = Int(DataLong(String(describing: String(bytes: chArrTemp, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)))!)
+                        var tempData: Int = 0
+                        let strTempData = String(describing: String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))
+                        tempData = Int(strTempData) ?? 0
+                        
+                        let ulVal: Int = tempData
                         let csData: String = String(format: "Message Id to Delete[%d] FAILED", ulVal)
                         debugPrint(csData)
                     }
@@ -5253,12 +5277,12 @@ class ISO320Initialization: ISOMessage
                 var messageId: [StructMESSAGEID] = []
                 messageId[0].lmessageId = m_ulArrMessageIdAdd[m_ulTotalMessagesAdded]
                 
-                debugPrint("ADD MessageID[\(messageId[0].lmessageId)], Message[\((String(bytes: m_uchMessage, encoding: String.Encoding.utf8)?.trimmingCharacters(in: .whitespacesAndNewlines))!)], len[\(m_uchMessage.count)]")
+                debugPrint("ADD MessageID[\(messageId[0].lmessageId)], Message[\((String(bytes: m_uchMessage, encoding: String.Encoding.ascii)?.trimmingCharacters(in: .whitespacesAndNewlines))!)], len[\(m_uchMessage.count)]")
                 //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG,"ADD Messageid[%d], Message[%s], len[%d] ",messageId.lmessageId,newString(m_uchMessage).trim(),m_uchMessage.length);
                 
                 let bArrMessage: [Byte] = Array(m_uchMessage[0 ..< m_imessageOffset])
-                messageId[0].strArrMessage = String(bytes: bArrMessage, encoding: String.Encoding.utf8)!
-                
+                messageId[0].strArrMessage = String(bytes: bArrMessage, encoding: .ascii)!
+        
                 //System.arraycopy(m_uchMessage,0,messageId.strArrMessage.getBytes(),0,m_imessageOffset);
                 
                 debugPrint("ADD MessageID[\(messageId[0].lmessageId)], Message[\(messageId[0].strArrMessage)] len[\(messageId[0].strArrMessage.count)]")
@@ -5358,7 +5382,7 @@ class ISO320Initialization: ISOMessage
             m_sParamData = list_ofItem[0]
         }
 
-        m_sParamData.m_strParamDownloadDate = String(bytes: data[43 - 1], encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
+        m_sParamData.m_strParamDownloadDate = String(bytes: data[43 - 1], encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
         
         do{
             _ = try FileSystem.ReWriteFile(strFileName: chFileName, with: list_ofItem)
@@ -5411,7 +5435,7 @@ class ISO320Initialization: ISOMessage
                 debugPrint("Req->Setting field 45")
              }
          }else{
-             debugPrint("DWNLDCACRTINFO not file esxits")
+             debugPrint("DWNLDPVMINFO not file esxits")
          }
     }
     
@@ -5536,7 +5560,12 @@ class ISO320Initialization: ISOMessage
             //System.arraycopy(data[45-1],0,chArrTempChunkSize,0,data[45-1].length);
             
             var ulChunkSize = Long()
-            ulChunkSize.value = Int64(String(bytes: chArrTempChunkSize, encoding: .utf8)!)! /*strtoul(chArrTempChunkSize, NULL, 10);*/
+            var tempData: Int64 = 0
+            let strTempData = String(describing: String(bytes: chArrTempChunkSize, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))
+            tempData = Int64(strTempData) ?? 0
+            
+            ulChunkSize.value = tempData
+            
             debugPrint("ulChunkSize[\(ulChunkSize.value)]");
             var list_of_Item: [Long] = []
             list_of_Item.append(ulChunkSize)
@@ -5577,7 +5606,11 @@ class ISO320Initialization: ISOMessage
             //System.arraycopy(data[45-1],0,chArrTempChunkSize,0,data[45-1].length);
             
             var ulChunkSize = Long()
-            ulChunkSize.value = Int64(String(bytes: chArrTempChunkSize, encoding: .utf8)!)! /*strtoul(chArrTempChunkSize, NULL, 10);*/
+            var tempData: Int64 = 0
+            let strTempData = String(describing: String(bytes: chArrTempChunkSize, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))
+            tempData = Int64(strTempData) ?? 0
+            
+            ulChunkSize.value = tempData
             debugPrint("ulChunkSize[\(ulChunkSize.value)]")
             var list_of_Item: [Long] = []
             list_of_Item.append(ulChunkSize);
@@ -5617,7 +5650,12 @@ class ISO320Initialization: ISOMessage
             //System.arraycopy(data[45-1],0,chArrTempChunkSize,0,data[45-1].length)
                 
             var ulChunkSize = Long()
-            ulChunkSize.value = Int64(String(bytes: chArrTempChunkSize, encoding: .utf8)!)! /*strtoul(chArrTempChunkSize, NULL, 10);*/
+            var tempData: Int64 = 0
+            let strTempData = String(describing: String(bytes: chArrTempChunkSize, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))
+            tempData = Int64(strTempData) ?? 0
+            
+            ulChunkSize.value = tempData
+            
             debugPrint("ulChunkSize[\(ulChunkSize.value)]")
             var list_of_Item: [Long] = []
             list_of_Item.append(ulChunkSize);
@@ -5701,10 +5739,16 @@ class ISO320Initialization: ISOMessage
         if(bitmap[45 - 1])
         {
             var chArrTempChunkSize = [Byte](repeating: 0x00, count: len[45 - 1])
-            chArrTempChunkSize = Array(data[45 - 1][0 ..< len[45 - 1]])
+            chArrTempChunkSize = [Byte](data[45 - 1][0 ..< len[45 - 1]])
 
             var ulChunkSize = Long()
-            ulChunkSize.value = Int64(String(bytes: chArrTempChunkSize, encoding: .utf8)!)!
+            
+            var tempData: Int64 = 0
+            let strTempData = String(describing: String(bytes: chArrTempChunkSize, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))
+            tempData = Int64(strTempData) ?? 0
+            
+            ulChunkSize.value = tempData
+            
             debugPrint("ulChunkSize[\(ulChunkSize.value)]")
             
             var list_of_Items: [Long] = []
@@ -5774,7 +5818,7 @@ class ISO320Initialization: ISOMessage
             var chPvmVersion = [Byte](repeating: 0x00, count: len[isoFeild - 1])
             chPvmVersion = Array(data[isoFeild - 1][0 ..< chPvmVersion.count])
             //System.arraycopy(data[isoFeild-1],0,chPvmVersion,0,chPvmVersion.length);
-            ulPVMVersion.value = Int64((String(bytes: chPvmVersion, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines))!)!
+            ulPVMVersion.value = Int64((String(bytes: chPvmVersion, encoding: .ascii)?.trimmingCharacters(in: .whitespacesAndNewlines))!) ?? 0
             return AppConstant.TRUE;
         }
         return  AppConstant.FALSE;
@@ -5818,7 +5862,13 @@ class ISO320Initialization: ISOMessage
             //System.arraycopy(data[45-1],0,chArrTempChunkSize,0,data[45-1].length);
             
             var ulChunkSize = Long()
-            ulChunkSize.value = Int64(String(bytes: chArrTempChunkSize, encoding: .utf8)!)! /*strtoul(chArrTempChunkSize, NULL, 10);*/
+        
+            var tempData: Int64 = 0
+            let strTempData = String(describing: String(bytes: chArrTempChunkSize, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))
+            tempData = Int64(strTempData) ?? 0
+            
+            ulChunkSize.value = tempData
+            
             debugPrint("ulChunkSize[\(ulChunkSize.value)]");
             var list_of_Item: [Long] = []
             list_of_Item.append(ulChunkSize);
@@ -5888,7 +5938,7 @@ class ISO320Initialization: ISOMessage
             chCACRTVersion = Array(data[isoFeild - 1][0 ..< chCACRTVersion.count])
             //System.arraycopy(data[isoFeild-1],0,chCACRTVersion,0,chCACRTVersion.length);
             
-            let strCACRTVersion: String = (String(bytes: chCACRTVersion, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines))!
+            let strCACRTVersion: String = (String(bytes: chCACRTVersion, encoding: .ascii)?.trimmingCharacters(in: .whitespacesAndNewlines))!
             ulCACRTVersion.value = Int64(strCACRTVersion)!
             return AppConstant.TRUE;
          }
@@ -5934,7 +5984,13 @@ class ISO320Initialization: ISOMessage
             
             //System.arraycopy(data[45-1],0,chArrTempChunkSize,0,len[45-1]);
             var ulChunkSize = Long()
-            ulChunkSize.value = Int64(String(bytes: chArrTempChunkSize, encoding: .utf8)!)!
+            
+            var tempData: Int64 = 0
+            let strTempData = String(describing: String(bytes: chArrTempChunkSize, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))
+            tempData = Int64(strTempData) ?? 0
+            
+            ulChunkSize.value = tempData
+            
             debugPrint("ulChunkSize[\(ulChunkSize.value)]")
             var list_of_Item: [Long] = []
             list_of_Item.append(ulChunkSize);
@@ -6523,7 +6579,7 @@ class ISO320Initialization: ISOMessage
             chEDCAppVersion = [Byte](repeating: 0x00, count: len[isoFeild - 1])
             chEDCAppVersion = Array(data[isoFeild - 1][0 ..< chEDCAppVersion.count])
             
-            debugPrint("getEDCAppVersion [\(String(bytes: chEDCAppVersion, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))]")
+            debugPrint("getEDCAppVersion [\(String(bytes: chEDCAppVersion, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))]")
         }
         return chEDCAppVersion;
     }
@@ -6569,7 +6625,7 @@ class ISO320Initialization: ISOMessage
                 
                 let chEDCAppVersion: [Byte] = getEDCAppVersion(isoFeild: 54)
                 if (!chEDCAppVersion.isEmpty) {
-                    debugPrint("m_chDownloadingEDCAppVersion[\(String(bytes: m_chDownloadingEDCAppVersion, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))], chEDCAppVersion[\(String(bytes: m_chDownloadingEDCAppVersion, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)))]")
+                    debugPrint("m_chDownloadingEDCAppVersion[\(String(bytes: m_chDownloadingEDCAppVersion, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))], chEDCAppVersion[\(String(bytes: m_chDownloadingEDCAppVersion, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)))]")
                     
                     if (!chEDCAppVersion.elementsEqual(m_chDownloadingEDCAppVersion)) {
                          debugPrint("version Mismatch")
@@ -6611,7 +6667,7 @@ class ISO320Initialization: ISOMessage
              {
                  debugPrint("bFileisOK bitmap[ISO_FIELD_62-1] ");
                 var uchArrFileSha1Downloaded = [Byte](repeating: 0x00, count: len[62 - 1])
-                uchArrFileSha1Downloaded = Array(data[62 - 1][0 ..< len[62 - 1]])
+                uchArrFileSha1Downloaded = [Byte](data[62 - 1][0 ..< len[62 - 1]])
                 
                 //System.arraycopy(data[62-1],0,uchArrFileSha1Downloaded,0,len[62-1]);
                 let uchArrFileSha1Calculated: [Byte] = FileSystem.GetSHA1ofFile(strFileName: FileNameConstants.TEMEDCAPPFILE)!
@@ -6623,7 +6679,7 @@ class ISO320Initialization: ISOMessage
                  }else{
                      globalData.mFinalMsgDisplayField58 = "New App SHA1 Mismatch" + "\n" + "Initialization Failed!!!"
                     
-                    debugPrint("chArrFileSha1Download[\(String(bytes: uchArrFileSha1Downloaded, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))], chArrFileSha1Calculated[\(String(bytes: uchArrFileSha1Calculated, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))]")
+                    debugPrint("chArrFileSha1Download[\(String(bytes: uchArrFileSha1Downloaded, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))], chArrFileSha1Calculated[\(String(bytes: uchArrFileSha1Calculated, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))]")
                  }
              }
 
@@ -6636,7 +6692,7 @@ class ISO320Initialization: ISOMessage
                 let chEDCAppVersion: [Byte] = getEDCAppVersion(isoFeild: 54)
                 
                 if (!chEDCAppVersion.isEmpty) {
-                    let strAppVersion: String = String(bytes: chEDCAppVersion, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
+                    let strAppVersion: String = String(bytes: chEDCAppVersion, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
                     
                     if (!strAppVersion.elementsEqual(globalData.m_sMasterParamData!.m_strAppVersion)) {
                          debugPrint("APP Version Different Activating Software")
@@ -6730,13 +6786,13 @@ class ISO320Initialization: ISOMessage
             if(!chEDCAppVersion.isEmpty)
             {
                 //carry out str to ul and store it in the database or file system as the case may be this will sent in next time in field 59 in all the next requests.
-                currentEDCAppDwndInfo.chVersion = Array(chEDCAppVersion[0 ..< AppConstant.MAX_APP_VERSION_LEN])
+                currentEDCAppDwndInfo.chVersion = [Byte](chEDCAppVersion[0 ..< AppConstant.MAX_APP_VERSION_LEN])
                 //System.arraycopy(chEDCAppVersion,0,currentEDCAppDwndInfo.chVersion,0,AppConst.MAX_APP_VERSION_LEN);
                 currentEDCAppDwndInfo.currentpacketCount = Int(m_bCurrentPacketCount)
                 currentEDCAppDwndInfo.totalpacketCount = Int(m_bTotalPacketCount)
 
                 debugPrint("Saving Download info !!");
-                debugPrint("Version[\(String(bytes: currentEDCAppDwndInfo.chVersion, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))], CurrPkt[\(currentEDCAppDwndInfo.currentpacketCount)], TotPkt [\(currentEDCAppDwndInfo.totalpacketCount)]")
+                debugPrint("Version[\(String(bytes: currentEDCAppDwndInfo.chVersion, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))], CurrPkt[\(currentEDCAppDwndInfo.currentpacketCount)], TotPkt [\(currentEDCAppDwndInfo.totalpacketCount)]")
 
                 var list_of_Item: [CurrentEDCAppDownloadingInfo] = []
                 list_of_Item.append(currentEDCAppDwndInfo)
@@ -6756,11 +6812,16 @@ class ISO320Initialization: ISOMessage
         if(bitmap[45 - 1])          //Save chunksize
         {
             var chArrTempChunkSize = [Byte](repeating: 0x00, count: data[45 - 1].count)
-            chArrTempChunkSize = Array(data[45 - 1][0 ..< data[45 - 1].count])
+            chArrTempChunkSize = [Byte](data[45 - 1][0 ..< data[45 - 1].count])
             //System.arraycopy(data[45-1],0,chArrTempChunkSize,0,data[45-1].length);
 
             var ulChunkSize = Long()
-            ulChunkSize.value = Int64(String(bytes: chArrTempChunkSize, encoding: .utf8)!)!
+                        var tempData: Int64 = 0
+            let strTempData = String(describing: String(bytes: chArrTempChunkSize, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))
+            tempData = Int64(strTempData) ?? 0
+            
+            ulChunkSize.value = tempData
+            
             debugPrint("ulChunkSize[\(ulChunkSize.value)]")
             
             var list_of_Item: [Long] = []
@@ -6790,12 +6851,12 @@ class ISO320Initialization: ISOMessage
                 lastEDCAppDwndInfo = list_of_Items[0]
             }
             
-            m_chDownloadingEDCAppVersion = Array(lastEDCAppDwndInfo.chVersion[0 ..< AppConstant.MAX_APP_VERSION_LEN])
+            m_chDownloadingEDCAppVersion = [Byte](lastEDCAppDwndInfo.chVersion[0 ..< AppConstant.MAX_APP_VERSION_LEN])
             m_bCurrentPacketCount = Int64(lastEDCAppDwndInfo.currentpacketCount);                //Get current packet count
             m_bTotalPacketCount   = Int64(lastEDCAppDwndInfo.totalpacketCount);
             //Get Total packet count
-            debugPrint("Earlier m_chDownloadingEDCAppVersion[\(String(bytes: m_chDownloadingEDCAppVersion, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))]")
-            debugPrint("m_chDownloadingEDCAppVersion[\(String(bytes: m_chDownloadingEDCAppVersion, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))], m_bCurrentPacketCount[\(m_bCurrentPacketCount)],m_bTotalPacketCount[\(m_bTotalPacketCount)]")
+            debugPrint("Earlier m_chDownloadingEDCAppVersion[\(String(bytes: m_chDownloadingEDCAppVersion, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))]")
+            debugPrint("m_chDownloadingEDCAppVersion[\(String(bytes: m_chDownloadingEDCAppVersion, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))], m_bCurrentPacketCount[\(m_bCurrentPacketCount)],m_bTotalPacketCount[\(m_bTotalPacketCount)]")
             
             _ = self.addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_54, data1: m_chDownloadingEDCAppVersion,length: AppConstant.MAX_APP_VERSION_LEN)
             debugPrint("Req->Setting field 54")
@@ -7013,7 +7074,7 @@ class ISO320Initialization: ISOMessage
             stAIDTxnMap.iEMVTxnType = Int(p[iLocalOffset] & 0x000000FF)
             iLocalOffset += 1
 
-            debugPrint("stAIDTxnMap ucAID[\(String(bytes: stAIDTxnMap.ucAID, encoding: String.Encoding.utf8)!.trimmingCharacters(in: .whitespacesAndNewlines))]")
+            debugPrint("stAIDTxnMap ucAID[\(String(bytes: stAIDTxnMap.ucAID, encoding: String.Encoding.ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))]")
             
             debugPrint("iHATTxnType[\(stAIDTxnMap.iHATTxnType)], iCSVTxnType[\(stAIDTxnMap.iCSVTxnType)], iEMVTxnType[\(stAIDTxnMap.iEMVTxnType)]")
 
@@ -7048,7 +7109,7 @@ class ISO320Initialization: ISOMessage
         _ = globalData.ReadMasterParamFile()
 
         //if previous version is same as current version then do nothing
-        if(globalData.m_sMasterParamData!.m_strAIDEMVTXNTYPEDownloadDate == String(bytes: data[43 - 1], encoding: String.Encoding.utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)){
+        if(globalData.m_sMasterParamData!.m_strAIDEMVTXNTYPEDownloadDate == String(bytes: data[43 - 1], encoding: String.Encoding.ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)){
             return;
         }
 
@@ -7069,7 +7130,7 @@ class ISO320Initialization: ISOMessage
 
         // if version is different(the file is downloaded) then set reset flag and bin range changed flag true.
         // the bin range changed flag will ensure in loading files to sort bin range file.
-        globalData.m_sMasterParamData!.m_strAIDEMVTXNTYPEDownloadDate = String(bytes: data[43 - 1], encoding: String.Encoding.utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
+        globalData.m_sMasterParamData!.m_strAIDEMVTXNTYPEDownloadDate = String(bytes: data[43 - 1], encoding: String.Encoding.ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
         
         debugPrint("m_strAIDEMVTXNTYPEDownloadDate[\(globalData.m_sMasterParamData!.m_strAIDEMVTXNTYPEDownloadDate)]")
         
@@ -7202,7 +7263,7 @@ class ISO320Initialization: ISOMessage
         _ = globalData.ReadMasterParamFile()
         
         //if previous version is same as current version then do nothing
-        if(globalData.m_sMasterParamData!.m_strTxnTypeFlagsMappingDownloadDate == String(bytes: data[43 - 1], encoding: String.Encoding.utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)){
+        if(globalData.m_sMasterParamData!.m_strTxnTypeFlagsMappingDownloadDate == String(bytes: data[43 - 1], encoding: String.Encoding.ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)){
             return;
         }
         //if temp bin range file exist, then replace BINRANGE file with temp.
@@ -7220,7 +7281,7 @@ class ISO320Initialization: ISOMessage
         }
         // if version is different(the file is downloaded) then set reset flag and bin range changed flag true.
         // the bin range changed flag will ensure in loading files to sort bin range file.
-        globalData.m_sMasterParamData!.m_strTxnTypeFlagsMappingDownloadDate = String(bytes: data[43 - 1], encoding: String.Encoding.utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
+        globalData.m_sMasterParamData!.m_strTxnTypeFlagsMappingDownloadDate = String(bytes: data[43 - 1], encoding: String.Encoding.ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
         
         debugPrint("m_strTxnTypeFlagsMappingDownloadDat[\(globalData.m_sMasterParamData!.m_strTxnTypeFlagsMappingDownloadDate)]")
         
@@ -7400,7 +7461,12 @@ class ISO320Initialization: ISOMessage
             chArrTempChunkSize = Array(data[45 - 1][0 ..< len[45 - 1]])
             //System.arraycopy(data[45-1],0,chArrTempChunkSize,0,len[45-1]);
             var ulChunkSize = Long()
-            ulChunkSize.value = Int64(String(bytes: chArrTempChunkSize, encoding: String.Encoding.utf8)!)!
+            
+            var tempData: Int64 = 0
+            let strTempData = String(describing: String(bytes: chArrTempChunkSize, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))
+            tempData = Int64(strTempData) ?? 0
+            
+            ulChunkSize.value = tempData
             
             debugPrint("ulChunkSize[\(ulChunkSize.value)]")
             
@@ -7574,13 +7640,13 @@ class ISO320Initialization: ISOMessage
         _ = globalData.ReadMasterParamFile()
 
         //if previous version is same as current version then do nothing
-        if(globalData.m_sMasterParamData!.m_strISPasswordDownloadDate == String(bytes: data[43 - 1], encoding: String.Encoding.utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)){
+        if(globalData.m_sMasterParamData!.m_strISPasswordDownloadDate == String(bytes: data[43 - 1], encoding: String.Encoding.ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)){
             return
         }
 
         // if version is different(the file is downloaded) then set reset flag and bin range changed flag true.
         // the bin range changed flag will ensure in loading files to sort bin range file.
-        globalData.m_sMasterParamData!.m_strISPasswordDownloadDate = String(bytes: data[43 - 1], encoding: String.Encoding.utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
+        globalData.m_sMasterParamData!.m_strISPasswordDownloadDate = String(bytes: data[43 - 1], encoding: String.Encoding.ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
         
         debugPrint("m_strISPasswordDownloadDate[\(globalData.m_sMasterParamData!.m_strISPasswordDownloadDate)]")
         
@@ -7609,7 +7675,7 @@ class ISO320Initialization: ISOMessage
        _ = globalData.ReadMasterParamFile()
 
         //if previous version is same as current version then do nothing
-         if(globalData.m_sMasterParamData!.m_strCsvTxnTypeMiniPvmMappingDownloadDate == String(bytes: data[43 - 1], encoding: String.Encoding.utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)){
+         if(globalData.m_sMasterParamData!.m_strCsvTxnTypeMiniPvmMappingDownloadDate == String(bytes: data[43 - 1], encoding: String.Encoding.ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)){
             return;
         }
 
@@ -7633,7 +7699,7 @@ class ISO320Initialization: ISOMessage
         // if version is different(the file is downloaded) then set reset flag and bin range changed flag true.
         // the bin range changed flag will ensure in loading files to sort bin range file.
         
-        globalData.m_sMasterParamData!.m_strCsvTxnTypeMiniPvmMappingDownloadDate = String(bytes: data[43 - 1], encoding: String.Encoding.utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
+        globalData.m_sMasterParamData!.m_strCsvTxnTypeMiniPvmMappingDownloadDate = String(bytes: data[43 - 1], encoding: String.Encoding.ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
         
         debugPrint("m_strCsvTxnTypeMiniPvmMappingDownloadDate\(globalData.m_sMasterParamData!.m_strCsvTxnTypeMiniPvmMappingDownloadDate)")
         
@@ -7663,7 +7729,7 @@ class ISO320Initialization: ISOMessage
         _ = globalData.ReadMasterParamFile()
 
         //if previous version is same as current version then do nothing
-        if(globalData.m_sMasterParamData!.m_strCsvTxnTypeMiniPvmMappingDownloadDate == String(bytes: data[43 - 1], encoding: String.Encoding.utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)){
+        if(globalData.m_sMasterParamData!.m_strCsvTxnTypeMiniPvmMappingDownloadDate == String(bytes: data[43 - 1], encoding: String.Encoding.ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)){
             return;
         }
 
@@ -7704,23 +7770,23 @@ class ISO320Initialization: ISOMessage
             let ilength: Int = Int(p[iOffset])
             iOffset += 1
             var bData = [Byte](repeating: 0x00, count: ilength)
-            bData = Array(p[iOffset ..< iOffset + ilength])
+            bData = [Byte](p[iOffset ..< iOffset + ilength])
             //System.arraycopy(p, iOffset, bData, 0, ilength);
             iOffset += ilength;
 
             switch (iTag)
             {
                 case 0x01:
-                    ObjCred.Hostname = String(bytes: bData, encoding: String.Encoding.utf8)!
+                    ObjCred.Hostname = String(bytes: bData, encoding: String.Encoding.ascii)!
                 case 0x02:
                     var iPort: Int = Int(bData[0] & 0xFF)
                     iPort = (iPort << 8)
                     iPort |= Int(bData[1] & 0xFF)
                     ObjCred.port = iPort;
                 case 0x03:
-                    ObjCred.Username = String(bytes: bData, encoding:  String.Encoding.utf8)!
+                    ObjCred.Username = String(bytes: bData, encoding:  String.Encoding.ascii)!
                 case 0x04:
-                    ObjCred.Password = String(bytes: bData, encoding:  String.Encoding.utf8)!
+                    ObjCred.Password = String(bytes: bData, encoding:  String.Encoding.ascii)!
                 case 0x05:
                     Obj.m_bLogEnabledFlag = bData[0] == 1 ? true : false
                 case 0x06:
@@ -7742,13 +7808,13 @@ class ISO320Initialization: ISOMessage
                     iRetryInterval |= Int(bData[1] & 0xFF)
                     Obj.m_iLogShipmentRetryInterval = iRetryInterval
                 case 0x0C:
-                    Obj.m_strLogShipmentStartTime = String(bytes: bData, encoding:  String.Encoding.utf8)!
+                    Obj.m_strLogShipmentStartTime = String(bytes: bData, encoding:  String.Encoding.ascii)!
                 case 0x0D:
-                    Obj.m_sLogShippingDirecetorypath = String(bytes: bData, encoding:  String.Encoding.utf8)!
+                    Obj.m_sLogShippingDirecetorypath = String(bytes: bData, encoding:  String.Encoding.ascii)!
                 case 0x0E:
-                    Obj.m_strLogBlackListStartTime = String(bytes: bData, encoding:  String.Encoding.utf8)!
+                    Obj.m_strLogBlackListStartTime = String(bytes: bData, encoding:  String.Encoding.ascii)!
                 case 0x0F:
-                    Obj.m_strLogBlackListEndTime = String(bytes: bData, encoding:  String.Encoding.utf8)!
+                    Obj.m_strLogBlackListEndTime = String(bytes: bData, encoding:  String.Encoding.ascii)!
                 case 0x10:
                     Obj.m_iAutoLogShippingEnabledFlag = Int(bData[0])
                 case 0x11:
@@ -7800,7 +7866,7 @@ class ISO320Initialization: ISOMessage
         }
 
         let globalData = GlobalData.singleton
-        let strData = String(bytes: data[43 - 1], encoding: String.Encoding.utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let strData = String(bytes: data[43 - 1], encoding: String.Encoding.ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
         
         //if previous version is same as current version then do nothing
         if(globalData.m_sMasterParamData!.m_strLogShippingDownloadDate == strData){
@@ -7862,7 +7928,7 @@ class ISO320Initialization: ISOMessage
             let iActionType: Int = Int(p[iOffset])
             iOffset += 1
             var temp = [Byte](repeating: 0x00, count: 4)
-            temp = Array(p[iOffset ..< iOffset + 4])
+            temp = [Byte](p[iOffset ..< iOffset + 4])
             //System.arraycopy(p,iOffset,temp,0,4);
             
             chArrTemp = TransactionUtils.bcd2a(temp, 4)!
@@ -7870,7 +7936,7 @@ class ISO320Initialization: ISOMessage
 
             //LONG llHTL = new LONG();
             var llHTL: Int64 = 0
-            let strHTLVal: String = String(bytes: chArrTemp, encoding: String.Encoding.utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let strHTLVal: String = String(bytes: chArrTemp, encoding: String.Encoding.ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)
             
             //String strHTLVal = new String(chArrTemp).trim();
             llHTL = Int64(strHTLVal)!
@@ -8064,7 +8130,7 @@ class ISO320Initialization: ISOMessage
         if(iOffset > 0)
         {
             let asciiBuf: [Byte] = TransactionUtils.bcd2a(bLocalBuffer, iOffset)!
-            let strAsciiBuff: String = String(bytes: asciiBuf, encoding: String.Encoding.utf8)!
+            let strAsciiBuff: String = String(bytes: asciiBuf, encoding: String.Encoding.ascii)!
 
             _ = addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_61, data1: bLocalBuffer, length: iOffset)
             debugPrint("Req->Setting field 61 length \(iOffset), data \(strAsciiBuff)")
@@ -8112,20 +8178,19 @@ class ISO320Initialization: ISOMessage
                         switch (userInfoTLV.iTag)
                         {
                             case AppConstant.TAG_TLV_LOGIN_INFO_USER_NAME:
-                                loginAccounts.m_strUserID =  String(bytes: userInfoTLV.bData, encoding: String.Encoding.utf8)!
+                                loginAccounts.m_strUserID =  String(bytes: userInfoTLV.bData, encoding: String.Encoding.ascii)!
                             case AppConstant.TAG_TLV_LOGIN_INFO_PASSWORD_HASH:
-                                loginAccounts.m_strPIN = String(bytes: userInfoTLV.bData, encoding: String.Encoding.utf8)!
+                                loginAccounts.m_strPIN = String(bytes: userInfoTLV.bData, encoding: String.Encoding.ascii)!
                             case AppConstant.TAG_TLV_LOGIN_INFO_CREATION_DATE_TIME:
-                                loginAccounts.m_strCreatedOn  = String(bytes: userInfoTLV.bData, encoding: String.Encoding.utf8)!
+                                loginAccounts.m_strCreatedOn  = String(bytes: userInfoTLV.bData, encoding: String.Encoding.ascii)!
                             case AppConstant.TAG_TLV_LOGIN_INFO_USER_ROLE:
-                                var value : Int8 = 0
-                                for byte in userInfoTLV.bData {
-                                    value = value << 8
-                                    value = value | Int8(byte)
-                                }
-                                loginAccounts.m_sAccountType = value
+                                var tempData: Int16 = 0
+                                let strTempData = String(describing: String(bytes: userInfoTLV.bData, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))
+                                tempData = Int16(strTempData) ?? 0
+                                
+                                loginAccounts.m_sAccountType = tempData
                             case AppConstant.TAG_TLV_LOGIN_INFO_GUID:
-                                loginAccounts.m_strUUID  = String(bytes: userInfoTLV.bData, encoding: String.Encoding.utf8)!
+                                loginAccounts.m_strUUID  = String(bytes: userInfoTLV.bData, encoding: String.Encoding.ascii)!
                             default:
                             break
                         }
@@ -8217,11 +8282,11 @@ class ISO320Initialization: ISOMessage
             }
 
             var imageDump = [Byte](repeating: 0x00, count: length)
-            imageDump = Array(p[0 ..< length])
+            imageDump = [Byte](p[0 ..< length])
             //System.arraycopy(p,0,imageDump,0,length);
             var offset_62: Int = 0
             var content_id = [Byte](repeating: 0x00, count: 4)
-            content_id = Array(p[0 ..< 4])
+            content_id = [Byte](p[0 ..< 4])
             
             offset_62 += 4;
 
@@ -8239,15 +8304,15 @@ class ISO320Initialization: ISOMessage
             offset_62 += 1
             
             var image_name = [Byte](repeating: 0x00, count: file_name_length)
-            image_name = Array(p_62[offset_62 ..< offset_62 + file_name_length])
+            image_name = [Byte](p_62[offset_62 ..< offset_62 + file_name_length])
             
             //System.arraycopy(p_62,offset_62,image_name,0,file_name_length);
 
-            let current_image_name: String = String(bytes: image_name, encoding: String.Encoding.utf8)!
+            let current_image_name: String = String(bytes: image_name, encoding: String.Encoding.ascii)!
 
             offset_62 += file_name_length;
             var received_sha1 = [Byte](repeating: 0x00, count: 20)
-            received_sha1 = Array(p_62[offset_62 ..< offset_62 + 20])
+            received_sha1 = [Byte](p_62[offset_62 ..< offset_62 + 20])
             //System.arraycopy(p_62,offset_62,received_sha1,0,20);
 
             
@@ -8347,10 +8412,10 @@ class ISO320Initialization: ISOMessage
                 
                 var image_name = [Byte](repeating: 0x00, count: file_name_length)
 
-                image_name = Array(p[0 ..< file_name_length])
+                image_name = [Byte](p[0 ..< file_name_length])
                 //System.arraycopy(p, offset, image_name, 0, file_name_length);
 
-                let current_image_name: String = String(bytes: image_name, encoding: String.Encoding.utf8)!
+                let current_image_name: String = String(bytes: image_name, encoding: String.Encoding.ascii)!
 
                 var str_content_type: String
                 switch(content_type)
@@ -8511,9 +8576,12 @@ class ISO320Initialization: ISOMessage
             chArrTempChunkSize = Array(data[45-1][0 ..< data[45-1].count])
             //System.arraycopy(data[45-1],0,chArrTempChunkSize,0,data[45-1].length);
             var ulChunkSize = Long()
-            let sArrTempChunkSize = String(bytes: chArrTempChunkSize, encoding: String.Encoding.utf8)
             
-            ulChunkSize.value = Int64(atol(sArrTempChunkSize))
+            var tempData: Int64 = 0
+            let strTempData = String(describing: String(bytes: chArrTempChunkSize, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))
+            tempData = Int64(strTempData) ?? 0
+            
+            ulChunkSize.value = tempData
             
             debugPrint("ulChunkSize[\(ulChunkSize)]")
             //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG,"ulChunkSize[%d]",ulChunkSize.value);

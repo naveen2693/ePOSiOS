@@ -130,14 +130,34 @@ final class GlobalData
     // MARK:- CreateSignatureParamFile
     public class func CreateSignatureParamFile() -> Int
     {
-        var Objsignaturedata =  SignatureParams();
-        let bArrSignatureComPort:[UInt8] = Array("0".utf8);
-        let bArrSignatureDeviceType:[UInt8] = Array("NONE".utf8);
-        //FileSystem.Delete(m_context, chArrSignatureParamFile);
-        Objsignaturedata.bArrSignatureComPort[0..<bArrSignatureComPort.count] = bArrSignatureComPort[0..<bArrSignatureComPort.count]
-        Objsignaturedata.SignatureDeviceType[0..<bArrSignatureDeviceType.count] = bArrSignatureDeviceType[0..<bArrSignatureDeviceType.count]
-        Objsignaturedata.IsSignDeviceConnected = false;
-        //        int iCurrentNumOfRecords = CFileSystem.NumberOfRows(m_context, SignatureParams[].class, chArrSignatureParamFile);
+        debugPrint("Inside CreateSignatureParamFile")
+        let chArrSignatureParamFile = String(format: "%@", FileNameConstants.SIGNATUREPARAMFILE)
+        
+        if (!FileSystem.IsFileExist(strFileName: chArrSignatureParamFile)) {
+            var ObjListSignatureData = [SignatureParams]()
+            var Objsignaturedata = SignatureParams()
+            
+            let bArrSignatureComPort:[UInt8] = [Byte]("0".utf8)
+            let bArrSignatureDeviceType:[UInt8] = [Byte]("NONE".utf8)
+            
+            _ = FileSystem.DeleteFileComplete(strFileName: chArrSignatureParamFile);
+            
+            Objsignaturedata.bArrSignatureComPort = [Byte](bArrSignatureComPort[0 ..< bArrSignatureComPort.count])
+            Objsignaturedata.SignatureDeviceType = [Byte](bArrSignatureDeviceType[0 ..< bArrSignatureDeviceType.count])
+            Objsignaturedata.IsSignDeviceConnected = false
+            
+            let iCurrentNumOfRecords: Int = FileSystem.NumberOfRows(strFileName: chArrSignatureParamFile, obj: SignatureParams.self)
+            debugPrint("iCurrentNumOfRecords [\(iCurrentNumOfRecords)]")
+            
+            ObjListSignatureData.append(Objsignaturedata)
+            
+            do{
+                _ = try FileSystem.AppendFile(strFileName: chArrSignatureParamFile, with: ObjListSignatureData)
+            }
+            catch{
+                debugPrint("Error in AppendFile \(chArrSignatureParamFile)")
+            }
+        }
         return AppConstant.TRUE;
     }
     
@@ -247,50 +267,57 @@ final class GlobalData
     // MARK:- CreateUserAccountFile
     public  func CreateUserAccountFile() -> Int
     {
-        var objLoginAccounts =  LoginAccounts();
-        let outputFormatter = DateFormatter()
-        outputFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        objLoginAccounts.createdBy = outputFormatter.string(from:Date())
-        objLoginAccounts.userID = AppConstant.DEFAULT_ORDINARY_USER;
-        let udid = UIDevice.current.identifierForVendor;
-        let UDID:String = udid!.uuidString
-        objLoginAccounts.userID = UDID;
-        objLoginAccounts.pin = CUIHelper.generatePassword(password: AppConstant.DEFAULT_ORDINARY_PIN, uuid: UDID);
-        objLoginAccounts.createdBy = "EDC";
-        objLoginAccounts.accountType = AppConstant.ORDINARY_USER_TYPE;
-        WriteLoginAccountFile(login_accounts: [objLoginAccounts], fileName: FileNameConstants.USERINFOFILE);
-        
-        var reCreateLoginAccounts =  LoginAccounts();
-        reCreateLoginAccounts.createdOn = outputFormatter.string(from:Date())
-        reCreateLoginAccounts.userID = AppConstant.DEFAULT_ADMIN_USER
-        reCreateLoginAccounts.userID = UDID;
-        reCreateLoginAccounts.pin = CUIHelper.generatePassword(password: AppConstant.DEFAULT_ORDINARY_PIN, uuid: UDID);
-        objLoginAccounts.createdBy = "EDC";
-        objLoginAccounts.accountType = AppConstant.ADM_USER_TYPE;
-        WriteLoginAccountFile(login_accounts: [reCreateLoginAccounts], fileName: FileNameConstants.USERINFOFILE);
-        
+        if (!FileSystem.IsFileExist(strFileName: FileNameConstants.USERINFOFILE)) {
+            var objLoginAccounts =  LoginAccounts();
+            let outputFormatter = DateFormatter()
+            outputFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            objLoginAccounts.createdBy = outputFormatter.string(from:Date())
+            objLoginAccounts.userID = AppConstant.DEFAULT_ORDINARY_USER;
+            let udid = UIDevice.current.identifierForVendor;
+            let UDID:String = udid!.uuidString
+            objLoginAccounts.userID = UDID;
+            objLoginAccounts.pin = CUIHelper.generatePassword(password: AppConstant.DEFAULT_ORDINARY_PIN, uuid: UDID);
+            objLoginAccounts.createdBy = "EDC";
+            objLoginAccounts.accountType = AppConstant.ORDINARY_USER_TYPE;
+            WriteLoginAccountFile(login_accounts: [objLoginAccounts], fileName: FileNameConstants.USERINFOFILE);
+            
+            var reCreateLoginAccounts =  LoginAccounts();
+            reCreateLoginAccounts.createdOn = outputFormatter.string(from:Date())
+            reCreateLoginAccounts.userID = AppConstant.DEFAULT_ADMIN_USER
+            reCreateLoginAccounts.userID = UDID;
+            reCreateLoginAccounts.pin = CUIHelper.generatePassword(password: AppConstant.DEFAULT_ORDINARY_PIN, uuid: UDID);
+            objLoginAccounts.createdBy = "EDC";
+            objLoginAccounts.accountType = AppConstant.ADM_USER_TYPE;
+            WriteLoginAccountFile(login_accounts: [reCreateLoginAccounts], fileName: FileNameConstants.USERINFOFILE);
+        }
         return AppConstant.TRUE;
     }
     
     // MARK:- CreateMasterCGFile
     public func CreateMasterCGFile() -> Int
     {
-        let list = [Long]();
-        do{
-            _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERCGFILE, with:list)
-        }catch{
-            fatalError("File Rewrite Error ")
+        if (!FileSystem.IsFileExist(strFileName: FileNameConstants.MASTERCGFILE)){
+            
+            let list = [Long]();
+            do{
+                _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERCGFILE, with:list)
+            }catch{
+                fatalError("File Rewrite Error ")
+            }
         }
         return AppConstant.TRUE;
     }
     // MARK:- CreateMasterIMFile
     public func CreateMasterIMFile() -> Int {
         
-        let list = [Long]();
-        do{
-            _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERIMFILE, with:list)
-        }catch{
-            fatalError("File Rewrite Error ")
+        if (!FileSystem.IsFileExist(strFileName: FileNameConstants.MASTERIMFILE)){
+            
+            let list = [Long]();
+            do{
+                _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERIMFILE, with:list)
+            }catch{
+                fatalError("File Rewrite Error ")
+            }
         }
         return AppConstant.TRUE;
         
@@ -299,11 +326,13 @@ final class GlobalData
     // MARK:-CreateMasterCLRDIMFile
     public func CreateMasterCLRDIMFile() -> Int  {
         
-        let list = [Long]();
-        do{
-            _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERCLRDIMFILE, with:list)
-        }catch{
-            fatalError("File Rewrite Error ")
+        if (!FileSystem.IsFileExist(strFileName: FileNameConstants.MASTERCLRDIMFILE)) {
+            let list = [Long]();
+            do{
+                _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERCLRDIMFILE, with:list)
+            }catch{
+                fatalError("File Rewrite Error ")
+            }
         }
         return AppConstant.TRUE;
     }
@@ -316,11 +345,13 @@ final class GlobalData
      */
     
     public func CreateMasterCFGFile() -> Int {
-        let list = [Long]();
-        do{
-            _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERFCGFILE, with:list)
-        }catch{
-            fatalError("File Rewrite Error ")
+        if (!FileSystem.IsFileExist(strFileName: FileNameConstants.MASTERFCGFILE)){
+            let list = [Long]();
+            do{
+                _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERFCGFILE, with:list)
+            }catch{
+                fatalError("File Rewrite Error ")
+            }
         }
         return AppConstant.TRUE;
     }
@@ -335,17 +366,19 @@ final class GlobalData
      */
     
     private func CreateMasterFONTFile() -> Int{
-        let maxCountChargeSlip = AppConstant.MAX_COUNT_CHARGE_SLIP_IMAGES + 1
-        var UnicodefontId = [Fontstruct?](repeating:nil, count:maxCountChargeSlip)
-        for index in 0..<maxCountChargeSlip{
-            UnicodefontId[index] = Fontstruct();
-        }
-        let fontlist = [Fontstruct?](repeating:nil, count:maxCountChargeSlip);
-        do{
-            _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERFONTFILE, with: fontlist);
-        }catch
-        {
-            fatalError("File Write Error: CreateMasterFONTFile")
+        if (!FileSystem.IsFileExist(strFileName: FileNameConstants.MASTERFONTFILE)){
+            let maxCountChargeSlip = AppConstant.MAX_COUNT_CHARGE_SLIP_IMAGES + 1
+            var UnicodefontId = [Fontstruct?](repeating:nil, count:maxCountChargeSlip)
+            for index in 0..<maxCountChargeSlip{
+                UnicodefontId[index] = Fontstruct();
+            }
+            let fontlist = [Fontstruct?](repeating:nil, count:maxCountChargeSlip);
+            do{
+                _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERFONTFILE, with: fontlist);
+            }catch
+            {
+                fatalError("File Write Error: CreateMasterFONTFile")
+            }
         }
         return AppConstant.TRUE;
     }
@@ -360,23 +393,28 @@ final class GlobalData
      */
     public func CreateMasterLIBFile() -> Int {
         
-        let LibList =  [LIBStruct]();
-        do{
-            _ =  try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERLIBFILE, with: LibList)
-        }catch
-        {
-            fatalError("File ReWrite Error : CreateMasterLIBFile")
+        if (!FileSystem.IsFileExist(strFileName: FileNameConstants.MASTERLIBFILE)){
+            let LibList =  [LIBStruct]();
+            do{
+                _ =  try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERLIBFILE, with: LibList)
+            }catch
+            {
+                fatalError("File ReWrite Error : CreateMasterLIBFile")
+            }
         }
         return AppConstant.TRUE;
     }
     
     // MARK:- CreateMasterMINIPVMFile
     private func CreateMasterMINIPVMFile() -> Int {
-        let list = [Long]();
-        do{
-            _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERFCGFILE, with:list)
-        }catch{
-            fatalError("File Rewrite Error ")
+        
+        if (!FileSystem.IsFileExist(strFileName: FileNameConstants.MASTERMINIPVMFILE)){
+            let list = [Long]();
+            do{
+                _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERMINIPVMFILE, with:list)
+            }catch{
+                fatalError("File Rewrite Error ")
+            }
         }
         return AppConstant.TRUE;
     }
@@ -388,6 +426,8 @@ final class GlobalData
      * @details Create terminal param file
      */
     public func CreateParamFile() -> Int {
+        let chFileName = String(format: "%@", FileNameConstants.TERMINALPARAMFILENAME)
+        
         var terminalParamData =  TerminalParamData();
         terminalParamData.iCurrentBatchId = AppConstant.DEFAULT_FIRST_BATCHID;
         terminalParamData.iBatchSize = AppConstant.DEFAULT_BATCH_SIZE;
@@ -406,7 +446,10 @@ final class GlobalData
         terminalParamData.m_strNoPrintMessage = AppConstant.NoPrintDefaultMessage;
         terminalParamData.m_iIsCRISEnabled = 0;
         terminalParamData.m_strHardwareSerialNumber = PlatFormUtils.getLast8DigitOfFullSerialNumber();
-        _ = WriteParamFile(listParamData: terminalParamData);
+        
+        if (!FileSystem.IsFileExist(strFileName: chFileName)) {
+            _ = WriteParamFile(listParamData: terminalParamData);
+        }
         return AppConstant.TRUE;
     }
     
@@ -2291,7 +2334,7 @@ final class GlobalData
         _ = CreateAdServerHTLFile();
         
         //Create Conx File
-        _ = createConnectionFile();
+        //_ = createConnectionFile();
         
         _ = createConnectionFile();
         
@@ -2417,36 +2460,34 @@ final class GlobalData
     
     func UpdateMessageFile() -> Bool {
         if (FileSystem.IsFileExist(strFileName: FileNameConstants.DELETEMSGLIST)) {
-            //          var numberOfItemtoDelete = FileSystem.NumberOfRows(DELETEMSGLIST);
-            let numberOfItemtoDelete = 0;
-            for _ in 0..<numberOfItemtoDelete {
-                // MARK:- Neeed to complete this statement
-                //        objmessageIdToDelete = CFileSystem.ReadRecord(m_context, LONG[].class, DELETEMSGLIST, i);
-                let objmessageIdToDelete:Long?
-                // if let unwrappedobjmessageIdToDelete = objmessageIdToDelete{
-                //_ = DeleteMessageFromFile(messageIdToDelete: unwrappedobjmessageIdToDelete);
-                //}
+            let numberOfItemtoDelete: Int = FileSystem.NumberOfRows(strFileName: FileNameConstants.DELETEMSGLIST, obj: Long.self)
+            for i in 0 ..< numberOfItemtoDelete {
+                
+                let objmessageIdToDelete: Long? = FileSystem.ReadRecord(strFileName: FileNameConstants.DELETEMSGLIST, iOffset: i)
+                if let unwrappedobjmessageIdToDelete = objmessageIdToDelete{
+                    _ = DeleteMessageFromFile(messageIdToDelete: unwrappedobjmessageIdToDelete);
+                }
             }
             _ = FileSystem.DeleteFileComplete(strFileName: FileNameConstants.DELETEMSGLIST)
         }
         
         if (FileSystem.IsFileExist(strFileName: FileNameConstants.ADDMSGLIST)) {
-            //var numberOfItemtoAdd = FileSystem.NumberOfRows(ADDMSGLIST);
-            let numberOfItemtoAdd = 0
-            for _ in 0..<numberOfItemtoAdd {
+            let numberOfItemtoAdd: Int = FileSystem.NumberOfRows(strFileName: FileNameConstants.ADDMSGLIST, obj: Long.self)
+            
+            for i in 0..<numberOfItemtoAdd {
                 let objmessageId:[StructMESSAGEID]?
-                //objmessageId = FileSystem.ReadRecord(AppConstant.ADDMSGLIST, i)
-                /*if let unwrappedobjmessageId  = objmessageId{
-                 do{
-                 _ = try FileSystem.AppendFile(strFileName: FileNameConstants.MASTERMESFILE, with: unwrappedobjmessageId);
-                 }
-                 catch{
-                 print("AppendFile: UpdateMessageFile")
-                 }
-                 _ =  FileSystem.DeleteFileComplete(strFileName: FileNameConstants.ADDMSGLIST)
-                 } else {
-                 return true
-                 }*/
+                objmessageId = FileSystem.ReadRecord(strFileName: FileNameConstants.ADDMSGLIST, iOffset: i)
+                if let unwrappedobjmessageId  = objmessageId{
+                    do{
+                        _ = try FileSystem.AppendFile(strFileName: FileNameConstants.MASTERMESFILE, with: unwrappedobjmessageId);
+                    }
+                    catch{
+                        debugPrint("AppendFile: UpdateMessageFile")
+                    }
+                    _ =  FileSystem.DeleteFileComplete(strFileName: FileNameConstants.ADDMSGLIST)
+                } else {
+                    return true
+                }
             }
         }
         _ = SortMessageFile();
@@ -2646,7 +2687,9 @@ final class GlobalData
     
     //for LIBrary File download
     func UpdateMasterLIBFile() -> Bool {
-        if let libUpgrade:[Byte] = FileSystem.ReadFile(strFileName: FileNameConstants.EDCLIBSTATUS){
+        
+        let libUpgrade:[Byte] = FileSystem.ReadFile(strFileName: FileNameConstants.EDCLIBSTATUS)!
+        if (!libUpgrade.isEmpty){
             if (libUpgrade[0] == 1) {
                 _ =  FileSystem.DeleteFileComplete(strFileName: FileNameConstants.EDCLIBSTATUS);
                 

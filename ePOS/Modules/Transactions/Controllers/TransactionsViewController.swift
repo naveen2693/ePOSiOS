@@ -24,13 +24,13 @@ class TransactionHomeViewController: UIViewController {
         _ = isoprocessor.DoHUBActivation()
         
 
-        /*globalData.UpdateMasterCTFile()
-        globalData.UpdateMasterIMFile()
-        globalData.UpdateMasterCLRDIMFile()
-        globalData.UpdateMasterFCGFile()
-        globalData.UpdateMasterFONTFile()
-        globalData.UpdateMasterLIBFile()
-        globalData.UpdateMasterMINIPVMFile()*/
+        _ = globalData.UpdateMasterCTFile()
+        _ = globalData.UpdateMasterIMFile()
+        _ = globalData.UpdateMasterCLRDIMFile()
+        _ = globalData.UpdateMasterFCGFile()
+        _ = globalData.UpdateMasterFONTFile()
+        _ = globalData.UpdateMasterLIBFile()
+        _ = globalData.UpdateMasterMINIPVMFile()
 
         var iInitResponse = RetVal.RET_NOT_OK
         debugPrint("before DoHUBInitialization")
@@ -38,14 +38,14 @@ class TransactionHomeViewController: UIViewController {
 
         //Update master CT file and master IM
         //CUIHelper.SetMessage("PROCESSING");
-        /*globalData.UpdateMessageFile()
-        globalData.UpdateMasterCTFile()
-        globalData.UpdateMasterIMFile()
-        globalData.UpdateMasterCLRDIMFile()
-        globalData.UpdateMasterFCGFile()
-        globalData.UpdateMasterFONTFile()
-        globalData.UpdateMasterLIBFile()
-        globalData.UpdateMasterMINIPVMFile()*/
+        _ = globalData.UpdateMessageFile()
+        _ = globalData.UpdateMasterCTFile()
+        _ = globalData.UpdateMasterIMFile()
+        _ = globalData.UpdateMasterCLRDIMFile()
+        _ = globalData.UpdateMasterFCGFile()
+        _ = globalData.UpdateMasterFONTFile()
+        _ = globalData.UpdateMasterLIBFile()
+        _ = globalData.UpdateMasterMINIPVMFile()
         
         
 //        let iso = ISO440.shared // singleton
