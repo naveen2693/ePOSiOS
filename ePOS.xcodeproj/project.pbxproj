@@ -107,6 +107,11 @@
 		8E1382642551882F000F7C21 /* PrinterDataDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1382632551882F000F7C21 /* PrinterDataDisplay.swift */; };
 		8E13826625551D4F000F7C21 /* RetVal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E13826525551D4F000F7C21 /* RetVal.swift */; };
 		8E13826825551F80000F7C21 /* StringConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E13826725551F80000F7C21 /* StringConstant.swift */; };
+		8E13826A255D5002000F7C21 /* CSVHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E138269255D5001000F7C21 /* CSVHandler.swift */; };
+		8E13826C255D50E3000F7C21 /* CSVBaseTxn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E13826B255D50E3000F7C21 /* CSVBaseTxn.swift */; };
+		8E13826E255DA8D8000F7C21 /* TransactionHUB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E13826D255DA8D7000F7C21 /* TransactionHUB.swift */; };
+		8E138270255E4F29000F7C21 /* PrintMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E13826F255E4F29000F7C21 /* PrintMode.swift */; };
+		8E138272255E4F40000F7C21 /* PrintAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E138271255E4F40000F7C21 /* PrintAttribute.swift */; };
 		8E4DCFA425354F8A00726EA8 /* LOGIN_ACCOUNTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */; };
 		8E4DCFA625369F1000726EA8 /* BytesUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA525369F1000726EA8 /* BytesUtil.swift */; };
 		8E927C68253895AC009928D4 /* DisplayMessageMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E927C67253895AC009928D4 /* DisplayMessageMode.swift */; };
@@ -378,6 +383,11 @@
 		8E1382632551882F000F7C21 /* PrinterDataDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterDataDisplay.swift; sourceTree = "<group>"; };
 		8E13826525551D4F000F7C21 /* RetVal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetVal.swift; sourceTree = "<group>"; };
 		8E13826725551F80000F7C21 /* StringConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConstant.swift; sourceTree = "<group>"; };
+		8E138269255D5001000F7C21 /* CSVHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVHandler.swift; sourceTree = "<group>"; };
+		8E13826B255D50E3000F7C21 /* CSVBaseTxn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVBaseTxn.swift; sourceTree = "<group>"; };
+		8E13826D255DA8D7000F7C21 /* TransactionHUB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHUB.swift; sourceTree = "<group>"; };
+		8E13826F255E4F29000F7C21 /* PrintMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintMode.swift; sourceTree = "<group>"; };
+		8E138271255E4F40000F7C21 /* PrintAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintAttribute.swift; sourceTree = "<group>"; };
 		8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOGIN_ACCOUNTS.swift; sourceTree = "<group>"; };
 		8E4DCFA525369F1000726EA8 /* BytesUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BytesUtil.swift; sourceTree = "<group>"; };
 		8E927C67253895AC009928D4 /* DisplayMessageMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayMessageMode.swift; sourceTree = "<group>"; };
@@ -1459,6 +1469,9 @@
 				8E13826125518568000F7C21 /* PrinterHandler.swift */,
 				8E1382632551882F000F7C21 /* PrinterDataDisplay.swift */,
 				4686C4A9254FF5410076FEFB /* CStateMachine.swift */,
+				8E138269255D5001000F7C21 /* CSVHandler.swift */,
+				8E13826B255D50E3000F7C21 /* CSVBaseTxn.swift */,
+				8E13826D255DA8D7000F7C21 /* TransactionHUB.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1526,6 +1539,8 @@
 				8E13826725551F80000F7C21 /* StringConstant.swift */,
 				46AB5D0825429A6000FF814E /* FIleNameConstants.swift */,
 				46AB5D0A2542A08F00FF814E /* ProcessingCodeConstants.swift */,
+				8E13826F255E4F29000F7C21 /* PrintMode.swift */,
+				8E138271255E4F40000F7C21 /* PrintAttribute.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1762,6 +1777,7 @@
 				46E293D0255BAC0B00826954 /* CPineKeyInjection.swift in Sources */,
 				991DF269251CB5C900AEA1C3 /* GifLoader.swift in Sources */,
 				46ADF1162528792F009A9297 /* ContactDetails.swift in Sources */,
+				8E13826C255D50E3000F7C21 /* CSVBaseTxn.swift in Sources */,
 				46ED34642537098500CEF19D /* AutoLogShippingCredential.swift in Sources */,
 				8EE3285C253EAA0B00616E33 /* CurrentEDCAppDownloadingInfo.swift in Sources */,
 				4686C4AA254FF5410076FEFB /* CStateMachine.swift in Sources */,
@@ -1823,6 +1839,7 @@
 				46ADF104252876CA009A9297 /* BankAccountDetails.swift in Sources */,
 				8E927C6A2539468F009928D4 /* ParameterData.swift in Sources */,
 				4669F0C52525DEF900DEA9F2 /* MerchantVerificationServiceData.swift in Sources */,
+				8E13826A255D5002000F7C21 /* CSVHandler.swift in Sources */,
 				8EE3285A253EA54100616E33 /* st_POSPrintinglocationDetails.swift in Sources */,
 				8E13826625551D4F000F7C21 /* RetVal.swift in Sources */,
 				46E293CE255BAC0B00826954 /* CDisplayMessage.swift in Sources */,
@@ -1846,6 +1863,7 @@
 				46BD9B4825175327008DEFEA /* ConvertApiParameterIntoObject.swift in Sources */,
 				99186D552511D28800A9FE07 /* SignUpControllerViewController.swift in Sources */,
 				46ADF11925287976009A9297 /* AddressDetails.swift in Sources */,
+				8E138270255E4F29000F7C21 /* PrintMode.swift in Sources */,
 				46E293D5255BAC0B00826954 /* TLVTxData.swift in Sources */,
 				46E293E2255BAC0B00826954 /* PvmListParserVO.swift in Sources */,
 				990AF9D0252A0F970008A907 /* SearchTableViewCell.swift in Sources */,
@@ -1910,6 +1928,7 @@
 				99186CBA2508C08F00A9FE07 /* EPOSTextField.m in Sources */,
 				46AA3E0A252F24EF005907E1 /* ConnectionTypes.swift in Sources */,
 				46ADF113252878F1009A9297 /* KycDetails.swift in Sources */,
+				8E13826E255DA8D8000F7C21 /* TransactionHUB.swift in Sources */,
 				46882CDC2538727100C908B2 /* ContentServerParamData.swift in Sources */,
 				997DC7E72521EEFC006ADE48 /* MasterData.swift in Sources */,
 				9919A9992517336F00A67253 /* MerchantDetailsViewController.swift in Sources */,
@@ -1918,6 +1937,7 @@
 				CEB4D2E72536C75700254681 /* TransactionUtils.swift in Sources */,
 				99186CC42508EF5600A9FE07 /* EPOSTabBarViewController.swift in Sources */,
 				991ADEAB250660DB00932251 /* EPOSGradientView.swift in Sources */,
+				8E138272255E4F40000F7C21 /* PrintAttribute.swift in Sources */,
 				46AB5D0B2542A08F00FF814E /* ProcessingCodeConstants.swift in Sources */,
 				9919A9B32519E47900A67253 /* PackageView.swift in Sources */,
 				99186D0F2510922B00A9FE07 /* FailedPopup.swift in Sources */,

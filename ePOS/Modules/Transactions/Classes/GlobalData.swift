@@ -45,6 +45,7 @@ final class GlobalData
     var m_bPrinterData = [Byte](repeating: 0x00, count: 20000)
     var m_iPrintLen: Int = 0
     
+    static var m_csFinalMsgBatchSettlement: String = ""
     static var m_bIsFiled58Absent: Bool = false;
     static var m_csFinalMsgDisplay58: String = ""
     static var m_csFinalMsgDoHubInitialization: String = ""
@@ -2894,5 +2895,33 @@ final class GlobalData
         return iSendReceiveTimeout;
     }
     
+    func IsEncryptionEnabledCSVTxnMap(ulTxnType: Int64) -> Bool {
+        debugPrint("IsEncryptionEnabledCSVTxnType");
+        var numberOfRows: Int
+        if (!FileSystem.IsFileExist(strFileName: FileNameConstants.CSVTXNMAPFILE)) {
+            debugPrint("CSVTXNTYPEFILE FILE NOT PRESENT")
+            return false
+        }
+
+        let listCSVTxnMap: [StCSVTxnMap] = FileSystem.ReadFile(strFileName: FileNameConstants.CSVTXNMAPFILE)!
+        if (listCSVTxnMap != nil || !listCSVTxnMap.isEmpty) {
+            numberOfRows = listCSVTxnMap.count
+            debugPrint("numberOfRows[\(numberOfRows)]");
+            var tempCSVTxnMapData = StCSVTxnMap()
+            if (numberOfRows >= 1) {
+                for i in 1 ... numberOfRows //Start Reading Records from Start
+                {
+                    tempCSVTxnMapData = listCSVTxnMap[i-1]
+                    debugPrint("ReadRecord[\(i)] ,Txn Type[\(tempCSVTxnMapData.ulTxnType)], EncryptionFlag[0x\(String(describing: tempCSVTxnMapData.bUseEncryption))]")
+
+                    //if Txn type matches return true if UseEncryption is 0x01 else return false
+                    if (tempCSVTxnMapData.ulTxnType == ulTxnType) {
+                        return ((tempCSVTxnMapData.bUseEncryption == 0x01) ? true : false);
+                    }
+                }
+            }
+        }
+        return false;
+    }
     
 }

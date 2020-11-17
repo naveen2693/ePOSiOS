@@ -7,7 +7,7 @@
 //
 
 import Foundation
- struct TerminalTransactionData{
+struct TerminalTransactionData: Codable{
     var ulBatchId:Int64 = 0;         //indicates current batch id
     var ulROC:Int64 = 0;              //indicates ROC
     var uiTransactionType:Int = 0; //indicates the tag id of the last menu in the flow after which there was no menu to choose.

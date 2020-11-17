@@ -130,28 +130,6 @@ class ISO320Initialization: ISOMessage
           m_bIsTerminalActivationPacket = bTerminalActivationFlag
     }
     
-    //MARK:- setField7PrintPAD()
-    func setField7PrintPAD() {
-        do {
-            debugPrint("Inside setField7PrintPAD")
-            let length: Int = len[ISOFieldConstants.ISO_FIELD_7 - 1]
-
-            if (length > 0) {
-                debugPrint("ISO_FILED_7 data[\(String(bytes: self.data[ISOFieldConstants.ISO_FIELD_7 - 1], encoding: String.Encoding.ascii)!)]")
-                
-                let strISOField7: String = String(bytes: self.data[ISOFieldConstants.ISO_FIELD_7 - 1], encoding: String.Encoding.ascii)!
-                //String strISOField7 = new String(this.data[IsoFieldConstant.ISO_FIELD_7 - 1])
-                if (strISOField7 == AppConstant.AC_PRINT_PAD) {
-                    m_bField7PrintPAD = true;
-                } else {
-                    m_bField7PrintPAD = false;
-                }
-            }
-        } catch {
-            debugPrint("Exception Occurred \(error)")
-        }
-    }
-    
     //MARK: - insertTLV(iParamID: Int, chArrParamData: [Byte], dataLen: Int) -> Int
     func insertTLV(iHostId: Int ,iParamID: Int, chArrParamData: [Byte], dataLen: Int) -> Int
     {
@@ -3814,7 +3792,7 @@ class ISO320Initialization: ISOMessage
             iOffset += 4;
 
             debugPrint("MINIPVM ID from Host[\(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))], Action[\((p[iOffset] == AppConstant.ACTION_ADD ? "ACTION_ADD" : p[iOffset] == AppConstant.ACTION_DELETE ? "ACTION_DELETE" : "Unknown ACtion"))]")
-            debugPrint("Action[%0x0x]", p[iOffset])
+            debugPrint("Action[0x%0x]", p[iOffset])
             
             if(p[iOffset] == AppConstant.ACTION_ADD)
             {
