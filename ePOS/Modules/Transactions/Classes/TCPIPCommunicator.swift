@@ -10,7 +10,7 @@ import Foundation
 
 class TCPIPCommunicator
 {
-    static let singleton = TCPIPCommunicationHandler(hostIP: "192.168.126.111",hostPort: 8997,connectionTimeout: 60000,sendReceiveTimeout:120000 ,bIsSSLOn:false)
+    static let singleton = TCPIPCommunicationHandler(hostIP: "192.168.1.101",hostPort: 8997,connectionTimeout: 60000,sendReceiveTimeout:120000 ,bIsSSLOn:false)
     
 //    func connect()->Bool
 //    {

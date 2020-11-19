@@ -41,7 +41,7 @@ public class Util
     
     //MARK:- masterDataDirectoryURL: URL
     static var masterDataDirectoryURL: URL {
-        var tempFileLoc = "";
+            var tempFileLoc = "";
         if let library = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).last {
             let url = URL(fileURLWithPath: library).appendingPathComponent("InitialContents");
             tempFileLoc = url.path;

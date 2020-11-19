@@ -20,6 +20,11 @@ class ISO440Activation : ISOMessage
             //super.CISOMsgC()
         }
         
+    
+    func Test()
+    {
+        
+    }
         
     override func packIt(sendee bArrSendDataToHost: inout[Byte]) -> Int
         {
@@ -27,13 +32,13 @@ class ISO440Activation : ISOMessage
             /*    ***************************************************************************
              FEILD 0 ::Message Type
              ***************************************************************************/
-            //msgno = AppConst.ACTIVATIONREQ.getBytes();
-            //var bArrHardwareConfig = PlatformUtils.GetHardwareConfiguration();
-            //            if (bArrHardwareConfig !=null)
-            //            {
-            //                addLLLCHARData(IsoFieldConstant.ISO_FIELD_62, bArrHardwareConfig, bArrHardwareConfig.length);
-            //            }
-            //
+            msgno = [Byte](ProcessingCodeConstants.ACTIVATIONREQ.utf8);
+            //TODO check to write this function in PlatformUtils
+//            var bArrHardwareConfig = PlatformUtils.GetHardwareConfiguration();
+//            if (bArrHardwareConfig !=null)
+//            {
+//                _ = addLLLCHARData(IsoFieldConstant.ISO_FIELD_62, bArrHardwareConfig, bArrHardwareConfig.length);
+//            }
             return packItHost(sendee: &bArrSendDataToHost);
         }
         
@@ -42,8 +47,11 @@ class ISO440Activation : ISOMessage
             /*
              * FEILD 3 ::Processing Code
              */
-            //addField(ISOFieldConstants.ISO_FIELD_3,AppConst.PC_ONLINE_TRANSACTION_REQ.getBytes(), true);
-            //vFnSetTerminalActivationFlag(true);
+           _ =  addField(bitno:ISOFieldConstants.ISO_FIELD_3,
+                         data1:[Byte](ProcessingCodeConstants.PC_ONLINE_TRANSACTION_REQ.utf8),
+                         bcd:true);
+            
+            vFnSetTerminalActivationFlag(bTerminalActivationFlag:true);
         }
         
         
@@ -60,11 +68,7 @@ class ISO440Activation : ISOMessage
                 if bitmap[49 - 1]{
                     let ilenSerialNumber = len[49 - 1]
                     if ilenSerialNumber > 1 {
-                        //var bSerialNumber = new byte[iHardwareSerialNumberLength];
-                        var bArrHardwareSerialNumber = [Byte](repeating:0,count:ilenSerialNumber)
-                        //                    System.arraycopy(data[49 - 1],0,bSerialNumber,0,iHardwareSerialNumberLength);
-                        bArrHardwareSerialNumber[0...ilenSerialNumber-1] = data[49 - 1][0...ilenSerialNumber-1]
-                        
+                        let bArrHardwareSerialNumber = Array(data[49 - 1][0...ilenSerialNumber-1])
                         terminalParamData?.m_strHardwareSerialNumber = String(bytes: bArrHardwareSerialNumber, encoding: String.Encoding.ascii)!
                         debugPrint("Hardware Serial Number[\(bArrHardwareSerialNumber)] Hardware serial number length = [\(ilenSerialNumber)]")
                     }
@@ -73,10 +77,7 @@ class ISO440Activation : ISOMessage
                 if (bitmap[47 - 1])
                 {
                     let ilenField47Data = len[47 - 1];
-                    var bArrField47Data = [Byte](repeating: 0, count: ilenField47Data);
-                    
-                    //arraycopy
-                    bArrField47Data[0...ilenField47Data-1] = data[49 - 1][0...ilenField47Data-1]
+                    let bArrField47Data = Array(data[47 - 1][0..<ilenField47Data])
                     
                     var iOffset = 0;
                     
@@ -85,21 +86,24 @@ class ISO440Activation : ISOMessage
                     }
                     
                     //Parsing ClientID
-                    let ilenClientID = bArrField47Data[iOffset]
-                    iOffset+=1
+                    let ilenClientID = Int(bArrField47Data[iOffset])
+                    iOffset += 1
                     if ilenClientID>0
                     {
-                        terminalParamData?.m_strClientId = String(bytes: bArrField47Data, encoding: String.Encoding.ascii)!
+                        let bArrClientID = Array(bArrField47Data[iOffset..<iOffset+ilenClientID])
+                        iOffset += ilenClientID
+                        terminalParamData?.m_strClientId = String(bytes: bArrClientID, encoding: String.Encoding.ascii)!
                         m_sClientID = terminalParamData!.m_strClientId ;
-                        iOffset += Int(ilenClientID);
                         debugPrint("ClientID[\(m_sClientID)] ClientID Length = [\(ilenClientID)]")
                     }
                     
-                    let ilenSecurityToken = bArrField47Data[iOffset];
+                    let ilenSecurityToken = Int(bArrField47Data[iOffset])
                     iOffset += 1
                     if ilenSecurityToken>0
                     {
-                        terminalParamData?.m_strSecurityToken = String(bytes: bArrField47Data, encoding: String.Encoding.ascii)!
+                        let bArrSecurityToken = Array(bArrField47Data[iOffset..<iOffset+ilenSecurityToken])
+                        iOffset += ilenSecurityToken
+                        terminalParamData?.m_strSecurityToken = String(bytes: bArrSecurityToken, encoding: String.Encoding.ascii)!
                         
                         iOffset += Int(ilenSecurityToken);
                         debugPrint("SecurityToken[\(String(describing: terminalParamData?.m_strSecurityToken))] Security token Length = [\(ilenSecurityToken)]")
@@ -129,7 +133,7 @@ class ISO440Activation : ISOMessage
                 }
                 
                 _ = globalData.WriteParamFile(listParamData:terminalParamData);
-                //vFnSetTerminalActivationFlag(false);
+                vFnSetTerminalActivationFlag(bTerminalActivationFlag: false);
                 return true;
             }
             catch

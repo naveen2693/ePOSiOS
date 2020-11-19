@@ -17,7 +17,7 @@ public struct TerminalConxData:Codable{
 
   //timeouts
     var iConnTimeout = 0
-    var iSendRecTimeout = 0
+    var iSendRecTimeout:Int = 0
     var iInterCharTimeout = 0
     var iComPort = 0
     var strLoginID =   "";

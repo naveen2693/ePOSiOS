@@ -61,6 +61,7 @@ disabled_rules:
     - empty_enum_arguments
     - closure_parameter_position
     - unused_closure_parameter
+    - type_name
 
 opt_in_rules:
     - array_init

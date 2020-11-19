@@ -24,29 +24,6 @@ class ISOHandler
                 debugPrint("Not received any data from server")
                 return false;
             }
-            
-            
-            // add TPDU and length of message according to connection type
-//            switch (conx.m_iConnType) {
-//                case AppConst.DIALUP_SERIAL:
-//                    ip.m_TPDU[0] = (byte) TPDUConnectionType.TPDU_DIALUP_SERIAL;
-//                    break;
-//
-//                case AppConst.DIALUP_WIFI:
-//                    ip.m_TPDU[0] = (byte) TPDUConnectionType.TPDU_DIALUP_WIFI;
-//                    break;
-//
-//                case AppConst.DIALUP_GPRS:
-//                    ip.m_TPDU[0] = (byte) TPDUConnectionType.TPDU_DIALUP_GPRS;
-//                    break;
-//
-//                case AppConst.DIALUP_ETHERNET:
-//                    ip.m_TPDU[0] = (byte) TPDUConnectionType.TPDU_DIALUP_ETHERNET;
-//                    break;
-//                default:
-//                    ip.m_TPDU[0] = (byte) TPDUConnectionType.TPDU_DIALUP_SERIAL;
-//                    break;
-//            }
 
             //Packet + 7 byte header
             var bArrSendDataToHost = [UInt8](repeating: 0, count: iReceivedPacketLength+7)
@@ -56,20 +33,24 @@ class ISOHandler
             var iOffset = 0x00;
 
             //Lets take connection type WIFI
-            iso.m_TPDU[0] = 2
+            iso.m_TPDU[0] = 0x66
             
+            //5Bytes TPDU
             bArrSendDataToHost[0...4] = iso.m_TPDU[0...4]
+            iOffset += AppConstant.MAX_LEN_TPDU
             
             //Length in 2 Bytes
-            bArrSendDataToHost[0] = (UInt8) (iReceivedPacketLength >> 8)
-            bArrSendDataToHost[1] = (UInt8) (iReceivedPacketLength)
+            bArrSendDataToHost[iOffset] = (UInt8) (iReceivedPacketLength >> 8)
+            iOffset += 1
+            bArrSendDataToHost[iOffset] = (UInt8) (iReceivedPacketLength)
+            iOffset += 1
             
-            bArrSendDataToHost[7...iReceivedPacketLength-1] = bArrSendDataToHostTemp[0...iReceivedPacketLength-1]
+            bArrSendDataToHost[iOffset..<iOffset+iReceivedPacketLength] = bArrSendDataToHostTemp[0..<iReceivedPacketLength]
             
             iOffset += iReceivedPacketLength;
 
             bIssent = TCPIPCommunicator.singleton.SendDataToHost(bArrSendBuffer:bArrSendDataToHost)
-            return bIssent;
+            return bIssent
         } catch{
             //CGlobalData.csFinalMsg = "Error in Sending Data to Host";
             fatalError("Exception caught in sendISOPacket")
@@ -79,30 +60,23 @@ class ISOHandler
     }
     
     func getNextMessage(_ iso:ISOMessage) -> Int{
-
-           do {
-               debugPrint("Inside getNextMessage")
-               
-            guard TCPIPCommunicator.singleton.ReceiveDataFromHost() != nil
-              else {
+         do {
+              debugPrint("Inside getNextMessage")
+              guard let bArrReceivedData = TCPIPCommunicator.singleton.ReceiveCompletePacket()
+              else{
                     debugPrint("getNextMessage Failed")
                     return 0
-                }
-
-                if (false/*!iso.unPackHostDirect(bArrReceivedData)*/) {
-                   return 0;
+                
                }
-
-            let msgNumber:Int = 440/*Integer.parseInt(new String(ip.msgno))*/;
-            return msgNumber;
-           } catch  {
-               //CGlobalData.csFinalMsg = "Unknown Error";
-               //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(ex));
+               if (!iso.unPackHostDirect(bArrSource:bArrReceivedData)) { return 0}
+               guard let strMsgNumber = String(bytes: iso.msgno, encoding: .utf8) else {return 0}
+               guard let iMsgNumber:Int = Int(strMsgNumber) else {return 0}
+               return iMsgNumber;
+           }
+         catch {
                fatalError("Exception caught in getNextMessage")
                return 0;
            }
-
        }
-
 }
 

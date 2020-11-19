@@ -184,6 +184,35 @@ class TransactionUtils
         return value
     }
  
+    //MARK:- strlenByteArray(_ ByteArr: [Byte]) -> Int
+    static func strlenByteArray(_ ByteArr: [Byte]) -> Int
+    {
+        var len: Int = 0
+        while(len < ByteArr.count && ByteArr[len] != 0)
+        {
+            len += 1
+        }
+        return len
+    }
+    
+    //MARK:- ReplaceStringPatterninBuffer(_ bInput: [Byte], _ bOutput: [Byte], _ strPattern: String, _ bReplacmentString: Byte) -> Bool
+    static func ReplaceStringPatterninBuffer(_ bInput: [Byte], _ bOutput: inout [Byte], _ strPattern: String, _ bReplacmentString: [Byte]) -> Bool
+    {
+        let strInput = String(bytes: bInput, encoding: .ascii)
+        if(!strInput!.contains(strPattern))
+        {
+            debugPrint("ReplaceStringPatterninBuffer pattern not found!!!")
+            return false
+        }
+        let strOutput = strInput!.replaceFirst(of: strPattern, with: String(bytes: bReplacmentString, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines)).trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        let bTemp: [Byte] = [Byte](strOutput.utf8)
+        bOutput = [Byte](bTemp[0 ..< strOutput.count])
+        //System.arraycopy(strOutput.getBytes(), 0, bOutput, 0, strOutput.length());
+        //bOutput = strOutput.getBytes();
+        return true
+    }
+    
     //MARK:- objectToByteArray<T>(obj: T) -> [Byte]
     static func objectToByteArray<T>(obj: T) -> [Byte] {
         let bytes: [Byte] = []
@@ -218,4 +247,30 @@ class TransactionUtils
     }
     
     
+}
+
+extension String{
+    
+    public func replaceFirst(of pattern:String,
+                             with replacement:String) -> String {
+      if let range = self.range(of: pattern){
+        return self.replacingCharacters(in: range, with: replacement)
+      }else{
+        return self
+      }
+    }
+    
+    public func replaceAll(of pattern:String,
+                           with replacement:String,
+                           options: NSRegularExpression.Options = []) -> String{
+      do{
+        let regex = try NSRegularExpression(pattern: pattern, options: [])
+        let range = NSRange(0..<self.utf16.count)
+        return regex.stringByReplacingMatches(in: self, options: [],
+                                              range: range, withTemplate: replacement)
+      }catch{
+        NSLog("replaceAll error: \(error)")
+        return self
+      }
+    }
 }

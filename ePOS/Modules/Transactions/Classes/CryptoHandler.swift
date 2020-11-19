@@ -11,10 +11,10 @@ import CommonCrypto
 import CryptoSwift
 
 enum XOREncryptionType {
-       static let INVALID = 0
-       static let SERIAL_LINK_ENCRYPTION  = 1
-       static let USER_DATA_ENCRYPTION  = 2
-       static let SERIAL_LINK_SHA_ENCRYPTION = 3
+    static let INVALID = 0
+    static let SERIAL_LINK_ENCRYPTION  = 1
+    static let USER_DATA_ENCRYPTION  = 2
+    static let SERIAL_LINK_SHA_ENCRYPTION = 3
 }
 
 class CryptoHandler{
@@ -22,9 +22,9 @@ class CryptoHandler{
     //MARK:- padLeft(data: String, length: Int, padChar: Character) -> String
     static func padLeft(data: String, length: Int, padChar: Character) -> String {
         let remaining = length - data.count;
-
+        
         var newData = data;
-    
+        
         for _ in 0..<remaining
         {
             newData = String(padChar) + newData            // padChar + newData;
@@ -32,7 +32,26 @@ class CryptoHandler{
         return newData;
     }
     
-    //MARK:- vFnGetSHA1(_ buffer: [UInt8]) -> String
+    
+   
+    
+    
+//    static func tripleDesDecrypt(masterKey:String, Input:String) -> String
+//    {
+//
+//
+//        return ""
+//    }
+//
+//    static func tripleDesEncrypt(masterKey:String, Input:String) -> [Byte]?
+//      {
+//
+//
+//          return nil
+//      }
+//
+    
+  //MARK:- vFnGetSHA1(_ buffer: [UInt8]) -> String
     static func vFnGetSHA1(_ buffer: [UInt8]) -> String
     {
         let SHA1HexString = buffer.sha1().toHexString().uppercased()
@@ -44,6 +63,13 @@ class CryptoHandler{
     {
         let SHA256HexString = buffer.sha256().toHexString().uppercased()
         return SHA256HexString
+    }
+    
+    //MARK:- vFnGetCRC32(_ buffer: [UInt8]) -> String
+    static func GetCRC32(_ buffer: [UInt8]) -> UInt32
+    {
+        let crcValue = buffer.crc32()
+        return crcValue
     }
     
     //MARK:- XOREncrypt(_ bArrDataToEncrypt: [UInt8] , _ encryptionType: Int) -> [UInt8]?
@@ -87,8 +113,8 @@ class CryptoHandler{
     {
         switch keyType {
         case XOREncryptionType.SERIAL_LINK_ENCRYPTION:
-             let key = [UInt8]("GODISGREAT".utf8)
-             return key
+            let key = [UInt8]("GODISGREAT".utf8)
+            return key
         case XOREncryptionType.USER_DATA_ENCRYPTION:
             guard var hardwareSerialNumber = PlatFormUtils.GetHardWareSerialNumber() else {return nil}
             if hardwareSerialNumber.count < 15 {
@@ -106,6 +132,7 @@ class CryptoHandler{
         return nil
     }
 
+
     //MARK:- vFnGetSHA256(key:String) -> String
     static func vFnGetSHA256(key: String) -> String
     {
@@ -113,6 +140,7 @@ class CryptoHandler{
     }
 
     //MARK:- circularLeftRotate(_ bytetoRotate : UInt8, _ iNumberOfTimes : Int) -> UInt8
+
     static func circularLeftRotate(_ bytetoRotate : UInt8, _ iNumberOfTimes : Int) -> UInt8
     {
         var iRotate = iNumberOfTimes - 1
@@ -255,5 +283,6 @@ class CryptoHandler{
             return nil
         }
     }
+
     
 }

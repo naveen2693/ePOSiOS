@@ -44,85 +44,73 @@ class ISOMessage{
         }
     }
     
+    //MARK:- CISOMsgD()
+    func CISOMsgD() {
+        debugPrint("Inside CISOMsgD");
+        for i in 0 ..< AppConstant.ISO_LEN {
+             if (nil != self.data[i]) {
+                 self.data[i] = [0x00]
+             }
+             self.data[i] = [0x00]
+             self.len[i] = 0
+             self.bitmap[i] = false
+             self.encryptedFieldBitmap[i] = false
+         }
+     }
+    
     //MARK:- vFnSetPEDHardwareSerialNumer()
     func vFnSetPEDHardwareSerialNumer() {
         do {
-            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_INFO, "Inside vFnSetPEDHardwareSerialNumer");
             debugPrint("Inside vFnSetPEDHardwareSerialNumer")
-            var buffer = [Byte](repeating:0, count: 50)
-            var iLocalOffset: Int = 0x00
-
-            guard let chArrHarwareSerialNumber = PlatFormUtils.GetHardWareSerialNumber()
-            else
-            {
+            guard let bArrHarwareSerialNumber = PlatFormUtils.GetHardWareSerialNumber()
+            else{
                 return
             }
-            
-            let iLenHardwareSerialNum: Int = chArrHarwareSerialNumber.count
+            var iLenHardwareSerialNum: Int = bArrHarwareSerialNumber.count
 
-              if (iLenHardwareSerialNum <= AppConstant.MAX_LEN_HARDWARE_SERIAL_NUMBER) {
-                  
-                 m_chArrHardwareSerialNumber = [Byte](repeating: 0, count: iLenHardwareSerialNum)
-                 m_chArrHardwareSerialNumber = Array(chArrHarwareSerialNumber[0 ..< iLenHardwareSerialNum])
-                //System.arraycopy(chArrHarwareSerialNumber, 0, m_chArrHardwareSerialNumber, 0, iLenHardwareSerialNum);
+            if (iLenHardwareSerialNum <= AppConstant.MAX_LEN_HARDWARE_SERIAL_NUMBER) {
+                //Array Sliced assign new one
+                 m_chArrHardwareSerialNumber = Array(bArrHarwareSerialNumber[0 ..< iLenHardwareSerialNum])
               } else {
-                
-                m_chArrHardwareSerialNumber = [Byte](repeating: 0, count: iLenHardwareSerialNum)
-                m_chArrHardwareSerialNumber = Array(chArrHarwareSerialNumber[0 ..< AppConstant.MAX_LEN_HARDWARE_SERIAL_NUMBER])
-                                 
+                m_chArrHardwareSerialNumber = Array(bArrHarwareSerialNumber[0 ..< AppConstant.MAX_LEN_HARDWARE_SERIAL_NUMBER])
+                iLenHardwareSerialNum = AppConstant.MAX_LEN_HARDWARE_SERIAL_NUMBER
               }
-
               /**ADD to feild 49 PED HADRWARE SERIAL NUMBER **/
-            buffer = Array(m_chArrHardwareSerialNumber[0 ..< m_chArrHardwareSerialNumber.count])
-            iLocalOffset += m_chArrHardwareSerialNumber.count
-
-            _ = self.addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_49, data1: buffer, length: iLocalOffset)
+            let buffer = m_chArrHardwareSerialNumber
+            _ = self.addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_49, data1: buffer, length: buffer.count)
             debugPrint("Field 49 (m_chArrHardwareSerialNumber) \(m_chArrHardwareSerialNumber)")
-            
-            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "Field 49 (m_chArrHardwareSerialNumber)[%s]", new String(m_chArrHardwareSerialNumber));
         } catch {
             debugPrint("Exception Occurred : \(error)")
-            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(ex));
         }
     }
     
     //MARK:- vFnSetHardwareSerialNumber()
     func vFnSetHardwareSerialNumber() {
         do {
-            var chArrHardwareSerialNumber: [Byte]
-            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_INFO, "Inside vFnSetHardwareSerialNumer");
             debugPrint("Insert vFnSetHardwareSerialNumber")
-            var buffer = [Byte](repeating: 0x00, count: 50)
-            var iLocalOffset: Int = 0x00;
+            var buffer = [Byte](repeating: 0x00, count: 150)
+            var iOffset: Int = 0x00;
             
-            if let chArrHarwareSerialNumber = PlatFormUtils.getFullSerialNumber(){
+            guard var bArrHardwareSerialNumber = PlatFormUtils.getFullSerialNumber() else {return}
             
-            let iLenHardwareSerialNum: Int = chArrHarwareSerialNumber.count
+            var iLenHardwareSerialNum: Int = bArrHardwareSerialNumber.count
 
-            if (iLenHardwareSerialNum <= AppConstant.MAX_LEN_HARDWARE_SERIAL_NUMBER) {
-                chArrHardwareSerialNumber = [Byte](repeating: 0x00, count: iLenHardwareSerialNum)
-                chArrHardwareSerialNumber = Array(chArrHarwareSerialNumber[0 ..< iLenHardwareSerialNum])
-            } else {
-                chArrHardwareSerialNumber = [Byte](repeating: 0x00, count: AppConstant.MAX_LEN_HARDWARE_SERIAL_NUMBER)
-                chArrHardwareSerialNumber = Array(chArrHarwareSerialNumber[0 ..< AppConstant.MAX_LEN_HARDWARE_SERIAL_NUMBER])
+            if (iLenHardwareSerialNum > AppConstant.MAX_LEN_HARDWARE_SERIAL_NUMBER) {
+                bArrHardwareSerialNumber = Array(bArrHardwareSerialNumber[0 ..< AppConstant.MAX_LEN_HARDWARE_SERIAL_NUMBER])
+                iLenHardwareSerialNum = AppConstant.MAX_LEN_HARDWARE_SERIAL_NUMBER
             }
             
-
-
             /**ADD to feild 59 HADRWARE SERIAL NUMBER **/
-            iLocalOffset = iLocalOffset + 1
-            buffer[iLocalOffset] = (Byte)(iLenHardwareSerialNum & 0x000000ff)
+            buffer[iOffset] = (Byte)(iLenHardwareSerialNum & 0x000000ff)
+            iOffset = iOffset + 1
             
-            var restData:[Byte] = []
-            restData = Array(chArrHardwareSerialNumber[0 ..< chArrHardwareSerialNumber.count])
-            buffer.append(contentsOf: restData)
+            buffer[iOffset..<iOffset+iLenHardwareSerialNum] = bArrHardwareSerialNumber[0 ..< iLenHardwareSerialNum]
             
-            debugPrint("SET->Field 59 (HardwareSerialNum)[\(String(describing: String(bytes: chArrHardwareSerialNumber, encoding: String.Encoding.utf8)?.trimmingCharacters(in: .whitespacesAndNewlines)))]")
+            iOffset += iLenHardwareSerialNum
             
-            iLocalOffset += (chArrHardwareSerialNumber).count
+            debugPrint("SET->Field 59 (HardwareSerialNum)[\(String(describing: String(bytes: bArrHardwareSerialNumber, encoding: String.Encoding.utf8)?.trimmingCharacters(in: .whitespacesAndNewlines)))]")
             
-            //System.arraycopy(chArrHardwareSerialNumber, 0, buffer, iLocalOffset, chArrHardwareSerialNumber.length);
-            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "SET->Field 59(HardwareSerialNum)[%s]", new String(chArrHardwareSerialNumber).trim());
+            
 
             /** PVM VERSION **/
             /*****************************************************************
@@ -140,23 +128,18 @@ class ISOMessage{
             
             let strPVMVersion: String = NSString(format: "%04d", ulPvmVersion) as String
             let iPvmVersionLen: Int = strPVMVersion.count
-            iLocalOffset = iLocalOffset + 1
-            buffer[iLocalOffset] = (Byte)(iPvmVersionLen)
+            let bArrPVMersion = [Byte](strPVMVersion.utf8)
             
-            let bPVMersion = [Byte](strPVMVersion.utf8)
-            restData = Array(bPVMersion[0 ..< iPvmVersionLen])
-            buffer.append(contentsOf: restData)
-            
-            //System.arraycopy(strPVMVersion.getBytes(), 0, buffer, iLocalOffset, iPvmVersionLen);
-            iLocalOffset += iPvmVersionLen;
+            buffer[iOffset] = (Byte)(iPvmVersionLen)
+            iOffset = iOffset + 1
+            buffer[iOffset..<iOffset+iPvmVersionLen] = bArrPVMersion[0 ..< iPvmVersionLen]
+            iOffset += iPvmVersionLen
 
             //Add data (hardware serial number and PVM version) to feild 59
-            _ = self.addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_59, data1: buffer, length: iLocalOffset);
+            _ = self.addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_59, data1: buffer, length: iOffset);
             debugPrint("SET->Field 59(PVMversion)[\(strPVMVersion)]")
-            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "SET->Field 59(PVMversion)[%s]", strPVMVersion);
-            } }catch {
+            } catch {
             debugPrint("Exception Occurred: \(error)")
-            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(ex));
         }
 
     }
@@ -187,154 +170,123 @@ class ISOMessage{
     //MARK:- packItHost(sendee: inout [Byte]) -> Int
     func packItHost(sendee: inout [Byte]) -> Int {
         do {
-                
-            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_INFO, "Inside method packItHost");
+            
+            debugPrint("Inside method packItHost")
             var buffer =  [Byte](repeating: 0x00, count: 64)
             let globalData = GlobalData.singleton
             var iOffset = 0;
 
             /* ***************************************************************************
-            FEILD 6 :: Terminal Type
+            FIELD 6 :: Terminal Type
             ***************************************************************************/
             let TerminalType = TransactionUtils.GetHardwareType();
             _ = addField(bitno: ISOFieldConstants.ISO_FIELD_6, data1: TerminalType, bcd: true);
             debugPrint("packItHost SET Field 6(TerminalType) \(AppConstant.TERMINAL_TYPE.trimmingCharacters(in: .whitespacesAndNewlines))")
-            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "packItHost SET Field 6(TerminalType)[%s]", new String(TerminalType).trim());
-
             /* ***************************************************************************
-            FEILD 12 :: Current Time and Date
+            FIELD 12 :: Current Time and Date
             ***************************************************************************/
             vFnSetIsoPacketDate();
 
             /* ***************************************************************************
-            FEILD 38 :: Application Version
+            FIELD 38 :: Application Version
             ***************************************************************************/
             let chArr2: [Byte] = [Byte](TransactionUtils.getAppVersion().utf8)
             _ = self.addField(bitno: ISOFieldConstants.ISO_FIELD_38, data1: chArr2, bcd: false);
-            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "SET->Field 38(APP Version)[%s]", new String(chArr2).trim());
             debugPrint("SET->Field 38(App Version) \(TransactionUtils.getAppVersion().trimmingCharacters(in: .whitespacesAndNewlines))")
 
             /* ***************************************************************************
-            FEILD 47 :: Client ID + Security Token
+            FIELD 47 :: Client ID + Security Token
             ***************************************************************************/
             iOffset = 0;
-            var uchArrField47Data = [Byte](repeating: 0x00, count: 150)
-            
             let m_sParamData: TerminalParamData? = globalData.ReadParamFile()
-
-
-            let iLenClientID: Int = m_sParamData!.m_strClientId.count;
-            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "SET->Field 47(client id)[%s]", m_sParamData.m_strClientId);
-            debugPrint("SET->Field 47(client id) \(m_sParamData!.m_strClientId)")
+            let iLenClientID: Int = m_sParamData!.m_strClientId.count
+            let iLenSecurityToken: Int = m_sParamData!.m_strSecurityToken.count
+            
+            var bArrField47Data = [Byte](repeating: 0x00, count: 2+iLenClientID+iLenSecurityToken)
+                      
+            bArrField47Data[iOffset] = (Byte)(iLenClientID & 0x000000FF)
             iOffset = iOffset + 1
-            uchArrField47Data[iOffset] = (Byte)(iLenClientID & 0x000000FF);
 
             if (iLenClientID > 0) {
                 let strClientId: [Byte] = [Byte](m_sParamData!.m_strClientId.utf8)
-                uchArrField47Data = Array(strClientId[0 ..< iLenClientID])
-                //System.arraycopy(m_sParamData.m_strClientId.getBytes(), 0, uchArrField47Data, iOffset, iLenClientID);
+                bArrField47Data[iOffset..<(iOffset+iLenClientID)] = strClientId[0 ..< iLenClientID]
                 iOffset += iLenClientID;
             }
 
-            let iLenSecurityToken: Int = m_sParamData!.m_strSecurityToken.count
-            debugPrint("SET->Field 47(security token) \(m_sParamData!.m_strSecurityToken)")
-           // CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "SET->Field 47(security token)[%s]", m_sParamData.m_strSecurityToken);
-
+            bArrField47Data[iOffset] = (Byte)(iLenSecurityToken & 0x000000FF)
             iOffset = iOffset + 1
-            uchArrField47Data[iOffset] = (Byte)(iLenSecurityToken & 0x000000FF)
 
             if (iLenSecurityToken > 0) {
                 let strSecurityToken: [Byte] = [Byte](m_sParamData!.m_strSecurityToken.utf8)
-                uchArrField47Data = Array(strSecurityToken[0 ..< iLenSecurityToken])
-                
-                //System.arraycopy(m_sParamData.m_strSecurityToken.getBytes(), 0, uchArrField47Data, iOffset, iLenSecurityToken);
+                bArrField47Data[iOffset..<(iOffset+iLenSecurityToken)] = strSecurityToken[0 ..< iLenSecurityToken]
                 iOffset += iLenSecurityToken;
             }
 
-            _ = addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_47, data1: uchArrField47Data, length: iOffset)
+            _ = addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_47, data1: bArrField47Data, length: iOffset)
 
             /* ***************************************************************************
-            FEILD 49 ::PED Hardware Serial Number
+            FIELD 49 ::PED Hardware Serial Number
             *
             ***************************************************************************/
             self.vFnSetPEDHardwareSerialNumer();
             /* ***************************************************************************
-            FEILD 50 :: User ID Send
+            FIELD 50 :: User ID Send
             ***************************************************************************/
             if (globalData.m_bIsLoggedIn != false) {
                     
-                    buffer = (0...buffer.count).map { _ in 0x00 }
-                    var offset: Int = 0;
-
                     if (globalData.m_objCurrentLoggedInAccount != nil)
                     {
                         let strUserID: String = globalData.m_objCurrentLoggedInAccount!.m_strUserID;
-                        let strPIN: String = globalData.m_strCurrentLoggedInUserPIN
+                        let strUserPIN: String = globalData.m_strCurrentLoggedInUserPIN
 
-                        let UserIDlen: Int = strUserID.count
-                        let pinlen: Int = strPIN.count
+                        let iLenUserID: Int = strUserID.count
+                        let iLenUserPIN: Int = strUserPIN.count
 
-                        offset = offset + 1
-                        buffer[offset] = (Byte)(UserIDlen)
+                        iOffset = 0
+                        var bArrBuffer = [Byte](repeating: 0, count: 2+iLenUserID+iLenUserPIN)
                         
-                        var restData: [Byte] = []
-                        let strUser = [Byte](strUserID.utf8)
-                        restData = Array(strUser[0 ..< UserIDlen])
-                        buffer.append(contentsOf: restData)
-                                                
-                        //System.arraycopy(strUserID.getBytes(), 0, buffer, offset, UserIDlen);
-                        offset += UserIDlen;
+                        //UserID
+                        buffer[iOffset] = (Byte)(iLenUserID)
+                        iOffset = iOffset + 1
+                        let bArrUserID = [Byte](strUserID.utf8)
+                        bArrBuffer[iOffset..<iOffset+iLenUserID] = bArrUserID[0..<iLenUserID]
+                        iOffset += iLenUserID;
 
-                        offset = offset + 1
-                        buffer[offset] = (Byte)(pinlen)
+                        //User PIN
+                        buffer[iOffset] = (Byte)(iLenUserPIN)
+                        iOffset = iOffset + 1
+                        let bArrUserPIN = [Byte](strUserPIN.utf8)
+                        bArrBuffer[iOffset..<iOffset+iLenUserPIN] = bArrUserPIN[0..<iLenUserPIN]
+                        iOffset += iLenUserPIN;
                         
-                        let strPin = [Byte](strPIN.utf8)
-                        restData = Array(strPin[0 ..< pinlen])
-                        
-                        buffer.append(contentsOf: restData)
-                        //System.arraycopy(strPIN.getBytes(), 0, buffer, offset, pinlen);
-
-                        offset += pinlen;
-                        _ = addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_50, data1: buffer, length: offset);
+                        _ = addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_50, data1: bArrBuffer, length: iOffset);
                        
                         debugPrint("SET->FIELD 50(UserId) \(String(describing: String(bytes: buffer, encoding: String.Encoding.utf8)?.trimmingCharacters(in: .whitespacesAndNewlines)))")
                         
-                        //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "SET->Field 50(UserId)[%s]", new String(buffer).trim());
                     }
                 }
 
             /* ***************************************************************************
-            FEILD 59 ::Hardware Serial Number/PVM Version
+            FIELD 59 ::Hardware Serial Number/PVM Version
             *This must be set before Generating Autherisation Token
             ***************************************************************************/
             self.vFnSetHardwareSerialNumber()
             /* ***************************************************************************
-            FEILD 51 :: Autherised token / Data Encrypted under GUID
+            FIELD 51 :: Autherised token / Data Encrypted under GUID
             ***************************************************************************/
-
             if (!m_bIsTerminalActivationPacket) {
+                guard let bArrGUIDAuthTokenEncrypted = bFnGetGUIDAuthToken() else {return 0}
+                _ = addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_51, data1: bArrGUIDAuthTokenEncrypted, length: bArrGUIDAuthTokenEncrypted.count);
                 
-                var chTempGUIDAuthTokenArr = [Byte](repeating: 0x00, count: 51)
-                var iGUIDAuthTokenLen: Int = 0
-                
-                chTempGUIDAuthTokenArr = bFnGetGUIDAuthToken(iGUIDAuthTokenLen: &iGUIDAuthTokenLen)!
-                
-                if (!chTempGUIDAuthTokenArr.isEmpty) {
-                    
-                    _ = addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_51, data1: chTempGUIDAuthTokenArr, length: iGUIDAuthTokenLen);
-                    
-                    debugPrint("SET->Field 51(Auth Token)[\(TransactionUtils.byteArray2HexString(arr: chTempGUIDAuthTokenArr))]")
-                    //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "SET->Field 51(Auth Token)[%s]", BytesUtil.byteArray2HexString(chTempGUIDAuthTokenArr));
-                }
+                debugPrint("SET->Field 51(Auth Token)[\(TransactionUtils.byteArray2HexString(arr: bArrGUIDAuthTokenEncrypted))]")
             }
-                /*************************** NEWLY ADDED VARIABLES ************************/
             /* ***************************************************************************
             FIELD 5 :: Encrypted bitmap
             ***************************************************************************/
-                var enBmap = [Byte](repeating: 0x00, count: ISO_LEN / 8)
-                var charenBmap = [Byte](repeating: 0x00, count: ISO_LEN / 8)
+            var enBmap = [Byte](repeating: 0x00, count: ISO_LEN / 8)
+            var charenBmap = [Byte](repeating: 0x00, count: ISO_LEN / 8)
 
-                var bToSet:Bool = false
+            var bToSet:Bool = false
                 
             for i in 0 ..< ISO_LEN
             {
@@ -358,21 +310,19 @@ class ISOMessage{
             ***************************************************************************/
                 debugPrint("PACKING DATA")
                 //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "PACKING DATA");
-                var offset: Int = 0;
+                var iOffsetSendPacket: Int = 0;
 
                 // First tag the message number
                 let out: [Byte] = TransactionUtils.a2bcd(msgno)!
                 //byte[] out = CUtils.a2bcd(msgno);
                 
-                sendee = Array(out[0 ..< out.count])
+                //sendee = Array(out[0 ..< out.count])
+                sendee[iOffsetSendPacket..<out.count] = out[0 ..< out.count]
                 //System.arraycopy(out, 0, sendee, offset, out.length);
-                offset += 2;
+                iOffsetSendPacket += 2;
 
-
-                let CRC_len: Int = 8
-                self.bitmap[64 - 1] = true
-                _ = [Byte](repeating: 0x00, count: CRC_len)
             
+                self.bitmap[64 - 1] = true
                 var bmap = [Byte](repeating: 0x00, count: AppConstant.ISO_LEN / 8)
                     
 
@@ -387,68 +337,50 @@ class ISOMessage{
                     }
                 }
                 
-                sendee = Array(bmap[0 ..< AppConstant.ISO_LEN / 8])
-                //System.arraycopy(bmap, 0, sendee, offset, AppConst.ISO_LEN / 8);
-                offset += AppConstant.ISO_LEN / 8;
+                sendee[iOffsetSendPacket..<iOffsetSendPacket+AppConstant.ISO_LEN] = bmap[0 ..< AppConstant.ISO_LEN / 8]
+                iOffsetSendPacket += AppConstant.ISO_LEN / 8
 
                 //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "Packing Fields");
                 debugPrint("Packing Fields")
                 
-            for i in 0 ..< AppConstant.ISO_LEN
-            {
-                if(!self.bitmap[i]){
-                    continue
-                }
-                
-                if(i != (64 - 1))
+                for i in 0 ..< AppConstant.ISO_LEN
                 {
-                    debugPrint("Packing Field \(i + 1) Len \(String(describing: len[i])) data ")
+                    if(!self.bitmap[i]){
+                        continue
+                    }
                     
-                    var restData: [Byte] = []
-                    let length = self.len[i]
-                    restData = Array(data[i][0 ..< length])
+                    if(i != (64 - 1))
+                    {
+                        debugPrint("Packing Field \(i + 1) Len \(String(describing: len[i])) data ")
+                        let length = self.len[i]
+                        sendee[iOffsetSendPacket..<iOffsetSendPacket+length] = data[i][0..<length]
+                        iOffsetSendPacket += length
+                    }
                     
-                    sendee.append(contentsOf: restData)
-                    offset += len[i]
                 }
-                
-            }
          
                 debugPrint("Computing MAC")
-         
-                //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "Computing MAC");
             
-                var toCRC = [Byte](repeating: 0x00, count: offset)
-            
-                let k: Int = offset
-                var crc: Int64 = 0
+                let tempOffset: Int = iOffsetSendPacket
+                let iLenCRC: Int = 8
                 
-                toCRC = Array(sendee[0 ..< k])
-                //System.arraycopy(sendee, 0, toCRC, 0, k);
-
-                let objCRC32: CRC32 = CRC32()
-                objCRC32.update(buf: toCRC, off: 0, len: k)
-                crc = objCRC32.GetValue()
-
-                var strCRC = String(format: "%llX", crc)
-                    
-                strCRC =  CryptoHandler.padLeft(data: strCRC, length: CRC_len, padChar: "0")
+                let toCRC = Array(sendee[0 ..< tempOffset])
             
-                let bCRC = [Byte](strCRC.utf8)
-                let restData: [Byte] = Array(bCRC[0 ..< CRC_len])
-                sendee.append(contentsOf: restData)
+                let crc32 = CryptoHandler.GetCRC32(toCRC)
+                var strCRC = String(format: "%llX", crc32).lowercased()
+                strCRC =  TransactionUtils.StrLeftPad(data: strCRC, length: iLenCRC, padChar: "0")
             
-                //System.arraycopy(strCRC.getBytes(), 0, sendee, offset, CRC_len);
-                offset += CRC_len;
+                let bArrCRC = [Byte](strCRC.utf8)
+                sendee[iOffsetSendPacket..<iOffsetSendPacket+iLenCRC] = bArrCRC[0..<iLenCRC]
+            
+                iOffsetSendPacket += iLenCRC;
 
                 //Destruct ISO Packet
                 //CISOMsgD();
 
-                return offset;
+                return iOffsetSendPacket;
             } catch {
                 debugPrint("Exception Occurred : \(error)")
-
-                //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(ex));
                 return 0
             }
         }
@@ -458,35 +390,19 @@ class ISOMessage{
     func addField(bitno: Int, data1: [Byte], bcd: Bool) -> Bool {
             
             self.bitmap[bitno - 1] = true;
-            if (bcd) {
+            if (bcd == true) {
                 self.len[bitno - 1] = (data1.count) / 2
-                
-                //TO DO: a2bcd naveen ->
-                var result: String
-                result = String(bytes: data1, encoding: String.Encoding.utf8)!
-                
-                data[bitno - 1] = [Byte](result.utf8)
-//                if (data[bitno - 1] == nil)        //no memory check
-//                {
-//                    debugPrint("addField Got null data from Cutils.a2bcd")
-//                    //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "addField Got null data from Cutils.a2bcd");
-//                    return false;
-//                }
-            } else {
+                guard let result = TransactionUtils.a2bcd(data1) else {
+                    debugPrint("addField got null data from TransactionUtils.a2bcd")
+                    return false}
+                data[bitno - 1] = result
+            }
+            else {
                 self.len[bitno - 1] = (data1).count
                 data[bitno - 1] = [Byte](repeating:0x00, count: len[bitno - 1])
-                
-//                if (data[bitno - 1] == nil)        //no memory check
-//                {
-//                    debugPrint("addField Got null data from Cutils.a2bcd")
-//                    //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "addField Got null data from Cutils.a2bcd");
-//                    return false;
-//                }
                 data[bitno - 1] = Array(data1[0 ..< data1.count])
-                //System.arraycopy(data1, 0, data[bitno - 1], 0, data1.length)
-
             }
-            return false
+            return true
         }
 
 
@@ -495,64 +411,50 @@ class ISOMessage{
         do {
             debugPrint("Inside DisplayField58")
             let globalData: GlobalData = GlobalData.singleton
-            globalData.m_csFinalMsgDisplay58 = ""
+            globalData.mFinalMsgDisplayField58 = ""
 
             var iAction: Int = 0x00;
                 if (self.bitmap[58 - 1] == true) {
                     if (self.len[58 - 1] > 0) {
                         let iDisplayLen: Int = self.len[58 - 1]
-                        let bArrTempField58Data = self.data[58 - 1]
-                    
-                        var _: [Byte]
+                        let bArrField58Data = self.data[58 - 1]
+                        
                         var iOffset: Int = 0x00;
-                        var chArrDisplayMessage = [Byte](repeating: 0x00, count: 250)
-
-                        //UNICODE PARAMETERS may be use in future so we have not removed these parameters
-                        _ = [Byte](repeating: 0x00, count: 500)
-                        var _: Int = 0
-                        var _: Byte = 0x00
-
-                        var iDispArrOffset: Int = 0x00
-
+                        var bArrDisplayMessage = [Byte](repeating: 0x00, count: 0)
+                     
                         repeat {
+                            iAction = Int(bArrField58Data[iOffset])
                             iOffset = iOffset + 1
-                            iAction = Int(bArrTempField58Data[iOffset])
                             
                             if (iAction == DisplayMessageMode.ASCII_DUMP.rawValue) {
                                 var iLocalDataLen: Int = 0x00
+                    
+                                iLocalDataLen = Int((Byte)(bArrField58Data[iOffset] & 0x000000FF))
                                 iOffset = iOffset + 1
-                                iLocalDataLen = Int((Byte)(bArrTempField58Data[iOffset] & 0x000000FF))
                                 iLocalDataLen <<= 8
+                                iLocalDataLen |= Int((Byte)(bArrField58Data[iOffset] & 0x000000FF))
                                 iOffset = iOffset + 1
-                                iLocalDataLen |= Int((Byte)(bArrTempField58Data[iOffset] & 0x000000FF))
 
-                                //ASCII display message dump
-                                chArrDisplayMessage[iDispArrOffset ..< iDispArrOffset + iLocalDataLen] = ArraySlice<Byte>(bArrTempField58Data[iOffset ..< iOffset + iLocalDataLen])
-                                //System.arraycopy(bArrTempField58Data, iOffset, chArrDisplayMessage, iDispArrOffset, iLocalDataLen);
-                                iDispArrOffset += iLocalDataLen;
+                                
+                                let bArrTemp = Array(bArrField58Data[iOffset..<iOffset+iLocalDataLen])
+                                bArrDisplayMessage.append(contentsOf:bArrTemp)
+                                
                                 iOffset += iLocalDataLen;
-                                globalData.m_csFinalMsgDisplay58 = (String(bytes: chArrDisplayMessage, encoding: String.Encoding.ascii)?.trimmingCharacters(in: .whitespacesAndNewlines))!
+                                globalData.mFinalMsgDisplayField58 = (String(bytes: bArrDisplayMessage, encoding: String.Encoding.ascii)?.trimmingCharacters(in: .whitespacesAndNewlines))!
                                 
                             } else if (iAction == DisplayMessageMode.MESSAGE_ID_DUMP.rawValue) {
                                 //parse message id carry out look up concatenate in chArrDisplayMessage
                                 //move the len by 4 bytes
-                                var bArrMessageLength = [Byte](repeating: 0x00, count: 4)
-                                let bArrMessage = [Byte](repeating: 0x00, count: AppConstant.MAX_MESSAGE_LEN)
-                                var lMessageId: Int64 = 0x00;
-
-                                bArrMessageLength = Array(bArrTempField58Data[iOffset ..< iOffset + 4])
-                                //System.arraycopy(bArrTempField58Data, iOffset, bArrMessageLength, 0, 4);
-                                bArrMessageLength = TransactionUtils.bcd2a(bArrMessageLength, 4)!
-                                lMessageId = TransactionUtils.bytesToLong(bytes: bArrMessageLength)
+                                //var bArrMessageLength = [Byte](repeating: 0x00, count: 4)
+                                let bArrMessageLength = TransactionUtils.bcd2a(Array(bArrField58Data[iOffset ..< iOffset + 4]))!
+                                let lMessageId:Int64 = TransactionUtils.bytesToLong(bytes: bArrMessageLength)
                                 iOffset = iOffset + 4
                                 
-                                _ = globalData.GetMessage(id: lMessageId, messagebuffer: bArrMessage)
+                                //TODO check vishal GetMessage->BinarySearchMess() method to get message from file
+                                guard let bArrTemp = globalData.GetMessage(id: lMessageId) else {continue}
                                 
-                                chArrDisplayMessage[iDispArrOffset ..< iDispArrOffset + bArrMessage.count - 1]
-                                    = ArraySlice<Byte>(bArrMessage[0 ..< bArrMessage.count - 1])
-                                //System.arraycopy(bArrMessage, 0, chArrDisplayMessage, iDispArrOffset, (bArrMessage).length - 1);
-                                iDispArrOffset += bArrMessage.count - 1
-                                globalData.m_csFinalMsgDisplay58 = (String(bytes: chArrDisplayMessage, encoding: String.Encoding.utf8)?.trimmingCharacters(in: .whitespacesAndNewlines))!
+                                bArrDisplayMessage.append(contentsOf:bArrTemp)
+                                globalData.mFinalMsgDisplayField58 = (String(bytes: bArrDisplayMessage, encoding: String.Encoding.utf8)?.trimmingCharacters(in: .whitespacesAndNewlines))!
                             }
                             else {
                                 break
@@ -561,11 +463,9 @@ class ISOMessage{
                     }
                 } else {
                     debugPrint("DisplayFeild58 bitmap not set of field 58 ")
-                    //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "DisplayFeild58 bitmap not set of field 58 ");
                 }
             } catch  {
                 debugPrint("Exception occurred: \(error)")
-                //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(ex));
             }
         }
 
@@ -573,26 +473,19 @@ class ISOMessage{
     func unPackHostDirect(bArrSource: [Byte]) -> Bool {
         do {
             debugPrint("Inside unPackHostDirect")
-            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_INFO, "Inside unPackHostDirect");
             CISOMsgC()
 
             let headerLength: Int = 7
 
-            //Parsing Message Number
-            var bArrMsgNo = [Byte](repeating: 0x00, count: 2)
-            
-            bArrMsgNo = Array(bArrSource[headerLength ..< headerLength + 2])
-            //System.arraycopy(bArrSource, headerLength, bArrMsgNo, 0, 2)
+            let bArrMsgNo = Array(bArrSource[headerLength ..< headerLength + 2])
             msgno = TransactionUtils.bcd2a(bArrMsgNo, 2)!
 
-            // SKIP Bytes= headerLength(7 Bytes)+MessageNumber(2 Bytes)+BitMap(AppConst.ISO_LEN/8 Bytes)
             let iSkipLength: Int = (headerLength + 2 + AppConstant.ISO_LEN / 8)
-            var bArrtemp = [Byte](repeating: 0x00, count: bArrSource.count - iSkipLength)
-           
-            bArrtemp = Array(bArrSource[iSkipLength ..< iSkipLength + bArrtemp.count])
-            //System.arraycopy(bArrSource, iSkipLength, bArrtemp, 0, bArrtemp.length);
-
-
+            
+            let bArrtemp = Array(bArrSource[iSkipLength ..< bArrSource.count])
+            
+            
+            var iOffset:Int = 0
             var length: Int = 0                        // Lenght of bytes to read for a field.
             var bcd: Bool = true
             var totalLength = 2 + AppConstant.ISO_LEN / 8; // MAC
@@ -678,29 +571,24 @@ class ISOMessage{
 
                         //highly custom code written to handle the limitation of
                         //j8583 lib at the host.
-                        //Sanjeev
-
                         //Calculate length packed in BCD
                         
-                        var iValue1: Int = Int(((bArrtemp[0]) >> 4) & 0x0F)
+                        var iValue1: Int = Int(((bArrtemp[iOffset]) >> 4) & 0x0F)
                         iValue1 = iValue1 * 1000
                         
-                        var iValue2: Int = Int(bArrtemp[0] & 0x0F)
+                        var iValue2: Int = Int(bArrtemp[iOffset] & 0x0F)
                         iValue2 = iValue2 * 100
                         length = iValue1 + iValue2;
                         
-                        iValue1 = Int(((bArrtemp[0]) >> 4) & 0x0F)
-                        iValue1 = iValue1 * 1000
+                        iValue1 = Int(((bArrtemp[iOffset+1]) >> 4) & 0x0F)
+                        iValue1 = iValue1 * 10
                         
-                        iValue2 = Int(bArrtemp[0] & 0x0F)
-                        iValue2 = iValue2 * 100
+                        iValue2 = Int(bArrtemp[iOffset+1] & 0x0F)
                         length += iValue1 + iValue2
+                    
                         
-                        var bArrtemp2 = [Byte](repeating: 0x00, count: bArrtemp.count - 2)
-                        bArrtemp2 = Array(bArrtemp[2 ..< 2 + bArrtemp2.count])
-                        //System.arraycopy(bArrtemp, 2, bArrtemp2, 0, bArrtemp2.length)
-                        bArrtemp = bArrtemp2
                         totalLength += 2
+                        iOffset += 2
                         bcd = false
                     case 64:
                         length = 8
@@ -711,42 +599,28 @@ class ISOMessage{
                 }    // end switch
              
                 if (bcd) {
-                    data[i] = [Byte](repeating: 0x00, count: (2 * length + 1))
-                    //data[i] = new byte[(2 * length + 1)];
-                    data[i] = TransactionUtils.bcd2a(bArrtemp, length)!
+                    data[i] = TransactionUtils.bcd2a(Array(bArrtemp[iOffset..<iOffset+length]))!
                     len[i] = 2 * length
-                    debugPrint("field[\(i + 1)], length[\(len[i]), Data[\(String(describing: TransactionUtils.ByteArrayToHexString(data[i])))]")
-                    //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "field[%d] length[%d] Data[%s]", i + 1, len[i]BytesUtil.bytes2HexString(data[i]))
+                    iOffset += length
+                    debugPrint("field[\(i + 1)], length[\(len[i])], Data[\(String(describing: TransactionUtils.ByteArrayToHexString(data[i])))]")
                 } else {
-                    data[i] = [Byte](repeating: 0x00, count: length + 1)
-                    data[i] = Array(bArrtemp[0 ..< length])
-                    //System.arraycopy(bArrtemp, 0, data[i], 0, length);
-                    len[i] = length;
-                    debugPrint("field[\(i + 1)], length[\(len[i]), Data[\(String(describing: TransactionUtils.ByteArrayToHexString(data[i])))]")
-                    //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "field[%d] length[%d] Data[%s]", i + 1, len[i]BytesUtil.bytes2HexString(data[i]));
-                    data[i][length] = 0;
+                    data[i] = Array(bArrtemp[iOffset ..< iOffset+length])
+                    len[i] = length
+                    iOffset += length
+                    debugPrint("field[\(i + 1)], length[\(len[i])], Data[\(String(describing: TransactionUtils.ByteArrayToHexString(data[i])))]")
                 }
-                
-                var p2 = [Byte](repeating: 0x00, count: bArrtemp.count - length)
-                p2 = Array(bArrtemp[length ..< length + p2.count])
-                //System.arraycopy(bArrtemp, length, p2, 0, p2.length);
-                bArrtemp = p2
                 totalLength += length; //  For MAC
 
-                }// end if data
+                }//end if
 
             }    // end for loop
 
             if (bitmap[44 - 1]) {
                 debugPrint("field 44 length = \(len[44 - 1]), data = \(String(describing: TransactionUtils.ByteArrayToHexString(data[44 - 1]))))")
-                //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "field 44 length = %d data = %s", len[44 - 1], BytesUtil.bytes2HexString(data[44 - 1]));
-
             }
 
             if (bitmap[45 - 1]) {
-                debugPrint("field 44 length = \(len[45 - 1]), data = \(String(describing: TransactionUtils.ByteArrayToHexString(data[45 - 1]))))")
-                //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "field 45 length = %d data = %s", len[45 - 1], BytesUtil.bytes2HexString(data[45 - 1]));
-
+                debugPrint("field 44 length = \(len[45 - 1])], data = \(String(describing: TransactionUtils.ByteArrayToHexString(data[45 - 1]))))")
             }
 
 
@@ -758,35 +632,28 @@ class ISOMessage{
             if (!bitmap[64 - 1]) {
                 return true;
             }
+        
+            let iLenCRC: Int = 8
             //  buffer for crc calculation is allocated here
-            var bArrToCRC = [Byte](repeating: 0x00, count: totalLength - 8)
-            bArrToCRC = Array(bArrSource[headerLength ..< headerLength + totalLength - 8])
-            //System.arraycopy(bArrSource, headerLength, bArrToCRC, 0, totalLength - 8);
+            let bArrToCRC = Array(bArrSource[headerLength ..< headerLength + totalLength - 8])
 
-            let CRC_len: Int = 8
-            let objCRC32: CRC32 = CRC32()
-            objCRC32.update(buf: bArrToCRC, off: 0, len: totalLength - 8)
-            let crc: Int64 = objCRC32.GetValue()
-
-
-            var strOurCRC = String(format: "%llX", crc)
-            strOurCRC = CryptoHandler.padLeft(data: strOurCRC, length: CRC_len, padChar: "0");
+            let crc32 = CryptoHandler.GetCRC32(bArrToCRC)
+            var strOutCRC = String(format: "%llX", crc32).lowercased()
+            strOutCRC =  TransactionUtils.StrLeftPad(data: strOutCRC, length: iLenCRC, padChar: "0")
+            
+            
             let strTheirCRC: String = (String(bytes: data[64 - 1], encoding: String.Encoding.utf8)?.trimmingCharacters(in: .whitespacesAndNewlines))!
 
-            debugPrint("Their MAC is \(strTheirCRC), Our MAC is \(strOurCRC)")
-            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "Their MAC is[%s], Our   MAC is[%s]", strTheirCRC, strOurCRC);
+            debugPrint("Their MAC is \(strTheirCRC), Our MAC is \(strOutCRC)")
 
-            if (strOurCRC != strTheirCRC) {
+            if (strOutCRC != strTheirCRC) {
                 debugPrint("MAC MISMATCH")
-                //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "MAC MISMATCH");
                 return false;
             }
             debugPrint("MAC OK")
-            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "MAC OK");
             return true
         } catch {
             debugPrint("Exception Occured \(error)")
-            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(ex));
             return false;
         }
 
@@ -798,7 +665,6 @@ class ISOMessage{
             if (!data[bitno - 1].isEmpty) {
                  data[bitno - 1] = []
             }
-                   
               //Set the Bitmap for the corresponding ISO field in the class variable
               self.bitmap[bitno - 1] = true
 
@@ -807,29 +673,27 @@ class ISOMessage{
               self.len[bitno - 1] = 2 + length
 
               //Allocate Memory for Data to be put into
-              self.data[bitno - 1] = withUnsafeBytes(of: self.len[bitno - 1].bigEndian, Array.init)
+              //self.data[bitno - 1] = withUnsafeBytes(of: self.len[bitno - 1].bigEndian, Array.init)
+            
+              var tempBuffer = [Byte](repeating: 0, count: self.len[bitno - 1])
 
               //The unsigned long  length is to be converted in BCD
               // i.e. if length is 123 bytes in packet it will go like 0x01 0x23
               var strVal = "\(length)"
-              strVal = CryptoHandler.padLeft(data: strVal, length: 4, padChar: "0")
-                
-              let temp = [Byte](strVal.utf8)
+              strVal = TransactionUtils.StrLeftPad(data: strVal, length: 4, padChar: "0")
+             
+              guard let tempLength = TransactionUtils.a2bcd([Byte](strVal.utf8)) else {return false}
             
               //Copy the length to the data feild in bcd format
-              self.data[bitno - 1][0] = temp[0]
-              self.data[bitno - 1][1] = temp[1]
-
-              var restData: [Byte]
-              restData = Array(data1[0 ..< data1.count])
-                
-              data[bitno - 1].append(contentsOf: restData)
+              tempBuffer[0] = tempLength[0]
+              tempBuffer[1] = tempLength[1]
+            
+              tempBuffer[2..<tempBuffer.count] = data1[0 ..< length]
+              data[bitno - 1] = tempBuffer
               
-            //System.arraycopy(data1, 0, this.data[bitno - 1], 2, length)
               return true
           } catch {
             debugPrint("Exception Occured \(error)")
-              //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(ex))
               return false
           }
       }
@@ -839,8 +703,8 @@ class ISOMessage{
         do {
             debugPrint("IsOk bitmap[\(bitmap[39 - 1])]");
             if (self.bitmap[39 - 1]) {
-                debugPrint("IsOk bitmap[\(bitmap[39 - 1])], data[\(String(bytes: data[39 - 1], encoding: .utf8)!)]");
-                let strRespCode: String = String(bytes: data[39 - 1], encoding: .utf8)!
+                debugPrint("IsOk bitmap[\(bitmap[39 - 1])], ErrorCode[\(String(bytes: data[39 - 1], encoding: .utf8)!)]");
+                guard let strRespCode: String = String(bytes: data[39 - 1], encoding: .utf8) else{return false}
                 
                 GlobalData.responseCode = strRespCode
                 if (strRespCode.caseInsensitiveCompare(AppConstant.AC_PARTIAL_SETTLEMENT) == ComparisonResult.orderedSame) {
@@ -896,105 +760,151 @@ class ISOMessage{
             //Length  = 2 bytes of length feild + Length of the data
             self.len[bitno - 1] = 2 + length
 
-            //Allocate Memory for Data to be put into
-            self.data[bitno - 1] = [Byte](repeating:0x00, count: len[bitno - 1])
-            var encData = [Byte](repeating:0x00, count: len[bitno - 1])
-        
-            //Encrypt data
-            //let encLen: Int = 0;
+            var tempBuffer = [Byte](repeating: 0, count: self.len[bitno - 1])
+    
+            guard let encData = CryptoHandler.XOREncrypt(data1, XOREncryptionType.USER_DATA_ENCRYPTION) else {return false}
             
-            encData = CryptoHandler.XORDecrypt(data1, XOREncryptionType.USER_DATA_ENCRYPTION)!
-            
-           //encData = CryptoHandler.XOREncrypt(rawdata: data1, cipherlen: length, encrypted: encData, lenBuff: encLen, uchDynamicInput: nil, DynamicInputLen: 0, encryptionType: enXOREncryptionType.USER_DATA_ENCRYPTION.rawValue);
-
-            //The unsigned long  length is to be converted in BCD
-            // i.e. if length is 123 bytes in packet it will go like 0x01 0x23
-            var strVal: String = "";
-            strVal = String(format: "%d", length);
-
+            //length in bcd packing
+            var strVal = "\(length)"
             strVal = CryptoHandler.padLeft(data: strVal, length: 4, padChar: "0");
             
-            let bArrVal = [Byte](strVal.utf8)
-            let temp: [Byte] = TransactionUtils.a2bcd(bArrVal)!
+            let tempLength: [Byte] = TransactionUtils.a2bcd([Byte](strVal.utf8))!
 
-              //Copy the length to the data feild in bcd format
-            self.data[bitno - 1][0] = temp[0];
-            self.data[bitno - 1][1] = temp[1];
+            //Copy the length to the data field in bcd format
+            tempBuffer[0] = tempLength[0];
+            tempBuffer[1] = tempLength[1];
 
-            debugPrint("Length[\(length)] temp[0][\(temp[0])] temp[0][\(temp[1])]")
-            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "length[%d], temp[0][%x], temp[1][%x]", length.value, temp[0], temp[1]);
-
-            let restData: [Byte] = Array(encData[0 ..< length])
-            self.data[bitno - 1].append(contentsOf: [Byte](restData))
+            tempBuffer[2..<tempBuffer.count] = encData[0 ..< length]
+            self.data[bitno-1] = tempBuffer
             
-              //Now copy the data to the data feild after length has been added
-              //System.arraycopy(encData, 0, this.data[bitno - 1], 2, length.value);
-              return true;
+            return true;
           } catch {
             debugPrint("Exception Occurred \(error)")
-              //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(ex));
               return false;
           }
 
       }
     
-    //MARK:- bFnGetGUIDAuthToken(iGUIDAuthTokenLen: inout Int) -> [Byte]?
-    func bFnGetGUIDAuthToken(iGUIDAuthTokenLen: inout Int) -> [Byte]? {
+    //MARK:- bFnGetGUIDAuthToken() -> [Byte]?
+    func bFnGetGUIDAuthToken() -> [Byte]? {
 
         do {
             debugPrint("Inside bFnGetGUIDAuthToken")
-            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_INFO, "Inside bFnGetGUIDAuthToken");
             
-            var uchArrKey = [Byte](repeating: 0x00, count: 16)
             var iOffset: Int = 0
 
-            var uchArrTempData = [Byte](repeating: 0x00, count: m_chArrISOPacketDate.count + m_chArrHardwareSerialNumber.count)
+            var bArrGUIDPlainData = [Byte](repeating: 0x00, count: 0)
             
-            uchArrTempData.append(contentsOf: Array(m_chArrISOPacketDate[0 ..< m_chArrISOPacketDate.count]))
-            
-            //System.arraycopy(m_chArrISOPacketDate, 0, uchArrTempData, iOffset, m_chArrISOPacketDate.length);
+            bArrGUIDPlainData.append(contentsOf: Array(m_chArrISOPacketDate[0 ..< m_chArrISOPacketDate.count]))
             iOffset += (m_chArrISOPacketDate).count;
 
-            uchArrTempData.append(contentsOf: Array(m_chArrHardwareSerialNumber[0 ..< m_chArrHardwareSerialNumber.count]))
+            bArrGUIDPlainData.append(contentsOf: Array(m_chArrHardwareSerialNumber[0 ..< m_chArrHardwareSerialNumber.count]))
             
-            //System.arraycopy(m_chArrHardwareSerialNumber, 0, uchArrTempData, iOffset, m_chArrHardwareSerialNumber.length);
             iOffset += (m_chArrHardwareSerialNumber).count;
 
-            debugPrint("GUID Auth topken plain data len[\(iOffset)], uchArrTempData[\(TransactionUtils.byteArray2HexString(arr: uchArrTempData))]")
-            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "GUID Auth token plain data len[%d], uchArrTempData[%s]", iOffset, BytesUtil.byteArray2HexString(uchArrTempData));
-
+            debugPrint("GUID Auth token plain data len[\(iOffset)], bArrGUIDPlainData[\(TransactionUtils.byteArray2HexString(arr: bArrGUIDPlainData))]")
+            
+            
+            var bArrKey = [Byte](repeating: 0x00, count: 0)
+            
             let globalData: GlobalData = GlobalData.singleton
-            let m_sParamData: TerminalParamData = globalData.ReadParamFile()!
+            guard let m_sParamData: TerminalParamData = globalData.ReadParamFile() else {return nil}
 
-            
-            uchArrKey = [Byte](repeating: 0x00, count: m_sParamData.m_strGUID.count)
-            
             let iLenGUID: Int = (m_sParamData.m_strGUID).count
 
             if (iLenGUID <= 16) {
-                
-                let bGUID = [Byte](m_sParamData.m_strGUID.utf8)
-                let restData: [Byte] = Array(bGUID[0 ..< iLenGUID])
-                
-                uchArrKey.append(contentsOf: restData)
+
+                let bArrGUID = [Byte](m_sParamData.m_strGUID.utf8)
+                bArrKey.append(contentsOf: bArrGUID)
             } else {
-                let bGUID = [Byte](m_sParamData.m_strGUID.utf8)
-                let restData: [Byte] = Array(bGUID[0 ..< 16])
-                
-                uchArrKey.append(contentsOf: restData)
+                let bArrGUID = [Byte](m_sParamData.m_strGUID.utf8)
+                bArrKey.append(contentsOf: Array(bArrGUID[0 ..< 16]))
             }
 
             debugPrint("m_strGUID[\(m_sParamData.m_strGUID)]")
-            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_DEBUG, "m_strGUID[%s]", m_sParamData.m_strGUID);
-
-            let chGUIDAuthTokenVal: [Byte] = CryptoHandler.tripleDesEncrypt(uchArrKey, uchArrTempData)!
             
-            iGUIDAuthTokenLen = chGUIDAuthTokenVal.count
-            return chGUIDAuthTokenVal;
+            guard let bArrGUIDAuthTokenEncrypted: [Byte] = CryptoHandler.tripleDesEncrypt(bArrGUIDPlainData, bArrKey) else{return nil}
+            
+            return bArrGUIDAuthTokenEncrypted;
         } catch {
             debugPrint("Exception Occurred : \(error)")
-            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(ex));
+            
         }
     }
+ 
+    //MARK:- setField7PrintPAD()
+    func setField7PrintPAD() {
+        do {
+            debugPrint("Inside setField7PrintPAD")
+            let length: Int = len[ISOFieldConstants.ISO_FIELD_7 - 1]
+
+            if (length > 0) {
+                debugPrint("ISO_FILED_7 data[\(String(bytes: self.data[ISOFieldConstants.ISO_FIELD_7 - 1], encoding: String.Encoding.ascii)!)]")
+                
+                let strISOField7: String = String(bytes: self.data[ISOFieldConstants.ISO_FIELD_7 - 1], encoding: String.Encoding.ascii)!
+                //String strISOField7 = new String(this.data[IsoFieldConstant.ISO_FIELD_7 - 1])
+                if (strISOField7 == AppConstant.AC_PRINT_PAD) {
+                    m_bField7PrintPAD = true;
+                } else {
+                    m_bField7PrintPAD = false;
+                }
+            }
+        } catch {
+            debugPrint("Exception Occurred \(error)")
+        }
+    }
+    
+    func GetEDCPrintingLocation() -> Int {
+        do {
+        
+            debugPrint("Inside GetEDCPrintingLocation")
+            let globalData = GlobalData.singleton
+
+            var iPrintingLocation: Int = 0;
+            //TODO: Statemachine yet to Implement
+            //Context context = CStateMachine.m_context;
+
+            if (true == FileSystem.IsFileExist(strFileName: FileNameConstants.POSPRINTINGLOCATIONFILE)) {
+                let NumberOFRows: Int = FileSystem.NumberOfRows(strFileName: FileNameConstants.POSPRINTINGLOCATIONFILE, obj: StPOSPrintinglocationDetails.self)
+                debugPrint("NumberOFRows[\(NumberOFRows)]");
+
+                var sttempPosLocation = [StPOSPrintinglocationDetails](repeating: StPOSPrintinglocationDetails(), count: NumberOFRows)
+
+                for it in 0 ..< NumberOFRows
+                {
+                    if let tempPosLocation: StPOSPrintinglocationDetails = FileSystem.SeekRead(strFileName: FileNameConstants.POSPRINTINGLOCATIONFILE, iOffset: it)
+                    {
+                        sttempPosLocation[it] = tempPosLocation
+                        debugPrint("iHATTxnType[\(sttempPosLocation[it].iHATTxnType)], iCSVTxnType[\(sttempPosLocation[it].iCSVTxnType)], iPrintingFlag[\(sttempPosLocation[it].iPrintingFlag)]")
+                    }
+                }
+
+                let iHATTxntype = globalData.m_sNewTxnData.uiTransactionType;
+                let iCSVTxntype = globalData.m_sNewTxnData.uiCSVTransactionType;
+
+                debugPrint("iHATTxntype[\(iHATTxntype)], iCSVTxntype[\(iCSVTxntype)]");
+                debugPrint("GlobalData->m_ptrCSVDATA->bsendData[\(globalData.m_ptrCSVDATA.bsendData)]")
+
+                for it in 0 ..< NumberOFRows {
+                    if (true != globalData.m_ptrCSVDATA.bsendData
+                            && sttempPosLocation[it].iHATTxnType == iHATTxntype) //Txn type is not set when sending CSV data
+                    {
+                        iPrintingLocation = sttempPosLocation[it].iPrintingFlag;
+                        break;
+                    } else if (sttempPosLocation[it].iCSVTxnType == iCSVTxntype) {
+                        iPrintingLocation = sttempPosLocation[it].iPrintingFlag;
+                        break;
+                    }
+                }
+            }
+
+            return iPrintingLocation;
+        } catch {
+            debugPrint("Exception Occurred : \(error)")
+            return -1
+        }
+    }
+
+    
     
 }
