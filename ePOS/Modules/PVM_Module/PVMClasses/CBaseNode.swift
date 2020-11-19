@@ -82,15 +82,6 @@ class CBaseNode {
         
     }
     
-    //    private func setScreenBrightness(screenBrightnessValue:Int) {
-    //            var brightness = screenBrightnessValue * 255 / 100;
-    //            Settings.System.putInt(PlutusApplication.getContext().getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
-    //            Settings.System.putInt(PlutusApplication.getContext().getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, brightness);
-    //        } catch (Exception e) {
-    //            CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(e));
-    //        }
-    //    }
-    
     // MARK:- AddChild
     public func AddChild(addThisNode:CBaseNode) -> Int {
         var retVal:Int = RetVal.RET_OK;
@@ -104,11 +95,13 @@ class CBaseNode {
         numberOfChild = numberOfChild+1;
         return retVal;
     }
+    
     // MARK:- AddParent
     public func AddParent(cparentNode:CBaseNode) -> Int {
         self.Parent = cparentNode;
         return RetVal.RET_OK;
     }
+    
     // MARK:- run
     public func run() -> CBaseNode? {
         if (CStateMachine.currentNode?.goToOrignalBrightness == 1) {
@@ -158,7 +151,8 @@ class CBaseNode {
     }
     
     // MARK:- setLatLong
-    internal func setLatLong(isLatLongReq:Bool,lat:String,lng:String,msg:String) {
+    internal func setLatLong(isLatLongReq:Bool,lat:String,lng:String,msg:String)
+    {
         
         let hatLat = 0x1162;
         let hatLng = 0x1163;
@@ -176,7 +170,7 @@ class CBaseNode {
             iOffset += 1
             var latValue = lat.bytes;
             let length = latValue.count;
-            latValue[0...length] = uchArrEncOutLAt[0...length]
+            latValue[0..<length] = uchArrEncOutLAt[0..<length]
             iOffset += latValue.count
             AddTLVDataWithTag(uiTag: hatLat, Data: uchArrEncOutLAt, length: iOffset);
             /*******add lng to tlv********/
@@ -190,7 +184,7 @@ class CBaseNode {
             iOffset += 1
             var lagValue = lng.bytes;
             let lengthLag = latValue.count;
-            lagValue[0...lengthLag] = uchArrEncOutLng[0...lengthLag]
+            lagValue[0..<lengthLag] = uchArrEncOutLng[0..<lengthLag]
             iOffset += lng.count;
             AddTLVDataWithTag(uiTag: hatLng, Data: uchArrEncOutLng, length: iOffset);
             
@@ -205,7 +199,7 @@ class CBaseNode {
             iOffset += 1
             var msgValue = msg.bytes;
             let lengthMsg = latValue.count;
-            msgValue[0...lengthMsg] = uchArrEncOutLAt[0...lengthMsg]
+            msgValue[0..<lengthMsg] = uchArrEncOutLAt[0..<lengthMsg]
             iOffset += msgValue.count;
             AddTLVDataWithTag(uiTag: hatLng, Data: uchArrEncOutMsg, length: iOffset);
         }
@@ -213,7 +207,8 @@ class CBaseNode {
     }
     
     // MARK:- GotoChild
-    public func GotoChild(index:Int) -> CBaseNode? {
+    public func GotoChild(index:Int) -> CBaseNode?
+    {
         if (nil == Child) {
             return nil;
         } else {
@@ -222,7 +217,8 @@ class CBaseNode {
     }
     
     // MARK:- GotoChild
-    internal func GotoChild() -> CBaseNode? {
+    internal func GotoChild() -> CBaseNode?
+    {
         if (nil == Child) {
             return nil;
         } else {
@@ -231,13 +227,16 @@ class CBaseNode {
     }
     
     // MARK:- GotoParent
-    public func GotoParent() -> CBaseNode? {
-        if let cbaseNode = CStateMachine.stateMachine.GetRootNode(){
+    public func GotoParent() -> CBaseNode?
+    {
+        if let cbaseNode = CStateMachine.stateMachine.GetRootNode()
+        {
             if cbaseNode is CBaseNode {
                 GlobalData.singleton.InitializeTxnTlvData();
                 return nil;
             }
-            if ((PvmNodeTypes.Menu_item_node == self.Parent?.node_type) || (PvmNodeTypes.Event_Received_node == self.Parent?.node_type)) {
+            if ((PvmNodeTypes.Menu_item_node == self.Parent?.node_type) || (PvmNodeTypes.Event_Received_node == self.Parent?.node_type))
+            {
                 if let unwrappedparent1 = self.Parent{
                     clearTLVDataWithTag(currentNode: unwrappedparent1);
                     if let unwrappedparent2 = self.Parent?.Parent{
@@ -247,12 +246,13 @@ class CBaseNode {
                         }
                     }
                 }
-                 return (self.Parent?.Parent);
+                return (self.Parent?.Parent);
             }
-           
         }
-        else {
-            if let unwrappedparent1 = self.Parent{
+        else
+        {
+            if let unwrappedparent1 = self.Parent
+            {
                 clearTLVDataWithTag(currentNode: unwrappedparent1);
                 return (self.Parent);
             }
@@ -262,7 +262,8 @@ class CBaseNode {
     }
     
     // MARK:- clearTLVDataWithTag
-    func  clearTLVDataWithTag(currentNode:CBaseNode) {
+    func  clearTLVDataWithTag(currentNode:CBaseNode)
+    {
         if (GlobalData.singleton.m_sTxnTlvData.iTLVindex > 0) {
             if (currentNode.HostTlvtag == GlobalData.singleton.m_sTxnTlvData.objTLV[GlobalData.singleton.m_sTxnTlvData.iTLVindex - 1].uiTag) {
                 GlobalData.singleton.m_sTxnTlvData.iTLVindex = GlobalData.singleton.m_sTxnTlvData.iTLVindex-1 ;
@@ -271,17 +272,22 @@ class CBaseNode {
     }
     
     // MARK:- GotoRoot
-    internal func  GotoRoot() -> CBaseNode? {
+    internal func  GotoRoot() -> CBaseNode?
+    {
         return nil;
     }
     
     // MARK:- GoOnline
-    func GoOnline() -> CBaseNode?{
-        if m_iIsIRIS {
+    func GoOnline() -> CBaseNode?
+    {
+        if m_iIsIRIS
+        {
             _ = GlobalData.singleton.GetSerialPort();
             return (GotoRoot());
         }
-        if (GlobalData.singleton.m_iHostIndicator <= 0) {
+        
+        if (GlobalData.singleton.m_iHostIndicator <= 0)
+        {
             GlobalData.singleton.m_iHostIndicator = AppConstant.DEFAULT_HOSTID;
         }
         
@@ -290,7 +296,8 @@ class CBaseNode {
     }
     
     // MARK:- OnOk
-    internal func OnOk() -> CBaseNode? {
+    internal func OnOk() -> CBaseNode?
+    {
         switch (self.onOk) {
         case PvmNodeActions.gotoChild:
             return (self.GotoChild());
@@ -309,9 +316,12 @@ class CBaseNode {
     }
     
     // MARK:- OnCancel
-    internal func OnCancel() -> CBaseNode? {
-        if let rootNode = CStateMachine.stateMachine.GetRootNode(){
-            if (rootNode is CBaseNode ) {
+    internal func OnCancel() -> CBaseNode?
+    {
+        if let rootNode = CStateMachine.stateMachine.GetRootNode()
+        {
+            if (rootNode is CBaseNode )
+            {
                 _ =  GlobalData.singleton.InitializeTxnTlvData();
                 return nil;
             }
@@ -334,15 +344,19 @@ class CBaseNode {
     }
     
     // MARK:- OnExit
-    internal func OnExit() -> CBaseNode? {
+    internal func OnExit() -> CBaseNode?
+    {
         // If current node is root node exit
-        if let rootNode = CStateMachine.stateMachine.GetRootNode(){
-            if (rootNode is CBaseNode ) {
+        if let rootNode = CStateMachine.stateMachine.GetRootNode()
+        {
+            if (rootNode is CBaseNode )
+            {
                 _ =  GlobalData.singleton.InitializeTxnTlvData();
                 return nil;
             }
         }
-        switch (self.onExit){
+        switch (self.onExit)
+        {
         case PvmNodeActions.exitPvm:
             return nil;
         case PvmNodeActions.gotoChild: break
@@ -355,8 +369,10 @@ class CBaseNode {
     }
     
     // MARK:- OnTimeOut
-    internal func OnTimeOut() -> CBaseNode? {
-        switch (self.onTimeout) {
+    internal func OnTimeOut() -> CBaseNode?
+    {
+        switch (self.onTimeout)
+        {
         case PvmNodeActions.gotoChild:
             return (self.GotoChild());
         case PvmNodeActions.goBack:
@@ -374,7 +390,8 @@ class CBaseNode {
     }
     
     // MARK:- AddParameters
-    internal func AddParameters(tagAttribute:XMLATTRIBUTE, nTotal:Int) -> Int {
+    internal func AddParameters(tagAttribute:XMLATTRIBUTE, nTotal:Int) -> Int
+    {
         var retVal  = RetVal.RET_OK;
         node_type = tagAttribute.node_type;
         iName = tagAttribute.iName;
@@ -428,55 +445,62 @@ class CBaseNode {
     }
     
     // MARK:- getIndex
-    internal func getIndex() -> Int {
+    internal func getIndex() -> Int
+    {
         return 0;
     }
     
     // MARK:- GetEventMask
-    public func GetEventMask() -> Byte {
+    public func GetEventMask() -> Byte
+    {
         return 0;
     }
     
     // MARK:- SetHardwareMask
-    public func SetHardwareMask(HardWareMask:Int) -> Bool {
+    public func SetHardwareMask(HardWareMask:Int) -> Bool
+    {
         return false;
     }
     
     // MARK:- GetKeyEntry
-    func GetKeyEntry(keyreceved:Character) ->Int {
+    func GetKeyEntry(keyreceved:Character) ->Int
+    {
         return 0;
     }
     
     // MARK:- AddTLVData
-    internal func AddTLVData(Data:[Byte],length:Int) {
+    internal func AddTLVData(Data:[Byte],length:Int)
+    {
         if ((length > 0) && (HostTlvtag > 0) && (GlobalData.singleton.m_sTxnTlvData.iTLVindex < AppConstant.MAX_TXN_STEPS_WITH_TLV_DATA)) {
             GlobalData.singleton.m_sTxnTlvData.objTLV[GlobalData.singleton.m_sTxnTlvData.iTLVindex] = TLVTxData();
             GlobalData.singleton.m_sTxnTlvData.objTLV[GlobalData.singleton.m_sTxnTlvData.iTLVindex].uiTag = HostTlvtag;
             GlobalData.singleton.m_sTxnTlvData.objTLV[GlobalData.singleton.m_sTxnTlvData.iTLVindex].uiTagValLen = length;
             GlobalData.singleton.m_sTxnTlvData.objTLV[GlobalData.singleton.m_sTxnTlvData.iTLVindex].chArrTagVal =  [Byte](repeating: 0, count: length);
             var data = Data;
-            data[0...length] = GlobalData.singleton.m_sTxnTlvData.objTLV[GlobalData.singleton.m_sTxnTlvData.iTLVindex].chArrTagVal[0...length]
+            data[0..<length] = GlobalData.singleton.m_sTxnTlvData.objTLV[GlobalData.singleton.m_sTxnTlvData.iTLVindex].chArrTagVal[0..<length]
             
             GlobalData.singleton.m_sTxnTlvData.iTLVindex =  GlobalData.singleton.m_sTxnTlvData.iTLVindex + 1;
         }
     }
     
     // MARK:- AddTLVDataWithTag
-    internal func AddTLVDataWithTag(uiTag:Int,Data:[Byte],length:Int) {
+    internal func AddTLVDataWithTag(uiTag:Int,Data:[Byte],length:Int)
+    {
         if ((length > 0) && (uiTag > 0) && (GlobalData.singleton.m_sTxnTlvData.iTLVindex < AppConstant.MAX_TXN_STEPS_WITH_TLV_DATA)) {
             GlobalData.singleton.m_sTxnTlvData.objTLV[GlobalData.singleton.m_sTxnTlvData.iTLVindex] =  TLVTxData();
             GlobalData.singleton.m_sTxnTlvData.objTLV[GlobalData.singleton.m_sTxnTlvData.iTLVindex].uiTag = uiTag;
             GlobalData.singleton.m_sTxnTlvData.objTLV[GlobalData.singleton.m_sTxnTlvData.iTLVindex].uiTagValLen = length;
             GlobalData.singleton.m_sTxnTlvData.objTLV[GlobalData.singleton.m_sTxnTlvData.iTLVindex].chArrTagVal = [Byte](repeating: 0, count: length);
             var data = Data;
-            data[0...length] = GlobalData.singleton.m_sTxnTlvData.objTLV[GlobalData.singleton.m_sTxnTlvData.iTLVindex].chArrTagVal[0...length]
+            data[0..<length] = GlobalData.singleton.m_sTxnTlvData.objTLV[GlobalData.singleton.m_sTxnTlvData.iTLVindex].chArrTagVal[0..<length]
             GlobalData.singleton.m_sTxnTlvData.iTLVindex =  GlobalData.singleton.m_sTxnTlvData.iTLVindex + 1;
             
         }
     }
     
     // MARK:- SetActionCode
-    internal func SetActionCode() {
+    internal func SetActionCode()
+    {
         if (HostActiontag > 0) {
             let cplatform = PlatFormUtils();
             GlobalData.singleton.m_sNewTxnData.uiTransactionType = HostActiontag;
@@ -489,21 +513,24 @@ class CBaseNode {
     }
     
     // MARK:- SetHostType
-    internal func SetHostType() {
+    internal func SetHostType()
+    {
         if (iHostType > 0) {
             GlobalData.singleton.m_iHostIndicator = iHostType;
         }
     }
     
     // MARK:- SetSSLMode
-    internal func SetSSLMode() {
+    internal func SetSSLMode()
+    {
         if (1 == onSSL) {
             _ = GlobalData.singleton.SetSSLMode(isON: true);
         }
     }
     
     // MARK:- SetSIGNCAPTURE
-    internal func SetSIGNCAPTURE() {
+    internal func SetSIGNCAPTURE()
+    {
         if (true == m_iIsSignCapture) {
             _ = GlobalData.singleton.SetSignCapMode(isON: true);
             GlobalData.singleton.m_bIsToCaptureSignature = true;
@@ -512,7 +539,8 @@ class CBaseNode {
     }
     
     // MARK:- IsAmountAlreadyPresent
-    internal func IsAmountAlreadyPresent() -> Int {
+    internal func IsAmountAlreadyPresent() -> Int
+    {
         var retIndex = 0;
         var tag = 0;
         
@@ -534,12 +562,15 @@ class CBaseNode {
     }
     
     // MARK:- AddAmountFromXmlinTlV
-    internal func AddAmountFromXmlinTlV() {
-        if (GlobalData.singleton.m_sTxnTlvData.iTLVindex >= 0){
+    internal func AddAmountFromXmlinTlV()
+    {
+        if (GlobalData.singleton.m_sTxnTlvData.iTLVindex >= 0)
+        {
             GlobalData.singleton.m_sTxnTlvData.objTLV[GlobalData.singleton.m_sTxnTlvData.iTLVindex].chArrTagVal = [Byte](repeating: 0, count: AppConstant.MAX_TXN_TLV_DATA_LEN)
             let amtTag = 0x1021;
             var amtLen = 0;
-            if (m_chArrAmount != nil) {
+            if (m_chArrAmount != nil)
+            {
                 amtLen = m_chArrAmount.count;
             }
             
@@ -553,19 +584,20 @@ class CBaseNode {
                     bIsAmountAlreadyPresent = true;
                 }
                 
-                if (GlobalData.singleton.m_sTxnTlvData.iTLVindex < AppConstant.MAX_TXN_STEPS_WITH_TLV_DATA) {
+                if (GlobalData.singleton.m_sTxnTlvData.iTLVindex < AppConstant.MAX_TXN_STEPS_WITH_TLV_DATA)
+                {
                     if (!bIsAmountAlreadyPresent) {
                         GlobalData.singleton.m_sTxnTlvData.objTLV[iTLVindex].uiTag = amtTag;
                         GlobalData.singleton.m_sTxnTlvData.objTLV[iTLVindex].uiTagValLen = amtLen;
                         GlobalData.singleton.m_sTxnTlvData.objTLV[iTLVindex].chArrTagVal = [Byte](repeating: 0, count: amtLen);
                         var m_chArrAmountValue = m_chArrAmount.bytes
-                        m_chArrAmountValue[0...amtLen] = GlobalData.singleton.m_sTxnTlvData.objTLV[iTLVindex].chArrTagVal[0...amtLen]
+                        m_chArrAmountValue[0..<amtLen] = GlobalData.singleton.m_sTxnTlvData.objTLV[iTLVindex].chArrTagVal[0..<amtLen]
                         GlobalData.singleton.m_sTxnTlvData.iTLVindex = GlobalData.singleton.m_sTxnTlvData.iTLVindex+1 ;
                     } else {
                         GlobalData.singleton.m_sTxnTlvData.objTLV[iTLVindex].uiTagValLen = amtLen;//To fix the issue related reward and dcc
                         GlobalData.singleton.m_sTxnTlvData.objTLV[iTLVindex].chArrTagVal =  [Byte](repeating: 0, count: amtLen);
                         var m_chArrAmountValue = m_chArrAmount.bytes
-                        m_chArrAmountValue[0...amtLen] = GlobalData.singleton.m_sTxnTlvData.objTLV[iTLVindex].chArrTagVal[0...amtLen]
+                        m_chArrAmountValue[0..<amtLen] = GlobalData.singleton.m_sTxnTlvData.objTLV[iTLVindex].chArrTagVal[0..<amtLen]
                     }
                 }
             }
@@ -573,38 +605,46 @@ class CBaseNode {
     }
     
     // MARK:- SetCurrencyCodeInEMVModule
-    internal func SetCurrencyCodeInEMVModule() {
+    internal func SetCurrencyCodeInEMVModule()
+    {
         var iCurrencyCodeLen = 0;
         if (m_chArrCurrencyCode != nil) {
             iCurrencyCodeLen = m_chArrCurrencyCode.count;
         }
-        if (m_bIsCurrencyCodeUsingXMl && iCurrencyCodeLen > 0) {
+        if (m_bIsCurrencyCodeUsingXMl && iCurrencyCodeLen > 0)
+        {
+            
         }
     }
     
     // MARK:- getName
-    public func getName() -> String {
+    public func getName() -> String
+    {
         return iName;
     }
     
     // MARK:- getNameImage
-    public func  getNameImage() -> String  {
+    public func  getNameImage() -> String
+    {
         return iNameImage;
     }
     
     // MARK:- getNumChild
-    public func getNumChild() -> Int  {
+    public func getNumChild() -> Int
+    {
         return self.numberOfChild;
         
     }
     
     // MARK:- getNodeType
-    public func getNodeType() -> Int  {
+    public func getNodeType() -> Int
+    {
         return node_type;
     }
     
     // MARK:- getExecutionResult
-    public func getExecutionResult(iResult:Int) -> Int {
+    public func getExecutionResult(iResult:Int) -> Int
+    {
         var m_iRetVal = 0;
         if (iResult == CStateMachine.GO) {
             m_iRetVal = ExecutionResult._OK;
@@ -621,16 +661,22 @@ class CBaseNode {
     }
     
     func execute(){}
-    func AddPrivateParameters(tagAttribute:XMLATTRIBUTE,nTotal:Int) -> Int {
+    func AddPrivateParameters(tagAttribute:XMLATTRIBUTE,nTotal:Int) -> Int
+    {
         return 0
     }
+    
     func prepareTimer(time:Int) {}
+    
     func startTimer() {}
+    
     func cancelTimer() {}
+    
     func onExecuted() {}
     
     // MARK:- reset
-    public func reset() {
+    public func reset()
+    {
         iBuffer = nil;
         iResult = -1;
         iPos = -1;

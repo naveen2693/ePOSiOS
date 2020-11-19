@@ -8,15 +8,15 @@
 
 import Foundation
 struct PvmListParserVO{
-var DM="";
-var HTL:Int=0;
-var MaxLen:Int=0;
-var MinLen:Int=0;
-var CurrencyName="";
-var Decimals:Int=0;
-var InputMethod:enum_InputMethod = enum_InputMethod.NUMERIC_ENTRY
-var ALPHANUMERIC_ENTRY:enum_InputMethod = enum_InputMethod.ALPHANUMERIC_ENTRY;
-var txtye="";
-var regx="";
-var defaultValue="";
+    var DM="";
+    var HTL:Int=0;
+    var MaxLen:Int=0;
+    var MinLen:Int=0;
+    var CurrencyName="";
+    var Decimals:Int=0;
+    var InputMethod:enum_InputMethod = enum_InputMethod.NUMERIC_ENTRY
+    var ALPHANUMERIC_ENTRY:enum_InputMethod = enum_InputMethod.ALPHANUMERIC_ENTRY;
+    var txtye="";
+    var regx="";
+    var defaultValue="";
 }

@@ -12,10 +12,12 @@ class TransactionHomeViewController: UIViewController {
 
 //@IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
-       _ =  GlobalData.singleton.FirstInitialize()
+//       _ =  GlobalData.singleton.FirstInitialize()
         super.viewDidLoad()
 
         debugPrint("Hello World!")
+       let obj = XmlParser()
+        obj.parsePVM(xmlType:1)
         
         let globalData = GlobalData.singleton
         _ = globalData.FirstInitialize()

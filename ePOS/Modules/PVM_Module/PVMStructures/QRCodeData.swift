@@ -8,5 +8,5 @@
 
 import Foundation
 struct QRCodeData{
-var qc = "";
+    var qc = "";
 }

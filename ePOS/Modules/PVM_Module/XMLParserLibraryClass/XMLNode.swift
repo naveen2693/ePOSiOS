@@ -15,7 +15,7 @@ public final class XMLNode:NSObject {
     public var children = [XMLNode]()
     public weak var parent:XMLNode?
     //decode
-    public static func node(_ string:String)->XMLNode?{
+    public static func node(_ string:String) -> XMLNode? {
         guard let data = string.data(using: .utf8) else {return nil}
         return XMLParse.init(data).root
     }
@@ -91,7 +91,7 @@ public final class XMLNode:NSObject {
     }
     //optional
     public override var description: String{return string}
-    public static func ==(lhs: XMLNode, rhs: XMLNode) -> Bool{
+    public static func ==(lhs: XMLNode, rhs: XMLNode) -> Bool {
         if lhs === rhs{
             return true
         }else{

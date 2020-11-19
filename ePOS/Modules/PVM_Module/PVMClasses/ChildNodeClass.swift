@@ -13,6 +13,7 @@ public class ChildClass {
     var next_child:ChildClass?;
     private var previous_child:ChildClass?;
     
+    // MARK:- init
     public init() {
         index = 0;
         next_child = nil;
@@ -25,13 +26,16 @@ public class ChildClass {
         previous_child = nil;
     }
     
-    func addChild(gIndex:Int,addThisNode:CBaseNode) -> Int {
+    // MARK:-addChild
+    func addChild(gIndex:Int,addThisNode:CBaseNode) -> Int
+    {
         let retVal = RetVal.RET_OK;
         var tmpNode:ChildClass?, thisNode:ChildClass?;
         thisNode = ChildClass(gIndex: gIndex)
         thisNode?.index = gIndex
         tmpNode = self;
-        while (tmpNode?.next_child != nil) {
+        while (tmpNode?.next_child != nil)
+        {
             tmpNode = tmpNode?.next_child;
         }
         thisNode?.this_node = addThisNode;
@@ -40,7 +44,9 @@ public class ChildClass {
         return retVal;
     }
     
-    func gotoindexedChild(gIndex:Int) -> CBaseNode? {
+    // MARK:-gotoindexedChild
+    func gotoindexedChild(gIndex:Int) -> CBaseNode?
+    {
         var currentNode:ChildClass?;
         currentNode = self
         if (currentNode != nil) {
@@ -54,7 +60,9 @@ public class ChildClass {
         return nil;
     }
     
-    func gotopreviousChild() -> CBaseNode? {
+    // MARK:- gotopreviousChild
+    func gotopreviousChild() -> CBaseNode?
+    {
         if(self.previous_child != nil) {
             return (self.previous_child?.this_node);
         } else {

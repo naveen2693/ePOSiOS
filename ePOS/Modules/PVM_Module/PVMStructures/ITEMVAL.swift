@@ -8,7 +8,7 @@
 
 import Foundation
 struct ITEMVAL {
-   var ItemName = "";
-   var ItemVal = "";
-
+    var ItemName = "";
+    var ItemVal = "";
+    
 }

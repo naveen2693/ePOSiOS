@@ -22,5 +22,5 @@ struct TerminalTransactionData: Codable{
     var uiCSVTransactionType = 0;
     var uiAmount = "";//TODO surbhi added to show in transaction history
     var status = 0;//TODO surbhi added to show in transaction history
-
+    
 }

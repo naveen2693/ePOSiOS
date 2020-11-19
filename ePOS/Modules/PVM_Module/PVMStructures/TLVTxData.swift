@@ -8,9 +8,9 @@
 
 import Foundation
 struct TLVTxData {
-var uiTag = 0;
-var uiTagValLen = 0;
-var chArrTagVal =  [Byte](repeating: 0, count:AppConstant.MAX_TXN_TLV_DATA_LEN);
+    var uiTag = 0;
+    var uiTagValLen = 0;
+    var chArrTagVal =  [Byte](repeating: 0, count:AppConstant.MAX_TXN_TLV_DATA_LEN);
     public mutating func reset()
     {
         uiTag = 0;

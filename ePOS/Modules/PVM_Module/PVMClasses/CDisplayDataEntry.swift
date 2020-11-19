@@ -14,7 +14,9 @@ class CDisplayDataEntry : CBaseNode {
     var m_bIsUnicodeDisplayDataEntry:Bool;
     var m_iFontId:Int;
     
-    public override init() {
+    // MARK:-init
+    public override init()
+    {
         self.m_inputMethod = enum_InputMethod.NUMERIC_ENTRY;
         self.m_max_val = 0;
         self.m_min_val = 0;
@@ -22,46 +24,64 @@ class CDisplayDataEntry : CBaseNode {
         self.m_iFontId = 0;
     }
     
-    override func AddPrivateParameters(tagAttribute:XMLATTRIBUTE,nTotal:Int) -> Int {
-        
+    // MARK:- AddPrivateParameters
+    override func AddPrivateParameters(tagAttribute:XMLATTRIBUTE,nTotal:Int) -> Int
+    {
         let retVal = RetVal.RET_OK;
-        if (tagAttribute.IsUTF8) {
+        if (tagAttribute.IsUTF8)
+        {
             m_bIsUnicodeDisplayDataEntry = true;
-            m_iFontId = tagAttribute.fontId;//used for unicode  currently not applicable for landi pos
+            m_iFontId = tagAttribute.fontId;
         }
         
         m_max_val = Int(tagAttribute.MaxLen);
         m_min_val = Int(tagAttribute.MinLen);
         pvmListParser = tagAttribute.pvmListParser!
         ScanType = tagAttribute.ScanType;
-        if (m_bIsUnicodeDisplayDataEntry) {
-            if (tagAttribute.DisplayMessagelen > 0) {
+        if (m_bIsUnicodeDisplayDataEntry)
+        {
+            if (tagAttribute.DisplayMessagelen > 0)
+            {
                 DisplayMessage = tagAttribute.DisplayMessage;
             }
-        } else {
+        }
+        else
+        {
             DisplayMessage = tagAttribute.DisplayMessage;
         }
         return retVal;
     }
     
-    func getExecution_result_numeric(ret:Int,global:GlobalData, buffer:[Byte],  bufferlen:Int) -> Int {
+    // MARK:- getExecution_result_numeric
+    func getExecution_result_numeric(ret:Int,global:GlobalData, buffer:[Byte],  bufferlen:Int) -> Int
+    {
         var retval = ret
         m_max_val = m_max_val > 54 ? 54 : m_max_val;
         if (ExecutionResult._OK == retval) {
-            if ((m_iTleEnabled) && (GlobalData.singleton.m_sMasterParamData?.m_iUsePineEncryptionKeys != 0)) {
-                if (bufferlen > 0) {
+            if ((m_iTleEnabled) && (GlobalData.singleton.m_sMasterParamData?.m_iUsePineEncryptionKeys != 0))
+            {
+                if (bufferlen > 0)
+                {
                     let objEncryption = CPineKeyInjection();
                     _ = [Byte](repeating: 0, count:bufferlen + 14);
-                    if let uchArrEncOut = objEncryption.iFormatAndECBEncrypt(chArrInput: buffer, iInputLength: bufferlen, chPadChar: m_chPadChar, iPadType: m_iPadStyle, SlotID: AppConstant.DEFAULT_BIN_KEYSLOTID){
+                    if let uchArrEncOut = objEncryption.iFormatAndECBEncrypt(chArrInput: buffer, iInputLength: bufferlen, chPadChar: m_chPadChar, iPadType: m_iPadStyle, SlotID: AppConstant.DEFAULT_BIN_KEYSLOTID)
+                    {
                         AddTLVDataWithTag(uiTag: HostTlvtag, Data: uchArrEncOut, length: uchArrEncOut.count);
-                    } else {
+                    }
+                    else
+                    {
                         retval = ExecutionResult._EXIT;
                     }
-                } else {
+                }
+                else
+                {
                     retval = ExecutionResult._EXIT;
                 }
-            } else {
-                if (m_iTleEnabled) {
+            }
+            else
+            {
+                if (m_iTleEnabled)
+                {
                     var uchArrEncOut = [Byte](repeating: 0, count:bufferlen + 14);
                     var iOffset = 0;
                     uchArrEncOut[iOffset] = 0; // TLE NOT USED
@@ -74,7 +94,9 @@ class CDisplayDataEntry : CBaseNode {
                     uchArrEncOut[0..<bufferlen] = buffer[0..<bufferlen]
                     iOffset += bufferlen;
                     AddTLVDataWithTag(uiTag: HostTlvtag, Data: uchArrEncOut, length: iOffset);
-                } else {
+                }
+                else
+                {
                     AddTLVData(Data: buffer, length: bufferlen);
                 }
             }
@@ -82,15 +104,21 @@ class CDisplayDataEntry : CBaseNode {
         return retval;
     }
     
-    public func execute() -> Int{
+    // MARK:-execute
+    public func execute() -> Int
+    {
         let global = GlobalData.singleton;
         var retval = getExecutionResult(iResult: iResult);
-        if(retval == ExecutionResult._OK) {
+        if(retval == ExecutionResult._OK)
+        {
             var buffer:[Byte] = [0];
             var bufferlen = 0;
-            if let pvmListParser = pvmListParser{
-                if (pvmListParser.count > 0) {
-                    if let buffervalue = iBuffer{
+            if let pvmListParser = pvmListParser
+            {
+                if (pvmListParser.count > 0)
+                {
+                    if let buffervalue = iBuffer
+                    {
                         let m_valuelist = buffervalue.split(separator: ",",maxSplits: -1);
                         for i in 0..<pvmListParser.count {
                             m_inputMethod = pvmListParser[i].InputMethod;
@@ -99,28 +127,40 @@ class CDisplayDataEntry : CBaseNode {
                             HostTlvtag = pvmListParser[i].HTL
                             buffer = m_valuelist[i].bytes;
                             bufferlen = buffer.count;
-                            switch (m_inputMethod) {
+                            switch (m_inputMethod)
+                            {
                             case enum_InputMethod.NUMERIC_ENTRY:
-                                retval = getExecution_result_numeric(ret: retval,global: global,buffer: buffer, bufferlen: bufferlen);
+                            retval = getExecution_result_numeric(ret: retval,global: global,buffer: buffer, bufferlen: bufferlen);
                             case enum_InputMethod.ALPHANUMERIC_ENTRY: fallthrough
                             default:
                                 m_max_val = m_max_val > 38 ? 38 : m_max_val;
-                                if (ExecutionResult._OK == retval) {
+                                if (ExecutionResult._OK == retval)
+                                {
                                     bufferlen = buffer.count;
-                                    if ((m_iTleEnabled) && (GlobalData.singleton.m_sMasterParamData?.m_iUsePineEncryptionKeys != 0)) {
-                                        if (bufferlen > 0) {
+                                    if ((m_iTleEnabled) && (GlobalData.singleton.m_sMasterParamData?.m_iUsePineEncryptionKeys != 0))
+                                    {
+                                        if (bufferlen > 0)
+                                        {
                                             let objEncryption = CPineKeyInjection();
                                             _ = [Byte](repeating: 0, count:bufferlen + 14);
-                                            if let uchArrEncOut = objEncryption.iFormatAndECBEncrypt(chArrInput: buffer, iInputLength: bufferlen, chPadChar: m_chPadChar, iPadType: m_iPadStyle, SlotID: AppConstant.DEFAULT_BIN_KEYSLOTID){
+                                            if let uchArrEncOut = objEncryption.iFormatAndECBEncrypt(chArrInput: buffer, iInputLength: bufferlen, chPadChar: m_chPadChar, iPadType: m_iPadStyle, SlotID: AppConstant.DEFAULT_BIN_KEYSLOTID)
+                                            {
                                                 AddTLVDataWithTag(uiTag: HostTlvtag, Data: uchArrEncOut, length: uchArrEncOut.count);
-                                            } else {
+                                            }
+                                            else
+                                            {
                                                 retval = ExecutionResult._EXIT;
                                             }
-                                        } else {
+                                        }
+                                        else
+                                        {
                                             retval = ExecutionResult._EXIT;
                                         }
-                                    } else {
-                                        if (m_iTleEnabled) {
+                                    }
+                                    else
+                                    {
+                                        if (m_iTleEnabled)
+                                        {
                                             var uchArrEncOut = [Byte](repeating: 0, count:bufferlen + 14);
                                             var iOffset = 0;
                                             uchArrEncOut[iOffset] = 0; // TLE NOT USED
@@ -133,22 +173,25 @@ class CDisplayDataEntry : CBaseNode {
                                             uchArrEncOut[0..<bufferlen] = buffer[0..<bufferlen]
                                             iOffset += bufferlen;
                                             AddTLVDataWithTag(uiTag: HostTlvtag, Data: uchArrEncOut, length: iOffset);
-                                        } else {
+                                        }
+                                        else
+                                        {
                                             AddTLVData(Data: buffer, length: bufferlen);
                                         }
                                     }
                                 }
                             }
                             
-                            if (ExecutionResult._OK == retval) {
-                                // If amount is present in XML add to TLV node
+                            if (ExecutionResult._OK == retval)
+                            {
                                 AddAmountFromXmlinTlV();
-                                //if currency code present in XML, set the value in EMV Module
                                 SetCurrencyCodeInEMVModule();
                             }
                             
                         }
-                    } else {
+                    }
+                    else
+                    {
                         
                         buffer = iBuffer?.bytes ?? [0];
                         bufferlen = buffer.count;
@@ -156,26 +199,36 @@ class CDisplayDataEntry : CBaseNode {
                         switch (m_inputMethod) {
                         case enum_InputMethod.NUMERIC_ENTRY:
                             retval = getExecution_result_numeric(ret: retval, global: global, buffer: buffer, bufferlen: bufferlen);
-                            break;
                         case enum_InputMethod.ALPHANUMERIC_ENTRY: fallthrough
                         default:
                             m_max_val = m_max_val > 38 ? 38 : m_max_val;
-                            if (ExecutionResult._OK == retval) {
+                            if (ExecutionResult._OK == retval)
+                            {
                                 bufferlen = buffer.count;
-                                if ((m_iTleEnabled) && (GlobalData.singleton.m_sMasterParamData?.m_iUsePineEncryptionKeys != 0)) {
-                                    if (bufferlen > 0) {
+                                if ((m_iTleEnabled) && (GlobalData.singleton.m_sMasterParamData?.m_iUsePineEncryptionKeys != 0))
+                                {
+                                    if (bufferlen > 0)
+                                    {
                                         let objEncryption =  CPineKeyInjection();
                                         _ = [Byte](repeating: 0, count:bufferlen + 14);
-                                        if let uchArrEncOut = objEncryption.iFormatAndECBEncrypt(chArrInput: buffer, iInputLength: bufferlen, chPadChar: m_chPadChar, iPadType: m_iPadStyle, SlotID: AppConstant.DEFAULT_BIN_KEYSLOTID){
+                                        if let uchArrEncOut = objEncryption.iFormatAndECBEncrypt(chArrInput: buffer, iInputLength: bufferlen, chPadChar: m_chPadChar, iPadType: m_iPadStyle, SlotID: AppConstant.DEFAULT_BIN_KEYSLOTID)
+                                        {
                                             AddTLVDataWithTag(uiTag: HostTlvtag, Data: uchArrEncOut, length: uchArrEncOut.count);
-                                        } else {
+                                        }
+                                        else
+                                        {
                                             retval = ExecutionResult._EXIT;
                                         }
-                                    } else {
+                                    }
+                                    else
+                                    {
                                         retval = ExecutionResult._EXIT;
                                     }
-                                } else {
-                                    if (m_iTleEnabled) {
+                                }
+                                else
+                                {
+                                    if (m_iTleEnabled)
+                                    {
                                         var uchArrEncOut = [Byte](repeating: 0, count: bufferlen + 14);
                                         var iOffset = 0;
                                         uchArrEncOut[iOffset] = 0; // TLE NOT USED
@@ -188,35 +241,39 @@ class CDisplayDataEntry : CBaseNode {
                                         uchArrEncOut[0..<bufferlen] = buffer[0..<bufferlen]
                                         iOffset += bufferlen;
                                         AddTLVDataWithTag(uiTag: HostTlvtag, Data: uchArrEncOut, length: iOffset);
-                                    } else {
+                                    }
+                                    else
+                                    {
                                         AddTLVData(Data: buffer, length: bufferlen);
                                     }
                                 }
                             }
                         }
                         
-                        if (ExecutionResult._OK == retval) {
-                            // If amount is present in XML add to TLV node
+                        if (ExecutionResult._OK == retval)
+                        {
                             AddAmountFromXmlinTlV();
-                            // if currency code present in XML, set the value in EMV Module
                             SetCurrencyCodeInEMVModule();
                         }
                     }
                 }
             }
         }
+        
         reset();
         return retval;
     }
-    public override func prepareTimer(time:Int) {
+    
+    public override func prepareTimer(time:Int)
+    {
     }
-    public override func startTimer() {
-        
+    public override func startTimer()
+    {
     }
-    public override func cancelTimer() {
-        
+    public override func cancelTimer()
+    {
     }
-    public override func onExecuted() {
-        
+    public override func onExecuted()
+    {
     }
 }

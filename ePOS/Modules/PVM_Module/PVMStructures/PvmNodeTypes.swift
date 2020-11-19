@@ -7,7 +7,7 @@
 //
 
 import Foundation
- enum  PvmNodeTypes {
+enum  PvmNodeTypes {
     static let Menu_node                = 0;
     static let Menu_item_node            = 1;
     static let Dispaly_message_node    = 2;

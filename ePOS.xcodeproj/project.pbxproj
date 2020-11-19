@@ -59,7 +59,7 @@
 		46BD9B50251A8646008DEFEA /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B4F251A8646008DEFEA /* ForgotPasswordController.swift */; };
 		46BD9B52251A8B69008DEFEA /* PasswordResetLinkMsgController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B51251A8B69008DEFEA /* PasswordResetLinkMsgController.swift */; };
 		46BD9B54251AFE80008DEFEA /* GenericSwitchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD9B53251AFE80008DEFEA /* GenericSwitchingViewController.swift */; };
-		46E293C5255BAC0B00826954 /* src.xml in Resources */ = {isa = PBXBuildFile; fileRef = 46E293A0255BAC0B00826954 /* src.xml */; };
+		46E293C5255BAC0B00826954 /* COD.xml in Resources */ = {isa = PBXBuildFile; fileRef = 46E293A0255BAC0B00826954 /* COD.xml */; };
 		46E293C6255BAC0B00826954 /* CDisplayMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293A2255BAC0B00826954 /* CDisplayMenu.swift */; };
 		46E293C7255BAC0B00826954 /* CDisplayGetAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293A3255BAC0B00826954 /* CDisplayGetAmount.swift */; };
 		46E293C8255BAC0B00826954 /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E293A4255BAC0B00826954 /* XMLParser.swift */; };
@@ -335,7 +335,7 @@
 		46BD9B4F251A8646008DEFEA /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
 		46BD9B51251A8B69008DEFEA /* PasswordResetLinkMsgController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetLinkMsgController.swift; sourceTree = "<group>"; };
 		46BD9B53251AFE80008DEFEA /* GenericSwitchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericSwitchingViewController.swift; sourceTree = "<group>"; };
-		46E293A0255BAC0B00826954 /* src.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = src.xml; sourceTree = "<group>"; };
+		46E293A0255BAC0B00826954 /* COD.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COD.xml; sourceTree = "<group>"; };
 		46E293A2255BAC0B00826954 /* CDisplayMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDisplayMenu.swift; sourceTree = "<group>"; };
 		46E293A3255BAC0B00826954 /* CDisplayGetAmount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDisplayGetAmount.swift; sourceTree = "<group>"; };
 		46E293A4255BAC0B00826954 /* XMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
@@ -695,7 +695,7 @@
 		46E2939F255BAC0B00826954 /* XMLFiles */ = {
 			isa = PBXGroup;
 			children = (
-				46E293A0255BAC0B00826954 /* src.xml */,
+				46E293A0255BAC0B00826954 /* COD.xml */,
 			);
 			path = XMLFiles;
 			sourceTree = "<group>";
@@ -1625,7 +1625,7 @@
 				9919A9A22517528800A67253 /* SearchIFSCViewController.xib in Resources */,
 				991DF273251DED8000AEA1C3 /* EPOSBaseView.xib in Resources */,
 				9919A9BD251A475C00A67253 /* PackageDetailViewController.xib in Resources */,
-				46E293C5255BAC0B00826954 /* src.xml in Resources */,
+				46E293C5255BAC0B00826954 /* COD.xml in Resources */,
 				99186D102510922B00A9FE07 /* FailedPopup.xib in Resources */,
 				997DC804252347A3006ADE48 /* DropdownTableViewCell.xib in Resources */,
 				99186D152510926800A9FE07 /* EmptyDataViewController.xib in Resources */,

@@ -8,6 +8,6 @@
 
 import Foundation
 struct ImageListParserModel {
-   var tagName = "";
-   var tagValue = "";
+    var tagName = "";
+    var tagValue = "";
 }
