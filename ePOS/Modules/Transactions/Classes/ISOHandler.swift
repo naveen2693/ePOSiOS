@@ -60,7 +60,6 @@ class ISOHandler
     }
     
     func getNextMessage(_ iso:ISOMessage) -> Int{
-        
          do {
               debugPrint("Inside getNextMessage")
               guard let bArrReceivedData = TCPIPCommunicator.singleton.ReceiveCompletePacket()

@@ -7,12 +7,11 @@
 //
 
 import UIKit
-
 class EPOSTabBarViewController: UITabBarController {
     
-    private lazy var homeViewController :HomeViewController = {
+    private lazy var homeViewController :TransactionHomeViewController = {
         let storyboard = UIStoryboard.init(name: "Home", bundle: nil)
-        guard let controller = storyboard.instantiateInitialViewController() as? HomeViewController else {
+        guard let controller = storyboard.instantiateInitialViewController() as? TransactionHomeViewController else {
             fatalError("HomeViewController is not initial controller in Home.storyboard")
         }
         let tabbarItem = UITabBarItem(title: TabBarItem.home.rawValue, image: TabBarItem.home.image(), selectedImage: TabBarItem.home.selectedImage())
@@ -21,9 +20,9 @@ class EPOSTabBarViewController: UITabBarController {
         return controller
     }()
     
-    private lazy var transactionViewController :TransactionsViewController = {
+    private lazy var transactionViewController :TransactionHistoryViewController = {
         let storyboard = UIStoryboard.init(name: "Transactions", bundle: nil)
-        guard let controller = storyboard.instantiateInitialViewController() as? TransactionsViewController else {
+        guard let controller = storyboard.instantiateInitialViewController() as? TransactionHistoryViewController else {
             fatalError("TransactionsViewController is not initial controller in Transactions.storyboard")
         }
         let tabbarItem = UITabBarItem(title: TabBarItem.transactions.rawValue, image: TabBarItem.transactions.image(), selectedImage: TabBarItem.transactions.selectedImage())
@@ -32,9 +31,9 @@ class EPOSTabBarViewController: UITabBarController {
         return controller
     }()
     
-    private lazy var accountViewController :AccountViewController = {
+    private lazy var accountViewController :AccountViewControllerTableViewController = {
         let storyboard = UIStoryboard.init(name: "Account", bundle: nil)
-        guard let controller = storyboard.instantiateInitialViewController() as? AccountViewController else {
+        guard let controller = storyboard.instantiateInitialViewController() as? AccountViewControllerTableViewController else {
             fatalError("AccountViewController is not initial controller in Account.storyboard")
         }
         let tabbarItem = UITabBarItem(title: TabBarItem.account.rawValue, image: TabBarItem.account.image(), selectedImage: TabBarItem.account.selectedImage())

@@ -18,3 +18,20 @@ class RoundedCornerView: UIView {
     }
   
 }
+
+@IBDesignable
+class RoundedShadowCornerView: UIView {
+    @IBInspectable var cornerRound: CGFloat = 0.0 {
+        didSet {
+            self.layer.cornerRadius = cornerRound
+            self.layer.masksToBounds = true;
+            self.backgroundColor = UIColor.white
+            self.layer.shadowColor = UIColor.lightGray.cgColor
+            self.layer.shadowOpacity = 0.8
+            self.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+            self.layer.shadowRadius = 6.0
+            self.layer.masksToBounds = false
+        }
+    }
+  
+}

@@ -44,6 +44,20 @@ class ISOMessage{
         }
     }
     
+    //MARK:- CISOMsgD()
+    func CISOMsgD() {
+        debugPrint("Inside CISOMsgD");
+        for i in 0 ..< AppConstant.ISO_LEN {
+             if (nil != self.data[i]) {
+                 self.data[i] = [0x00]
+             }
+             self.data[i] = [0x00]
+             self.len[i] = 0
+             self.bitmap[i] = false
+             self.encryptedFieldBitmap[i] = false
+         }
+     }
+    
     //MARK:- vFnSetPEDHardwareSerialNumer()
     func vFnSetPEDHardwareSerialNumer() {
         do {
@@ -593,7 +607,7 @@ class ISOMessage{
                     data[i] = Array(bArrtemp[iOffset ..< iOffset+length])
                     len[i] = length
                     iOffset += length
-                    debugPrint("field[\(i + 1)], length[\(len[i]), Data[\(String(describing: TransactionUtils.ByteArrayToHexString(data[i])))]")
+                    debugPrint("field[\(i + 1)], length[\(len[i])], Data[\(String(describing: TransactionUtils.ByteArrayToHexString(data[i])))]")
                 }
                 totalLength += length; //  For MAC
 
@@ -606,7 +620,7 @@ class ISOMessage{
             }
 
             if (bitmap[45 - 1]) {
-                debugPrint("field 44 length = \(len[45 - 1]), data = \(String(describing: TransactionUtils.ByteArrayToHexString(data[45 - 1]))))")
+                debugPrint("field 44 length = \(len[45 - 1])], data = \(String(describing: TransactionUtils.ByteArrayToHexString(data[45 - 1]))))")
             }
 
 
@@ -809,7 +823,7 @@ class ISOMessage{
 
             debugPrint("m_strGUID[\(m_sParamData.m_strGUID)]")
             
-            guard let bArrGUIDAuthTokenEncrypted: [Byte] = CryptoHandler.tripleDesEncrypt(bArrKey, bArrGUIDPlainData) else{return nil}
+            guard let bArrGUIDAuthTokenEncrypted: [Byte] = CryptoHandler.tripleDesEncrypt(bArrGUIDPlainData, bArrKey) else{return nil}
             
             return bArrGUIDAuthTokenEncrypted;
         } catch {
@@ -817,5 +831,80 @@ class ISOMessage{
             
         }
     }
+ 
+    //MARK:- setField7PrintPAD()
+    func setField7PrintPAD() {
+        do {
+            debugPrint("Inside setField7PrintPAD")
+            let length: Int = len[ISOFieldConstants.ISO_FIELD_7 - 1]
+
+            if (length > 0) {
+                debugPrint("ISO_FILED_7 data[\(String(bytes: self.data[ISOFieldConstants.ISO_FIELD_7 - 1], encoding: String.Encoding.ascii)!)]")
+                
+                let strISOField7: String = String(bytes: self.data[ISOFieldConstants.ISO_FIELD_7 - 1], encoding: String.Encoding.ascii)!
+                //String strISOField7 = new String(this.data[IsoFieldConstant.ISO_FIELD_7 - 1])
+                if (strISOField7 == AppConstant.AC_PRINT_PAD) {
+                    m_bField7PrintPAD = true;
+                } else {
+                    m_bField7PrintPAD = false;
+                }
+            }
+        } catch {
+            debugPrint("Exception Occurred \(error)")
+        }
+    }
+    
+    func GetEDCPrintingLocation() -> Int {
+        do {
+        
+            debugPrint("Inside GetEDCPrintingLocation")
+            let globalData = GlobalData.singleton
+
+            var iPrintingLocation: Int = 0;
+            //TODO: Statemachine yet to Implement
+            //Context context = CStateMachine.m_context;
+
+            if (true == FileSystem.IsFileExist(strFileName: FileNameConstants.POSPRINTINGLOCATIONFILE)) {
+                let NumberOFRows: Int = FileSystem.NumberOfRows(strFileName: FileNameConstants.POSPRINTINGLOCATIONFILE, obj: StPOSPrintinglocationDetails.self)
+                debugPrint("NumberOFRows[\(NumberOFRows)]");
+
+                var sttempPosLocation = [StPOSPrintinglocationDetails](repeating: StPOSPrintinglocationDetails(), count: NumberOFRows)
+
+                for it in 0 ..< NumberOFRows
+                {
+                    if let tempPosLocation: StPOSPrintinglocationDetails = FileSystem.SeekRead(strFileName: FileNameConstants.POSPRINTINGLOCATIONFILE, iOffset: it)
+                    {
+                        sttempPosLocation[it] = tempPosLocation
+                        debugPrint("iHATTxnType[\(sttempPosLocation[it].iHATTxnType)], iCSVTxnType[\(sttempPosLocation[it].iCSVTxnType)], iPrintingFlag[\(sttempPosLocation[it].iPrintingFlag)]")
+                    }
+                }
+
+                let iHATTxntype = globalData.m_sNewTxnData.uiTransactionType;
+                let iCSVTxntype = globalData.m_sNewTxnData.uiCSVTransactionType;
+
+                debugPrint("iHATTxntype[\(iHATTxntype)], iCSVTxntype[\(iCSVTxntype)]");
+                debugPrint("GlobalData->m_ptrCSVDATA->bsendData[\(globalData.m_ptrCSVDATA.bsendData)]")
+
+                for it in 0 ..< NumberOFRows {
+                    if (true != globalData.m_ptrCSVDATA.bsendData
+                            && sttempPosLocation[it].iHATTxnType == iHATTxntype) //Txn type is not set when sending CSV data
+                    {
+                        iPrintingLocation = sttempPosLocation[it].iPrintingFlag;
+                        break;
+                    } else if (sttempPosLocation[it].iCSVTxnType == iCSVTxntype) {
+                        iPrintingLocation = sttempPosLocation[it].iPrintingFlag;
+                        break;
+                    }
+                }
+            }
+
+            return iPrintingLocation;
+        } catch {
+            debugPrint("Exception Occurred : \(error)")
+            return -1
+        }
+    }
+
+    
     
 }

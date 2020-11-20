@@ -63,8 +63,8 @@ public struct TerminalParamData:Codable {
     var iCurrentBatchId = 9001;
     
     var m_bIsDRPending = false;
-    var m_ulDRLastUploadedROC = false;
-    var m_ulDRLastDownloadedROC = false;
+    var m_ulDRLastUploadedROC = 0
+    var m_ulDRLastDownloadedROC = 0
     
     var TotalTransactionsOfBatch = 0 ;
     var m_strParamDownloadDate = "";

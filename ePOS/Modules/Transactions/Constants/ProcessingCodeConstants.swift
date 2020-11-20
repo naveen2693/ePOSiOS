@@ -112,6 +112,7 @@ enum ProcessingCodeConstants{
        static let PC_EDC_AID_EMV_TXNTYPE_DOWNLOAD_START = "960550";
        static let PC_EDC_AID_EMV_TXNTYPE_DOWNLOAD_END = "960551";
 
+
        //Abhishek::HAT CSV TXN TYPE FLAGS MAPPING DOWNLOAD PARAMS
        static let PC_EDC_TXN_TYPE_FLAGS_DOWNLOAD_START    = "960560";
        static let PC_EDC_TXN_TYPE_FLAGS_DOWNLOAD_END = "960561";

@@ -117,7 +117,7 @@ class TCPIPCommunicationHandler
         
         if((iOffset-iHeaderLength)==iLength){
             let strReceivedData = TransactionUtils.bcd2a(bArrCompletePacket)
-            debugPrint("Received Data [\(strReceivedData)]") //TODO Uncomment Later Added for testing
+            debugPrint("Received Data [\(String(describing: strReceivedData))]") //TODO Uncomment Later Added for testing
             return bArrCompletePacket
         }
         

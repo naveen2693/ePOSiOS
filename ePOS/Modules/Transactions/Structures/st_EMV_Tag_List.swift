@@ -9,6 +9,6 @@
 import Foundation
 
 struct StEMVTagList: Codable {
-    var ushLen: Int8
+    var ushLen: Int16
     var Value: Int
 }

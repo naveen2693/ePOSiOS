@@ -32,11 +32,14 @@ class FileSystem {
     //MARK:- SeekRead<T: Codable>(strFileName: String, iOffset: Int) -> T?
     static func SeekRead<T: Codable>(strFileName: String, iOffset: Int) -> T?
     {
+        var objResult: T?
         let result:[T] = ReadFile(strFileName: strFileName)!
-        let objResult = result[iOffset]
-    
+        if (!result.isEmpty)
+        {
+            objResult = result[iOffset]
+        }
+        
         return objResult
-    
     }
     
     //MARK:- SeekWrite<T: Codable>(strFileName: String, with Obj: T, iOffset: Int) -> Bool
@@ -114,7 +117,7 @@ class FileSystem {
         } 
         return bRetval;
     }
-    
+
     //MARK:-  DeleteFileComplete(strFileName: String) -> Bool
     static func DeleteFileComplete(strFileName: String) -> Bool
     {
@@ -216,5 +219,20 @@ class FileSystem {
         return [Byte](SHA1HexString.utf8)
     }
     
+    
+    /******************************************************************************************************
+     Function  : ReadRecord
+     Desciption: Function to Read single record at a given offset from the JSON file
+     containing one or more records of Class type T.
+     Return Value: Object of type T
+     Sample Use:  MyClass obj = CFileSystem.ReadRecord(context, MyClass[].class, strFileName, iOffset);
+     ******************************************************************************************************/
+    static func ReadRecord<T: Codable>(strFileName: String, iOffset: Int) -> T?
+    {
+        //Function Similar to Seek Read. - Read Record at the given OffSet
+        return SeekRead(strFileName: strFileName, iOffset: iOffset) ?? nil
+    }
  
+    
+    
 }

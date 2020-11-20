@@ -109,6 +109,10 @@ extension UIViewController{
 }
 
 extension String {
+    func charAt(at: Int) -> Character {
+        let charIndex = self.index(self.startIndex, offsetBy: at)
+        return self[charIndex]
+    }
     func hmac(key: String) -> String {
         var digest = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
         CCHmac(CCHmacAlgorithm(kCCHmacAlgSHA256), key, key.count, self, self.count, &digest)

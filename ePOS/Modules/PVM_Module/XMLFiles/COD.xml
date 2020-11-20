@@ -1,0 +1,17 @@
+<mn nm="MainMenu" nt="0" to="100000" ok="Next" can="bk" oto="ext" ti="PVM Menu">
+    <mi nm="Cash On Delivery1" nt="1" img ="gprs_icon" ix="7" to="30000" ok="Next" can="bk" oto="ext" hat="6101" htt="2">
+        <dae nt="3" mal="8" mil="0" in="num" dm="Enter Amount(INR)" dcn="INR" dec="2" to="50000" ok="Next" can="bk" oto="ext" htl="1021">
+            <dde nt="4" totc="2" mal1="10" mil1="3" in1="num" dm1="Voucher Code" htl1="6102" mal2="10" mil2="1" dm2="Enter Invoice#:" in2="num" htl2="1015" to="30000" ok="Next" can="bk" oto="ext" >
+                <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+            </dde>
+        </dae>
+    </mi>
+    <mi nm="Cash On Delivery2" nt="1" img ="gprs_icon" ix="7" to="30000" ok="Next" can="bk" oto="ext" hat="6101" htt="2">
+        <dae nt="3" mal="8" mil="0" in="num" dm="Enter Amount(INR)" dcn="INR" dec="2" to="50000" ok="Next" can="bk" oto="ext" htl="1021">
+            <dde nt="4" totc="2" mal1="10" mil1="3" in1="num" dm1="Voucher Code" htl1="6102" mal2="10" mil2="1" dm2="Enter Invoice#:" in2="num" htl2="1015" to="30000" ok="Next" can="bk" oto="ext" >
+                <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+            </dde>
+        </dae>
+    </mi>
+</mn>
+
