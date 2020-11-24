@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class CBaseNode {
+class CBaseNode: CustomStringConvertible {
     var iName = "";
     var iNameImage = "";
     var fileName = "";

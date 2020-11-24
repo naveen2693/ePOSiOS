@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 public class XmlParser {
     var XMLPVM = 1;
     var XMLCHARGESLIP = 2;
@@ -39,6 +40,7 @@ public class XmlParser {
                     objParserWrapper.AddNewNode(szAttributeName: szAttributeName, szAttributeValue: szAttributeValue, nTotal:attributesLength);
                     objParserWrapper.SaveRootNode();
                     buildXMLTree(nodeList:node.children)
+                    
                 }
             }
         case XMLCHARGESLIP:
