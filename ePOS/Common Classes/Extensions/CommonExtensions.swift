@@ -174,3 +174,32 @@ public extension UnsignedInteger {
         self.init(value)
     }
 }
+
+extension CustomStringConvertible {
+    var description : String {
+        var description: String = "\(type(of: self)){ "
+        let selfMirror = Mirror(reflecting: self)
+        
+        for property in selfMirror.allChildren {
+            if let propertyName = property.label {
+                description += "\(propertyName): \(property.value)," + "\n "
+            }
+        }
+        
+        description = String(description.dropLast(2))
+        description += " }"
+        return description
+    }
+}
+
+extension Mirror {
+    var allChildren: [Mirror.Child] {
+        var allChildren: [Mirror.Child] = []
+        var mirror: Mirror! = self
+        repeat {
+            allChildren.append(contentsOf: mirror.children)
+            mirror = mirror.superclassMirror
+        } while mirror != nil
+        return allChildren
+    }
+}
