@@ -18,7 +18,7 @@ class CBaseNode: CustomStringConvertible {
     var txtye = "";
     var maxLen = 0;
     var minLen = 0;
-    var Child:ChildClass?;
+    var Child:ChildList?;
     var numberOfChild = 0;
     var Timeout:Int = 0;
     var cascading = 0;
@@ -83,23 +83,20 @@ class CBaseNode: CustomStringConvertible {
     }
     
     // MARK:- AddChild
-    public func AddChild(addThisNode:CBaseNode) -> Int {
-        var retVal:Int = RetVal.RET_OK;
+    public func AddChild(addThisNode:CBaseNode){
         if (nil == Child) {
-            Child = ChildClass();
+            Child = ChildList();
             Child?.this_node = addThisNode;
             Child?.index = addThisNode.getIndex();
         } else {
-            retVal = Child?.addChild(gIndex: addThisNode.getIndex(), addThisNode: addThisNode) ?? 0
+            Child?.addChild(gIndex: addThisNode.getIndex(), addThisNode: addThisNode)
         }
-        numberOfChild = numberOfChild+1;
-        return retVal;
+        numberOfChild = numberOfChild+1
     }
     
     // MARK:- AddParent
-    public func AddParent(cparentNode:CBaseNode) -> Int {
-        self.Parent = cparentNode;
-        return RetVal.RET_OK;
+    public func AddParent(_ currentNodeParent:CBaseNode){
+        self.Parent = currentNodeParent
     }
     
     // MARK:- run
@@ -436,10 +433,8 @@ class CBaseNode: CustomStringConvertible {
         pvmListParser = tagAttribute.pvmListParser;
         qrcodescanningListParser = tagAttribute.qrcodescanningListParser;
         qrCodeParsingData = tagAttribute.qrCodeParsingData;
-        if tagAttribute.parenNode != nil{
-            if (RetVal.RET_OK == retVal) {
-                retVal = self.AddPrivateParameters(tagAttribute: tagAttribute, nTotal: nTotal);
-            }
+        if tagAttribute.parentNode != nil{
+            retVal = self.AddPrivateParameters(tagAttribute: tagAttribute, nTotal: nTotal);
         }
         return retVal;
     }

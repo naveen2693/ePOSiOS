@@ -7,11 +7,11 @@
 //
 
 import Foundation
-public class ChildClass {
+public class ChildList {
     var index:Int;
     var this_node:CBaseNode?;
-    var next_child:ChildClass?;
-    private var previous_child:ChildClass?;
+    var next_child:ChildList?;
+    private var previous_child:ChildList?;
     
     // MARK:- init
     public init() {
@@ -27,27 +27,25 @@ public class ChildClass {
     }
     
     // MARK:-addChild
-    func addChild(gIndex:Int,addThisNode:CBaseNode) -> Int
+    func addChild(gIndex:Int,addThisNode:CBaseNode)
     {
-        let retVal = RetVal.RET_OK;
-        var tmpNode:ChildClass?, thisNode:ChildClass?;
-        thisNode = ChildClass(gIndex: gIndex)
+        var tempNode:ChildList?, thisNode:ChildList?;
+        thisNode = ChildList(gIndex: gIndex)
         thisNode?.index = gIndex
-        tmpNode = self;
-        while (tmpNode?.next_child != nil)
+        tempNode = self;
+        while (tempNode?.next_child != nil)
         {
-            tmpNode = tmpNode?.next_child;
+            tempNode = tempNode?.next_child;
         }
         thisNode?.this_node = addThisNode;
-        thisNode?.previous_child = tmpNode;
-        tmpNode?.next_child = thisNode;
-        return retVal;
+        thisNode?.previous_child = tempNode;
+        tempNode?.next_child = thisNode;
     }
     
     // MARK:-gotoindexedChild
     func gotoindexedChild(gIndex:Int) -> CBaseNode?
     {
-        var currentNode:ChildClass?;
+        var currentNode:ChildList?;
         currentNode = self
         if (currentNode != nil) {
             var index = 1;
@@ -60,13 +58,4 @@ public class ChildClass {
         return nil;
     }
     
-    // MARK:- gotopreviousChild
-    func gotopreviousChild() -> CBaseNode?
-    {
-        if(self.previous_child != nil) {
-            return (self.previous_child?.this_node);
-        } else {
-            return nil;
-        }
-    }
 }

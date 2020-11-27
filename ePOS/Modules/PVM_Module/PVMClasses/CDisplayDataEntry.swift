@@ -36,7 +36,7 @@ class CDisplayDataEntry : CBaseNode {
         
         m_max_val = Int(tagAttribute.MaxLen);
         m_min_val = Int(tagAttribute.MinLen);
-        pvmListParser = tagAttribute.pvmListParser!
+        pvmListParser = tagAttribute.pvmListParser
         ScanType = tagAttribute.ScanType;
         if (m_bIsUnicodeDisplayDataEntry)
         {

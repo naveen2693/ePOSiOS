@@ -26,6 +26,7 @@ class ISOProcessor
             
             if(!TCPIPCommunicator.singleton.Connect())
             {
+                globalData.mFinalMsgActivation = "Connection Failed";
                 return false
             }
             //CGlobalData.updateCustomProgressDialog("Activating");
