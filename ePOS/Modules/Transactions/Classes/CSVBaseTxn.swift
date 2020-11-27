@@ -12,15 +12,15 @@ protocol CSVAbstractBaseTxn
 {
     // ECR Transaction steps
     // To be overriden by Child classes
-    func InitiateECRTransaction();
+    func InitiateECRTransaction()
 
-    func FinishECRTransaction();
+    func FinishECRTransaction()
 
-    func HandleECRRequest();
+    func HandleECRRequest()
 
     func HandleGetAmountResponse(_ data: [Byte])
 
-    func HandleGetBharatQRTxnResponse();
+    func HandleGetBharatQRTxnResponse()
 
     func HandleGetTrackDataResponse(_ data: [Byte], _ bCardType: Byte)
 
@@ -99,20 +99,20 @@ class CSVBaseTxn: CSVAbstractBaseTxn {
         case AFTER_PRINT_CHARGESLIP
     }
     
-    enum enumEncryptionType: Int {
-        case _NO_ENCRYPTION = 1
-        case _SERIAL_ENCRYPTION = 2
-        case _USER_DATA_ENCRYPTION = 3
-        case _SERIAL_SHA_ENCRYPTION = 4
-    }
-    
     internal struct enEncryptionType {
+        
+        enum enumEncryptionType: Int {
+            case _NO_ENCRYPTION = 1
+            case _SERIAL_ENCRYPTION = 2
+            case _USER_DATA_ENCRYPTION = 3
+            case _SERIAL_SHA_ENCRYPTION = 4
+        }
         
         private var value: Int
         private static var map: [Int: enumEncryptionType] = [1: ._NO_ENCRYPTION, 2: ._SERIAL_ENCRYPTION, 3: ._USER_DATA_ENCRYPTION, 4: ._SERIAL_SHA_ENCRYPTION]
         
         private init(_ value: Int) {
-            self.value = value;
+            self.value = value
         }
 
         static func valueOf(_ value: Int) -> enumEncryptionType {
@@ -166,9 +166,9 @@ class CSVBaseTxn: CSVAbstractBaseTxn {
      **********************************************************/
     func getTransactionType(_ chArrReceivedCSV: [Byte], _ ulTtransactionType: inout Long) -> Bool {
         debugPrint( "Inside getTransactionType")
-        var bRet: Bool = false;
+        var bRet: Bool = false
         do {
-            var ulTxnType: Int64 = 0;
+            var ulTxnType: Int64 = 0
 
             let strCSV: String = String(bytes: chArrReceivedCSV, encoding: .ascii)!
             let strCSVFields = strCSV.split(separator: ",")
@@ -177,20 +177,20 @@ class CSVBaseTxn: CSVAbstractBaseTxn {
                 debugPrint( "chArrTxnType[\(strCSVFields[0])]")
                 let strTxnType: String = strCSVFields[0].replacingOccurrences(of: "^\"|\"$", with: "")
                 ulTxnType = Int64(strTxnType)!
-                debugPrint("ulTxnType[\(ulTxnType)]");
-                ulTtransactionType.value = ulTxnType;
-                bRet = true;
+                debugPrint("ulTxnType[\(ulTxnType)]")
+                ulTtransactionType.value = ulTxnType
+                bRet = true
             }
         } catch
         {
-            debugPrint("Exception Occurred : \(error)");
-            let strResp: String = "Error: Invalid CSV";
+            debugPrint("Exception Occurred : \(error)")
+            let strResp: String = "Error: Invalid CSV"
             let bResp: [Byte] = [Byte](strResp.utf8)
             _ = SendResponse(bResp, bResp.count, (Byte)(0x00))
-            m_btxnCompleted = true;
+            m_btxnCompleted = true
             CSVHandler.singleton.sendMessage(CSVHandler.REQUEST_FOR_TERMINATE_ECR_TRANSACTION, ExecutionResult._CANCEL, -1, nil)
         }
-        return bRet;
+        return bRet
     }
 
     /***********************************************************
@@ -211,7 +211,7 @@ class CSVBaseTxn: CSVAbstractBaseTxn {
 
             if (strCSVFields[0].count > 0) {
                 debugPrint("chArrTxnType[\(strCSVFields[0])]")
-                let strTxnType = strCSVFields[0].replacingOccurrences(of: "^\"|\"$", with: "");
+                let strTxnType = strCSVFields[0].replacingOccurrences(of: "^\"|\"$", with: "")
                 ulTxnType = Int64(strTxnType)!
                 debugPrint("ulTxnType[\(ulTxnType)]")
                 ulTtransactionType.value = ulTxnType
@@ -226,10 +226,10 @@ class CSVBaseTxn: CSVAbstractBaseTxn {
             let strResp: String = "Error: Invalid CSV"
             let bResp: [Byte] = [Byte](strResp.utf8)
             _ = SendResponse(bResp, bResp.count, (Byte)(0x00))
-            m_btxnCompleted = true;
-            CSVHandler.singleton.sendMessage(CSVHandler.REQUEST_FOR_TERMINATE_ECR_TRANSACTION, ExecutionResult._CANCEL, -1, nil);
+            m_btxnCompleted = true
+            CSVHandler.singleton.sendMessage(CSVHandler.REQUEST_FOR_TERMINATE_ECR_TRANSACTION, ExecutionResult._CANCEL, -1, nil)
         }
-        return bIsTle;
+        return bIsTle
     }
     
 
@@ -243,7 +243,7 @@ class CSVBaseTxn: CSVAbstractBaseTxn {
             var bRetVal: Bool = true
             do {
                 var lenInCSV = 0
-                var lenPattern = 0
+                _ = 0
                 var iTrack1Len = 0
                 var iTrack2Len = 0
                 var iOffset = 0
@@ -256,18 +256,18 @@ class CSVBaseTxn: CSVAbstractBaseTxn {
                 iOffset += 1
                 if (iTrack1Len > 0) {
                     chArrTrack1 = [Byte](uchArrUserData[iOffset ..< iOffset + iTrack1Len])
-                    //System.arraycopy(uchArrUserData, iOffset, chArrTrack1, 0, iTrack1Len);
+                    //System.arraycopy(uchArrUserData, iOffset, chArrTrack1, 0, iTrack1Len)
                 }
-                iOffset += iTrack1Len;
+                iOffset += iTrack1Len
 
                 //track2 --------------------------------------
-                iTrack2Len = Int(uchArrUserData[iOffset]);
+                iTrack2Len = Int(uchArrUserData[iOffset])
                 iOffset += 1
                 if (iTrack2Len > 0) {
                     chArrTrack2 = [Byte](uchArrUserData[iOffset ..< iOffset + iTrack1Len])
-                    //System.arraycopy(uchArrUserData, iOffset, chArrTrack2, 0, iTrack2Len);
+                    //System.arraycopy(uchArrUserData, iOffset, chArrTrack2, 0, iTrack2Len)
                 }
-                iOffset += iTrack2Len;
+                iOffset += iTrack2Len
 
                 //Search and replace Pattern with track data
 
@@ -275,28 +275,28 @@ class CSVBaseTxn: CSVAbstractBaseTxn {
 
                 var chArrinputCSV = [Byte](repeating: 0x00, count: lenInCSV + iOffset + 100)
                 chArrinputCSV = [Byte](chArrInCSV[0 ..< lenInCSV])
-                //System.arraycopy(chArrInCSV, 0, chArrinputCSV, 0, lenInCSV);
+                //System.arraycopy(chArrInCSV, 0, chArrinputCSV, 0, lenInCSV)
                 
-                chArrinputCSV[lenInCSV] = 0x00;
+                chArrinputCSV[lenInCSV] = 0x00
 
                 if (!TransactionUtils.ReplaceStringPatterninBuffer(chArrinputCSV, &chArrOutCSV, chArrPattern, chArrTrack1)) {
-                    bRetVal = false;
+                    bRetVal = false
                 } else {
                     chArrinputCSV = [Byte](repeating: 0x00, count: lenInCSV + iOffset + 100)
                     chArrinputCSV = [Byte](chArrinputCSV[0 ..< TransactionUtils.strlenByteArray(chArrOutCSV)])
-                    //System.arraycopy(chArrOutCSV, 0, chArrinputCSV, 0, CUtils.strlenByteArray(chArrOutCSV));
+                    //System.arraycopy(chArrOutCSV, 0, chArrinputCSV, 0, CUtils.strlenByteArray(chArrOutCSV))
 
                     //Search and replace Pattern with track2
                     if (!TransactionUtils.ReplaceStringPatterninBuffer(chArrinputCSV, &chArrOutCSV, chArrPattern, chArrTrack2)) {
-                        bRetVal = false;
+                        bRetVal = false
                     }
                 }
             } catch {
                 debugPrint( "Exception Occurred : \(error)")
-                CSVHandler.singleton.sendMessage(CSVHandler.REQUEST_FOR_TERMINATE_ECR_TRANSACTION, ExecutionResult._CANCEL, -1, nil);
+                CSVHandler.singleton.sendMessage(CSVHandler.REQUEST_FOR_TERMINATE_ECR_TRANSACTION, ExecutionResult._CANCEL, -1, nil)
             }
 
-            return bRetVal;
+            return bRetVal
         }
 
         /******************************************************************************
@@ -305,11 +305,11 @@ class CSVBaseTxn: CSVAbstractBaseTxn {
          * @return
          *******************************************************************************/
         func GoOnline(IsTleEnabled: Int) {
-            debugPrint("Inside GoOnline");
+            debugPrint("Inside GoOnline")
             do {
                 TransactionHUB.singleton.sendMessage(m_iTransactionHUBResponseCode!, IsTleEnabled, -1, nil)
             } catch {
-                debugPrint( "Exception Occurred : \(error)");
+                debugPrint( "Exception Occurred : \(error)")
                 CSVHandler.singleton.sendMessage(CSVHandler.REQUEST_FOR_TERMINATE_ECR_TRANSACTION, ExecutionResult._CANCEL, -1, nil)
             }
         }
@@ -328,39 +328,39 @@ class CSVBaseTxn: CSVAbstractBaseTxn {
                 var PrintBuffer = [Byte](repeating: 0x00, count: DataLen + 1)
                 
                 PrintBuffer = [Byte](bArrSendRecvBuff![5 ..< 5 + DataLen])
-                //System.arraycopy(bArrSendRecvBuff, 5, PrintBuffer, 0, DataLen);
+                //System.arraycopy(bArrSendRecvBuff, 5, PrintBuffer, 0, DataLen)
 
 
-                let respStr = "";
+                let respStr = ""
                 let data: [Byte] = [Byte](respStr.utf8)
                 _ = SendResponse(data, data.count, bDispStatus)
             } catch
             {
-                debugPrint( "Exception Occurred : \(error)");
+                debugPrint( "Exception Occurred : \(error)")
             }
-            return retVal;
+            return retVal
         }
 
         internal func HandlePrintChargeSlip() -> Int {
             debugPrint("Inside HandlePrintChargeSlip")
             let retVal: Int = RetVal.RET_OK
 
-            return retVal;
+            return retVal
         }
 
     func PrintChargeSlip(_ PrintBuffer: [Byte], _ DataLen: Int) -> Int {
             debugPrint("PrintChargeSlip Len[\(DataLen)]")
-        var retVal: Int = RetVal.RET_OK;
+        var retVal: Int = RetVal.RET_OK
 
             do {
                 if (RetVal.RET_OK == ParseCSVChargeSlipData(PrintBuffer, DataLen)) {
                     debugPrint("PrintBuffer Parsed iPrintBufferSize[\(iPrintBufferSize)]")
                     PrintBufferFinal = [Byte](repeating: 0x00, count: iPrintBufferSize)
-                    iPrintBufferSize = 0;
+                    iPrintBufferSize = 0
 
                     for lineNo in 0 ..< m_ChargeSlipHead.count
                     {
-                        var ChargeSlipLine: CSVChargeSlipLine = m_ChargeSlipHead[lineNo]
+                        let ChargeSlipLine: CSVChargeSlipLine = m_ChargeSlipHead[lineNo]
                         ParseCSVPrintLineAndFillBuffer(ChargeSlipLine)
                     }
 
@@ -368,7 +368,7 @@ class CSVBaseTxn: CSVAbstractBaseTxn {
                     TransactionHUB.singleton.sendMessage(AppConstant.REQUEST_FOR_PRINT_INTEGRATED_SLIP, -1, -1, nil)
                     ClearChargeSlipList()
                 } else {
-                    retVal = RetVal.RET_NOT_OK;
+                    retVal = RetVal.RET_NOT_OK
                 }
             } catch {
                 debugPrint("Exception Occurred : \(error)")
@@ -378,13 +378,13 @@ class CSVBaseTxn: CSVAbstractBaseTxn {
                 let bResp: [Byte] = [Byte](strResp.utf8)
                 globalData.m_ptrCSVDATA.m_chBillingCSVData = [Byte](bResp[0 ..< strResp.count])
                 
-                //System.arraycopy(strResp.getBytes(), 0, GlobalData.m_ptrCSVDATA.m_chBillingCSVData, 0, strResp.length());
+                //System.arraycopy(strResp.getBytes(), 0, GlobalData.m_ptrCSVDATA.m_chBillingCSVData, 0, strResp.length())
                 globalData.m_ptrCSVDATA.bCSVreceived = true
                 globalData.m_ptrCSVDATA.bStatus = 0x00
                 CSVHandler.singleton.sendMessage(CSVHandler.REQUEST_FOR_TERMINATE_ECR_TRANSACTION, ExecutionResult._CANCEL, -1, nil)
             }
 
-            return retVal;
+            return retVal
         }
 
         private func SavePrintDumptoFile() {
@@ -393,16 +393,19 @@ class CSVBaseTxn: CSVAbstractBaseTxn {
                 var _: Int = 0
                 let p: [Byte] = PrintBufferFinal!
 
-                let chTxnField62Name = String(format: "%s", FileNameConstants.BILLINGAPPDUMPFILE)
+                let chTxnField62Name = String(format: "%@", FileNameConstants.BILLINGAPPDUMPFILE)
                 debugPrint("txn field 62 file name[\(chTxnField62Name)]")
 
                 if (FileSystem.IsFileExist(strFileName: chTxnField62Name)) {
                     //should not come here
-                    _ = FileSystem.DeleteFileComplete(strFileName: chTxnField62Name)
+                    _ = FileSystem.DeleteFile(strFileName: chTxnField62Name)
                     debugPrint("DeleteFile[\(chTxnField62Name)]")
                 }
                 
-                _ = try FileSystem.AppendFile(strFileName: chTxnField62Name, with: p)
+                var tempData = [String]()
+                tempData.append(String(bytes: p[0 ..< iPrintBufferSize], encoding: .ascii)!)
+                
+                _ = try FileSystem.AppendByteFile(strFileName: chTxnField62Name, with: tempData)
              
             } catch {
                 debugPrint("Exception Occurred : \(error)")
@@ -413,7 +416,7 @@ class CSVBaseTxn: CSVAbstractBaseTxn {
                 let bResp: [Byte] = [Byte](strResp.utf8)
                 globalData.m_ptrCSVDATA.m_chBillingCSVData = [Byte](bResp[0 ..< strResp.count])
                 
-                //System.arraycopy(strResp.getBytes(), 0, GlobalData.m_ptrCSVDATA.m_chBillingCSVData, 0, strResp.length());
+                //System.arraycopy(strResp.getBytes(), 0, GlobalData.m_ptrCSVDATA.m_chBillingCSVData, 0, strResp.length())
                 globalData.m_ptrCSVDATA.bCSVreceived = true
                 globalData.m_ptrCSVDATA.bStatus = 0x00
                 
@@ -423,7 +426,7 @@ class CSVBaseTxn: CSVAbstractBaseTxn {
 
     func ParseCSVChargeSlipData(_ PrintBuffer: [Byte], _ iDataLen: Int) -> Int {
             debugPrint("ParseCSVChargeSlipData len[\(iDataLen)]")
-        let retVal: Int = RetVal.RET_OK;
+        let retVal: Int = RetVal.RET_OK
             
             do {
                 let strPrintBuffer: String = (String(bytes: PrintBuffer, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))
@@ -447,17 +450,17 @@ class CSVBaseTxn: CSVAbstractBaseTxn {
                 let bResp: [Byte] = [Byte](strResp.utf8)
                 globalData.m_ptrCSVDATA.m_chBillingCSVData = [Byte](bResp[0 ..< strResp.count])
                 
-                //System.arraycopy(strResp.getBytes(), 0, GlobalData.m_ptrCSVDATA.m_chBillingCSVData, 0, strResp.length());
+                //System.arraycopy(strResp.getBytes(), 0, GlobalData.m_ptrCSVDATA.m_chBillingCSVData, 0, strResp.length())
                 globalData.m_ptrCSVDATA.bCSVreceived = true
                 globalData.m_ptrCSVDATA.bStatus = 0x00
-                CSVHandler.singleton.sendMessage(CSVHandler.REQUEST_FOR_TERMINATE_ECR_TRANSACTION, ExecutionResult._CANCEL, -1, nil);
+                CSVHandler.singleton.sendMessage(CSVHandler.REQUEST_FOR_TERMINATE_ECR_TRANSACTION, ExecutionResult._CANCEL, -1, nil)
             }
 
-            return retVal;
+            return retVal
         }
 
     private func ParseOneLine(_ strPrintBuffer: String) -> CSVChargeSlipLine {
-        var _: Int = 0;
+        var _: Int = 0
             var ChargeSlipLine = CSVChargeSlipLine()
 
             do {
@@ -468,35 +471,29 @@ class CSVBaseTxn: CSVAbstractBaseTxn {
                     switch (numberOfParams + 1) {
                         case 1:
                             ChargeSlipLine.s_iType = Int(String(chArrParam[numberOfParams]))!
-                            break;
                         case 2:
                             if (chArrParam[numberOfParams].caseInsensitiveCompare("True") == .orderedSame) {
-                                ChargeSlipLine.s_bisBold = true;
+                                ChargeSlipLine.s_bisBold = true
                             } else {
-                                ChargeSlipLine.s_bisBold = false;
+                                ChargeSlipLine.s_bisBold = false
                             }
-                            break;
 
                         case 3:
                             if (chArrParam[numberOfParams].caseInsensitiveCompare("True") == .orderedSame)
                             {
-                                ChargeSlipLine.s_bisCenterAligned = true;
+                                ChargeSlipLine.s_bisCenterAligned = true
                             } else {
-                                ChargeSlipLine.s_bisCenterAligned = false;
+                                ChargeSlipLine.s_bisCenterAligned = false
                             }
-                            break;
 
                         case 4:
                             ChargeSlipLine.s_iLineNumber = Int(String(chArrParam[numberOfParams]))!
-                            break;
 
                         case 5:
                             ChargeSlipLine.s_chArrDatatoPrint = [Byte](String(chArrParam[numberOfParams]).utf8)
-                            iPrintBufferSize += ChargeSlipLine.s_chArrDatatoPrint!.count + 10;
-                            break;
+                            iPrintBufferSize += ChargeSlipLine.s_chArrDatatoPrint!.count + 10
                         default:
                             ChargeSlipLine = CSVChargeSlipLine()
-                            break;
                     }
                 }
                 debugPrint("Retruning PARSEONeLine")
@@ -509,10 +506,10 @@ class CSVBaseTxn: CSVAbstractBaseTxn {
                 let bResp: [Byte] = [Byte](strResp.utf8)
                 globalData.m_ptrCSVDATA.m_chBillingCSVData = [Byte](bResp[0 ..< strResp.count])
                 
-                //System.arraycopy(strResp.getBytes(), 0, GlobalData.m_ptrCSVDATA.m_chBillingCSVData, 0, strResp.length());
+                //System.arraycopy(strResp.getBytes(), 0, GlobalData.m_ptrCSVDATA.m_chBillingCSVData, 0, strResp.length())
                 globalData.m_ptrCSVDATA.bCSVreceived = true
                 globalData.m_ptrCSVDATA.bStatus = 0x00
-                CSVHandler.singleton.sendMessage(CSVHandler.REQUEST_FOR_TERMINATE_ECR_TRANSACTION, ExecutionResult._CANCEL, -1, nil);
+                CSVHandler.singleton.sendMessage(CSVHandler.REQUEST_FOR_TERMINATE_ECR_TRANSACTION, ExecutionResult._CANCEL, -1, nil)
             }
 
             return ChargeSlipLine
@@ -532,7 +529,7 @@ class CSVBaseTxn: CSVAbstractBaseTxn {
                 case CSVBaseTxn._PrintText:
                         PrintBufferFinal![iPrintBufferSize] = AppConstant.PRINTDUMP_RAWMODE
                         iPrintBufferSize += 1
-                        let iPrintDumpLen: Int = ChargeSlipLine.s_chArrDatatoPrint!.count;
+                        let iPrintDumpLen: Int = ChargeSlipLine.s_chArrDatatoPrint!.count
                         PrintBufferFinal![iPrintBufferSize] = Byte((iPrintDumpLen >> 8) & 0xFF)
                         iPrintBufferSize += 1
                         PrintBufferFinal![iPrintBufferSize] = Byte((iPrintDumpLen) & 0xFF)
@@ -541,9 +538,8 @@ class CSVBaseTxn: CSVAbstractBaseTxn {
                         iPrintBufferSize += 1
                         
                         PrintBufferFinal![iPrintBufferSize ..< iPrintBufferSize + ChargeSlipLine.s_chArrDatatoPrint!.count] = ChargeSlipLine.s_chArrDatatoPrint![0 ..< ChargeSlipLine.s_chArrDatatoPrint!.count]
-                        //System.arraycopy(ChargeSlipLine.s_chArrDatatoPrint, 0, PrintBufferFinal, iPrintBufferSize, ChargeSlipLine.s_chArrDatatoPrint.length);
+                        //System.arraycopy(ChargeSlipLine.s_chArrDatatoPrint, 0, PrintBufferFinal, iPrintBufferSize, ChargeSlipLine.s_chArrDatatoPrint.length)
                         iPrintBufferSize += ChargeSlipLine.s_chArrDatatoPrint!.count
-                        break;
 
                 case CSVBaseTxn._PrintImage:
                         PrintBufferFinal![iPrintBufferSize] = AppConstant.PRINTDUMP_IMAGEMODE
@@ -560,9 +556,8 @@ class CSVBaseTxn: CSVAbstractBaseTxn {
                         
                         PrintBufferFinal![iPrintBufferSize ..< iPrintBufferSize + ChargeSlipLine.s_chArrDatatoPrint!.count] = ChargeSlipLine.s_chArrDatatoPrint![0 ..< ChargeSlipLine.s_chArrDatatoPrint!.count]
                         
-                        //System.arraycopy(ChargeSlipLine.s_chArrDatatoPrint, 0, PrintBufferFinal, iPrintBufferSize, ChargeSlipLine.s_chArrDatatoPrint.length);
+                        //System.arraycopy(ChargeSlipLine.s_chArrDatatoPrint, 0, PrintBufferFinal, iPrintBufferSize, ChargeSlipLine.s_chArrDatatoPrint.length)
                         iPrintBufferSize += ChargeSlipLine.s_chArrDatatoPrint!.count
-                        break;
 
                 case CSVBaseTxn._PrintBarcode:
                         PrintBufferFinal![iPrintBufferSize] = AppConstant.PRINTDUMP_BARCODEMODE
@@ -572,12 +567,11 @@ class CSVBaseTxn: CSVAbstractBaseTxn {
                         PrintBufferFinal![iPrintBufferSize] = Byte((iBarCodeDumpLen) & 0xFF)
                         
                         PrintBufferFinal![iPrintBufferSize ..< iPrintBufferSize + ChargeSlipLine.s_chArrDatatoPrint!.count] = ChargeSlipLine.s_chArrDatatoPrint![0 ..< ChargeSlipLine.s_chArrDatatoPrint!.count]
-                        //System.arraycopy(ChargeSlipLine.s_chArrDatatoPrint, 0, PrintBufferFinal, iPrintBufferSize, iBarCodeDumpLen);
-                        iPrintBufferSize += iBarCodeDumpLen;
-                        break;
+                        //System.arraycopy(ChargeSlipLine.s_chArrDatatoPrint, 0, PrintBufferFinal, iPrintBufferSize, iBarCodeDumpLen)
+                        iPrintBufferSize += iBarCodeDumpLen
 
                     default:
-                        break;
+                        break
                 }
             } catch {
                 debugPrint("Exception Occurred : \(error)")
@@ -587,10 +581,10 @@ class CSVBaseTxn: CSVAbstractBaseTxn {
                 let bResp: [Byte] = [Byte](strResp.utf8)
                 globalData.m_ptrCSVDATA.m_chBillingCSVData = [Byte](bResp[0 ..< strResp.count])
                 
-                //System.arraycopy(strResp.getBytes(), 0, GlobalData.m_ptrCSVDATA.m_chBillingCSVData, 0, strResp.length());
+                //System.arraycopy(strResp.getBytes(), 0, GlobalData.m_ptrCSVDATA.m_chBillingCSVData, 0, strResp.length())
                 globalData.m_ptrCSVDATA.bCSVreceived = true
                 globalData.m_ptrCSVDATA.bStatus = 0x00
-                CSVHandler.singleton.sendMessage(CSVHandler.REQUEST_FOR_TERMINATE_ECR_TRANSACTION, ExecutionResult._CANCEL, -1, nil);
+                CSVHandler.singleton.sendMessage(CSVHandler.REQUEST_FOR_TERMINATE_ECR_TRANSACTION, ExecutionResult._CANCEL, -1, nil)
             }
         }
 
@@ -602,16 +596,16 @@ class CSVBaseTxn: CSVAbstractBaseTxn {
         internal func HandleHeartBeatRequest() -> Int {
             debugPrint("Handle Heart Beat Request")
             do {
-                let retVal: Int = RetVal.RET_OK;
+                let retVal: Int = RetVal.RET_OK
                 let bDispStatus = Byte(0x01)
                 //Send response back
                 let respString: String = ""
                 let data: [Byte] = [Byte](respString.utf8)
                 _ = SendResponse(data, data.count, bDispStatus)
-                return retVal;
+                return retVal
             } catch {
                 debugPrint("Exception Occurred : \(error)")
-                return RetVal.RET_NOT_OK;
+                return RetVal.RET_NOT_OK
             }
         }
     

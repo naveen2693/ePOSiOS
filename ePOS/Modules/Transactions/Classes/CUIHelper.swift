@@ -10,7 +10,7 @@ import Foundation
 public class CUIHelper{
     
      static func generatePassword(password:String,uuid:String) -> String {
-       let hash:String = password + "_" + uuid;
-       return CryptoHandler.vFnGetSHA256(key:hash);
+       let hash:String = password + "_" + uuid
+       return CryptoHandler.vFnGetSHA256(key:hash)
    }
 }

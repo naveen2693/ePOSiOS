@@ -9,8 +9,8 @@
 import Foundation
 
 public struct DeviceState :Codable {
-   static let S_INITIAL     = 0;
-   static let S_ACTIVATED   = 1;
-   static let S_INITIALIZED = 2;
-   static let S_READY       = 3;
+   static let S_INITIAL     = 0
+   static let S_ACTIVATED   = 1
+   static let S_INITIALIZED = 2
+   static let S_READY       = 3
 }

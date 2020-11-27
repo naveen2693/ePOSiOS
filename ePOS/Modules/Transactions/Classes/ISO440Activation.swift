@@ -32,14 +32,14 @@ class ISO440Activation : ISOMessage
             /*    ***************************************************************************
              FEILD 0 ::Message Type
              ***************************************************************************/
-            msgno = [Byte](ProcessingCodeConstants.ACTIVATIONREQ.utf8);
+            msgno = [Byte](ProcessingCodeConstants.ACTIVATIONREQ.utf8)
             //TODO check to write this function in PlatformUtils
-//            var bArrHardwareConfig = PlatformUtils.GetHardwareConfiguration();
+//            var bArrHardwareConfig = PlatformUtils.GetHardwareConfiguration()
 //            if (bArrHardwareConfig !=null)
 //            {
-//                _ = addLLLCHARData(IsoFieldConstant.ISO_FIELD_62, bArrHardwareConfig, bArrHardwareConfig.length);
+//                _ = addLLLCHARData(IsoFieldConstant.ISO_FIELD_62, bArrHardwareConfig, bArrHardwareConfig.length)
 //            }
-            return packItHost(sendee: &bArrSendDataToHost);
+            return packItHost(sendee: &bArrSendDataToHost)
         }
         
         func SetActivationRequestData()
@@ -49,9 +49,9 @@ class ISO440Activation : ISOMessage
              */
            _ =  addField(bitno:ISOFieldConstants.ISO_FIELD_3,
                          data1:[Byte](ProcessingCodeConstants.PC_ONLINE_TRANSACTION_REQ.utf8),
-                         bcd:true);
+                         bcd:true)
             
-            vFnSetTerminalActivationFlag(bTerminalActivationFlag:true);
+            vFnSetTerminalActivationFlag(bTerminalActivationFlag:true)
         }
         
         
@@ -59,9 +59,9 @@ class ISO440Activation : ISOMessage
         {
             do
             {
-                debugPrint("Inside bFnGetTokenDataForHUB ");
+                debugPrint("Inside bFnGetTokenDataForHUB ")
                 let globalData = GlobalData.singleton
-                var terminalParamData = globalData.ReadParamFile();
+                var terminalParamData = globalData.ReadParamFile()
                 
                 
                 //Update hardware serial number of TerminalMasterParamData with 49th field
@@ -76,13 +76,13 @@ class ISO440Activation : ISOMessage
                 // Get Client ID and Security Token
                 if (bitmap[47 - 1])
                 {
-                    let ilenField47Data = len[47 - 1];
+                    let ilenField47Data = len[47 - 1]
                     let bArrField47Data = Array(data[47 - 1][0..<ilenField47Data])
                     
-                    var iOffset = 0;
+                    var iOffset = 0
                     
                     if (ilenField47Data < 2) {
-                        return false;
+                        return false
                     }
                     
                     //Parsing ClientID
@@ -93,7 +93,7 @@ class ISO440Activation : ISOMessage
                         let bArrClientID = Array(bArrField47Data[iOffset..<iOffset+ilenClientID])
                         iOffset += ilenClientID
                         terminalParamData?.m_strClientId = String(bytes: bArrClientID, encoding: String.Encoding.ascii)!
-                        m_sClientID = terminalParamData!.m_strClientId ;
+                        m_sClientID = terminalParamData!.m_strClientId 
                         debugPrint("ClientID[\(m_sClientID)] ClientID Length = [\(ilenClientID)]")
                     }
                     
@@ -105,36 +105,36 @@ class ISO440Activation : ISOMessage
                         iOffset += ilenSecurityToken
                         terminalParamData?.m_strSecurityToken = String(bytes: bArrSecurityToken, encoding: String.Encoding.ascii)!
                         
-                        iOffset += Int(ilenSecurityToken);
+                        iOffset += Int(ilenSecurityToken)
                         debugPrint("SecurityToken[\(String(describing: terminalParamData?.m_strSecurityToken))] Security token Length = [\(ilenSecurityToken)]")
                     }
                 }
                 else
                 {
                     debugPrint("Client ID Security Token Not Present")
-                    return false;
+                    return false
                 }
                 
                 // Get Secret GUID
                 if (bitmap[51 - 1])
                 {
-                    let ilenGUID = len[51 - 1];
+                    let ilenGUID = len[51 - 1]
                     if ilenGUID>0
                     {
                         terminalParamData?.m_strGUID = String(bytes: data[51 - 1],encoding: String.Encoding.ascii)!
-                        m_sGUID = terminalParamData!.m_strGUID;
+                        m_sGUID = terminalParamData!.m_strGUID
                         
                         debugPrint("Guid[\(m_sClientID)] ClientID Length = [\(ilenGUID)]")
                     }
                 }
                 else {
                     debugPrint("Secret GUID not present")
-                    return false;
+                    return false
                 }
                 
-                _ = globalData.WriteParamFile(listParamData:terminalParamData);
-                vFnSetTerminalActivationFlag(bTerminalActivationFlag: false);
-                return true;
+                _ = globalData.WriteParamFile(listParamData:terminalParamData)
+                vFnSetTerminalActivationFlag(bTerminalActivationFlag: false)
+                return true
             }
             catch
             {

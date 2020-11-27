@@ -11,7 +11,7 @@
 class AccountViewControllerTableViewController:UIViewController{
 //    @IBOutlet weak var label: EPOSLabel!
 //    @IBOutlet weak var imageView: UIImageView!
-//    let name = ["sdf","sffsdf","sfsf"];
+//    let name = ["sdf","sffsdf","sfsf"]
 //    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()

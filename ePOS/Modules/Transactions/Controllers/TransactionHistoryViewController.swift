@@ -8,7 +8,7 @@
 //
 import Foundation
 class TransactionHistoryViewController:UIViewController{
- let name = ["sdf","sffsdf","sfsf"];
+ let name = ["sdf","sffsdf","sfsf"]
 //    @IBOutlet weak var tableView: UITableView!
 //    @IBOutlet weak var logoImageView: UIImageView!
 //    @IBOutlet weak var mobileNumberLabel: UILabel!

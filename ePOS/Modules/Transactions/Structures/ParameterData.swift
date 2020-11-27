@@ -9,9 +9,9 @@
 import Foundation
 
 public struct ParameterData {
-    var uiHostID = 0;
-    var ulParameterId = 0;
-    var ulParameterLen = 0;
-    var chArrParameterVal:[Byte] = [];
+    var uiHostID = 0
+    var ulParameterId = 0
+    var ulParameterLen = 0
+    var chArrParameterVal:[Byte] = []
 
 }

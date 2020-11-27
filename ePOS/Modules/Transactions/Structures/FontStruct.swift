@@ -8,6 +8,6 @@
 
 import Foundation
 public struct Fontstruct:Codable {
-    var id:Int64 = 0;
-    var FontFileName:[UInt8] = [0];
+    var id:Int64 = 0
+    var FontFileName:[UInt8] = [0]
 }

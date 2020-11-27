@@ -8,11 +8,11 @@
 
 import Foundation
 struct StPSK: Codable {
-    var iKeySlotID = 0 ;
+    var iKeySlotID = 0 
 
-    var uchArrPSKPin:[Byte] = [0] ;
-    var uchArrKCVPSKPin:[Byte] = [0] ;
+    var uchArrPSKPin:[Byte] = [0] 
+    var uchArrKCVPSKPin:[Byte] = [0] 
 
-    var uchArrPSKTLE:[Byte] = [0] ;
-    var uchArrKCVPSKTLE:[Byte] = [0] ;
+    var uchArrPSKTLE:[Byte] = [0] 
+    var uchArrKCVPSKTLE:[Byte] = [0] 
 }

@@ -42,7 +42,7 @@ class PrinterHandler{
     var globalData = GlobalData.singleton
     var strDisplayDialogMessage: String = ""
     
-    var bIsBufferRemaining: Bool = true;
+    var bIsBufferRemaining: Bool = true
     
     init() {
         m_iPrinterType = 1
@@ -58,108 +58,108 @@ class PrinterHandler{
         
         do{
             debugPrint("Inside method ProcessPrintDump")
-            bIsBufferRemaining = true;
+            bIsBufferRemaining = true
 
             //TODO: Context, Toast Incomplete
             /*    if (context == null) {
-                context = MainActivity.m_context;
+                context = MainActivity.m_context
             }
             toast = Toast.makeText(context, "", Toast.LENGTH_SHORT) */
             
-            globalData.m_bPrinterData = Array(bArrPrintData[0 ..< iPrintDumpLength])
-            //System.arraycopy(bArrPrintData, 0, globalData.m_bPrinterData, 0, iPrintDumpLength);
+            globalData.m_bPrinterData = [Byte](bArrPrintData[0 ..< iPrintDumpLength])
+            //System.arraycopy(bArrPrintData, 0, globalData.m_bPrinterData, 0, iPrintDumpLength)
             globalData.m_iPrintLen = iPrintDumpLength
 
             if (iPrintDumpLength <= 0) {
                 //TODOD dialog Imcomplete
                 /*if (dialog != null) {
                     if (dialog.isShowing()) {
-                        dialog.dismiss();
+                        dialog.dismiss()
                     }
-                    dialog = null;
+                    dialog = null
                 }*/
-                dataToPrint += "NO CHARGESLIP FOUND. Transaction Error.";
+                dataToPrint += "NO CHARGESLIP FOUND. Transaction Error."
                 _ = bFnPrintRawDump(PrintSize: dataToPrint.count, dataToPrint: dataToPrint, printerDataDisplayArrayList: printerDataDisplayArrayList, printDataImage: printDataImage, listPrintDataImage: printDataImage, listBarCodeData: strBarCodeData, listQRCode: strQRCode, bArrPrintData: bArrPrintData)
-                    //StartPrint(null, 0, null,1);
+                    //StartPrint(null, 0, null,1)
                     return false
                 }
 
             var p = [Byte](repeating: 0x00, count: iPrintDumpLength)
             let length: Int = iPrintDumpLength
 
-            p = Array(bArrPrintData[0 ..< iPrintDumpLength])
-            //System.arraycopy(bArrPrintData, 0, p, 0, iPrintDumpLength);
+            p = [Byte](bArrPrintData[0 ..< iPrintDumpLength])
+            //System.arraycopy(bArrPrintData, 0, p, 0, iPrintDumpLength)
 
-            var iOffset: Int = 0;
+            var iOffset: Int = 0
 
                 //Print size
-            var iPrintSize: Int = AppConstant.PRINTDUMP_SIZE24;
+            var iPrintSize: Int = AppConstant.PRINTDUMP_SIZE24
 
-            var _: Int = 0x00;
-            var iLocalOffsetToUse: Int = 0x00;
-            var iLocalLoopDataLength: Int = 0x00;
-            var _: Int = 0x00;
-            var iTotalLength: Int = 0x00;
-            var iDumpOffset: Int = 0x00;
-            var _: Int = 0x00;
-            var _: Int = 0x00;
-            var iPrintDumpLen: Int = 0x00;
-            var uiLocalBarcodeDataLen: Int = 0x00;
-            var _: Int = 0x00;
-            var _: Int = 0x00;
-            var iLastPrintMode: Int = 0x00;
-            var bIsPrintModeChanged: Bool = false;
-            var _:  Bool = false;
-            var bIsDisplayModePresent: Bool = false;
+            var _: Int = 0x00
+            var iLocalOffsetToUse: Int = 0x00
+            var iLocalLoopDataLength: Int = 0x00
+            var _: Int = 0x00
+            var iTotalLength: Int = 0x00
+            var iDumpOffset: Int = 0x00
+            var _: Int = 0x00
+            var _: Int = 0x00
+            var iPrintDumpLen: Int = 0x00
+            var uiLocalBarcodeDataLen: Int = 0x00
+            var _: Int = 0x00
+            var _: Int = 0x00
+            var iLastPrintMode: Int = 0x00
+            var bIsPrintModeChanged: Bool = false
+            var _:  Bool = false
+            var bIsDisplayModePresent: Bool = false
             var _: Bool = false
 
 
-                // iOffset = 4;
+                // iOffset = 4
                 repeat {
-                    //  dataToPrint = "";
+                    //  dataToPrint = ""
                     let bPrintMode = p[iOffset]
                     iOffset += 1
                     if (iLastPrintMode == 0x00) {
                         iLastPrintMode = Int(bPrintMode & 0x0000000FF)
 
                     } else if (bPrintMode != iLastPrintMode) {
-                        bIsPrintModeChanged = true;
+                        bIsPrintModeChanged = true
                     }
                     //chargeslip Mode
                     if (bPrintMode == AppConstant.PRINTDUMP_CHARGESLIPMODE) { //this is a TLV data
                         //iLocalOffsetToUse =
-                        iLocalLoopDataLength = 0x00;
+                        iLocalLoopDataLength = 0x00
                         iLocalLoopDataLength = Int(Int(p[iOffset] << 8) & Int(0x0000FF00))
                         iOffset += 1
                         iLocalLoopDataLength |= Int(p[iOffset] & 0x000000FF)
                         iOffset += 1
-                        iLocalOffsetToUse = iOffset;
-                        //iOffset += 0x02; //discarding first length
+                        iLocalOffsetToUse = iOffset
+                        //iOffset += 0x02 //discarding first length
                         //first 2 bytes tag then length , length == 0x04 for templates , and 0x02 for tags
-                        iOffset += iLocalLoopDataLength;
+                        iOffset += iLocalLoopDataLength
                         //Raw Dump Mode
                     } else if (bPrintMode == AppConstant.PRINTDUMP_RAWMODE) {
-                        iDumpOffset = 0x00;
-                        iTotalLength = 0x00;
+                        iDumpOffset = 0x00
+                        iTotalLength = 0x00
                         iTotalLength = Int(Int(p[iOffset] << 8) & Int(0x0000FF00))
                         iOffset += 1
                         iTotalLength |= Int(p[iOffset] & 0x000000FF)
                         iOffset += 1
-                        iDumpOffset = iOffset;
+                        iDumpOffset = iOffset
                         m_bArrPrintDump = [Byte](repeating: 0x00, count: iTotalLength + iTotalLength / 10)
-                        m_iPrintDumpLen = 0x00;
-                        var _: Int = 0;
+                        m_iPrintDumpLen = 0x00
+                        var _: Int = 0
                         repeat {
-                            //                iOffset++; //ignore the field for print attribute
+                            //                iOffset++ //ignore the field for print attribute
                             let bFontType = p[iOffset]
                             iOffset += 1
                             if (bFontType == 0x01 || bFontType == 0x03) {
-                                iPrintSize = AppConstant.PRINTDUMP_SIZE24;
+                                iPrintSize = AppConstant.PRINTDUMP_SIZE24
                             } else {
-                                iPrintSize = AppConstant.PRINTDUMP_SIZE48;
+                                iPrintSize = AppConstant.PRINTDUMP_SIZE48
                             }
 
-                            iPrintDumpLen = 0x00;
+                            iPrintDumpLen = 0x00
                             iPrintDumpLen = Int(Int(p[iOffset] << 8) & Int(0x0000FF00))
                             iOffset += 1
                             iPrintDumpLen |= Int(p[iOffset] & 0x000000FF)
@@ -167,19 +167,19 @@ class PrinterHandler{
                             var count: Int = 0
                             var bArrPrintDumpData = [Byte](repeating: 0x00, count: iPrintDumpLen + 100)
 
-                            var iPosNull: Int = 0;
-                            //int i = m_iPrintDumpLen;
-                            var k: Int = 0;
+                            var iPosNull: Int = 0
+                            //int i = m_iPrintDumpLen
+                            var k: Int = 0
                             for _ in 0 ..< iPrintDumpLen {
-                                // m_bArrPrintDump[i] = p[iOffset++];
-                                //m_iPrintDumpLen++;
+                                // m_bArrPrintDump[i] = p[iOffset++]
+                                //m_iPrintDumpLen++
 
                                 //if newline encountered, then Pos is set to 0
                                 //else incremented
                                 if (Character(UnicodeScalar(p[iOffset])) != "\n") {
                                     iPosNull += 1
                                 } else {
-                                    iPosNull = 0;
+                                    iPosNull = 0
                                 }
                                 //if position is greater than printsize
                                 //put newline in the buffer.
@@ -192,7 +192,7 @@ class PrinterHandler{
                                     bArrPrintDumpData[k] = Array(String("\r").utf8)[0]
                                     count += 1
                                     k += 1
-                                    iPosNull = 1;
+                                    iPosNull = 1
                                 }
 
                                 bArrPrintDumpData[k] = p[iOffset]
@@ -203,33 +203,33 @@ class PrinterHandler{
 
 
                             var bArrFinalDump = [Byte](repeating: 0x00, count: count)
-                            bArrFinalDump = Array(bArrPrintDumpData[0 ..< count])
-                            //System.arraycopy(bArrPrintDumpData, 0, bArrFinalDump, 0, count);
+                            bArrFinalDump = [Byte](bArrPrintDumpData[0 ..< count])
+                            //System.arraycopy(bArrPrintDumpData, 0, bArrFinalDump, 0, count)
                             var finalData = String(bytes: bArrFinalDump, encoding: .utf8)!
                     
                             if (finalData[finalData.index(finalData.startIndex, offsetBy: finalData.count - 1)] == "\n") {
                                 if (printDataToPrint.isEmpty) {
                                     printDataToPrint = finalData
                                 } else {
-                                    printDataToPrint = printDataToPrint + finalData;
+                                    printDataToPrint = printDataToPrint + finalData
                                 }
-                                finalData = finalData.substring(from: 0, to: finalData.count - 1);
+                                finalData = finalData.substring(from: 0, to: finalData.count - 1)
                             }
 
                             while (finalData.count > GlobalData.m_iMaxBytesToAddPrinter) {
                                 var _: String = finalData.substring(from: 0, to: GlobalData.m_iMaxBytesToAddPrinter)
                                 finalData = finalData.substring(from: GlobalData.m_iMaxBytesToAddPrinter, to: finalData.count - 1)
                                 if (printDataToPrint.isEmpty) {
-                                    printDataToPrint = finalData;
+                                    printDataToPrint = finalData
                                 } else {
                                     printDataToPrint = printDataToPrint + finalData
                                 }
                             }
 
-                        } while (iTotalLength > (iOffset - iDumpOffset));
+                        } while (iTotalLength > (iOffset - iDumpOffset))
 
 
-                        m_iPrintDumpLen = 0x00;
+                        m_iPrintDumpLen = 0x00
                         m_bArrPrintDump = nil
 
                         //Image Mode
@@ -241,39 +241,42 @@ class PrinterHandler{
                         iOffset += 1
                         iImageID |= Int(Int(p[iOffset] << 8) & Int(0x0000FF00))
                         iOffset += 1
-                        iImageID |= Int(p[iOffset] & 0x000000FF);
+                        iImageID |= Int(p[iOffset] & 0x000000FF)
                         iOffset += 1
                         debugPrint("ImageID= \(iImageID)")
                         let strImageID: String = String(format:"%X", iImageID)
                         debugPrint("ImageID in HEX= \(strImageID)")
 
-                        //iOffset += 4;
+                        //iOffset += 4
                         do {
                             let strImageID8Digit: String = TransactionUtils.StrLeftPad(data: strImageID, length: 8, padChar: "0")
-                            let strFileName: String = "im" + strImageID8Digit;     //Same as im%80d imageID
-                            let bArrImageDump: [Byte] = FileSystem.ReadFile(strFileName: strFileName)!
-                            if (bArrImageDump.isEmpty) {
-                                let strNewLine: String = "\n";
-                                var _: Int = AppConstant.PRINTDUMP_SIZE24;
-                                if (printDataToPrint.isEmpty) {
-                                    printDataToPrint = strNewLine;
-                                } else {
-                                    printDataToPrint = printDataToPrint + strNewLine;
+                            let strFileName: String = "im" + strImageID8Digit     //Same as im%80d imageID
+                            let tempData: [String] = FileSystem.ReadByteFile(strFileName: strFileName)!
+                            
+                            if (tempData.isEmpty) {
+                                let bArrImageDump = [Byte](tempData[0].utf8)
+                                
+                                if (bArrImageDump.isEmpty) {
+                                    let strNewLine: String = "\n"
+                                    var _: Int = AppConstant.PRINTDUMP_SIZE24
+                                    if (printDataToPrint.isEmpty) {
+                                        printDataToPrint = strNewLine
+                                    } else {
+                                        printDataToPrint = printDataToPrint + strNewLine
+                                    }
+                                } else if (bArrImageDump.count != 0) {
+                                    printDataImage.append(bArrImageDump)
                                 }
-                            } else if (bArrImageDump.count != 0) {
-                                printDataImage.append(bArrImageDump);
-
                             }
-
                         } catch  {
                             debugPrint("Exception Occurred : \(error)")
                         }
 
                         //BarCode Mode
                     } else if (bPrintMode == AppConstant.PRINTDUMP_BARCODEMODE) {
-                        uiLocalBarcodeDataLen = 0x00;
+                        uiLocalBarcodeDataLen = 0x00
                         var ushBarcodeType: Byte = 0x00
-                        var ushBarcodeDimension: Byte = 0x00;
+                        var ushBarcodeDimension: Byte = 0x00
                         let uchBarcodeAttribute = Byte(p[iOffset] & 0x000000FF)
                         iOffset += 1
                         ushBarcodeType = Byte(uchBarcodeAttribute & 0x0F)
@@ -282,47 +285,47 @@ class PrinterHandler{
                         iOffset += 1
 
                         var bArrBarCodeData = [Byte](repeating: 0x00, count: uiLocalBarcodeDataLen)
-                        bArrBarCodeData = Array(p[iOffset ..< iOffset + uiLocalBarcodeDataLen])
-                        //System.arraycopy(p, iOffset, bArrBarCodeData, 0, uiLocalBarcodeDataLen);
-                        iOffset += uiLocalBarcodeDataLen;
+                        bArrBarCodeData = [Byte](p[iOffset ..< iOffset + uiLocalBarcodeDataLen])
+                        //System.arraycopy(p, iOffset, bArrBarCodeData, 0, uiLocalBarcodeDataLen)
+                        iOffset += uiLocalBarcodeDataLen
 
 
                         strBarCodeData.append(String(bytes: bArrBarCodeData, encoding: .utf8)!)
 
                         //Print Message Mode
                     } else if (bPrintMode == AppConstant.PRINTDUMP_PRINTMESSAGEMODE) {
-                        iOffset += 4;
+                        iOffset += 4
                         //do file handling at the time of printing
                         //Display Message Mode
                     } else if (bPrintMode == AppConstant.PRINTDUMP_QRCODEPD) {
 
-                        var uiLocalQRcodeDataLen: Int = 0x00;
+                        var uiLocalQRcodeDataLen: Int = 0x00
 
                         uiLocalQRcodeDataLen = Int(p[iOffset] & 0x000000FF)
                         iOffset += 1
-                        uiLocalQRcodeDataLen = uiLocalQRcodeDataLen << 8;
+                        uiLocalQRcodeDataLen = uiLocalQRcodeDataLen << 8
                         uiLocalQRcodeDataLen |= Int(p[iOffset] & 0x000000FF)
                         iOffset += 1
                         var chTempArrBCD = [Byte](repeating: 0x00, count: uiLocalQRcodeDataLen)
 
-                        debugPrint("QRCodeDump : iOffset = \(iOffset) uiLocalQRcodeDataLen = \(uiLocalQRcodeDataLen)");
+                        debugPrint("QRCodeDump : iOffset = \(iOffset) uiLocalQRcodeDataLen = \(uiLocalQRcodeDataLen)")
 
-                        chTempArrBCD = Array(p[iOffset ..< iOffset + uiLocalBarcodeDataLen])
-                        //System.arraycopy(p, iOffset, chTempArrBCD, 0, uiLocalQRcodeDataLen);
-                        debugPrint( "QRCodeDump : chTempArrBCD = \(chTempArrBCD)");
-                        iOffset += uiLocalQRcodeDataLen;
+                        chTempArrBCD = [Byte](p[iOffset ..< iOffset + uiLocalBarcodeDataLen])
+                        //System.arraycopy(p, iOffset, chTempArrBCD, 0, uiLocalQRcodeDataLen)
+                        debugPrint( "QRCodeDump : chTempArrBCD = \(String(bytes: chTempArrBCD, encoding: .ascii)!)")
+                        iOffset += uiLocalQRcodeDataLen
 
                         strQRCode.append(String(bytes: chTempArrBCD, encoding: .utf8)!)
     //                    if (uiLocalQRcodeDataLen > 0)
     //                    {
-                        // bFnPrintQRCode(strQRCode,context);
+                        // bFnPrintQRCode(strQRCode,context)
     //                        if(dialog != null)
     //                        {
     //                            if(dialog.isShowing())
     //                            {
-    //                                dialog.dismiss();
+    //                                dialog.dismiss()
     //                            }
-    //                            dialog = null;
+    //                            dialog = null
     //                        }
     //                    }
 
@@ -330,30 +333,38 @@ class PrinterHandler{
                         let strTxnField52Name: String = String(format: "%@", FileNameConstants.TXNFEILD52NAME)
                         debugPrint("txn field 52 file name[\(FileNameConstants.TXNFEILD52NAME)]")
 
-                        let bArrField52Data: [Byte] = FileSystem.ReadFile(strFileName: strTxnField52Name)!
-
-                        let strField52Data: String = String(bytes: bArrField52Data, encoding: .utf8)!
-                        debugPrint("\(strTxnField52Name) file len[\(bArrField52Data.count)] and Buffer=[\(strField52Data)]")
-                        if (!strField52Data.isEmpty) {
-                            // bFnPrintQRCode(strField52Data,context);
-                            strQRCode.append(strField52Data);
+                        let tempData: [String]  = FileSystem.ReadFile(strFileName: strTxnField52Name)!
+                        if(!tempData.isEmpty)
+                        {
+                            let bArrField52Data = [Byte](tempData[0].utf8)
+                            
+                            let strField52Data: String = String(bytes: bArrField52Data, encoding: .ascii)!
+                            debugPrint("\(strTxnField52Name) file len[\(bArrField52Data.count)] and Buffer=[\(strField52Data)]")
+                            if (!strField52Data.isEmpty) {
+                                // bFnPrintQRCode(strField52Data,context)
+                                strQRCode.append(strField52Data)
+                            }
                         }
                     } else if (bPrintMode == AppConstant.PRINTDUMP_QRCODEMODEBASE64) {
                         let strTxnField52Name = String(format: "@", FileNameConstants.TXNFEILD52NAME)
                         debugPrint("txn field 52 file name[\(FileNameConstants.TXNFEILD52NAME)]")
 
-                        let bArrField52Data: [Byte] = FileSystem.ReadFile(strFileName: strTxnField52Name)!
-                        
-                        let strField52Data: String = String(bytes: bArrField52Data, encoding: .utf8)!
-                        debugPrint("\(strTxnField52Name) file len[\(bArrField52Data.count)] and Buffer=[\(strField52Data)]")
-
-                        let strPlainData = String(bytes: bArrField52Data, encoding: .utf8)!
-                        
-                        let strBase64data = Data(base64Encoded: strPlainData, options: .ignoreUnknownCharacters)!
-                        let strBase64Data = String(data: strBase64data, encoding: .utf8)
-                        //String strBase64Data = Base64.encodeToString(bArrField52Data, Base64.DEFAULT);
-                        if (!strBase64Data!.isEmpty) {
-                            strQRCode.append(strPlainData)
+                        let tempData: [String] = FileSystem.ReadFile(strFileName: strTxnField52Name)!
+                        if(!tempData.isEmpty)
+                        {
+                            let bArrField52Data = [Byte](tempData[0].utf8)
+                            
+                            let strField52Data: String = String(bytes: bArrField52Data, encoding: .ascii)!
+                            debugPrint("\(strTxnField52Name) file len[\(bArrField52Data.count)] and Buffer=[\(strField52Data)]")
+                            
+                            let strPlainData = String(bytes: bArrField52Data, encoding: .utf8)!
+                            
+                            let strBase64data = Data(base64Encoded: strPlainData, options: .ignoreUnknownCharacters)!
+                            let strBase64Data = String(data: strBase64data, encoding: .utf8)
+                            //String strBase64Data = Base64.encodeToString(bArrField52Data, Base64.DEFAULT)
+                            if (!strBase64Data!.isEmpty) {
+                                strQRCode.append(strField52Data)
+                            }
                         }
                     } else if (bPrintMode == AppConstant.PRINTDUMP_DISPLAYMODE) {
     //                confirm whether to print customer copy or not or vice versa
@@ -377,33 +388,33 @@ class PrinterHandler{
                             iDumpLocalOffset += 1
                             iLocalOffset += 1
                             if (uchAction == 0x02) {
-                                var iLocalDataLen: Int = 0x00;
+                                var iLocalDataLen: Int = 0x00
                                 iLocalDataLen = Int(p[iDumpLocalOffset])
                                 iDumpLocalOffset += 1
-                                iLocalDataLen <<= 8;
+                                iLocalDataLen <<= 8
                                 iLocalDataLen |= Int(p[iDumpLocalOffset])
                                 iDumpLocalOffset += 1
                                 
-                                iLocalOffset += 2;
+                                iLocalOffset += 2
                                 //ASCII display message dump
-                                //memcpy_s(chArrDisplayMessage+iDispArrOffset,250-iDispArrOffset,p+iDumpLocalOffset,iLocalDataLen);
-                                chArrDisplayMessage[iDispArrOffset ..< iDispArrOffset + iLocalDataLen] = ArraySlice<Byte>(p[iDumpLocalOffset ..< iDumpLocalOffset + iLocalDataLen])
-                                //System.arraycopy(p, iDumpLocalOffset, chArrDisplayMessage, iDispArrOffset, iLocalDataLen);
-                                iDispArrOffset += iLocalDataLen;
-                                iDumpLocalOffset += iLocalDataLen;
-                                iLocalOffset += iLocalDataLen;
+                                //memcpy_s(chArrDisplayMessage+iDispArrOffset,250-iDispArrOffset,p+iDumpLocalOffset,iLocalDataLen)
+                                chArrDisplayMessage[iDispArrOffset ..< iDispArrOffset + iLocalDataLen] = (p[iDumpLocalOffset ..< iDumpLocalOffset + iLocalDataLen])
+                                //System.arraycopy(p, iDumpLocalOffset, chArrDisplayMessage, iDispArrOffset, iLocalDataLen)
+                                iDispArrOffset += iLocalDataLen
+                                iDumpLocalOffset += iLocalDataLen
+                                iLocalOffset += iLocalDataLen
 
                                 strDisplayDialogMessage = (String(bytes: chArrDisplayMessage, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines))!
-                                debugPrint("Dialgog Message= \(strDisplayDialogMessage)");
+                                debugPrint("Dialgog Message= \(strDisplayDialogMessage)")
                                 //do paper cutting at this place
                             } else if (uchAction == 0x05) {
                                 //parse message id carry out look up concatenate in chArrDisplayMessage
-                                iLocalOffset += 4;
+                                iLocalOffset += 4
                             } else {
-                                break;
+                                break
                             }
 
-                        } while (iLocalOffset < iDisplayLen);
+                        } while (iLocalOffset < iDisplayLen)
 
                         //field 58 of ISO 230 parsing logic ends here.
                         let printerDataDisplay = PrinterDataDisplay()
@@ -412,31 +423,31 @@ class PrinterHandler{
                         printerDataDisplay.setQrcodeData(strQRCode)
                         printerDataDisplay.setBarcodeData(strBarCodeData)
 
-                        printerDataDisplayArrayList.append(printerDataDisplay);
-                        printDataToPrint = "";
+                        printerDataDisplayArrayList.append(printerDataDisplay)
+                        printDataToPrint = ""
                         printDataImage = []
                         strQRCode = []
                         strBarCodeData = []
 
-                        iOffset += iDisplayLen;
+                        iOffset += iDisplayLen
 
                         iPrintDataLen = Int(p[iOffset])
                         iOffset += 1
                         iPrintDataLen <<= 8
                         iPrintDataLen |= Int(p[iOffset])
                         iOffset += 1
-                        //   bIsDisplayModePresent = true;
+                        //   bIsDisplayModePresent = true
 
                     }
-                    bIsPrintModeChanged = false;
-                } while (length > iOffset);//length > iOffset && !bIsDisplayModePresent);
-                bIsDisplayModePresent = false;
+                    bIsPrintModeChanged = false
+                } while (length > iOffset)//length > iOffset && !bIsDisplayModePresent)
+                bIsDisplayModePresent = false
                 //Added Blank line after fill buffer
                 var _: String = "\n"
             /*    if (printDataToPrint.isEmpty()){
-                    printDataToPrint = strNewLine;
+                    printDataToPrint = strNewLine
                 }else {
-                    printDataToPrint = printDataToPrint + strNewLine;
+                    printDataToPrint = printDataToPrint + strNewLine
                 }*/
                 
                 let printerDataDisplay = PrinterDataDisplay()
@@ -446,38 +457,38 @@ class PrinterHandler{
                 printerDataDisplay.setBarcodeData(strBarCodeData)
 
                 printerDataDisplayArrayList.append(printerDataDisplay)
-                printDataToPrint = "";
+                printDataToPrint = ""
                 printDataImage = []
                 strQRCode = []
                 strBarCodeData = []
-                let printsize: Int = AppConstant.PRINTDUMP_SIZE24;
-                _ = bFnPrintRawDump(PrintSize: printsize, dataToPrint: printDataToPrint, printerDataDisplayArrayList: printerDataDisplayArrayList, printDataImage: printDataImage, listPrintDataImage: printDataImage, listBarCodeData: strBarCodeData, listQRCode: strQRCode, bArrPrintData: bArrPrintData);
+                let printsize: Int = AppConstant.PRINTDUMP_SIZE24
+                _ = bFnPrintRawDump(PrintSize: printsize, dataToPrint: printDataToPrint, printerDataDisplayArrayList: printerDataDisplayArrayList, printDataImage: printDataImage, listPrintDataImage: printDataImage, listBarCodeData: strBarCodeData, listQRCode: strQRCode, bArrPrintData: bArrPrintData)
 
                 var p1: [Byte]
                 var length1: Int = 0
                 //TODO: Context Incomplete
-                //final Context context1 = context;
+                //final Context context1 = context
                 if (iOffset < length) {
-                    bIsBufferRemaining = true;
+                    bIsBufferRemaining = true
                     p1 = [Byte](repeating: 0x00, count: length - iOffset)
-                    p1 = Array(p[iOffset ..< length])
+                    p1 = [Byte](p[iOffset ..< length])
                     //System.arraycopy(p, iOffset, p1, 0, length - iOffset)
-                    length1 = length - iOffset;
+                    length1 = length - iOffset
                 } else {
-                    bIsBufferRemaining = false;
+                    bIsBufferRemaining = false
                 }
 
-                return true;
+                return true
             } catch {
                 debugPrint("Exception Occurred : \(error)")
                 //TODO: dialog Incomplete
                 /*if (dialog != null) {
                     if (dialog.isShowing()) {
-                        dialog.dismiss();
+                        dialog.dismiss()
                     }
-                    dialog = null;
+                    dialog = null
                 }*/
-                return false;
+                return false
             }
     }
     
@@ -487,22 +498,22 @@ class PrinterHandler{
         //TODO: dialog Intent Incomplete
         /*if (dialog != null) {
             if (dialog.isShowing()) {
-                dialog.dismiss();
+                dialog.dismiss()
             }
-            dialog = null;
+            dialog = null
         }
         if (null == dataToPrint) {
-            dataToPrint = "";
+            dataToPrint = ""
         }
-        //TransactionHUB.getInstance().finishTransactionHubActivity("");
-        Intent intent = new Intent(context, PrinterTextDisplayActivity.class);
-        intent.putExtra(StringConstant.PRINTDATA_TAG, printerDataDisplayArrayList);
-        intent.putExtra(StringConstant.PRINT_IMAGEDATA_TAG, listPrintDataImage);
-        intent.putExtra(StringConstant.PRINT_BARCODEDATA_TAG, listBarCodeData);
-        intent.putExtra(StringConstant.PRINT_QRDATA_TAG, listQRCode);
-        intent.putExtra(StringConstant.PRINT_QRDATA_TAG, listQRCode);
-        intent.putExtra("byteData", bArrPrintData);
-        context.startActivity(intent);
+        //TransactionHUB.getInstance().finishTransactionHubActivity("")
+        Intent intent = new Intent(context, PrinterTextDisplayActivity.class)
+        intent.putExtra(StringConstant.PRINTDATA_TAG, printerDataDisplayArrayList)
+        intent.putExtra(StringConstant.PRINT_IMAGEDATA_TAG, listPrintDataImage)
+        intent.putExtra(StringConstant.PRINT_BARCODEDATA_TAG, listBarCodeData)
+        intent.putExtra(StringConstant.PRINT_QRDATA_TAG, listQRCode)
+        intent.putExtra(StringConstant.PRINT_QRDATA_TAG, listQRCode)
+        intent.putExtra("byteData", bArrPrintData)
+        context.startActivity(intent)
         */
         
         return true

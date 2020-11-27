@@ -20,15 +20,15 @@ class PrinterDataDisplay: Codable {
     }
 
     public func setPrintData(_ printData: String) {
-        self.printData = printData;
+        self.printData = printData
     }
 
     public func getImageData() -> [[Byte]] {
-        return imageData;
+        return imageData
     }
 
     public func setImageData(_ imageData: [[Byte]]) {
-        self.imageData = imageData;
+        self.imageData = imageData
     }
 
     public func getQrcodeData() -> [String] {
@@ -36,7 +36,7 @@ class PrinterDataDisplay: Codable {
     }
 
     public func setQrcodeData(_ qrcodeData: [String]) {
-        self.qrcodeData = qrcodeData;
+        self.qrcodeData = qrcodeData
     }
 
     public func getBarcodeData() -> [String] {

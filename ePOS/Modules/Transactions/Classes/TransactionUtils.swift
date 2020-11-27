@@ -111,7 +111,7 @@ class TransactionUtils
     //MARK:- StrRightPad(data: String, length: Int, padChar: Character) -> String
     static func StrRightPad(data: String, length: Int, padChar: Character) -> String {
         let remaining: Int = length - data.count
-        var newData: String = data;
+        var newData: String = data
            
         for _ in 0..<remaining
         {
@@ -122,21 +122,21 @@ class TransactionUtils
     
     //MARK:- StrLeftPad(data: String, length: Int, padChar: Character) -> String
     static func StrLeftPad(data: String, length: Int, padChar: Character) -> String {
-        let remaining = length - data.count;
-        var newData = data;
+        let remaining = length - data.count
+        var newData = data
        
-        for _ in 0..<remaining
+        for _ in 0 ..< remaining
         {
             newData = String(padChar) + newData
-            // padChar + newData;
+            // padChar + newData
         }
-        return newData;
+        return newData
     }
     
     //MARK:- GetHardwareType() -> [Byte]
     static func GetHardwareType() -> [Byte]
      {
-         let strHardwareType: String = AppConstant.TERMINAL_TYPE;
+         let strHardwareType: String = AppConstant.TERMINAL_TYPE
          return [Byte](strHardwareType.utf8)
      }
     
@@ -161,14 +161,14 @@ class TransactionUtils
         dateFormatter.dateFormat = "ddMMyyHHmmss"
         let convertedDate: String = dateFormatter.string(from: currentDate)
         
-        //String formattedDate = new SimpleDateFormat("ddMMyyHHmmss").format(Calendar.getInstance().getTime());
+        //String formattedDate = new SimpleDateFormat("ddMMyyHHmmss").format(Calendar.getInstance().getTime())
         return [Byte](convertedDate.utf8)
     }
     
     //MARK:- getAppVersion() -> String
     static func getAppVersion() -> String
     {
-        return AppConstant.APP_VERSION;
+        return AppConstant.APP_VERSION
     }
  
     //MARK:- bytesToLong(bytes: [Byte]) -> Int64 
@@ -208,8 +208,8 @@ class TransactionUtils
         
         let bTemp: [Byte] = [Byte](strOutput.utf8)
         bOutput = [Byte](bTemp[0 ..< strOutput.count])
-        //System.arraycopy(strOutput.getBytes(), 0, bOutput, 0, strOutput.length());
-        //bOutput = strOutput.getBytes();
+        //System.arraycopy(strOutput.getBytes(), 0, bOutput, 0, strOutput.length())
+        //bOutput = strOutput.getBytes()
         return true
     }
     
@@ -217,36 +217,149 @@ class TransactionUtils
     static func objectToByteArray<T>(obj: T) -> [Byte] {
         let bytes: [Byte] = []
         
-        /*  ByteArrayOutputStream bos = null;
-        ObjectOutputStream oos = null;
+        /*  ByteArrayOutputStream bos = null
+        ObjectOutputStream oos = null
         try {
-            bos = new ByteArrayOutputStream();
-            oos = new ObjectOutputStream(bos);
-            oos.writeObject(obj);
-            oos.flush();
-            bytes = bos.toByteArray();
+            bos = new ByteArrayOutputStream()
+            oos = new ObjectOutputStream(bos)
+            oos.writeObject(obj)
+            oos.flush()
+            bytes = bos.toByteArray()
         }
         catch (Exception e) {
-            CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR,"Exception Occurred : " + Log.getStackTraceString(e));
+            CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR,"Exception Occurred : " + Log.getStackTraceString(e))
         }
         finally {
             try {
                 if (oos != null) {
-                    oos.close();
+                    oos.close()
                 }
                 if (bos != null) {
-                    bos.close();
+                    bos.close()
                 }
             }
             catch (Exception e) {
-                CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR,"Exception Occurred : " + Log.getStackTraceString(e));
+                CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR,"Exception Occurred : " + Log.getStackTraceString(e))
             }
         } */
         
         return bytes
     }
     
+//    public static func atoi(_ str: [Byte]) -> Int {
+//        var res: Int = 0 // Initialize result
+//        // Iterate through all characters of input string and
+//        // update result
+//        for i in 0 ..< str.count where (str[i] != 0x00) && (str[i] != "\0") {
+//            if (str[i] < 48 && str[i] > 57) {
+//                return -1
+//            }
+//            res = res * 10 + str[i] - "0"
+//        }
+//        return res
+//    }
     
+}
+
+class DateUtil {
+
+    static let SERVER_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS"
+    static let DATE_FORMAT = "yyyy-MM-dd"
+    static let DD_MMM_YYYY_HH_MM_A = "dd MMM yyyy hh:mm a"
+    static let DD_MMM_YYYY = "dd MMM yyyy"
+    static let DD_MMM_YYYY_SLASH = "dd/MMM/yyyy"
+    static let HH_MM_A = "hh:mm a"
+
+    /**
+     * Get date.
+     */
+    static func getDate(_ date: Date, _ expectedFormat: String) -> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = expectedFormat
+        
+        return dateFormatter.string(from: date)
+    }
+
+    /**
+     * Get current time.
+     */
+    static func getCurrentTime(_ format: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        
+        let currentDate = Date()
+        return dateFormatter.string(from: currentDate)
+    }
+
+    static func parseDateInString(_ format: String, _ date: String) -> String {
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        dateFormatter.locale = Locale.current
+
+        let Date = dateFormatter.date(from: date)
+        
+        return dateFormatter.string(from: Date!)
+    }
+
+    static func getParsedDate(_ date: String, _ format: String) -> Date {
+        do {
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = format
+            dateFormatter.locale = Locale(identifier: "en_US")
+            
+            let date = dateFormatter.date(from: date)
+            
+            return date!
+        } catch {
+            debugPrint("error occured \(error)")
+        }
+        return Date()
+    }
+
+    static func getParsedDate(_ time: Int64, _ format: String) -> String {
+        if (time != 0) {
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = format
+            dateFormatter.locale = Locale(identifier: "en_US")
+                
+            
+            let date = Date(timeIntervalSince1970: (TimeInterval(time) / 1000))
+            return dateFormatter.string(from: date)
+        } else {
+            return ""
+        }
+    }
+
+    /**
+     * Method is used to convert date from one format to another.
+     * If any exception occoured then it will return current date.
+     *
+     * @param inputDate    inputDate
+     * @param inputFormat  inputFormat
+     * @param outputFormat outputFormat
+     * @return date in String with required format.
+     */
+    static func convertDateOneFormatToOther(_ inputDate: String, _ inputFormat: String, _ outputFormat: String) -> String {
+        do {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = inputFormat
+            
+            let date = dateFormatter.date(from: inputDate)
+            
+            dateFormatter.dateFormat = outputFormat
+            
+            return dateFormatter.string(from: date!)
+        } catch {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = outputFormat
+            return dateFormatter.string(from: Date())
+        }
+
+    }
 }
 
 extension String{

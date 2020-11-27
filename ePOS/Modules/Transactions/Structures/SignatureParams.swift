@@ -11,5 +11,5 @@ import Foundation
 struct SignatureParams: Codable {
     var SignatureDeviceType = [Byte](repeating: 0x00, count: 20)
     var bArrSignatureComPort = [Byte](repeating: 0x00, count: 4)
-    var IsSignDeviceConnected:Bool = false;
+    var IsSignDeviceConnected:Bool = false
 }

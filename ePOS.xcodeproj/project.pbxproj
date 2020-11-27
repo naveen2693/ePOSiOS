@@ -112,6 +112,21 @@
 		8E13826E255DA8D8000F7C21 /* TransactionHUB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E13826D255DA8D7000F7C21 /* TransactionHUB.swift */; };
 		8E138270255E4F29000F7C21 /* PrintMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E13826F255E4F29000F7C21 /* PrintMode.swift */; };
 		8E138272255E4F40000F7C21 /* PrintAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E138271255E4F40000F7C21 /* PrintAttribute.swift */; };
+		8E138274256B6CBF000F7C21 /* ISO220SwipeTxn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E138273256B6CBE000F7C21 /* ISO220SwipeTxn.swift */; };
+		8E138276256B6CE6000F7C21 /* ISO220.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E138275256B6CE6000F7C21 /* ISO220.swift */; };
+		8E138278256B721B000F7C21 /* ISO220RequestState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E138277256B721B000F7C21 /* ISO220RequestState.swift */; };
+		8E13827A256B7899000F7C21 /* ISO220ResponseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E138279256B7899000F7C21 /* ISO220ResponseState.swift */; };
+		8E13827C256B820B000F7C21 /* PlutusTransactionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E13827B256B820A000F7C21 /* PlutusTransactionData.swift */; };
+		8E13827E256CC2D9000F7C21 /* ISO220ResponseDataRetVal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E13827D256CC2D8000F7C21 /* ISO220ResponseDataRetVal.swift */; };
+		8E138280256D2E19000F7C21 /* ResponseParsingCSVData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E13827F256D2E18000F7C21 /* ResponseParsingCSVData.swift */; };
+		8E138282256D37C0000F7C21 /* PlutusTransactionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E138281256D37C0000F7C21 /* PlutusTransactionStatus.swift */; };
+		8E138284256D489B000F7C21 /* IndexUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E138283256D489B000F7C21 /* IndexUtil.swift */; };
+		8E138286256D557D000F7C21 /* DailyTxnAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E138285256D557D000F7C21 /* DailyTxnAmount.swift */; };
+		8E138288256E8226000F7C21 /* ISO220SIGNUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E138287256E8225000F7C21 /* ISO220SIGNUpload.swift */; };
+		8E13828A256E8FC4000F7C21 /* ISO220Reversal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E138289256E8FC4000F7C21 /* ISO220Reversal.swift */; };
+		8E13828C256E9345000F7C21 /* ISO800.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E13828B256E9345000F7C21 /* ISO800.swift */; };
+		8E13828E256F5E8C000F7C21 /* ISO220DRUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E13828D256F5E8C000F7C21 /* ISO220DRUpload.swift */; };
+		8E138290256FB502000F7C21 /* HostTransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E13828F256FB502000F7C21 /* HostTransactionType.swift */; };
 		8E4DCFA425354F8A00726EA8 /* LOGIN_ACCOUNTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */; };
 		8E4DCFA625369F1000726EA8 /* BytesUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA525369F1000726EA8 /* BytesUtil.swift */; };
 		8E927C68253895AC009928D4 /* DisplayMessageMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E927C67253895AC009928D4 /* DisplayMessageMode.swift */; };
@@ -388,6 +403,21 @@
 		8E13826D255DA8D7000F7C21 /* TransactionHUB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHUB.swift; sourceTree = "<group>"; };
 		8E13826F255E4F29000F7C21 /* PrintMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintMode.swift; sourceTree = "<group>"; };
 		8E138271255E4F40000F7C21 /* PrintAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintAttribute.swift; sourceTree = "<group>"; };
+		8E138273256B6CBE000F7C21 /* ISO220SwipeTxn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO220SwipeTxn.swift; sourceTree = "<group>"; };
+		8E138275256B6CE6000F7C21 /* ISO220.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO220.swift; sourceTree = "<group>"; };
+		8E138277256B721B000F7C21 /* ISO220RequestState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO220RequestState.swift; sourceTree = "<group>"; };
+		8E138279256B7899000F7C21 /* ISO220ResponseState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO220ResponseState.swift; sourceTree = "<group>"; };
+		8E13827B256B820A000F7C21 /* PlutusTransactionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlutusTransactionData.swift; sourceTree = "<group>"; };
+		8E13827D256CC2D8000F7C21 /* ISO220ResponseDataRetVal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO220ResponseDataRetVal.swift; sourceTree = "<group>"; };
+		8E13827F256D2E18000F7C21 /* ResponseParsingCSVData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseParsingCSVData.swift; sourceTree = "<group>"; };
+		8E138281256D37C0000F7C21 /* PlutusTransactionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlutusTransactionStatus.swift; sourceTree = "<group>"; };
+		8E138283256D489B000F7C21 /* IndexUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexUtil.swift; sourceTree = "<group>"; };
+		8E138285256D557D000F7C21 /* DailyTxnAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTxnAmount.swift; sourceTree = "<group>"; };
+		8E138287256E8225000F7C21 /* ISO220SIGNUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO220SIGNUpload.swift; sourceTree = "<group>"; };
+		8E138289256E8FC4000F7C21 /* ISO220Reversal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO220Reversal.swift; sourceTree = "<group>"; };
+		8E13828B256E9345000F7C21 /* ISO800.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO800.swift; sourceTree = "<group>"; };
+		8E13828D256F5E8C000F7C21 /* ISO220DRUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO220DRUpload.swift; sourceTree = "<group>"; };
+		8E13828F256FB502000F7C21 /* HostTransactionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostTransactionType.swift; sourceTree = "<group>"; };
 		8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOGIN_ACCOUNTS.swift; sourceTree = "<group>"; };
 		8E4DCFA525369F1000726EA8 /* BytesUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BytesUtil.swift; sourceTree = "<group>"; };
 		8E927C67253895AC009928D4 /* DisplayMessageMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayMessageMode.swift; sourceTree = "<group>"; };
@@ -1472,6 +1502,15 @@
 				8E138269255D5001000F7C21 /* CSVHandler.swift */,
 				8E13826B255D50E3000F7C21 /* CSVBaseTxn.swift */,
 				8E13826D255DA8D7000F7C21 /* TransactionHUB.swift */,
+				8E138273256B6CBE000F7C21 /* ISO220SwipeTxn.swift */,
+				8E138275256B6CE6000F7C21 /* ISO220.swift */,
+				8E13827B256B820A000F7C21 /* PlutusTransactionData.swift */,
+				8E13827F256D2E18000F7C21 /* ResponseParsingCSVData.swift */,
+				8E138285256D557D000F7C21 /* DailyTxnAmount.swift */,
+				8E138287256E8225000F7C21 /* ISO220SIGNUpload.swift */,
+				8E138289256E8FC4000F7C21 /* ISO220Reversal.swift */,
+				8E13828B256E9345000F7C21 /* ISO800.swift */,
+				8E13828D256F5E8C000F7C21 /* ISO220DRUpload.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1541,6 +1580,12 @@
 				46AB5D0A2542A08F00FF814E /* ProcessingCodeConstants.swift */,
 				8E13826F255E4F29000F7C21 /* PrintMode.swift */,
 				8E138271255E4F40000F7C21 /* PrintAttribute.swift */,
+				8E138277256B721B000F7C21 /* ISO220RequestState.swift */,
+				8E138279256B7899000F7C21 /* ISO220ResponseState.swift */,
+				8E13827D256CC2D8000F7C21 /* ISO220ResponseDataRetVal.swift */,
+				8E138281256D37C0000F7C21 /* PlutusTransactionStatus.swift */,
+				8E138283256D489B000F7C21 /* IndexUtil.swift */,
+				8E13828F256FB502000F7C21 /* HostTransactionType.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1778,6 +1823,7 @@
 				991DF269251CB5C900AEA1C3 /* GifLoader.swift in Sources */,
 				46ADF1162528792F009A9297 /* ContactDetails.swift in Sources */,
 				8E13826C255D50E3000F7C21 /* CSVBaseTxn.swift in Sources */,
+				8E13827C256B820B000F7C21 /* PlutusTransactionData.swift in Sources */,
 				46ED34642537098500CEF19D /* AutoLogShippingCredential.swift in Sources */,
 				8EE3285C253EAA0B00616E33 /* CurrentEDCAppDownloadingInfo.swift in Sources */,
 				4686C4AA254FF5410076FEFB /* CStateMachine.swift in Sources */,
@@ -1799,17 +1845,21 @@
 				CE971BD5252CBD8200843943 /* TerminalConxData.swift in Sources */,
 				46ED346E25371B3500CEF19D /* st_BINRange.swift in Sources */,
 				997DC7E62521EEFC006ADE48 /* MasterDataProvider.swift in Sources */,
+				8E138282256D37C0000F7C21 /* PlutusTransactionStatus.swift in Sources */,
 				46BD9B442516095C008DEFEA /* OnBoardingRequest.swift in Sources */,
 				46BD9B52251A8B69008DEFEA /* PasswordResetLinkMsgController.swift in Sources */,
+				8E138276256B6CE6000F7C21 /* ISO220.swift in Sources */,
 				9976C9232501066B00FC5DD3 /* CustomColors.swift in Sources */,
 				46E293D7255BAC0B00826954 /* SecureData.swift in Sources */,
 				4646198B25342889009089BC /* BatchState.swift in Sources */,
 				99186CCB2508F01400A9FE07 /* TransactionsViewController.swift in Sources */,
 				991DF271251DED7100AEA1C3 /* EPOSBaseView.swift in Sources */,
 				8EE32864254447DE00616E33 /* st_CSVTxnMap.swift in Sources */,
+				8E138278256B721B000F7C21 /* ISO220RequestState.swift in Sources */,
 				46ADF12025287A47009A9297 /* BusinessItem.swift in Sources */,
 				997DC7FE2522347F006ADE48 /* LeadState.swift in Sources */,
 				46AB5D1025457C8100FF814E /* CollectionViewCell.swift in Sources */,
+				8E13827A256B7899000F7C21 /* ISO220ResponseState.swift in Sources */,
 				997DC803252347A3006ADE48 /* DropdownTableViewCell.swift in Sources */,
 				46E293C9255BAC0B00826954 /* CSecureLib.swift in Sources */,
 				997DC7E52521EEFC006ADE48 /* CityData.swift in Sources */,
@@ -1824,6 +1874,7 @@
 				46E293E0255BAC0B00826954 /* ITEMVAL.swift in Sources */,
 				8E4DCFA625369F1000726EA8 /* BytesUtil.swift in Sources */,
 				99186D3B2511D21000A9FE07 /* ApiClient.swift in Sources */,
+				8E138286256D557D000F7C21 /* DailyTxnAmount.swift in Sources */,
 				991DF26E251CBB2E00AEA1C3 /* EPOSLoader.swift in Sources */,
 				996FD8AE251F17C3001961EE /* UserProfile.swift in Sources */,
 				99186D582511D32E00A9FE07 /* BottomLineTextField.swift in Sources */,
@@ -1833,6 +1884,7 @@
 				46E293D1255BAC0B00826954 /* XMLNode.swift in Sources */,
 				CECC5409252B533C00C0940E /* ISO440Activation.swift in Sources */,
 				8EE3284E253C7DF900616E33 /* PCImageChangeType.swift in Sources */,
+				8E138280256D2E19000F7C21 /* ResponseParsingCSVData.swift in Sources */,
 				46E293D4255BAC0B00826954 /* CsvData.swift in Sources */,
 				8EE32858253E828300616E33 /* st_AIDTxnMapingDetails.swift in Sources */,
 				8E927C68253895AC009928D4 /* DisplayMessageMode.swift in Sources */,
@@ -1842,6 +1894,7 @@
 				8E13826A255D5002000F7C21 /* CSVHandler.swift in Sources */,
 				8EE3285A253EA54100616E33 /* st_POSPrintinglocationDetails.swift in Sources */,
 				8E13826625551D4F000F7C21 /* RetVal.swift in Sources */,
+				8E13827E256CC2D9000F7C21 /* ISO220ResponseDataRetVal.swift in Sources */,
 				46E293CE255BAC0B00826954 /* CDisplayMessage.swift in Sources */,
 				46ED346A2537155A00CEF19D /* TerminalPSKData.swift in Sources */,
 				46AB5D142546E6AD00FF814E /* AccountTableViewController.swift in Sources */,
@@ -1854,9 +1907,11 @@
 				99186CBD2508EC6000A9FE07 /* EPOSTextField+FloatText.swift in Sources */,
 				4646198D25345EA0009089BC /* LoginAccounts.swift in Sources */,
 				46E293D6255BAC0B00826954 /* PvmNodeActions.swift in Sources */,
+				8E13828C256E9345000F7C21 /* ISO800.swift in Sources */,
 				99186D682512445400A9FE07 /* MakeDropDown.swift in Sources */,
 				46ED346C2537159600CEF19D /* st_PSK.swift in Sources */,
 				46E293CF255BAC0B00826954 /* ParserWrapper.swift in Sources */,
+				8E13828E256F5E8C000F7C21 /* ISO220DRUpload.swift in Sources */,
 				CE971BCF252CBA8400843943 /* ISOMessage.swift in Sources */,
 				CE971BC7252CAD2400843943 /* TCPIPCommunicationHandler.swift in Sources */,
 				46ADF110252878B0009A9297 /* LeadComments.swift in Sources */,
@@ -1867,6 +1922,7 @@
 				46E293D5255BAC0B00826954 /* TLVTxData.swift in Sources */,
 				46E293E2255BAC0B00826954 /* PvmListParserVO.swift in Sources */,
 				990AF9D0252A0F970008A907 /* SearchTableViewCell.swift in Sources */,
+				8E138284256D489B000F7C21 /* IndexUtil.swift in Sources */,
 				990AF9CD252A0F970008A907 /* CustomSearchViewController.swift in Sources */,
 				46BD9B50251A8646008DEFEA /* ForgotPasswordController.swift in Sources */,
 				8EE328682544490A00616E33 /* st_TxnBin.swift in Sources */,
@@ -1876,6 +1932,7 @@
 				991ADEA825064E2F00932251 /* UIImageExtension.swift in Sources */,
 				46ED347425385C8C00CEF19D /* AutoReversalParam.swift in Sources */,
 				CE971BCD252CBA0000843943 /* StateMachine.swift in Sources */,
+				8E138290256FB502000F7C21 /* HostTransactionType.swift in Sources */,
 				8EE32850253C97F800616E33 /* TLVObject.swift in Sources */,
 				CE971BD1252CBB2500843943 /* CryptoHandler.swift in Sources */,
 				46E293D2255BAC0B00826954 /* TerminalTransactionData.swift in Sources */,
@@ -1905,6 +1962,7 @@
 				CECC540B252B537800C0940E /* ISO320Initialization.swift in Sources */,
 				991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */,
 				46461993253588CF009089BC /* FontStruct.swift in Sources */,
+				8E138274256B6CBF000F7C21 /* ISO220SwipeTxn.swift in Sources */,
 				8E13826825551F80000F7C21 /* StringConstant.swift in Sources */,
 				996FD8A9251E1020001961EE /* CustomNavigationStyleViewController.swift in Sources */,
 				991ADEA2250645C300932251 /* EPOSRectangularButton.swift in Sources */,
@@ -1917,6 +1975,7 @@
 				99186CEB250A646400A9FE07 /* StatusDemoViewController.swift in Sources */,
 				46BD9B4E251A252C008DEFEA /* ResetPasswordController.swift in Sources */,
 				8EE3285E253ED80700616E33 /* PineKeyInjection.swift in Sources */,
+				8E138288256E8226000F7C21 /* ISO220SIGNUpload.swift in Sources */,
 				99186CD02508F03900A9FE07 /* AccountViewController.swift in Sources */,
 				46E293E1255BAC0B00826954 /* PrintData.swift in Sources */,
 				46461987253314A9009089BC /* DeviceState.swift in Sources */,
@@ -1932,6 +1991,7 @@
 				46882CDC2538727100C908B2 /* ContentServerParamData.swift in Sources */,
 				997DC7E72521EEFC006ADE48 /* MasterData.swift in Sources */,
 				9919A9992517336F00A67253 /* MerchantDetailsViewController.swift in Sources */,
+				8E13828A256E8FC4000F7C21 /* ISO220Reversal.swift in Sources */,
 				46E293DB255BAC0B00826954 /* EMVTxnType.swift in Sources */,
 				8EE32848253C3A7F00616E33 /* CurrentDownloadingInfo.swift in Sources */,
 				CEB4D2E72536C75700254681 /* TransactionUtils.swift in Sources */,

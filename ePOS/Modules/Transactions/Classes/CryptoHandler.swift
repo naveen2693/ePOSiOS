@@ -21,15 +21,15 @@ class CryptoHandler{
     
     //MARK:- padLeft(data: String, length: Int, padChar: Character) -> String
     static func padLeft(data: String, length: Int, padChar: Character) -> String {
-        let remaining = length - data.count;
+        let remaining = length - data.count
         
-        var newData = data;
+        var newData = data
         
         for _ in 0..<remaining
         {
-            newData = String(padChar) + newData            // padChar + newData;
+            newData = String(padChar) + newData            // padChar + newData
         }
-        return newData;
+        return newData
     }
     
     
@@ -143,25 +143,25 @@ class CryptoHandler{
 
     static func circularLeftRotate(_ bytetoRotate : UInt8, _ iNumberOfTimes : Int) -> UInt8
     {
-        var iRotate = iNumberOfTimes - 1
+        var iRotate = iNumberOfTimes
         var byte = bytetoRotate
         while((iRotate > 0)){
-            byte = (UInt8)((((byte<<1)) | ((byte & 0x80)>>7)))
             iRotate = iRotate - 1
+            byte = (UInt8)((((byte<<1)) | ((byte & 0x80)>>7)))
         }
-        return bytetoRotate;
+        return byte
     }
     
     //MARK:- circularRightRotate(_ bytetoRotate : UInt8, _ iNumberOfTimes : Int) -> UInt8
     static func circularRightRotate(_ bytetoRotate : UInt8, _ iNumberOfTimes : Int) -> UInt8
     {
-        var iRotate = iNumberOfTimes - 1
+        var iRotate = iNumberOfTimes + 48
         var byte = bytetoRotate
         while((iRotate > 0)){
             byte = (UInt8)((((byte>>1) & 0x7F) | ((byte & 0x01)<<7)))
             iRotate = iRotate - 1
         }
-        return bytetoRotate;
+        return byte
     }
     
     //MARK:- tripleDesEncrypt(_ bArrData:[UInt8] , _ bArrKey:[UInt8]) -> [UInt8]?

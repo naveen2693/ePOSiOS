@@ -13,7 +13,7 @@ enum AppConstant
     
     static let MAX_COMMUNICATION_CHANNEL = 4
     static let iMaxSerialOnlineSessionLength = 200
-    static let LocalTLE = false;
+    static let LocalTLE = false
     static let iMinConxTimeout = 5
     static let iInterCharTimeout = 5
     static let iMinConxTimeoutSerial = 20
@@ -44,16 +44,19 @@ enum AppConstant
     static let MAX_COUNT_CHARGE_SLIP_IMAGES:Int = 100
     static let MAX_TXN_PRINTING_LOCATION_PARAMETERES = 200
     
+    static let MAX_DR_RESPONSE_DATA_LEN = 20000
+    static let MAX_SIG_IMAGE_RESPONSE_DATA_LEN = 20000
+    
     static let DEFAULT_ORDINARY_USER = ""
     static let DEFAULT_ORDINARY_PIN = ""
     static let DEFAULT_ADMIN_USER = ""
     static let ORDINARY_USER_TYPE = 3
     static let ADM_USER_TYPE = 1
     
-    static let MAX_TXN_STEPS_WITH_TLV_DATA = 100;
+    static let MAX_TXN_STEPS_WITH_TLV_DATA = 100
     static let MAX_TXN_TLV_DATA_LEN  = 500
-    static let  RESET_PTMK = (1);
-    static let RENEW_PTMK = (2);
+    static let  RESET_PTMK = (1)
+    static let RENEW_PTMK = (2)
     static let keySlotMap:[[Int]] = [[10, 10, 12],
                                      [14, 14, 16],
                                      [18, 18, 20],
@@ -61,26 +64,26 @@ enum AppConstant
                                      [26, 26, 28],
                                      [30, 30, 32],
                                      [34, 34, 36],
-                                     [38, 38, 40]];
+                                     [38, 38, 40]]
     
-    static let ID_KEYSLOTID = 0;
-    static let ID_KEYSLOTPIN = 1;
-    static let ID_KEYSLOTTLE = 2;
-    static let KEYSLOT_PMK = 0x02;
-    static let KEYSLOT_ENCPMK = 0x01;
-    static let UNKNOWN_ERROR = 0x09;
-    static let INVALID_TAG = 0x0000;
-    static let INVALID_TAG_LEN = 0x00;
-    static let E_COM0 = 2;
-    static let COM0 = (1 << E_COM0);
-    static let E_COM5 = 10;                                    /*!< event number for COM5 */
-    static let COM5 = (1 << E_COM5);/*!< event mask used as parameter for ttestall */
+    static let ID_KEYSLOTID = 0
+    static let ID_KEYSLOTPIN = 1
+    static let ID_KEYSLOTTLE = 2
+    static let KEYSLOT_PMK = 0x02
+    static let KEYSLOT_ENCPMK = 0x01
+    static let UNKNOWN_ERROR = 0x09
+    static let INVALID_TAG = 0x0000
+    static let INVALID_TAG_LEN = 0x00
+    static let E_COM0 = 2
+    static let COM0 = (1 << E_COM0)
+    static let E_COM5 = 10                                    /*!< event number for COM5 */
+    static let COM5 = (1 << E_COM5)/*!< event mask used as parameter for ttestall */
     
-    static let E_COM_EXT = 26; /*!< event number for COM_EXT many drivers as COM20, COM21, COM_KEYSPAN, COM_SL, ... */
-    static let COM_EXT = (1 << E_COM_EXT);/*!< event mask used as parameter for ttestall */
+    static let E_COM_EXT = 26 /*!< event number for COM_EXT many drivers as COM20, COM21, COM_KEYSPAN, COM_SL, ... */
+    static let COM_EXT = (1 << E_COM_EXT)/*!< event mask used as parameter for ttestall */
     
     
-    static let NUM_KEYSLOTS = 8;
+    static let NUM_KEYSLOTS = 8
     
     
     
@@ -111,7 +114,12 @@ enum AppConstant
     static let MAX_ISO_PORT_LEN = 10
     static let MAX_GPRS_SERVICES_PROVIDER_LEN = 20
     static let MAX_WIFI_PROFILE_NAME = 20
-    
+    static let MAX_MINI_PVM_LEN = 10000
+
+    static let MINI_PVM_EXCEEDS_LENGTH = 0x00
+    static let MINI_PVM_ADDITIONAL_DATA_LEFT = 0x01
+    static let MINI_PVM_FINISHED = 0x02
+        
     static let TAG_TLV_LOGIN_INFO_OBJECT = 0x1001
     static let TAG_TLV_LOGIN_INFO_USER_NAME = 0x1002
     static let TAG_TLV_LOGIN_INFO_PASSWORD_HASH = 0x1003
@@ -131,7 +139,7 @@ enum AppConstant
     static var MAX_COUNT_HTL = 1000
     static var MAX_LIB_FILE: Int = 100
     
-    static var MAX_LEN_TPDU = 5;
+    static var MAX_LEN_TPDU = 5
     static var MAX_LEN_DATE_TIME: Int = 12
     static var ISO_LEN: Int = 64
     static var ISO_LEN_MTI: Int = 4
@@ -177,15 +185,15 @@ enum AppConstant
     static let PRINTDUMP_SIZE40: Int = 40
     static let PRINTDUMP_SIZE48: Int = 48
     
-    //    static let ISO_LEN = 64;
-    //    static let MAX_LEN_DATE_TIME = 12;
-    //    static let MAX_LEN_TPDU = 5;
-    //    static let ISO_LEN_MTI = 4;
-    //    static let MAX_LEN_HARDWARE_SERIAL_NUMBER = 100;
-    static let ISO_PACKET_MAX_LEN = 19999;
-    static let LEN_ISO_PACKET_LEN = 2;
-    static let MAX_CONFIG_SIZE = 1000;
-    static let DEFAULT_BIN_KEYSLOTID = 10;
+    //    static let ISO_LEN = 64
+    //    static let MAX_LEN_DATE_TIME = 12
+    //    static let MAX_LEN_TPDU = 5
+    //    static let ISO_LEN_MTI = 4
+    //    static let MAX_LEN_HARDWARE_SERIAL_NUMBER = 100
+    static let ISO_PACKET_MAX_LEN = 19999
+    static let LEN_ISO_PACKET_LEN = 2
+    static let MAX_CONFIG_SIZE = 1000
+    static let DEFAULT_BIN_KEYSLOTID = 10
     
     
     
@@ -193,30 +201,31 @@ enum AppConstant
     
     
     
-    //   static let ACTION_DELETE = 0x00;
-    //   static let ACTION_ADD = 0x01;
-    //   static let TAG_DOWNLOAD_ALL = 4;
-    //   static let MAX_TXN_BIN_PARAMETERES = 4000;
-    //   static let LEN_INITIALIZATION_BITMAP = 8;
-    //   static let LEN_BITMAP_PACKET = 2;
-    //   static let MAX_APP_VERSION_LEN = 6;
-    //   static let MAX_CONNECTION_TIMEOUT_LEN = 6;
-    //   static let MAX_PHONENUMBER_LEN = 16;
-    //   static let MAX_LOGIN_ID_LEN = 20;
-    //   static let MAX_LOGIN_PASS_LEN = 20;
-    //   static let MAX_IPADDR_LEN = 20;
-    //   static let MAX_ISO_PORT_LEN = 10;
-    //   static let MAX_GPRS_SERVICES_PROVIDER_LEN = 20;
-    //   static let MAX_WIFI_PROFILE_NAME = 20;
+    //   static let ACTION_DELETE = 0x00
+    //   static let ACTION_ADD = 0x01
+    //   static let TAG_DOWNLOAD_ALL = 4
+    //   static let MAX_TXN_BIN_PARAMETERES = 4000
+    //   static let LEN_INITIALIZATION_BITMAP = 8
+    //   static let LEN_BITMAP_PACKET = 2
+    //   static let MAX_APP_VERSION_LEN = 6
+    //   static let MAX_CONNECTION_TIMEOUT_LEN = 6
+    //   static let MAX_PHONENUMBER_LEN = 16
+    //   static let MAX_LOGIN_ID_LEN = 20
+    //   static let MAX_LOGIN_PASS_LEN = 20
+    //   static let MAX_IPADDR_LEN = 20
+    //   static let MAX_ISO_PORT_LEN = 10
+    //   static let MAX_GPRS_SERVICES_PROVIDER_LEN = 20
+    //   static let MAX_WIFI_PROFILE_NAME = 20
     //--------------Pad Style------------------
-    static let _LEFT_PAD = 0;
-    static let _RIGHT_PAD = 1;
+    static let _LEFT_PAD = 0
+    static let _RIGHT_PAD = 1
     
     static let MAX_RESPONSE_SETTLEMENT_DATA_LEN = 50000
     
     static let MAX_CSV_LEN = 50000
     static let MAX_CSV_SCREEN_ACTION_DATA_LEN = 500
     static let MAX_REPLAY_DATA_LEN = 400
+    static let MAX_RESPONSE_DATA_LEN = 50000
     
     static let MAX_DE55_SIZE = 1500
     static let MAX_APP_ID_LEN = 50
@@ -226,83 +235,140 @@ enum AppConstant
     static let MAX_CARDHOLDER_NAME_LEN = 100
     
     
-    static let REQUEST_FOR_CDISPLAYMENU_ACTIVITY = 0;
-    static let RESPONSE_FOR_CDISPLAYMENU_ACTIVITY = 1;
-    static let REQUEST_FOR_CDISPLAYWAIT_ACTIVITY = 2;
-    static let RESPONSE_FOR_CDISPLAYWAIT_ACTIVITY = 3;
-    static let REQUEST_FOR_CDISPLAYEVENTRECEIVED_ACTIVITY = 4;
-    static let RESPONSE_FOR_CDISPLAYEVENTRECEIVED_ACTIVITY = 5;
-    static let REQUEST_FOR_PIN_AFTER_EVENT_RECEIVED = 41;
-    static let RESPONSE_FOR_PIN_AFTER_EVENT_RECEIVED = 42;
-    static let REQUEST_FOR_ACCOUNT_SELECTION_ACTIVITY = 43;
-    static let RESPONSE_FOR_ACCOUNT_SELECTION_ACTIVITY = 43;
-    static let REQUEST_FOR_CDISPLAYGETAMOUNT_ACTIVITY = 6;
-    static let RESPONSE_FOR_CDISPLAYGETAMOUNT_ACTIVITY = 7;
-    static let REQUEST_FOR_CDISPLAYGETSECRETPIN_ACTIVITY = 8;
-    static let RESPONSE_FOR_CDISPLAYGETSECRETPIN_ACTIVITY = 9;
-    static let REQUEST_FOR_CDISPLAYMESSAGE_ACTIVITY = 10;
-    static let RESPONSE_FOR_CDISPLAYMESSAGE_ACTIVITY = 11;
-    static let REQUEST_FOR_CDISPLAY_CONFIRMATION_ACTIVITY = 12;
-    static let RESPONSE_FOR_CDISPLAY_CONFIRMATION_ACTIVITY = 13;
-    static let REQUEST_FOR_CDISPLAY_DATA_ENTRY_ACTIVITY = 14;
-    static let RESPONSE_FOR_CDISPLAY_DATA_ENTRY_ACTIVITY = 15;
-    static let REQUEST_FOR_CDISPLAYMENULIST_ACTIVITY = 16;
-    static let RESPONSE_FOR_CDISPLAYMENULIST_ACTIVITY = 17;
-    static let RESPONSE_FOR_TOUCH_EVENT_ON_WAITFOREVENT_ACTIVITY = 18;
-    static let REQUEST_FOR_PRINT_SLIP = 20;
-    //    public static final int REQUEST_FOR_SETTLEMENT_SLIP = 201;
-    static let REQUEST_FOR_WAITFOREVENT_ACTIVITY = 21;
-    static let RESPONSE_FOR_WAITFOREVENT_ACTIVITY = 22;
-    static let REQUEST_FOR_QR_CODE_ACTIVITY = 23;
-    static let RESPONSE_FOR_QR_CODE_ACTIVITY = 24;
-    static let REQUEST_FOR_SIGNATURE_CAPTURE = 25;
+    static let REQUEST_FOR_CDISPLAYMENU_ACTIVITY = 0
+    static let RESPONSE_FOR_CDISPLAYMENU_ACTIVITY = 1
+    static let REQUEST_FOR_CDISPLAYWAIT_ACTIVITY = 2
+    static let RESPONSE_FOR_CDISPLAYWAIT_ACTIVITY = 3
+    static let REQUEST_FOR_CDISPLAYEVENTRECEIVED_ACTIVITY = 4
+    static let RESPONSE_FOR_CDISPLAYEVENTRECEIVED_ACTIVITY = 5
+    static let REQUEST_FOR_PIN_AFTER_EVENT_RECEIVED = 41
+    static let RESPONSE_FOR_PIN_AFTER_EVENT_RECEIVED = 42
+    static let REQUEST_FOR_ACCOUNT_SELECTION_ACTIVITY = 43
+    static let RESPONSE_FOR_ACCOUNT_SELECTION_ACTIVITY = 43
+    static let REQUEST_FOR_CDISPLAYGETAMOUNT_ACTIVITY = 6
+    static let RESPONSE_FOR_CDISPLAYGETAMOUNT_ACTIVITY = 7
+    static let REQUEST_FOR_CDISPLAYGETSECRETPIN_ACTIVITY = 8
+    static let RESPONSE_FOR_CDISPLAYGETSECRETPIN_ACTIVITY = 9
+    static let REQUEST_FOR_CDISPLAYMESSAGE_ACTIVITY = 10
+    static let RESPONSE_FOR_CDISPLAYMESSAGE_ACTIVITY = 11
+    static let REQUEST_FOR_CDISPLAY_CONFIRMATION_ACTIVITY = 12
+    static let RESPONSE_FOR_CDISPLAY_CONFIRMATION_ACTIVITY = 13
+    static let REQUEST_FOR_CDISPLAY_DATA_ENTRY_ACTIVITY = 14
+    static let RESPONSE_FOR_CDISPLAY_DATA_ENTRY_ACTIVITY = 15
+    static let REQUEST_FOR_CDISPLAYMENULIST_ACTIVITY = 16
+    static let RESPONSE_FOR_CDISPLAYMENULIST_ACTIVITY = 17
+    static let RESPONSE_FOR_TOUCH_EVENT_ON_WAITFOREVENT_ACTIVITY = 18
+    static let REQUEST_FOR_PRINT_SLIP = 20
+    //    public static final int REQUEST_FOR_SETTLEMENT_SLIP = 201
+    static let REQUEST_FOR_WAITFOREVENT_ACTIVITY = 21
+    static let RESPONSE_FOR_WAITFOREVENT_ACTIVITY = 22
+    static let REQUEST_FOR_QR_CODE_ACTIVITY = 23
+    static let RESPONSE_FOR_QR_CODE_ACTIVITY = 24
+    static let REQUEST_FOR_SIGNATURE_CAPTURE = 25
     
-    static let REQUEST_FOR_QRCODE_SCANNING_ACTIVITY = 25;
-    static let RESPONSE_FOR_QRCODE_SCANNING_ACTIVITY = 26;
+    static let REQUEST_FOR_QRCODE_SCANNING_ACTIVITY = 25
+    static let RESPONSE_FOR_QRCODE_SCANNING_ACTIVITY = 26
     
-    /*    public static final int REQUEST_FOR_MERCHANT_LOGIN_ACTIVITY = 27;
-     public static final int RESPONSE_FOR_MERCHANT_LOGIN_ACTIVITY = 28;*/
+    /*    public static final int REQUEST_FOR_MERCHANT_LOGIN_ACTIVITY = 27
+     public static final int RESPONSE_FOR_MERCHANT_LOGIN_ACTIVITY = 28*/
     
-    static let FINISH_TRANSACTION_HUB_ACTIVITY = 30;
+    static let FINISH_TRANSACTION_HUB_ACTIVITY = 30
     
-    static let REQUEST_FOR_OFFLINE_PIN_ENTRY = 31;
-    static let RESPONSE_FOR_OFFLINE_PIN_ENTRY = 31;
+    static let REQUEST_FOR_OFFLINE_PIN_ENTRY = 31
+    static let RESPONSE_FOR_OFFLINE_PIN_ENTRY = 31
     
-    //public static final int REQUEST_FOR_SERIAL_LISTENER = 31;
-    static let REQUEST_TO_GO_ONLINE_CSV_TXN_NORMAL = 32;
-    static let REQUEST_TO_GO_ONLINE_CSV_TXN_SWIPE = 33;
-    static let REQUEST_TO_GO_ONLINE_CSV_TXN_EMV_CLESS = 34;
+    //public static final int REQUEST_FOR_SERIAL_LISTENER = 31
+    static let REQUEST_TO_GO_ONLINE_CSV_TXN_NORMAL = 32
+    static let REQUEST_TO_GO_ONLINE_CSV_TXN_SWIPE = 33
+    static let REQUEST_TO_GO_ONLINE_CSV_TXN_EMV_CLESS = 34
     
-    static let REQUEST_TO_GO_ONLINE = 35;
+    static let REQUEST_TO_GO_ONLINE = 35
     
-    static let REQUEST_FOR_GIF_VIDEO_ACTIVITY = 36;
-    static let RESPONSE_FOR_GIF_VIDEO_ACTIVITY = 37;
-    static let RESPONSE_FROM_PRINT_SLIP = 38;
+    static let REQUEST_FOR_GIF_VIDEO_ACTIVITY = 36
+    static let RESPONSE_FOR_GIF_VIDEO_ACTIVITY = 37
+    static let RESPONSE_FROM_PRINT_SLIP = 38
     
-    static let REQUEST_FOR_CONFIRMATION_DIALOG = 38;
-    static let RESPONSE_FOR_CONFIRMATION_DIALOG = 39;
+    static let REQUEST_FOR_CONFIRMATION_DIALOG = 38
+    static let RESPONSE_FOR_CONFIRMATION_DIALOG = 39
     
-    static let REQUEST_FOR_CDISPLAYGETPASSWORD_ACTIVITY = 40;
-    static let RESPONSE_FOR_CDISPLAYGETPASSWORD_ACTIVITY = 41;
+    static let REQUEST_FOR_CDISPLAYGETPASSWORD_ACTIVITY = 40
+    static let RESPONSE_FOR_CDISPLAYGETPASSWORD_ACTIVITY = 41
     
-    static let REQUEST_FOR_CASCADING_LIST_ACTIVITY = 44;
-    static let RESPONSE_FOR_CASCADING_LIST_ACTIVITY = 45;
+    static let REQUEST_FOR_CASCADING_LIST_ACTIVITY = 44
+    static let RESPONSE_FOR_CASCADING_LIST_ACTIVITY = 45
     
-    static let REQUEST_FOR_CDISPLAY_MULTI_DATA_ENTRY_ACTIVITY = 46;
-    static let RESPONSE_FOR_CDISPLAY_MULTI_DATA_ENTRY_ACTIVITY = 47;
-    static let REQUEST_FOR_PRINT_INTEGRATED_SLIP = 48;
+    static let REQUEST_FOR_CDISPLAY_MULTI_DATA_ENTRY_ACTIVITY = 46
+    static let RESPONSE_FOR_CDISPLAY_MULTI_DATA_ENTRY_ACTIVITY = 47
+    static let REQUEST_FOR_PRINT_INTEGRATED_SLIP = 48
     
-    static let RESPONSE_FOR_PRINT_INTEGRATED_SLIP = 49;
-    static let RESPONSE_FOR_UPI_BHARAT_QR_TXN = 50;
+    static let RESPONSE_FOR_PRINT_INTEGRATED_SLIP = 49
+    static let RESPONSE_FOR_UPI_BHARAT_QR_TXN = 50
     
-    static let REQUEST_FOR_HOME_PAGE_ACTIVITY = 51;
-    static let RESPONSE_FOR_HOME_PAGE_ACTIVITY = 52;
+    static let REQUEST_FOR_HOME_PAGE_ACTIVITY = 51
+    static let RESPONSE_FOR_HOME_PAGE_ACTIVITY = 52
     
+    static let API_RESULT_FAIL = 0x00
+    static let API_RESULT_SUCCEEDED = 0x01
     
     //---------Printing Location constant------------
     static let EDCPrint = 1
     static let POSprint = 2
     static let NOPrint = 3
+    
+    
+    //Transaction code to handle third party transaction
+    static let TP_TXN_WALLET = "5102"
+    static let TP_TXN_WALLET_VOID = "5104"
+    static let TP_TXN_AIRTEL_MONEY = "5127"
+    static let TP_TXN_AMAZON_PAY = "5129"
+    static let TP_TXN_UPI = "5120"
+    static let TP_TXN_UPI_GET_STATUS = "5122"
+    static let TP_TXN_UPI_VOID = "5121"
+    static let TP_TXN_BHARATQR = "5123"
+    static let TP_TXN_PG_POS_CARD = "5561"
+    static let TP_TXN_PG_POS_NETBANK = "5565"
+    static let TP_TXN_PG_POS_BANKEMI = "5566"
+    static let TP_TXN_PG_POS_BRANDEMI = "5567"
+    static let TP_TXN_PG_POS_GET_STATUS = "5563"
+    static let TP_TXN_PG_POS_VOID = "5562"
+    static let TP_TXN_PG_POS_RESEND = "5564"
+ 
+    /*--------------TXN History------------------*/
+    static let TXN_CASH_ON_DELIVERY = "6101"
+    static let TXN_UPI = "25233"
+    static let TXN_UPI_GET_STATUS = "25235"
+    static let TXN_UPI_VOID = "25236"
+    static let TXN_BHARAT_QR = "25344"
+    static let TXN_BHARAT_QR_GET_STATUS = "25235"
+    static let TXN_BHARAT_QR_VOID = "25236"
+    static let TXN_PHONEPE_WALLET = "25393"
+    static let TXN_AMAZON_PAY_WALLET = "25366" //for Amazon
+    static let TXN_PHONEPE_WALLET_GET_STATUS = "25395"
+    static let TXN_PHONEPE_WALLET_VOID = "25396"
+    static let TXN_FREECHARGE_WALLET = "25117"
+    static let TXN_FREECHARGE_WALLET_VOID = "25106"
+    static let TXN_AIRTEL_WALLET = "25362"
+    static let TXN_AIRTEL_WALLET_VOID = "2536211" //todo change
+    static let TXN_PG_AT_POS_CARD = "24705"
+    static let TXN_PG_AT_POS_GET_STATUS = "24707"
+    static let TXN_PG_AT_POS_VOID = "24708"
+    static let TXN_PG_AT_POS_RESEND = "24712"
+    static let TXN_PG_AT_POS_NETBANK = "24722"
+    static let TXN_PG_AT_POS_BRAND_EMI = "24724"
+    static let TXN_PG_AT_POS_BANK_EMI = "24723"
+    static let TXN_PAPER_POS_TEMP = "255555500"
+    
+    static let WALLET_JIOMONEY_BANK = "101"
+    static let WALLET_FREECHARGE_BANK = "103"
+    static let WALLET_OXYGEN_BANK = "104"
+    static let WALLET_PHONEPE_BANK = "105"
+    static let WALLET_UPIAXIS_BANK = "107"
+    static let WALLET_PAYZAPP_BANK = "108"
+    static let WALLET_AMAZONPAY_BANK = "109"
+ 
+    static let TXN_DATE_FORMAT = "%s-%s-%s"
+    static let TXN_TIME_FORMAT = "%s:%s:%s.%s"
+    
 }
 
 enum enum_InputMethod {

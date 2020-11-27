@@ -8,11 +8,11 @@
 
 import Foundation
 struct StBINRange:Codable {
-     var iKeySlotID = 0 ;
-    //int iLenBinMax;
-    //int iLenBinMin;
-    //unsigned char uchArrBinMin[10];
-    //unsigned char uchArrBinMax[10];
-    var  ulBinHigh:Int64 = 0;
-    var ulBinLow:Int64 = 0;
+     var iKeySlotID = 0 
+    //int iLenBinMax
+    //int iLenBinMin
+    //unsigned char uchArrBinMin[10]
+    //unsigned char uchArrBinMax[10]
+    var  ulBinHigh:Int64 = 0
+    var ulBinLow:Int64 = 0
 }

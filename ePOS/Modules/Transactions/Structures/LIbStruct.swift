@@ -9,6 +9,6 @@
 import Foundation
 
 struct LIBStruct: Codable{
-    var id = 0;
-    var LibFileName:String = "";
+    var id = 0
+    var LibFileName:String = ""
 }

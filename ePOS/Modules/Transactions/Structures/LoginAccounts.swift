@@ -9,13 +9,13 @@
 import Foundation
 public struct LoginAccounts :Codable
 {
-    var userID = "";
-    var pin = "";
-    var createdBy = "";
-    var accountType = 0;
-    var createdOn = "";
-    var updatedOn = "";      //refactor to UpdatedOn
-    var lastLoginOn = "";
-    var UUID = "";
-    var flagChangeType = 0; //0 Nothing 1 New 2 Modify 3 Delete
+    var userID = ""
+    var pin = ""
+    var createdBy = ""
+    var accountType = 0
+    var createdOn = ""
+    var updatedOn = ""      //refactor to UpdatedOn
+    var lastLoginOn = ""
+    var UUID = ""
+    var flagChangeType = 0 //0 Nothing 1 New 2 Modify 3 Delete
 }
