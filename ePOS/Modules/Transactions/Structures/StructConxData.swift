@@ -10,9 +10,9 @@ import Foundation
 
 public struct StructConxData
 {
- var bConnectionChangedFlag = false;
- var LastTriedConnType = 0;
- var LastConnectedConnType = 0;
- var m_bArrConnIndex = StructConnIndex();
- var LastTriedIPType = 0;
+ var bConnectionChangedFlag = false
+ var LastTriedConnType = 0
+ var LastConnectedConnType = 0
+ var m_bArrConnIndex = StructConnIndex()
+ var LastTriedIPType = 0
 }

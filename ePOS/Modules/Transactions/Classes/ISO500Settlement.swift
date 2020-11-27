@@ -10,9 +10,9 @@ import Foundation
 
 class ISO500Settlement: ISOMessage
 {
-    static let SUBTEMPLATE_TAG = 1032;
-    static let DULICATE_PRINT_TAG = 1033;
-    static let PARTIAL_SETTLEMENT = 5055;
+    static let SUBTEMPLATE_TAG = 1032
+    static let DULICATE_PRINT_TAG = 1033
+    static let PARTIAL_SETTLEMENT = 5055
     static let MAX_RESPONSE_SETTLEMENT_DATA_LEN = 50000
     
     var m_iChangeNumber: Int = 0
@@ -37,7 +37,7 @@ class ISO500Settlement: ISOMessage
         ***************************************************************************/
         if(m_iChangeNumber==1)
         {
-            _ = addField(bitno: 3, data1: [Byte](ProcessingCodeConstants.PC_SETTLEMENT_START.utf8), bcd: true);
+            _ = addField(bitno: 3, data1: [Byte](ProcessingCodeConstants.PC_SETTLEMENT_START.utf8), bcd: true)
         }
         /*    ***************************************************************************
         FEILD 26 ::BatchId
@@ -79,7 +79,7 @@ class ISO500Settlement: ISOMessage
             buffer[iLocalOffset] = Byte(b & 0x000000FF)
             iLocalOffset += 1
                 
-            _ = self.addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_53, data1: buffer, length: iLocalOffset);
+            _ = self.addLLLCHARData(bitno: ISOFieldConstants.ISO_FIELD_53, data1: buffer, length: iLocalOffset)
             debugPrint("Req->Setting field 53")
         }
 
@@ -100,30 +100,30 @@ class ISO500Settlement: ISOMessage
                 GlobalData.m_bIsFiled58Absent = true
             }
             else {
-                GlobalData.m_csFinalMsgBatchSettlement = GlobalData.m_csFinalMsgDisplay58;
+                GlobalData.m_csFinalMsgBatchSettlement = GlobalData.m_csFinalMsgDisplay58
             }
 
-            m_bIsPartialSettlement = false;
+            m_bIsPartialSettlement = false
 
             guard let strRespCode: String = String(bytes: data[39 - 1], encoding: .utf8) else{return false}
             
             if (!(self.data[39-1].isEmpty) && strRespCode.caseInsensitiveCompare(AppConstant.AC_DRDUMPREQ) == ComparisonResult.orderedSame)
             {
                 var m_sParamData: TerminalParamData  = globalData.ReadParamFile()!
-                m_sParamData.m_bIsDRPending = true;
+                m_sParamData.m_bIsDRPending = true
                 _ = globalData.WriteParamFile(listParamData: m_sParamData)
-                return true;
+                return true
             }
 
             //Unlock batch -- in all other cases.
             _ = globalData.UnlockBatch()
 
             if(!(self.data[39-1].isEmpty) && strRespCode.caseInsensitiveCompare(AppConstant.AC_PARTIAL_SETTLEMENT) == ComparisonResult.orderedSame) {
-                m_bIsPartialSettlement = true;
+                m_bIsPartialSettlement = true
             }
             else {
                 //If DR is not requested and Field 39 is not 0000 return false
-                return false;
+                return false
             }
         }
 
@@ -132,7 +132,7 @@ class ISO500Settlement: ISOMessage
             if (iCurrentPrintDumpOffset + length < AppConstant.MAX_RESPONSE_SETTLEMENT_DATA_LEN) {
                 m_bSettlementPrintData = [Byte](p[iCurrentPrintDumpOffset ..< iCurrentPrintDumpOffset + length])
                 //System.arraycopy(p, 0, m_bSettlementPrintData, iCurrentPrintDumpOffset, length)
-                iCurrentPrintDumpOffset += length;
+                iCurrentPrintDumpOffset += length
             }
 
             let pChargeSlipDataVal: [Byte] = data[53 - 1]
@@ -172,10 +172,10 @@ class ISO500Settlement: ISOMessage
         else
         {
             debugPrint("ERROR no::field 61 and 53 found for Settlement Report")
-            return false;
+            return false
         }
 
-        return true;
+        return true
     }
     
     
@@ -186,7 +186,7 @@ class ISO500Settlement: ISOMessage
 
         let iPrintingLocation: Int = GetEDCPrintingLocation()
 
-        debugPrint("iPrintingLocation[\(iPrintingLocation)]");
+        debugPrint("iPrintingLocation[\(iPrintingLocation)]")
         if(iPrintingLocation == 0)
         {
             if(m_bField7PrintPAD)
@@ -196,44 +196,47 @@ class ISO500Settlement: ISOMessage
             else
             {
                 let globalData = GlobalData.singleton
-                globalData.m_bPrinterData = m_bSettlementPrintData;
-                globalData.m_iPrintLen = iCurrentPrintDumpOffset;
-                SaveDumptoFile(iPrintingLocation);
+                globalData.m_bPrinterData = m_bSettlementPrintData
+                globalData.m_iPrintLen = iCurrentPrintDumpOffset
+                SaveDumptoFile(iPrintingLocation)
             }
         }
         else if(iPrintingLocation == AppConstant.EDCPrint)
         {
-            SaveDumptoFile(iPrintingLocation);
+            SaveDumptoFile(iPrintingLocation)
         }
         else if(iPrintingLocation == AppConstant.POSprint)
         {
-            SaveDumptoFileForPADPrinting();
+            SaveDumptoFileForPADPrinting()
         }
         else if(iPrintingLocation == AppConstant.NOPrint)
         {
-            SaveDumptoFile(iPrintingLocation);
+            SaveDumptoFile(iPrintingLocation)
         }
     }
     
     //MARK:- SaveDumptoFileForPADPrinting()
     func SaveDumptoFileForPADPrinting()
     {
-        let m_ByteArray: [Byte] = m_bSettlementPrintData;
-        _ = iCurrentPrintDumpOffset;
+        let m_ByteArray: [Byte] = m_bSettlementPrintData
+        let length = iCurrentPrintDumpOffset
         
         let chPADSettlementFileName = String(format: "%@", FileNameConstants.PADSETTLEMENTPRINTFILENAME)
-        debugPrint("PAD Settlement PrinterDemo file name[\(chPADSettlementFileName)]");
+        debugPrint("PAD Settlement PrinterDemo file name[\(chPADSettlementFileName)]")
         
         if(true == FileSystem.IsFileExist(strFileName: chPADSettlementFileName))
         {
-            _ = FileSystem.DeleteFileComplete(strFileName: chPADSettlementFileName);
+            _ = FileSystem.DeleteFile(strFileName: chPADSettlementFileName)
             debugPrint("DeleteFile[\(chPADSettlementFileName)]")
         }
         
         do{
-            _ = try FileSystem.AppendFile(strFileName: chPADSettlementFileName, with: m_ByteArray)
+            var tempData = [String]()
+            tempData.append(String(bytes: [Byte](m_ByteArray[0 ..< length]), encoding: .ascii)!)
+            
+            _ = try FileSystem.AppendByteFile(strFileName: chPADSettlementFileName, with: tempData)
         }catch{
-            debugPrint("Error in AppendFile \(chPADSettlementFileName)")
+            debugPrint("Error in AppendByteFile \(chPADSettlementFileName)")
         }
     }
     
@@ -246,18 +249,20 @@ class ISO500Settlement: ISOMessage
         if(true == FileSystem.IsFileExist(strFileName: strSettlementFileName))
         {
             //should not come here
-            _ = FileSystem.DeleteFileComplete(strFileName: strSettlementFileName)
+            _ = FileSystem.DeleteFile(strFileName: strSettlementFileName)
             debugPrint("DeleteFile[\(strSettlementFileName)]")
         }
 
         if(iPrintingLocation != 3)
         {
-            //CFileSystem.AppendFile(m_cntx,new String(chSettlementFileName),ByteArrayObj2, ByteArray[].class);
             do{
-                _ = try FileSystem.AppendFile(strFileName: strSettlementFileName, with: m_bSettlementPrintData)
+                var tempData = [String]()
+                tempData.append(String(bytes: [Byte](m_bSettlementPrintData[0 ..< iCurrentPrintDumpOffset]), encoding: .ascii)!)
+                
+                _ = try FileSystem.AppendByteFile(strFileName: strSettlementFileName, with: tempData)
             }
             catch{
-                debugPrint("Error in AppendFile \(strSettlementFileName)")
+                debugPrint("Error in AppendByteFile \(strSettlementFileName)")
             }
         }
         else
@@ -269,8 +274,8 @@ class ISO500Settlement: ISOMessage
             let bEmptyData: [Byte] = [Byte]("    No PrinterDemo Enabled   ".utf8)
             EmptyData = [Byte](bEmptyData[0 ..< bEmptyData.count])
         
-            //System.arraycopy("    No PrinterDemo Enabled    ", 0, EmptyData, 0, "    No PrinterDemo Enabled    ".length());
-            let templen: Int = EmptyData.count //strlen(EmptyData);
+            //System.arraycopy("    No PrinterDemo Enabled    ", 0, EmptyData, 0, "    No PrinterDemo Enabled    ".length())
+            let templen: Int = EmptyData.count //strlen(EmptyData)
 
             m_ByteArray[ioffset] = Byte(PrintMode.RAWMODE)
             ioffset += 1
@@ -280,34 +285,37 @@ class ISO500Settlement: ISOMessage
             m_ByteArray[ioffset] = Byte(PrintAttribute.PRINT_NORMAL_24)
             ioffset += 1
 
-            m_ByteArray[ioffset] = Byte(((templen+1) >> 8) & 0x000000FF);
+            m_ByteArray[ioffset] = Byte(((templen+1) >> 8) & 0x000000FF)
             ioffset += 1
 
-            m_ByteArray[ioffset] = Byte((templen + 1) & 0x000000FF);
+            m_ByteArray[ioffset] = Byte((templen + 1) & 0x000000FF)
             ioffset += 1
 
             m_ByteArray = [Byte](EmptyData[ioffset ..< ioffset + templen])
-            //System.arraycopy(EmptyData, 0, ByteArrayObj1.m_ByteArray, ioffset, templen);
+            //System.arraycopy(EmptyData, 0, ByteArrayObj1.m_ByteArray, ioffset, templen)
 
-            ioffset += templen;
+            ioffset += templen
 
-            m_ByteArray[ioffset] = 0x0A;
+            m_ByteArray[ioffset] = 0x0A
             ioffset += 1
-            let datalen: Int = ioffset - lenoffset;
+            let datalen: Int = ioffset - lenoffset
             m_ByteArray[1] = Byte((datalen >> 8) & 0x000000FF)
             m_ByteArray[2] = Byte((datalen) & 0x000000FF)
             
-            debugPrint("data saved len[%d]", ioffset);
-            debugPrint(ioffset, /*PrintingData*/m_ByteArray);
+            debugPrint("data saved len[%d]", ioffset)
+            debugPrint(ioffset, /*PrintingData*/m_ByteArray)
 
             do{
-                _ = try FileSystem.AppendFile(strFileName: strSettlementFileName,with: m_ByteArray)
+                var tempData = [String]()
+                tempData.append(String(bytes: [Byte](m_ByteArray[0 ..< m_ByteArray.count]), encoding: .ascii)!)
+                
+                _ = try FileSystem.AppendByteFile(strFileName: strSettlementFileName,with: tempData)
             }
             catch
             {
-                debugPrint("Error in AppendFile \(error)")
+                debugPrint("Error in AppendByteFile \(error)")
             }
-           // CFileSystem.AppendFile(m_cntx,new String(chSettlementFileName),ByteArrayObj1,ByteArray[].class/*ioffset*/);
+           // CFileSystem.AppendFile(m_cntx,new String(chSettlementFileName),ByteArrayObj1,ByteArray[].class/*ioffset*/)
         }
     }
         
@@ -315,15 +323,15 @@ class ISO500Settlement: ISOMessage
     //MARK:- DeleteDumpFile()
     static func DeleteDumpFile()
     {
-        let strSettlementFileName = String(format: "%s",FileNameConstants.SETTLEMENTPRINTFILENAME)
+        let strSettlementFileName = String(format: "%@",FileNameConstants.SETTLEMENTPRINTFILENAME)
         debugPrint("Settlement PrinterDemo file name[\(strSettlementFileName)]")
-        _ = FileSystem.DeleteFileComplete(strFileName: strSettlementFileName)
+        _ = FileSystem.DeleteFile(strFileName: strSettlementFileName)
     }
     
     //MARK:- ResetROC()
     private func ResetROC(){
         
-        let strTxnFileName = String(format: "%s", FileNameConstants.TRANSACTIONFILENAME);
+        let strTxnFileName = String(format: "%@", FileNameConstants.TRANSACTIONFILENAME)
         
         let listTxnData: [TerminalTransactionData] = FileSystem.ReadFile(strFileName: strTxnFileName)!
         if(listTxnData != nil || !listTxnData.isEmpty) {
@@ -331,18 +339,18 @@ class ISO500Settlement: ISOMessage
             for txnData in listTxnData
             {
                 let tempData: TerminalTransactionData = txnData
-                let iFileIndex: Int = Int(10001000 + tempData.ulROC);
-                let SignatureIndexFile = String(format: "im%08d", iFileIndex);
-                _ = FileSystem.DeleteFileComplete(strFileName: SignatureIndexFile);
+                let iFileIndex: Int = Int(10001000 + tempData.ulROC)
+                let SignatureIndexFile = String(format: "im%08d", iFileIndex)
+                _ = FileSystem.DeleteFile(strFileName: SignatureIndexFile)
             }
         }
         
         //delete sign files if remains forcefully
         DeleteSignatureFiles()
-        _ = FileSystem.DeleteFileComplete(strFileName: strTxnFileName)
+        _ = FileSystem.DeleteFile(strFileName: strTxnFileName)
         
-        let strDRTxnFileName = String(format: "%s", FileNameConstants.DRTXNFILENAME)
-        _ = FileSystem.DeleteFileComplete(strFileName: strDRTxnFileName)
+        let strDRTxnFileName = String(format: "%@", FileNameConstants.DRTXNFILENAME)
+        _ = FileSystem.DeleteFile(strFileName: strDRTxnFileName)
     }
     
     
@@ -357,7 +365,7 @@ class ISO500Settlement: ISOMessage
     private func DeleteSignatureFiles()
     {
         debugPrint("Inside DeleteSignatureFiles")
-        let strTxnFileName = String(format: "%@", FileNameConstants.TRANSACTIONFILENAME);
+        let strTxnFileName = String(format: "%@", FileNameConstants.TRANSACTIONFILENAME)
         
         let listTxnData: [TerminalTransactionData] = FileSystem.ReadFile(strFileName: strTxnFileName)!
         if(listTxnData != nil || !listTxnData.isEmpty) {
@@ -365,9 +373,9 @@ class ISO500Settlement: ISOMessage
             for txnData in listTxnData
             {
                 let tempData: TerminalTransactionData = txnData
-                let iFileIndex: Int = Int(10001000 + tempData.ulROC);
-                let SignatureIndexFile = String(format: "im%08d", iFileIndex);
-                _ = FileSystem.DeleteFileComplete(strFileName: SignatureIndexFile);
+                let iFileIndex: Int = Int(10001000 + tempData.ulROC)
+                let SignatureIndexFile = String(format: "im%08d", iFileIndex)
+                _ = FileSystem.DeleteFile(strFileName: SignatureIndexFile)
             }
         }
         
@@ -379,8 +387,8 @@ class ISO500Settlement: ISOMessage
         var chArrTempBatch = [Byte](repeating: 0x00, count: data[26-1].count)
         chArrTempBatch = [Byte](data[26-1][0 ..< data[26-1].count])
         
-        //System.arraycopy(data[26-1],0,chArrTempBatch,0,data[26-1].length);
-        let ulBatchID: Int16 = Int16(atoi(String(bytes: chArrTempBatch, encoding: .ascii)!)) //strtoul(chArrTempBatch, NULL, 10);
+        //System.arraycopy(data[26-1],0,chArrTempBatch,0,data[26-1].length)
+        let ulBatchID: Int16 = Int16(atoi(String(bytes: chArrTempBatch, encoding: .ascii)!)) //strtoul(chArrTempBatch, NULL, 10)
         //store this as the current batch id in Global Data
         
         let  globalData = GlobalData.singleton
@@ -395,7 +403,7 @@ class ISO500Settlement: ISOMessage
         _ = globalData.WriteParamFile(listParamData: m_sParamData)
     }
 
-    private func Start(){
+    func Start(){
         m_iChangeNumber = 1
         m_bCurrentPacketCount = 0x00
         iCurrentPrintDumpOffset = 0x00
@@ -403,7 +411,7 @@ class ISO500Settlement: ISOMessage
 
     
     //MARK:- ProcessData() -> Bool
-    private func ProcessData() -> Bool
+    func ProcessData() -> Bool
     {
         debugPrint("Inside ProcessData")
         _ = GetCSVReponseData()
@@ -419,35 +427,35 @@ class ISO500Settlement: ISOMessage
                 data[3-1].elementsEqual(ProcessingCodeConstants.PC_SETTLEMENT_END.utf8))
             {
                 if(!ProcessSettlementReport()){
-                    return false;
+                    return false
                 }
             }else
             {
-                debugPrint("INVALID PROCESSING CODE");
-                //CUIHelper.SetMessageWithWait("INVALID PROCESSING CODE");
-                return false;
+                debugPrint("INVALID PROCESSING CODE")
+                //CUIHelper.SetMessageWithWait("INVALID PROCESSING CODE")
+                return false
             }
         }
 
         switch(m_iChangeNumber){
             case 1:
                 if(data[3-1].elementsEqual(ProcessingCodeConstants.PC_SETTLEMENT_END.utf8)) {
-                m_bCurrentPacketCount = 0;
-                m_bTotalPacketCount = 0;
+                m_bCurrentPacketCount = 0
+                m_bTotalPacketCount = 0
                 m_iChangeNumber += 1
             }
             default:
                 break
         }
 
-        return true;
+        return true
     }
     
     
     //MARK:- GetCSVReponseData() -> Int
     private func GetCSVReponseData() -> Int
     {
-        debugPrint("Inside GetCSVReponseData");
+        debugPrint("Inside GetCSVReponseData")
         //CSV data shall not come in MultiPacket response
         //Otherwise Newer response will be copied
         //This Function return only wether more data can be accomodated or not.
@@ -455,10 +463,7 @@ class ISO500Settlement: ISOMessage
         //In case of error :RESPONSE_DATA_EXCEEDS_LENGTH
 
         let  globalData = GlobalData.singleton
-        //TODO: ISO 220 yet to implement
-        //int iReturnee = ISO220ResponseDataRetVal.RESPONSE_DATA_FINISHED.getValue();
-        let iReturnee: Int = 0
-        
+        var iReturnee = ISO220ResponseDataRetVal.RESPONSE_DATA_FINISHED
         //Check for CSV data
         if(bitmap[52-1])
         {
@@ -466,61 +471,60 @@ class ISO500Settlement: ISOMessage
             let p1: [Byte]    = data[52-1]
 
             //Initialize the CSV data packet
-            debugPrint("iCSVlen[\(iCSVlen)]");
-            //memset(GlobalData.m_ptrCSVDATA.m_chBillingCSVData,0x00,AppConst.MAX_CSV_LEN);
+            debugPrint("iCSVlen[\(iCSVlen)]")
+            //memset(GlobalData.m_ptrCSVDATA.m_chBillingCSVData,0x00,AppConst.MAX_CSV_LEN)
 
             if(iCSVlen < AppConstant.MAX_CSV_LEN)
             {
-                //memcpy(GlobalData->m_ptrCSVDATA->m_chBillingCSVData,p1,iCSVlen);
+                //memcpy(GlobalData->m_ptrCSVDATA->m_chBillingCSVData,p1,iCSVlen)
                 
                 globalData.m_ptrCSVDATA.m_chBillingCSVData = [Byte](p1[0 ..< iCSVlen])
-                //System.arraycopy(p1,0,GlobalData.m_ptrCSVDATA.m_chBillingCSVData,0,iCSVlen);
-                globalData.m_ptrCSVDATA.bCSVreceived = true;
-                debugPrint("RECEIVED_CSV_DATA");
-                debugPrint("CSV[\(String(bytes: globalData.m_ptrCSVDATA.m_chBillingCSVData, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))]");
+                //System.arraycopy(p1,0,GlobalData.m_ptrCSVDATA.m_chBillingCSVData,0,iCSVlen)
+                globalData.m_ptrCSVDATA.bCSVreceived = true
+                debugPrint("RECEIVED_CSV_DATA")
+                debugPrint("CSV[\(String(bytes: globalData.m_ptrCSVDATA.m_chBillingCSVData, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))]")
             }
             else
             {
-                //CUIHelper.SetMessageWithWait("Very LARGE CSV DATA");
-                //TODO: ISO 220 yet to implement
-                //iReturnee = ISO220ResponseDataRetVal.RESPONSE_DATA_EXCEEDS_LENGTH.getValue();
+                //CUIHelper.SetMessageWithWait("Very LARGE CSV DATA")
+                iReturnee = ISO220ResponseDataRetVal.RESPONSE_DATA_EXCEEDS_LENGTH
             }
         }
 
-        return iReturnee;
+        return iReturnee
     }
     
     //MARK:- DeleteDumpFileForPADPrinting()
     static func DeleteDumpFileForPADPrinting()
     {
-        let strPADSettlementFileName = String(format: "%s",FileNameConstants.PADSETTLEMENTPRINTFILENAME)
+        let strPADSettlementFileName = String(format: "%@",FileNameConstants.PADSETTLEMENTPRINTFILENAME)
         debugPrint("PAD Settlement PrinterDemo file name[\(strPADSettlementFileName)]")
-        _ = FileSystem.DeleteFileComplete(strFileName: strPADSettlementFileName)
+        _ = FileSystem.DeleteFile(strFileName: strPADSettlementFileName)
     }
     
     //MARK:- AfterDataExchange() -> Bool
-    private func AfterDataExchange() -> Bool
+    func AfterDataExchange() -> Bool
     {
         do{
-            debugPrint("Inside AfterDataExchange");
-            let retVal: Bool = true;
-            let globalData = GlobalData.singleton;
+            debugPrint("Inside AfterDataExchange")
+            let retVal: Bool = true
+            let globalData = GlobalData.singleton
         
             if (m_bField7PrintPAD)
             {
                 if (true == globalData.m_ptrCSVDATA.bsendData)
                 {
-                    var bStatus: Byte = 0x01;
+                    var bStatus: Byte = 0x01
                     if (false == globalData.m_ptrCSVDATA.bCSVreceived)
                     {
                         globalData.m_ptrCSVDATA.m_chBillingCSVData = [Byte](repeating: 0x00, count: AppConstant.MAX_CSV_LEN)
-                        //Arrays.fill(GlobalData.m_ptrCSVDATA.m_chBillingCSVData, (byte)0x00);
-                        bStatus = 0x00;
+                        //Arrays.fill(GlobalData.m_ptrCSVDATA.m_chBillingCSVData, (byte)0x00)
+                        bStatus = 0x00
                     }
-                    globalData.m_ptrCSVDATA.bStatus = bStatus;
+                    globalData.m_ptrCSVDATA.bStatus = bStatus
                     if (CSVHandler.m_iRecCSVRequestMode != CSVHandler.CSV_TXN_REQUEST_FROM_LOCAL_BILLING_APP)
                     {
-                        CSVHandler.singleton.m_objCSVTxn!.SendResponseLocation = CSVBaseTxn.enSendResponseLocation.BEFORE_PRINT_CHARGESLIP;
+                        CSVHandler.singleton.m_objCSVTxn!.SendResponseLocation = CSVBaseTxn.enSendResponseLocation.BEFORE_PRINT_CHARGESLIP
                     }
                 }
             }
@@ -532,19 +536,19 @@ class ISO500Settlement: ISOMessage
                     if (false == globalData.m_ptrCSVDATA.bCSVreceived)
                     {
                         globalData.m_ptrCSVDATA.m_chBillingCSVData = [Byte](repeating: 0x00, count: AppConstant.MAX_CSV_LEN)
-                        //Arrays.fill(GlobalData.m_ptrCSVDATA.m_chBillingCSVData, (byte)0x00);
-                        bStatus = 0x00;
+                        //Arrays.fill(GlobalData.m_ptrCSVDATA.m_chBillingCSVData, (byte)0x00)
+                        bStatus = 0x00
                     }
-                    globalData.m_ptrCSVDATA.bStatus = bStatus;
+                    globalData.m_ptrCSVDATA.bStatus = bStatus
                     CSVHandler.singleton.m_objCSVTxn!.SendResponseLocation = CSVBaseTxn.enSendResponseLocation.AFTER_PRINT_CHARGESLIP
                 }
             }
-            return retVal;
+            return retVal
         }
         catch
         {
-            debugPrint("Exception Occurred : \(error)");
-            return false;
+            debugPrint("Exception Occurred : \(error)")
+            return false
         }
     }
     

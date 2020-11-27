@@ -26,19 +26,42 @@ class FileSystem {
             throw error
         }
         
-        return bRetval;
+        return bRetval
     }
 
+    //MARK:- ReWriteFile<T: Codable>(strFileName: String, with array: [T]) throws -> Bool
+    static func WriteByteFile(strFileName: String, with array: [String]) throws -> Bool  {
+        var bRetval = false
+        let encoder = PropertyListEncoder()
+        
+        do {
+            let finalPlistData = try encoder.encode(array)
+            let filePath = FilePlistURL(strFileName: strFileName, with: array)
+            try finalPlistData.write(to: filePath)
+            bRetval = true
+            
+        } catch {
+            debugPrint("Exception Caught")
+            throw error
+        }
+        
+        return bRetval
+    }
+    
     //MARK:- SeekRead<T: Codable>(strFileName: String, iOffset: Int) -> T?
     static func SeekRead<T: Codable>(strFileName: String, iOffset: Int) -> T?
     {
         var objResult: T?
-        let result:[T] = ReadFile(strFileName: strFileName)!
-        if (!result.isEmpty)
-        {
-            objResult = result[iOffset]
-        }
         
+        
+        if let result:[T] = ReadFile(strFileName: strFileName)!
+        {
+            if (!result.isEmpty)
+            {
+                objResult = result[iOffset]
+            }
+        }
+    
         return objResult
     }
     
@@ -78,7 +101,24 @@ class FileSystem {
         }
     }
     
-    //MARK:- AppendFile<T: Codable>(strFileName: String, with object: T) throws -> Bool
+    //MARK:- ReadFile<T: Codable>(strFileName: String) -> String?
+    static func ReadByteFile(strFileName: String) -> [String]?
+    {
+        let result:[String] = []
+        
+        do {
+            let filePath = FileSystem.FilePlistURL(strFileName: strFileName, with: result)
+            
+            let data = try Data(contentsOf: filePath)
+            let plistDecoder = PropertyListDecoder()
+            let pListDataWrapper = try plistDecoder.decode([String].self, from: data)
+            return pListDataWrapper
+        } catch {
+            return nil
+        }
+    }
+    
+    //MARK:- AppendFile<T: Codable>(strFileName: String, with array: [T]) throws -> Bool
     static func AppendFile<T: Codable>(strFileName: String, with array: [T]) throws -> Bool
     {
         var bRetval = false
@@ -100,28 +140,43 @@ class FileSystem {
         return bRetval
     }
     
-    //MARK:- DeleteFile<T: Codable>(strFileName: String, with array: [T]) -> Bool
-    static func DeleteFile<T: Codable>(strFileName: String, with array: [T]) -> Bool
+    //MARK:- AppendByteFile<T: Codable>(strFileName: String, with object: T) throws -> Bool
+    static func AppendByteFile(strFileName: String, with array: [String]) throws -> Bool
     {
-        let bRetval: Bool = false;
+        var bRetval = false
+        
         do {
-            let pathToPlist: String = try String(contentsOf: FilePlistURL(strFileName: strFileName, with: array))
+            let result: [String] = ReadByteFile(strFileName: strFileName)!
+             
+            var tempData = [String]()
+            tempData.append("")
             
-             if FileManager.default.fileExists(atPath: pathToPlist) {
-                   try FileManager.default.removeItem(atPath: pathToPlist)
+            if(!array[0].isEmpty)
+            {
+                tempData.removeAll()
+                tempData.append(String(array[0]))
             }
+            
+            if(!result.isEmpty && !result[0].isEmpty){
+                tempData.removeAll()
+                tempData.append(String(result[0]) + String(array[0]))
+            }
+                
+            bRetval = try WriteByteFile(strFileName: strFileName, with: tempData)
+            
         }
         catch {
-            debugPrint("Exception Occurred :  \(error)")
-            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(e));
-        } 
-        return bRetval;
+            debugPrint("Exception Caught")
+            throw error
+        }
+        
+        return bRetval
     }
-
-    //MARK:-  DeleteFileComplete(strFileName: String) -> Bool
-    static func DeleteFileComplete(strFileName: String) -> Bool
+    
+    //MARK:-  DeleteFile(strFileName: String) -> Bool
+    static func DeleteFile(strFileName: String) -> Bool
     {
-        let bRetval: Bool = false;
+        let bRetval: Bool = false
         do {
         let plistURL = Util.masterDataDirectoryURL.appendingPathComponent(strFileName).appendingPathExtension("plist")
             
@@ -131,9 +186,8 @@ class FileSystem {
         }
         catch {
             debugPrint("Exception Occurred :  \(error)")
-            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(e));
         }
-        return bRetval;
+        return bRetval
     }
     
     static func RenameFile(strNewFileName: String, strFileName: String) -> Bool
@@ -156,7 +210,7 @@ class FileSystem {
             debugPrint("Exception Occurred \(error)")
         }
         
-         return bRenameSuccess;
+         return bRenameSuccess
      }
       
     //MARK:- IsFileExist(strFileName: String) -> Bool
@@ -225,7 +279,7 @@ class FileSystem {
      Desciption: Function to Read single record at a given offset from the JSON file
      containing one or more records of Class type T.
      Return Value: Object of type T
-     Sample Use:  MyClass obj = CFileSystem.ReadRecord(context, MyClass[].class, strFileName, iOffset);
+     Sample Use:  MyClass obj = CFileSystem.ReadRecord(context, MyClass[].class, strFileName, iOffset)
      ******************************************************************************************************/
     static func ReadRecord<T: Codable>(strFileName: String, iOffset: Int) -> T?
     {
@@ -233,6 +287,28 @@ class FileSystem {
         return SeekRead(strFileName: strFileName, iOffset: iOffset) ?? nil
     }
  
+    /******************************************************************************************************
+       Function  : GetFileSize
+       Desciption: Function to get the File Size in bytes
+       Return Value: size of file in bytes, 0 if empty/invalid file.
+       Sample Use: int iFileSize = CFileSystem.GetFileSize(context, strFileName)
+       ******************************************************************************************************/
+    public static func GetFileSize(strFileName: String) -> Int
+    {
+        var iFileSize: Int = 0
+        if(IsFileExist(strFileName: strFileName)) {
+            let plistURL: URL = Util.masterDataDirectoryURL.appendingPathComponent(strFileName).appendingPathExtension("plist")
+            iFileSize = plistURL.fileSize!
+        }
+        return iFileSize
+    }
     
-    
+}
+
+public extension URL {
+
+    var fileSize: Int? {
+        let value = try? resourceValues(forKeys: [.fileSizeKey])
+        return value?.fileSize
+    }
 }

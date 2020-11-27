@@ -25,9 +25,9 @@ class CConx {
           m_bConnected = false
 
           //Have to define instance of CCommunication
-          // m_Connection = CCommunication.GetInstance();
-          // m_SerialConn = new CSerialProtocol();
-          // m_ethernetProtocol = new EthernetProtocol();
+          // m_Connection = CCommunication.GetInstance()
+          // m_SerialConn = new CSerialProtocol()
+          // m_ethernetProtocol = new EthernetProtocol()
     }
     
     private static var _shared: CConx?
@@ -61,20 +61,20 @@ class CConx {
                 
                 //TODO: Commuincation and Serial needed
                 /*if (m_iConnType == ConnectionTypes.DIALUP_SERIAL && (true == m_SerialConn.m_bSessionOpened)) {
-                    m_SerialConn.CloseOnlineSession();
+                    m_SerialConn.CloseOnlineSession()
 
                 } else {
-                    m_Connection.Disconnect();
+                    m_Connection.Disconnect()
                 }*/
                 debugPrint("disconnected")
             }
-            m_bConnected = false;
-            return true;
+            m_bConnected = false
+            return true
         }
         catch
         {
             debugPrint("Exception Occurred : \(error)")
-            return false;
+            return false
         }
     }
     

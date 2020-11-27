@@ -43,11 +43,11 @@ class TCPIPCommunicationHandler
         else{
         switch mClient.connect(timeout: mConnectionTimeout) {
         case .success:
-          debugPrint("Connection Success");
-          return true;
+          debugPrint("Connection Success")
+          return true
         case .failure(_):
-          debugPrint("Connection Failed");
-          return false;
+          debugPrint("Connection Failed")
+          return false
             }
         }
         
@@ -58,10 +58,10 @@ class TCPIPCommunicationHandler
         switch mClient.send(data:bArrSendBuffer)
         {
         case .success:
-            debugPrint("Data Sent Successfully");
-            return true;
+            debugPrint("Data Sent Successfully")
+            return true
         case .failure(_):
-          return false;
+          return false
         }
     }
     

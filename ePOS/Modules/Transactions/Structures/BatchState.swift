@@ -8,7 +8,7 @@
 
 import Foundation
 public enum BatchState {
-    static let BATCH_EMPTY     = 0;
-    static let BATCH_OPEN      = 1;
-    static let BATCH_LOCKED    = 2;
+    static let BATCH_EMPTY     = 0
+    static let BATCH_OPEN      = 1
+    static let BATCH_LOCKED    = 2
 }

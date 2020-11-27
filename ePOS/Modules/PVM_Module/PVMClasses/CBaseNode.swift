@@ -486,8 +486,7 @@ class CBaseNode: CustomStringConvertible {
             GlobalData.singleton.m_sTxnTlvData.objTLV[GlobalData.singleton.m_sTxnTlvData.iTLVindex].uiTag = uiTag;
             GlobalData.singleton.m_sTxnTlvData.objTLV[GlobalData.singleton.m_sTxnTlvData.iTLVindex].uiTagValLen = length;
             GlobalData.singleton.m_sTxnTlvData.objTLV[GlobalData.singleton.m_sTxnTlvData.iTLVindex].chArrTagVal = [Byte](repeating: 0, count: length);
-            var data = Data;
-            data[0..<length] = GlobalData.singleton.m_sTxnTlvData.objTLV[GlobalData.singleton.m_sTxnTlvData.iTLVindex].chArrTagVal[0..<length]
+            GlobalData.singleton.m_sTxnTlvData.objTLV[GlobalData.singleton.m_sTxnTlvData.iTLVindex].chArrTagVal[0..<length] = Data[0..<length]
             GlobalData.singleton.m_sTxnTlvData.iTLVindex =  GlobalData.singleton.m_sTxnTlvData.iTLVindex + 1;
             
         }

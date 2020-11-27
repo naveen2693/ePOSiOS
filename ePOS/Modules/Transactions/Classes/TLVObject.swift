@@ -16,8 +16,8 @@ class TLVObject: Codable {
 
     init(tag: Int, length: Int, data: [Byte])
     {
-        iTag    = tag;
-        iLength = length;
+        iTag    = tag
+        iLength = length
         bData = [Byte](repeating: 0x00, count: iLength)
         bData = Array(data[0 ..< length])
     }
@@ -47,10 +47,10 @@ class TLVObject: Codable {
 
             var data = [Byte](repeating: 0x00, count: iLocalLength)
             data = Array(buf[iLocalOffset ..< iLocalOffset + iLocalLength])
-            //System.arraycopy(buf, iLocalOffset, data, 0, iLocalLength);
-            iLocalOffset += iLocalLength;
+            //System.arraycopy(buf, iLocalOffset, data, 0, iLocalLength)
+            iLocalOffset += iLocalLength
 
-            outTLV = TLVObject(tag: iTag, length: iLocalLength, data: data);
+            outTLV = TLVObject(tag: iTag, length: iLocalLength, data: data)
 
         }
         iOffset = iLocalOffset
@@ -68,11 +68,11 @@ class TLVObject: Codable {
             let tlvObject = GetTLVObject(buf: buf, iOffset: &iOffset, length: length)!
             if(currentOffset == iOffset)
             {
-                break;
+                break
             }
             
             var key: Int
-            key = tlvObject.iTag;
+            key = tlvObject.iTag
             output![key] = tlvObject
         }
         

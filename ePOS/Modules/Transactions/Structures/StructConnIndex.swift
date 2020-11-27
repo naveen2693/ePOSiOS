@@ -9,12 +9,12 @@
 import Foundation
 public struct StructConnIndex
 {
-    var CON_SerialIp =  StructIndex();
-    var CON_GPRS =  StructIndex();
-    var CON_ETHERNET =  StructIndex();
-    var CON_WIFI =  StructIndex();
+    var CON_SerialIp =  StructIndex()
+    var CON_GPRS =  StructIndex()
+    var CON_ETHERNET =  StructIndex()
+    var CON_WIFI =  StructIndex()
 }
 public struct StructIndex
 {
-    var  index=0;
+    var  index=0
 }

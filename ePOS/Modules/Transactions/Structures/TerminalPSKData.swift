@@ -9,7 +9,7 @@
 import Foundation
 
 struct TerminalPSKData: Codable {
-    var iNumKeySlots = 0;
+    var iNumKeySlots = 0
     var stPSK = [StPSK?](repeatElement(nil, count: 8))
     
     //mutating func TerminalPSKData()
@@ -28,7 +28,7 @@ struct TerminalPSKDataValues{
     {
         for i in 0...8
         {
-            stPSK[i] = StPSK();
+            stPSK[i] = StPSK()
         }
     }
 }
