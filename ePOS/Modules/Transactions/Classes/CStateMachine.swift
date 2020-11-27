@@ -158,11 +158,12 @@ public class CStateMachine {
 //
 //
      func SetRootNode(currentNode:CBaseNode) {
-        gRootNode = currentNode
-        if let rootNode = gRootNode{
-        _ = gRootNode?.AddParent(cparentNode: rootNode)
+         gRootNode = currentNode
+         if let rootNode = gRootNode{
+         gRootNode?.AddParent(rootNode)
         }
     }
+
 
     internal func GetRootNode() ->CBaseNode? {
         return gRootNode

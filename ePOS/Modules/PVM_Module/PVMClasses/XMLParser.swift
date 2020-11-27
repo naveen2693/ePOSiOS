@@ -9,71 +9,50 @@
 import Foundation
 
 public class XmlParser {
-    var XMLPVM = 1;
-    var XMLCHARGESLIP = 2;
-    var XMLS_OK = 0;
-    var XMLS_ERROR_PARSING = -1;
-    var CurrentDepth = 0;
-    var objParserWrapper:ParserWrapper = ParserWrapper();
-    var szAttributeName = [String]()
-    var szAttributeValue = [String]()
-    var currentDepth = 0
+    var objParserWrapper:ParserWrapper = ParserWrapper()
     var attributesLength = 0
     
-    // MARK:- parsePVM
-    func parsePVM(xmlType:Int)
+    func parsePVM(_ strData:String)
     {
-        switch (xmlType)
-        {
-        case XMLPVM:
-            if let path = Bundle.main.path(forResource: "COD", ofType: "xml"),
-                let str = try? String.init(contentsOfFile: path)
-            {
-                if let node = XMLNode.node(str)
-                {
-                    for (key,value) in node.attributes
-                    {
-                        szAttributeName.append(key)
-                        szAttributeValue.append(value)
-                    }
-                    attributesLength = node.attributes.count
-                    objParserWrapper.AddNewNode(szAttributeName: szAttributeName, szAttributeValue: szAttributeValue, nTotal:attributesLength);
-                    objParserWrapper.SaveRootNode();
-                    buildXMLTree(nodeList:node.children)
-                    
-                }
-            }
-        case XMLCHARGESLIP:
-            break;
-        default:
-            break
+        guard let node = XMLNode.node(strData) else {return}
+        
+        var strArrAttributeName = [String]()
+        var strArrAttributeValue = [String]()
+        for (key,value) in node.attributes{
+            strArrAttributeName.append(key)
+            strArrAttributeValue.append(value)
         }
+        attributesLength = node.attributes.count
+        objParserWrapper.AddNewNode(strArrAttributeName,strArrAttributeValue,attributesLength)
+        objParserWrapper.SaveRootNode()
+        if(node.children.count>0){
+        buildXMLTree(nodeList:node.children)
+        }
+        objParserWrapper.PopNode();  //popped root node
+        //TODO Uncomment below line Added for to check data
+        CStateMachine.currentNode = CStateMachine.stateMachine.GetRootNode()
     }
+    
     
     // MARK:- buildXMLTree
     private func buildXMLTree(nodeList:[XMLNode])
     {
         for index in 0..<nodeList.count
         {
+            var strArrAttributeName = [String]()
+            var strArrAttributeValue = [String]()
             for (key,value) in nodeList[index].attributes
             {
-                szAttributeName.append(key)
-                szAttributeValue.append(value)
+                strArrAttributeName.append(key)
+                strArrAttributeValue.append(value)
             }
             attributesLength = nodeList[index].attributes.count
-            objParserWrapper.AddNewNode(szAttributeName: szAttributeName, szAttributeValue: szAttributeValue, nTotal:attributesLength);
-            if nodeList[index].children != nil
+            objParserWrapper.AddNewNode(strArrAttributeName,strArrAttributeValue,attributesLength)
+            if nodeList[index].children.count>0
             {
                 buildXMLTree(nodeList: nodeList[index].children);
             }
-            else
-            {
-                break;
-            }
-            currentDepth += 1;
             objParserWrapper.PopNode();
-            CurrentDepth -= 1;
         }
     }
-    
 }

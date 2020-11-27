@@ -108,11 +108,11 @@ public struct XMLATTRIBUTE {
     var chQRmsg5:String = "";
     var chDisplayMsgHeader:String = "" ;
     var chDisplayMsgFooter:String = "";
-    var pvmListParser:[PvmListParserVO]?;
-    var qrcodescanningListParser:[QRCodeScanningParserVO]?;
-    var qrCodeParsingData:QRCodeParsingData?;
+    var pvmListParser = [PvmListParserVO]()
+    var qrcodescanningListParser = [QRCodeScanningParserVO]();
+    var qrCodeParsingData = QRCodeParsingData();
     var bIsOfflineQrCode:Bool = false;
     var bIsRunTimeQR:Bool = false;
     var iHostCatID:Int = 0;
-    var parenNode:CBaseNode?;
+    var parentNode:CBaseNode?;
 }

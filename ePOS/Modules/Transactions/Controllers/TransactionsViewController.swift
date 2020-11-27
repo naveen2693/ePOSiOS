@@ -16,8 +16,48 @@ class TransactionHomeViewController: UIViewController {
         super.viewDidLoad()
 
         debugPrint("Hello World!")
-       //let obj = XmlParser()
-        //obj.parsePVM(xmlType:1)
+        if let path = Bundle.main.path(forResource: "COD", ofType: "xml")
+        {
+            guard let str = try? String.init(contentsOfFile: path)
+                else {
+                    return
+            }
+            let obj = XmlParser()
+            obj.parsePVM(str)
+        }
+        
+        
+        
+//        let globalData = GlobalData.singleton
+//        _ = globalData.FirstInitialize()
+//
+        let isoprocessor = ISOProcessor()
+        _ = isoprocessor.DoHUBActivation()
+        
+//
+//
+//        _ = globalData.UpdateMasterCTFile()
+//        _ = globalData.UpdateMasterIMFile()
+//        _ = globalData.UpdateMasterCLRDIMFile()
+//        _ = globalData.UpdateMasterFCGFile()
+//        _ = globalData.UpdateMasterFONTFile()
+//        _ = globalData.UpdateMasterLIBFile()
+//        _ = globalData.UpdateMasterMINIPVMFile()
+//
+//        var iInitResponse = RetVal.RET_NOT_OK
+//        debugPrint("before DoHUBInitialization")
+//        iInitResponse = isoprocessor.DoHUBInitialization()
+//
+//        //Update master CT file and master IM
+//        //CUIHelper.SetMessage("PROCESSING");
+//        _ = globalData.UpdateMessageFile()
+//        _ = globalData.UpdateMasterCTFile()
+//        _ = globalData.UpdateMasterIMFile()
+//        _ = globalData.UpdateMasterCLRDIMFile()
+//        _ = globalData.UpdateMasterFCGFile()
+//        _ = globalData.UpdateMasterFONTFile()
+//        _ = globalData.UpdateMasterLIBFile()
+//        _ = globalData.UpdateMasterMINIPVMFile()
         
         DoActivation()
         DoInitializtion()

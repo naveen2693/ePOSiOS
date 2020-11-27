@@ -33,24 +33,6 @@ class CryptoHandler{
     }
     
     
-   
-    
-    
-//    static func tripleDesDecrypt(masterKey:String, Input:String) -> String
-//    {
-//
-//
-//        return ""
-//    }
-//
-//    static func tripleDesEncrypt(masterKey:String, Input:String) -> [Byte]?
-//      {
-//
-//
-//          return nil
-//      }
-//
-    
   //MARK:- vFnGetSHA1(_ buffer: [UInt8]) -> String
     static func vFnGetSHA1(_ buffer: [UInt8]) -> String
     {
