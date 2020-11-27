@@ -3810,7 +3810,7 @@ class ISO320Initialization: ISOMessage
             iOffset += 4
 
             debugPrint("MINIPVM ID from Host[\(String(bytes: chArrTemp, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))], Action[\((p[iOffset] == AppConstant.ACTION_ADD ? "ACTION_ADD" : p[iOffset] == AppConstant.ACTION_DELETE ? "ACTION_DELETE" : "Unknown ACtion"))]")
-            debugPrint("Action[0x%0x]", p[iOffset])
+            debugPrint("Action[0x%0\(p[iOffset])]")
             
             if(p[iOffset] == AppConstant.ACTION_ADD)
             {
@@ -3859,11 +3859,11 @@ class ISO320Initialization: ISOMessage
                         temp1[0].value = m_ulArrMINIPVMIdDelete[Int(m_ulCountOfMINIPVMIdDelete)]
                               
                         do{
-                            _ = try FileSystem.AppendFile(strFileName: FileNameConstants.DELETECTLIST, with: temp1)
+                            _ = try FileSystem.AppendFile(strFileName: FileNameConstants.DELETEMINIPVMLIST, with: temp1)
                         }
                         catch
                         {
-                            fatalError("Error in AppendFile, strFileName: \(FileNameConstants.DELETECTLIST)")
+                            fatalError("Error in AppendFile, strFileName: \(FileNameConstants.DELETEMINIPVMLIST)")
                         }
                                   
                         debugPrint("MINIPVM Id Deleted[\(m_ulArrMINIPVMIdDelete[Int(m_ulCountOfMINIPVMIdDelete)])], Count[\(m_ulCountOfMINIPVMIdDelete)]")
@@ -3892,9 +3892,9 @@ class ISO320Initialization: ISOMessage
         if(ilength >= 2){
             //moving packet count to 2 bytes
             var offset: Int = 0
-            self.m_bCurrentPacketCount = Int64(pFieldPVMDef [offset] << 8) & Int64(0x0000FF00)
+            self.m_bCurrentPacketCount = Int64(pFieldPVMDef[offset] << 8) & Int64(0x0000FF00)
             offset += 1
-            self.m_bCurrentPacketCount |= Int64((pFieldPVMDef [offset]) & 0x000000FF)
+            self.m_bCurrentPacketCount |= Int64((pFieldPVMDef[offset]) & 0x000000FF)
             offset += 1
 
             self.m_bTotalPacketCount = Int64(pFieldPVMDef[offset] << 8) & Int64(0x0000FF00)
@@ -7919,11 +7919,11 @@ class ISO320Initialization: ISOMessage
     //MARK:- SaveAdServerHTLSync()
     func SaveAdServerHTLSync()
     {
-        var llList: [Int64] = []
-        for value in GlobalData.m_setAdServerHTL!.sorted()
-        {
-            llList.append(value)
-        }
+        var llList: [Int64] = Array(GlobalData.m_setAdServerHTL!)
+//        for value in GlobalData.m_setAdServerHTL!.sorted()
+//        {
+//            llList.append(value)
+//        }
         
         do{
             _ = try FileSystem.ReWriteFile(strFileName: FileNameConstants.MASTERHTLFILE, with: llList)
