@@ -18,6 +18,8 @@ class StatusDemoViewController: CustomNavigationStyleViewController {
         navigationItem.title = "First Screen"
         setRightTitle(withTitle: "1/3")
         
+        
+        
 //        appDelegate.getOnBoardingData()
 //        OnBoardingRequest.getUserProfileAndProceedToLaunch(showProgress: true, completion:{result in
 //            switch result {
@@ -72,12 +74,27 @@ class StatusDemoViewController: CustomNavigationStyleViewController {
     }
     */
 
+    @IBAction func activationClicked(_ sender: Any) {
+    }
+    
+    @IBAction func initializationClicked(_ sender: Any) {
+    }
+    
+    @IBAction func transactionClicked(_ sender: Any) {
+        let controller = PaymentOptionsViewController.init(nibName: PaymentOptionsViewController.className, bundle: nil)
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    @IBAction func settlementClciked(_ sender: Any) {
+    }
+    
 }
 
 extension StatusDemoViewController: EmptyDataControllerDelegate {
     func actionButtonClicked(_ controller: EmptyDataViewController, for itemType: EmptyViewItemProtocol) {
         self.navigationController?.popViewController(animated: true)
     }
+    
     
     
 }
@@ -92,4 +109,7 @@ extension StatusDemoViewController: IFSCSelectedDelegate {
     func didSelectedIFSC(_ controller: IFSCCodeDetailViewController, code: IFSCDetail) {
         
     }
+    
+    
+    
 }
