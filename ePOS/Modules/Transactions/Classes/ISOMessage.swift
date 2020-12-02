@@ -121,9 +121,13 @@ class ISOMessage{
                 let globalData: GlobalData = GlobalData.singleton
                 _ = globalData.ReadMasterParamFile()
                 
-                if (globalData.m_sMasterParamData!.ulPvmVersion >= 0) {
-                    ulPvmVersion = globalData.m_sMasterParamData!.ulPvmVersion
+                if globalData.m_sMasterParamData != nil
+                {
+                    if (globalData.m_sMasterParamData!.ulPvmVersion >= 0) {
+                        ulPvmVersion = globalData.m_sMasterParamData!.ulPvmVersion
+                    }
                 }
+                
             }
             
             let strPVMVersion: String = NSString(format: "%04d", ulPvmVersion) as String
@@ -410,7 +414,7 @@ class ISOMessage{
         do {
             debugPrint("Inside DisplayField58")
             let globalData: GlobalData = GlobalData.singleton
-            globalData.mFinalMsgDisplayField58 = ""
+            GlobalData.m_csFinalMsgDisplay58 = ""
 
             var iAction: Int = 0x00
                 if (self.bitmap[58 - 1] == true) {
@@ -439,7 +443,7 @@ class ISOMessage{
                                 bArrDisplayMessage.append(contentsOf:bArrTemp)
                                 
                                 iOffset += iLocalDataLen
-                                globalData.mFinalMsgDisplayField58 = (String(bytes: bArrDisplayMessage, encoding: String.Encoding.ascii)?.trimmingCharacters(in: .whitespacesAndNewlines))!
+                                GlobalData.m_csFinalMsgDisplay58 = (String(bytes: bArrDisplayMessage, encoding: String.Encoding.ascii)?.trimmingCharacters(in: .whitespacesAndNewlines))!
                                 
                             } else if (iAction == DisplayMessageMode.MESSAGE_ID_DUMP.rawValue) {
                                 //parse message id carry out look up concatenate in chArrDisplayMessage
@@ -453,7 +457,7 @@ class ISOMessage{
                                 guard let bArrTemp = globalData.GetMessage(id: lMessageId) else {continue}
                                 
                                 bArrDisplayMessage.append(contentsOf:bArrTemp)
-                                globalData.mFinalMsgDisplayField58 = (String(bytes: bArrDisplayMessage, encoding: String.Encoding.utf8)?.trimmingCharacters(in: .whitespacesAndNewlines))!
+                                GlobalData.m_csFinalMsgDisplay58 = (String(bytes: bArrDisplayMessage, encoding: String.Encoding.ascii)?.trimmingCharacters(in: .whitespacesAndNewlines))!
                             }
                             else {
                                 break

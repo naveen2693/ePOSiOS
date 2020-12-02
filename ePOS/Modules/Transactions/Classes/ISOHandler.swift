@@ -16,7 +16,7 @@ class ISOHandler
             //CConx conx = CConx.GetInstance()
             var bIssent:Bool = false
 
-            var bArrSendDataToHostTemp = [UInt8](repeating:0 , count:10000)
+            var bArrSendDataToHostTemp = [Byte](repeating:0 , count:10000)
            
             //Pack ISO Packet
             let iReceivedPacketLength = iso.packIt(sendee: &bArrSendDataToHostTemp)
@@ -26,7 +26,7 @@ class ISOHandler
             }
 
             //Packet + 7 byte header
-            var bArrSendDataToHost = [UInt8](repeating: 0, count: iReceivedPacketLength+7)
+            var bArrSendDataToHost = [Byte](repeating: 0, count: iReceivedPacketLength+7)
                       
             
             // add TPDU and length of message.
@@ -40,9 +40,9 @@ class ISOHandler
             iOffset += AppConstant.MAX_LEN_TPDU
             
             //Length in 2 Bytes
-            bArrSendDataToHost[iOffset] = (UInt8) (iReceivedPacketLength >> 8)
+            bArrSendDataToHost[iOffset] = (Byte) (iReceivedPacketLength >> 8)
             iOffset += 1
-            bArrSendDataToHost[iOffset] = (UInt8) (iReceivedPacketLength)
+            bArrSendDataToHost[iOffset] = (Byte) (iReceivedPacketLength)
             iOffset += 1
             
             bArrSendDataToHost[iOffset..<iOffset+iReceivedPacketLength] = bArrSendDataToHostTemp[0..<iReceivedPacketLength]

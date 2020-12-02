@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Status Demo View Controller-->
+        <!--Transaction Home View Controller-->
         <scene sceneID="6FA-KZ-2Up">
             <objects>
-                <viewController id="jYH-eK-zBV" customClass="StatusDemoViewController" customModule="ePOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jYH-eK-zBV" customClass="TransactionHomeViewController" customModule="ePOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vwo-So-4cv" customClass="EPOSBaseView" customModule="ePOS" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,7 +30,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="activationClicked:" destination="jYH-eK-zBV" eventType="touchUpInside" id="qEd-VK-ojj"/>
+                                            <action selector="activationClicked:" destination="jYH-eK-zBV" eventType="touchUpInside" id="Zcp-4Y-0aR"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXl-4h-epx" customClass="EPOSRectangularButton" customModule="ePOS" customModuleProvider="target">
@@ -39,7 +39,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="initializationClicked:" destination="jYH-eK-zBV" eventType="touchUpInside" id="djY-FD-h6x"/>
+                                            <action selector="initializationClicked:" destination="jYH-eK-zBV" eventType="touchUpInside" id="eiM-6X-VrN"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1E7-kI-o8R" customClass="EPOSRectangularButton" customModule="ePOS" customModuleProvider="target">
@@ -48,7 +48,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="transactionClicked:" destination="jYH-eK-zBV" eventType="touchUpInside" id="Ofn-rC-lPF"/>
+                                            <action selector="transactionClicked:" destination="jYH-eK-zBV" eventType="touchUpInside" id="wFR-t5-tmX"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bfk-Yf-97E" customClass="EPOSRectangularButton" customModule="ePOS" customModuleProvider="target">
@@ -57,7 +57,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="settlementClciked:" destination="jYH-eK-zBV" eventType="touchUpInside" id="Qc7-BI-MO3"/>
+                                            <action selector="settlementClciked:" destination="jYH-eK-zBV" eventType="touchUpInside" id="qtg-vN-sSa"/>
                                         </connections>
                                     </button>
                                 </subviews>

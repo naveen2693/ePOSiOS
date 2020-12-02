@@ -10,6 +10,8 @@ import UIKit
 
 class PaymentOptionsViewController: CustomNavigationStyleViewController {
     
+    weak var testDelegate: prTransactionTestDelegate?
+    
     @IBOutlet weak var containerView: UIView!
     
     var options = ["Option 1", "Option 2", "Option 3", "Option 4"]
@@ -42,6 +44,9 @@ class PaymentOptionsViewController: CustomNavigationStyleViewController {
     
     @objc func optionSelected(sender : UIButton) {
         let controller = EnterAmountViewController.init(nibName: EnterAmountViewController.className, bundle: nil)
+        
+        controller.transactionDelegate = testDelegate
+        
         self.navigationController?.pushViewController(controller, animated: true)
     }
 }

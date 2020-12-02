@@ -74,20 +74,6 @@ class StatusDemoViewController: CustomNavigationStyleViewController {
     }
     */
 
-    @IBAction func activationClicked(_ sender: Any) {
-    }
-    
-    @IBAction func initializationClicked(_ sender: Any) {
-    }
-    
-    @IBAction func transactionClicked(_ sender: Any) {
-        let controller = PaymentOptionsViewController.init(nibName: PaymentOptionsViewController.className, bundle: nil)
-        self.navigationController?.pushViewController(controller, animated: true)
-    }
-    
-    @IBAction func settlementClciked(_ sender: Any) {
-    }
-    
 }
 
 extension StatusDemoViewController: EmptyDataControllerDelegate {

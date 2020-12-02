@@ -53,12 +53,12 @@ class FileSystem {
     {
         var objResult: T?
         
-        
-        if let result:[T] = ReadFile(strFileName: strFileName)!
+        let result:[T]? = ReadFile(strFileName: strFileName)!
+        if result != nil
         {
-            if (!result.isEmpty)
+            if (!result!.isEmpty)
             {
-                objResult = result[iOffset]
+                objResult = result![iOffset]
             }
         }
     
@@ -71,12 +71,17 @@ class FileSystem {
         var bResult: Bool = false
         
         do{
-            var result: [T] = ReadFile(strFileName: strFileName)!
-        
-            result[iOffset] = Obj  //TODO check with vishal
             
-            bResult = try ReWriteFile(strFileName: strFileName, with: result)
-                    
+            var result:[T]? = ReadFile(strFileName: strFileName)!
+            if result != nil
+            {
+                if (!result!.isEmpty)
+                {
+                    result![iOffset] = Obj
+                }
+                
+                bResult = try ReWriteFile(strFileName: strFileName, with: result!)
+            }
         }
         catch {
             debugPrint("Exception Caught")

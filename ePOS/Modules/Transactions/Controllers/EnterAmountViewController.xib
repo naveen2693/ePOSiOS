@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EnterAmountViewController" customModule="ePOS" customModuleProvider="target">
             <connections>
+                <outlet property="amountTextField" destination="ymA-oB-zkT" id="CgZ-ou-Urf"/>
                 <outlet property="nextButton" destination="FKe-qG-RvX" id="C8O-mS-MCQ"/>
                 <outlet property="topLabel" destination="TUd-g2-Pem" id="62N-mq-qL5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
