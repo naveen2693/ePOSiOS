@@ -246,18 +246,20 @@ class TransactionUtils
         return bytes
     }
     
-//    public static func atoi(_ str: [Byte]) -> Int {
-//        var res: Int = 0 // Initialize result
-//        // Iterate through all characters of input string and
-//        // update result
-//        for i in 0 ..< str.count where (str[i] != 0x00) && (str[i] != "\0") {
-//            if (str[i] < 48 && str[i] > 57) {
-//                return -1
-//            }
-//            res = res * 10 + str[i] - "0"
-//        }
-//        return res
-//    }
+    public static func atol(_ str: [Byte]) -> Int64 {
+        var res: Int64 = 0 // Initialize result
+        // Iterate through all characters of input string and update result
+        for i in 0 ..< str.count {
+            
+            if(str[i] != 0x00 || Character(UnicodeScalar(str[i])).isNewline)
+            {
+                continue
+            }
+            
+            res = res * 10 + Int64(str[i]) - 48
+        }
+        return res
+    }
     
 }
 
