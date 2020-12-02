@@ -76,39 +76,70 @@ class TransactionHomeViewController: UIViewController {
 
     @IBAction func activationClicked(_ sender: Any) {
         weak var weakSelf = self
-        DispatchQueue.global(qos: .background).async {
-            if((weakSelf?.DoActivation())!)
-            {
-                DispatchQueue.main.async {
-
-                let alert = UIAlertController(title: "", message: GlobalData.singleton.mFinalMsgActivation, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-                
-                self.present(alert, animated: true)
-                }
-            }
+        let syncConc = DispatchQueue(label:"con",attributes:.concurrent)
+        syncConc.sync{
+            _ = weakSelf?.DoActivation()
         }
+        
+        DispatchQueue.main.async {
+            
+            let alert = UIAlertController(title: "", message: GlobalData.singleton.mFinalMsgActivation, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+            
+            self.present(alert, animated: true)
+        }
+        
+        
+        
+//        DispatchQueue.global(qos: .background).async {
+//            if((weakSelf?.DoActivation())!)
+//            {
+//                DispatchQueue.main.async {
+//
+//                let alert = UIAlertController(title: "", message: GlobalData.singleton.mFinalMsgActivation, preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+//
+//                self.present(alert, animated: true)
+//                }
+//            }
+//        }
     
     }
     
     @IBAction func initializationClicked(_ sender: Any) {
+        
         self.showLoading()
         weak var weakSelf = self
-        DispatchQueue.global(qos: .background).async {
-            if((weakSelf?.DoInitializtion())!)
-            {
-                DispatchQueue.main.async {
-
-                weakSelf?.hideLoading()
-                    
-                let alert = UIAlertController(title: "", message: GlobalData.m_csFinalMsgDoHubInitialization, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-                
-                weakSelf?.present(alert, animated: true)
-                
-                }
-            }
+        let syncConc = DispatchQueue(label:"con",attributes:.concurrent)
+        syncConc.sync{
+            _ = weakSelf?.DoInitializtion()
         }
+        
+        DispatchQueue.main.async {
+            self.hideLoading()
+            let alert = UIAlertController(title: "", message: GlobalData.m_csFinalMsgDoHubInitialization, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+            
+            self.present(alert, animated: true)
+        }
+        
+//        self.showLoading()
+//        weak var weakSelf = self
+//        DispatchQueue.global(qos: .background).async {
+//            if((weakSelf?.DoInitializtion())!)
+//            {
+//                DispatchQueue.main.async {
+//
+//                weakSelf?.hideLoading()
+//
+//                let alert = UIAlertController(title: "", message: GlobalData.m_csFinalMsgDoHubInitialization, preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+//
+//                weakSelf?.present(alert, animated: true)
+//
+//                }
+//            }
+//        }
     }
     
     @IBAction func transactionClicked(_ sender: Any) {
@@ -119,21 +150,37 @@ class TransactionHomeViewController: UIViewController {
     }
     
     @IBAction func settlementClciked(_ sender: Any) {
+        
+        
         weak var weakSelf = self
-        DispatchQueue.global(qos: .background).async {
-            
-            if((weakSelf?.DoSettlement())!)
-            {
-                DispatchQueue.main.async {
-
-                let alert = UIAlertController(title: "", message: GlobalData.m_csFinalMsgBatchSettlement, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-                
-                self.present(alert, animated: true)
-                
-                }
-            }
+        let syncConc = DispatchQueue(label:"con",attributes:.concurrent)
+        syncConc.sync{
+            _ = weakSelf?.DoSettlement()
         }
+        
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "", message: GlobalData.m_csFinalMsgBatchSettlement, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+            
+            self.present(alert, animated: true)
+        }
+        
+
+//        weak var weakSelf = self
+//        DispatchQueue.global(qos: .background).async {
+//
+//            if((weakSelf?.DoSettlement())!)
+//            {
+//                DispatchQueue.main.async {
+//
+//                let alert = UIAlertController(title: "", message: GlobalData.m_csFinalMsgBatchSettlement, preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+//
+//                self.present(alert, animated: true)
+//
+//                }
+//            }
+//        }
     }
     
 
@@ -163,12 +210,12 @@ class TransactionHomeViewController: UIViewController {
         if (iSettlementResponse == AppConstant.TRUE) {
             GlobalData.m_bIsSettleBatchSuccessfullyRun = true
             
-            if (!GlobalData.m_csFinalMsgDisplay58.isEmpty || GlobalData.m_csFinalMsgDisplay58 == "")
+            if (!GlobalData.m_csFinalMsgDisplay58.isEmpty || GlobalData.m_csFinalMsgDisplay58 == " ")
             {
                 GlobalData.m_csFinalMsgBatchSettlement = GlobalData.m_csFinalMsgDisplay58
             }
             else{
-                GlobalData.m_csFinalMsgDisplay58 = "Batch Settled!"
+                GlobalData.m_csFinalMsgBatchSettlement = "Batch Settled!"
             }
             
             bRet = true
@@ -279,21 +326,35 @@ extension TransactionHomeViewController: prTransactionTestDelegate {
         amountEntered = enteredAmount
         
         weak var weakSelf = self
-        DispatchQueue.global(qos: .background).async {
-            if ((weakSelf?.DoTransaction(enteredAmount))!)
-            {
-                DispatchQueue.main.async {
-
-                let alert = UIAlertController(title: "", message: GlobalData.m_csFinalMsgDoHubOnlineTxn, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (_) in
-                        self.navigationController?.popToRootViewController(animated: true)
-                    }))
-                
-                    self.present(alert, animated: true)
-                }
-            }
+        let syncConc = DispatchQueue(label:"con",attributes:.concurrent)
+        syncConc.sync{
+            _ = weakSelf?.DoTransaction(enteredAmount)
         }
         
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "", message: GlobalData.m_csFinalMsgDoHubOnlineTxn, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (_) in
+                self.navigationController?.popToRootViewController(animated: true)
+            }))
+            
+            self.present(alert, animated: true)
+        }
+        
+//        weak var weakSelf = self
+//        DispatchQueue.global(qos: .background).async {
+//            if ((weakSelf?.DoTransaction(enteredAmount))!)
+//            {
+//                DispatchQueue.main.async {
+//
+//                let alert = UIAlertController(title: "", message: GlobalData.m_csFinalMsgDoHubOnlineTxn, preferredStyle: .alert)
+//                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (_) in
+//                        self.navigationController?.popToRootViewController(animated: true)
+//                    }))
+//
+//                    self.present(alert, animated: true)
+//                }
+//            }
+//        }
     }
 }
 
