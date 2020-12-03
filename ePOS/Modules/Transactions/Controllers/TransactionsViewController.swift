@@ -12,7 +12,6 @@ class TransactionHomeViewController: UIViewController {
 
 //@IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
-//       _ =  GlobalData.singleton.FirstInitialize()
         super.viewDidLoad()
 
         debugPrint("Hello World!")
@@ -26,50 +25,19 @@ class TransactionHomeViewController: UIViewController {
             obj.parsePVM(str)
         }
         
-        
-        
-//        let globalData = GlobalData.singleton
-//        _ = globalData.FirstInitialize()
+        let globalData = GlobalData.singleton
+        _ = globalData.FirstInitialize()
 //
         let isoprocessor = ISOProcessor()
         _ = isoprocessor.DoHUBActivation()
         
-//
-//
-//        _ = globalData.UpdateMasterCTFile()
-//        _ = globalData.UpdateMasterIMFile()
-//        _ = globalData.UpdateMasterCLRDIMFile()
-//        _ = globalData.UpdateMasterFCGFile()
-//        _ = globalData.UpdateMasterFONTFile()
-//        _ = globalData.UpdateMasterLIBFile()
-//        _ = globalData.UpdateMasterMINIPVMFile()
-//
-//        var iInitResponse = RetVal.RET_NOT_OK
-//        debugPrint("before DoHUBInitialization")
-//        iInitResponse = isoprocessor.DoHUBInitialization()
-//
-//        //Update master CT file and master IM
-//        //CUIHelper.SetMessage("PROCESSING");
-//        _ = globalData.UpdateMessageFile()
-//        _ = globalData.UpdateMasterCTFile()
-//        _ = globalData.UpdateMasterIMFile()
-//        _ = globalData.UpdateMasterCLRDIMFile()
-//        _ = globalData.UpdateMasterFCGFile()
-//        _ = globalData.UpdateMasterFONTFile()
-//        _ = globalData.UpdateMasterLIBFile()
-//        _ = globalData.UpdateMasterMINIPVMFile()
         
-        DoActivation()
-        DoInitializtion()
-        DoSettlement()
-        DoTransaction()
-        DoSettlement()
+//        DoActivation()
+//        DoInitializtion()
+//        DoSettlement()
+//        DoTransaction()
+//        DoSettlement()
             
-//        let iso = ISO440.shared // singleton
-//        let isoObject = ISO440()
-//
-//        iso.initiateISO()
-        // Do any additional setup after loading the view.
     }
     
 
@@ -140,8 +108,8 @@ func DoSettlement()
 
 func DoActivation()
 {
-    let globalData = GlobalData.singleton
-    _ = globalData.FirstInitialize()
+    //let globalData = GlobalData.singleton
+    //_ = globalData.FirstInitialize()
     
     let isoprocessor = ISOProcessor()
     _ = isoprocessor.DoHUBActivation()

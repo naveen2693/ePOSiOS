@@ -10,18 +10,10 @@ import Foundation
 
 class TCPIPCommunicator
 {
-    static let singleton = TCPIPCommunicationHandler(hostIP: "192.168.0.9",hostPort: 8997,connectionTimeout: 60000,sendReceiveTimeout:120000 ,bIsSSLOn:false)
     
-//    func connect()->Bool
-//    {
-//        if TCPIPCommunicator.singleton.mbIsConnected == true
-//        {
-//            return true
-//        }
-//        else
-//        {
-//            //extract IP Port from file and connect
-//            return TCPIPCommunicator.singleton.Connect()
-//        }
-//    }
+    static let singleton = TCPIPCommunicationHandler(hostIP: "192.168.43.111",hostPort: 8997,connectionTimeout: 20000,sendReceiveTimeout:120000 ,bIsSSLOn:false)
+    
+    //Comment above and Uncomment below to run SSL
+//    static let singleton = TCPIPCommunicationHandlerSSL(hostIP: "192.168.43.111",hostPort: 8997,connectionTimeout: 60000,sendReceiveTimeout:120000 ,bIsSSLOn:true)
+
 }
