@@ -22,13 +22,13 @@ class ISOProcessor
         let globalData = GlobalData.singleton
 
         globalData.mFinalMsgActivation = "Activation Failed!"
-        globalData.mFinalMsgDisplayField58 = ""
+        GlobalData.m_csFinalMsgDisplay58 = ""
 
         do {
             
             if(!TCPIPCommunicator.singleton.Connect())
             {
-                globalData.mFinalMsgActivation = "Connection Failed";
+                globalData.mFinalMsgActivation = "Connection Failed!";
                 return false
             }
             //CGlobalData.updateCustomProgressDialog("Activating")
@@ -50,9 +50,9 @@ class ISOProcessor
             if ((isohandler.getNextMessage(iso440) != 450) || iso440.IsOK() != true)
             {
                 debugPrint("Receiving ISO 440 packet. Failed")
-                globalData.mFinalMsgActivation = globalData.mFinalMsgDisplayField58
+                globalData.mFinalMsgActivation = GlobalData.m_csFinalMsgDisplay58
                 if (globalData.mFinalMsgActivation.isEmpty) {
-                    globalData.mFinalMsgActivation = "Activation Failed"
+                    globalData.mFinalMsgActivation = "Activation Failed!"
                 }
                 iso440.CISOMsgD()
                 _ = TCPIPCommunicator.singleton.disconnect()
@@ -87,6 +87,7 @@ class ISOProcessor
 
             if(!TCPIPCommunicator.singleton.Connect())
             {
+                GlobalData.m_csFinalMsgDoHubInitialization = "Connection Failed! Please Check Data Connection"
                 return RetVal.RET_CONX_FAILED
             }
             

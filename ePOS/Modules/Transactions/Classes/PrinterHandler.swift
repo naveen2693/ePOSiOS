@@ -176,7 +176,7 @@ class PrinterHandler{
 
                                 //if newline encountered, then Pos is set to 0
                                 //else incremented
-                                if (Character(UnicodeScalar(p[iOffset])) != "\n") {
+                                if (Character(UnicodeScalar(p[iOffset])).isNewline) {
                                     iPosNull += 1
                                 } else {
                                     iPosNull = 0

@@ -225,16 +225,9 @@ class CISO220SwipeTxn: CISO220
                     CSVHandler.singleton.m_objCSVTxn!.SendResponseLocation = CSVBaseTxn.enSendResponseLocation.BEFORE_PRINT_CHARGESLIP
                 }
             }
-            //TODO: Have to Remove Commented Vineet: this will be done from transactionHub REQUEST_FOR_PRINT_SLIP
-            let printerhandler = PrinterHandler()
-            debugPrint("Print Dump Result \(printerhandler.ProcessPrintDump(bArrPrintData: m_bPrintData, iPrintDumpLength: m_bPrintData.count))")
         }
         else
         {
-            // Commented Vineet: this will be done from transactionHub REQUEST_FOR_PRINT_SLIP
-            let printerhandler = PrinterHandler()
-            debugPrint("Print Dump Result \(printerhandler.ProcessPrintDump(bArrPrintData: m_bPrintData, iPrintDumpLength: m_bPrintData.count))")
-
             //Now Process The response and print the slip till all the data is printed
             if (true == globalData.m_ptrCSVDATA.bsendData)
             {

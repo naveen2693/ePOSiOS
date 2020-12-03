@@ -160,7 +160,7 @@ class CISO220: ISOMessage, CISO220Abstrct
             CISO220.m_iReplayDataLen = length
             CISO220.m_bDataToReplay = true
             CISO220.m_bArrDataToReplay = [Byte](repeating: 0x00, count: AppConstant.MAX_REPLAY_DATA_LEN)
-            CISO220.m_bArrDataToReplay = [Byte](p[0 ..< length])
+            CISO220.m_bArrDataToReplay = Array(p[0 ..< length])
             //System.arraycopy(p, 0, m_bArrDataToReplay, 0, length)
         }
 
@@ -2050,7 +2050,7 @@ class CISO220: ISOMessage, CISO220Abstrct
                     _ = try FileSystem.AppendByteFile(strFileName: chTxnField62Name, with: tempData)
                 }
                 catch{
-                    debugPrint("Error in AppendFile \(chTxnField62Name)")
+                    debugPrint("Error in AppendByteFile \(chTxnField62Name)")
                 }
 
             } else {

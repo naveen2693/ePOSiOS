@@ -26,7 +26,6 @@ final class GlobalData
     var m_bIsToCaptureSignature = false
     var m_iEMVTxnType = 0
     var m_iHostIndicator:Int = 0
-    var m_csFinalMsgDoHubOnlineTxn = ""
     var m_bIsSSL = false
     var  m_sAutoSettleParams:AutoSettlementParams?
     var m_bIsSignCapture = false
@@ -35,7 +34,6 @@ final class GlobalData
     static var m_setAdServerHTL: Set<Int64>?
     public var m_strCurrentLoggedInUserPIN: String = ""
     var m_bIsLoggedIn: Bool = false
-    var mFinalMsgDisplayField58: String = ""
     var mFinalMsgActivation:String = ""
     static var responseCode: String = ""
     static var m_bIsTxnDeclined: Bool = false
@@ -286,14 +284,15 @@ final class GlobalData
     func  ReadMasterParamFile() -> Int {
         if m_sMasterParamData_cache == nil
         {
-            if let m_sMasterParamData: TerminalMasterParamData = FileSystem.SeekRead(strFileName: FileNameConstants.TERMINALMASTERPARAMFILE, iOffset: 0)
+            if let sMasterParamData: TerminalMasterParamData = FileSystem.SeekRead(strFileName: FileNameConstants.TERMINALMASTERPARAMFILE, iOffset: 0)
             {
-                m_sMasterParamData_cache = m_sMasterParamData
+                m_sMasterParamData_cache = sMasterParamData
+                m_sMasterParamData = sMasterParamData
             }
             else
             {
                 let terminalMasterParamData = TerminalMasterParamData()
-                m_sMasterParamData_cache = terminalMasterParamData
+                m_sMasterParamData = terminalMasterParamData
             }
         }
         else

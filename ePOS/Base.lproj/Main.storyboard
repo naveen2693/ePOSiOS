@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Status Demo View Controller-->
+        <!--Transaction Home View Controller-->
         <scene sceneID="6FA-KZ-2Up">
             <objects>
-                <viewController id="jYH-eK-zBV" customClass="StatusDemoViewController" customModule="ePOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jYH-eK-zBV" customClass="TransactionHomeViewController" customModule="ePOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vwo-So-4cv" customClass="EPOSBaseView" customModule="ePOS" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -20,16 +20,64 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="63h-4O-fzj" customClass="RoundedCornerView" customModule="ePOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFn-US-Spj">
-                                        <rect key="frame" x="140" y="42" width="133" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="First"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dh5-IN-Jg2" customClass="EPOSRectangularButton" customModule="ePOS" customModuleProvider="target">
+                                        <rect key="frame" x="40" y="20" width="240" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="pwS-51-raC"/>
+                                            <constraint firstAttribute="width" constant="240" id="xH0-oV-znc"/>
+                                        </constraints>
+                                        <state key="normal" title="Activation">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
-                                            <action selector="firstClicked:" destination="jYH-eK-zBV" eventType="touchUpInside" id="YdN-HB-XBj"/>
+                                            <action selector="activationClicked:" destination="jYH-eK-zBV" eventType="touchUpInside" id="Zcp-4Y-0aR"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXl-4h-epx" customClass="EPOSRectangularButton" customModule="ePOS" customModuleProvider="target">
+                                        <rect key="frame" x="40" y="90" width="240" height="50"/>
+                                        <state key="normal" title="Initialization">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="initializationClicked:" destination="jYH-eK-zBV" eventType="touchUpInside" id="eiM-6X-VrN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1E7-kI-o8R" customClass="EPOSRectangularButton" customModule="ePOS" customModuleProvider="target">
+                                        <rect key="frame" x="40" y="160" width="240" height="50"/>
+                                        <state key="normal" title="Transaction">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="transactionClicked:" destination="jYH-eK-zBV" eventType="touchUpInside" id="wFR-t5-tmX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bfk-Yf-97E" customClass="EPOSRectangularButton" customModule="ePOS" customModuleProvider="target">
+                                        <rect key="frame" x="40" y="230" width="240" height="50"/>
+                                        <state key="normal" title="Settlement">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="settlementClciked:" destination="jYH-eK-zBV" eventType="touchUpInside" id="qtg-vN-sSa"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="1E7-kI-o8R" firstAttribute="leading" secondItem="dh5-IN-Jg2" secondAttribute="leading" id="5d4-4s-Npz"/>
+                                    <constraint firstItem="1E7-kI-o8R" firstAttribute="top" secondItem="aXl-4h-epx" secondAttribute="bottom" constant="20" id="76E-fM-vv3"/>
+                                    <constraint firstItem="aXl-4h-epx" firstAttribute="top" secondItem="dh5-IN-Jg2" secondAttribute="bottom" constant="20" id="77n-az-B92"/>
+                                    <constraint firstItem="1E7-kI-o8R" firstAttribute="height" secondItem="dh5-IN-Jg2" secondAttribute="height" id="JLD-Kb-3LQ"/>
+                                    <constraint firstItem="Bfk-Yf-97E" firstAttribute="leading" secondItem="dh5-IN-Jg2" secondAttribute="leading" id="MLk-Za-bvL"/>
+                                    <constraint firstItem="Bfk-Yf-97E" firstAttribute="width" secondItem="dh5-IN-Jg2" secondAttribute="width" id="cTj-Hg-AY8"/>
+                                    <constraint firstItem="dh5-IN-Jg2" firstAttribute="top" secondItem="63h-4O-fzj" secondAttribute="top" constant="20" id="cat-tF-c7C"/>
+                                    <constraint firstItem="1E7-kI-o8R" firstAttribute="width" secondItem="dh5-IN-Jg2" secondAttribute="width" id="ePv-n2-oi1"/>
+                                    <constraint firstItem="Bfk-Yf-97E" firstAttribute="height" secondItem="dh5-IN-Jg2" secondAttribute="height" id="gPl-4G-qEN"/>
+                                    <constraint firstItem="Bfk-Yf-97E" firstAttribute="top" secondItem="1E7-kI-o8R" secondAttribute="bottom" constant="20" id="gUd-mP-yWu"/>
+                                    <constraint firstItem="dh5-IN-Jg2" firstAttribute="centerX" secondItem="63h-4O-fzj" secondAttribute="centerX" id="hTM-Rn-S03"/>
+                                    <constraint firstItem="aXl-4h-epx" firstAttribute="width" secondItem="dh5-IN-Jg2" secondAttribute="width" id="xJc-cw-knv"/>
+                                    <constraint firstItem="aXl-4h-epx" firstAttribute="leading" secondItem="dh5-IN-Jg2" secondAttribute="leading" id="xTZ-fw-mdF"/>
+                                    <constraint firstItem="aXl-4h-epx" firstAttribute="height" secondItem="dh5-IN-Jg2" secondAttribute="height" id="zVp-6v-Wfd"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRound">
                                         <real key="value" value="10"/>

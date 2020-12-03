@@ -130,7 +130,7 @@ class ISO500Settlement: ISOMessage
         if (bitmap[62 - 1] && bitmap[53 - 1]) {
 
             if (iCurrentPrintDumpOffset + length < AppConstant.MAX_RESPONSE_SETTLEMENT_DATA_LEN) {
-                m_bSettlementPrintData = [Byte](p[iCurrentPrintDumpOffset ..< iCurrentPrintDumpOffset + length])
+                m_bSettlementPrintData[iCurrentPrintDumpOffset ..< iCurrentPrintDumpOffset + length] = (p[0 ..< length])
                 //System.arraycopy(p, 0, m_bSettlementPrintData, iCurrentPrintDumpOffset, length)
                 iCurrentPrintDumpOffset += length
             }
@@ -291,7 +291,7 @@ class ISO500Settlement: ISOMessage
             m_ByteArray[ioffset] = Byte((templen + 1) & 0x000000FF)
             ioffset += 1
 
-            m_ByteArray = [Byte](EmptyData[ioffset ..< ioffset + templen])
+            m_ByteArray[ioffset ..< ioffset + templen] = (EmptyData[0 ..< templen])
             //System.arraycopy(EmptyData, 0, ByteArrayObj1.m_ByteArray, ioffset, templen)
 
             ioffset += templen

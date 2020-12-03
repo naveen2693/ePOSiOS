@@ -63,7 +63,7 @@ public class CPineKeyInjection
         
         if(uchArrEncryptedData == nil)
         {
-            GlobalData.singleton.m_csFinalMsgDoHubOnlineTxn = "Encrypting Mag Track failed!";
+            GlobalData.m_csFinalMsgDoHubOnlineTxn = "Encrypting Mag Track failed!";
             return nil;
         }
         _ = TransactionUtils.byteArray2HexString(arr: uchArrEncryptedData);

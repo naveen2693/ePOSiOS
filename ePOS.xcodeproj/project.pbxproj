@@ -160,6 +160,12 @@
 		990AF9D0252A0F970008A907 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990AF9CC252A0F970008A907 /* SearchTableViewCell.swift */; };
 		990AF9D2252A38A10008A907 /* MasterData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 990AF9D1252A38A10008A907 /* MasterData.plist */; };
 		990AF9D4252A38A80008A907 /* States.plist in Resources */ = {isa = PBXBuildFile; fileRef = 990AF9D3252A38A80008A907 /* States.plist */; };
+		9915995C2577580500630E32 /* PaymentOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9915995A2577580500630E32 /* PaymentOptionsViewController.swift */; };
+		9915995D2577580500630E32 /* PaymentOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9915995B2577580500630E32 /* PaymentOptionsViewController.xib */; };
+		991599602577581B00630E32 /* EnterDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9915995E2577581B00630E32 /* EnterDataViewController.swift */; };
+		991599612577581B00630E32 /* EnterDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9915995F2577581B00630E32 /* EnterDataViewController.xib */; };
+		991599642577583000630E32 /* EnterAmountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991599622577583000630E32 /* EnterAmountViewController.swift */; };
+		991599652577583000630E32 /* EnterAmountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 991599632577583000630E32 /* EnterAmountViewController.xib */; };
 		99186CBA2508C08F00A9FE07 /* EPOSTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 99186CB92508C08F00A9FE07 /* EPOSTextField.m */; };
 		99186CBD2508EC6000A9FE07 /* EPOSTextField+FloatText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CBC2508EC6000A9FE07 /* EPOSTextField+FloatText.swift */; };
 		99186CC42508EF5600A9FE07 /* EPOSTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99186CC32508EF5600A9FE07 /* EPOSTabBarViewController.swift */; };
@@ -452,6 +458,12 @@
 		990AF9CC252A0F970008A907 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		990AF9D1252A38A10008A907 /* MasterData.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = MasterData.plist; sourceTree = "<group>"; };
 		990AF9D3252A38A80008A907 /* States.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = States.plist; sourceTree = "<group>"; };
+		9915995A2577580500630E32 /* PaymentOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentOptionsViewController.swift; sourceTree = "<group>"; };
+		9915995B2577580500630E32 /* PaymentOptionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentOptionsViewController.xib; sourceTree = "<group>"; };
+		9915995E2577581B00630E32 /* EnterDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterDataViewController.swift; sourceTree = "<group>"; };
+		9915995F2577581B00630E32 /* EnterDataViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnterDataViewController.xib; sourceTree = "<group>"; };
+		991599622577583000630E32 /* EnterAmountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterAmountViewController.swift; sourceTree = "<group>"; };
+		991599632577583000630E32 /* EnterAmountViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnterAmountViewController.xib; sourceTree = "<group>"; };
 		99186CB72508C08E00A9FE07 /* ePOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ePOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		99186CB82508C08F00A9FE07 /* EPOSTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EPOSTextField.h; sourceTree = "<group>"; };
 		99186CB92508C08F00A9FE07 /* EPOSTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EPOSTextField.m; sourceTree = "<group>"; };
@@ -860,6 +872,12 @@
 				99186CCA2508F01400A9FE07 /* TransactionsViewController.swift */,
 				46AB5D132546E6AD00FF814E /* AccountTableViewController.swift */,
 				46386C222548A9100038F183 /* TransactionHistoryViewController.swift */,
+				9915995A2577580500630E32 /* PaymentOptionsViewController.swift */,
+				9915995B2577580500630E32 /* PaymentOptionsViewController.xib */,
+				9915995E2577581B00630E32 /* EnterDataViewController.swift */,
+				9915995F2577581B00630E32 /* EnterDataViewController.xib */,
+				991599622577583000630E32 /* EnterAmountViewController.swift */,
+				991599632577583000630E32 /* EnterAmountViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1660,6 +1678,7 @@
 				9976C95B2501165E00FC5DD3 /* Roboto-Thin.ttf in Resources */,
 				991DF26A251CB5C900AEA1C3 /* EPOSLoader.xib in Resources */,
 				990AF9652528559C0008A907 /* DropdownOptionsViewController.xib in Resources */,
+				991599652577583000630E32 /* EnterAmountViewController.xib in Resources */,
 				9976C9502501165E00FC5DD3 /* Roboto-Medium.ttf in Resources */,
 				9976C9572501165E00FC5DD3 /* Roboto-Italic.ttf in Resources */,
 				99186D4A2511D27F00A9FE07 /* LoginScreen.storyboard in Resources */,
@@ -1671,6 +1690,7 @@
 				99186D292511D1E000A9FE07 /* WebviewStoryBoard.storyboard in Resources */,
 				990AF9CF252A0F970008A907 /* CustomSearchViewController.xib in Resources */,
 				9919A9A22517528800A67253 /* SearchIFSCViewController.xib in Resources */,
+				991599612577581B00630E32 /* EnterDataViewController.xib in Resources */,
 				991DF273251DED8000AEA1C3 /* EPOSBaseView.xib in Resources */,
 				9919A9BD251A475C00A67253 /* PackageDetailViewController.xib in Resources */,
 				46E293C5255BAC0B00826954 /* COD.xml in Resources */,
@@ -1693,6 +1713,7 @@
 				9976C9542501165E00FC5DD3 /* Roboto-ThinItalic.ttf in Resources */,
 				990AF9D2252A38A10008A907 /* MasterData.plist in Resources */,
 				9976C9122500F05800FC5DD3 /* Assets.xcassets in Resources */,
+				9915995D2577580500630E32 /* PaymentOptionsViewController.xib in Resources */,
 				9976C9552501165E00FC5DD3 /* Roboto-BoldItalic.ttf in Resources */,
 				991DF26B251CB5C900AEA1C3 /* loadingAnimation.gif in Resources */,
 				99186D1E2510D6D600A9FE07 /* .swiftlint.yml in Resources */,
@@ -1844,6 +1865,7 @@
 				8EE3286D25444AD300616E33 /* CConx.swift in Sources */,
 				8EE32852253D632500616E33 /* st_CSVTxnTypeMiniPvmMappingDetails.swift in Sources */,
 				46AA3E08252F237B005907E1 /* StructConnIndex.swift in Sources */,
+				991599642577583000630E32 /* EnterAmountViewController.swift in Sources */,
 				CE971BD5252CBD8200843943 /* TerminalConxData.swift in Sources */,
 				CE971BD5252CBD8200843943 /* TerminalConxData.swift in Sources */,
 				46ED346E25371B3500CEF19D /* st_BINRange.swift in Sources */,
@@ -1931,6 +1953,7 @@
 				46BD9B50251A8646008DEFEA /* ForgotPasswordController.swift in Sources */,
 				8EE328682544490A00616E33 /* st_TxnBin.swift in Sources */,
 				8E10234D2545780200F1A907 /* st_EMV_Tag_List.swift in Sources */,
+				991599602577581B00630E32 /* EnterDataViewController.swift in Sources */,
 				997DC7F5252200FD006ADE48 /* OnBoardingConstants.swift in Sources */,
 				99186D232511D09400A9FE07 /* Util.swift in Sources */,
 				991ADEA825064E2F00932251 /* UIImageExtension.swift in Sources */,
@@ -1964,6 +1987,7 @@
 				991ADEA4250646E500932251 /* EPOSLabel.swift in Sources */,
 				99186D142510926800A9FE07 /* EmptyDataViewController.swift in Sources */,
 				CECC540B252B537800C0940E /* ISO320Initialization.swift in Sources */,
+				9915995C2577580500630E32 /* PaymentOptionsViewController.swift in Sources */,
 				991ADEA0250645A300932251 /* EPOSRoundButton.swift in Sources */,
 				46461993253588CF009089BC /* FontStruct.swift in Sources */,
 				8E138274256B6CBF000F7C21 /* ISO220SwipeTxn.swift in Sources */,

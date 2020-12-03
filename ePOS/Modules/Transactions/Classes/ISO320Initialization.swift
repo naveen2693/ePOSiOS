@@ -2171,7 +2171,7 @@ class ISO320Initialization: ISOMessage
                                         
                                         var tempData: Int64 = 0
                                         let strTempData = String(describing: String(bytes: chArrTempChunkSize, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))
-                                        tempData = Int64(strTempData) ?? 0
+                                        tempData = Int64(atol(strTempData)) ?? 0
                                         
                                         ulChunkSize.value = tempData
                                         
@@ -6703,7 +6703,7 @@ class ISO320Initialization: ISOMessage
                      debugPrint("bFileisOK memcmp SHA1 OK")
                      bFileisOK = true
                  }else{
-                     globalData.mFinalMsgDisplayField58 = "New App SHA1 Mismatch" + "\n" + "Initialization Failed!!!"
+                     GlobalData.m_csFinalMsgDisplay58 = "New App SHA1 Mismatch" + "\n" + "Initialization Failed!!!"
                     
                     debugPrint("chArrFileSha1Download[\(String(bytes: uchArrFileSha1Downloaded, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))], chArrFileSha1Calculated[\(String(bytes: uchArrFileSha1Calculated, encoding: .ascii)!.trimmingCharacters(in: .whitespacesAndNewlines))]")
                  }
@@ -6779,7 +6779,7 @@ class ISO320Initialization: ISOMessage
 
                         if (!PlatFormUtils.installApk(fileName: FileNameConstants.EDCAPPFILE)){
                             
-                             globalData.mFinalMsgDisplayField58 = "New App Installation Failed" + "\n" + "Initialization Failed!!!"
+                             GlobalData.m_csFinalMsgDisplay58 = "New App Installation Failed" + "\n" + "Initialization Failed!!!"
                             //TODO : yet to Implement - Format for directory
                             //CFileSystem.FormatExternalDirectory()
                              return false
@@ -8383,7 +8383,7 @@ class ISO320Initialization: ISOMessage
 
              m_str_current_ContentName = temp_dir + current_image_name
             
-             m_str_temp_ContentName = m_str_current_ContentName
+            m_str_temp_ContentName = m_str_current_ContentName + ".temp"
 
              if(m_bCurrentPacketCount == 1)//if(str_previous_ImageName != str_current_ImageName && str_previous_ImageName != null && str_current_ImageName != null)
              {
@@ -8396,16 +8396,13 @@ class ISO320Initialization: ISOMessage
              {
                  case PCImageChangeType.NEW:
                     debugPrint("Updating bytes to File[\(m_str_current_ContentName)], [\(m_str_temp_ContentName)]")
-                    //CLogger.TraceLog(TRACE_ERROR, "Apending bytes to File[%s]", m_str_temp_ContentName)
                     _ = try FileSystem.AppendFile(strFileName: m_str_temp_ContentName, with: imageDump)
                  case PCImageChangeType.UPDATE:
                     debugPrint("Updating bytes to File[\(m_str_current_ContentName)], [\(m_str_temp_ContentName)]")
-                    //CLogger.TraceLog(TRACE_ERROR, "Updating bytes to File[%s], [%s]", m_str_current_ContentName, m_str_temp_ContentName)
                     _ = FileSystem.DeleteFile(strFileName: m_str_current_ContentName)
                     _ = try FileSystem.AppendFile(strFileName: m_str_temp_ContentName, with: imageDump)
                  case PCImageChangeType.DELETE:
                     debugPrint("Deleting bytes to File[\(m_str_current_ContentName)], [\(m_str_temp_ContentName)]")
-                    //CLogger.TraceLog(TRACE_ERROR, "Deleting bytes to File[%s]", m_str_current_ContentName)
                     _ = FileSystem.DeleteFile(strFileName: m_str_current_ContentName)
                 default:
                     break
@@ -8414,7 +8411,6 @@ class ISO320Initialization: ISOMessage
          catch
          {
             debugPrint("Execption Occurred \(error)")
-            //CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(e))
             return false
          }
          return true

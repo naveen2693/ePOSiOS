@@ -18,6 +18,8 @@ class StatusDemoViewController: CustomNavigationStyleViewController {
         navigationItem.title = "First Screen"
         setRightTitle(withTitle: "1/3")
         
+        
+        
 //        appDelegate.getOnBoardingData()
 //        OnBoardingRequest.getUserProfileAndProceedToLaunch(showProgress: true, completion:{result in
 //            switch result {
@@ -80,6 +82,7 @@ extension StatusDemoViewController: EmptyDataControllerDelegate {
     }
     
     
+    
 }
 
 //extension StatusDemoViewController: SearchControllerDelegate {
@@ -92,4 +95,7 @@ extension StatusDemoViewController: IFSCSelectedDelegate {
     func didSelectedIFSC(_ controller: IFSCCodeDetailViewController, code: IFSCDetail) {
         
     }
+    
+    
+    
 }

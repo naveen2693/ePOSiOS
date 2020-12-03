@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EnterAmountViewController" customModule="ePOS" customModuleProvider="target">
+            <connections>
+                <outlet property="amountTextField" destination="ymA-oB-zkT" id="CgZ-ou-Urf"/>
+                <outlet property="nextButton" destination="FKe-qG-RvX" id="C8O-mS-MCQ"/>
+                <outlet property="topLabel" destination="TUd-g2-Pem" id="62N-mq-qL5"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUd-g2-Pem">
+                    <rect key="frame" x="25" y="40" width="103" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ymA-oB-zkT" customClass="EPOSTextField">
+                    <rect key="frame" x="25" y="91" width="306" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="floatingText" value="Enter amount"/>
+                    </userDefinedRuntimeAttributes>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FKe-qG-RvX">
+                    <rect key="frame" x="225" y="587" width="120" height="50"/>
+                    <color key="backgroundColor" name="themeDarkColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="Xu5-Bt-bnD"/>
+                        <constraint firstAttribute="height" constant="50" id="rGU-7m-zxc"/>
+                    </constraints>
+                    <state key="normal" title="Next">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="nextClicked:" destination="-1" eventType="touchUpInside" id="yEE-Ct-7rs"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ymA-oB-zkT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="25" id="U3v-1s-LZ2"/>
+                <constraint firstItem="TUd-g2-Pem" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="25" id="Xgw-yF-ucI"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="FKe-qG-RvX" secondAttribute="bottom" constant="30" id="afH-i6-Hnq"/>
+                <constraint firstItem="ymA-oB-zkT" firstAttribute="top" secondItem="TUd-g2-Pem" secondAttribute="bottom" constant="30" id="czB-9a-LBN"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ymA-oB-zkT" secondAttribute="trailing" constant="44" id="e6r-FE-of1"/>
+                <constraint firstItem="TUd-g2-Pem" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="40" id="lMI-PR-e8L"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="FKe-qG-RvX" secondAttribute="trailing" constant="30" id="onG-XO-OCq"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="138.40000000000001" y="126.38680659670166"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="themeDarkColor">
+            <color red="0.066666666666666666" green="0.68627450980392157" blue="0.35294117647058826" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
