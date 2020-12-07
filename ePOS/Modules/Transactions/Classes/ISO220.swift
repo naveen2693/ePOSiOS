@@ -1001,30 +1001,33 @@ class CISO220: ISOMessage, CISO220Abstrct
     //set transaction type and status
     private func setTxnType(_ transactionData: PlutusTransactionData, _ responseParsingCSVData: ResponseParsingCSVData) {
         let authCode = transactionData.getAuthCode()
-        let responseCode = transactionData.getTransactionResponse()!
-
-        if ((authCode != nil || !authCode!.isEmpty) && PlutusTransactionStatus.TRANSACTION_STATUS_SUCCESS_MSG.caseInsensitiveCompare(responseCode) == .orderedSame) {
-            transactionData.setStatus(PlutusTransactionStatus.TRANSACTION_STATUS_SUCCESS)
-        } else if (PlutusTransactionStatus.TRANSACTION_STATUS_VOID_SUCCESS_MSG.caseInsensitiveCompare(responseCode) == .orderedSame) {
-            transactionData.setStatus(PlutusTransactionStatus.TRANSACTION_STATUS_CANCELLED)
-        } else {
-            if (PlutusTransactionStatus.TRANSACTION_STATUS_PENDING_MSG.caseInsensitiveCompare(responseCode) == .orderedSame ||
-                    PlutusTransactionStatus.TRANSACTION_STATUS_COMPLETE_GET_STATUS_MSG.caseInsensitiveCompare(responseCode) == .orderedSame) {
-                transactionData.setStatus(PlutusTransactionStatus.TRANSACTION_STATUS_PENDING)
+        let responseCode = transactionData.getTransactionResponse()
+        
+        if responseCode != nil || !responseCode!.isEmpty
+        {
+            if ((authCode != nil || !authCode!.isEmpty) && PlutusTransactionStatus.TRANSACTION_STATUS_SUCCESS_MSG.caseInsensitiveCompare(responseCode!) == .orderedSame) {
+                transactionData.setStatus(PlutusTransactionStatus.TRANSACTION_STATUS_SUCCESS)
+            } else if (PlutusTransactionStatus.TRANSACTION_STATUS_VOID_SUCCESS_MSG.caseInsensitiveCompare(responseCode!) == .orderedSame) {
+                transactionData.setStatus(PlutusTransactionStatus.TRANSACTION_STATUS_CANCELLED)
             } else {
-                transactionData.setStatus(PlutusTransactionStatus.TRANSACTION_STATUS_FAILURE)
-            }
-        }
-
-        if (GlobalData.singleton.isThirdPartyBillingAppRequest) {
-            if(PlutusTransactionStatus.TRANSACTION_STATUS_VOID_SUCCESS_MSG.caseInsensitiveCompare(responseCode) == .orderedSame){
-                var csvString = String(bytes: GlobalData.singleton.m_ptrCSVDATA.m_chBillingCSVData, encoding: .ascii)
-                if(!csvString!.isEmpty/*!TextUtils.isEmpty(csvString) TODO: yet to add TextUtils**/){
-                    csvString = csvString!.replaceAll(of: PlutusTransactionStatus.TRANSACTION_STATUS_VOID_SUCCESS_MSG, with: PlutusTransactionStatus.TRANSACTION_STATUS_SUCCESS_MSG)
-                    GlobalData.singleton.m_ptrCSVDATA.m_chBillingCSVData = [Byte](csvString!.bytes)
+                if (PlutusTransactionStatus.TRANSACTION_STATUS_PENDING_MSG.caseInsensitiveCompare(responseCode!) == .orderedSame ||
+                    PlutusTransactionStatus.TRANSACTION_STATUS_COMPLETE_GET_STATUS_MSG.caseInsensitiveCompare(responseCode!) == .orderedSame) {
+                    transactionData.setStatus(PlutusTransactionStatus.TRANSACTION_STATUS_PENDING)
+                } else {
+                    transactionData.setStatus(PlutusTransactionStatus.TRANSACTION_STATUS_FAILURE)
                 }
             }
-            checkTransactionTypeForThirdPartyAppRequest(transactionData, responseParsingCSVData)
+            
+            if (GlobalData.singleton.isThirdPartyBillingAppRequest) {
+                if(PlutusTransactionStatus.TRANSACTION_STATUS_VOID_SUCCESS_MSG.caseInsensitiveCompare(responseCode!) == .orderedSame){
+                    var csvString = String(bytes: GlobalData.singleton.m_ptrCSVDATA.m_chBillingCSVData, encoding: .ascii)
+                    if(!csvString!.isEmpty/*!TextUtils.isEmpty(csvString) TODO: yet to add TextUtils**/){
+                        csvString = csvString!.replaceAll(of: PlutusTransactionStatus.TRANSACTION_STATUS_VOID_SUCCESS_MSG, with: PlutusTransactionStatus.TRANSACTION_STATUS_SUCCESS_MSG)
+                        GlobalData.singleton.m_ptrCSVDATA.m_chBillingCSVData = [Byte](csvString!.bytes)
+                    }
+                }
+                checkTransactionTypeForThirdPartyAppRequest(transactionData, responseParsingCSVData)
+            }
         }
     }
     

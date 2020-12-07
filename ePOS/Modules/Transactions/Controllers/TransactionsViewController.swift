@@ -108,15 +108,16 @@ class TransactionHomeViewController: UIViewController {
     
     @IBAction func initializationClicked(_ sender: Any) {
         
-        self.showLoading()
+        
         weak var weakSelf = self
         let syncConc = DispatchQueue(label:"con",attributes:.concurrent)
         syncConc.sync{
+            self.showLoading()
             _ = weakSelf?.DoInitializtion()
+            self.hideLoading()
         }
         
         DispatchQueue.main.async {
-            self.hideLoading()
             let alert = UIAlertController(title: "", message: GlobalData.m_csFinalMsgDoHubInitialization, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
             
