@@ -30,15 +30,7 @@ class TransactionHomeViewController: UIViewController {
         let globalData = GlobalData.singleton
         _ = globalData.FirstInitialize()
         
-        //let isoprocessor = ISOProcessor()
-        //_ = isoprocessor.DoHUBActivation()
-        
-        
-       // DoActivation()
-       // DoInitializtion()
-       // DoSettlement()
-       // DoTransaction()
-       // DoSettlement()
+
             
     }
 
@@ -112,6 +104,21 @@ class TransactionHomeViewController: UIViewController {
     }
     
     @IBAction func transactionClicked(_ sender: Any) {
+        
+        //Parse PVM First
+        
+         if let path = Bundle.main.path(forResource: "COD", ofType: "xml")
+         {
+             guard let str = try? String.init(contentsOfFile: path)
+                 else {
+                     return
+             }
+             let obj = XmlParser()
+             obj.parsePVM(str)
+         }
+        
+        //TransactionHub ...navigation controller
+        
         let controller = PaymentOptionsViewController.init(nibName: PaymentOptionsViewController.className, bundle: nil)
         controller.testDelegate = self
         
@@ -248,6 +255,44 @@ class TransactionHomeViewController: UIViewController {
         return bRet
     }
 
+    static func DoTransaction() -> Bool
+    {
+        var bRet = false
+        var isopr = ISOProcessor()
+        if (TransactionHUB.singleton.m_isoProcessor != nil) {
+            isopr = TransactionHUB.singleton.m_isoProcessor!
+        } else {
+            isopr = ISOProcessor()
+            TransactionHUB.singleton.m_isoProcessor = isopr
+        }
+        
+        var _: Int = isopr.SetCommunicationParam(true)
+        var status: Int = 0
+        
+        //TODO: HAVE TO REMOVE HARDCODED TXNTYPE
+        let globalData = GlobalData.singleton
+        
+        globalData.m_sNewTxnData.uiTransactionType = HostTransactionType.COD_TXN
+        TransactionHUB.AddTLVDataWithTag(uiTag: 0x1015, Data: [Byte]("12345".utf8), length: 5)
+        TransactionHUB.AddTLVDataWithTag(uiTag: 0x6101, Data: [Byte]("12345".utf8), length: 5)
+        
+        status = isopr.DoHubOnlineTxn()
+        //reset Pay by mobile related flag when dialog hides
+        GlobalData.singleton.isPayByMobileEnabled = false
+        if (status == 1) {
+            GlobalData.m_bIsDoHubOnlineTxnSuccessfullyRun = true
+            GlobalData.m_csFinalMsgDoHubOnlineTxn = GlobalData.m_csFinalMsgDisplay58
+            debugPrint("Online Transaction successfully run")
+            bRet = true
+        } else {
+            GlobalData.m_bIsDoHubOnlineTxnSuccessfullyRun = false
+            debugPrint("Online Transaction Failed")
+        }
+        
+        return bRet
+    }
+
+    
     func DoInitializtion() -> Bool
     {
      

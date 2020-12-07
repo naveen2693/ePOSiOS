@@ -14,13 +14,34 @@ class PaymentOptionsViewController: CustomNavigationStyleViewController {
     
     @IBOutlet weak var containerView: UIView!
     
-    var options = ["Option 1", "Option 2", "Option 3", "Option 4"]
+    //private var menuNode:CDisplayMenu?
+    private var menuName:String?
+    
+    //var options = ["Option 1", "Option 2", "Option 3", "Option 4"]
+    var options = [String]()
+    private var numberOfChild:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Select Option"
+      
+        //Get CurrentNode.Number of child
+        //guard var menuNode = CStateMachine.currentNode as? CDisplayMenu else {return}
+        guard let menuNode = CStateMachine.currentNode as? CDisplayMenu else {return}
+        menuName =  menuNode.iName
+        if(menuName == nil){
+            menuName = "Menu"
+        }
+        numberOfChild = menuNode.numberOfChild
+        var tempNode:CBaseNode?
+        
+        for i in 1...numberOfChild {
+            tempNode = menuNode.GotoChild(index: i)
+            options.append((tempNode?.getName())!)
+        }
         addOptions()
-        // Do any additional setup after loading the view.
+        
+        //Do any additional setup after loading the view.
     }
 
 
@@ -43,10 +64,21 @@ class PaymentOptionsViewController: CustomNavigationStyleViewController {
 
     
     @objc func optionSelected(sender : UIButton) {
-        let controller = EnterAmountViewController.init(nibName: EnterAmountViewController.className, bundle: nil)
         
+        let tempCurrentNode:CBaseNode?
+        let tempChildNode:CBaseNode?
+        
+        tempCurrentNode = CStateMachine.currentNode?.GotoChild(index: sender.tag)
+        tempChildNode = tempCurrentNode?.GotoChild()
+        
+        if (tempChildNode?.node_type == PvmNodeTypes.Amount_entry_node)
+        {
+        let controller = EnterAmountViewController.init(nibName: EnterAmountViewController.className, bundle: nil)
+            
         controller.transactionDelegate = testDelegate
+        CStateMachine.currentNode = tempChildNode
         
         self.navigationController?.pushViewController(controller, animated: true)
+        }
     }
 }

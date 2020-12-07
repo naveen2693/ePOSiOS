@@ -92,4 +92,9 @@ class TransactionHUB {
             functionalityHandler.sendMessage(message)*/
       
     }
+    
+    func goToNode(_ node:CBaseNode)
+    {
+        
+    }
 }
