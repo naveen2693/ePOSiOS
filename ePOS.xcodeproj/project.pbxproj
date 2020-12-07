@@ -280,6 +280,7 @@
 		997DC803252347A3006ADE48 /* DropdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997DC801252347A3006ADE48 /* DropdownTableViewCell.swift */; };
 		997DC804252347A3006ADE48 /* DropdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 997DC802252347A3006ADE48 /* DropdownTableViewCell.xib */; };
 		997DC8272524A2FE006ADE48 /* GSTDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997DC8262524A2FE006ADE48 /* GSTDetails.swift */; };
+		CE3443772577639F008C4A8D /* TCPIPCommunicationHandlerSSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3443762577639F008C4A8D /* TCPIPCommunicationHandlerSSL.swift */; };
 		CE971BC5252CACAF00843943 /* TCPIPCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE971BC4252CACAF00843943 /* TCPIPCommunicator.swift */; };
 		CE971BC7252CAD2400843943 /* TCPIPCommunicationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE971BC6252CAD2400843943 /* TCPIPCommunicationHandler.swift */; };
 		CE971BC9252CAD4E00843943 /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE971BC8252CAD4E00843943 /* GlobalData.swift */; };
@@ -586,6 +587,7 @@
 		997DC802252347A3006ADE48 /* DropdownTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropdownTableViewCell.xib; sourceTree = "<group>"; };
 		997DC8262524A2FE006ADE48 /* GSTDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSTDetails.swift; sourceTree = "<group>"; };
 		B5B8F0D4F76186F2167A93E4 /* Pods-ePOS.uat.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ePOS.uat.xcconfig"; path = "Target Support Files/Pods-ePOS/Pods-ePOS.uat.xcconfig"; sourceTree = "<group>"; };
+		CE3443762577639F008C4A8D /* TCPIPCommunicationHandlerSSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPIPCommunicationHandlerSSL.swift; sourceTree = "<group>"; };
 		CE971BC4252CACAF00843943 /* TCPIPCommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPIPCommunicator.swift; sourceTree = "<group>"; };
 		CE971BC6252CAD2400843943 /* TCPIPCommunicationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPIPCommunicationHandler.swift; sourceTree = "<group>"; };
 		CE971BC8252CAD4E00843943 /* GlobalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
@@ -1529,6 +1531,7 @@
 				8E138289256E8FC4000F7C21 /* ISO220Reversal.swift */,
 				8E13828B256E9345000F7C21 /* ISO800.swift */,
 				8E13828D256F5E8C000F7C21 /* ISO220DRUpload.swift */,
+				CE3443762577639F008C4A8D /* TCPIPCommunicationHandlerSSL.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1923,6 +1926,7 @@
 				9976C95E2501173600FC5DD3 /* DeviceType.swift in Sources */,
 				99186CE6250A2C6500A9FE07 /* EPOSHelper.swift in Sources */,
 				8E927C6E2539470D009928D4 /* LIBStruct.swift in Sources */,
+				CE3443772577639F008C4A8D /* TCPIPCommunicationHandlerSSL.swift in Sources */,
 				CE971BD3252CBB8D00843943 /* ISOHandler.swift in Sources */,
 				CECC5407252B530D00C0940E /* FileManager.swift in Sources */,
 				9919A9902513796000A67253 /* ConstantNew.swift in Sources */,
