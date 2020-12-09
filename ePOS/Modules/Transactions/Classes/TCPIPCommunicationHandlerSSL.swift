@@ -96,7 +96,7 @@ class TCPIPCommunicationHandlerSSL : NSObject, StreamDelegate
        }
        else
        {
-         debugPrint("Data Written Successfully")
+         debugPrint("Data Not Written")
          return false
        }
     }

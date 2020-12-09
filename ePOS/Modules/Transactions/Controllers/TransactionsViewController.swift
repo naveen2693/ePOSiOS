@@ -9,8 +9,6 @@
 import UIKit
 
 class TransactionHomeViewController: UIViewController {
-
-    var amountEntered: String = ""
     
 //@IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
@@ -30,77 +28,49 @@ class TransactionHomeViewController: UIViewController {
         let globalData = GlobalData.singleton
         _ = globalData.FirstInitialize()
         
-
-            
     }
 
     @IBAction func activationClicked(_ sender: Any) {
         weak var weakSelf = self
-        let syncConc = DispatchQueue(label:"con",attributes:.concurrent)
-        syncConc.sync{
-            _ = weakSelf?.DoActivation()
+         self.showLoading()
+        //let syncConc = DispatchQueue(label:"con",attributes:.concurrent)
+        DispatchQueue.global(qos: .utility).async{
+            _ = weakSelf?.DoActivation(completion: {(isSuccess:Bool) in
+                if(isSuccess)
+                {
+                    DispatchQueue.main.async {
+                        self.hideLoading()
+                        let alert = UIAlertController(title: "", message: GlobalData.singleton.mFinalMsgActivation, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                        
+                        self.present(alert, animated: true)
+                    }
+                }
+            })
         }
-        
-        DispatchQueue.main.async {
-            
-            let alert = UIAlertController(title: "", message: GlobalData.singleton.mFinalMsgActivation, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-            
-            self.present(alert, animated: true)
-        }
-        
-        
-        
-//        DispatchQueue.global(qos: .background).async {
-//            if((weakSelf?.DoActivation())!)
-//            {
-//                DispatchQueue.main.async {
-//
-//                let alert = UIAlertController(title: "", message: GlobalData.singleton.mFinalMsgActivation, preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-//
-//                self.present(alert, animated: true)
-//                }
-//            }
-//        }
-    
     }
     
     @IBAction func initializationClicked(_ sender: Any) {
         
         
         weak var weakSelf = self
-        let syncConc = DispatchQueue(label:"con",attributes:.concurrent)
-        syncConc.sync{
-            self.showLoading()
-            _ = weakSelf?.DoInitializtion()
-            self.hideLoading()
-        }
+        self.showLoading()
+        //let syncConc = DispatchQueue(label:"con",attributes:.concurrent)
         
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: "", message: GlobalData.m_csFinalMsgDoHubInitialization, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-            
-            self.present(alert, animated: true)
+        DispatchQueue.global(qos: .utility).async{
+            _ = weakSelf?.DoInitializtion(completion: {(isSuccess:Bool) in
+                if(isSuccess)
+                {
+                    DispatchQueue.main.async {
+                        self.hideLoading()
+                        let alert = UIAlertController(title: "", message: GlobalData.m_csFinalMsgDoHubInitialization, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                        
+                        self.present(alert, animated: true)
+                    }
+                }
+            })
         }
-        
-//        self.showLoading()
-//        weak var weakSelf = self
-//        DispatchQueue.global(qos: .background).async {
-//            if((weakSelf?.DoInitializtion())!)
-//            {
-//                DispatchQueue.main.async {
-//
-//                weakSelf?.hideLoading()
-//
-//                let alert = UIAlertController(title: "", message: GlobalData.m_csFinalMsgDoHubInitialization, preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-//
-//                weakSelf?.present(alert, animated: true)
-//
-//                }
-//            }
-//        }
     }
     
     @IBAction func transactionClicked(_ sender: Any) {
@@ -117,8 +87,7 @@ class TransactionHomeViewController: UIViewController {
              obj.parsePVM(str)
          }
         
-        //TransactionHub ...navigation controller
-        
+        //TransactionHub ...navigation controller        
         let controller = PaymentOptionsViewController.init(nibName: PaymentOptionsViewController.className, bundle: nil)
         controller.testDelegate = self
         
@@ -129,48 +98,26 @@ class TransactionHomeViewController: UIViewController {
         
         
         weak var weakSelf = self
-        let syncConc = DispatchQueue(label:"con",attributes:.concurrent)
-        syncConc.sync{
-            _ = weakSelf?.DoSettlement()
+        self.showLoading()
+        //let syncConc = DispatchQueue(label:"con",attributes:.concurrent)
+        DispatchQueue.global(qos: .utility).async{
+            _ = weakSelf?.DoSettlement(completion: {(isSuccess:Bool) in
+                if(isSuccess)
+                {
+                    DispatchQueue.main.async {
+                        self.hideLoading()
+                        let alert = UIAlertController(title: "", message: GlobalData.m_csFinalMsgBatchSettlement, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                        
+                        self.present(alert, animated: true)
+                    }
+                }
+            })
         }
-        
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: "", message: GlobalData.m_csFinalMsgBatchSettlement, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-            
-            self.present(alert, animated: true)
-        }
-        
-
-//        weak var weakSelf = self
-//        DispatchQueue.global(qos: .background).async {
-//
-//            if((weakSelf?.DoSettlement())!)
-//            {
-//                DispatchQueue.main.async {
-//
-//                let alert = UIAlertController(title: "", message: GlobalData.m_csFinalMsgBatchSettlement, preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-//
-//                self.present(alert, animated: true)
-//
-//                }
-//            }
-//        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
-    func DoSettlement() -> Bool
+    func DoSettlement(completion: @escaping (Bool) -> Void) -> Bool
     {
         var bRet = false
         let isoprocessor = ISOProcessor()
@@ -201,20 +148,23 @@ class TransactionHomeViewController: UIViewController {
             //retVal = RetVal.RET_NOT_OK
         }
         
+        completion(true)
         return bRet
     }
 
-    func DoActivation() -> Bool
+    func DoActivation(completion: @escaping (Bool) -> Void) -> Bool
     {
         let globalData = GlobalData.singleton
         _ = globalData.FirstInitialize()
         
         let isoprocessor = ISOProcessor()
         
-        return isoprocessor.DoHUBActivation()
+        let bRes = isoprocessor.DoHUBActivation()
+        completion(true)
+        return bRes
     }
 
-    func DoTransaction(_ amount: String) -> Bool
+    func DoTransaction(completion: @escaping (Bool) -> Void) -> Bool
     {
         var bRet = false
         var isopr = ISOProcessor()
@@ -232,12 +182,8 @@ class TransactionHomeViewController: UIViewController {
         let globalData = GlobalData.singleton
         
         globalData.m_sNewTxnData.uiTransactionType = HostTransactionType.COD_TXN
-        TransactionHUB.AddTLVDataWithTag(uiTag: 0x1015, Data: [Byte]("12345".utf8), length: 5)
-        TransactionHUB.AddTLVDataWithTag(uiTag: 0x1021, Data: [Byte](amount.utf8), length: 5)
-        TransactionHUB.AddTLVDataWithTag(uiTag: 0x1112, Data: [Byte](amount.utf8), length: 5)
-        TransactionHUB.AddTLVDataWithTag(uiTag: 0x6101, Data: [Byte]("12345".utf8), length: 5)
-        TransactionHUB.AddTLVDataWithTag(uiTag: 0x6102, Data: [Byte]("12345".utf8), length: 5)
-        
+        //TransactionHUB.AddTLVDataWithTag(uiTag: 0x1015, Data: [Byte]("12345".utf8), length: 5)
+        //TransactionHUB.AddTLVDataWithTag(uiTag: 0x6101, Data: [Byte]("12345".utf8), length: 5)
         
         status = isopr.DoHubOnlineTxn()
         //reset Pay by mobile related flag when dialog hides
@@ -252,48 +198,11 @@ class TransactionHomeViewController: UIViewController {
             debugPrint("Online Transaction Failed")
         }
         
+        completion(true)
         return bRet
     }
 
-    static func DoTransaction() -> Bool
-    {
-        var bRet = false
-        var isopr = ISOProcessor()
-        if (TransactionHUB.singleton.m_isoProcessor != nil) {
-            isopr = TransactionHUB.singleton.m_isoProcessor!
-        } else {
-            isopr = ISOProcessor()
-            TransactionHUB.singleton.m_isoProcessor = isopr
-        }
-        
-        var _: Int = isopr.SetCommunicationParam(true)
-        var status: Int = 0
-        
-        //TODO: HAVE TO REMOVE HARDCODED TXNTYPE
-        let globalData = GlobalData.singleton
-        
-        globalData.m_sNewTxnData.uiTransactionType = HostTransactionType.COD_TXN
-        TransactionHUB.AddTLVDataWithTag(uiTag: 0x1015, Data: [Byte]("12345".utf8), length: 5)
-        TransactionHUB.AddTLVDataWithTag(uiTag: 0x6101, Data: [Byte]("12345".utf8), length: 5)
-        
-        status = isopr.DoHubOnlineTxn()
-        //reset Pay by mobile related flag when dialog hides
-        GlobalData.singleton.isPayByMobileEnabled = false
-        if (status == 1) {
-            GlobalData.m_bIsDoHubOnlineTxnSuccessfullyRun = true
-            GlobalData.m_csFinalMsgDoHubOnlineTxn = GlobalData.m_csFinalMsgDisplay58
-            debugPrint("Online Transaction successfully run")
-            bRet = true
-        } else {
-            GlobalData.m_bIsDoHubOnlineTxnSuccessfullyRun = false
-            debugPrint("Online Transaction Failed")
-        }
-        
-        return bRet
-    }
-
-    
-    func DoInitializtion() -> Bool
+    func DoInitializtion(completion: @escaping (Bool) -> Void) -> Bool
     {
      
         var bRet = false
@@ -329,174 +238,32 @@ class TransactionHomeViewController: UIViewController {
         _ = globalData.UpdateMasterLIBFile()
         _ = globalData.UpdateMasterMINIPVMFile()
 
-        
+        completion(true)
         return bRet
     }
 }
 
 extension TransactionHomeViewController: prTransactionTestDelegate {
     
-    func amountEntered(_ enteredAmount: String) {
-        amountEntered = enteredAmount
-        
+    func amountEntered() {
         weak var weakSelf = self
-        let syncConc = DispatchQueue(label:"con",attributes:.concurrent)
-        syncConc.sync{
-            _ = weakSelf?.DoTransaction(enteredAmount)
+         self.showLoading()
+        //let syncConc = DispatchQueue(label:"con",attributes:.concurrent)
+        DispatchQueue.global(qos: .utility).async{
+            _ = weakSelf?.DoTransaction(completion: {(isSuccess:Bool) in
+                if(isSuccess)
+                {
+                    DispatchQueue.main.async {
+                        self.hideLoading()
+                        let alert = UIAlertController(title: "", message: GlobalData.m_csFinalMsgDoHubOnlineTxn, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (_) in
+                            self.navigationController?.popToRootViewController(animated: true)
+                        }))
+                        
+                        self.present(alert, animated: true)
+                    }
+                }
+            })
         }
-        
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: "", message: GlobalData.m_csFinalMsgDoHubOnlineTxn, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (_) in
-                self.navigationController?.popToRootViewController(animated: true)
-            }))
-            
-            self.present(alert, animated: true)
-        }
-        
-//        weak var weakSelf = self
-//        DispatchQueue.global(qos: .background).async {
-//            if ((weakSelf?.DoTransaction(enteredAmount))!)
-//            {
-//                DispatchQueue.main.async {
-//
-//                let alert = UIAlertController(title: "", message: GlobalData.m_csFinalMsgDoHubOnlineTxn, preferredStyle: .alert)
-//                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (_) in
-//                        self.navigationController?.popToRootViewController(animated: true)
-//                    }))
-//
-//                    self.present(alert, animated: true)
-//                }
-//            }
-//        }
     }
-}
-
-//extension TransactionHomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
-//{
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        <#code#>
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 0
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//
-//    }
-//
-//
-
-//
-//extension TransactionHomeViewController :UICollectionViewDelegateFlowLayout
-//{
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        <#code#>
-//    }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        <#code#>
-//    }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        <#code#>
-//    }
-//}
-
-func DoSettlement()
-{
-    let isoprocessor = ISOProcessor()
-
-    //isoprocessor.SetCommunicationParam(disconnectFlag)
-
-    var iSettlementResponse: Int = 0
-    
-    iSettlementResponse = isoprocessor.DoHubSettlement()
-    debugPrint("iSettlementResponse[\(iSettlementResponse)]")
-    
-    GlobalData.m_bIsSettleBatchSuccessfullyRun = false
-    if (iSettlementResponse == AppConstant.TRUE) {
-        GlobalData.m_bIsSettleBatchSuccessfullyRun = true
-        //retVal = RET_OK
-    } else {
-        GlobalData.m_bIsSettleBatchSuccessfullyRun = false
-        //retVal = RetVal.RET_NOT_OK
-    }
-}
-
-func DoActivation()
-{
-    //let globalData = GlobalData.singleton
-    //_ = globalData.FirstInitialize()
-    
-    let isoprocessor = ISOProcessor()
-    _ = isoprocessor.DoHUBActivation()
-}
-
-func DoTransaction()
-{
-    var isopr = ISOProcessor()
-    if (TransactionHUB.singleton.m_isoProcessor != nil) {
-        isopr = TransactionHUB.singleton.m_isoProcessor!
-    } else {
-        isopr = ISOProcessor()
-        TransactionHUB.singleton.m_isoProcessor = isopr
-    }
-    var _: Int = isopr.SetCommunicationParam(true)
-    var status: Int = 0
-    
-    //TODO: HAVE TO REMOVE HARDCODED TXNTYPE
-    let globalData = GlobalData.singleton
-    
-    //TODO: Have to Remove
-    globalData.m_sNewTxnData.uiTransactionType = HostTransactionType.COD_TXN
-    TransactionHUB.AddTLVDataWithTag(uiTag: 0x1015, Data: [Byte]("12345".utf8), length: 5)
-    TransactionHUB.AddTLVDataWithTag(uiTag: 0x1021, Data: [Byte]("10000".utf8), length: 5)
-    TransactionHUB.AddTLVDataWithTag(uiTag: 0x1112, Data: [Byte]("10000".utf8), length: 5)
-    TransactionHUB.AddTLVDataWithTag(uiTag: 0x6101, Data: [Byte]("12345".utf8), length: 5)
-    TransactionHUB.AddTLVDataWithTag(uiTag: 0x6102, Data: [Byte]("12345".utf8), length: 5)
-    
-    
-    status = isopr.DoHubOnlineTxn()
-    //reset Pay by mobile related flag when dialog hides
-    GlobalData.singleton.isPayByMobileEnabled = false
-    if (status == 1) {
-        GlobalData.m_bIsDoHubOnlineTxnSuccessfullyRun = true
-        debugPrint("Online Transaction successfully run")
-    } else {
-        GlobalData.m_bIsDoHubOnlineTxnSuccessfullyRun = false
-        debugPrint("Online Transaction Failed")
-    }
-}
-
-func DoInitializtion()
-{
-    
-    let globalData = GlobalData.singleton
-    //_ = globalData.FirstInitialize()
-    
-    let isoprocessor = ISOProcessor()
-    //_ = isoprocessor.DoHUBActivation()
-    
-    _ = globalData.UpdateMasterCTFile()
-    _ = globalData.UpdateMasterIMFile()
-    _ = globalData.UpdateMasterCLRDIMFile()
-    _ = globalData.UpdateMasterFCGFile()
-    _ = globalData.UpdateMasterFONTFile()
-    _ = globalData.UpdateMasterLIBFile()
-    _ = globalData.UpdateMasterMINIPVMFile()
-
-    var iInitResponse = RetVal.RET_NOT_OK
-    debugPrint("before DoHUBInitialization")
-    iInitResponse = isoprocessor.DoHUBInitialization()
-
-    //Update master CT file and master IM
-    //CUIHelper.SetMessage("PROCESSING")
-    _ = globalData.UpdateMessageFile()
-    _ = globalData.UpdateMasterCTFile()
-    _ = globalData.UpdateMasterIMFile()
-    _ = globalData.UpdateMasterCLRDIMFile()
-    _ = globalData.UpdateMasterFCGFile()
-    _ = globalData.UpdateMasterFONTFile()
-    _ = globalData.UpdateMasterLIBFile()
-    _ = globalData.UpdateMasterMINIPVMFile()
 }

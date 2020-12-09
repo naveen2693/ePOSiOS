@@ -8,13 +8,9 @@
 
 import UIKit
 
-protocol prTransactionTestDelegate: class {
-    func amountEntered(_ enteredAmount: String)
-}
-
 class EnterAmountViewController: CustomNavigationStyleViewController {
 
-    weak var transactionDelegate: prTransactionTestDelegate?
+    weak var testDelegate: prTransactionTestDelegate?
     
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var topLabel: UILabel!
@@ -23,8 +19,8 @@ class EnterAmountViewController: CustomNavigationStyleViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var tempNode = CStateMachine.currentNode
-        var fieldName = tempNode?.DisplayMessage
+        let tempNode = CStateMachine.currentNode
+        _ = tempNode?.DisplayMessage
         //Need to add field name with detailTextField
         
         //topLabel.text = fieldName
@@ -71,15 +67,16 @@ class EnterAmountViewController: CustomNavigationStyleViewController {
                 enteredAmount.append("00")
             }
             
-            var iTag = CStateMachine.currentNode?.HostTlvtag
-            var bArrAmount = [Byte](enteredAmount.utf8)
+            let iTag = CStateMachine.currentNode?.HostTlvtag
+            let bArrAmount = [Byte](enteredAmount.utf8)
             TransactionHUB.AddTLVDataWithTag(uiTag: iTag!, Data: [Byte](enteredAmount.utf8), length: bArrAmount.count)
         
-            var tempNode = CStateMachine.currentNode?.GotoChild()
+            let tempNode = CStateMachine.currentNode?.GotoChild()
             if(tempNode?.node_type == 4)
             {
                 CStateMachine.currentNode = tempNode
                 let controller = EnterDataViewController.init(nibName: EnterDataViewController.className, bundle: nil)
+                controller.transactionDelegate = testDelegate
                 self.navigationController?.pushViewController(controller, animated: true)
             }
             

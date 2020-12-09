@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol prTransactionTestDelegate: class {
+    func amountEntered()
+}
+
 class EnterDataViewController: CustomNavigationStyleViewController {
 
+    weak var transactionDelegate: prTransactionTestDelegate?
+    
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var topLabel: UILabel!
     @IBOutlet weak var detailTextField: EPOSTextField!
@@ -17,8 +23,8 @@ class EnterDataViewController: CustomNavigationStyleViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var tempNode = CStateMachine.currentNode
-        var fieldName = tempNode?.DisplayMessage
+        let tempNode = CStateMachine.currentNode
+        let fieldName = tempNode?.DisplayMessage
         
         //Need to add field name with detailTextField
         
@@ -31,26 +37,23 @@ class EnterDataViewController: CustomNavigationStyleViewController {
     @IBAction func nextClicked(_ sender: Any) {
         
         if (detailTextField?.text) != nil
-               {
-                   var entereddetail = detailTextField.text!
+        {
+            let entereddetail = detailTextField.text!
                    
-                   var iTag = CStateMachine.currentNode?.HostTlvtag
-                   var bArrDetail = [Byte](entereddetail.utf8)
-                   TransactionHUB.AddTLVDataWithTag(uiTag: iTag!, Data: [Byte](entereddetail.utf8), length: bArrDetail.count)
+            let iTag = CStateMachine.currentNode?.HostTlvtag
+            let bArrDetail = [Byte](entereddetail.utf8)
+            TransactionHUB.AddTLVDataWithTag(uiTag: iTag!, Data: [Byte](entereddetail.utf8), length: bArrDetail.count)
                
-                   var tempNode = CStateMachine.currentNode?.GotoChild()
-                   if(tempNode?.node_type == 2)
-                   {
+            let tempNode = CStateMachine.currentNode?.GotoChild()
+            if(tempNode?.node_type == 2)
+            {
                        //Going Online
-                       CStateMachine.currentNode = tempNode
-                       TransactionHomeViewController.DoTransaction()
-                       
-                   }
-                   
-                   //self.transactionDelegate?.amountEntered(enteredAmount)
-                   
-               }
-        
+                CStateMachine.currentNode = tempNode
+                _ = self.transactionDelegate?.amountEntered()
+            }
+            //self.transactionDelegate?.amountEntered(enteredAmount)
+                
+        }
     }
     
 }

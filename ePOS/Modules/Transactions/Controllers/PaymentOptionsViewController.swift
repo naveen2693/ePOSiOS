@@ -75,7 +75,7 @@ class PaymentOptionsViewController: CustomNavigationStyleViewController {
         {
         let controller = EnterAmountViewController.init(nibName: EnterAmountViewController.className, bundle: nil)
             
-        controller.transactionDelegate = testDelegate
+        controller.testDelegate = testDelegate
         CStateMachine.currentNode = tempChildNode
         
         self.navigationController?.pushViewController(controller, animated: true)
