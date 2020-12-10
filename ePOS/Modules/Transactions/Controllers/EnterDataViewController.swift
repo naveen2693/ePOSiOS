@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol prTransactionTestDelegate: class {
+    func PerformTransaction()
+}
+
 class EnterDataViewController: CustomNavigationStyleViewController {
 
+    weak var transactionDelegate: prTransactionTestDelegate?
+    
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var topLabel: UILabel!
     @IBOutlet weak var detailTextField: EPOSTextField!
@@ -20,28 +26,23 @@ class EnterDataViewController: CustomNavigationStyleViewController {
         if let fieldName = tempNode?.DisplayMessage{
             detailTextField.floatingText = fieldName
         }
-    }
 
+    }
 
     @IBAction func nextClicked(_ sender: Any) {
         
         if (detailTextField?.text) != nil
-               {
-                   var entereddetail = detailTextField.text!
+        {
+            let entereddetail = detailTextField.text!
                    
-                   var iTag = CStateMachine.currentNode?.HostTlvtag
-                   var bArrDetail = [Byte](entereddetail.utf8)
-                   TransactionHUB.AddTLVDataWithTag(uiTag: iTag!, Data: [Byte](entereddetail.utf8), length: bArrDetail.count)
+            let iTag = CStateMachine.currentNode?.HostTlvtag
+            let bArrDetail = [Byte](entereddetail.utf8)
+            TransactionHUB.AddTLVDataWithTag(uiTag: iTag!, Data: [Byte](entereddetail.utf8), length: bArrDetail.count)
                
-                   var tempNode = CStateMachine.currentNode?.GotoChild()
-                   if(tempNode?.node_type == 2)
-                   {
-                       //Going Online
-                       CStateMachine.currentNode = tempNode
-                       TransactionHomeViewController.DoTransaction()
-                   }
-               }
-        
-    }
+            let tempNode = CStateMachine.currentNode?.GotoChild()
+
+            TransactionHUB.goToNode(tempNode,self.navigationController,transactionDelegate)
+      }
     
+  }
 }

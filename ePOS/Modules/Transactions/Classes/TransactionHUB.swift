@@ -93,7 +93,7 @@ class TransactionHUB {
       
     }
     
-    static func goToNode(_ node:CBaseNode? , _ navigationController:UINavigationController?)
+    static func goToNode(_ node:CBaseNode? , _ navigationController:UINavigationController?, _ delegate:prTransactionTestDelegate?)
     {
         if(node == nil){
             //finish UI
@@ -109,17 +109,18 @@ class TransactionHUB {
         case PvmNodeTypes.Menu_item_node:
              break
         case PvmNodeTypes.Dispaly_message_node:
-             break
+             CStateMachine.currentNode = node
+             _ = delegate?.PerformTransaction()
         case PvmNodeTypes.Amount_entry_node:
              CStateMachine.currentNode = node
              let controller = EnterAmountViewController.init(nibName: EnterAmountViewController.className, bundle: nil)
+             controller.testDelegate = delegate
              navigationController?.pushViewController(controller, animated: true)
-             break
         case PvmNodeTypes.Data_entry_node:
              CStateMachine.currentNode = node
              let controller = EnterDataViewController.init(nibName: EnterDataViewController.className, bundle: nil)
+             controller.transactionDelegate = delegate
              navigationController?.pushViewController(controller, animated: true)
-             break
         case PvmNodeTypes.Pin_entry_node:
              break
         case PvmNodeTypes.Confirmation_node:

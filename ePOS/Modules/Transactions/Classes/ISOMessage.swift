@@ -829,7 +829,7 @@ class ISOMessage{
 
             debugPrint("m_strGUID[\(m_sParamData.m_strGUID)]")
             
-            guard let bArrGUIDAuthTokenEncrypted: [Byte] = CryptoHandler.tripleDesEncrypt(bArrGUIDPlainData, bArrKey) else{return nil}
+            guard let bArrGUIDAuthTokenEncrypted: [Byte] =  CryptoHandler.tripleDesEncrypt(bArrGUIDPlainData, bArrKey) else{return nil}
             
             return bArrGUIDAuthTokenEncrypted
         } catch {

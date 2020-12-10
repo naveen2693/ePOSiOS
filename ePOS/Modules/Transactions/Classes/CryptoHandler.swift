@@ -149,6 +149,10 @@ class CryptoHandler{
     //MARK:- tripleDesEncrypt(_ bArrData:[UInt8] , _ bArrKey:[UInt8]) -> [UInt8]?
     static func tripleDesEncrypt(_ bArrData:[UInt8] , _ bArrKey:[UInt8]) -> [UInt8]? {
         
+        if(bArrKey.count < 16){
+            return nil
+        }
+        
         //Used 3DES/ECB/NoPadding
         let iRemainder:Int = (bArrData.count) % 8
         var bArrDataNew:[UInt8]

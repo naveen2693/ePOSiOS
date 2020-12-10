@@ -70,17 +70,7 @@ class PaymentOptionsViewController: CustomNavigationStyleViewController {
         
         tempCurrentNode = CStateMachine.currentNode?.GotoChild(index: sender.tag)
         tempChildNode = tempCurrentNode?.GotoChild()
-        
-        TransactionHUB.goToNode(tempChildNode, self.navigationController)
-        
-//        if (tempChildNode?.node_type == PvmNodeTypes.Amount_entry_node)
-//        {
-//        let controller = EnterAmountViewController.init(nibName: EnterAmountViewController.className, bundle: nil)
-//
-//        controller.transactionDelegate = testDelegate
-//        CStateMachine.currentNode = tempChildNode
-//
-//        self.navigationController?.pushViewController(controller, animated: true)
-//        }
+        TransactionHUB.goToNode(tempChildNode, self.navigationController,testDelegate)
+
     }
 }
