@@ -16,15 +16,10 @@ class EnterDataViewController: CustomNavigationStyleViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        var tempNode = CStateMachine.currentNode
-        var fieldName = tempNode?.DisplayMessage
-        
-        //Need to add field name with detailTextField
-        
-        topLabel.text = fieldName
-        
-        // Do any additional setup after loading the view.
+        let tempNode = CStateMachine.currentNode
+        if let fieldName = tempNode?.DisplayMessage{
+            detailTextField.floatingText = fieldName
+        }
     }
 
 
@@ -44,11 +39,7 @@ class EnterDataViewController: CustomNavigationStyleViewController {
                        //Going Online
                        CStateMachine.currentNode = tempNode
                        TransactionHomeViewController.DoTransaction()
-                       
                    }
-                   
-                   //self.transactionDelegate?.amountEntered(enteredAmount)
-                   
                }
         
     }

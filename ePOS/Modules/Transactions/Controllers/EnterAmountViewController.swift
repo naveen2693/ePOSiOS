@@ -76,12 +76,15 @@ class EnterAmountViewController: CustomNavigationStyleViewController {
             TransactionHUB.AddTLVDataWithTag(uiTag: iTag!, Data: [Byte](enteredAmount.utf8), length: bArrAmount.count)
         
             var tempNode = CStateMachine.currentNode?.GotoChild()
-            if(tempNode?.node_type == 4)
-            {
-                CStateMachine.currentNode = tempNode
-                let controller = EnterDataViewController.init(nibName: EnterDataViewController.className, bundle: nil)
-                self.navigationController?.pushViewController(controller, animated: true)
-            }
+//            if(tempNode?.node_type == 4)
+//            {
+//                CStateMachine.currentNode = tempNode
+//                let controller = EnterDataViewController.init(nibName: EnterDataViewController.className, bundle: nil)
+//                self.navigationController?.pushViewController(controller, animated: true)
+//            }
+            
+            TransactionHUB.goToNode(tempNode,self.navigationController)
+            
             
             //self.transactionDelegate?.amountEntered(enteredAmount)
             

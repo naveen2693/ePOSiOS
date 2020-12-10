@@ -11,7 +11,7 @@ import Foundation
 class TCPIPCommunicator
 {
     
-    static let singleton = TCPIPCommunicationHandler(hostIP: "192.168.43.111",hostPort: 8997,connectionTimeout: 20000,sendReceiveTimeout:120000 ,bIsSSLOn:false)
+    static let singleton = TCPIPCommunicationHandler(hostIP: "192.168.1.202",hostPort: 8997,connectionTimeout: 20000,sendReceiveTimeout:120000 ,bIsSSLOn:false)
     
     //Comment above and Uncomment below to run SSL
 //    static let singleton = TCPIPCommunicationHandlerSSL(hostIP: "192.168.43.111",hostPort: 8997,connectionTimeout: 60000,sendReceiveTimeout:120000 ,bIsSSLOn:true)

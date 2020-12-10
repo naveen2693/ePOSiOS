@@ -93,8 +93,69 @@ class TransactionHUB {
       
     }
     
-    func goToNode(_ node:CBaseNode)
+    static func goToNode(_ node:CBaseNode? , _ navigationController:UINavigationController?)
     {
+        if(node == nil){
+            //finish UI
+            return
+        }
         
+        guard let nodeType = node?.node_type else {return}
+        
+        switch(nodeType)
+        {
+        case PvmNodeTypes.Menu_node:
+             break
+        case PvmNodeTypes.Menu_item_node:
+             break
+        case PvmNodeTypes.Dispaly_message_node:
+             break
+        case PvmNodeTypes.Amount_entry_node:
+             CStateMachine.currentNode = node
+             let controller = EnterAmountViewController.init(nibName: EnterAmountViewController.className, bundle: nil)
+             navigationController?.pushViewController(controller, animated: true)
+             break
+        case PvmNodeTypes.Data_entry_node:
+             CStateMachine.currentNode = node
+             let controller = EnterDataViewController.init(nibName: EnterDataViewController.className, bundle: nil)
+             navigationController?.pushViewController(controller, animated: true)
+             break
+        case PvmNodeTypes.Pin_entry_node:
+             break
+        case PvmNodeTypes.Confirmation_node:
+             break
+        case PvmNodeTypes.Event_wait_node:
+             break
+        case PvmNodeTypes.Menu_list_node:
+             break
+        case PvmNodeTypes.Event_Received_node:
+             break
+        case PvmNodeTypes.Sec_Pin_entry_node:
+             break
+        case PvmNodeTypes.Biometric_entry_node:
+             break
+        case PvmNodeTypes.Qrcode_display_node:
+             break
+        case PvmNodeTypes.Confirmation_dialog:
+             break
+        case PvmNodeTypes.Qrcode_scanning:
+             break
+        case PvmNodeTypes.Video_gif_node:
+             break
+        case PvmNodeTypes.Multi_Data_Entry_Node:
+             break
+        case PvmNodeTypes.Epos_Home_Screen:
+             break
+        default:
+            //finish UI
+            break
+        }
+        
+//        if(node?.node_type == 4)
+//        {
+//               CStateMachine.currentNode = node
+//               let controller = EnterDataViewController.init(nibName: EnterDataViewController.className, bundle: nil)
+//               navigationController?.pushViewController(controller, animated: true)
+//        }
     }
 }
