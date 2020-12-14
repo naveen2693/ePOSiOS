@@ -104,13 +104,13 @@ public class ParserWrapper
             //newNode = new CDisplayGetBiometricData()
             currentNode = newNode
         case PvmNodeTypes.Qrcode_display_node:
-            //newNode = CDisplayQRcode()
+            newNode = CDisplayQRCode()
             currentNode = newNode
         case PvmNodeTypes.Confirmation_dialog:
             //newNode = CDisplayConfirmationNewDialog()
             currentNode = newNode
         case PvmNodeTypes.Qrcode_scanning:
-            //newNode = CDisplayQRCodeScanning();
+            newNode = CDisplayQRCodeScanning()
             currentNode = newNode
         case PvmNodeTypes.Video_gif_node:
             //newNode = CDisplayGifVideo()

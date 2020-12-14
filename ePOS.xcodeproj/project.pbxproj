@@ -287,6 +287,8 @@
 		997DC804252347A3006ADE48 /* DropdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 997DC802252347A3006ADE48 /* DropdownTableViewCell.xib */; };
 		997DC8272524A2FE006ADE48 /* GSTDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997DC8262524A2FE006ADE48 /* GSTDetails.swift */; };
 		CE3443772577639F008C4A8D /* TCPIPCommunicationHandlerSSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3443762577639F008C4A8D /* TCPIPCommunicationHandlerSSL.swift */; };
+		CE4AE5F925875330004EDADB /* CDisplayQRCodeScanning.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4AE5F825875330004EDADB /* CDisplayQRCodeScanning.swift */; };
+		CE4AE5FB25879361004EDADB /* CDisplayQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4AE5FA25879361004EDADB /* CDisplayQRCode.swift */; };
 		CE971BC5252CACAF00843943 /* TCPIPCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE971BC4252CACAF00843943 /* TCPIPCommunicator.swift */; };
 		CE971BC7252CAD2400843943 /* TCPIPCommunicationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE971BC6252CAD2400843943 /* TCPIPCommunicationHandler.swift */; };
 		CE971BC9252CAD4E00843943 /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE971BC8252CAD4E00843943 /* GlobalData.swift */; };
@@ -600,6 +602,8 @@
 		997DC8262524A2FE006ADE48 /* GSTDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSTDetails.swift; sourceTree = "<group>"; };
 		B5B8F0D4F76186F2167A93E4 /* Pods-ePOS.uat.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ePOS.uat.xcconfig"; path = "Target Support Files/Pods-ePOS/Pods-ePOS.uat.xcconfig"; sourceTree = "<group>"; };
 		CE3443762577639F008C4A8D /* TCPIPCommunicationHandlerSSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPIPCommunicationHandlerSSL.swift; sourceTree = "<group>"; };
+		CE4AE5F825875330004EDADB /* CDisplayQRCodeScanning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDisplayQRCodeScanning.swift; sourceTree = "<group>"; };
+		CE4AE5FA25879361004EDADB /* CDisplayQRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDisplayQRCode.swift; sourceTree = "<group>"; };
 		CE971BC4252CACAF00843943 /* TCPIPCommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPIPCommunicator.swift; sourceTree = "<group>"; };
 		CE971BC6252CAD2400843943 /* TCPIPCommunicationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPIPCommunicationHandler.swift; sourceTree = "<group>"; };
 		CE971BC8252CAD4E00843943 /* GlobalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
@@ -775,6 +779,8 @@
 				8E4BA5C32583C87E00125E8A /* DisplayRequestType.swift */,
 				8E4BA5C52583CB1E00125E8A /* CDisplayMenuList.swift */,
 				8E4BA5C72583D38800125E8A /* CDisplayEventReceived.swift */,
+				CE4AE5F825875330004EDADB /* CDisplayQRCodeScanning.swift */,
+				CE4AE5FA25879361004EDADB /* CDisplayQRCode.swift */,
 			);
 			path = PVMClasses;
 			sourceTree = "<group>";
@@ -1919,6 +1925,7 @@
 				99186D3B2511D21000A9FE07 /* ApiClient.swift in Sources */,
 				8E138286256D557D000F7C21 /* DailyTxnAmount.swift in Sources */,
 				991DF26E251CBB2E00AEA1C3 /* EPOSLoader.swift in Sources */,
+				CE4AE5F925875330004EDADB /* CDisplayQRCodeScanning.swift in Sources */,
 				996FD8AE251F17C3001961EE /* UserProfile.swift in Sources */,
 				99186D582511D32E00A9FE07 /* BottomLineTextField.swift in Sources */,
 				997DC8272524A2FE006ADE48 /* GSTDetails.swift in Sources */,
@@ -1988,6 +1995,7 @@
 				46ED34702537207600CEF19D /* ParameterData.swift in Sources */,
 				997DC800252321EE006ADE48 /* CompleteUserData.swift in Sources */,
 				99186D4D2511D27F00A9FE07 /* OtpTextField.swift in Sources */,
+				CE4AE5FB25879361004EDADB /* CDisplayQRCode.swift in Sources */,
 				997DC7E42521EEFC006ADE48 /* CityDataProvider.swift in Sources */,
 				46ADF12425287AF4009A9297 /* DocumentItem.swift in Sources */,
 				99186D4C2511D27F00A9FE07 /* OTPVerificationController.swift in Sources */,
