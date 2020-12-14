@@ -75,7 +75,7 @@ class CBaseNode: CustomStringConvertible {
     public var qrcodescanningListParser:[QRCodeScanningParserVO]?;
     public var qrCodeParsingData:QRCodeParsingData?;
     public var m_bundle:[String:String]?;
-    public var parenNode:CBaseNode?;
+    public var parentNode:CBaseNode?;
     
     public init()
     {
@@ -433,7 +433,8 @@ class CBaseNode: CustomStringConvertible {
         pvmListParser = tagAttribute.pvmListParser;
         qrcodescanningListParser = tagAttribute.qrcodescanningListParser;
         qrCodeParsingData = tagAttribute.qrCodeParsingData;
-        if tagAttribute.parentNode != nil{
+        parentNode = tagAttribute.parentNode
+        if retVal == RetVal.RET_OK{
             retVal = self.AddPrivateParameters(tagAttribute: tagAttribute, nTotal: nTotal);
         }
         return retVal;
