@@ -40,9 +40,8 @@ class EnterDataViewController: CustomNavigationStyleViewController {
             TransactionHUB.AddTLVDataWithTag(uiTag: iTag!, Data: [Byte](entereddetail.utf8), length: bArrDetail.count)
                
             let tempNode = CStateMachine.currentNode?.GotoChild()
-
             TransactionHUB.goToNode(tempNode,self.navigationController,transactionDelegate)
       }
-    
   }
+    
 }

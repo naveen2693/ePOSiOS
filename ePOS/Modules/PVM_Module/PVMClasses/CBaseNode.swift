@@ -52,8 +52,8 @@ class CBaseNode: CustomStringConvertible {
     static let I_RESULT_OK = 0;
     static let I_RESULT_TIME_OUT = 1;
     static let I_RESULT_BACK_PRESSED = -1;
-    let numberOFItemsInMenuList = 0;
-    let numberOFImages = 0;
+    var numberOFItemsInMenuList = 0;
+    var numberOFImages = 0;
     var listViewcode = 0;
     var soundTrack = "";
     public var KEY_F1 = 0;
@@ -85,9 +85,9 @@ class CBaseNode: CustomStringConvertible {
     // MARK:- AddChild
     public func AddChild(addThisNode:CBaseNode){
         if (nil == Child) {
-            Child = ChildList();
-            Child?.this_node = addThisNode;
-            Child?.index = addThisNode.getIndex();
+            Child = ChildList()
+            Child?.this_node = addThisNode
+            Child?.index = addThisNode.getIndex()
         } else {
             Child?.addChild(gIndex: addThisNode.getIndex(), addThisNode: addThisNode)
         }
@@ -655,7 +655,10 @@ class CBaseNode: CustomStringConvertible {
         return m_iRetVal;
     }
     
-    func execute(){}
+    func execute() -> Int {
+        return RetVal.RET_OK
+    }
+    
     func AddPrivateParameters(tagAttribute:XMLATTRIBUTE,nTotal:Int) -> Int
     {
         return 0

@@ -71,7 +71,7 @@ class CDisplayGetAmount: CBaseNode
     {
     }
     
-    func execute() -> Int
+    override func execute() -> Int
     {
         let retVal = getExecutionResult(iResult: iResult);
         if (ExecutionResult._OK == retVal)

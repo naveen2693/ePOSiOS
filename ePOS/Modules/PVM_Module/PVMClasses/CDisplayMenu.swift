@@ -32,7 +32,7 @@ class CDisplayMenu : CBaseNode
     }
     
     // MARK:-execute
-    public func execute() -> Int
+    public override func execute() -> Int
     {
         let retVal = getExecutionResult(iResult: iResult);
         if(retVal == ExecutionResult._OK)

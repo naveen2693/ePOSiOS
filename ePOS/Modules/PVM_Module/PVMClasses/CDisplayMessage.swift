@@ -53,7 +53,7 @@ class CDisplayMessage : CBaseNode {
     }
     
     // MARK:- execute
-    func execute() -> Int
+    override func execute() -> Int
     {
         let retVal = getExecutionResult(iResult: iResult);
         if(retVal == ExecutionResult._OK)

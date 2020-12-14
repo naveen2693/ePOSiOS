@@ -68,22 +68,61 @@ public class ParserWrapper
         parentNode = currentNode;
         switch (tagAttribute.node_type) {
         case PvmNodeTypes.Dispaly_message_node:
-            newNode =  CDisplayMessage();
-            currentNode = newNode;
+            newNode =  CDisplayMessage()
+            currentNode = newNode
         case PvmNodeTypes.Menu_node:
-            newNode =  CDisplayMenu();
-            currentNode = newNode;
+            newNode =  CDisplayMenu()
+            currentNode = newNode
         case PvmNodeTypes.Menu_item_node:
-            newNode =  CDisplayMenuItem();
-            currentNode = newNode;
+            newNode =  CDisplayMenuItem()
+            currentNode = newNode
         case PvmNodeTypes.Amount_entry_node:
-            newNode =  CDisplayGetAmount();
-            currentNode = newNode;
+            newNode =  CDisplayGetAmount()
+            currentNode = newNode
         case PvmNodeTypes.Data_entry_node:
-            newNode =  CDisplayDataEntry();
+            newNode =  CDisplayDataEntry()
+            currentNode = newNode
+        case PvmNodeTypes.Pin_entry_node:
+            newNode = CDisplayGetPassword()
+            currentNode = newNode
+        case PvmNodeTypes.Confirmation_node:
+            newNode = CDisplayConfirmation()
+            currentNode = newNode
+        case PvmNodeTypes.Event_wait_node:
+            newNode = CDisplayWait()
             currentNode = newNode;
+        case PvmNodeTypes.Menu_list_node:
+            newNode = CDisplayMenuList()
+            currentNode = newNode
+        case PvmNodeTypes.Event_Received_node:
+            newNode = CDisplayEventReceived()
+            currentNode = newNode
+        case PvmNodeTypes.Sec_Pin_entry_node:
+            //newNode = CDisplayGetSecretPin()
+            currentNode = newNode
+        case PvmNodeTypes.Biometric_entry_node:
+            //newNode = new CDisplayGetBiometricData()
+            currentNode = newNode
+        case PvmNodeTypes.Qrcode_display_node:
+            //newNode = CDisplayQRcode()
+            currentNode = newNode
+        case PvmNodeTypes.Confirmation_dialog:
+            //newNode = CDisplayConfirmationNewDialog()
+            currentNode = newNode
+        case PvmNodeTypes.Qrcode_scanning:
+            //newNode = CDisplayQRCodeScanning();
+            currentNode = newNode
+        case PvmNodeTypes.Video_gif_node:
+            //newNode = CDisplayGifVideo()
+            currentNode = newNode
+        case PvmNodeTypes.Multi_Data_Entry_Node:
+            //newNode = MultipleDataEntryActivity()
+            currentNode = newNode
+        case PvmNodeTypes.Epos_Home_Screen:
+            //newNode = HomePage()
+            currentNode = newNode
         case PvmNodeTypes.Invalid_node:
-            break;
+            break
         default:
             return
         }
@@ -547,7 +586,7 @@ public class ParserWrapper
                             if (strArrAttributeName[cIndex].elementsEqual(itehtl))
                             {
                                 
-                                if var hostTag = TransactionUtils.a2bcd(strArrAttributeValue[cIndex].bytes)
+                                if let hostTag = TransactionUtils.a2bcd(strArrAttributeValue[cIndex].bytes)
                                 {
                                     var HTLTag = Int(hostTag[0]<<8) & 0x0000FF00;
                                     HTLTag |= Int(hostTag[1]) & 0x000000FF;

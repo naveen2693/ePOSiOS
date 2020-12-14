@@ -127,6 +127,12 @@
 		8E13828C256E9345000F7C21 /* ISO800.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E13828B256E9345000F7C21 /* ISO800.swift */; };
 		8E13828E256F5E8C000F7C21 /* ISO220DRUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E13828D256F5E8C000F7C21 /* ISO220DRUpload.swift */; };
 		8E138290256FB502000F7C21 /* HostTransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E13828F256FB502000F7C21 /* HostTransactionType.swift */; };
+		8E4BA5BE2581EC2600125E8A /* CDisplayGetPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4BA5BD2581EC2600125E8A /* CDisplayGetPassword.swift */; };
+		8E4BA5C02581F03000125E8A /* CDisplayConfirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4BA5BF2581F03000125E8A /* CDisplayConfirmation.swift */; };
+		8E4BA5C22581FAE100125E8A /* CDisplayWait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4BA5C12581FAE100125E8A /* CDisplayWait.swift */; };
+		8E4BA5C42583C87E00125E8A /* DisplayRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4BA5C32583C87E00125E8A /* DisplayRequestType.swift */; };
+		8E4BA5C62583CB1E00125E8A /* CDisplayMenuList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4BA5C52583CB1E00125E8A /* CDisplayMenuList.swift */; };
+		8E4BA5C82583D38800125E8A /* CDisplayEventReceived.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4BA5C72583D38800125E8A /* CDisplayEventReceived.swift */; };
 		8E4DCFA425354F8A00726EA8 /* LOGIN_ACCOUNTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */; };
 		8E4DCFA625369F1000726EA8 /* BytesUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA525369F1000726EA8 /* BytesUtil.swift */; };
 		8E927C68253895AC009928D4 /* DisplayMessageMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E927C67253895AC009928D4 /* DisplayMessageMode.swift */; };
@@ -425,6 +431,12 @@
 		8E13828B256E9345000F7C21 /* ISO800.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO800.swift; sourceTree = "<group>"; };
 		8E13828D256F5E8C000F7C21 /* ISO220DRUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO220DRUpload.swift; sourceTree = "<group>"; };
 		8E13828F256FB502000F7C21 /* HostTransactionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostTransactionType.swift; sourceTree = "<group>"; };
+		8E4BA5BD2581EC2600125E8A /* CDisplayGetPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDisplayGetPassword.swift; sourceTree = "<group>"; };
+		8E4BA5BF2581F03000125E8A /* CDisplayConfirmation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDisplayConfirmation.swift; sourceTree = "<group>"; };
+		8E4BA5C12581FAE100125E8A /* CDisplayWait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDisplayWait.swift; sourceTree = "<group>"; };
+		8E4BA5C32583C87E00125E8A /* DisplayRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayRequestType.swift; sourceTree = "<group>"; };
+		8E4BA5C52583CB1E00125E8A /* CDisplayMenuList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDisplayMenuList.swift; sourceTree = "<group>"; };
+		8E4BA5C72583D38800125E8A /* CDisplayEventReceived.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDisplayEventReceived.swift; sourceTree = "<group>"; };
 		8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOGIN_ACCOUNTS.swift; sourceTree = "<group>"; };
 		8E4DCFA525369F1000726EA8 /* BytesUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BytesUtil.swift; sourceTree = "<group>"; };
 		8E927C67253895AC009928D4 /* DisplayMessageMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayMessageMode.swift; sourceTree = "<group>"; };
@@ -758,6 +770,11 @@
 				46E293AA255BAC0B00826954 /* CDisplayMessage.swift */,
 				46E293AB255BAC0B00826954 /* ParserWrapper.swift */,
 				46E293AC255BAC0B00826954 /* CPineKeyInjection.swift */,
+				8E4BA5BD2581EC2600125E8A /* CDisplayGetPassword.swift */,
+				8E4BA5BF2581F03000125E8A /* CDisplayConfirmation.swift */,
+				8E4BA5C32583C87E00125E8A /* DisplayRequestType.swift */,
+				8E4BA5C52583CB1E00125E8A /* CDisplayMenuList.swift */,
+				8E4BA5C72583D38800125E8A /* CDisplayEventReceived.swift */,
 			);
 			path = PVMClasses;
 			sourceTree = "<group>";
@@ -1607,6 +1624,7 @@
 				8E138281256D37C0000F7C21 /* PlutusTransactionStatus.swift */,
 				8E138283256D489B000F7C21 /* IndexUtil.swift */,
 				8E13828F256FB502000F7C21 /* HostTransactionType.swift */,
+				8E4BA5C12581FAE100125E8A /* CDisplayWait.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1921,6 +1939,7 @@
 				8E13826625551D4F000F7C21 /* RetVal.swift in Sources */,
 				8E13827E256CC2D9000F7C21 /* ISO220ResponseDataRetVal.swift in Sources */,
 				46E293CE255BAC0B00826954 /* CDisplayMessage.swift in Sources */,
+				8E4BA5C02581F03000125E8A /* CDisplayConfirmation.swift in Sources */,
 				46ED346A2537155A00CEF19D /* TerminalPSKData.swift in Sources */,
 				46AB5D142546E6AD00FF814E /* AccountTableViewController.swift in Sources */,
 				9976C95E2501173600FC5DD3 /* DeviceType.swift in Sources */,
@@ -1942,6 +1961,7 @@
 				CE971BC7252CAD2400843943 /* TCPIPCommunicationHandler.swift in Sources */,
 				46ADF110252878B0009A9297 /* LeadComments.swift in Sources */,
 				46BD9B4825175327008DEFEA /* ConvertApiParameterIntoObject.swift in Sources */,
+				8E4BA5BE2581EC2600125E8A /* CDisplayGetPassword.swift in Sources */,
 				99186D552511D28800A9FE07 /* SignUpControllerViewController.swift in Sources */,
 				46ADF11925287976009A9297 /* AddressDetails.swift in Sources */,
 				8E138270255E4F29000F7C21 /* PrintMode.swift in Sources */,
@@ -1952,6 +1972,7 @@
 				990AF9CD252A0F970008A907 /* CustomSearchViewController.swift in Sources */,
 				46BD9B50251A8646008DEFEA /* ForgotPasswordController.swift in Sources */,
 				8EE328682544490A00616E33 /* st_TxnBin.swift in Sources */,
+				8E4BA5C42583C87E00125E8A /* DisplayRequestType.swift in Sources */,
 				8E10234D2545780200F1A907 /* st_EMV_Tag_List.swift in Sources */,
 				991599602577581B00630E32 /* EnterDataViewController.swift in Sources */,
 				997DC7F5252200FD006ADE48 /* OnBoardingConstants.swift in Sources */,
@@ -1974,6 +1995,7 @@
 				991ADEA925064E2F00932251 /* UIButtonExtension.swift in Sources */,
 				8EF146AD2545259A00C2C26D /* CurrentEMVParDownloadingInfo.swift in Sources */,
 				46ADF10E2528785F009A9297 /* BusinessDetails.swift in Sources */,
+				8E4BA5C62583CB1E00125E8A /* CDisplayMenuList.swift in Sources */,
 				9919A9C0251A4BA600A67253 /* PackageTableViewCell.swift in Sources */,
 				99186D0E2510922B00A9FE07 /* ShowDialog.swift in Sources */,
 				46E293D3255BAC0B00826954 /* TxnTLVData.swift in Sources */,
@@ -2029,6 +2051,7 @@
 				46AB5D0B2542A08F00FF814E /* ProcessingCodeConstants.swift in Sources */,
 				9919A9B32519E47900A67253 /* PackageView.swift in Sources */,
 				99186D0F2510922B00A9FE07 /* FailedPopup.swift in Sources */,
+				8E4BA5C22581FAE100125E8A /* CDisplayWait.swift in Sources */,
 				8EE32856253DF93B00616E33 /* st_TxnTypeFlagsMappingDetails.swift in Sources */,
 				4646198425330B84009089BC /* SignatureParams.swift in Sources */,
 				46E293E6255BAC0B00826954 /* QRCodeScanningParserVO.swift in Sources */,
@@ -2041,6 +2064,7 @@
 				46E293DF255BAC0B00826954 /* QRCodeParsingData.swift in Sources */,
 				46E293C7255BAC0B00826954 /* CDisplayGetAmount.swift in Sources */,
 				99186D4E2511D27F00A9FE07 /* PasswordController.swift in Sources */,
+				8E4BA5C82583D38800125E8A /* CDisplayEventReceived.swift in Sources */,
 				8E1382642551882F000F7C21 /* PrinterDataDisplay.swift in Sources */,
 				99186D5C2511D37200A9FE07 /* CheckBox.swift in Sources */,
 				46E293C6255BAC0B00826954 /* CDisplayMenu.swift in Sources */,

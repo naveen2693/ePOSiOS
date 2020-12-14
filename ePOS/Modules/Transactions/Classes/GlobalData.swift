@@ -11,7 +11,7 @@ import Foundation
 final class GlobalData
 {
     var  m_sConxData = StructConxData()
-    var  fullSerialNumber:String? = "EPOSIOS12345678"
+    var  fullSerialNumber:String? = "EPOSIOS01234567"
     static var m_sTerminalParamData_Cache: TerminalParamData?
     var m_sMasterParamData: TerminalMasterParamData?
     var m_sPSKData:TerminalPSKData?
