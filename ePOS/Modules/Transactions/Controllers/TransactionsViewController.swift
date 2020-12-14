@@ -87,7 +87,7 @@ class TransactionHomeViewController: UIViewController {
              obj.parsePVM(str)
          }
         
-        //TransactionHub ...navigation controller        
+        //TransactionHub ...navigation controller
         let controller = PaymentOptionsViewController.init(nibName: PaymentOptionsViewController.className, bundle: nil)
         controller.testDelegate = self
         
@@ -246,7 +246,7 @@ class TransactionHomeViewController: UIViewController {
 extension TransactionHomeViewController: prTransactionTestDelegate {
     func PerformTransaction() {
         weak var weakSelf = self
-         self.showLoading()
+        self.showLoading()
         //let syncConc = DispatchQueue(label:"con",attributes:.concurrent)
         DispatchQueue.global(qos: .utility).async{
             _ = weakSelf?.DoTransaction(completion: {(isSuccess:Bool) in

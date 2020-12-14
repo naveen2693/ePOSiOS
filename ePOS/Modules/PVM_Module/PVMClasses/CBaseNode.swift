@@ -8,74 +8,74 @@
 
 import Foundation
 class CBaseNode: CustomStringConvertible {
-    var iName = "";
-    var iNameImage = "";
-    var fileName = "";
-    var viewType = "";
-    var node_type = 0;
-    var InputMethod:enum_InputMethod?;
-    var regx = "";
-    var txtye = "";
-    var maxLen = 0;
-    var minLen = 0;
-    var Child:ChildList?;
-    var numberOfChild = 0;
-    var Timeout:Int = 0;
-    var cascading = 0;
-    var brightnessLevel = -1;
-    var goToOrignalBrightness = 0;
-    var HostTlvtag = 0;
-    internal var HostActiontag = 0;
-    internal var iHostType = 0;
-    internal var m_iIsLatLong = false;
-    internal var Parent:CBaseNode?;
-    var m_bIsUnicodeBase = false;
-    internal var onOk = PvmNodeActions.gotoChild;
-    internal var onCancel = PvmNodeActions.goBack;
-    internal var onExit = PvmNodeActions.exitPvm;
-    internal var onTimeout = PvmNodeActions.exitPvm;
-    internal var onSSL = 0;
-    public var m_chArrAmount:String = "";
-    internal var m_bIsAmountUsingXMl = false;
-    public var m_chPadChar:Byte = 0;
-    public var m_iPadStyle:Int = AppConstant._LEFT_PAD;
-    public var m_iTleEnabled = false;
-    public var m_iIsIRIS = false;
-    internal var m_chArrCurrencyCode = "";
-    var m_bIsCurrencyCodeUsingXMl = false;
-    var m_iIsSignCapture = false;
-    public var ItemList:[ITEMVAL]?;
-    public var ItemListImages:[ImageListParserModel]?;
-    var iResult = -1;
-    var iPos = -1;
-    var iBuffer:String?;
-    static let I_RESULT_OK = 0;
-    static let I_RESULT_TIME_OUT = 1;
-    static let I_RESULT_BACK_PRESSED = -1;
-    let numberOFItemsInMenuList = 0;
-    let numberOFImages = 0;
-    var listViewcode = 0;
-    var soundTrack = "";
-    public var KEY_F1 = 0;
-    public var KEY_F2 = 0;
-    public var KEY_F3 = 0;
-    public var KEY_F4 = 0;
-    public var KEY_ENTER = 0;
-    public var KEY_CANCEL = 0;
-    public var KeyF1 = "";
-    public var KeyF2 = "";
-    public var KeyF3 = "";
-    public var KeyF4 = "";
-    public var ScanType = "";
-    public var DisplayMessage = "";
-    public var DisplayMessageLine2 = "";
-    public var DisplayMessageLine3 = "";
-    public var DisplayMessageLine4 = "";
-    public var pvmListParser:[PvmListParserVO]?;
-    public var qrcodescanningListParser:[QRCodeScanningParserVO]?;
-    public var qrCodeParsingData:QRCodeParsingData?;
-    public var m_bundle:[String:String]?;
-    public var parenNode:CBaseNode?;
+    var iName = ""
+    var iNameImage = ""
+    var fileName = ""
+    var viewType = ""
+    var node_type = 0
+    var InputMethod:enum_InputMethod?
+    var regx = ""
+    var txtye = ""
+    var maxLen = 0
+    var minLen = 0
+    var Child:ChildList?
+    var numberOfChild = 0
+    var Timeout:Int = 0
+    var cascading = 0
+    var brightnessLevel = -1
+    var goToOrignalBrightness = 0
+    var HostTlvtag = 0
+    internal var HostActiontag = 0
+    internal var iHostType = 0
+    internal var m_iIsLatLong = false
+    internal var Parent:CBaseNode?
+    var m_bIsUnicodeBase = false
+    internal var onOk = PvmNodeActions.gotoChild
+    internal var onCancel = PvmNodeActions.goBack
+    internal var onExit = PvmNodeActions.exitPvm
+    internal var onTimeout = PvmNodeActions.exitPvm
+    internal var onSSL = 0
+    public var m_chArrAmount:String = ""
+    internal var m_bIsAmountUsingXMl = false
+    public var m_chPadChar:Byte = 0
+    public var m_iPadStyle:Int = AppConstant._LEFT_PAD
+    public var m_iTleEnabled = false
+    public var m_iIsIRIS = false
+    internal var m_chArrCurrencyCode = ""
+    var m_bIsCurrencyCodeUsingXMl = false
+    var m_iIsSignCapture = false
+    public var ItemList:[ITEMVAL]?
+    public var ItemListImages:[ImageListParserModel]?
+    var iResult = -1
+    var iPos = -1
+    var iBuffer:String?
+    static let I_RESULT_OK = 0
+    static let I_RESULT_TIME_OUT = 1
+    static let I_RESULT_BACK_PRESSED = -1
+    var numberOFItemsInMenuList = 0
+    var numberOFImages = 0
+    var listViewcode = 0
+    var soundTrack = ""
+    public var KEY_F1 = 0
+    public var KEY_F2 = 0
+    public var KEY_F3 = 0
+    public var KEY_F4 = 0
+    public var KEY_ENTER = 0
+    public var KEY_CANCEL = 0
+    public var KeyF1 = ""
+    public var KeyF2 = ""
+    public var KeyF3 = ""
+    public var KeyF4 = ""
+    public var ScanType = ""
+    public var DisplayMessage = ""
+    public var DisplayMessageLine2 = ""
+    public var DisplayMessageLine3 = ""
+    public var DisplayMessageLine4 = ""
+    public var pvmListParser:[PvmListParserVO]?
+    public var qrcodescanningListParser:[QRCodeScanningParserVO]?
+    public var qrCodeParsingData:QRCodeParsingData?
+    public var m_bundle:[String:String]?
+    public var parenNode:CBaseNode?
     
     public init()
     {
@@ -85,9 +85,9 @@ class CBaseNode: CustomStringConvertible {
     // MARK:- AddChild
     public func AddChild(addThisNode:CBaseNode){
         if (nil == Child) {
-            Child = ChildList();
-            Child?.this_node = addThisNode;
-            Child?.index = addThisNode.getIndex();
+            Child = ChildList()
+            Child?.this_node = addThisNode
+            Child?.index = addThisNode.getIndex()
         } else {
             Child?.addChild(gIndex: addThisNode.getIndex(), addThisNode: addThisNode)
         }
@@ -654,7 +654,10 @@ class CBaseNode: CustomStringConvertible {
         return m_iRetVal;
     }
     
-    func execute(){}
+    func execute() -> Int {
+        return RetVal.RET_OK
+    }
+    
     func AddPrivateParameters(tagAttribute:XMLATTRIBUTE,nTotal:Int) -> Int
     {
         return 0

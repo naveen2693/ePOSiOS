@@ -8,6 +8,22 @@
 
 import Foundation
 struct ImageListParserModel {
-    var tagName = "";
-    var tagValue = "";
+    var tagName = ""
+    var tagValue = ""
+    
+    public func getTagName() -> String {
+        return tagName;
+    }
+
+    public mutating func setTagName(_ tagName: String) {
+        self.tagName = tagName
+    }
+
+    public func getTagValue() -> String {
+        return tagValue
+    }
+
+    public mutating func setTagValue(_ tagValue: String) {
+        self.tagValue = tagValue;
+    }
 }

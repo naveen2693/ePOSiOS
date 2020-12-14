@@ -82,6 +82,7 @@ class TCPIPCommunicationHandlerSSL : NSObject, StreamDelegate
         // Open the streams
         inputStream!.open()
         outputStream!.open()
+            
         mbIsConnected = true
         return true
     }

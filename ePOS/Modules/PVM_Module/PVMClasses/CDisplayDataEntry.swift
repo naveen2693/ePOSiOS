@@ -105,7 +105,7 @@ class CDisplayDataEntry : CBaseNode {
     }
     
     // MARK:-execute
-    public func execute() -> Int
+    public override func execute() -> Int
     {
         let global = GlobalData.singleton;
         var retval = getExecutionResult(iResult: iResult);

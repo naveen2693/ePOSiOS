@@ -40,7 +40,7 @@ class CDisplayMenuItem : CBaseNode
     }
     
     // MARK:- execute
-    public func execute() -> Int
+    public override func execute() -> Int
     {
         AddAmountFromXmlinTlV();
         SetCurrencyCodeInEMVModule();

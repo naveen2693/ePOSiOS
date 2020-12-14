@@ -369,6 +369,35 @@ enum AppConstant
     static let TXN_DATE_FORMAT = "%s-%s-%s"
     static let TXN_TIME_FORMAT = "%s:%s:%s.%s"
     
+    
+    static let T_NUM0: Byte = "0".bytes[0]                /*!< keys returned by KEYBOARD : '0' */
+    static let T_NUM1: Byte = "1".bytes[0]                /*!< keys returned by KEYBOARD : '1' */
+    static let T_NUM2: Byte = "2".bytes[0]                /*!< keys returned by KEYBOARD : '2' */
+    static let T_NUM3: Byte = "3".bytes[0]                /*!< keys returned by KEYBOARD : '3' */
+    static let T_NUM4: Byte = "4".bytes[0]                /*!< keys returned by KEYBOARD : '4' */
+    static let T_NUM5: Byte = "5".bytes[0]                /*!< keys returned by KEYBOARD : '5' */
+    static let T_NUM6: Byte = "6".bytes[0]                /*!< keys returned by KEYBOARD : '6' */
+    static let T_NUM7: Byte = "7".bytes[0]                /*!< keys returned by KEYBOARD : '7' */
+    static let T_NUM8: Byte = "8".bytes[0]                /*!< keys returned by KEYBOARD : '8' */
+    static let T_NUM9: Byte = "9".bytes[0]                /*!< keys returned by KEYBOARD : '9' */
+    static let T_PObyte: Byte = ".".bytes[0]              /*!< keys returned by KEYBOARD : '.' */
+    static let T_APAP: Byte = 0x07                        /*!< keys returned by KEYBOARD : Paper Feed */
+    static let T_VAL: Byte = 0x16                         /*!< keys returned by KEYBOARD : Green key */
+    static let T_ANN: Byte = 0x17                         /*!< keys returned by KEYBOARD : Red key */
+    static let T_CORR: Byte = 0x18                        /*!< keys returned by KEYBOARD : Yellow key */
+    static let T_SK1: Byte = 0x19                         /*!< keys returned by KEYBOARD : F1 */
+    static let T_SK2: Byte = 0x20                         /*!< keys returned by KEYBOARD : F2 */
+    static let T_SK3: Byte = 0x21                         /*!< keys returned by KEYBOARD : F3 */
+    static let T_SK4: Byte = 0x22                         /*!< keys returned by KEYBOARD : F4 */
+    static let T_SKHAUT: Byte = 0x23                      /*!< keys returned by KEYBOARD : Up */
+    static let T_SKBAS: Byte = 0x24                       /*!< keys returned by KEYBOARD : Down */
+    static let T_SKVAL: Byte = 0x25                       /*!< keys returned by KEYBOARD : OK */
+    static let T_SKCLEAR: Byte = 0x26                     /*!< keys returned by KEYBOARD : C */
+    static let T_SK10: Byte = 0x28                        /*!< keys returned by KEYBOARD : F */
+    static let NB_KEY = 24                                /*!< number of keys returned */
+    static let EP_KEY = 0x30                              /*!< number of keys returned */
+
+    
 }
 
 enum enum_InputMethod {

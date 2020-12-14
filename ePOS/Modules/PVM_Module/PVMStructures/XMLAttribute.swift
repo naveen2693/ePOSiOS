@@ -76,8 +76,8 @@ public struct XMLATTRIBUTE {
     
     var numberOFItemsInMenuList:Int = 0;
     var numberOFImages:Int = 0;
-    var ItemList:[String]?;
-    var ItemListImages:[ImageListParserModel]?;
+    var ItemList:[String]?
+    var ItemListImages:[ImageListParserModel]?
     
     var iKeySlot:Int = 0;
     var SessionKey:[Byte] = [0];
