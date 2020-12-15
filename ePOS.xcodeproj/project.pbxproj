@@ -133,6 +133,12 @@
 		8E4BA5C42583C87E00125E8A /* DisplayRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4BA5C32583C87E00125E8A /* DisplayRequestType.swift */; };
 		8E4BA5C62583CB1E00125E8A /* CDisplayMenuList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4BA5C52583CB1E00125E8A /* CDisplayMenuList.swift */; };
 		8E4BA5C82583D38800125E8A /* CDisplayEventReceived.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4BA5C72583D38800125E8A /* CDisplayEventReceived.swift */; };
+		8E4BA5CA25874E5000125E8A /* CDisplayConfirmationNewDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4BA5C925874E5000125E8A /* CDisplayConfirmationNewDialog.swift */; };
+		8E4BA5CC2587787400125E8A /* MultipleDataEntryActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4BA5CB2587787400125E8A /* MultipleDataEntryActivity.swift */; };
+		8E4BA5CE25877D6100125E8A /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4BA5CD25877D6100125E8A /* HomePage.swift */; };
+		8E4BA5D025877EA300125E8A /* CDisplayGifVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4BA5CF25877EA300125E8A /* CDisplayGifVideo.swift */; };
+		8E4BA5D225877F2B00125E8A /* CDisplayGetSecretPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4BA5D125877F2B00125E8A /* CDisplayGetSecretPin.swift */; };
+		8E4BA5D42587821000125E8A /* FixedHostTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4BA5D32587821000125E8A /* FixedHostTags.swift */; };
 		8E4DCFA425354F8A00726EA8 /* LOGIN_ACCOUNTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */; };
 		8E4DCFA625369F1000726EA8 /* BytesUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DCFA525369F1000726EA8 /* BytesUtil.swift */; };
 		8E927C68253895AC009928D4 /* DisplayMessageMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E927C67253895AC009928D4 /* DisplayMessageMode.swift */; };
@@ -439,6 +445,12 @@
 		8E4BA5C32583C87E00125E8A /* DisplayRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayRequestType.swift; sourceTree = "<group>"; };
 		8E4BA5C52583CB1E00125E8A /* CDisplayMenuList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDisplayMenuList.swift; sourceTree = "<group>"; };
 		8E4BA5C72583D38800125E8A /* CDisplayEventReceived.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDisplayEventReceived.swift; sourceTree = "<group>"; };
+		8E4BA5C925874E5000125E8A /* CDisplayConfirmationNewDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDisplayConfirmationNewDialog.swift; sourceTree = "<group>"; };
+		8E4BA5CB2587787400125E8A /* MultipleDataEntryActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleDataEntryActivity.swift; sourceTree = "<group>"; };
+		8E4BA5CD25877D6100125E8A /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
+		8E4BA5CF25877EA300125E8A /* CDisplayGifVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDisplayGifVideo.swift; sourceTree = "<group>"; };
+		8E4BA5D125877F2B00125E8A /* CDisplayGetSecretPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDisplayGetSecretPin.swift; sourceTree = "<group>"; };
+		8E4BA5D32587821000125E8A /* FixedHostTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedHostTags.swift; sourceTree = "<group>"; };
 		8E4DCFA325354F8A00726EA8 /* LOGIN_ACCOUNTS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOGIN_ACCOUNTS.swift; sourceTree = "<group>"; };
 		8E4DCFA525369F1000726EA8 /* BytesUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BytesUtil.swift; sourceTree = "<group>"; };
 		8E927C67253895AC009928D4 /* DisplayMessageMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayMessageMode.swift; sourceTree = "<group>"; };
@@ -781,6 +793,12 @@
 				8E4BA5C72583D38800125E8A /* CDisplayEventReceived.swift */,
 				CE4AE5F825875330004EDADB /* CDisplayQRCodeScanning.swift */,
 				CE4AE5FA25879361004EDADB /* CDisplayQRCode.swift */,
+				8E4BA5C925874E5000125E8A /* CDisplayConfirmationNewDialog.swift */,
+				8E4BA5CB2587787400125E8A /* MultipleDataEntryActivity.swift */,
+				8E4BA5CD25877D6100125E8A /* HomePage.swift */,
+				8E4BA5CF25877EA300125E8A /* CDisplayGifVideo.swift */,
+				8E4BA5D125877F2B00125E8A /* CDisplayGetSecretPin.swift */,
+				8E4BA5D32587821000125E8A /* FixedHostTags.swift */,
 			);
 			path = PVMClasses;
 			sourceTree = "<group>";
@@ -1873,6 +1891,7 @@
 				8E13826C255D50E3000F7C21 /* CSVBaseTxn.swift in Sources */,
 				8E13827C256B820B000F7C21 /* PlutusTransactionData.swift in Sources */,
 				46ED34642537098500CEF19D /* AutoLogShippingCredential.swift in Sources */,
+				8E4BA5CE25877D6100125E8A /* HomePage.swift in Sources */,
 				8EE3285C253EAA0B00616E33 /* CurrentEDCAppDownloadingInfo.swift in Sources */,
 				4686C4AA254FF5410076FEFB /* CStateMachine.swift in Sources */,
 				46ADF1062528776D009A9297 /* LeadScheduleDetails.swift in Sources */,
@@ -1975,6 +1994,8 @@
 				46E293D5255BAC0B00826954 /* TLVTxData.swift in Sources */,
 				46E293E2255BAC0B00826954 /* PvmListParserVO.swift in Sources */,
 				990AF9D0252A0F970008A907 /* SearchTableViewCell.swift in Sources */,
+				8E4BA5CC2587787400125E8A /* MultipleDataEntryActivity.swift in Sources */,
+				8E4BA5D025877EA300125E8A /* CDisplayGifVideo.swift in Sources */,
 				8E138284256D489B000F7C21 /* IndexUtil.swift in Sources */,
 				990AF9CD252A0F970008A907 /* CustomSearchViewController.swift in Sources */,
 				46BD9B50251A8646008DEFEA /* ForgotPasswordController.swift in Sources */,
@@ -2044,6 +2065,7 @@
 				8EE32854253D6B5A00616E33 /* st_ISPASSWORDDetails.swift in Sources */,
 				99186CBA2508C08F00A9FE07 /* EPOSTextField.m in Sources */,
 				46AA3E0A252F24EF005907E1 /* ConnectionTypes.swift in Sources */,
+				8E4BA5D225877F2B00125E8A /* CDisplayGetSecretPin.swift in Sources */,
 				46ADF113252878F1009A9297 /* KycDetails.swift in Sources */,
 				8E13826E255DA8D8000F7C21 /* TransactionHUB.swift in Sources */,
 				46882CDC2538727100C908B2 /* ContentServerParamData.swift in Sources */,
@@ -2053,6 +2075,7 @@
 				46E293DB255BAC0B00826954 /* EMVTxnType.swift in Sources */,
 				8EE32848253C3A7F00616E33 /* CurrentDownloadingInfo.swift in Sources */,
 				CEB4D2E72536C75700254681 /* TransactionUtils.swift in Sources */,
+				8E4BA5D42587821000125E8A /* FixedHostTags.swift in Sources */,
 				99186CC42508EF5600A9FE07 /* EPOSTabBarViewController.swift in Sources */,
 				991ADEAB250660DB00932251 /* EPOSGradientView.swift in Sources */,
 				8E138272255E4F40000F7C21 /* PrintAttribute.swift in Sources */,
@@ -2086,6 +2109,7 @@
 				990AF961252854610008A907 /* BottomSheetViewController.swift in Sources */,
 				9976C9092500F05600FC5DD3 /* AppDelegate.swift in Sources */,
 				46BD9B46251617A7008DEFEA /* BaseRequest.swift in Sources */,
+				8E4BA5CA25874E5000125E8A /* CDisplayConfirmationNewDialog.swift in Sources */,
 				99186D722512494C00A9FE07 /* PersonalInfoViewController+Dropdown.swift in Sources */,
 				991DF263251CB33100AEA1C3 /* UIViewController+Protocol.swift in Sources */,
 				46E293D8255BAC0B00826954 /* XMLAttribute.swift in Sources */,

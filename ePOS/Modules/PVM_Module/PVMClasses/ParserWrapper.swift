@@ -98,7 +98,7 @@ public class ParserWrapper
             newNode = CDisplayEventReceived()
             currentNode = newNode
         case PvmNodeTypes.Sec_Pin_entry_node:
-            //newNode = CDisplayGetSecretPin()
+            newNode = CDisplayGetSecretPin()
             currentNode = newNode
         case PvmNodeTypes.Biometric_entry_node:
             //newNode = new CDisplayGetBiometricData()
@@ -107,19 +107,19 @@ public class ParserWrapper
             newNode = CDisplayQRCode()
             currentNode = newNode
         case PvmNodeTypes.Confirmation_dialog:
-            //newNode = CDisplayConfirmationNewDialog()
+            newNode = CDisplayConfirmationNewDialog()
             currentNode = newNode
         case PvmNodeTypes.Qrcode_scanning:
             newNode = CDisplayQRCodeScanning()
             currentNode = newNode
         case PvmNodeTypes.Video_gif_node:
-            //newNode = CDisplayGifVideo()
+            newNode = CDisplayGifVideo()
             currentNode = newNode
         case PvmNodeTypes.Multi_Data_Entry_Node:
-            //newNode = MultipleDataEntryActivity()
+            newNode = MultipleDataEntryActivity()
             currentNode = newNode
         case PvmNodeTypes.Epos_Home_Screen:
-            //newNode = HomePage()
+            newNode = HomePage()
             currentNode = newNode
         case PvmNodeTypes.Invalid_node:
             break
