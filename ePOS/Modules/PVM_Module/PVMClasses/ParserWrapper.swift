@@ -128,7 +128,7 @@ public class ParserWrapper
         }
         
         if (parentNode != nil) {
-            tagAttribute.parentNode = parentNode;
+            tagAttribute.parentNode = parentNode
         }
         _ = newNode?.AddParameters(tagAttribute: tagAttribute, nTotal: iLength)
         
@@ -136,7 +136,7 @@ public class ParserWrapper
             debugPrint("New Node found nil")
             return }
         
-        PushNewnode(node);
+        PushNewnode(node)
         
         var currentParentNode:CBaseNode?
         if (ParserWrapper.TopOfStack?.next_node != nil) {
@@ -145,25 +145,6 @@ public class ParserWrapper
             if let currentParentNode1 = currentParentNode{
                 node.AddParent(currentParentNode1)
             }
-        }
-        for itemnu in 0..<tagAttribute.numberOFItemsInMenuList {
-            if (tagAttribute.ItemList?[itemnu] != nil) {
-                // tagAttribute.ItemList?[itemnu] = nil;
-            }
-        }
-        
-        if (tagAttribute.ItemList != nil) {
-            tagAttribute.ItemList = nil;
-        }
-        
-        for _ in 0..<tagAttribute.numberOFImages {
-            if (tagAttribute.ItemListImages != nil) {
-                tagAttribute.ItemListImages = nil;
-            }
-        }
-        
-        if (tagAttribute.ItemListImages != nil) {
-            tagAttribute.ItemListImages = nil;
         }
         
     }
@@ -585,13 +566,11 @@ public class ParserWrapper
                             
                             if (strArrAttributeName[cIndex].elementsEqual(itehtl))
                             {
-                                
-                                if let hostTag = TransactionUtils.a2bcd(strArrAttributeValue[cIndex].bytes)
-                                {
-                                    var HTLTag = Int(hostTag[0]<<8) & 0x0000FF00;
-                                    HTLTag |= Int(hostTag[1]) & 0x000000FF;
-                                    pvmListParserVO.HTL = HTLTag;
-                                    isvaluepresent = true;
+                                if let hostTag = TransactionUtils.a2bcd([Byte](strArrAttributeValue[cIndex].utf8)){
+                                    var HostTlvtag = (((Int)(hostTag[0]))<<8) & 0x0000FF00
+                                    HostTlvtag |= Int((hostTag[1])) & 0x000000FF
+                                    pvmListParserVO.HTL = HostTlvtag
+                                    isvaluepresent = true
                                 }
                             }
                             
@@ -614,7 +593,6 @@ public class ParserWrapper
                             nParsedAtt += 1;
                             tagAttribute.pvmListParser.append(pvmListParserVO);
                             itemCount += 1;
-                            nIndex += 1;
                         }
                     }
                 }
@@ -676,13 +654,11 @@ public class ParserWrapper
                             
                             if (strArrAttributeName[cIndex].elementsEqual(itehtl))
                             {
-                                if let hostTag:[Byte] = TransactionUtils.a2bcd(strArrAttributeValue[cIndex].bytes)
-                                {
-                                    var HTLTag = Int(hostTag[0]<<8) & 0x0000FF00;
-                                    HTLTag |= Int(hostTag[1]) & 0x000000FF;
-                                    
-                                    qrCodeScanningParserVO.HTL = (HTLTag);
-                                    isvaluepresent =  true;
+                                if let hostTag = TransactionUtils.a2bcd([Byte](strArrAttributeValue[cIndex].utf8)){
+                                    var HostTlvtag = (((Int)(hostTag[0]))<<8) & 0x0000FF00
+                                    HostTlvtag |= Int((hostTag[1])) & 0x000000FF
+                                    qrCodeScanningParserVO.HTL = HostTlvtag
+                                    isvaluepresent = true
                                 }
                             }
                             
@@ -712,7 +688,6 @@ public class ParserWrapper
                             nParsedAtt += 1;
                             tagAttribute.qrcodescanningListParser.append(qrCodeScanningParserVO);
                             itemCount += 1;
-                            nIndex += 1;
                         }
                         
                     }
@@ -948,18 +923,15 @@ public class ParserWrapper
             if (strArrAttributeName[nIndex].elementsEqual("itc")) {
                 nParsedAtt += 1;
                 tagAttribute.numberOFItemsInMenuList = Int(strArrAttributeValue[nIndex]) ?? 0;
-                if (tagAttribute.numberOFItemsInMenuList > 0) {
-                    tagAttribute.ItemList = [String](repeating:"", count:tagAttribute.numberOFItemsInMenuList);
-                    var cIndex = 0, itemCount = 0;
-                    while ((cIndex < nTotal) && (itemCount < tagAttribute.numberOFItemsInMenuList)) {
-                        let itemno = "it" + String(itemCount + 1);
-                        var ItemList =  tagAttribute.ItemList?[itemCount]
-                        ItemList = nil;
+                for i in 0..<tagAttribute.numberOFItemsInMenuList
+                {
+                    var cIndex = 0;
+                    let itemno = "it" + String(i + 1);
+                    while ((cIndex < nTotal)) {
                         if (strArrAttributeName[cIndex].elementsEqual(itemno)) {
                             nParsedAtt += 1;
-                            tagAttribute.ItemList?[itemCount] = strArrAttributeValue[cIndex];
-                            itemCount += 1 ;
-                            nIndex = nIndex+1;
+                            tagAttribute.ItemList.append(strArrAttributeValue[cIndex])
+                            break
                         }
                         cIndex += 1;
                     }
@@ -983,10 +955,9 @@ public class ParserWrapper
                             {
                                 imageListParserModel.tagName = (strArrAttributeName[nParsedAtt]);
                                 imageListParserModel.tagValue = (strArrAttributeValue[nParsedAtt]);
-                                tagAttribute.ItemListImages?.append(imageListParserModel);
+                                tagAttribute.ItemListImages.append(imageListParserModel);
                                 nParsedAtt += 1;
                                 itemCount += 1;
-                                nIndex += 1;
                             }
                         }
                         cIndex += 1;

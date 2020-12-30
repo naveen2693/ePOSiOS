@@ -44,8 +44,8 @@ class CBaseNode: CustomStringConvertible {
     internal var m_chArrCurrencyCode = "";
     var m_bIsCurrencyCodeUsingXMl = false;
     var m_iIsSignCapture = false;
-    public var ItemList:[ITEMVAL]?;
-    public var ItemListImages:[ImageListParserModel]?;
+    public var ItemList = [ITEMVAL]()
+    public var ItemListImages = [ImageListParserModel]()
     var iResult = -1;
     var iPos = -1;
     var iBuffer:String?;
@@ -71,8 +71,8 @@ class CBaseNode: CustomStringConvertible {
     public var DisplayMessageLine2 = "";
     public var DisplayMessageLine3 = "";
     public var DisplayMessageLine4 = "";
-    public var pvmListParser:[PvmListParserVO]?;
-    public var qrcodescanningListParser:[QRCodeScanningParserVO]?;
+    public var pvmListParser = [PvmListParserVO]()
+    public var qrcodescanningListParser = [QRCodeScanningParserVO]()
     public var qrCodeParsingData:QRCodeParsingData?;
     public var m_bundle:[String:String]?;
     public var parentNode:CBaseNode?;

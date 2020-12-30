@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mn nm="Main" nt="18" sdtr="insert_swipe_music.mp3" dm="Insert/Swipe Card \n or Press any key" to="50000" ok="Next" can="ext" oto="bk" ver="15112013">
+<!--    <mi nm="Card Payment" img ="card_payments_bg" nt="1" ix="1" to="30000" ok="Next" can="bk" oto="ext" hat="6081" htt="2" iss="1">-->
+<!--        <dde nt="17" nm="Card Payment" totc="4" txtye1="2" mal1="10" mil1="3" dec1="2" dm1="Enter Amount" in1="num" htl1="1021" mal2="10" mil2="10" txtye2="0" dm2="Mobile Number" in2="num" htl2="1018" mal3="50" mil3="0" txtye3="1" dm3="Customer Email ID" in3="aln" htl3="1038" mal4="10" mil4="0" in4="aln" dm4="Reference no./Invoice no." htl4="1015" to="30000" ok="Next" can="bk" oto="ext" >-->
+<!--            <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />-->
+<!--        </dde>-->
+<!--    </mi>-->
+    <mi nm="Card Payment" img ="card_payments_bg" nt="1" ix="1" to="30000" ok="Next" can="bk" oto="ext" hat="6081" htt="2" iss="1">
+        <dde nt="4" mal="15" mil="1" in="num" nm="Payment Link" dm="Enter Amount" dm2="Next" dec="2" txtye="2" to="30000" ok="Next" can="bk" oto="ext" htl="1021">
+          <dde nt="4" mal="50" mil="1" in="aln" nm="Payment Link" dm="Phone Number or Email" dm2="Send Payment Link"  txtye="3" to="30000" ok="Next" can="bk" oto="ext" htl="1018">
+            <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+          </dde>
+        </dde>
+    </mi>
+    <mi nm="Cless" img="card_payments_bg" nt="1" ix="1" to="30000" ok="Next" can="bk" oto="ext" hat="1001" iss="1">
+<!--        <dae nt="3" mal="9" mil="3" in="num" dm="Enter Amount" dcn="INR" dec="2" to="50000" ok="Next" can="bk" oto="ext" htl="1021">-->
+            <dde nt="4" mal="15" mil="1" in="num" nm="Contactless" dm="Enter Amount" dec="2" txtye="2" to="30000" ok="Next" can="bk" oto="ext" htl="1021">
+               <dde nt="4" mal="10" mil="1" in="num" nm="Contactless" dm="Phone Number" txtye="0" to="30000" ok="Next" can="bk" oto="ext" htl="1018">
+                  <dsw nt="7" dm="Insert/Swipe Card" em="0x40" to="20000" ok="Next" can="ext" oto="ext">
+                     <et nt="9" em="0x40" htl="1002" PadChar="0" Padstyle="0" TLEEnabled="1">
+                         <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto=" ext" />
+                     </et>
+                      <et nt="9" em="0x02">
+                          <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto=" ext" />
+                      </et>
+                  </dsw>
+               </dde>
+            </dde>
+<!--        </dae>-->
+    </mi>
+    <mi nm="Cash" nt="1" ix="3" to="30000" ok="Next" can="bk" oto="ext" hat="6401" htt="2" iss="1">
+                <dae nt="3" mal="9" mil="3" in="num" dm="Enter Amount" dcn="INR" dec="2" to="50000" ok="Next" can="bk" oto="ext" htl="1021">
+                    <dsw nt="7" dm="Insert/Swipe Card" em="0x47" to="30000" ok="Next" can="ext" oto="ext">
+                        <et nt="9" em="0x45" htl="1002" PadChar="0" Padstyle="0" TLEEnabled="1">
+                            <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                        </et>
+                        <et nt="9" em="0x02">
+                            <dt nt="2" dm="Txn.Cancelled" to="5000" ok="ext" can="bk" oto="ext" />
+                        </et>
+                    </dsw>
+                </dae>
+            </mi>
+    <mi nm="Void" nt="1" ix="3" to="30000" ok="Next" can="bk" oto="ext" hat="1005" htt="2">
+        <dae nt="3" mal="9" mil="3" in="num" dm="Enter Amount" dcn="INR" dec="2" txtye="2" to="50000" ok="Next" can="bk" oto="ext" htl="1021">
+            <dde nt="4" mal="15" mil="0" in="num" dm="Enter Txn Id:" to="30000" ok="Next" can="bk" oto="ext" htl="1017">
+                <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+            </dde>
+        </dae>
+    </mi>
+    <mi nm="UPI " nt="1" img ="bhim" ix="2" to="30000" ok="Next" can="bk" oto="ext" hat="6291" htt="2" iss="1">
+        <dde nt="17" nm="UPI Sale" totc="2" txtye1="2" mal1="10" mil1="3" dec1="2" dm1="Enter Amount" in1="num" htl1="1021" mal2="10" mil2="0" in2="aln" dm2="Reference no./Invoice no." htl2="1015" to="30000" ok="Next" can="bk" oto="ext" >
+            <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+        </dde>
+    </mi>
+    <mi nm="Google Pay " nt="1" img ="googlepay" ix="2" to="30000" ok="Next" can="bk" oto="ext" hat="6291" htt="2" iss="1">
+        <dde nt="17" nm="UPI Sale" totc="3" txtye1="2" mal1="10" mil1="3" dec1="2" dm1="Enter Amount" in1="num" htl1="1021" mal2="10" mil2="0" in2="aln" dm2="Reference no./Invoice no." htl2="1015" txtye3="4" mal3="1" mil3="0" dec3="0" dm3="Is Google Pay UPI" in3="num" htl3="4214" dval3="1" to="30000" ok="Next" can="bk" oto="ext" >
+            <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+        </dde>
+    </mi>
+    <mi nm="Bharat QR" img="bharat" nt="1" ix="2" to="30000" ok="Next" can="bk" oto="ext" hat="6300" htt="2" iss="1">
+        <dde nt="17" nm="Bharat QR" totc="2" regx1="" txtye1="2" mal1="9" mil1="0" dec1="2" dm1="Enter Amount" in1="num" htl1="1021" mal2="10" mil2="0" in2="num" dm2="Refer no./Invoice no." htl2="6102" to="30000" ok="Next" can="bk" oto="ext" >
+            <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+        </dde>
+    </mi>
+    <mi nm="Digital Wallets" img="wallet" vc="1" nt="0" ix="3" to="30000" ok="Next" can="bk" oto="ext" hat="6331" htt="2" iss="1">
+        <mi nm="Airtel money" img="airtelmoney" nt="1" ix="1" to="30000" ok="Next" can="bk" oto="ext" hat="6312" htt="2" iss="1">
+            <dde nt="17" nm="Airtel money" totc="3" txtye1="2" mal1="10" mil1="3" dec1="2" dm1="Enter Amount" in1="num" htl1="1021" mal2="10" mil2="10" txtye2="0" dm2="Mobile Number" in2="num" htl2="1018"  mal3="10" mil3="0" in3="aln" dm3="Reference no./Invoice no." htl3="1015" to="30000" ok="Next" can="bk" oto="ext" >
+                <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+            </dde>
+        </mi>
+        <mi nm="FreeCharge" img="freecharge" nt="1" ix="2" to="30000" ok="Next" can="bk" oto="ext" hat="621D" htt="2" iss="1">
+            <dde nt="17" nm="FreeCharge" totc="3" txtye1="2" mal1="10" mil1="3" dec1="2" dm1="Enter Amount" in1="num" htl1="1021" mal2="10" mil2="10" txtye2="0" dm2="Mobile Number" in2="num" htl2="1018"  mal3="10" mil3="0" in3="aln" dm3="Reference no./Invoice no." htl3="1015" to="30000" ok="Next" can="bk" oto="ext" >
+                <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+            </dde>
+        </mi>
+        <mi nm="Phone Pe" img="phonepe" nt="1" ix="3" to="30000" ok="Next" can="bk" oto="ext" hat="6331" htt="2" iss="1">
+            <dde nt="17" nm="Phone Pe" totc="3" txtye1="2" mal1="10" mil1="3" dec1="2" dm1="Enter Amount" in1="num" htl1="1021" mal2="10" mil2="10" txtye2="0" dm2="Mobile Number" in2="num" htl2="1018"  mal3="10" mil3="0" in3="aln" dm3="Reference no./Invoice no." htl3="1015" to="30000" ok="Next" can="bk" oto="ext" >
+                <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+            </dde>
+        </mi>
+        <mi nm="AmazonPay" img="amazonpay" nt="1" ix="4" to="30000" ok="Next" can="bk" oto="ext" hat="6316" htt="2" iss="1">
+            <dde nt="17" nm="AmazonPay" totc="3" txtye1="2" mal1="10" mil1="3" dec1="2" dm1="Enter Amount" in1="num" htl1="1021" mal2="10" mil2="10" txtye2="0" dm2="Mobile Number" in2="num" htl2="1018" mal3="9" mil3="0" in3="aln" dm3="Refer no./Invoice no." htl3="1015" to="30000" ok="Next" can="bk" oto="ext" >
+                <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+            </dde>
+        </mi>
+    </mi>
+    <mi nm="EMI" nt="0" vc="1" img="brand_emi" ix="7" to="50000" ok="Next" can="bk" oto="ext" hat="6094" htt="2" iss="1">
+    <mi nm="Bank EMI" nt="1" img="bank_emi" ix="33" to="50000" ok="Next" can="bk" oto="ext" hat="6093" htt="2" iss="1">
+        <dde nt="17" nm="Bank EMI" totc="3" mal1="9" mil1="0" dec1="2" dm1="Enter Amount" in1="num" htl1="1021" mal2="10" mil2="10" dm2="Mobile Number" in2="num" htl2="1018"  mal3="9" mil3="0" in3="num" dm3="Refer no./Invoice no." htl3="6102" to="30000" ok="Next" can="bk" oto="ext" >
+            <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+        </dde>
+        </mi>
+    <mi nm="Brand EMI" nt="1" img="brand_emi" ix="7" to="50000" ok="Next" can="bk" oto="ext" hat="6094" htt="2" iss="1">
+        <mn nm="Manufacturer" nt="0" to="30000" ok="Next" can="bk" oto="ext" ti="Select">
+            <mi nm="Acer" nt="1" ix="1">
+                <mn nm="Acer" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Acer,1260914145900005">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="OnePlus" nt="1" ix="2">
+                <mn nm="OnePlus" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="OnePlus,1160518092402090">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Apple iPhone" nt="1" ix="1" img="61100000233">
+                <mn nm="Apple iPhone" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4201" itc="23" it1="5C 8GB,2061014174600299" it2="5c 16GB,2061014174600300" it3="5C 88GB,2230518175102423" it4="iPhone 7 RED 128GB,2230517115901978" it5="iPhone 7 RED 256GB,2230517115901980" it6="7S 8GB,2210716141001335" it7="7S 16GB,2220716135001337" it8="7S Plus 8GB,2130517115101907" it9="7S plus 16GB,2130517115101910" it10="7S plus 32GB,2130517115101912" it11="7S plus 64GB,2130517115101914" it12="7S plus 128GB,2130517115101916" it13="7S 32GB,2130517115101918" it14="7S 64GB,2130517115101920" it15="7S 128GB,2130517115101922" it16="6S 32GB,2130517115101924" it17="6S 64GB,2130517115101926" it18="6S 128GB,2130517115101928" it19="6S 16GB,2130517115101930" it20="iPhone 7 Plus RED 128GB,2230517111901970" it21="iPhone 7 Plus RED 256GB,2230517111901972" it22="iPhoneÃÂ 7 RED 128GB,2230517111901974" it23="iPhoneÃÂ 7 RED 256GB,2230517111901976">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="BLUE STAR" nt="1" ix="4">
+                <mn nm="BLUE STAR" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="BLUE STAR,1300516110601476">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Bosch" nt="1" ix="5">
+                <mn nm="Bosch" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Bosch,1260914145900560">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="BOSE" nt="1" ix="6">
+                <mn nm="BOSE" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="BOSE,1260914145900587">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Canon" nt="1" ix="7">
+                <mn nm="Canon" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Canon,1260914145900589">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Carrier Midea" nt="1" ix="8">
+                <mn nm="Carrier Midea" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Carrier Midea,1260914145900785">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="CPR Distributors" nt="1" ix="9">
+                <mn nm="CPR Distributors" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="CPR Distributors,1230117114702792">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Daikin" nt="1" ix="10">
+                <mn nm="Daikin" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Daikin,1260914145900918">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext"/>
+                </mn>
+            </mi>
+            <mi nm="DELL" nt="1" ix="11">
+                <mn nm="DELL" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="DELL,1260914145901043">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext"/>
+                </mn>
+            </mi>
+            <mi nm="FRL KORIYO" nt="1" ix="12">
+                <mn nm="FRL KORIYO" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="FRL KORIYO,1180415194506944">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Future Group" nt="1" ix="13">
+                <mn nm="Future Group" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Future Group,1110816115302811">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Haier" nt="1" ix="14">
+                <mn nm="Haier" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Haier,1260914145901127">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Hitachi" nt="1" ix="15">
+                <mn nm="Hitachi" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Hitachi,1260914145901279">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="HP" nt="1" ix="16">
+                <mn nm="HP" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="HP,1260914145901583">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Godrej Appliances" nt="1" ix="17">
+                <mn nm="Godrej Appliances" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Godrej Appliances,1261016104407113">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Google Mobile" nt="1" ix="18">
+                <mn nm="Google Mobile" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Google Mobile,1171016105006817" >
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext"/>
+                </mn>
+            </mi>
+            <mi nm="IFB" nt="1" ix="19">
+                <mn nm="IFB" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="IFB,1030615124907735">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Kent" nt="1" ix="20">
+                <mn nm="Kent" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Kent,1260914145902442">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Lenovo" nt="1" ix="21">
+                <mn nm="Lenovo Mobile" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Lenovo,1260914145902501">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="LENOVO MOTO" nt="1" ix="22">
+                <mn nm="LENOVO MOTO" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="LENOVO MOTO,1191216112808615">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="LG Mobile" nt="1" ix="23">
+                <mn nm="LG Mobile" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="LG Mobile,1260914145903236">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="LG Electronics" nt="1" ix="24">
+                <mn nm="LG Electronics" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="LG Electronics,1260914145902599">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="LG CD SPL" nt="1" ix="25">
+                <mn nm="LG CD SPL" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="LG CD SPL,1150415194004790">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Lloyd" nt="1" ix="26">
+                <mn nm="Lloyd" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Lloyd,1280415112607083">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="MICHELIN INDIA" nt="1" ix="27">
+                <mn nm="MICHELIN INDIA" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="MICHELIN INDIA,1281215112402533">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Motorola" nt="1" ix="28">
+                <mn nm="Motorola" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Motorola,1040216105202957">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="MYCROFINE" nt="1" ix="29">
+                <mn nm="MYCROFINE" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="MYCROFINE,1080316151604127">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="NIKON" nt="1" ix="30">
+                <mn nm="NIKON" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="NIKON,1260914145903318">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="One Assist" nt="1" ix="31">
+                <mn nm="One Assist" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="One Assist,1081015133002650">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="OPPO MOBILE" nt="1" ix="32">
+                <mn nm="OPPO MOBILE" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="OPPO MOBILE,1081014181101257">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Panasonic" nt="1" ix="33">
+                <mn nm="Panasonic" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Panasonic,1260914145903521">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Panasonic SPL" nt="1" ix="34">
+                <mn nm="Panasonic SPL" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Panasonic SPL,1250917112708761">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="PERSANG KARAOKE" nt="1" ix="35">
+                <mn nm="PERSANG KARAOKE" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="PERSANG KARAOKE,1031115115901102">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="RECONNECT" nt="1" ix="36">
+                <mn nm="RECONNECT" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="RECONNECT,1260914145903845">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Retail EMI" nt="1" ix="37">
+                <mn nm="Retail EMI" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Retail EMI,1260914145903890">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="SAMSUNG" nt="1" ix="38">
+                <mn nm="SAMSUNG" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="2" it1="SAMSUNG RR,1260914145905045" it2="SAMSUNG DC,1260914145904415"  >
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Samsung Mobile" nt="1" ix="39">
+                <mn nm="Samsung Mobile" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="3" it1="Samsung Mob,1260914145904935" it2="Samsung CIB,1260914145904300" it3="Samsung Upgrade,1260918140803838">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="SENNHEISER" nt="1" ix="40">
+                <mn nm="SENNHEISER" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="SENNHEISER,1030815131701497">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Sharp" nt="1" ix="41">
+                <mn nm="Sharp" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Sharp,1260914145905447">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Siemens" nt="1" ix="42">
+                <mn nm="Siemens" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Siemens,1260914145905629">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Sony" nt="1" ix="43">
+                <mn nm="Sony" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Sony,1260914145905673">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Sony Mobile" nt="1" ix="44">
+                <mn nm="Sony Mobile" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Sony Mobile,1260914145906111">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="USHA INTL" nt="1" ix="45">
+                <mn nm="USHA INTL" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="USHA INTL,1100415131603696">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="VIVO Mobiles" nt="1" ix="46">
+                <mn nm="VIVO Mobiles" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="VIVO Mobiles,1030215152602303">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Voltas" nt="1" ix="47">
+                <mn nm="Voltas" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Voltas,1260914145907161">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="BlackBerry Mobile" nt="1" ix="48">
+                <mn nm="BlackBerry Mobile" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="BlackBerry Mobile,1251116164508379">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Whirlpool" nt="1" ix="49">
+                <mn nm="Whirlpool" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Whirlpool,1160217102007888">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="SAMSUNG CE " nt="1" ix="50">
+                <mn nm="SAMSUNG CE " nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="SAMSUNG CE ,1260914145904224">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="ASUS" nt="1" ix="51">
+                <mn nm="ASUS " nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="ASUS ,1180517144304161">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="NOKIA" nt="1" ix="52">
+                <mn nm="NOKIA " nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="NOKIA ,1260914145903507">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Xiaomi" nt="1" ix="53">
+                <mn nm="Xiaomi " nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Xiaomi ,1180817130206036">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Kore Mobile" nt="1" ix="54">
+                <mn nm="Kore Mobile " nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Kore Mobile ,1091017130606183">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Blueair" nt="1" ix="55">
+                <mn nm="Blueair" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Blueair,1311017132506430">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="QFX Technologies" nt="1" ix="56">
+                <mn nm="QFX Technologies" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="QFX Technologies,1310118153402286">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="Google Home" nt="1" ix="57">
+                <mn nm="Google Home" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Google Home,1170418134105613">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </mn>
+            </mi>
+            <mi nm="HP Printer" nt="1" ix="58">
+                <mn nm="HP Printer" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="HP Printer,1310718103802449">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext"/>
+                </mn>
+            </mi>
+            <mi nm="AMAZON DEVICES" nt="1" ix="59">
+                <mn nm="AMAZON DEVICES" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="AMAZON DEVICES,1160718105201317">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext"/>
+                </mn>
+            </mi>
+            <mi nm="SONY SPL" nt="1" ix="60">
+                <mn nm="SONY SPL" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="SONY SPL,1300818141901063">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext"/>
+                </mn>
+            </mi>
+            <mi nm="Acoosta" nt="1" ix="61">
+                <mn nm="Acoosta" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Acoosta,1301018144008177">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext"/>
+                </mn>
+            </mi>
+            <mi nm="Symphony Limited" nt="1" ix="62">
+                <mn nm="Symphony Limited" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Symphony Limited,1200418122907430">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext"/>
+                </mn>
+            </mi>
+            <mi nm="Surya Electronics" nt="1" ix="63">
+                <mn nm="Surya Electronics" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Surya Electronics,1270218161506530">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext"/>
+                </mn>
+            </mi>
+            <mi nm="Honeywell" nt="1" ix="64">
+                <mn nm="Honeywell" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Honeywell,1031018100904872">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext"/>
+                </mn>
+            </mi>
+            <mi nm="AKAI" nt="1" ix="65">
+                <mn nm="AKAI" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="AKAI,1151018182105739">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext"/>
+                </mn>
+            </mi>
+            <mi nm="Philips India Ltd PH" nt="1" ix="66">
+                <mn nm="Philips India Ltd PH" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Philips India Ltd PH,1291018105407706">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext"/>
+                </mn>
+            </mi>
+            <mi nm="SLEEPWELL" nt="1" ix="67">
+                <mn nm="SLEEPWELL" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="SLEEPWELL,1111114172601487">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext"/>
+                </mn>
+            </mi>
+            <mi nm="LG BRAND STORE" nt="1" ix="68">
+                <mn nm="LG BRAND STORE" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="LG BRAND STORE,1041218103908175">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext"/>
+                </mn>
+            </mi>
+            <mi nm="Creative Peripheral" nt="1" ix="69">
+                <mn nm="Creative Peripheral" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Creative Peripheral,1171018182406244">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext"/>
+                </mn>
+            </mi>
+            <mi nm="Vivo SPL" nt="1" ix="70">
+                <mn nm="Vivo SPL" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Vivo SPL,1190219162507030">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext"/>
+                </mn>
+            </mi>
+        </mn>
+    </mi>
+    </mi>
+
+</mn>
+
+
+

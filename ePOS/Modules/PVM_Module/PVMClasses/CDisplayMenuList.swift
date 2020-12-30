@@ -20,37 +20,32 @@ class CDisplayMenuList: CBaseNode {
         numberOFItemsInMenuList = 0
         numberOFImages = 0
         listViewcode = 2
-        ItemList = nil
-        
     }
 
     public override func AddPrivateParameters(tagAttribute: XMLATTRIBUTE, nTotal: Int) -> Int {
         let retVal = RetVal.RET_OK
         numberOFItemsInMenuList = tagAttribute.numberOFItemsInMenuList
         numberOFImages  = tagAttribute.numberOFItemsInMenuList
-
-        ItemList = [ITEMVAL?](repeating: nil, count: numberOFItemsInMenuList) as? [ITEMVAL]
-        ItemListImages = [ImageListParserModel]()
-
+        
         // Check for all items in menu from (numberOFItemsInMenuList) and copy only those in which some value is present.
         for itemnu in 0 ..< numberOFItemsInMenuList {
-            if (tagAttribute.ItemList != nil && tagAttribute.ItemList![itemnu] != nil) {
-                ItemList![itemnu] = ITEMVAL()
-                self.ParseItems(ItemList: tagAttribute.ItemList![itemnu], item: &ItemList![itemnu])
-            }
+            
+            let itemVal = ITEMVAL()
+            ItemList.append(itemVal)
+            self.ParseItems(ItemList: tagAttribute.ItemList[itemnu], item: &ItemList[itemnu])
+            
+            
             let itemno = "img" + "\(itemnu + 1)"
-            if (nil != tagAttribute.ItemListImages) {
-                for img in 0 ..< tagAttribute.ItemListImages!.count {
-                    if (tagAttribute.ItemListImages![img] != nil && tagAttribute.ItemListImages![img].getTagName() == itemno) {
-                        ItemListImages?.append(tagAttribute.ItemListImages![img])
-                    }
+            for img in 0 ..< tagAttribute.ItemListImages.count {
+                if (tagAttribute.ItemListImages[img].getTagName() == itemno) {
+                    ItemListImages.append(tagAttribute.ItemListImages[img])
                 }
             }
-            if (ItemListImages != nil && (ItemListImages!.count != itemnu + 1 || ItemListImages!.count == 0)) {
+            if (ItemListImages.count != itemnu + 1 || ItemListImages.count == 0) {
                 var imageListParserModel = ImageListParserModel()
                 imageListParserModel.setTagName("")
                 imageListParserModel.setTagValue("")
-                ItemListImages?.append(imageListParserModel)
+                ItemListImages.append(imageListParserModel)
             }
         }
 
@@ -81,9 +76,9 @@ class CDisplayMenuList: CBaseNode {
         var retVal = getExecutionResult(iResult: iResult)
         if(retVal == ExecutionResult._OK) {
             m_sel_index = iPos;
-            if (nil != ItemList && ItemList!.count > 0) {
-                if (ItemList![m_sel_index].ItemVal != nil) {
-                    AddTLVData(Data: ItemList![m_sel_index].ItemVal.bytes, length: ItemList![m_sel_index].ItemVal.count)
+            if (ItemList.count > 0) {
+                if (ItemList[m_sel_index].ItemVal != nil) {
+                    AddTLVData(Data: ItemList[m_sel_index].ItemVal.bytes, length: ItemList[m_sel_index].ItemVal.count)
                     retVal = ExecutionResult._OK
                 }
             }

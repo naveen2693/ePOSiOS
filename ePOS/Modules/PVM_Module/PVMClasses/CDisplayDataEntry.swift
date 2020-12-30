@@ -113,103 +113,33 @@ class CDisplayDataEntry : CBaseNode {
         {
             var buffer:[Byte] = [0];
             var bufferlen = 0;
-            if let pvmListParser = pvmListParser
+            if (pvmListParser.count > 0)
             {
-                if (pvmListParser.count > 0)
+                if let buffervalue = iBuffer
                 {
-                    if let buffervalue = iBuffer
-                    {
-                        let m_valuelist = buffervalue.split(separator: ",",maxSplits: -1);
-                        for i in 0..<pvmListParser.count {
-                            m_inputMethod = pvmListParser[i].InputMethod
-                            m_max_val = pvmListParser[i].MaxLen
-                            m_min_val = pvmListParser[i].MinLen
-                            HostTlvtag = pvmListParser[i].HTL
-                            buffer = m_valuelist[i].bytes
-                            bufferlen = buffer.count
-                            switch (m_inputMethod)
-                            {
-                            case enum_InputMethod.NUMERIC_ENTRY:
-                            retval = getExecution_result_numeric(ret: retval,global: global,buffer: buffer, bufferlen: bufferlen);
-                            case enum_InputMethod.ALPHANUMERIC_ENTRY: fallthrough
-                            default:
-                                m_max_val = m_max_val > 38 ? 38 : m_max_val
-                                if (ExecutionResult._OK == retval)
-                                {
-                                    bufferlen = buffer.count
-                                    if ((m_iTleEnabled) && (GlobalData.singleton.m_sMasterParamData?.m_iUsePineEncryptionKeys != 0))
-                                    {
-                                        if (bufferlen > 0)
-                                        {
-                                            let objEncryption = CPineKeyInjection()
-                                            _ = [Byte](repeating: 0, count:bufferlen + 14)
-                                            if let uchArrEncOut = objEncryption.iFormatAndECBEncrypt(chArrInput: buffer, iInputLength: bufferlen, chPadChar: m_chPadChar, iPadType: m_iPadStyle, SlotID: AppConstant.DEFAULT_BIN_KEYSLOTID)
-                                            {
-                                                AddTLVDataWithTag(uiTag: HostTlvtag, Data: uchArrEncOut, length: uchArrEncOut.count)
-                                            }
-                                            else
-                                            {
-                                                retval = ExecutionResult._EXIT
-                                            }
-                                        }
-                                        else
-                                        {
-                                            retval = ExecutionResult._EXIT
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (m_iTleEnabled)
-                                        {
-                                            var uchArrEncOut = [Byte](repeating: 0, count:bufferlen + 14)
-                                            var iOffset = 0;
-                                            uchArrEncOut[iOffset] = 0 // TLE NOT USED
-                                            iOffset += 1
-                                            uchArrEncOut[iOffset] = Byte(AppConstant.DEFAULT_BIN_KEYSLOTID & 0x000000FF)
-                                            iOffset += 1
-                                            uchArrEncOut[iOffset] = (m_chPadChar & 0x000000FF)
-                                            iOffset += 1
-                                            uchArrEncOut[iOffset] = Byte(m_iPadStyle);
-                                            uchArrEncOut[0..<bufferlen] = buffer[0..<bufferlen]
-                                            iOffset += bufferlen
-                                            AddTLVDataWithTag(uiTag: HostTlvtag, Data: uchArrEncOut, length: iOffset)
-                                        }
-                                        else
-                                        {
-                                            AddTLVData(Data: buffer, length: bufferlen)
-                                        }
-                                    }
-                                }
-                            }
-                            
-                            if (ExecutionResult._OK == retval)
-                            {
-                                AddAmountFromXmlinTlV()
-                                SetCurrencyCodeInEMVModule()
-                            }
-                            
-                        }
-                    }
-                    else
-                    {
-                        
-                        buffer = iBuffer?.bytes ?? [0]
+                    let m_valuelist = buffervalue.split(separator: ",",maxSplits: -1);
+                    for i in 0..<pvmListParser.count {
+                        m_inputMethod = pvmListParser[i].InputMethod
+                        m_max_val = pvmListParser[i].MaxLen
+                        m_min_val = pvmListParser[i].MinLen
+                        HostTlvtag = pvmListParser[i].HTL
+                        buffer = m_valuelist[i].bytes
                         bufferlen = buffer.count
-                        m_max_val = maxLen
-                        switch (m_inputMethod) {
+                        switch (m_inputMethod)
+                        {
                         case enum_InputMethod.NUMERIC_ENTRY:
-                            retval = getExecution_result_numeric(ret: retval, global: global, buffer: buffer, bufferlen: bufferlen)
+                        retval = getExecution_result_numeric(ret: retval,global: global,buffer: buffer, bufferlen: bufferlen);
                         case enum_InputMethod.ALPHANUMERIC_ENTRY: fallthrough
                         default:
                             m_max_val = m_max_val > 38 ? 38 : m_max_val
                             if (ExecutionResult._OK == retval)
                             {
-                                bufferlen = buffer.count;
+                                bufferlen = buffer.count
                                 if ((m_iTleEnabled) && (GlobalData.singleton.m_sMasterParamData?.m_iUsePineEncryptionKeys != 0))
                                 {
                                     if (bufferlen > 0)
                                     {
-                                        let objEncryption =  CPineKeyInjection()
+                                        let objEncryption = CPineKeyInjection()
                                         _ = [Byte](repeating: 0, count:bufferlen + 14)
                                         if let uchArrEncOut = objEncryption.iFormatAndECBEncrypt(chArrInput: buffer, iInputLength: bufferlen, chPadChar: m_chPadChar, iPadType: m_iPadStyle, SlotID: AppConstant.DEFAULT_BIN_KEYSLOTID)
                                         {
@@ -229,15 +159,15 @@ class CDisplayDataEntry : CBaseNode {
                                 {
                                     if (m_iTleEnabled)
                                     {
-                                        var uchArrEncOut = [Byte](repeating: 0, count: bufferlen + 14)
-                                        var iOffset = 0
+                                        var uchArrEncOut = [Byte](repeating: 0, count:bufferlen + 14)
+                                        var iOffset = 0;
                                         uchArrEncOut[iOffset] = 0 // TLE NOT USED
                                         iOffset += 1
                                         uchArrEncOut[iOffset] = Byte(AppConstant.DEFAULT_BIN_KEYSLOTID & 0x000000FF)
                                         iOffset += 1
                                         uchArrEncOut[iOffset] = (m_chPadChar & 0x000000FF)
                                         iOffset += 1
-                                        uchArrEncOut[iOffset] = Byte(m_iPadStyle)
+                                        uchArrEncOut[iOffset] = Byte(m_iPadStyle);
                                         uchArrEncOut[0..<bufferlen] = buffer[0..<bufferlen]
                                         iOffset += bufferlen
                                         AddTLVDataWithTag(uiTag: HostTlvtag, Data: uchArrEncOut, length: iOffset)
@@ -255,6 +185,73 @@ class CDisplayDataEntry : CBaseNode {
                             AddAmountFromXmlinTlV()
                             SetCurrencyCodeInEMVModule()
                         }
+                        
+                    }
+                }
+                else
+                {
+                    
+                    buffer = iBuffer?.bytes ?? [0]
+                    bufferlen = buffer.count
+                    m_max_val = maxLen
+                    switch (m_inputMethod) {
+                    case enum_InputMethod.NUMERIC_ENTRY:
+                        retval = getExecution_result_numeric(ret: retval, global: global, buffer: buffer, bufferlen: bufferlen)
+                    case enum_InputMethod.ALPHANUMERIC_ENTRY: fallthrough
+                    default:
+                        m_max_val = m_max_val > 38 ? 38 : m_max_val
+                        if (ExecutionResult._OK == retval)
+                        {
+                            bufferlen = buffer.count;
+                            if ((m_iTleEnabled) && (GlobalData.singleton.m_sMasterParamData?.m_iUsePineEncryptionKeys != 0))
+                            {
+                                if (bufferlen > 0)
+                                {
+                                    let objEncryption =  CPineKeyInjection()
+                                    _ = [Byte](repeating: 0, count:bufferlen + 14)
+                                    if let uchArrEncOut = objEncryption.iFormatAndECBEncrypt(chArrInput: buffer, iInputLength: bufferlen, chPadChar: m_chPadChar, iPadType: m_iPadStyle, SlotID: AppConstant.DEFAULT_BIN_KEYSLOTID)
+                                    {
+                                        AddTLVDataWithTag(uiTag: HostTlvtag, Data: uchArrEncOut, length: uchArrEncOut.count)
+                                    }
+                                    else
+                                    {
+                                        retval = ExecutionResult._EXIT
+                                    }
+                                }
+                                else
+                                {
+                                    retval = ExecutionResult._EXIT
+                                }
+                            }
+                            else
+                            {
+                                if (m_iTleEnabled)
+                                {
+                                    var uchArrEncOut = [Byte](repeating: 0, count: bufferlen + 14)
+                                    var iOffset = 0
+                                    uchArrEncOut[iOffset] = 0 // TLE NOT USED
+                                    iOffset += 1
+                                    uchArrEncOut[iOffset] = Byte(AppConstant.DEFAULT_BIN_KEYSLOTID & 0x000000FF)
+                                    iOffset += 1
+                                    uchArrEncOut[iOffset] = (m_chPadChar & 0x000000FF)
+                                    iOffset += 1
+                                    uchArrEncOut[iOffset] = Byte(m_iPadStyle)
+                                    uchArrEncOut[0..<bufferlen] = buffer[0..<bufferlen]
+                                    iOffset += bufferlen
+                                    AddTLVDataWithTag(uiTag: HostTlvtag, Data: uchArrEncOut, length: iOffset)
+                                }
+                                else
+                                {
+                                    AddTLVData(Data: buffer, length: bufferlen)
+                                }
+                            }
+                        }
+                    }
+                    
+                    if (ExecutionResult._OK == retval)
+                    {
+                        AddAmountFromXmlinTlV()
+                        SetCurrencyCodeInEMVModule()
                     }
                 }
             }

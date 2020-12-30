@@ -1,17 +1,41 @@
 <mn nm="MainMenu" nt="0" to="100000" ok="Next" can="bk" oto="ext" ti="PVM Menu">
-    <mi nm="Cash On Delivery1" nt="1" img ="gprs_icon" ix="1" to="30000" ok="Next" can="bk" oto="ext" hat="6101" htt="2">
+    <mi nm="Cash On Delivery" nt="1" img ="gprs_icon" ix="1" to="30000" ok="Next" can="bk" oto="ext" hat="6101" htt="2">
         <dae nt="3" mal="8" mil="0" in="num" dm="Enter Amount(INR)" dcn="INR" dec="2" to="50000" ok="Next" can="bk" oto="ext" htl="1021">
+            <dde nt="4" mal="10" mil="0" in="num" dm="Enter Tracking ID" to="30000" ok="Next" can="bk" oto="ext" htl="6101">
             <dde nt="4" mal="10" mil="3" in="num" dm="Voucher Code" to="30000" ok="Next" can="bk" oto="ext" htl="6102">
               <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
             </dde>
+            </dde>
         </dae>
     </mi>
-    <mi nm="Cash On Delivery2" nt="1" img ="gprs_icon" ix="2" to="30000" ok="Next" can="bk" oto="ext" hat="6101" htt="2">
-        <dae nt="3" mal="8" mil="0" in="num" dm="Enter Amount(INR)" dcn="INR" dec="2" to="50000" ok="Next" can="bk" oto="ext" htl="1021">
-           <dde nt="4" mal="10" mil="3" in="num" dm="Voucher Code" to="30000" ok="Next" can="bk" oto="ext" htl="6102">
-             <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
-           </dde>
-        </dae>
+    <mi nm="Lounge Sale" nt="1" img="img_002" ix="2" to="30000" ok="Next" can="bk" oto="ext" hat="1303" htt="2" iss="1">
+        <dsw nt="7" dm="Insert/Swipe Card" em="0x07" to="30000" ok="Next" can="bk" oto="ext">
+            <et nt="9" em="0x05" htl="1002" PadChar="0" Padstyle="0" TLEEnabled="1">
+                <dae nt="4" mal="9" mil="1" in="num" dm="Enter Guest Num" to="50000" ok="Next" can="bk" oto="ext" htl="4010">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </dae>
+            </et>
+            <et nt="9" em="0x02">
+                <dt nt="2" dm="Txn.Cancelled" to="5000" ok="ext" can="bk" oto="ext" />
+            </et>
+        </dsw>
+    </mi>
+    <mi nm="DCC Sale" img ="img_003" nt="1" ix="3" to="30000" ok="Next" can="bk" oto="ext" hat="1501" htt="2" iss="1">
+        <dsw nt="7" dm="Insert/Swipe Card" em="0x07" to="30000" ok="Next" can="bk" oto="ext">
+            <et nt="9" em="0x05" htl="1002" PadChar="0" Padstyle="0" TLEEnabled="1">
+                <dae nt="3" mal="9" mil="3" in="num" dm="Enter Amount" dcn="INR" dec="2" to="50000" ok="Next" can="bk" oto="ext" htl="1112">
+                    <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+                </dae>
+            </et>
+            <et nt="9" em="0x02">
+                <dt nt="2" dm="Txn.Cancelled" to="5000" ok="ext" can="bk" oto="ext" />
+            </et>
+        </dsw>
+    </mi>
+    <mi nm="UPI " nt="1" img ="bhim" ix="4" to="30000" ok="Next" can="bk" oto="ext" hat="6291" htt="2" iss="1">
+        <dde nt="17" nm="UPI Sale" totc="2" txtye1="2" mal1="10" mil1="3" dec1="2" dm1="Enter Amount" in1="num" htl1="1021" mal2="10" mil2="0" in2="aln" dm2="Reference no./Invoice no." htl2="1015" to="30000" ok="Next" can="bk" oto="ext" >
+            <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+        </dde>
     </mi>
 </mn>
 

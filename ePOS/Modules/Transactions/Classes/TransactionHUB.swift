@@ -151,12 +151,5 @@ class TransactionHUB {
             //finish UI
             break
         }
-        
-//        if(node?.node_type == 4)
-//        {
-//               CStateMachine.currentNode = node
-//               let controller = EnterDataViewController.init(nibName: EnterDataViewController.className, bundle: nil)
-//               navigationController?.pushViewController(controller, animated: true)
-//        }
     }
 }

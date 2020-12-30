@@ -77,7 +77,7 @@ class TransactionHomeViewController: UIViewController {
         
         //Parse PVM First
         
-         if let path = Bundle.main.path(forResource: "COD", ofType: "xml")
+         if let path = Bundle.main.path(forResource: "TestPVM", ofType: "xml")
          {
              guard let str = try? String.init(contentsOfFile: path)
                  else {

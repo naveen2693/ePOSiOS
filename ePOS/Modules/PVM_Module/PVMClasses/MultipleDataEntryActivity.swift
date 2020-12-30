@@ -78,8 +78,6 @@ class MultipleDataEntryActivity: CBaseNode {
         {
             var buffer:[Byte] = [0];
             var bufferlen = 0;
-            if let pvmListParser = pvmListParser
-            {
                 if (pvmListParser.count > 0)
                 {
                     if let buffervalue = iBuffer
@@ -223,7 +221,6 @@ class MultipleDataEntryActivity: CBaseNode {
                     }
                 }
             }
-        }
         
         reset()
         return retval

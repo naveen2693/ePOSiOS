@@ -314,6 +314,8 @@
 		CECC5411252B586B00C0940E /* ISO320HostCommunicationChangeNumberConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC5410252B586B00C0940E /* ISO320HostCommunicationChangeNumberConstants.swift */; };
 		CECC5413252B67C400C0940E /* ISO320HostUploadChangeNumberConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC5412252B67C400C0940E /* ISO320HostUploadChangeNumberConstants.swift */; };
 		CECC5415252B68A300C0940E /* ISO320PineKeyExchangeChangeNumberConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC5414252B68A300C0940E /* ISO320PineKeyExchangeChangeNumberConstants.swift */; };
+		CEF73E72259AF37D00326958 /* PVM_Server.xml in Resources */ = {isa = PBXBuildFile; fileRef = CEF73E71259AF37D00326958 /* PVM_Server.xml */; };
+		CEF73E74259AF75200326958 /* TestPVM.xml in Resources */ = {isa = PBXBuildFile; fileRef = CEF73E73259AF75200326958 /* TestPVM.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -635,6 +637,8 @@
 		CECC5410252B586B00C0940E /* ISO320HostCommunicationChangeNumberConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO320HostCommunicationChangeNumberConstants.swift; sourceTree = "<group>"; };
 		CECC5412252B67C400C0940E /* ISO320HostUploadChangeNumberConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO320HostUploadChangeNumberConstants.swift; sourceTree = "<group>"; };
 		CECC5414252B68A300C0940E /* ISO320PineKeyExchangeChangeNumberConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO320PineKeyExchangeChangeNumberConstants.swift; sourceTree = "<group>"; };
+		CEF73E71259AF37D00326958 /* PVM_Server.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PVM_Server.xml; sourceTree = "<group>"; };
+		CEF73E73259AF75200326958 /* TestPVM.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TestPVM.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -768,6 +772,8 @@
 			isa = PBXGroup;
 			children = (
 				46E293A0255BAC0B00826954 /* COD.xml */,
+				CEF73E71259AF37D00326958 /* PVM_Server.xml */,
+				CEF73E73259AF75200326958 /* TestPVM.xml */,
 			);
 			path = XMLFiles;
 			sourceTree = "<group>";
@@ -1730,6 +1736,7 @@
 				99186CD42508F07C00A9FE07 /* Transactions.storyboard in Resources */,
 				9919A9A625176D9D00A67253 /* IFSCCodeDetailViewController.xib in Resources */,
 				99186D292511D1E000A9FE07 /* WebviewStoryBoard.storyboard in Resources */,
+				CEF73E74259AF75200326958 /* TestPVM.xml in Resources */,
 				990AF9CF252A0F970008A907 /* CustomSearchViewController.xib in Resources */,
 				9919A9A22517528800A67253 /* SearchIFSCViewController.xib in Resources */,
 				991599612577581B00630E32 /* EnterDataViewController.xib in Resources */,
@@ -1744,6 +1751,7 @@
 				9919A99E25174B2D00A67253 /* BankDetailsViewController.xib in Resources */,
 				9976C9592501165E00FC5DD3 /* Roboto-BlackItalic.ttf in Resources */,
 				9976C9522501165E00FC5DD3 /* Roboto-Regular.ttf in Resources */,
+				CEF73E72259AF37D00326958 /* PVM_Server.xml in Resources */,
 				9976C9152500F05800FC5DD3 /* LaunchScreen.storyboard in Resources */,
 				9919A9C1251A4BA600A67253 /* PackageTableViewCell.xib in Resources */,
 				9976C9582501165E00FC5DD3 /* LICENSE.txt in Resources */,

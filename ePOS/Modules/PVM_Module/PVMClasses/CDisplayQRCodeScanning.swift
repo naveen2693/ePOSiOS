@@ -12,7 +12,6 @@ class CDisplayQRCodeScanning: CBaseNode
 {
     override init() {
         super.init()
-        qrcodescanningListParser = [QRCodeScanningParserVO]()
     }
     
     public override func execute() -> Int {
@@ -22,12 +21,12 @@ class CDisplayQRCodeScanning: CBaseNode
             
            var buffer:[Byte]?
             
-            guard let scannedItems:[String] = iBuffer != nil ? (iBuffer?.split(separator: ",").map{String($0)}): [String](repeating:"", count: qrcodescanningListParser!.count) else {return ExecutionResult._CANCEL}
+            guard let scannedItems:[String] = iBuffer != nil ? (iBuffer?.split(separator: ",").map{String($0)}): [String](repeating:"", count: qrcodescanningListParser.count) else {return ExecutionResult._CANCEL}
             
-            for i in 0..<qrcodescanningListParser!.count
+            for i in 0..<qrcodescanningListParser.count
             {
-                InputMethod = qrcodescanningListParser?[i].getInputMethod()
-                HostTlvtag = qrcodescanningListParser![i].getHTL()
+                InputMethod = qrcodescanningListParser[i].getInputMethod()
+                HostTlvtag = qrcodescanningListParser[i].getHTL()
                 
                 if(scannedItems[i].count > 0)
                 {
