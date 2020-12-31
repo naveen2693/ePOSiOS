@@ -132,7 +132,10 @@ class TransactionHUB {
         case PvmNodeTypes.Event_wait_node:
              break
         case PvmNodeTypes.Menu_list_node:
-             break
+             CStateMachine.currentNode = node
+             let controller = MenuItemsViewController.init(nibName: MenuItemsViewController.className, bundle: nil)
+             controller.testDelegate = delegate
+             navigationController?.pushViewController(controller, animated: true)
         case PvmNodeTypes.Event_Received_node:
              break
         case PvmNodeTypes.Sec_Pin_entry_node:

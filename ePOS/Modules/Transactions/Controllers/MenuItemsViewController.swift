@@ -21,11 +21,12 @@ class MenuItemsViewController: UIViewController {
     weak var testDelegate: prTransactionTestDelegate?
     
     //private var menuNode:CDisplayMenu?
-    private var menuName:String?
+    private var menuListName:String?
+    private var menuListTitle:String?
     
     //var options = ["Option 1", "Option 2", "Option 3", "Option 4"]
     var options = [String]()
-    private var numberOfChild:Int = 0
+    private var numberOfItemsInMenuList:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,16 +34,17 @@ class MenuItemsViewController: UIViewController {
         
         //Get CurrentNode.Number of child
         //guard var menuNode = CStateMachine.currentNode as? CDisplayMenu else {return}
-        guard let menuNode = CStateMachine.currentNode as? CDisplayMenu else {return}
-        menuName =  menuNode.iName
-        if(menuName == nil){
-            menuName = "Menu"
-        }
-        numberOfChild = menuNode.numberOfChild
+        guard let menuList = CStateMachine.currentNode as? CDisplayMenuList else {return}
+        menuListName =  menuList.iName
+//        if(menuListName == nil){
+//            menuListName = "Menu"
+//        }
+        numberOfItemsInMenuList = menuList.numberOFItemsInMenuList
         var tempNode:CBaseNode?
         
-        for i in 1...numberOfChild {
-            tempNode = menuNode.GotoChild(index: i)
+        for i in 1...numberOfItemsInMenuList {
+            //tempNode = menuList.GotoChild(index: i)
+            
             options.append((tempNode?.getName())!)
         }
         
