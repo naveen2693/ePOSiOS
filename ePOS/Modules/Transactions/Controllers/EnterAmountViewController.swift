@@ -71,7 +71,7 @@ class EnterAmountViewController: CustomNavigationStyleViewController {
             let bArrAmount = [Byte](enteredAmount.utf8)
             TransactionHUB.AddTLVDataWithTag(uiTag: iTag!, Data: [Byte](enteredAmount.utf8), length: bArrAmount.count)
         
-            var tempNode = CStateMachine.currentNode?.GotoChild()
+            let tempNode = CStateMachine.currentNode?.GotoChild()
             TransactionHUB.goToNode(tempNode,self.navigationController,testDelegate)
         }
     }

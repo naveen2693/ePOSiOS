@@ -143,6 +143,10 @@ class TransactionHUB {
         case PvmNodeTypes.Biometric_entry_node:
              break
         case PvmNodeTypes.Qrcode_display_node:
+             CStateMachine.currentNode = node
+             let controller = QRCodeViewController.init(nibName: QRCodeViewController.className, bundle: nil)
+             controller.modalPresentationStyle = .overFullScreen
+             navigationController?.present(controller, animated: true, completion: nil)
              break
         case PvmNodeTypes.Confirmation_dialog:
              break
@@ -151,6 +155,9 @@ class TransactionHUB {
         case PvmNodeTypes.Video_gif_node:
              break
         case PvmNodeTypes.Multi_Data_Entry_Node:
+             CStateMachine.currentNode = node
+             let controller = MultipleEntryViewController.init(nibName: MultipleEntryViewController.className, bundle: nil)
+             navigationController?.pushViewController(controller, animated: true)
              break
         case PvmNodeTypes.Epos_Home_Screen:
              break
