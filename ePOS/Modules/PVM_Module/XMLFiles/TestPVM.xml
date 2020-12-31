@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mn nm="MainMenu" nt="0" to="100000" ok="Next" can="bk" oto="ext" ti="PVM Menu">
-    <mi nm="Card Payment" img ="card_payments_bg" nt="1" ix="1" to="30000" ok="Next" can="bk" oto="ext" hat="6081" htt="2" iss="1">
+    <mi nm="Cash On Delivery" nt="1" img ="gprs_icon" ix="1" to="30000" ok="Next" can="bk" oto="ext" hat="6101" htt="2">
+        <dae nt="3" mal="8" mil="0" in="num" dm="Enter Amount(INR)" dcn="INR" dec="2" to="50000" ok="Next" can="bk" oto="ext" htl="1021">
+            <dde nt="4" mal="10" mil="0" in="num" dm="Enter Tracking ID" to="30000" ok="Next" can="bk" oto="ext" htl="6101">
+            <dde nt="4" mal="10" mil="3" in="num" dm="Voucher Code" to="30000" ok="Next" can="bk" oto="ext" htl="6102">
+              <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
+            </dde>
+            </dde>
+        </dae>
+    </mi>
+    <mi nm="Card Payment" img ="card_payments_bg" nt="1" ix="2" to="30000" ok="Next" can="bk" oto="ext" hat="6081" htt="2" iss="1">
         <dde nt="4" mal="15" mil="1" in="num" nm="Payment Link" dm="Enter Amount" dm2="Next" dec="2" txtye="2" to="30000" ok="Next" can="bk" oto="ext" htl="1021">
           <dde nt="4" mal="50" mil="1" in="aln" nm="Payment Link" dm="Phone Number or Email" dm2="Send Payment Link"  txtye="3" to="30000" ok="Next" can="bk" oto="ext" htl="1018">
             <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
           </dde>
         </dde>
     </mi>
-    <mi nm="Cless" img="card_payments_bg" nt="1" ix="1" to="30000" ok="Next" can="bk" oto="ext" hat="1001" iss="1">
+    <mi nm="Cless" img="card_payments_bg" nt="1" ix="3" to="30000" ok="Next" can="bk" oto="ext" hat="1001" iss="1">
 <!--        <dae nt="3" mal="9" mil="3" in="num" dm="Enter Amount" dcn="INR" dec="2" to="50000" ok="Next" can="bk" oto="ext" htl="1021">-->
             <dde nt="4" mal="15" mil="1" in="num" nm="Contactless" dm="Enter Amount" dec="2" txtye="2" to="30000" ok="Next" can="bk" oto="ext" htl="1021">
                <dde nt="4" mal="10" mil="1" in="num" nm="Contactless" dm="Phone Number" txtye="0" to="30000" ok="Next" can="bk" oto="ext" htl="1018">
@@ -23,7 +32,7 @@
             </dde>
 <!--        </dae>-->
     </mi>
-    <mi nm="Cash" nt="1" ix="3" to="30000" ok="Next" can="bk" oto="ext" hat="6401" htt="2" iss="1">
+    <mi nm="Cash" nt="1" ix="4" to="30000" ok="Next" can="bk" oto="ext" hat="6401" htt="2" iss="1">
                 <dae nt="3" mal="9" mil="3" in="num" dm="Enter Amount" dcn="INR" dec="2" to="50000" ok="Next" can="bk" oto="ext" htl="1021">
                     <dsw nt="7" dm="Insert/Swipe Card" em="0x47" to="30000" ok="Next" can="ext" oto="ext">
                         <et nt="9" em="0x45" htl="1002" PadChar="0" Padstyle="0" TLEEnabled="1">
@@ -35,29 +44,29 @@
                     </dsw>
                 </dae>
             </mi>
-    <mi nm="Void" nt="1" ix="3" to="30000" ok="Next" can="bk" oto="ext" hat="1005" htt="2">
+    <mi nm="Void" nt="1" ix="5" to="30000" ok="Next" can="bk" oto="ext" hat="1005" htt="2">
         <dae nt="3" mal="9" mil="3" in="num" dm="Enter Amount" dcn="INR" dec="2" txtye="2" to="50000" ok="Next" can="bk" oto="ext" htl="1021">
             <dde nt="4" mal="15" mil="0" in="num" dm="Enter Txn Id:" to="30000" ok="Next" can="bk" oto="ext" htl="1017">
                 <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
             </dde>
         </dae>
     </mi>
-    <mi nm="UPI " nt="1" img ="bhim" ix="2" to="30000" ok="Next" can="bk" oto="ext" hat="6291" htt="2" iss="1">
+    <mi nm="UPI " nt="1" img ="bhim" ix="6" to="30000" ok="Next" can="bk" oto="ext" hat="6291" htt="2" iss="1">
         <dde nt="17" nm="UPI Sale" totc="2" txtye1="2" mal1="10" mil1="3" dec1="2" dm1="Enter Amount" in1="num" htl1="1021" mal2="10" mil2="0" in2="aln" dm2="Reference no./Invoice no." htl2="1015" to="30000" ok="Next" can="bk" oto="ext" >
             <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
         </dde>
     </mi>
-    <mi nm="Google Pay " nt="1" img ="googlepay" ix="2" to="30000" ok="Next" can="bk" oto="ext" hat="6291" htt="2" iss="1">
+    <mi nm="Google Pay " nt="1" img ="googlepay" ix="7" to="30000" ok="Next" can="bk" oto="ext" hat="6291" htt="2" iss="1">
         <dde nt="17" nm="UPI Sale" totc="3" txtye1="2" mal1="10" mil1="3" dec1="2" dm1="Enter Amount" in1="num" htl1="1021" mal2="10" mil2="0" in2="aln" dm2="Reference no./Invoice no." htl2="1015" txtye3="4" mal3="1" mil3="0" dec3="0" dm3="Is Google Pay UPI" in3="num" htl3="4214" dval3="1" to="30000" ok="Next" can="bk" oto="ext" >
             <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
         </dde>
     </mi>
-    <mi nm="Bharat QR" img="bharat" nt="1" ix="2" to="30000" ok="Next" can="bk" oto="ext" hat="6300" htt="2" iss="1">
+    <mi nm="Bharat QR" img="bharat" nt="1" ix="8" to="30000" ok="Next" can="bk" oto="ext" hat="6300" htt="2" iss="1">
         <dde nt="17" nm="Bharat QR" totc="2" regx1="" txtye1="2" mal1="9" mil1="0" dec1="2" dm1="Enter Amount" in1="num" htl1="1021" mal2="10" mil2="0" in2="num" dm2="Refer no./Invoice no." htl2="6102" to="30000" ok="Next" can="bk" oto="ext" >
             <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
         </dde>
     </mi>
-    <mi nm="Digital Wallets" img="wallet" vc="1" nt="0" ix="3" to="30000" ok="Next" can="bk" oto="ext" hat="6331" htt="2" iss="1">
+    <mi nm="Digital Wallets" img="wallet" vc="1" nt="0" ix="9" to="30000" ok="Next" can="bk" oto="ext" hat="6331" htt="2" iss="1">
         <mi nm="Airtel money" img="airtelmoney" nt="1" ix="1" to="30000" ok="Next" can="bk" oto="ext" hat="6312" htt="2" iss="1">
             <dde nt="17" nm="Airtel money" totc="3" txtye1="2" mal1="10" mil1="3" dec1="2" dm1="Enter Amount" in1="num" htl1="1021" mal2="10" mil2="10" txtye2="0" dm2="Mobile Number" in2="num" htl2="1018"  mal3="10" mil3="0" in3="aln" dm3="Reference no./Invoice no." htl3="1015" to="30000" ok="Next" can="bk" oto="ext" >
                 <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
@@ -79,13 +88,13 @@
             </dde>
         </mi>
     </mi>
-    <mi nm="EMI" nt="0" vc="1" img="brand_emi" ix="7" to="50000" ok="Next" can="bk" oto="ext" hat="6094" htt="2" iss="1">
-    <mi nm="Bank EMI" nt="1" img="bank_emi" ix="33" to="50000" ok="Next" can="bk" oto="ext" hat="6093" htt="2" iss="1">
+    <mi nm="EMI" nt="0" vc="1" img="brand_emi" ix="10" to="50000" ok="Next" can="bk" oto="ext" hat="6094" htt="2" iss="1">
+    <mi nm="Bank EMI" nt="1" img="bank_emi" ix="1" to="50000" ok="Next" can="bk" oto="ext" hat="6093" htt="2" iss="1">
         <dde nt="17" nm="Bank EMI" totc="3" mal1="9" mil1="0" dec1="2" dm1="Enter Amount" in1="num" htl1="1021" mal2="10" mil2="10" dm2="Mobile Number" in2="num" htl2="1018"  mal3="9" mil3="0" in3="num" dm3="Refer no./Invoice no." htl3="6102" to="30000" ok="Next" can="bk" oto="ext" >
             <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
         </dde>
         </mi>
-    <mi nm="Brand EMI" nt="1" img="brand_emi" ix="7" to="50000" ok="Next" can="bk" oto="ext" hat="6094" htt="2" iss="1">
+    <mi nm="Brand EMI" nt="1" img="brand_emi" ix="2" to="50000" ok="Next" can="bk" oto="ext" hat="6094" htt="2" iss="1">
         <mn nm="Manufacturer" nt="0" to="30000" ok="Next" can="bk" oto="ext" ti="Select">
             <mi nm="Acer" nt="1" ix="1">
                 <mn nm="Acer" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4200" itc="1" it1="Acer,1260914145900005">
@@ -97,7 +106,7 @@
                     <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
                 </mn>
             </mi>
-            <mi nm="Apple iPhone" nt="1" ix="1" img="61100000233">
+            <mi nm="Apple iPhone" nt="1" ix="3" img="61100000233">
                 <mn nm="Apple iPhone" nt="8" to="30000" ok="Next" can="bk" oto="ext" ti="Select" htl="4201" itc="23" it1="5C 8GB,2061014174600299" it2="5c 16GB,2061014174600300" it3="5C 88GB,2230518175102423" it4="iPhone 7 RED 128GB,2230517115901978" it5="iPhone 7 RED 256GB,2230517115901980" it6="7S 8GB,2210716141001335" it7="7S 16GB,2220716135001337" it8="7S Plus 8GB,2130517115101907" it9="7S plus 16GB,2130517115101910" it10="7S plus 32GB,2130517115101912" it11="7S plus 64GB,2130517115101914" it12="7S plus 128GB,2130517115101916" it13="7S 32GB,2130517115101918" it14="7S 64GB,2130517115101920" it15="7S 128GB,2130517115101922" it16="6S 32GB,2130517115101924" it17="6S 64GB,2130517115101926" it18="6S 128GB,2130517115101928" it19="6S 16GB,2130517115101930" it20="iPhone 7 Plus RED 128GB,2230517111901970" it21="iPhone 7 Plus RED 256GB,2230517111901972" it22="iPhoneÃÂ 7 RED 128GB,2230517111901974" it23="iPhoneÃÂ 7 RED 256GB,2230517111901976">
                     <dt nt="2" dm="Going Online" to="5000" ok="go" can="bk" oto="ext" />
                 </mn>

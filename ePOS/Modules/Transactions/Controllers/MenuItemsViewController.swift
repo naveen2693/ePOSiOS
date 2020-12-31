@@ -18,36 +18,61 @@ class MenuItemsViewController: UIViewController {
         }
     }
     
+    weak var testDelegate: prTransactionTestDelegate?
+    
+    //private var menuNode:CDisplayMenu?
+    private var menuName:String?
+    
+    //var options = ["Option 1", "Option 2", "Option 3", "Option 4"]
+    var options = [String]()
+    private var numberOfChild:Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        navigationItem.title = "Select Option"
+        
+        //Get CurrentNode.Number of child
+        //guard var menuNode = CStateMachine.currentNode as? CDisplayMenu else {return}
+        guard let menuNode = CStateMachine.currentNode as? CDisplayMenu else {return}
+        menuName =  menuNode.iName
+        if(menuName == nil){
+            menuName = "Menu"
+        }
+        numberOfChild = menuNode.numberOfChild
+        var tempNode:CBaseNode?
+        
+        for i in 1...numberOfChild {
+            tempNode = menuNode.GotoChild(index: i)
+            options.append((tempNode?.getName())!)
+        }
+        
+        tableView.reloadData()
     }
-
-
-
 }
 
 
 //MARK:- TableView Delegate/DataSource
 extension MenuItemsViewController: UITableViewDelegate {
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
+        let tempCurrentNode:CBaseNode?
+        
+        tempCurrentNode = CStateMachine.currentNode?.GotoChild(index: indexPath.row + 1)
+        TransactionHUB.goToNode(tempCurrentNode, self.navigationController,testDelegate)
     }
-
 }
 
 extension MenuItemsViewController: UITableViewDataSource {
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = "Row: \(indexPath.row)"
-        return cell
+        return options.count
     }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel?.text = options[indexPath.row]
+        return cell
+    }
 }

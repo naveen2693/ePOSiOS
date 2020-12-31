@@ -105,9 +105,13 @@ class TransactionHUB {
         switch(nodeType)
         {
         case PvmNodeTypes.Menu_node:
-             break
+             CStateMachine.currentNode = node
+             let controller = PaymentOptionsViewController.init(nibName: PaymentOptionsViewController.className, bundle: nil)
+             navigationController?.pushViewController(controller, animated: true)
         case PvmNodeTypes.Menu_item_node:
-             break
+             CStateMachine.currentNode = node
+             let tempChildNode:CBaseNode? = CStateMachine.currentNode?.GotoChild()
+             TransactionHUB.goToNode(tempChildNode, navigationController, delegate)
         case PvmNodeTypes.Dispaly_message_node:
              CStateMachine.currentNode = node
              _ = delegate?.PerformTransaction()
