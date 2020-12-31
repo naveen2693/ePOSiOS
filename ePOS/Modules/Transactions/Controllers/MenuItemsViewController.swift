@@ -1,14 +1,14 @@
 //
-//  HomeViewController.swift
+//  MenuItemsViewController.swift
 //  ePOS
 //
-//  Created by Matra Sharma on 09/09/20.
+//  Created by Matra Sharma on 31/12/20.
 //  Copyright © 2020 Pinelabs. All rights reserved.
 //
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class MenuItemsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -20,21 +20,17 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
     }
-    
+
+
 
 }
 
-//MARK: IBActions
-private
-extension HomeViewController {
-    
-}
 
 //MARK:- TableView Delegate/DataSource
-extension HomeViewController: UITableViewDelegate {
+extension MenuItemsViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -42,7 +38,7 @@ extension HomeViewController: UITableViewDelegate {
 
 }
 
-extension HomeViewController: UITableViewDataSource {
+extension MenuItemsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 100

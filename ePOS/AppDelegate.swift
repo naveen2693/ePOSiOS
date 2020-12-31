@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureFirebase()
         setAppearance()
 //        loadApp()
+//        showHomeScreen()
         return true
     }
 

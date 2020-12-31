@@ -9,9 +9,9 @@
 import UIKit
 class EPOSTabBarViewController: UITabBarController {
     
-    private lazy var homeViewController :TransactionHomeViewController = {
+    private lazy var homeViewController :HomeViewController = {
         let storyboard = UIStoryboard.init(name: "Home", bundle: nil)
-        guard let controller = storyboard.instantiateInitialViewController() as? TransactionHomeViewController else {
+        guard let controller = storyboard.instantiateInitialViewController() as? HomeViewController else {
             fatalError("HomeViewController is not initial controller in Home.storyboard")
         }
         let tabbarItem = UITabBarItem(title: TabBarItem.home.rawValue, image: TabBarItem.home.image(), selectedImage: TabBarItem.home.selectedImage())
@@ -20,20 +20,20 @@ class EPOSTabBarViewController: UITabBarController {
         return controller
     }()
     
-    private lazy var transactionViewController :TransactionHistoryViewController = {
-        let storyboard = UIStoryboard.init(name: "Transactions", bundle: nil)
-        guard let controller = storyboard.instantiateInitialViewController() as? TransactionHistoryViewController else {
-            fatalError("TransactionsViewController is not initial controller in Transactions.storyboard")
-        }
-        let tabbarItem = UITabBarItem(title: TabBarItem.transactions.rawValue, image: TabBarItem.transactions.image(), selectedImage: TabBarItem.transactions.selectedImage())
-        tabbarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -4)
-        controller.tabBarItem = tabbarItem
-        return controller
-    }()
+//    private lazy var transactionViewController :TransactionHistoryViewController = {
+//        let storyboard = UIStoryboard.init(name: "Transactions", bundle: nil)
+//        guard let controller = storyboard.instantiateInitialViewController() as? TransactionHistoryViewController else {
+//            fatalError("TransactionsViewController is not initial controller in Transactions.storyboard")
+//        }
+//        let tabbarItem = UITabBarItem(title: TabBarItem.transactions.rawValue, image: TabBarItem.transactions.image(), selectedImage: TabBarItem.transactions.selectedImage())
+//        tabbarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -4)
+//        controller.tabBarItem = tabbarItem
+//        return controller
+//    }()
     
-    private lazy var accountViewController :AccountViewControllerTableViewController = {
+    private lazy var accountViewController :AccountViewController = {
         let storyboard = UIStoryboard.init(name: "Account", bundle: nil)
-        guard let controller = storyboard.instantiateInitialViewController() as? AccountViewControllerTableViewController else {
+        guard let controller = storyboard.instantiateInitialViewController() as? AccountViewController else {
             fatalError("AccountViewController is not initial controller in Account.storyboard")
         }
         let tabbarItem = UITabBarItem(title: TabBarItem.account.rawValue, image: TabBarItem.account.image(), selectedImage: TabBarItem.account.selectedImage())
@@ -43,8 +43,8 @@ class EPOSTabBarViewController: UITabBarController {
     }()
     
     lazy var homeNavigationController = UINavigationController(rootViewController: self.homeViewController)
-    lazy var accountNavigationController = UINavigationController(rootViewController: self.transactionViewController)
-    lazy var transactionsNavigationController = UINavigationController(rootViewController: self.accountViewController)
+    lazy var accountNavigationController = UINavigationController(rootViewController: self.accountViewController)
+//    lazy var transactionsNavigationController = UINavigationController(rootViewController: self.accountViewController)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +59,7 @@ class EPOSTabBarViewController: UITabBarController {
 private
 extension EPOSTabBarViewController {
     func setTabbar() {
-        setViewControllers([homeNavigationController, accountNavigationController, transactionsNavigationController], animated: true)
+        setViewControllers([homeNavigationController, accountNavigationController], animated: true)
         
         removeTopBlackLine()
         

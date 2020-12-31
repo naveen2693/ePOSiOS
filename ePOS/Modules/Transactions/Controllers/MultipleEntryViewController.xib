@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MultipleEntryViewController" customModule="ePOS" customModuleProvider="target">
+            <connections>
+                <outlet property="containerView" destination="wNk-RO-Hjp" id="Bag-iw-qPN"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wNk-RO-Hjp">
+                    <rect key="frame" x="20" y="64" width="374" height="698"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4h9-Vg-pgv" customClass="EPOSRectangularButton" customModule="ePOS" customModuleProvider="target">
+                    <rect key="frame" x="107" y="802" width="200" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="FUy-ze-J3m"/>
+                        <constraint firstAttribute="width" constant="200" id="zHM-vC-L5M"/>
+                    </constraints>
+                    <state key="normal" title="Continue"/>
+                    <connections>
+                        <action selector="continueClicked:" destination="-1" eventType="touchUpInside" id="Fqz-xX-5Tn"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="4h9-Vg-pgv" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Ggb-TA-hwG"/>
+                <constraint firstItem="4h9-Vg-pgv" firstAttribute="top" secondItem="wNk-RO-Hjp" secondAttribute="bottom" constant="40" id="Scq-bo-rXl"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wNk-RO-Hjp" secondAttribute="trailing" constant="20" id="k8U-8h-jbu"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="4h9-Vg-pgv" secondAttribute="bottom" constant="10" id="rYx-DC-piP"/>
+                <constraint firstItem="wNk-RO-Hjp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="yPy-S9-SGd"/>
+                <constraint firstItem="wNk-RO-Hjp" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="zdz-bj-ReX"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="139" y="127"/>
+        </view>
+    </objects>
+</document>

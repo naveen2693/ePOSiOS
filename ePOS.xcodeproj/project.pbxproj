@@ -256,6 +256,12 @@
 		991DF26E251CBB2E00AEA1C3 /* EPOSLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991DF26D251CBB2E00AEA1C3 /* EPOSLoader.swift */; };
 		991DF271251DED7100AEA1C3 /* EPOSBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991DF270251DED7100AEA1C3 /* EPOSBaseView.swift */; };
 		991DF273251DED8000AEA1C3 /* EPOSBaseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 991DF272251DED8000AEA1C3 /* EPOSBaseView.xib */; };
+		99207802259D803A00431976 /* MenuItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99207800259D803A00431976 /* MenuItemsViewController.swift */; };
+		99207803259D803A00431976 /* MenuItemsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99207801259D803A00431976 /* MenuItemsViewController.xib */; };
+		99207806259D8DCE00431976 /* MultipleEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99207804259D8DCE00431976 /* MultipleEntryViewController.swift */; };
+		99207807259D8DCE00431976 /* MultipleEntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99207805259D8DCE00431976 /* MultipleEntryViewController.xib */; };
+		99214BA6259C822100C740E4 /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99214BA4259C822100C740E4 /* QRCodeViewController.swift */; };
+		99214BA7259C822100C740E4 /* QRCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99214BA5259C822100C740E4 /* QRCodeViewController.xib */; };
 		996FD8A9251E1020001961EE /* CustomNavigationStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FD8A8251E1020001961EE /* CustomNavigationStyleViewController.swift */; };
 		996FD8AE251F17C3001961EE /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FD8AD251F17C3001961EE /* UserProfile.swift */; };
 		9976C9092500F05600FC5DD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9976C9082500F05600FC5DD3 /* AppDelegate.swift */; };
@@ -575,6 +581,12 @@
 		991DF26D251CBB2E00AEA1C3 /* EPOSLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSLoader.swift; sourceTree = "<group>"; };
 		991DF270251DED7100AEA1C3 /* EPOSBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPOSBaseView.swift; sourceTree = "<group>"; };
 		991DF272251DED8000AEA1C3 /* EPOSBaseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EPOSBaseView.xib; sourceTree = "<group>"; };
+		99207800259D803A00431976 /* MenuItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemsViewController.swift; sourceTree = "<group>"; };
+		99207801259D803A00431976 /* MenuItemsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuItemsViewController.xib; sourceTree = "<group>"; };
+		99207804259D8DCE00431976 /* MultipleEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleEntryViewController.swift; sourceTree = "<group>"; };
+		99207805259D8DCE00431976 /* MultipleEntryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultipleEntryViewController.xib; sourceTree = "<group>"; };
+		99214BA4259C822100C740E4 /* QRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
+		99214BA5259C822100C740E4 /* QRCodeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QRCodeViewController.xib; sourceTree = "<group>"; };
 		996FD8A8251E1020001961EE /* CustomNavigationStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationStyleViewController.swift; sourceTree = "<group>"; };
 		996FD8AD251F17C3001961EE /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		9976C9052500F05600FC5DD3 /* ePOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ePOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -925,6 +937,12 @@
 				9915995F2577581B00630E32 /* EnterDataViewController.xib */,
 				991599622577583000630E32 /* EnterAmountViewController.swift */,
 				991599632577583000630E32 /* EnterAmountViewController.xib */,
+				99214BA4259C822100C740E4 /* QRCodeViewController.swift */,
+				99214BA5259C822100C740E4 /* QRCodeViewController.xib */,
+				99207800259D803A00431976 /* MenuItemsViewController.swift */,
+				99207801259D803A00431976 /* MenuItemsViewController.xib */,
+				99207804259D8DCE00431976 /* MultipleEntryViewController.swift */,
+				99207805259D8DCE00431976 /* MultipleEntryViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1737,6 +1755,7 @@
 				9919A9A625176D9D00A67253 /* IFSCCodeDetailViewController.xib in Resources */,
 				99186D292511D1E000A9FE07 /* WebviewStoryBoard.storyboard in Resources */,
 				CEF73E74259AF75200326958 /* TestPVM.xml in Resources */,
+				99214BA7259C822100C740E4 /* QRCodeViewController.xib in Resources */,
 				990AF9CF252A0F970008A907 /* CustomSearchViewController.xib in Resources */,
 				9919A9A22517528800A67253 /* SearchIFSCViewController.xib in Resources */,
 				991599612577581B00630E32 /* EnterDataViewController.xib in Resources */,
@@ -1750,9 +1769,11 @@
 				9976C95C2501165E00FC5DD3 /* Roboto-Black.ttf in Resources */,
 				9919A99E25174B2D00A67253 /* BankDetailsViewController.xib in Resources */,
 				9976C9592501165E00FC5DD3 /* Roboto-BlackItalic.ttf in Resources */,
+				99207803259D803A00431976 /* MenuItemsViewController.xib in Resources */,
 				9976C9522501165E00FC5DD3 /* Roboto-Regular.ttf in Resources */,
 				CEF73E72259AF37D00326958 /* PVM_Server.xml in Resources */,
 				9976C9152500F05800FC5DD3 /* LaunchScreen.storyboard in Resources */,
+				99207807259D8DCE00431976 /* MultipleEntryViewController.xib in Resources */,
 				9919A9C1251A4BA600A67253 /* PackageTableViewCell.xib in Resources */,
 				9976C9582501165E00FC5DD3 /* LICENSE.txt in Resources */,
 				99186D562511D28800A9FE07 /* SignUpStoryboard.storyboard in Resources */,
@@ -1931,6 +1952,7 @@
 				99186CCB2508F01400A9FE07 /* TransactionsViewController.swift in Sources */,
 				991DF271251DED7100AEA1C3 /* EPOSBaseView.swift in Sources */,
 				8EE32864254447DE00616E33 /* st_CSVTxnMap.swift in Sources */,
+				99207806259D8DCE00431976 /* MultipleEntryViewController.swift in Sources */,
 				8E138278256B721B000F7C21 /* ISO220RequestState.swift in Sources */,
 				46ADF12025287A47009A9297 /* BusinessItem.swift in Sources */,
 				997DC7FE2522347F006ADE48 /* LeadState.swift in Sources */,
@@ -2036,6 +2058,7 @@
 				9919A9C0251A4BA600A67253 /* PackageTableViewCell.swift in Sources */,
 				99186D0E2510922B00A9FE07 /* ShowDialog.swift in Sources */,
 				46E293D3255BAC0B00826954 /* TxnTLVData.swift in Sources */,
+				99214BA6259C822100C740E4 /* QRCodeViewController.swift in Sources */,
 				46E293CC255BAC0B00826954 /* CBaseNode.swift in Sources */,
 				CE971BC9252CAD4E00843943 /* GlobalData.swift in Sources */,
 				46ED346825370CE300CEF19D /* AutoSettlementParams.swift in Sources */,
@@ -2069,6 +2092,7 @@
 				99186D6F251248EC00A9FE07 /* PersonalInfoViewController.swift in Sources */,
 				46E293CB255BAC0B00826954 /* ChildNodeClass.swift in Sources */,
 				46ADF10B25287803009A9297 /* LeadAgreementDetails.swift in Sources */,
+				99207802259D803A00431976 /* MenuItemsViewController.swift in Sources */,
 				46ED34762538603A00CEF19D /* AutoGPRSNetworkParams.swift in Sources */,
 				8EE32854253D6B5A00616E33 /* st_ISPASSWORDDetails.swift in Sources */,
 				99186CBA2508C08F00A9FE07 /* EPOSTextField.m in Sources */,
