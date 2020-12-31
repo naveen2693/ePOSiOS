@@ -107,6 +107,7 @@ class TransactionHUB {
         case PvmNodeTypes.Menu_node:
              CStateMachine.currentNode = node
              let controller = PaymentOptionsViewController.init(nibName: PaymentOptionsViewController.className, bundle: nil)
+             controller.testDelegate = delegate
              navigationController?.pushViewController(controller, animated: true)
         case PvmNodeTypes.Menu_item_node:
              CStateMachine.currentNode = node

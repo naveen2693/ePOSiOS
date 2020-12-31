@@ -24,6 +24,8 @@ class MenuItemsViewController: UIViewController {
     private var menuListName:String?
     private var menuListTitle:String?
     
+    private var menuItemList: [ITEMVAL]?
+    
     //var options = ["Option 1", "Option 2", "Option 3", "Option 4"]
     var options = [String]()
     private var numberOfItemsInMenuList:Int = 0
@@ -33,19 +35,19 @@ class MenuItemsViewController: UIViewController {
         navigationItem.title = "Select Option"
         
         //Get CurrentNode.Number of child
-        //guard var menuNode = CStateMachine.currentNode as? CDisplayMenu else {return}
         guard let menuList = CStateMachine.currentNode as? CDisplayMenuList else {return}
         menuListName =  menuList.iName
-//        if(menuListName == nil){
-//            menuListName = "Menu"
-//        }
-        numberOfItemsInMenuList = menuList.numberOFItemsInMenuList
-        var tempNode:CBaseNode?
-        
-        for i in 1...numberOfItemsInMenuList {
-            //tempNode = menuList.GotoChild(index: i)
+
+        if menuList.ItemList != nil
+        {
+            menuItemList = menuList.ItemList
+            numberOfItemsInMenuList = menuItemList!.count
             
-            options.append((tempNode?.getName())!)
+            if menuItemList!.count > 0{
+                for i in 0 ..< numberOfItemsInMenuList {
+                    options.append(menuItemList![i].ItemName + menuItemList![i].ItemVal)
+                }
+            }
         }
         
         tableView.reloadData()
@@ -59,9 +61,14 @@ extension MenuItemsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let iTag = CStateMachine.currentNode?.HostTlvtag
+        let bArrTagData = [Byte](menuItemList![indexPath.row].ItemVal.utf8)
+        TransactionHUB.AddTLVDataWithTag(uiTag: iTag!, Data: bArrTagData, length: bArrTagData.count)
+        
         let tempCurrentNode:CBaseNode?
         
-        tempCurrentNode = CStateMachine.currentNode?.GotoChild(index: indexPath.row + 1)
+        tempCurrentNode = CStateMachine.currentNode?.GotoChild()
         TransactionHUB.goToNode(tempCurrentNode, self.navigationController,testDelegate)
     }
 }
