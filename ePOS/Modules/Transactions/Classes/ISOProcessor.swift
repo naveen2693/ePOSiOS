@@ -580,7 +580,7 @@ class ISOProcessor
                 }
 
             }
-                while ((ip220.m_iReqState != ISO220RequestState.ONLINE_REQUEST_TXN_COMPLETED) && (ip220.m_iReqState != ISO220RequestState.ONLINE_REQUEST_TXN_ERR_TERMINATED) && (!GlobalData.IsMiniPVMPresent))
+            while ((ip220.m_iReqState != ISO220RequestState.ONLINE_REQUEST_TXN_COMPLETED) && (ip220.m_iReqState != ISO220RequestState.ONLINE_REQUEST_TXN_ERR_TERMINATED) && (!GlobalData.IsMiniPVMPresent))
 
 
             if (GlobalData.IsMiniPVMPresent == false) {

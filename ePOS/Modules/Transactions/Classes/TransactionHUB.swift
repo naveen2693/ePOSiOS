@@ -101,6 +101,7 @@ class TransactionHUB {
         }
         
         guard let nodeType = node?.node_type else {return}
+        node!.SetActionCode()
         
         switch(nodeType)
         {
@@ -146,9 +147,9 @@ class TransactionHUB {
         case PvmNodeTypes.Qrcode_display_node:
              CStateMachine.currentNode = node
              let controller = QRCodeViewController.init(nibName: QRCodeViewController.className, bundle: nil)
+             controller.testDelegate = delegate
              controller.modalPresentationStyle = .overFullScreen
              navigationController?.present(controller, animated: true, completion: nil)
-             break
         case PvmNodeTypes.Confirmation_dialog:
              break
         case PvmNodeTypes.Qrcode_scanning:
@@ -158,8 +159,8 @@ class TransactionHUB {
         case PvmNodeTypes.Multi_Data_Entry_Node:
              CStateMachine.currentNode = node
              let controller = MultipleEntryViewController.init(nibName: MultipleEntryViewController.className, bundle: nil)
+             controller.transactionDelegate = delegate
              navigationController?.pushViewController(controller, animated: true)
-             break
         case PvmNodeTypes.Epos_Home_Screen:
              break
         default:

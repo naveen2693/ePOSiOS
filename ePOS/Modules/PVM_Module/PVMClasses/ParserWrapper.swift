@@ -63,6 +63,7 @@ public class ParserWrapper
     public func AddNewNode(_ strArrAttributeName:[String],_ strArrAttributeValue:[String], _ iLength:Int) {
         var newNode:CBaseNode?
         
+        
         var tagAttribute =  ParseNodeAttributes(strArrAttributeName,strArrAttributeValue,iLength)
         
         parentNode = currentNode;
@@ -1019,40 +1020,19 @@ public class ParserWrapper
                 nParsedAtt += 1;
             }
             
-            if (strArrAttributeName[nIndex].elementsEqual("qcc"))
-            {
-                nParsedAtt += 1;
-                tagAttribute.qrCodeParsingData.qcc = (Int(strArrAttributeValue[nIndex])) ?? 0 ;
-            }
-            
-            let itemqc = "qc" + String(itemCountQC + 1);
-            if (strArrAttributeName[nIndex].elementsEqual(itemqc))
-            {
-                var qrCodeData =  QRCodeData();
-                qrCodeData.qc = (strArrAttributeValue[nIndex].substring(from: 0, to: 2));
-                qrCode.append(qrCodeData);
-                itemCountQC += 1;
-            }
-            
-            if (qrCode.count > 0)
-            {
-                nParsedAtt += 1;
-                tagAttribute.qrCodeParsingData.qc = (qrCode);
-            }
-            
             if (strArrAttributeName[nIndex].elementsEqual("prdc")) {
                 nParsedAtt += 1;
                 tagAttribute.qrCodeParsingData.qcc = (Int(strArrAttributeValue[nIndex])) ?? 0;
                 
             }
             
-            let itempc = "prdc" + String(itemCountPC + 1);
+            let itempc = "prdc\(itemCountPC + 1)"
             if (strArrAttributeName[nIndex].elementsEqual(itempc))
             {
                 var printd =  PrintData();
-                printd.prd = (strArrAttributeValue[nIndex].substring(from: 0, to: 2));
+                printd.prd = (strArrAttributeValue[nIndex].substring(from: 2));
                 printData.append(printd);
-                itemCountPC += 1;
+                itemCountPC += 1
             }
             
             if (printData.count > 0)
@@ -1073,22 +1053,46 @@ public class ParserWrapper
                 tagAttribute.qrCodeParsingData.qsn = (Int(strArrAttributeValue[nIndex])) ?? 0;
             }
             
-            if (strArrAttributeName[nIndex].elementsEqual("qclen"))
+            let itemqc = "qc"
+            if (strArrAttributeName[nIndex].contains(itemqc))
             {
-                nParsedAtt += 1;
-                tagAttribute.qrCodeParsingData.qclen = Int(strArrAttributeValue[nIndex]) ?? 0;
+                if (strArrAttributeName[nIndex].elementsEqual("qcc"))
+                {
+                    nParsedAtt += 1;
+                    tagAttribute.qrCodeParsingData.setQcc(Int(strArrAttributeValue[nIndex])!)
+                }
+                else if (strArrAttributeName[nIndex].elementsEqual("qclen"))
+                {
+                    nParsedAtt += 1;
+                    tagAttribute.qrCodeParsingData.setQclen(Int(strArrAttributeValue[nIndex])!)
+                }
+                else
+                {
+                    var qrCodeData =  QRCodeData()
+                    qrCodeData.setIndex(itemCountQC + 1)
+                    qrCodeData.setQc(strArrAttributeValue[nIndex].substring(from: 2))
+                    
+                    qrCode.append(qrCodeData)
+                    itemCountQC += 1
+                    
+                    if (qrCode.count > 0)
+                    {
+                        nParsedAtt += 1
+                        tagAttribute.qrCodeParsingData.setQc(qrCode)
+                    }
+                }
             }
             
             if (strArrAttributeName[nIndex].elementsEqual("dmh"))
             {
                 nParsedAtt += 1;
-                tagAttribute.qrCodeParsingData.dmh = (strArrAttributeValue[nIndex]);
+                tagAttribute.qrCodeParsingData.setDmh(strArrAttributeValue[nIndex])
             }
             
             if (strArrAttributeName[nIndex].elementsEqual("dmf"))
             {
                 nParsedAtt += 1;
-                tagAttribute.qrCodeParsingData.dmf = (strArrAttributeValue[nIndex]);
+                tagAttribute.qrCodeParsingData.setDmf(strArrAttributeValue[nIndex])
             }
         }
         return tagAttribute;

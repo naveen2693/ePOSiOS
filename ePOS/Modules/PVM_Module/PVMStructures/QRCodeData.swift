@@ -8,5 +8,25 @@
 
 import Foundation
 struct QRCodeData{
-    var qc = "";
+    
+    var index = 0;
+    var qc = ""
+    
+    public func getQc() -> String{
+         return qc
+     }
+
+    public mutating func setIndex(_ index: Int) {
+         self.index = index
+     }
+    
+    public func getIndex() -> Int{
+         return index
+     }
+
+    public mutating func setQc(_ qc: String) {
+         self.qc = qc
+     }
+    
+    
 }

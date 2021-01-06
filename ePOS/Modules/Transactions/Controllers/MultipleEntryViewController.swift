@@ -68,13 +68,14 @@ class MultipleEntryViewController: UIViewController {
                 
                 let placeHolderName = element.placeholder
                 let pvmobject = (list.filter{$0.DM == placeHolderName}).first
-                var htlTag = pvmobject?.HTL
+                let htlTag = pvmobject?.HTL
                 //Add TLV Data
                 TransactionHUB.AddTLVDataWithTag(uiTag: htlTag!, Data: [Byte](value.utf8), length: value.count)
-                let tempNode = CStateMachine.currentNode?.GotoChild()
-                TransactionHUB.goToNode(tempNode,self.navigationController,transactionDelegate)
             }
         }
+        
+        let tempNode = CStateMachine.currentNode?.GotoChild()
+        TransactionHUB.goToNode(tempNode,self.navigationController,transactionDelegate)
         
     }
 }

@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QRCodeViewController" customModule="ePOS" customModuleProvider="target">
             <connections>
-                <outlet property="imageView" destination="4lb-gD-Wle" id="7di-tb-IWE"/>
+                <outlet property="qrCodeBox" destination="4lb-gD-Wle" id="kRG-OQ-AdG"/>
                 <outlet property="timerLabel" destination="5xa-xK-q24" id="F54-Ir-MnG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

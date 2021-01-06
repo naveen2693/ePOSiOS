@@ -8,5 +8,13 @@
 
 import Foundation
 struct PrintData {
-    var prd:String = "";
+    var prd:String = ""
+    
+    public func getPrd() -> String {
+        return prd
+    }
+    
+    public mutating func setPrd(_ prd: String) {
+        self.prd = prd
+    }
 }

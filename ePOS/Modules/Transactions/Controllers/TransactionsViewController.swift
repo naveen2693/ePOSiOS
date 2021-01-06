@@ -8,6 +8,14 @@
 
 import UIKit
 
+
+enum CompletionHandlerTypes
+{
+    case Failure
+    case Success
+    case QRCode
+}
+
 class TransactionHomeViewController: UIViewController {
     
 //@IBOutlet weak var collectionView: UICollectionView!
@@ -164,7 +172,7 @@ class TransactionHomeViewController: UIViewController {
         return bRes
     }
 
-    func DoTransaction(completion: @escaping (Bool) -> Void) -> Bool
+    func DoTransaction(completion: @escaping (CompletionHandlerTypes) -> Void) -> Bool
     {
         var bRet = false
         var isopr = ISOProcessor()
@@ -178,14 +186,8 @@ class TransactionHomeViewController: UIViewController {
         var _: Int = isopr.SetCommunicationParam(true)
         var status: Int = 0
         
-        //TODO: HAVE TO REMOVE HARDCODED TXNTYPE
-        let globalData = GlobalData.singleton
-        
-        globalData.m_sNewTxnData.uiTransactionType = HostTransactionType.COD_TXN
-        //TransactionHUB.AddTLVDataWithTag(uiTag: 0x1015, Data: [Byte]("12345".utf8), length: 5)
-        //TransactionHUB.AddTLVDataWithTag(uiTag: 0x6101, Data: [Byte]("12345".utf8), length: 5)
-        
         status = isopr.DoHubOnlineTxn()
+        
         //reset Pay by mobile related flag when dialog hides
         GlobalData.singleton.isPayByMobileEnabled = false
         if (status == 1) {
@@ -198,7 +200,19 @@ class TransactionHomeViewController: UIViewController {
             debugPrint("Online Transaction Failed")
         }
         
-        completion(true)
+        
+        if (GlobalData.IsMiniPVMPresent) {
+            if(AppConstant.FALSE  == CStateMachine.stateMachine.RunMiniPvm()) {
+                completion(.Failure)
+            } else {
+                completion(.QRCode)
+            }
+        }
+        else
+        {
+            completion(.Success)
+        }
+        
         return bRet
     }
 
@@ -249,19 +263,31 @@ extension TransactionHomeViewController: prTransactionTestDelegate {
         self.showLoading()
         //let syncConc = DispatchQueue(label:"con",attributes:.concurrent)
         DispatchQueue.global(qos: .utility).async{
-            _ = weakSelf?.DoTransaction(completion: {(isSuccess:Bool) in
-                if(isSuccess)
+            _ = weakSelf?.DoTransaction(completion: {(isSuccess:CompletionHandlerTypes) in
+                switch(isSuccess)
                 {
+                case CompletionHandlerTypes.QRCode:
+                    DispatchQueue.main.async {
+                        self.hideLoading()
+                        
+                        let controller = QRCodeViewController.init(nibName: QRCodeViewController.className, bundle: nil)
+                        controller.testDelegate = self
+                        controller.modalPresentationStyle = .overFullScreen
+                        self.navigationController?.present(controller, animated: true, completion: nil)
+                        
+                    }
+
+                case CompletionHandlerTypes.Success, CompletionHandlerTypes.Failure:
                     DispatchQueue.main.async {
                         self.hideLoading()
                         let alert = UIAlertController(title: "", message: GlobalData.m_csFinalMsgDoHubOnlineTxn, preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (_) in
                             self.navigationController?.popToRootViewController(animated: true)
                         }))
-                        
                         self.present(alert, animated: true)
                     }
                 }
+                
             })
         }
     }

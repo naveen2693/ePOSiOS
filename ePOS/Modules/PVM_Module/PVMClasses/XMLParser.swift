@@ -12,16 +12,28 @@ public class XmlParser {
     var objParserWrapper:ParserWrapper = ParserWrapper()
     var attributesLength = 0
     
+//    func synchronousAppend(_ strArrAttributeName: inout [String], _ strArrAttributeValue: inout [String], _ key: String, _ value: String, completion:  @escaping (Bool) -> Void)
+//    {
+//        strArrAttributeName.append(key)
+//        strArrAttributeValue.append(value)
+//        completion(true)
+//    }
+    
     func parsePVM(_ strData:String)
     {
+        
+        
         guard let node = XMLNode.node(strData) else {return}
         
         var strArrAttributeName = [String]()
         var strArrAttributeValue = [String]()
+        
+        
         for (key,value) in node.attributes{
             strArrAttributeName.append(key)
             strArrAttributeValue.append(value)
         }
+        
         attributesLength = node.attributes.count
         objParserWrapper.AddNewNode(strArrAttributeName,strArrAttributeValue,attributesLength)
         objParserWrapper.SaveRootNode()

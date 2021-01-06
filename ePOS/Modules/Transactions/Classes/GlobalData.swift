@@ -3044,46 +3044,48 @@ final class GlobalData
         
         let sAllTxnData: [PlutusTransactionData] = FileSystem.ReadFile(strFileName: chTxnFileName)!
         let index = (sAllTxnData != nil && !sAllTxnData.isEmpty) ? sAllTxnData.firstIndex(where: {$0 === transactionData}) : -1
-        let status: Int = transactionData.getStatus()!
-        let date: String = transactionData.getDate()!
-        var amount: Double = transactionData.getAmount()! / 100
-        let dateFormatted: String = DateUtil.convertDateOneFormatToOther(date, DateUtil.SERVER_TIME_FORMAT, DateUtil.DATE_FORMAT)
-        //check if file exists or there is any entry
-        var txnAmount: DailyTxnAmount = GlobalData.singleton.readDailyTxnAmt()
-        //check if empty, append
-        if ((txnAmount == nil) || dateFormatted.caseInsensitiveCompare(txnAmount.getDate()) != .orderedSame) {
-            //append
-            txnAmount = DailyTxnAmount()
-            txnAmount.setDate(dateFormatted)
-        }
-
-        if (index! > -1) {
-            let existingTransaction: PlutusTransactionData = sAllTxnData[index!]
-            if (status == PlutusTransactionStatus.TRANSACTION_STATUS_SUCCESS) {
-                if (existingTransaction.getStatus() == PlutusTransactionStatus.TRANSACTION_STATUS_SUCCESS) {
-                    amount = 0
-                }
-            } else if (status == PlutusTransactionStatus.TRANSACTION_STATUS_CANCELLED) {
-                if (existingTransaction.getStatus() == PlutusTransactionStatus.TRANSACTION_STATUS_CANCELLED) {
-                    amount = 0
+        
+        if let status: Int = transactionData.getStatus(), let date: String = transactionData.getDate(), var amount: Double = transactionData.getAmount()! / 100
+        {
+            let dateFormatted: String = DateUtil.convertDateOneFormatToOther(date, DateUtil.SERVER_TIME_FORMAT, DateUtil.DATE_FORMAT)
+            //check if file exists or there is any entry
+            var txnAmount: DailyTxnAmount = GlobalData.singleton.readDailyTxnAmt()
+            //check if empty, append
+            if ((txnAmount == nil) || dateFormatted.caseInsensitiveCompare(txnAmount.getDate()) != .orderedSame) {
+                //append
+                txnAmount = DailyTxnAmount()
+                txnAmount.setDate(dateFormatted)
+            }
+            
+            if (index! > -1) {
+                let existingTransaction: PlutusTransactionData = sAllTxnData[index!]
+                if (status == PlutusTransactionStatus.TRANSACTION_STATUS_SUCCESS) {
+                    if (existingTransaction.getStatus() == PlutusTransactionStatus.TRANSACTION_STATUS_SUCCESS) {
+                        amount = 0
+                    }
+                } else if (status == PlutusTransactionStatus.TRANSACTION_STATUS_CANCELLED) {
+                    if (existingTransaction.getStatus() == PlutusTransactionStatus.TRANSACTION_STATUS_CANCELLED) {
+                        amount = 0
+                    } else {
+                        amount = 0 - amount
+                    }
                 } else {
-                    amount = 0 - amount
+                    amount = 0
                 }
             } else {
-                amount = 0
+                if (status == PlutusTransactionStatus.TRANSACTION_STATUS_SUCCESS) {
+                    //Do nothing
+                } else if (status == PlutusTransactionStatus.TRANSACTION_STATUS_CANCELLED) {
+                    amount = 0 - amount
+                } else {
+                    amount = 0
+                }
             }
-        } else {
-            if (status == PlutusTransactionStatus.TRANSACTION_STATUS_SUCCESS) {
-                //Do nothing
-            } else if (status == PlutusTransactionStatus.TRANSACTION_STATUS_CANCELLED) {
-                amount = 0 - amount
-            } else {
-                amount = 0
-            }
+            
+            txnAmount.setAmount(txnAmount.getAmount() + amount)
+            GlobalData.singleton.writeDailyTxnAmt(txnAmount)
+            
         }
-
-        txnAmount.setAmount(txnAmount.getAmount() + amount)
-        GlobalData.singleton.writeDailyTxnAmt(txnAmount)
     }
     
     public func readDailyTxnAmt() -> DailyTxnAmount {
@@ -3119,9 +3121,9 @@ final class GlobalData
             txnData.setFirstROC(txnData.getEdcROC()!)
             appendNewTxn(txnData)
         } else {
-            let index = sAllTxnData.firstIndex(where: {$0 === txnData})
-            if (index != -1) {
-                let txn: PlutusTransactionData = sAllTxnData.remove(at: index!)
+            if let index = sAllTxnData.firstIndex(where: {$0 === txnData})
+            {if (index != -1) {
+                let txn: PlutusTransactionData = sAllTxnData.remove(at: index)
                 txnData.setTransactionType(txn.getTransactionType()!)
                 txnData.setFirstROC(txn.getFirstROC()!)
                 if (PlutusTransactionStatus.TRANSACTION_STATUS_FAILURE == txnData.getStatus()) {
@@ -3130,6 +3132,7 @@ final class GlobalData
                 }
             } else {
                 txnData.setFirstROC(txnData.getEdcROC()!)
+                }
             }
             sAllTxnData.append(txnData)
             _ = FileSystem.DeleteFile(strFileName: chTxnFileName)

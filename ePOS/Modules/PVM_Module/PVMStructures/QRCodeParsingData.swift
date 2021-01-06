@@ -18,4 +18,84 @@ struct QRCodeParsingData {
     var dmh = "";//display message header
     var dmf = "";//display message footer
     var pod = 0;
+    
+    public func getPod() -> Int {
+        return pod
+    }
+
+    public mutating func setPod(_ pod: Int) {
+        self.pod = pod
+    }
+
+    public func getQsn() -> Int {
+        return qsn
+    }
+
+    public mutating func setQsn(_ qsn: Int) {
+        self.qsn = qsn
+    }
+
+    public func getQcc() -> Int {
+        return qcc
+    }
+
+    public mutating func setQcc(_ qcc: Int) {
+        self.qcc = qcc
+    }
+
+    public func getQclen() -> Int {
+        return qclen
+    }
+
+    public mutating func setQclen(_ qclen: Int) {
+        self.qclen = qclen
+    }
+
+    public func getQc() -> [QRCodeData]? {
+        return qc!
+    }
+
+    public mutating func setQc(_ qc: [QRCodeData]) {
+        self.qc = qc;
+    }
+
+    public func getPrdc() -> Int {
+        return prdc
+    }
+
+    public mutating func setPrdc(_ prdc: Int) {
+        self.prdc = prdc
+    }
+
+    public func getPrdl() -> Int {
+        return prdl
+    }
+
+    public mutating func setPrdl(_ prdl: Int) {
+        self.prdl = prdl
+    }
+
+    public func getPrd() -> [PrintData]? {
+        return prd!
+    }
+
+    public mutating func setPrd(_ prd: [PrintData]) {
+        self.prd = prd
+    }
+
+    public func getDmh() -> String {
+        return dmh
+    }
+
+    public mutating func setDmh(_ dmh: String) {
+        self.dmh = dmh
+    }
+
+    public func getDmf() -> String {
+        return dmf
+    }
+
+    public mutating func setDmf(_ dmf: String) {
+        self.dmf = dmf
+    }
 }

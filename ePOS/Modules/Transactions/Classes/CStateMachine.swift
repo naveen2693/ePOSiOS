@@ -30,19 +30,23 @@ public class CStateMachine {
     var gRootNode:CBaseNode?
     static var GO = 1
     static var TIME_OUT = 0
+    
+    var cascadingParentNode: CBaseNode?
+    var isCascadingParentNode = false
+    
 //    private CBaseNode gTestPVMRootNode                //Variable to store test root node
 //
 //    public CBaseNode gMainPVMRootNodeForCache = null
 //
 //    private CBaseNode[] gMiniPvmNode = new CBaseNode[MAX_MINIPVM_COUNT]    //variable to store miniPVM root Node
 //
-//    public boolean bRunMiniPVm                        //flag to differentiate miniPVM execution
-//    public int m_iMiniPVMCounter
+      var bRunMiniPVm = false                       //flag to differentiate miniPVM execution
+      var m_iMiniPVMCounter = 0
 //
 //    private boolean bLocalPVM                        //flag to differentiate TEST PVM execution
-//    private boolean bTestLocalMiniPVM                //flag to differentiate TEST MINIPVM
-//    private boolean m_bMiniPVMexecutionOK            //flag to store miniPVM execution
-//    public boolean m_bMiniPVMexecutionCompleted   //flag to store miniPVM execution
+      private var bTestLocalMiniPVM = false               //flag to differentiate TEST MINIPVM
+      private var m_bMiniPVMexecutionOK = false            //flag to store miniPVM execution
+      public var m_bMiniPVMexecutionCompleted = false  //flag to store miniPVM execution
 //    public boolean m_bMiniPvmExecute
 //
 //    public boolean m_ResetTerminal                //Flag which prompt user to reboot device
@@ -168,6 +172,31 @@ public class CStateMachine {
     internal func GetRootNode() ->CBaseNode? {
         return gRootNode
     }
+    
+    func RunMiniPvm() -> Int {
+        var retVal: Int = 0
+        gRootNode = nil
+        cascadingParentNode = nil
+        isCascadingParentNode = false
+        bRunMiniPVm = true
+        m_iMiniPVMCounter += 1
+        do {
+            LoadPVM(0)
+            CStateMachine.currentNode = gRootNode;
+            if (gRootNode != nil) {
+                m_bMiniPVMexecutionOK = false;
+                m_bMiniPVMexecutionCompleted = false;
+                return 1;
+            } else {
+                return 0;
+            }
+    
+        } catch {
+        debugPrint("Exception Occurred : \(error)")
+        }
+        return retVal;
+    }
+    
 //
 //    int RunMiniPvm() {
 //        int retVal = 0
@@ -615,47 +644,48 @@ public class CStateMachine {
 //            return RetVal.RET_NOT_OK
 //        }
 //    }
-//
-//    public void LoadPVM(long ulMiniPVMID) {
-//        CLogger.TraceLog(TRACE_DEBUG, "bRunMiniPVm[%s], bTestLocalMiniPVM[%s]", bRunMiniPVm, bTestLocalMiniPVM)
-//
-//        if (bRunMiniPVm && bTestLocalMiniPVM) {
-//            //CPlatformUtils.LoadLocalMiniPVM()
-//            bTestLocalMiniPVM = false
-//        } else {
-//            if (ulMiniPVMID > 0) {
-//                //CPlatformUtils.LoadPVM(bRunMiniPVm, ulMiniPVMID)
-//            } else {
-//                LoadPVM(bRunMiniPVm, 0)
-//            }
-//        }
-//    }
-//
-//    public void LoadPVM(boolean isMiniPVm, long ulMiniPVMID) {
-//        InputStream inputFile = null
-//        try {
-//            if (isMiniPVm) {
-//                byte[] bArrMiniPvm = CFileSystem.ReadByteFile(PlutusApplication.getContext(), AppConst.MINIPVM)
-//                String strMiniPVMData = new String(bArrMiniPvm)
-//                strMiniPVMData = strMiniPVMData.trim()
-//                String strMiniPVM = strMiniPVMData.replaceAll("&", "&amp")
-//                inputFile = new ByteArrayInputStream(strMiniPVM.getBytes())
-//            } else {
-//                byte[] bPVMData = CFileSystem.ReadByteFile(PlutusApplication.getContext(), AppConst.PVMFILE)
-//                if (bPVMData != null) {
-//                    String strPVMData = new String(bPVMData)
-//                    String strPVM = strPVMData.trim().replaceAll("&", "&amp")
-//                    inputFile = new ByteArrayInputStream(strPVM.getBytes())
-//                } else {
-//                    inputFile = MainActivity.m_context.getAssets().open("newXML.xml")
-//                }
-//            }
-//        } catch (Exception e) {
-//            CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(e))
-//        }
-//        XmlParser.ParsePvm(inputFile, 1)
-//    }
-//
+
+    public func LoadPVM(_ ulMiniPVMID: Int64) {
+        debugPrint("bRunMiniPVm[%s], bTestLocalMiniPVM[%s]", bRunMiniPVm, bTestLocalMiniPVM)
+
+        if (bRunMiniPVm && bTestLocalMiniPVM) {
+            bTestLocalMiniPVM = false
+        } else {
+            if (ulMiniPVMID > 0) {
+            } else {
+                LoadPVM(bRunMiniPVm, 0)
+            }
+        }
+    }
+
+    public func LoadPVM(_ isMiniPVm: Bool, _ ulMiniPVMID: Int64) {
+
+        do {
+            if (isMiniPVm) {
+                guard let bArrMiniPvm = FileSystem.ReadByteFile(strFileName: FileNameConstants.MINIPVM) else {return}
+        
+                var strMiniPVMData:String = bArrMiniPvm[0]
+                strMiniPVMData = strMiniPVMData.trimmingCharacters(in: .whitespacesAndNewlines)
+                let strMiniPVM = strMiniPVMData.replaceAll(of: "&", with: "&amp;")
+             
+                let obj = XmlParser()
+                obj.parsePVM(strMiniPVM)
+                
+            } else {
+                guard let bPVMData = FileSystem.ReadByteFile(strFileName: FileNameConstants.PVMFILE) else {return}
+                if (!bPVMData.isEmpty) {
+                    let strPVMData = bPVMData[0]
+                    let strPVM = strPVMData.trimmingCharacters(in: .whitespacesAndNewlines).replaceAll(of: "&", with: "&amp;")
+                    
+                    let obj = XmlParser()
+                    obj.parsePVM(strPVM)
+                }
+            }
+        } catch {
+            debugPrint("Exception Occurred : \(error)")
+        }
+    }
+
 //    public void UpdateState(int state, Context context) {
 //        String strState = String.valueOf(state)
 //        CFileSystem.WriteToFile(context, AppConst.DEVICE_STATE, strState)
