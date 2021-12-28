@@ -1,4 +1,4 @@
-//
+﻿//
 //  AppConstants.swift
 //  ePOS
 //
@@ -397,7 +397,7 @@ enum AppConstant
     static let NB_KEY = 24                                /*!< number of keys returned */
     static let EP_KEY = 0x30                              /*!< number of keys returned */
 
-    
+    static let TestKey = 500
 }
 
 enum enum_InputMethod {
